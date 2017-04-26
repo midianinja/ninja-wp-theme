@@ -1,0 +1,108 @@
+---
+image: docker:git
+services:
+- docker:dind
+stages:
+- build
+- deploy
+
+variables:
+  CONTAINER_TEST_IMAGE: hacklab/base-wordpress:$CI_BUILD_REF_NAME
+  CONTAINER_RELEASE_IMAGE: hacklab/base-wordpress:latest
+
+before_script:
+  - docker login -u ${HUB_USER} -p ${HUB_PASS}
+  - 'curl -u "${C_ACCESS_KEY}:${C_SECRET_KEY}"
+     -X POST -H "Accept: application/json" -H "Content-Type: application/json" -d "{}"
+     "${C_SERVER_URL}/v2-beta/projects/${HOMOLOG_PROJECT_ID}/services/${HOMOLOG_SERVICE_ID}/?action=finishupgrade"'
+  - 'curl -u "${C_ACCESS_KEY}:${C_SECRET_KEY}"
+     -X POST -H "Accept: application/json" -H "Content-Type: application/json" -d "{}"
+     "${C_SERVER_URL}/v2-beta/projects/${PRODUCTION_PROJECT_ID}/services/${PRODUCTION_SERVICE_ID}/?action=finishupgrade"'
+
+build to homolog:
+  stage: build
+  script:
+    - docker build -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+  only:
+    - /staging/
+  environment: homolog
+  tags:
+    - docker:dind
+
+build to production:
+  stage: build
+  script:
+    - docker build -t $CONTAINER_TEST_IMAGE .
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_TEST_IMAGE
+  only:
+    - tags
+  environment: production
+  tags:
+    - docker:dind
+
+deploy to homolog:
+  stage: deploy
+  script:
+    - 'curl -v -u "${C_ACCESS_KEY}:${C_SECRET_KEY}"
+        -X POST -H "Accept: application/json"
+        -H "Content-Type: application/json"
+        -d "{ \"inServiceStrategy\": { \"launchConfig\": {
+            \"dataVolumes\": [ \"wordpress-uploads:/var/www/html/wp-content/uploads\"],
+            \"environment\": {
+                \"WORDPRESS_DB_NAME\":\"wordpress\",
+                \"WORDPRESS_DB_PASSWORD\":\"wordpress\",
+                \"WORDPRESS_DB_USER\":\"wordpress\",
+                \"WORDPRESS_DEBUG\":\"false\",
+                \"WORDPRESS_DEBUG_DISPLAY\":\"false\"
+            },
+            \"imageUuid\": \"docker:${CONTAINER_TEST_IMAGE}\",
+            \"vcpu\": 2,
+            \"labels\": {
+                \"rap.host\":\"${HOMOLOG_HOST}\",
+                \"rap.cert_name\":\"hacklab\",
+                \"rap.client_max_body_size\":\"2048m\",
+                \"io.rancher.container.pull_image\": \"always\",
+                \"io.rancher.scheduler.affinity:host_label\": \"name=dragon\",
+                \"br.com.hacklab.pixinguinha:revision\": \"${CI_COMMIT_SHA}\"
+            }}  } }"
+        "${C_SERVER_URL}/v2-beta/projects/${HOMOLOG_PROJECT_ID}/services/${HOMOLOG_SERVICE_ID}/?action=upgrade"'
+  only:
+    - /staging/
+  environment: homolog
+  tags:
+    - docker:dind
+
+deploy to production:
+  stage: deploy
+  script:
+    - 'curl -v -u "${C_ACCESS_KEY}:${C_SECRET_KEY}"
+        -X POST -H "Accept: application/json"
+        -H "Content-Type: application/json"
+        -d "{ \"inServiceStrategy\": { \"launchConfig\": {
+            \"dataVolumes\": [ \"wordpress-uploads:/var/www/html/wp-content/uploads\"],
+            \"environment\": {
+                \"WORDPRESS_DB_NAME\":\"wordpress\",
+                \"WORDPRESS_DB_PASSWORD\":\"wordpress\",
+                \"WORDPRESS_DB_USER\":\"wordpress\",
+                \"WORDPRESS_DEBUG\":\"false\",
+                \"WORDPRESS_DEBUG_DISPLAY\":\"false\"
+            },
+            \"imageUuid\": \"docker:${CONTAINER_TEST_IMAGE}\",
+            \"vcpu\": 2,
+            \"labels\": {
+                \"rap.host\":\"${PRODUCTION_HOST}\",
+                \"rap.le_host\":\"${PRODUCTION_HOST}\",
+                \"rap.le_email\":\"sysadmin@hacklab.com.br\",
+                \"rap.client_max_body_size\":\"2000m\",
+                \"io.rancher.container.pull_image\": \"always\",
+                \"io.rancher.scheduler.affinity:host_label\": \"name=dragon\",
+                \"br.com.hacklab.pixinguinha:revision\": \"${CI_COMMIT_SHA}\"
+            }}  } }"
+        "${C_SERVER_URL}/v2-beta/projects/${PRODUCTION_PROJECT_ID}/services/${PRODUCTION_SERVICE_ID}/?action=upgrade"'
+  only:
+    - tags
+  environment: production
+  tags:
+    - docker:dind

@@ -1,0 +1,17 @@
+{
+    "name": "hacklab/base-worpdress-repository",
+    "description": "Basic WordPress Repository",
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "wpackagist-plugin/all-in-one-wp-security-and-firewall":"4.2.7",
+        "wpackagist-theme/twentyseventeen": "*"
+    },
+    "require-dev":{
+        "wpackagist-plugin/query-monitor":"2.13.4"
+    }
+}

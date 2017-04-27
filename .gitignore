@@ -1,3 +1,9 @@
-vendor/
-wp-content/*
+# ignore all dependencies by default
+wp-content/themes/*
+wp-content/plugins/*
+wp-content/mu-plugins/*
+
+
+# un-ignore your project below, eg:
+# !wp-content/themes/hackawesome
 

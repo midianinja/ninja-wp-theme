@@ -11,6 +11,33 @@ projeto.
 
 ## Desenvolvimento
 
+### Versionamento
+
+O conteúdo de `wp-content` está excluído do versionamento por padrão. Para adicionar
+seu plugin ou tema em wp-content, voce deve tirá-lo da regra de exclusão manualmente
+editando o arquivo `.gitignore`.
+
+Suponha que voce está criando o tema `hackawesome`, digite o seguinte comando para
+que o tema não entre para a regra de exclusão.
+
+```
+echo '!wp-content/themes/hackawesome >> .gitginore
+```
+
+Se for um plugin
+
+```
+echo '!wp-content/plugins/hackawesome >> .gitginore
+```
+
+Voce pode fazer para quantos plugins forem necessário
+
+```
+echo '!wp-content/plugins/plugin1 >> .gitginore
+echo '!wp-content/plugins/plugin2 >> .gitginore
+```
+
+
 ### Composer
 
 Existe na raiz do projeto um arquivo chamado `composer.json`. Nele devem conter
@@ -37,6 +64,26 @@ composer require 'wpackagist-plugin/jetpack-markdown:3.9.6'
 
 O plugin será descarregado e instalado na pasta `wp-content/plugins` e o
 arquivo `composer.json` será atualizado com essa dependencia.
+
+
+### Remover temas e plugins
+
+É importante que o `composer.json` tenha somente o necessário, sem ter
+plugins ou temas que não são utilizados nos projetos.
+
+Se deixar de usar o __tema__ *twentyseventeen*, remova-o do `compose.json`
+com o comanado abaixo:
+
+```
+composer remove wpackagist-theme/twentyseventeen
+```
+
+Para deixar de usar um __plugin__, como o *all-in-one-wp-security-and-firewall*,
+use o comando abaixo:
+
+```
+composer remove wpackagist-plugin/all-in-one-wp-security-and-firewall
+```
 
 
 ### `docker-compose`

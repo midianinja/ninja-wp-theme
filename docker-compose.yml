@@ -2,7 +2,8 @@ version: '2'
 
 services:
   wordpress:
-    image: hacklab/wordpress
+    build: ./
+    image: basewp
     depends_on:
       - mysql
     ports:

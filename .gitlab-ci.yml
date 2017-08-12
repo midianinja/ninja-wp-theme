@@ -49,7 +49,11 @@ deploy to homolog:
         -X POST -H "Accept: application/json"
         -H "Content-Type: application/json"
         -d "{ \"inServiceStrategy\": { \"launchConfig\": {
-            \"dataVolumes\": [ \"wordpress-uploads:/var/www/html/wp-content/uploads\"],
+            \"dataVolumes\": [
+                \"wordpress-themes:/var/www/html/wp-content/themes\", 
+                \"wordpress-plugins:/var/www/html/wp-content/plugins\", 
+                \"wordpress-uploads:/var/www/html/wp-content/uploads\"
+            ],
             \"environment\": {
                 \"WORDPRESS_DB_NAME\":\"wordpress\",
                 \"WORDPRESS_DB_PASSWORD\":\"wordpress\",
@@ -81,7 +85,11 @@ deploy to production:
         -X POST -H "Accept: application/json"
         -H "Content-Type: application/json"
         -d "{ \"inServiceStrategy\": { \"launchConfig\": {
-            \"dataVolumes\": [ \"wordpress-uploads:/var/www/html/wp-content/uploads\"],
+            \"dataVolumes\": [
+                \"wordpress-themes:/var/www/html/wp-content/themes\", 
+                \"wordpress-plugins:/var/www/html/wp-content/plugins\", 
+                \"wordpress-uploads:/var/www/html/wp-content/uploads\"
+            ],
             \"environment\": {
                 \"WORDPRESS_DB_NAME\":\"wordpress\",
                 \"WORDPRESS_DB_PASSWORD\":\"wordpress\",

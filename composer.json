@@ -8,10 +8,16 @@
         }
     ],
     "require": {
-        "wpackagist-plugin/all-in-one-wp-security-and-firewall":"4.2.7",
+        "wpackagist-plugin/all-in-one-wp-security-and-firewall":"*",
         "wpackagist-theme/twentyseventeen": "*"
     },
     "require-dev":{
-        "wpackagist-plugin/query-monitor":"2.13.4"
+        "wpackagist-plugin/query-monitor":"*"
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/plugins/{$name}/": ["type:wordpress-plugin"],
+            "vendor/themes/{$name}/": ["type:wordpress-theme"]
+        }
     }
 }

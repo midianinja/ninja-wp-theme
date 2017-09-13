@@ -9,7 +9,8 @@
     ],
     "require": {
         "wpackagist-plugin/all-in-one-wp-security-and-firewall":"*",
-        "wpackagist-theme/twentyseventeen": "*"
+        "wpackagist-plugin/wordpress-seo": "*",
+        "wpackagist-plugin/google-analytics-dashboard-for-wp": "*"
     },
     "require-dev":{
         "wpackagist-plugin/query-monitor":"*"

@@ -15,6 +15,8 @@ services:
       WORDPRESS_DEBUG: 'true'
     volumes:
       - ./wp-content:/var/www/html/wp-content
+      - ./plugins:/var/www/html/plugins
+      - ./themes:/var/www/html/themes
 
   mysql:
     image: mariadb

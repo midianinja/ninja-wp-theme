@@ -1,4 +1,5 @@
-FROM hacklab/wordpress
+FROM hacklab/wordpress:v4.8.3-php7
+
 LABEL mantainer "Hacklab <contato@hacklab.com.br>"
 
 ARG composer='--no-dev'

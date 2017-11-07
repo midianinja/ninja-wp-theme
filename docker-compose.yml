@@ -3,7 +3,6 @@ version: '2'
 services:
   wordpress:
     build: ./
-    image: basewp
     depends_on:
       - mysql
     ports:
@@ -17,6 +16,9 @@ services:
       - ./wp-content:/var/www/html/wp-content
       - ./plugins:/var/www/html/plugins
       - ./themes:/var/www/html/themes
+      - ./vendor:/var/www/html/vendor
+      - ./docker/wp-config.d:/var/www/html/wp-config.d
+      - ./docker/htaccess_dev:/var/www/html/.htaccess
 
   mysql:
     image: mariadb

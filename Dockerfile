@@ -5,7 +5,8 @@ ARG composer='--no-dev'
 USER www-data
 
 # Insert our data and dependencies
-COPY ["docker-entrypoint-extra", "/docker-entrypoint-extra"]
+COPY ["docker/entrypoint-extra", "/docker-entrypoint-extra"]
+COPY ["wp-config.d/", "/var/www/html/wp-config.d"]
 COPY ["composer.json", "/var/www/html/composer.json"]
 RUN mkdir vendor
 RUN composer install -v $composer

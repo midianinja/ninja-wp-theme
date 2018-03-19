@@ -23,7 +23,7 @@ services:
   mysql:
     image: mariadb
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - ./mariadb_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: therootpassword
       MYSQL_DATABASE: wordpress

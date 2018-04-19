@@ -1,116 +1,61 @@
 ---
-image: docker:git
+image: docker:18.01.0-ce-git
 services:
-- docker:dind
+- docker:18.01.0-ce-dind
+
 stages:
 - build
 - deploy
 
 variables:
-  CONTAINER_TEST_IMAGE: hacklab/base-wordpress:$CI_BUILD_REF_NAME
-  CONTAINER_RELEASE_IMAGE: hacklab/base-wordpress:latest
+  PROJECT_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
 
-before_script:
-  - docker login -u ${HUB_USER} -p ${HUB_PASS}
-  - 'curl -u "${C_ACCESS_KEY}:${C_SECRET_KEY}"
-     -X POST -H "Accept: application/json" -H "Content-Type: application/json" -d "{}"
-     "${C_SERVER_URL}/v2-beta/projects/${HOMOLOG_PROJECT_ID}/services/${HOMOLOG_SERVICE_ID}/?action=finishupgrade"'
-  - 'curl -u "${C_ACCESS_KEY}:${C_SECRET_KEY}"
-     -X POST -H "Accept: application/json" -H "Content-Type: application/json" -d "{}"
-     "${C_SERVER_URL}/v2-beta/projects/${PRODUCTION_PROJECT_ID}/services/${PRODUCTION_SERVICE_ID}/?action=finishupgrade"'
 
 build to homolog:
   stage: build
   script:
-    - docker build -t $CONTAINER_TEST_IMAGE .
-    - docker push $CONTAINER_TEST_IMAGE
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $PROJECT_IMAGE -f compose/production/Dockerfile .
+    - docker push $PROJECT_IMAGE
   only:
-    - /staging/
+    - /master/
   environment: homolog
   tags:
-    - docker:dind
+    - docker
+
+deploy to homolog:
+  stage: deploy
+  image: cdrx/rancher-gitlab-deploy
+  script:
+    - upgrade --environment <env_name> --stack <stack_name> --service <service_name> --no-finish-upgrade
+  only:
+    - /master/
+  environment: homolog
+  tags:
+    - docker
+
 
 build to production:
   stage: build
   script:
-    - docker build -t $CONTAINER_TEST_IMAGE .
-    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
-    - docker push $CONTAINER_TEST_IMAGE
+    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+    - docker build -t $PROJECT_IMAGE -f compose/production/Dockerfile .
+    - docker tag $PROJECT_IMAGE "$CI_REGISTRY_IMAGE:latest"
+    - docker push $PROJECT_IMAGE
+    - docker push "$CI_REGISTRY_IMAGE:latest"
   only:
     - tags
   environment: production
   tags:
-    - docker:dind
-
-deploy to homolog:
-  stage: deploy
-  script:
-    - 'curl -v -u "${C_ACCESS_KEY}:${C_SECRET_KEY}"
-        -X POST -H "Accept: application/json"
-        -H "Content-Type: application/json"
-        -d "{ \"inServiceStrategy\": { \"launchConfig\": {
-            \"dataVolumes\": [
-                \"wordpress-themes:/var/www/html/wp-content/themes\", 
-                \"wordpress-plugins:/var/www/html/wp-content/plugins\", 
-                \"wordpress-uploads:/var/www/html/wp-content/uploads\"
-            ],
-            \"environment\": {
-                \"WORDPRESS_DB_NAME\":\"wordpress\",
-                \"WORDPRESS_DB_PASSWORD\":\"wordpress\",
-                \"WORDPRESS_DB_USER\":\"wordpress\",
-                \"WORDPRESS_DEBUG\":\"false\",
-                \"WORDPRESS_DEBUG_DISPLAY\":\"false\"
-            },
-            \"imageUuid\": \"docker:${CONTAINER_TEST_IMAGE}\",
-            \"vcpu\": 2,
-            \"labels\": {
-                \"rap.host\":\"${HOMOLOG_HOST}\",
-                \"rap.cert_name\":\"hacklab\",
-                \"rap.client_max_body_size\":\"2048m\",
-                \"io.rancher.container.pull_image\": \"always\",
-                \"io.rancher.scheduler.affinity:host_label\": \"name=dragon\",
-                \"br.com.hacklab.pixinguinha:revision\": \"${CI_COMMIT_SHA}\"
-            }}  } }"
-        "${C_SERVER_URL}/v2-beta/projects/${HOMOLOG_PROJECT_ID}/services/${HOMOLOG_SERVICE_ID}/?action=upgrade"'
-  only:
-    - /staging/
-  environment: homolog
-  tags:
-    - docker:dind
+    - docker
 
 deploy to production:
   stage: deploy
+  image: cdrx/rancher-gitlab-deploy
   script:
-    - 'curl -v -u "${C_ACCESS_KEY}:${C_SECRET_KEY}"
-        -X POST -H "Accept: application/json"
-        -H "Content-Type: application/json"
-        -d "{ \"inServiceStrategy\": { \"launchConfig\": {
-            \"dataVolumes\": [
-                \"wordpress-themes:/var/www/html/wp-content/themes\", 
-                \"wordpress-plugins:/var/www/html/wp-content/plugins\", 
-                \"wordpress-uploads:/var/www/html/wp-content/uploads\"
-            ],
-            \"environment\": {
-                \"WORDPRESS_DB_NAME\":\"wordpress\",
-                \"WORDPRESS_DB_PASSWORD\":\"wordpress\",
-                \"WORDPRESS_DB_USER\":\"wordpress\",
-                \"WORDPRESS_DEBUG\":\"false\",
-                \"WORDPRESS_DEBUG_DISPLAY\":\"false\"
-            },
-            \"imageUuid\": \"docker:${CONTAINER_TEST_IMAGE}\",
-            \"vcpu\": 2,
-            \"labels\": {
-                \"rap.host\":\"${PRODUCTION_HOST}\",
-                \"rap.le_host\":\"${PRODUCTION_HOST}\",
-                \"rap.le_email\":\"sysadmin@hacklab.com.br\",
-                \"rap.client_max_body_size\":\"2000m\",
-                \"io.rancher.container.pull_image\": \"always\",
-                \"io.rancher.scheduler.affinity:host_label\": \"name=dragon\",
-                \"br.com.hacklab.pixinguinha:revision\": \"${CI_COMMIT_SHA}\"
-            }}  } }"
-        "${C_SERVER_URL}/v2-beta/projects/${PRODUCTION_PROJECT_ID}/services/${PRODUCTION_SERVICE_ID}/?action=upgrade"'
+    - upgrade --environment <env_name> --stack <stack_name> --service <service_name> --no-finish-upgrade
   only:
     - tags
   environment: production
   tags:
-    - docker:dind
+    - docker

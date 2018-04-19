@@ -8,42 +8,37 @@ A ideia é que seja feito um fork deste repositório para começar um novo proje
 WordPress. Os arquivos deverão ser modificados conforme as peculiaridades do
 projeto.
 
+# Desenvolvimento
 
-## Desenvolvimento
+Docker é a ferramenta recomendada para desenvolver localmente. Para instalá-lo siga [estas instruções](https://docs.docker.com/install/linux/docker-ce/ubuntu/#os-requirements).
 
-### Versionamento
-
-O conteúdo de `wp-content` está excluído do versionamento por padrão. Para adicionar
-seu plugin ou tema em wp-content, voce deve tirá-lo da regra de exclusão manualmente
-editando o arquivo `.gitignore`.
-
-Suponha que voce está criando o tema `hackawesome`, digite o seguinte comando para
-que o tema não entre para a regra de exclusão.
+Para levantar o ambiente de desenvolvimento, basta executar:
 
 ```
-echo '!wp-content/themes/hackawesome >> .gitginore
+docker-compose up
 ```
 
-Se for um plugin
+Acesse http://localhost para ver o site.
+
+## Importar um dump de banco de dados
+Se você tem um dump de banco de dados `.sql` ou `.sql.gz`, para importá-lo em sua versão local, copie o arquivo para `compose/local/data` e execute:
 
 ```
-echo '!wp-content/plugins/hackawesome >> .gitginore
-```
-
-Voce pode fazer para quantos plugins forem necessário
-
-```
-echo '!wp-content/plugins/plugin1 >> .gitginore
-echo '!wp-content/plugins/plugin2 >> .gitginore
+rm -rf mariadb_data/
+docker-compose down
+docker-compose up
 ```
 
 
-### Composer
+# Instalando plugins e temas
+
+## Copiando arquivos para dentro do repositório
+O conteúdo de `wp-content` está excluído do versionamento por padrão. Para adicionar seu plugin ou tema como parte do repositório, você deve colocá-lo na pasta `plugin` ou `tema` que estão na raiz do repositório.
+
+## Via composer
 
 Existe na raiz do projeto um arquivo chamado `composer.json`. Nele devem conter
-dependencias externas ao projeto WordPress, como plugins ou temas.
-
-#### Adicionar dependencias plugins e temas
+dependencias externas ao projeto WordPress.
 
 Supondo que queremos adicionar o __tema__ *simppeli* ao nosso projeto, podemos
 fazer com o comando abaixo.
@@ -52,8 +47,7 @@ fazer com o comando abaixo.
 composer require 'wpackagist-theme/simppeli:*'
 ```
 
-O composer ira descarregar e instalatar o tema *simppeli* dentro da pasta
-`wp-content/themes`, além de atualizar o arquivo `composer.json`.
+O composer ira descarregar e instalatar o tema *simppeli*, além de atualizar o arquivo `composer.json`.
 
 Com um comando semelhante também é possível instalar um __plugin__. Imagine
 que escolhemos agora o plugin *jetpack-markdown*.
@@ -62,11 +56,9 @@ que escolhemos agora o plugin *jetpack-markdown*.
 composer require 'wpackagist-plugin/jetpack-markdown:3.9.6'
 ```
 
-O plugin será descarregado e instalado na pasta `wp-content/plugins` e o
-arquivo `composer.json` será atualizado com essa dependencia.
+O plugin será descarregado e o arquivo `composer.json` será atualizado com essa dependencia.
 
-
-### Remover temas e plugins
+### Remover temas e plugins via composer
 
 É importante que o `composer.json` tenha somente o necessário, sem ter
 plugins ou temas que não são utilizados nos projetos.
@@ -84,24 +76,3 @@ use o comando abaixo:
 ```
 composer remove wpackagist-plugin/all-in-one-wp-security-and-firewall
 ```
-
-
-### `docker-compose`
-
-Para que o projeto rode corretamente em ambiente de desenvolviment, é
-necessário que seja executado `composer install` antes de inicializar
-os containers.
-
-Para inicializar os containers, basta digitar o seguinte comando
-
-```
-docker-composer up
-```
-
-Para parar e destruir os containers, digite
-
-```
-docker-composer down
-```
-
-

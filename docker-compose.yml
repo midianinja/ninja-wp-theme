@@ -2,7 +2,9 @@ version: '2'
 
 services:
   wordpress:
-    build: ./
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
     depends_on:
       - mysql
     ports:
@@ -16,12 +18,10 @@ services:
       - ./wp-content:/var/www/html/wp-content
       - ./plugins:/var/www/html/plugins
       - ./themes:/var/www/html/themes
-      - ./vendor:/var/www/html/vendor
-      - ./docker/wp-config.d:/var/www/html/wp-config.d
-      - ./docker/htaccess_dev:/var/www/html/.htaccess
-
+      - ./compose/local/wp-config.d:/var/www/html/wp-config.d
+      - ./compose/local/htaccess:/var/www/html/.htaccess
   mysql:
-    image: mariadb
+    image: mariadb:10.2
     volumes:
       - ./mariadb_data:/var/lib/mysql
     environment:

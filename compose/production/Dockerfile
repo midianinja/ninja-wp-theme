@@ -7,7 +7,8 @@ USER www-data
 
 # Insert our data and dependencies
 COPY ["compose/entrypoint-extra", "/docker-entrypoint-extra"]
-COPY ["compose/production/wp-config.d/", "/var/www/html/wp-config.d"]
+COPY ["compose/production/wordpress/php/extra.ini", "/usr/local/etc/php/conf.d/extra.ini"]
+COPY ["compose/production/wordpress/wp-config.d/", "/var/www/html/wp-config.d"]
 COPY ["composer.json", "/var/www/html/composer.json"]
 RUN mkdir vendor
 RUN composer install -v $composer

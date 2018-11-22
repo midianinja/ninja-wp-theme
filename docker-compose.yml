@@ -19,7 +19,7 @@ services:
       - ./plugins:/var/www/html/plugins
       - ./themes:/var/www/html/themes
       - ./compose/local/wordpress/wp-config.d:/var/www/html/wp-config.d
-      - ./compose/production/wordpress/php/extra.ini /usr/local/etc/php/conf.d/extra.ini
+      - ./compose/production/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
       - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
   mysql:
     image: mariadb:10.2

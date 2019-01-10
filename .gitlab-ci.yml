@@ -27,7 +27,7 @@ deploy to homolog:
   stage: deploy
   image: cdrx/rancher-gitlab-deploy
   script:
-    - upgrade --environment <env_name> --stack <stack_name> --service <service_name> --no-finish-upgrade
+    - upgrade --environment <env_name> --stack <stack_name> --service <service_name>
   only:
     - /master/
   environment: homolog
@@ -53,7 +53,7 @@ deploy to production:
   stage: deploy
   image: cdrx/rancher-gitlab-deploy
   script:
-    - upgrade --environment <env_name> --stack <stack_name> --service <service_name> --no-finish-upgrade
+    - upgrade --environment <env_name> --stack <stack_name> --service <service_name>
   only:
     - tags
   environment: production

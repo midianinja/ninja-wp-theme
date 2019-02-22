@@ -8,15 +8,17 @@ stages:
 - deploy
 
 variables:
-  PROJECT_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+  RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+  HOMOLOG_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME-$CI_COMMIT_SHORT_SHA
+  KUBECONFIG: /etc/k8s-config
 
 
 build to homolog:
   stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build -t $PROJECT_IMAGE -f compose/production/Dockerfile .
-    - docker push $PROJECT_IMAGE
+    - docker build -t $HOMOLOG_IMAGE -f compose/production/Dockerfile .
+    - docker push $HOMOLOG_IMAGE
   only:
     - /master/
   environment: homolog
@@ -25,9 +27,10 @@ build to homolog:
 
 deploy to homolog:
   stage: deploy
-  image: cdrx/rancher-gitlab-deploy
+  image: hacklab/kubectl:latest
   script:
-    - upgrade --environment <env_name> --stack <stack_name> --service <service_name>
+    - echo ${kube_config} | base64 -d > ${KUBECONFIG}
+    - kubectl -n <namespace> --record deployment.apps/wordpress set image deployment.v1.apps/wordpress wordpress=$HOMOLOG_IMAGE
   only:
     - /master/
   environment: homolog
@@ -39,9 +42,9 @@ build to production:
   stage: build
   script:
     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
-    - docker build -t $PROJECT_IMAGE -f compose/production/Dockerfile .
-    - docker tag $PROJECT_IMAGE "$CI_REGISTRY_IMAGE:latest"
-    - docker push $PROJECT_IMAGE
+    - docker build -t $RELEASE_IMAGE -f compose/production/Dockerfile .
+    - docker tag $RELEASE_IMAGE "$CI_REGISTRY_IMAGE:latest"
+    - docker push $RELEASE_IMAGE
     - docker push "$CI_REGISTRY_IMAGE:latest"
   only:
     - tags
@@ -51,9 +54,10 @@ build to production:
 
 deploy to production:
   stage: deploy
-  image: cdrx/rancher-gitlab-deploy
+  image: hacklab/kubectl:latest
   script:
-    - upgrade --environment <env_name> --stack <stack_name> --service <service_name>
+    - echo ${kube_config} | base64 -d > ${KUBECONFIG}
+    - kubectl -n <namespace> --record deployment.apps/wordpress set image deployment.v1.apps/wordpress wordpress=$RELEASE_IMAGE
   only:
     - tags
   environment: production

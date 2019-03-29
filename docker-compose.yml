@@ -24,10 +24,13 @@ services:
   mysql:
     image: mariadb:10.2
     volumes:
-      - ./mariadb_data:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
       - ./compose/local/mariadb/data:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: therootpassword
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
+
+volumes: 
+  mariadb_data:

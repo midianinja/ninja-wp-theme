@@ -33,9 +33,8 @@ Acesse http://localhost para ver o site.
 Se você tem um dump de banco de dados `.sql` ou `.sql.gz`, para importá-lo em sua versão local, copie o arquivo para `compose/local/data` e execute:
 
 ```
-rm -rf mariadb_data/
-docker-compose down
-docker-compose up
+docker-compose down -v # o parametro -v apaga os dados do mariadb
+docker-compose up 
 ```
 
 

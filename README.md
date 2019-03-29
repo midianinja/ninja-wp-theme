@@ -20,11 +20,11 @@ docker-compose up
 
 ## Scripts para desenvolvimento
 Há uma série de scripts úteis na pasta `dev-scripts`
-- **dump.sh** - faz um dump do banco de desenvolvimento
+- **dump.sh** - faz um dump do banco de desenvolvimento<br>
     exemplo de uso: `dev-scripts/$ ./dump.sh > dump.sql`
 - **mysql.sh** - entra no shell do mysql com o usuário wordpress
 - **mysql-root.sh** - entra no shell do mysql com o usuário root
-- **wp.sh** - executa o comando wp-cli dentro do container wordpress
+- **wp.sh** - executa o comando wp-cli dentro do container wordpress<br>
     exemplo de uso: `dev-scripts/$ ./wp.sh search-replace https:// http://`
 
 Acesse http://localhost para ver o site.

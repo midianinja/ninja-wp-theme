@@ -4,6 +4,5 @@ wp-content/plugins/*
 wp-content/upgrade/*
 wp-content/uploads/*
 wp-content/mu-plugins/*
-vendor/*
 
 mariadb_data/

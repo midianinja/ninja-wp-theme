@@ -22,7 +22,7 @@ services:
       - ./compose/production/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
       - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
   mariadb:
-    image: mariadb:10.2
+    image: mariadb:10.4
     volumes:
       - mariadb_data:/var/lib/mysql
       - ./compose/local/mariadb/data:/docker-entrypoint-initdb.d

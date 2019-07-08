@@ -6,11 +6,11 @@ services:
       context: .
       dockerfile: ./compose/local/Dockerfile
     depends_on:
-      - mysql
+      - mariadb
     ports:
       - 80:80
     environment:
-      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DEBUG: 'true'
@@ -21,7 +21,7 @@ services:
       - ./compose/local/wordpress/wp-config.d:/var/www/html/wp-config.d
       - ./compose/production/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
       - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
-  mysql:
+  mariadb:
     image: mariadb:10.2
     volumes:
       - mariadb_data:/var/lib/mysql
@@ -32,5 +32,5 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
 
-volumes: 
+volumes:
   mariadb_data:

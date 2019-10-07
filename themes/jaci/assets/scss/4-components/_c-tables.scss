@@ -1,0 +1,24 @@
+.quem-somos--table{
+    &, * {
+        border: none !important;
+        background-color: white;
+        text-align: center;
+    }
+
+    img{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 14px;    
+    }
+
+
+    @include mobile{
+        td{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}

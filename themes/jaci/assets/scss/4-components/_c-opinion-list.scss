@@ -1,0 +1,45 @@
+.opinion{
+    &-list{
+        border-radius: 10px;
+        background-color: #F5F5F5;
+        padding: 15px 20px;
+
+        @include mobile{
+            margin: 0px 15px;
+        }
+        
+        a{ color: black; }
+        p{ margin-bottom: 0; }
+
+        .title-button{
+            justify-content: center;
+            margin-bottom: 15px;
+
+            i{ margin-right: 10px; }
+        }
+
+        &--button{
+            color: #E74C3C !important;
+            text-align: center;
+            display: block;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .card--title{
+            margin-bottom: 10px;
+        }
+    }
+
+    &-card{
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+
+        &--author{
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+
+}

@@ -30,7 +30,7 @@ Há uma série de scripts úteis na pasta `dev-scripts`
 Acesse http://localhost para ver o site.
 
 ## Importar um dump de banco de dados
-Se você tem um dump de banco de dados `.sql` ou `.sql.gz`, para importá-lo em sua versão local, copie o arquivo para `compose/local/data` e execute:
+Se você tem um dump de banco de dados `.sql` ou `.sql.gz`, para importá-lo em sua versão local, copie o arquivo para `compose/local/mariadb/data` e execute:
 
 ```
 docker-compose down -v # o parametro -v apaga os dados do mariadb

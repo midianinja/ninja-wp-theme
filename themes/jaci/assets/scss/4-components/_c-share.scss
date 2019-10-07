@@ -1,0 +1,45 @@
+.page--share{
+    position: fixed;
+    top: 50vh;
+    left: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 10px;
+
+    @include mobile{
+        top: auto;
+        bottom: 0;
+        transform: none;
+        flex-direction: row;
+        width: 100vw;
+        left: 0;
+
+        a{
+            flex: 1;    
+        }
+    }
+
+    a{
+        display: block;
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+        line-height: 0;
+        margin-bottom: 0;
+        color: white;
+        padding: 12px;
+        transition: all .6s;
+
+        &:hover{ color: white; filter: brightness(1.1) }
+    }
+
+    .facebook{ background-color: #316ac2; }
+    .twitter{ background-color: #25a5ee; }
+    .whatsapp{ background-color: #5fcd0f; }
+    .messenger{ background-color: #0584ff; }
+    .linkedin{ background-color: #0879b4; }
+    .mail{ background-color: #f36f1a; }
+    .telegram{ background-color: #5682a3; }
+}

@@ -1,0 +1,97 @@
+.so-widget-youtube-channel{
+    background-color: #F5F5F5;
+}
+.section-youtube {
+    padding: 30px 0px;
+    box-shadow: none;
+    z-index: 12;
+    background-color: #F5F5F5;
+
+    @include tablet{
+        .column{ text-align: center; }
+    }
+
+    @include mobile{
+        iframe{
+            margin-bottom: 20px;
+        }
+    }
+
+    &--button {
+        border-radius: 5px;
+        padding: 10px 40px;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        transition: all .6s;
+        background: black;
+
+        &.white{
+            background: white;
+            color: black;
+        }
+    }
+
+    &--title{ font-size: 22px; }
+    &--description{ font-size: 14px; margin-bottom: 15px; }
+
+    .left{
+        padding: 32px 15px;
+    }
+}
+
+.youtube-channel--thumbs {
+    max-width: calc(25% - 15px);
+    flex: 0 0 calc(25% - 15px);
+    display: block;
+    margin-right: 15px;
+}
+.youtube-channel--thumbnail {
+    &.active img{
+        border-color: #e63e55;
+    }
+
+    img{
+        border: 2px solid white;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+}
+.subscribe-button{
+    padding: 0 20px;
+    margin-top: 20px;
+    max-width: 300px;
+
+    div{
+        width: 262px !important;
+        height: 42px !important;
+        padding: 10px !important;
+        display: flex !important;
+        text-transform: uppercase;
+        align-items: center;
+
+        &:before{
+            content: 'Inscreva-se';
+            font-size: 14px;
+            font-weight: 900;
+            color: #d81f0f;
+            margin-right: 10px;
+        }
+    }
+}
+.live{
+    position: relative;
+
+    &:after {
+        content: 'Ao vivo';
+        position: absolute;
+        background: red;
+        text-transform: uppercase;
+        top: 15px;
+        font-size: 9px;
+        color: white;
+        padding: 2px 5px 0 5px;
+        font-weight: bolder;
+        border-bottom-right-radius: 8px;
+    }
+}

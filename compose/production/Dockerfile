@@ -1,4 +1,4 @@
-FROM hacklab/wordpress:v5.2.2-php7.2
+FROM hacklab/wordpress:v5.2.3-php7.3
 
 LABEL mantainer "hacklab/ <contato@hacklab.com.br>"
 
@@ -10,8 +10,8 @@ COPY ["compose/entrypoint-extra", "/docker-entrypoint-extra"]
 COPY ["compose/production/wordpress/php/extra.ini", "/usr/local/etc/php/conf.d/extra.ini"]
 COPY ["compose/production/wordpress/wp-config.d/", "/var/www/html/wp-config.d"]
 COPY ["wp-content", "/var/www/html/wp-content"]
-COPY ["plugins", "/var/www/html/plugins"]
-COPY ["themes", "/var/www/html/themes"]
+COPY ["plugins", "/var/www/plugins"]
+COPY ["themes", "/var/www/themes"]
 
 
 # Fix file permissions

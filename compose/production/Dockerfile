@@ -1,3 +1,19 @@
+FROM node:12
+LABEL mantainer "hacklab/ <contato@hacklab.com.br>"
+ARG target='prod'
+
+COPY themes /var/www/themes
+
+WORKDIR /var/www/themes/jaci
+
+RUN npm install
+
+RUN chown -R www-data: /var/www/themes
+
+RUN su www-data -s /bin/bash -c 'npm run prod' && rm -rf node_modules;
+
+WORKDIR /var/www/html
+
 FROM hacklab/wordpress:v5.2.3-php7.3
 
 LABEL mantainer "hacklab/ <contato@hacklab.com.br>"
@@ -11,7 +27,6 @@ COPY ["compose/production/wordpress/php/extra.ini", "/usr/local/etc/php/conf.d/e
 COPY ["compose/production/wordpress/wp-config.d/", "/var/www/html/wp-config.d"]
 COPY ["wp-content", "/var/www/html/wp-content"]
 COPY ["plugins", "/var/www/plugins"]
-COPY ["themes", "/var/www/themes"]
 
 
 # Fix file permissions

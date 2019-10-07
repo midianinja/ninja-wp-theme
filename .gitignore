@@ -1,4 +1,6 @@
-# ignore all dependencies by default
+themes/jaci/dist/app.js
+themes/jaci/dist/app.css
+
 wp-content/themes/*
 wp-content/plugins/*
 wp-content/upgrade/*

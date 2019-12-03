@@ -2,6 +2,17 @@
 
 DEV_MUPLUGINS="/var/www/mu-plugins"
 WP_MUPLUGINS="/var/www/html/wp-content/mu-plugins"
+
+DEV_PLUGINS="/var/www/plugins"
+WP_PLUGINS="/var/www/html/wp-content/plugins"
+
+DEV_THEMES="/var/www/themes"
+WP_THEMES="/var/www/html/wp-content/themes"
+
+UPLOADS_DIR="/var/www/html/wp-content/uploads"
+
+mkdir -p $WP_MUPLUGINS $WP_PLUGINS $WP_THEMES $UPLOADS_DIR && chown www-data: $WP_MUPLUGINS $WP_PLUGINS $WP_THEMES $UPLOADS_DIR
+
 if [ -d "$DEV_MUPLUGINS" ];
 then
     find "$DEV_MUPLUGINS" \
@@ -15,8 +26,6 @@ then
 fi
 
 
-DEV_PLUGINS="/var/www/plugins"
-WP_PLUGINS="/var/www/html/wp-content/plugins"
 if [ -d "$DEV_PLUGINS" ];
 then
     find "$DEV_PLUGINS" \
@@ -30,8 +39,6 @@ then
 fi
 
 
-DEV_THEMES="/var/www/themes"
-WP_THEMES="/var/www/html/wp-content/themes"
 if [ -d "$DEV_THEMES" ];
 then
     find "$DEV_THEMES" \

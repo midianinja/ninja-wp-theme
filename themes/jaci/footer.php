@@ -38,7 +38,7 @@
         </div>
 
         <div class="column large-2 mt-40">
-            <?php site_by_hacklab([ 'label' => 'site por ' ]) ?>
+            <?php guaraci\template_part('site-by-hacklab') ?>
         </div>
     </div>
 </footer>

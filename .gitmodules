@@ -1,0 +1,3 @@
+[submodule "plugins/guaraci"]
+	path = plugins/guaraci
+	url = https://git.hacklab.com.br/open-source/guaraci

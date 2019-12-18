@@ -1,10 +1,26 @@
-<?php 
+<?php
 get_header(); 
 the_post();
 
-$authors_names = get_post_meta(get_the_ID(), 'author_names', true);
- ?>
+$post_type = get_post_type();
 
+$author_type = 'autor';
+
+// se por ventura um post type tiver uma taxonomia diferente de autor para representar o autor
+// if ($post_type == 'coluna') {
+//     $author_type = 'colunista';
+// }
+
+$authors = guaraci\authors::get($author_type);
+
+$uses_excerpt = post_type_supports(get_post_type(), 'excerpt');
+
+// o "&& has_excerpt()" faz com que o resumo só seja exibido
+// quando o campo do excerpt estiver preenchido, se não o
+// resumo automático será utilizado.
+$show_excerpt = $uses_excerpt /* && has_excerpt() */;
+
+?>
 <div class="post-content" id="postContent">
     <div class="row">
         <div id="single-the-title" class="column large-12 small-12 text-center mt-30">
@@ -15,19 +31,19 @@ $authors_names = get_post_meta(get_the_ID(), 'author_names', true);
         </div>
     </div>
     <div class="row row-small">
-        <?php if(has_excerpt()): ?>
+        <?php if($show_excerpt): ?>
         <div id="single-the-excerpt" class="column large-12 small-12 text-center mb-30 ">
             <div class="post-excerpt"><?php the_excerpt() ?></div>
         </div>
-
         <?php endif ?>
+        
         <div class="column large-12 small-12">
             <?php if(has_post_thumbnail()): ?>
-                <?= images\tag('full', 'post--image') ?>
+                <?= guaraci\images::tag('full', 'post--image') ?>
             <?php endif; ?>
             <div class="post-info">
-                <?php if(!empty($authors_names)):?>
-                    <div class="author">por <?= $authors_names ?></div>
+                <?php if(!empty($authors)):?>
+                    <div class="author">por <?php guaraci\authors::display($author_type) ?></div>
                 <?php endif ?>
                 <p class="date">
                     <?php _e('Publicado', 'jaci') ?> <?php the_date("d/m/Y") ?>
@@ -36,7 +52,6 @@ $authors_names = get_post_meta(get_the_ID(), 'author_names', true);
                     <?php endif ?>
                 </p>
             </div>
-
         </div>
         
         <div id="single-the-content" class="column large-12 small-12">
@@ -53,51 +68,29 @@ $authors_names = get_post_meta(get_the_ID(), 'author_names', true);
         <?php endif; ?>
 
         <div class="column large-12 small-12">
-            <div class="post-content--subshare">
-                <span>Compartilhar: </span>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<?= get_the_permalink() ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com/intent/tweet?text=<?= urlencode(get_the_title()) ?>&url=<?= get_the_permalink() ?>" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="whatsapp://send?text=<?= (get_the_title().' - '.get_the_permalink()) ?>" target="_blank" class="hide-for-large"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://api.whatsapp.com/send?text=<?= (get_the_title().' - '.get_the_permalink()) ?>" class="show-for-large" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://telegram.me/share/url?url=<?= get_the_title().' - '.get_the_permalink() ?>" target="_blank"><i class="fab fa-telegram"></i></a>
-            </div>
-
-            <div class="post-content--author">
-                <?php if(!empty($authors_names)):?>
-                    <div class="post-content--author-biography"><strong>por </strong><?= $authors_names ?></div>
-                <?php endif ?>
-                <a href="<?= get_the_meta_author('permalink') ?>">
-                    <h4 class="post-content--author-name"> <?= get_the_meta_author('title') ?></h4>
-                </a>
-            </div>
+            <?php guaraci\template_part('share-links') ?>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row row-small">
         <div class="column large-12 small-12">
-            <?php if(get_option( 'related_posts__use' )): ?>
-                <div class="post-content--related-posts">
-                    <?php
-                    $related_posts_query = jaci\get_related_posts(get_the_ID(), 3);
-                    $related_posts = [];
-                    
-                    if ( $related_posts_query->have_posts() ) {
-                        while( $related_posts_query->have_posts() ) {
-                            $related_posts_query->the_post();
-                            jaci\template_part('card');
-                        } 
-                    }
-                    ?>
-                    <?php wp_reset_postdata(); ?>
-                </div>
-            <?php endif; ?>
+            <?php guaraci\template_part('authors-list', ['authors' => $authors]) ?>
+        </div>
+    </div>
 
+    <div class="row row-small mt-40">
+        <div class="column large-12 small-12">
+            <?php guaraci\template_part('related-posts') ?>
+        </div>
+    </div>
+
+    <div class="row row-small mt-40">
+        <div class="column large-12 small-12">
             <div class="post-content--comments">
                 <?php comments_template() ?>
             </div>
         </div>
     </div>
-
 </div>
 
 <?php get_footer();

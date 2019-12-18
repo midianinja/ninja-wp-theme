@@ -51,7 +51,13 @@ $title = '';
         </div>
     <?php endif; ?>
 
-    <?php jaci\template_part('posts-list-with-sidebar', [  'title' => $title, 'slug' => $sidebar_slug, 'card' => $card ]); ?>
+    <div class="column medium-8 small-12">
+        <?php guaraci\template_part('posts-list', [  'title' => $title ]); ?>
+    </div>
+
+    <div class="column medium-4 small-12 mt-20 mb-20 archive-sidebar">
+        <?php guaraci\template_part('sidebar-widgets'); ?>
+    </div>
     
 </div>
 

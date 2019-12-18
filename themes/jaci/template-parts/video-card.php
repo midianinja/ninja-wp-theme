@@ -3,9 +3,9 @@ $show_category = isset($show_category) && $show_category;
 $show_author = isset($show_author) && $show_author;
 ?>
     <div class="card video">
-        <?php if(images\tag('card-small', 'card--image') != ''): ?>
+        <?php if(guaraci\images::tag('card-small', 'card--image') != ''): ?>
         <a tabindex="-1" href="<?= get_the_permalink() ?>">
-            <div class="card--image" style="background-image: url('<?= images\url('card-small') ?>')">
+            <div class="card--image" style="background-image: url('<?= guaraci\images::url('card-small') ?>')">
                 <div class="card--excerpt">
                     <?php the_excerpt() ?>
                 </div>

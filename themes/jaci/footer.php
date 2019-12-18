@@ -25,7 +25,7 @@
         <div class="column large-3">
             <div class="footer-title"><?php _e('Siga-nos nas redes sociais', 'jaci') ?></div>
             <div class="d-flex justify-content-between mt-20 social-networks--wrapper">
-                <?php the_social_networks_menu(true) ?>
+                <?php jaci\the_social_networks_menu(true) ?>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
         </div>
 
         <div class="column large-10 mt-40">
-            <small class="fz-11"><?php echo get_option('contact') ?></small>
+            <small class="fz-11"><?= get_option('contact') ?></small>
         </div>
 
         <div class="column large-2 mt-40">

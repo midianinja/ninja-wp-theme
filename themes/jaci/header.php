@@ -38,7 +38,7 @@
 				<?=wp_nav_menu(['theme_location' => 'main-menu', 'container' => 'nav', 'menu_id' => 'main-menu', 'menu_class' => 'menu'])?>
 			</div>
 			<div class="column menu-social-networks mt-10 d-flex align-items-center hide-for-small-only">
-                <?php the_social_networks_menu(false) ?>
+                <?php jaci\the_social_networks_menu(false) ?>
             </div>
 			<div class="search-form fz-24 mt-5 d-block text-right  sm-order-2 flex-1 pr-15">
 				<form action="/">

@@ -10,9 +10,42 @@ projeto.
 
 # Desenvolvimento
 
-Docker é a ferramenta recomendada para desenvolver localmente. Para instalá-lo siga [estas instruções](https://docs.docker.com/install/linux/docker-ce/ubuntu/#os-requirements).
+## Editor
+Para o desenvolvimento recomenda-se a utilização do editor Visual Studio Code com as seguintes extenções:
 
-Para levantar o ambiente de desenvolvimento, basta executar:
+- EditorConfig for VS Code
+- PHP Intelephense
+- Docker
+- Beautify
+- Beautify css/sass/scss/less
+- GitLens
+- ...
+
+## Requisitos
+Para o desenvolvimento é requisito ter instaladas ao menos as seguintes ferramtas:
+
+- **Git**
+- **Docker** e **Docker Compose** - Docker é a ferramenta recomendada para desenvolver localmente. Para instalá-lo siga [estas instruções](https://docs.docker.com/install/#supported-platforms).
+- **node** e **npm**
+
+## Clonando o repositório
+Clone o repositório e seus submódulos recursivamente:
+
+```
+$ git clone git@git.hacklab.com.br:open-source/base-wordpress-project.git --recursive
+```
+
+## Compilando os assets do tema
+Abra um terminar, vá até a a pasta `themes/jaci/` e execute os comandos abaixo:
+
+```
+$ npm install
+$ npm run watch # vai ficar observando as mudanças nos assets
+```
+
+
+## Subindo o ambiente
+Abra outro terminal e na raíz do repositório execute o comando abaixo:
 
 ```
 docker-compose up
@@ -20,12 +53,12 @@ docker-compose up
 
 ## Scripts para desenvolvimento
 Há uma série de scripts úteis na pasta `dev-scripts`
-- **dump.sh** - faz um dump do banco de desenvolvimento<br>
-    exemplo de uso: `dev-scripts/$ ./dump.sh > dump.sql`
-- **mysql.sh** - entra no shell do mysql com o usuário wordpress
-- **mysql-root.sh** - entra no shell do mysql com o usuário root
-- **wp.sh** - executa o comando wp-cli dentro do container wordpress<br>
-    exemplo de uso: `dev-scripts/$ ./wp.sh search-replace https:// http://`
+- **dump** - faz um dump do banco de desenvolvimento<br>
+    exemplo de uso: `dev-scripts/$ ./dump > dump.sql`
+- **mysql** - entra no shell do mysql com o usuário wordpress
+- **mysql-root** - entra no shell do mysql com o usuário root
+- **wp** - executa o comando wp-cli dentro do container wordpress<br>
+    exemplo de uso: `dev-scripts/$ ./wp search-replace https:// http://`
 
 Acesse http://localhost para ver o site.
 
@@ -37,50 +70,7 @@ docker-compose down -v # o parametro -v apaga os dados do mariadb
 docker-compose up 
 ```
 
-
 # Instalando plugins e temas
 
 ## Copiando arquivos para dentro do repositório
-O conteúdo de `wp-content` está excluído do versionamento por padrão. Para adicionar seu plugin ou tema como parte do repositório, você deve colocá-lo na pasta `plugin` ou `tema` que estão na raiz do repositório.
-
-## Via composer
-
-Existe na raiz do projeto um arquivo chamado `composer.json`. Nele devem conter
-dependencias externas ao projeto WordPress.
-
-Supondo que queremos adicionar o __tema__ *simppeli* ao nosso projeto, podemos
-fazer com o comando abaixo.
-
-```
-composer require 'wpackagist-theme/simppeli:*'
-```
-
-O composer ira descarregar e instalatar o tema *simppeli*, além de atualizar o arquivo `composer.json`.
-
-Com um comando semelhante também é possível instalar um __plugin__. Imagine
-que escolhemos agora o plugin *jetpack-markdown*.
-
-```
-composer require 'wpackagist-plugin/jetpack-markdown:3.9.6'
-```
-
-O plugin será descarregado e o arquivo `composer.json` será atualizado com essa dependencia.
-
-### Remover temas e plugins via composer
-
-É importante que o `composer.json` tenha somente o necessário, sem ter
-plugins ou temas que não são utilizados nos projetos.
-
-Se deixar de usar o __tema__ *twentyseventeen*, remova-o do `compose.json`
-com o comanado abaixo:
-
-```
-composer remove wpackagist-theme/twentyseventeen
-```
-
-Para deixar de usar um __plugin__, como o *all-in-one-wp-security-and-firewall*,
-use o comando abaixo:
-
-```
-composer remove wpackagist-plugin/all-in-one-wp-security-and-firewall
-```
+O conteúdo de `wp-content` está excluído do versionamento por padrão. Para adicionar seu plugin ou tema como parte do repositório, você deve colocá-los nas pastas `plugins` ou `themes` que estão na raiz do repositório.

@@ -1,7 +1,6 @@
 <?php
 namespace jaci;
 
-define('THEME_DIR', __DIR__);
 require __DIR__ . '/library/settings.php';
 require __DIR__ . '/library/images.php';
 require __DIR__ . '/library/menus.php';

@@ -29,3 +29,35 @@ add_filter('widgets\\SectionTitle:css_classes', function($css_classes){
 	$css_classes['title-jaci'] = __('Título Jaci', 'jaci');
 	return $css_classes;
 });
+
+function get_archive_title () {
+	$s = isset($_GET['s']) ? trim($_GET['s']) : '';
+
+	if($s){
+		if (is_tag()) {
+			$title = sprintf(__('Busca por "%s" na tag "%s"', 'jaci'), $s, single_tag_title('',false));
+		} elseif (is_category()) {
+			$title = sprintf(__('Busca por "%s" na categoria "%s"', 'jaci'), $s, single_cat_title('',false));
+		} elseif (is_tax()) {
+			$title = sprintf(__('Busca por "%s" em "%s"', 'jaci'), $s, single_term_title('',false));
+		} else {
+			if(is_archive()){
+				$title = sprintf(__('Busca por "%s" em "%s"', 'jaci'), $s, post_type_archive_title());
+			} else {
+				$title = sprintf(__('Resultado da busca por "%s"', 'jaci'), $s);
+			}
+		}
+	} else {
+		if (is_tag()) {
+			$title = single_tag_title('Tag: ',false);
+		} elseif (is_category()) {
+			$title = single_cat_title('Categoria: ',false);
+		} elseif (is_tax()) {
+			$title = single_term_title('',false);
+		} else {
+			$title = post_type_archive_title();
+		}
+	}
+
+	return $title;
+}

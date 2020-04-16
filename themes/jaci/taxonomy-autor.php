@@ -27,7 +27,7 @@ $term = $wp_query->get_queried_object();
     </div>
 
     <div class="column medium-4 small-12 mt-20 mb-20 archive-sidebar">
-        <?php guaraci\template_part('sidebar-widgets', ['sidebar_slug' => 'autor']); ?>
+        <?php guaraci\template_part('sidebar-widgets'); ?>
     </div>
 </div>
 

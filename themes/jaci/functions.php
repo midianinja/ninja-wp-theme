@@ -61,3 +61,34 @@ function get_archive_title () {
 
 	return $title;
 }
+
+function get_sidebar_page () {
+    $page = null;
+	if (is_archive()) {
+        $object = get_queried_object();
+        if ($object instanceof \WP_Term) {
+            if ($object->taxonomy == 'post_tag') {
+                $object->taxonomy = 'tag';
+            }
+            if (!($page = get_page_by_path("sidebar-{$object->taxonomy}-{$object->slug}", OBJECT))) {
+                $page = get_page_by_path("sidebar-{$object->taxonomy}", OBJECT);
+            }
+
+        }
+    } else if (is_search()) {
+        $page = get_page_by_path("sidebar-search", OBJECT);
+
+    } else if (is_singular()) {
+        $object = get_queried_object();
+        
+        if (!($page = get_page_by_path("sidebar-{$object->post_type}-{$object->post_name}", OBJECT))) {
+            $page = get_page_by_path("sidebar-{$object->post_type}", OBJECT);
+        }
+    }
+   
+    if (!$page) {
+        $page = get_page_by_path("sidebar", OBJECT);
+    }
+
+	return $page;
+}

@@ -2,9 +2,9 @@
 
 namespace jaci;
 
-function enqueue_assets()
-{
+function enqueue_assets() {
     wp_enqueue_style('foundation', get_template_directory_uri() . '/dist/foundation.min.css');
+    wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/vendor/fontawesome/css/all.min.css');
     wp_enqueue_style('app', get_template_directory_uri() . '/dist/app.css', [], filemtime(get_template_directory() . '/dist/app.css'));
 
     wp_enqueue_script('main-app', get_template_directory_uri() . '/dist/app.js', ['jquery'], filemtime(get_template_directory() . '/dist/app.js'), true);

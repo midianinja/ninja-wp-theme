@@ -7,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1.0">
 	<?php wp_head()?>
 	<title><?= is_front_page() ? get_bloginfo('name') : wp_title()?></title>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	<link rel="icon" href="<?= get_stylesheet_directory_uri() ?>/assets/images/favicon.ico?v=2" />
 </head>
 <body <?php body_class();?> >

@@ -16,7 +16,7 @@ add_theme_support( 'post-thumbnails' );
 // descomentar para importar conteúdo
 // add_filter( 'force_filtered_html_on_import' , '__return_false' );
 
-// removemos a barra de admin para não cachear no cache de borda 
+// removemos a barra de admin para não cachear no cache de borda
 add_filter( 'show_admin_bar', '__return_false' );
 
 // usamos uma taxonomia autor criada com o plugin Pods
@@ -31,7 +31,7 @@ add_filter('widgets\\SectionTitle:css_classes', function($css_classes){
 });
 
 function get_archive_title () {
-	$s = isset($_GET['s']) ? trim($_GET['s']) : '';
+	$s = isset($_GET['s']) ? htmlentities(trim($_GET['s'])) : '';
 
 	if($s){
 		if (is_tag()) {
@@ -80,12 +80,12 @@ function get_sidebar_page () {
 
     } else if (is_singular()) {
         $object = get_queried_object();
-        
+
         if (!($page = get_page_by_path("sidebar-{$object->post_type}-{$object->post_name}", OBJECT))) {
             $page = get_page_by_path("sidebar-{$object->post_type}", OBJECT);
         }
     }
-   
+
     if (!$page) {
         $page = get_page_by_path("sidebar", OBJECT);
     }

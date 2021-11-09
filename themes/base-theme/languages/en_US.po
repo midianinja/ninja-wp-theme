@@ -1,0 +1,229 @@
+# Copyright (C) 2021 Hacklab
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Jaci 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/aedas-theme\n"
+"Last-Translator: \n"
+"Language-Team: English (United States)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-06-21T19:15:01+00:00\n"
+"PO-Revision-Date: 2021-06-22 17:27+0000\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Domain: jaci\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Loco-Version: 2.5.2; wp-5.7"
+
+#: library/blocks/estimatives-area/render-template.php:55
+msgid "alertas"
+msgstr "alerts"
+
+#: assets/javascript/blocks/estimativesArea/editor.js:137
+msgid "alerts"
+msgstr ""
+
+#: single.php:51
+msgid "Atualizado"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:79
+msgid "Base date"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:72
+msgid "Base trees"
+msgstr ""
+
+#: assets/javascript/blocks/deforestationInfo/index.js:30
+msgid "Count"
+msgstr ""
+
+#: assets/javascript/blocks/deforestationInfo/index.js:9
+msgid "Deforestation Info"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:12
+msgid "Desmatados 2021"
+msgstr ""
+
+#: assets/javascript/blocks/deforestationInfo/index.js:15
+msgid "Desmatados na Amazônia nos últimos 07 dias."
+msgstr ""
+
+#: library/customizer/footer/index.php:48
+msgid "Display year and site name aside copyright info?"
+msgstr ""
+
+#: 404.php:3
+msgid "erro"
+msgstr ""
+
+#: library/blocks/estimatives-area/render-template.php:17
+msgid "estimativa em tempo real"
+msgstr "real time estimate"
+
+#: assets/javascript/blocks/estimativesArea/editor.js:13
+msgid ""
+"Estimativas detectadas e reportadas. Velocidades médias. | Fonte: MapBiomas. "
+"| Última atualização: 08.06.2021"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/index.js:7
+msgid "Estimatives Area"
+msgstr ""
+
+#: assets/javascript/blocks/featuredSlider/index.js:117
+msgid "Featured Slider"
+msgstr ""
+
+#: library/customizer/footer/index.php:11
+msgid "Footer"
+msgstr ""
+
+#: library/customizer/footer/index.php:26
+msgid "Footer copyright text"
+msgstr ""
+
+#. Author of the theme
+msgid "Hacklab"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:152
+msgid "Hectares"
+msgstr ""
+
+#: library/blocks/estimatives-area/render-template.php:66
+#: assets/javascript/blocks/deforestationInfo/index.js:55
+msgid "hectares"
+msgstr "hectares"
+
+#: assets/javascript/blocks/estimativesArea/editor.js:116
+msgid "Hectares per day"
+msgstr ""
+
+#: library/blocks/estimatives-area/render-template.php:40
+msgid "hectares/ dia"
+msgstr "hectares/ day"
+
+#. Theme URI of the theme
+msgid "http://git.hacklab.com.br/jaci"
+msgstr ""
+
+#. Author URI of the theme
+msgid "http://hacklab.com.br/"
+msgstr ""
+
+#. Theme Name of the theme
+msgid "Jaci"
+msgstr ""
+
+#: library/customizer/footer/index.php:27
+msgid "Leave it empty to hide all copyright info."
+msgstr ""
+
+#: library/menus.php:7
+msgid "Menu de Rodapé"
+msgstr ""
+
+#: library/menus.php:6
+msgid "Menu Principal"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:11
+msgid "Média de desmatamento em 2021"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:9
+msgid "Na Amazônia"
+msgstr ""
+
+#: single.php:49
+msgid "Publicado"
+msgstr ""
+
+#: 404.php:4
+msgid "Página não encontrada"
+msgstr ""
+
+#: library/menus.php:8
+msgid "Redes Sociais"
+msgstr ""
+
+#: assets/javascript/blocks/deforestationInfo/index.js:38
+msgid "Source"
+msgstr ""
+
+#. Description of the theme
+msgid "Tema base para desenvolvimento de novos sites."
+msgstr ""
+
+#: assets/javascript/blocks/deforestationInfo/index.js:24
+msgid "Title"
+msgstr ""
+
+#: header.php:30
+msgid "Toggle menu visibility"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:106
+msgid "Trees per day"
+msgstr ""
+
+#: assets/javascript/blocks/featuredSlider/index.js:36
+msgid "Type button text"
+msgstr ""
+
+#: assets/javascript/blocks/featuredSlider/index.js:26
+msgid "Type here your description"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:99
+msgid "Type the average title"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:61
+msgid "Type the before number title"
+msgstr ""
+
+#: assets/javascript/blocks/deforestationInfo/index.js:27
+msgid "Type the box title"
+msgstr ""
+
+#: assets/javascript/blocks/deforestationInfo/index.js:35
+msgid "Type the count"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:130
+msgid "Type the desforested title"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:173
+msgid "Type the final information"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:51
+msgid "Type the heading text"
+msgstr ""
+
+#: assets/javascript/blocks/deforestationInfo/index.js:41
+msgid "Type the source of data"
+msgstr ""
+
+#: assets/javascript/blocks/featuredSlider/index.js:16
+msgid "Type the title here"
+msgstr ""
+
+#: 404.php:5
+msgid "Voltar para a página inicial"
+msgstr ""
+
+#: assets/javascript/blocks/estimativesArea/editor.js:10
+msgid "Árvores derrubadas em 2021"
+msgstr ""
+
+#: library/blocks/estimatives-area/render-template.php:31
+msgid "árvores/ dia"
+msgstr "trees/ day"

@@ -1,0 +1,8 @@
+// Path assets
+$p_theme_assets: '/wp-content/themes/aedas-theme/assets';
+
+.post-type-archive-editais {
+    header.c-title {
+        background-image: url($p_theme_assets + '/images/header/header-editais.png');
+    }
+}

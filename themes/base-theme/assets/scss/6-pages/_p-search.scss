@@ -1,0 +1,24 @@
+// Path assets
+$p_theme_assets: '/wp-content/themes/aedas-theme/assets';
+
+.search-results {
+    header.c-title {
+        &.title-search {
+            background-image: url($p_theme_assets + '/images/header-posts.png');
+        }
+    }
+
+    .index-wrapper {
+        main {
+            padding-bottom: 60px;
+            padding-top: 60px;
+        }
+    
+        aside {
+            padding-bottom: 60px;
+            padding-top: 60px;
+        }
+    
+        @import "./../7-parts/p-content-post";
+    }
+}

@@ -1,0 +1,46 @@
+// Path assets
+$p_theme_assets: '/wp-content/themes/aedas-theme/assets';
+
+.index-wrapper {
+    header.c-title {
+        background-image: url($p_theme_assets + '/images/header-posts.png');
+    }
+
+    main {
+        padding-bottom: 60px;
+        padding-top: 60px;
+    }
+
+    aside {
+        padding-bottom: 60px;
+        padding-top: 60px;
+        margin-top: 64px;
+
+        .before-sidebar-posts {
+            h2 {
+                margin-block-end: 16px;
+            }
+        }
+
+        .wp-block-categories-list{
+            list-style: none;
+            width: 200px;
+            height: 172px;
+            left: 1243px;
+            top: 561px;
+            padding: 0;
+            margin-top: 0;
+
+            a {
+                text-decoration: none;
+                color: rgb(51, 51, 51);
+                
+                &:hover{
+                    color: var(--c-primary)
+                }
+            }
+        }
+    }
+
+    @import "./../7-parts/p-content-post";
+}

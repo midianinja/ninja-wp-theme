@@ -1,0 +1,22 @@
+// Here we should import only what is considered a critical CSS
+// Grid
+// Header: if multiple headers are used or the main header contains a lot of complex stuff, a minifed version (without submenu, animations, etc), only with the basics to FCP should be used
+// Footer: same as header
+// Typo basics
+@import '1-settings/s-variables';
+@import '1-settings/s-globals';
+
+@import '2-atoms/a-mixins';
+@import '2-atoms/a-grid';
+@import '2-atoms/a-typography';
+
+// Those components will be "extented" by the layouts parts avoiding code repeating
+@import '3-components/c-main-menu';
+@import '3-components/c-title';
+@import '3-components/c-list-terms';
+@import '3-components/c-pagination';
+@import '3-components/c-slider';
+
+@import '4-layout/l-header';
+@import '4-layout/l-sidebar';
+@import '4-layout/l-footer';

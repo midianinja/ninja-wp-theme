@@ -1,0 +1,59 @@
+// File to add style of the sidebars
+
+@import "./../1-settings/s-variables";
+
+.sidebar-area {
+    // Titles
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-bottom: 30px;
+    }
+
+    // Tag Cloud
+    .wp-block-tag-cloud {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        a {
+            border: 1px solid #BDBDBD;
+            color: var(--c-gray--darker);
+            font-size: 14px !important;
+            font-weight: 700;
+            padding: 6px 10px;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #DDD;
+                color: var(--c-gray--darker);
+                text-decoration: none;
+            }
+        }
+    }
+
+    // Categories (list)
+    .wp-block-categories-list { // ul
+
+        list-style: none;
+        padding-left: 0;
+
+        li {
+            a {
+                color: var(--c-gray--darker);
+                font-size: 18px;
+                line-height: 1.6;
+
+                &:hover {
+                    color: var(--c-primary);
+                    text-decoration: none;
+                }
+            }
+        }
+        
+    }
+}

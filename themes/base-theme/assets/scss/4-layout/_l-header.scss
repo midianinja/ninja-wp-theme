@@ -65,7 +65,7 @@ header.main-header {
             height: 32px;
             display: none;
 
-            @media (max-width: 1024px) {
+            @media (max-width: $desktop-width) {
                 display: block;
             }
 
@@ -108,7 +108,7 @@ header.main-header {
             display: flex;
             margin-top: 6px;
 
-            @media (max-width: 1024px) {
+            @media (max-width: $desktop-width) {
                 display: none;
             }
 
@@ -121,7 +121,7 @@ header.main-header {
                     width: auto;
                 }
                 
-                @media (max-width: 1024px) {
+                @media (max-width: $desktop-width) {
                     margin-right: 0;
                 }
                 ul.menu {
@@ -139,7 +139,7 @@ header.main-header {
                         }
 
                         &:not(.menu-item-has-children) {
-                            @media (max-width: 1024px) {
+                            @media (max-width: $desktop-width) {
                                 margin-bottom: 10px;
                             }
                         }
@@ -152,7 +152,7 @@ header.main-header {
                             }
 
                             &:after {
-                                @media (max-width: 1024px) {
+                                @media (max-width: $desktop-width) {
                                     display: none;
                                 }
                             }
@@ -163,12 +163,12 @@ header.main-header {
                             box-shadow: 0px 3px 5px 0px rgba(#000000, 0.3);
                             z-index: 5;
 
-                            @media (max-width: 1024px) {
+                            @media (max-width: $desktop-width) {
                                 margin-top: 15px;
                                 padding-top: 0;
                             }
 
-                            @media (max-width: 1024px) {
+                            @media (max-width: $desktop-width) {
                                 box-shadow: none;
                             }
 
@@ -178,7 +178,7 @@ header.main-header {
                                 margin-right: 0;
                                 font-size: 80%;
 
-                                @media (max-width: 1024px) {
+                                @media (max-width: $desktop-width) {
                                     background-color: transparent;
                                     border-left: 2px solid #035299;
                                 }
@@ -230,7 +230,7 @@ header.main-header {
                             font-size: 24px;
                             line-height: 2;
 
-                            @media (max-width: 1024px) {
+                            @media (max-width: $desktop-width) {
                                 font-size: 16px;
                                 line-height: 1.5;
                             }

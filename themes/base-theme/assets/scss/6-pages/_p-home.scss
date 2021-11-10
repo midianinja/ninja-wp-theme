@@ -383,7 +383,7 @@
             font-weight: bold;
         }
 
-        @media(max-width: 768px){
+        @media(max-width: $tablet-width){
             .menu-item-882 {
                 text-align: center;
                 line-height: 25px;

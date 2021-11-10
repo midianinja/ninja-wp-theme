@@ -23,7 +23,7 @@ $p_theme_assets: "/wp-content/themes/aedas-theme/assets";
         position: absolute;
         z-index: 1;
 
-        @media (max-width: 767px) {
+        @media (max-width: $tablet-width) {
             margin-top: 134px;
         }
     }
@@ -33,15 +33,15 @@ $p_theme_assets: "/wp-content/themes/aedas-theme/assets";
         margin: 0 auto 40px;
         overflow: hidden;
 
-        @media (max-width: 1399px) {
+        @media (max-width: $desktop-xlarge-width) {
             max-width: 1140px;
         }
 
-        @media (max-width: 1199px) {
+        @media (max-width: $desktop-large-width) {
             max-width: 940px;
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: $desktop-width) {
             max-width: 750px;
             padding-left: 15px;
             padding-right: 15px;
@@ -50,7 +50,7 @@ $p_theme_assets: "/wp-content/themes/aedas-theme/assets";
         h2.title-with-graphics {
             font-size: 40px;
 
-            @media (max-width: 767px) {
+            @media (max-width: $tablet-width) {
                 font-size: 30px;
             }
         }

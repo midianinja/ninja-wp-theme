@@ -185,7 +185,7 @@ $p_theme_assets: '/wp-content/themes/aedas-theme/assets';
                     }
                 }
 
-                @media (min-width:768px) {
+                @media (min-width:$desktop-width) {
                     h3 {
                         a{
                             font-size: 40px;
@@ -339,7 +339,7 @@ ul.slick-dots {
 }
 
 
-@media (max-width: 1025px) {
+@media (max-width: $desktop-width) {
 
     #main-slider {
         

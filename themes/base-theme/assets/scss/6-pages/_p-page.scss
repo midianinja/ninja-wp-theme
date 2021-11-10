@@ -113,7 +113,7 @@
             padding: 5rem 2rem 4rem 2rem;
             width: 32.5rem;
 
-            @media (max-width: 767px) {
+            @media (max-width: $tablet-width) {
                 margin-bottom: 30px;
             }
 
@@ -127,7 +127,7 @@
 
         .cwp-block-prev,
         .cwp-block-next {
-            @media (max-width: 767px) {
+            @media (max-width: $tablet-width) {
                 display: none;
             }
         }

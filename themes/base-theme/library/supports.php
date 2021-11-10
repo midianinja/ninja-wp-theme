@@ -33,7 +33,7 @@ add_action( 'after_setup_theme', 'theme_supports' );
  * Load the theme textdomain
  */
 function jeo_setup() {
-    load_theme_textdomain( 'jaci', get_stylesheet_directory() . '/languages' );
+    load_theme_textdomain( 'base-textdomain', get_stylesheet_directory() . '/languages' );
 }
 add_action( 'after_setup_theme', 'jeo_setup' );
 

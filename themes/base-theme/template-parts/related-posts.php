@@ -7,7 +7,7 @@ if(empty($post_id)){
 }
 ?>
 <div class="post-content--section-title">
-    <?php _e('Leia Também', 'jaci'); ?>
+    <?php _e('Leia Também', 'base-textdomain'); ?>
 </div>
 <div class="post-content--related-posts">
     <?php

@@ -34,13 +34,13 @@ $uses_excerpt = post_type_supports(get_post_type(), 'excerpt');
         </div>
         <?php if ($show_author && $authors) : ?>
             <span class="authors">
-                <?php _e('Por:', 'jaci') ?>
+                <?php _e('Por:', 'base-textdomain') ?>
                 <strong><?php authors::display($author_taxonomy) ?></strong>
             </span>
         <?php endif; ?>
         <?php if ($show_date) : ?>
             <span class="date">
-                <?php _e('publicado em', 'jaci') ?>
+                <?php _e('publicado em', 'base-textdomain') ?>
                 <?php echo get_the_date('d/m/Y'); ?>
             </span>
         <?php endif; ?>

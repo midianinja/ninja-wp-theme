@@ -22,8 +22,8 @@
   --c-secondary: #B1D3E5;
   --c-gray--darker: #333333;
   --c-yellow-primary: #FBF6C0;
-  --p-theme: /wp-content/themes/aedas-theme;
-  --p-theme-assets: /wp-content/themes/aedas-theme/assets;
+  --p-theme: /wp-content/themes/base-theme;
+  --p-theme-assets: /wp-content/themes/base-theme/assets;
   --f-body: Lato, sans-serif;
   --f-title: Lato, sans-serif;
   --s-small: 20px;
@@ -1683,19 +1683,19 @@ header.main-header .header-content ul li i {
 }
 
 .title-with-graphics span.ico-title--partners {
-  background-image: url("/wp-content/themes/aedas-theme/assets/images/logo-slider-footer.png");
+  background-image: url("/wp-content/themes/base-theme/assets/images/logo-slider-footer.png");
   width: 51px;
   height: 43px;
 }
 
 .title-with-graphics span.ico-title--channel {
-  background-image: url("/wp-content/themes/aedas-theme/assets/images/logo-slider-footer.png");
+  background-image: url("/wp-content/themes/base-theme/assets/images/logo-slider-footer.png");
   width: 51px;
   height: 43px;
 }
 
 .title-with-graphics span.ico-title--projects {
-  background-image: url("/wp-content/themes/aedas-theme/assets/images/logo-slider-footer.png");
+  background-image: url("/wp-content/themes/base-theme/assets/images/logo-slider-footer.png");
   width: 51px;
   height: 43px;
 }
@@ -1753,7 +1753,7 @@ header.c-title .entry-title {
 }
 
 .blog header.c-title {
-  background-image: url("/wp-content/themes/aedas-theme/assets/images/header-posts.png");
+  background-image: url("/wp-content/themes/base-theme/assets/images/header-posts.png");
 }
 
 ul.list-terms {
@@ -2826,8 +2826,8 @@ header.main-header .header-content #search-overlay .content-limiter .searchform 
   --c-secondary: #B1D3E5;
   --c-gray--darker: #333333;
   --c-yellow-primary: #FBF6C0;
-  --p-theme: /wp-content/themes/aedas-theme;
-  --p-theme-assets: /wp-content/themes/aedas-theme/assets;
+  --p-theme: /wp-content/themes/base-theme;
+  --p-theme-assets: /wp-content/themes/base-theme/assets;
   --f-body: Lato, sans-serif;
   --f-title: Lato, sans-serif;
   --s-small: 20px;

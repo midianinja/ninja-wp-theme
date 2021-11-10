@@ -22,7 +22,7 @@ if ( post_password_required() )
     <?php if ( have_comments() ) : ?>
         <h2 class="comments-title">
             <?php
-                printf( _nx( 'Um comentario para "%2$s"', '%1$s comentários para "%2$s"', get_comments_number(), 'comments title', 'jaci' ),
+                printf( _nx( 'Um comentario para "%2$s"', '%1$s comentários para "%2$s"', get_comments_number(), 'comments title', 'base-textdomain' ),
                     number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
             ?>
         </h2>
@@ -42,14 +42,14 @@ if ( post_password_required() )
             if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
         ?>
         <nav class="navigation comment-navigation" role="navigation">
-            <h1 class="screen-reader-text section-heading"><?php _e( 'Comment navigation', 'jaci' ); ?></h1>
-            <div class="nav-previous"><?php previous_comments_link( __( '&larr; Mais antigos', 'jaci' ) ); ?></div>
-            <div class="nav-next"><?php next_comments_link( __( 'Mais Novos &rarr;', 'jaci' ) ); ?></div>
+            <h1 class="screen-reader-text section-heading"><?php _e( 'Comment navigation', 'base-textdomain' ); ?></h1>
+            <div class="nav-previous"><?php previous_comments_link( __( '&larr; Mais antigos', 'base-textdomain' ) ); ?></div>
+            <div class="nav-next"><?php next_comments_link( __( 'Mais Novos &rarr;', 'base-textdomain' ) ); ?></div>
         </nav><!-- .comment-navigation -->
         <?php endif; // Check for comment navigation ?>
  
         <?php if ( ! comments_open() && get_comments_number() ) : ?>
-        <p class="no-comments"><?php _e( 'Os comentários estão desabilitados.' , 'jaci' ); ?></p>
+        <p class="no-comments"><?php _e( 'Os comentários estão desabilitados.' , 'base-textdomain' ); ?></p>
         <?php endif; ?>
  
     <?php endif; // have_comments() ?>

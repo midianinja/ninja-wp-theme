@@ -129,7 +129,7 @@
             font-weight: bold;
             margin-right: 15px;
 
-            @media screen and (max-width: 360px){
+            @media screen and (max-width: $small-width){
                 flex: 0 0 100%;
                 margin-bottom: 10px;
             }
@@ -190,7 +190,7 @@
 }
 
 .post-content, .page-content{
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: $tablet-width){
         p{
             width: 100%;
             overflow: hidden;
@@ -202,7 +202,7 @@
         font-size: 40px;
         line-height: 1.2;
 
-        @media screen and (max-width: 768px){
+        @media screen and (max-width: $tablet-width){
             font-size: 30px;
         }
     }

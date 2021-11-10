@@ -1,7 +1,9 @@
 // Path assets
 $p_theme_assets: '/wp-content/themes/aedas-theme/assets';
 
-@import '../2-atoms/a-mixins';
+@import "./../1-settings/_s-variables";
+@import "./../2-atoms/a-mixins";
+
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 .post-type-archive-perguntas_frequentes {

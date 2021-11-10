@@ -1,4 +1,6 @@
-@import './../2-atoms/a-mixins';
+@import "./../1-settings/_s-variables";
+@import "./../2-atoms/a-mixins";
+
 
 .embed-template-block {
     display: grid;

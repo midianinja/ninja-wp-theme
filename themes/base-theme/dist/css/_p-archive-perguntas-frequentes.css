@@ -1,0 +1,227 @@
+@import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);.post-type-archive-perguntas_frequentes header.c-title {
+  background-color: var(--c-yellow-primary);
+  background-image: url("/wp-content/themes/aedas-theme/assets/images/header/header-perguntas-frequentes.png");
+  background-position: center 20px;
+}
+
+.post-type-archive-perguntas_frequentes header.c-title::before {
+  display: none;
+}
+
+.post-type-archive-perguntas_frequentes header.c-title .entry-title {
+  color: var(--c-primary);
+  font-size: 64px;
+  margin-bottom: 30px;
+  padding-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .post-type-archive-perguntas_frequentes header.c-title .entry-title {
+    font-size: 54px;
+  }
+}
+
+@media (max-width: 767px) {
+  .post-type-archive-perguntas_frequentes header.c-title .entry-title {
+    font-size: 30px;
+  }
+}
+
+.post-type-archive-perguntas_frequentes header.c-title .searchform {
+  margin-bottom: 50px;
+  text-align: center;
+  position: relative;
+}
+
+.post-type-archive-perguntas_frequentes header.c-title .searchform input[type=text] {
+  background-color: white;
+  background-image: url("/wp-content/themes/aedas-theme/assets/images/search-icon-blue.svg");
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: 34px;
+  border: 2px solid var(--c-primary);
+  color: var(--c-gray--darker);
+  outline: none;
+  padding: 13px 45px 13px 15px;
+  width: 400px;
+}
+
+.post-type-archive-perguntas_frequentes header.c-title .searchform input[type=text]:focus {
+  outline: none;
+}
+
+@media (max-width: 767px) {
+  .post-type-archive-perguntas_frequentes header.c-title .searchform input[type=text] {
+    max-width: 300px;
+    width: 80%;
+  }
+}
+
+.post-type-archive-perguntas_frequentes header.c-title .searchform .filter-clear {
+  color: var(--c-primary);
+  cursor: pointer;
+  display: none;
+  font-size: 75%;
+  padding-left: 10px;
+  position: absolute;
+  text-align: center;
+  top: 60px;
+  width: 100%;
+}
+
+.post-type-archive-perguntas_frequentes .intro {
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.post-type-archive-perguntas_frequentes .content-projects {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+@media (max-width: 1024px) {
+  .post-type-archive-perguntas_frequentes .content-projects {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .post-type-archive-perguntas_frequentes .content-projects {
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 427px) {
+  .post-type-archive-perguntas_frequentes .content-projects {
+    align-items: center;
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.post-type-archive-perguntas_frequentes .content-projects .each-project.active a .title {
+  background-color: var(--c-yellow-primary);
+}
+
+.post-type-archive-perguntas_frequentes .content-projects .each-project a {
+  display: flex;
+  flex-basis: 180px;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-end;
+  max-width: 240px;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .post-type-archive-perguntas_frequentes .content-projects .each-project a {
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 427px) {
+  .post-type-archive-perguntas_frequentes .content-projects .each-project a {
+    max-width: 240px;
+  }
+}
+
+.post-type-archive-perguntas_frequentes .content-projects .each-project a:hover {
+  text-decoration: none;
+}
+
+.post-type-archive-perguntas_frequentes .content-projects .each-project a .title {
+  border-radius: 40px;
+  color: var(--c-primary);
+  font-size: 18px;
+  margin-top: 10px;
+  padding: 8px;
+}
+
+@media (max-width: 1024px) {
+  .post-type-archive-perguntas_frequentes .content-projects .each-project a .title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 427px) {
+  .post-type-archive-perguntas_frequentes .content-projects .each-project a .title {
+    font-size: 14px;
+  }
+}
+
+.post-type-archive-perguntas_frequentes .content-perguntas-frequentes .content-subject {
+  color: var(--c-primary);
+}
+
+.post-type-archive-perguntas_frequentes .content-perguntas-frequentes .each-subject {
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
+}
+
+.post-type-archive-perguntas_frequentes .content-perguntas-frequentes .each-subject li {
+  border: 1px solid #DDDDDD;
+  cursor: pointer;
+  list-style: none;
+  margin-bottom: 10px;
+  margin-bottom: 10px;
+  margin-right: 30px;
+  padding: 20px 20px 15px;
+  width: 100%;
+}
+
+.post-type-archive-perguntas_frequentes .content-perguntas-frequentes .each-subject li .content {
+  display: none;
+}
+
+.post-type-archive-perguntas_frequentes .content-perguntas-frequentes .each-subject li .title {
+  position: relative;
+}
+
+.post-type-archive-perguntas_frequentes .content-perguntas-frequentes .each-subject li .title::after {
+  background-image: url("/wp-content/themes/aedas-theme/assets/images/arrow-up-perguntas-frequentes.png");
+  background-position: center 15px;
+  background-repeat: no-repeat;
+  background-size: 18px;
+  content: "";
+  height: 30px;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform-origin: center;
+  transform: rotate(180deg);
+  width: 30px;
+}
+
+.content-perguntas-frequentes .each-subject li.active {
+  background-color: var(--c-yellow-primary);
+}
+
+.content-perguntas-frequentes .each-subject li.active .title::after {
+  background-position: center 3px;
+  transform-origin: center;
+  transform: rotate(0);
+}
+
+.content-perguntas-frequentes .each-subject li.active .content {
+  display: block;
+}
+
+.post-type-archive-perguntas_frequentes .not-found-perguntas-frequentes h2 {
+  color: var(--c-primary);
+  font-weight: 500;
+}
+
+.post-type-archive-perguntas_frequentes .not-found-perguntas-frequentes p a {
+  color: var(--c-primary);
+}
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjc3MvX3AtYXJjaGl2ZS1wZXJndW50YXMtZnJlcXVlbnRlcy5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/

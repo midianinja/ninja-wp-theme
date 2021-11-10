@@ -1,0 +1,85 @@
+.video-gallery-wrapper {
+  box-shadow: inset 0px -14px 18px -3px rgba(0, 0, 0, 0.3);
+  max-height: 240px;
+  overflow: auto;
+}
+
+.video-gallery-wrapper .embed-template-block {
+  width: 100%;
+  text-align: initial;
+  padding: 0;
+  margin-bottom: 20px;
+  background: none;
+}
+
+.video-gallery-wrapper .embed-template-block:last-child {
+  margin-bottom: 0;
+}
+
+.video-gallery-wrapper .embed-template-block a:hover {
+  text-decoration: none;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns {
+  margin-bottom: 10px;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns:last-child {
+  margin-bottom: 0;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns .wp-block-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15px;
+  text-align: left;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns .wp-block-column:first-child {
+  flex-basis: 30%;
+  flex-grow: 0;
+  position: relative;
+  margin-left: 0;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns .wp-block-column:first-child::before {
+  width: 100%;
+  height: 100%;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns .wp-block-column figure {
+  margin-bottom: 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns .wp-block-column figure .wp-block-embed__wrapper {
+  max-height: 110px;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns .wp-block-column figure iframe {
+  max-height: 110px;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns .wp-block-column figure figcaption {
+  display: none;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns .wp-block-column p {
+  margin: 0 15px 0 0;
+}
+
+.video-gallery-wrapper .embed-template-block .wp-block-columns .wp-block-column p:first-child {
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjc3MvX2ItdmlkZW8tZ2FsbGVyeS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/

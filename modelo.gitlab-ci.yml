@@ -55,7 +55,7 @@ deploy_to_develop:
   stage: deploy
   image: hacklab/kubectl:latest
   script:
-    - echo ${IMS_CLUSTER_KUBECONFIG} | base64 -d > ${KUBECONFIG}
+    - echo ${kubeconfig} | base64 -d > ${KUBECONFIG}
     - POD=$(kubectl get pods -n ${NAMESPACE_DEV} | grep web | cut -d ' ' -f 1) 
     - echo $POD
     #deploy zips to production
@@ -85,7 +85,7 @@ deploy_to_production:
   stage: deploy
   image: hacklab/kubectl:latest
   script:
-    - echo ${IMS_CLUSTER_KUBECONFIG} | base64 -d > ${KUBECONFIG}
+    - echo ${kubeconfig} | base64 -d > ${KUBECONFIG}
     - POD=$(kubectl get pods -n ${NAMESPACE_PROD} | grep wordpress | cut -d ' ' -f 1) 
     - echo $POD
     #deploy zips to production

@@ -1,0 +1,111 @@
+---
+image: docker:18.01.0-ce-git
+services:
+  - docker:18.01.0-ce-dind
+stages:
+- build_assets
+- create_pack
+- deploy
+- cache_bust
+
+     
+variables:
+  KUBECONFIG: /etc/k8s-config
+  THEME_NAME: base-theme
+  NAMESPACE_DEV: ambiente-dev
+  NAMESPACE_PROD: ambiente-prod
+  AUTH: JOB-TOKEN:$CI_JOB_TOKEN
+
+cache:
+   key: ims-theme-key
+   paths:
+     - themes/${THEME_NAME}
+
+########################DEVELOP E PROD################
+build_assets:
+ stage: build_assets
+ only:
+   - /main/
+   - /tag/
+ tags:
+   - docker
+ image: node:12
+ 
+ script:
+   - npm --prefix themes/${THEME_NAME}/ install
+   - npm --prefix themes/${THEME_NAME}/ run production
+   - rm -rf themes/${THEME_NAME}/node_modules
+
+########################DEVELOP#######################
+create_pack_develop:
+  stage: create_pack
+  only:
+    - /main/
+  tags:
+    - docker
+  image: hacklab/alpine-3.14.2-zip:1.1.0
+  script:
+    - cd wp-content/themes/
+    - mkdir -p /deploy-zips/
+    - zip -r /deploy-zips/${THEME_NAME}.zip ${THEME_NAME}  
+    #create theme pack
+    - curl --header "$AUTH" --upload-file /deploy-zips/${THEME_NAME}.zip  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}-theme/${CI_COMMIT_SHORT_SHA}/${THEME_NAME}.zip"
+
+deploy_to_develop:
+  stage: deploy
+  image: hacklab/kubectl:latest
+  script:
+    - echo ${IMS_CLUSTER_KUBECONFIG} | base64 -d > ${KUBECONFIG}
+    - POD=$(kubectl get pods -n ${NAMESPACE_DEV} | grep web | cut -d ' ' -f 1) 
+    - echo $POD
+    #deploy zips to production
+    - kubectl exec -n ${NAMESPACE_DEV} -it $POD -- sh -c "cd /tmp/ && curl --create-dirs --location --output /tmp/deploy-zips/${THEME_NAME}.zip  --header $AUTH ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}-theme/${CI_COMMIT_SHORT_SHA}/${THEME_NAME}.zip && cd /var/www/html/ && wp theme install --force /tmp/deploy-zips/${THEME_NAME}.zip"    
+  environment: develop
+  only:
+    - /main/
+  tags:
+    - docker
+########################DEVELOP#######################
+
+create_pack_production:
+  stage: create_pack
+  only:
+    - tags
+  tags:
+    - docker
+  image: hacklab/alpine-3.14.2-zip:1.1.0
+  script:
+    - cd themes/
+    - mkdir -p /deploy-zips/
+    - zip -r /deploy-zips/${THEME_NAME}.zip ${THEME_NAME}  
+    #create theme pack
+    - curl --header "$AUTH" --upload-file /deploy-zips/${THEME_NAME}.zip  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}-theme/${CI_BUILD_REF_NAME}/${THEME_NAME}.zip"
+
+deploy_to_production:
+  stage: deploy
+  image: hacklab/kubectl:latest
+  script:
+    - echo ${IMS_CLUSTER_KUBECONFIG} | base64 -d > ${KUBECONFIG}
+    - POD=$(kubectl get pods -n ${NAMESPACE_PROD} | grep wordpress | cut -d ' ' -f 1) 
+    - echo $POD
+    #deploy zips to production
+    - kubectl exec -n ${NAMESPACE_PROD} -it $POD -- sh -c "cd /tmp/ && curl --create-dirs --location --output /tmp/deploy-zips/${THEME_NAME}.zip  --header $AUTH ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}-theme/${CI_BUILD_REF_NAME}/${THEME_NAME}.zip && cd /var/www/html/ && wp theme install --force /tmp/deploy-zips/${THEME_NAME}.zip"    
+  environment: develop
+  only:
+    - tags
+  tags:
+    - docker
+
+cache bust for production:
+  stage: cache_bust
+  image: hacklab/docker-nettools:latest
+  script:
+    - curl -i -X DELETE -H "GoCache-Token:${GO_CACHE_API_KEY}" "https://api.gocache.com.br/v1/cache/ims.com.br/all"
+  only:
+    - tags
+  environment: production
+  variables:
+    GIT_STRATEGY: none
+  tags:
+    - docker
+

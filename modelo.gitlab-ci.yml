@@ -12,8 +12,8 @@ stages:
 variables:
   KUBECONFIG: /etc/k8s-config
   THEME_NAME: base-theme-slug
-  NAMESPACE_DEV: museuafrodigitalrj-site-dev
-  NAMESPACE_PROD: museuafrodigitalrj-site-prod
+  NAMESPACE_DEV: museuafrodigitalrj-dev
+  NAMESPACE_PROD: museuafrodigitalrj-prod
   AUTH: JOB-TOKEN:$CI_JOB_TOKEN
 
 cache:

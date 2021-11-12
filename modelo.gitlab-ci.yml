@@ -11,13 +11,13 @@ stages:
      
 variables:
   KUBECONFIG: /etc/k8s-config
-  THEME_NAME: base-theme
+  THEME_NAME: base-theme-slug
   NAMESPACE_DEV: ambiente-dev
   NAMESPACE_PROD: ambiente-prod
   AUTH: JOB-TOKEN:$CI_JOB_TOKEN
 
 cache:
-   key: ims-theme-key
+   key: base-theme-key
    paths:
      - themes/${THEME_NAME}
 
@@ -49,7 +49,7 @@ create_pack_develop:
     - mkdir -p /deploy-zips/
     - zip -r /deploy-zips/${THEME_NAME}.zip ${THEME_NAME}  
     #create theme pack
-    - curl --header "$AUTH" --upload-file /deploy-zips/${THEME_NAME}.zip  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}-theme/${CI_COMMIT_SHORT_SHA}/${THEME_NAME}.zip"
+    - curl --header "$AUTH" --upload-file /deploy-zips/${THEME_NAME}.zip  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}/${CI_COMMIT_SHORT_SHA}/${THEME_NAME}.zip"
 
 deploy_to_develop:
   stage: deploy
@@ -59,7 +59,7 @@ deploy_to_develop:
     - POD=$(kubectl get pods -n ${NAMESPACE_DEV} | grep web | cut -d ' ' -f 1) 
     - echo $POD
     #deploy zips to production
-    - kubectl exec -n ${NAMESPACE_DEV} -it $POD -- sh -c "cd /tmp/ && curl --create-dirs --location --output /tmp/deploy-zips/${THEME_NAME}.zip  --header $AUTH ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}-theme/${CI_COMMIT_SHORT_SHA}/${THEME_NAME}.zip && cd /var/www/html/ && wp theme install --force /tmp/deploy-zips/${THEME_NAME}.zip"    
+    - kubectl exec -n ${NAMESPACE_DEV} -it $POD -- sh -c "cd /tmp/ && curl --create-dirs --location --output /tmp/deploy-zips/${THEME_NAME}.zip  --header $AUTH ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}/${CI_COMMIT_SHORT_SHA}/${THEME_NAME}.zip && cd /var/www/html/ && wp theme install --force /tmp/deploy-zips/${THEME_NAME}.zip"    
   environment: develop
   only:
     - /main/
@@ -79,7 +79,7 @@ create_pack_production:
     - mkdir -p /deploy-zips/
     - zip -r /deploy-zips/${THEME_NAME}.zip ${THEME_NAME}  
     #create theme pack
-    - curl --header "$AUTH" --upload-file /deploy-zips/${THEME_NAME}.zip  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}-theme/${CI_BUILD_REF_NAME}/${THEME_NAME}.zip"
+    - curl --header "$AUTH" --upload-file /deploy-zips/${THEME_NAME}.zip  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}/${CI_BUILD_REF_NAME}/${THEME_NAME}.zip"
 
 deploy_to_production:
   stage: deploy
@@ -89,7 +89,7 @@ deploy_to_production:
     - POD=$(kubectl get pods -n ${NAMESPACE_PROD} | grep wordpress | cut -d ' ' -f 1) 
     - echo $POD
     #deploy zips to production
-    - kubectl exec -n ${NAMESPACE_PROD} -it $POD -- sh -c "cd /tmp/ && curl --create-dirs --location --output /tmp/deploy-zips/${THEME_NAME}.zip  --header $AUTH ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}-theme/${CI_BUILD_REF_NAME}/${THEME_NAME}.zip && cd /var/www/html/ && wp theme install --force /tmp/deploy-zips/${THEME_NAME}.zip"    
+    - kubectl exec -n ${NAMESPACE_PROD} -it $POD -- sh -c "cd /tmp/ && curl --create-dirs --location --output /tmp/deploy-zips/${THEME_NAME}.zip  --header $AUTH ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}/${CI_BUILD_REF_NAME}/${THEME_NAME}.zip && cd /var/www/html/ && wp theme install --force /tmp/deploy-zips/${THEME_NAME}.zip"    
   environment: develop
   only:
     - tags

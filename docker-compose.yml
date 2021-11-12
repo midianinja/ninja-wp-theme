@@ -17,7 +17,7 @@ services:
     volumes:
       - ./wp-content:/var/www/html/wp-content
       - ./plugins/guaraci:/var/www/html/wp-content/plugins/guaraci
-      - ./themes/base-theme:/var/www/html/wp-content/themes/base-theme
+      - ./themes/base-theme-slug:/var/www/html/wp-content/themes/base-theme-slug
       - ./compose/local/wordpress/wp-config.d:/var/www/html/wp-config.d
       - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
       - ./compose/production/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
@@ -27,7 +27,7 @@ services:
       context: .
       dockerfile: ./compose/local/watcher/Dockerfile
     volumes:
-      - ./themes/base-theme:/app
+      - ./themes/base-theme-slug:/app
       
   mariadb:
     image: mariadb:10.4

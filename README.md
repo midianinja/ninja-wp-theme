@@ -1,4 +1,4 @@
-# Projeto inicial WordPress
+# base-theme-name
 
 Este repositório contém os arquivos iniciais para se ter um projeto WordPress
 nos moldes do Hacklab. Isso significa que as ferramentas de desenvolvimento
@@ -36,7 +36,7 @@ $ git clone git@git.hacklab.com.br:open-source/base-wordpress-project.git --recu
 ```
 
 ## Compilando os assets do tema
-Abra um terminar, vá até a a pasta `themes/jaci/` e execute os comandos abaixo:
+Abra um terminar, vá até a a pasta `themes/base-theme-slug/` e execute os comandos abaixo:
 
 ```
 $ npm install

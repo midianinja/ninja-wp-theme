@@ -45,7 +45,7 @@ create_pack_develop:
     - docker
   image: hacklab/alpine-3.14.2-zip:1.1.0
   script:
-    - cd wp-content/themes/
+    - cd themes/
     - mkdir -p /deploy-zips/
     - zip -r /deploy-zips/${THEME_NAME}.zip ${THEME_NAME}  
     #create theme pack

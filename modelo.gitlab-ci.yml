@@ -56,7 +56,7 @@ deploy_to_develop:
   image: hacklab/kubectl:latest
   script:
     - echo ${kubeconfig} | base64 -d > ${KUBECONFIG}
-    - POD=$(kubectl get pods -n ${NAMESPACE_DEV} | grep web | cut -d ' ' -f 1) 
+    - POD=$(kubectl get pods -n ${NAMESPACE_DEV} | grep wordpress | cut -d ' ' -f 1) 
     - echo $POD
     #deploy zips to production
     - kubectl exec -n ${NAMESPACE_DEV} -it $POD -- sh -c "cd /tmp/ && curl --create-dirs --location --output /tmp/deploy-zips/${THEME_NAME}.zip  --header $AUTH ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${THEME_NAME}/${CI_COMMIT_SHORT_SHA}/${THEME_NAME}.zip && cd /var/www/html/ && wp theme install --force /tmp/deploy-zips/${THEME_NAME}.zip"    

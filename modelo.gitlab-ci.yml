@@ -19,7 +19,7 @@ variables:
 cache:
    key: base-theme-key
    paths:
-     - themes/${THEME_NAME}
+     - themes/${THEME_NAME}/dist
 
 ########################DEVELOP E PROD################
 build_assets:
@@ -32,6 +32,7 @@ build_assets:
  image: node:12
  
  script:
+   - rm -rf themes/${THEME_NAME}/dist
    - npm --prefix themes/${THEME_NAME}/ install
    - npm --prefix themes/${THEME_NAME}/ run production
    - rm -rf themes/${THEME_NAME}/node_modules

@@ -1,6 +1,6 @@
-themes/jaci/dist/app.js
-themes/jaci/dist/app.css
-
+themes/base-theme-slug/dist/app.js
+themes/base-theme-slug/dist/app.css
+themes/base-theme-slug/dist/
 wp-content/*
 wp-content/themes/*
 wp-content/plugins/*

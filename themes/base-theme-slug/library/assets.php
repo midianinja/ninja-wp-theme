@@ -365,6 +365,7 @@ class Assets {
 		 * enqueued instead of just being registered) and 'preload_callback' (callback)
 		 * function determining whether the file should be preloaded for the current request).
 		 */
+		apply_filters('js_files_before_output', $css_files);
 
 		$this->css_files = [];
 		foreach ( $css_files as $handle => $data ) {
@@ -440,7 +441,8 @@ class Assets {
                 'global' => true,
 			]
  		];
-
+		
+		apply_filters('js_files_before_output', $js_files);
 
 		$this->js_files = [];
 		foreach ( $js_files as $handle => $data ) {

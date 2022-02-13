@@ -8,5 +8,8 @@ wp-content/upgrade/*
 wp-content/uploads/*
 wp-content/mu-plugins/*
 wp-content/languages/*
-
+*.sql
+*/base-theme-slug.zip
 mariadb_data/
+themes/base-theme-slug/mix-manifest.json
+.gitignore

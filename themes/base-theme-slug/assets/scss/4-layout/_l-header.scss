@@ -119,7 +119,30 @@ header{
             @media (max-width: $desktop-width) {
                 display: none;
             }
+            i.fa-angle-down, i.fa-angle-up {
+                font-size: 15px;
+                margin-left: 10px;
+                
+                &:not(.up) {
+                    &::before {
+                        content: url($p_theme_assets+'/images/arrow-down.svg') !important;
+                        transition: opacity .2s ease;
     
+                        @include tablet {
+                            opacity: 1;
+                        }
+                    }
+                }
+    
+                &.up {
+                    &::before {
+                        content: url($p_theme_assets+'/images/arrow-up.svg') !important;
+                        opacity: 1;
+                        transition: opacity .2s ease;
+                    }
+                }
+    
+            }
             .primary-menu {
                 margin-right: 50px;
     

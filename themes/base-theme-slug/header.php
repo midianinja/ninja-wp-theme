@@ -27,7 +27,7 @@
                             ?>
                         </a>
                     </div>
-                    <button class="toggle-menu" aria-label="<?= __("Toggle menu visibility", "jaci") ?>">
+                    <button menu-container-class='primary-menu' class="toggle-menu" aria-label="<?= __("Toggle menu visibility", "jaci") ?>">
 
                     </button>
 

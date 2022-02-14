@@ -437,10 +437,6 @@ class Assets {
                 'global' => true,
 			],
 			
-			'timeline-behavior' => [
-                'file' => 'timeline-behavior.js',
-                'global' => true,
-			]
  		];
 		
 		$js_files = apply_filters('js_files_before_output', $js_files);
@@ -552,38 +548,7 @@ class Assets {
                 wp_enqueue_script( 'tiny-slider', get_stylesheet_directory_uri() . '/assets/vendor/tiny-slider/tiny-slider.js', [], false, true );
 		        wp_enqueue_script( 'news-slider', get_stylesheet_directory_uri() . '/dist/js/functionalities/featured-slider.js', ['tiny-slider'], false, true );
             },
-            'jaci/deforestation-info' => function() {
-                wp_enqueue_style(
-                    'deforestation-info',
-                    get_stylesheet_directory_uri() . '/dist/css/_b-deforestation-info.css',
-                    [],
-                    filemtime(get_stylesheet_directory() . '/dist/css/_b-deforestation-info.css'),
-                    'all'
-                );
-
-                wp_enqueue_script( 'deforestation-info-front-end', get_stylesheet_directory_uri() . '/dist/js/functionalities/deforestation-info.js', [], false, true );
-
-                wp_localize_script('deforestation-info-front-end', 'deforestationInfo', [
-                    'getLangCode' => apply_filters( "wpml_current_language", NULL ),
-                ]);
-
-            },
-            'jaci/estimatives-area' => function() {
-                wp_enqueue_style(
-                    'estimatives-area',
-                    get_stylesheet_directory_uri() . '/dist/css/_b-estimatives-area.css',
-                    [],
-                    filemtime(get_stylesheet_directory() . '/dist/css/_b-estimatives-area.css'),
-                    'all'
-                );
-                wp_enqueue_script( 'estimatives-area-front-end', get_stylesheet_directory_uri() . '/dist/js/functionalities/estimatives-area.js', [], false, true );
-
-                wp_localize_script('estimatives-area-front-end', 'estimativesArea', [
-                    'utc' => time(),
-                    'getLangCode' => apply_filters( "wpml_current_language", NULL ),
-                ]);
-
-			},
+            
 			'jaci/embed-template' => function() {
 				wp_enqueue_style(
 					'embed-template',
@@ -605,22 +570,6 @@ class Assets {
 				wp_enqueue_script( 'video-gallery', get_stylesheet_directory_uri() . '/dist/js/blocks/video-gallery.js', [], false, true );
 				wp_enqueue_script( 'functionalities-video-gallery', get_stylesheet_directory_uri() . '/dist/js/functionalities/video-gallery.js', ['video-gallery'], false, true );
 			},
-			'jaci/timeline' => function() {
-                wp_enqueue_style(
-                    'timeline',
-                    get_stylesheet_directory_uri() . '/dist/css/_b-timeline.css',
-                    [],
-                    filemtime(get_stylesheet_directory() . '/dist/css/_b-timeline.css'),
-                    'all'
-                );
-                wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/dist/js/blocks/timeline.js', [], false, true );
-
-                // wp_localize_script('estimatives-area-front-end', 'estimativesArea', [
-                //     'utc' => time(),
-                //     'getLangCode' => apply_filters( "wpml_current_language", NULL ),
-                // ]);
-
-            },
             'core/cover' => function() {
                 wp_enqueue_style(
                     'core-cover',

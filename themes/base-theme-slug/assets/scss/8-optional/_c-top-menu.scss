@@ -1,0 +1,170 @@
+@import "./../1-settings/_s-variables";
+@import "./../2-atoms/a-mixins";
+
+header.top-header {
+    background-color: var(--c-secondary);
+    button.toggle-menu {
+        appearance: none;
+        border: 0px;
+        outline: none;
+        background: none;
+        position: relative;
+        width: 32px;
+        height: 32px;
+        display: none;
+
+        @include tablet {
+            display: block;
+        }
+
+        &:before, &:after{
+            content: "";
+            display: block;
+            width: 21px;
+            height: 2px;
+            position: absolute;
+            top: 13px;
+            transition: all .4s;
+            background-color: var(--c-gray--darker);
+
+        }
+
+        &:after {
+            top: 19.3px;
+        }
+
+        &.active {
+            justify-self: flex-end;
+
+            &:before {
+                top: 16px;
+                transform: rotate(-45deg);
+                transition: all .2s;
+            }
+
+            &:after {
+                top: 16px;
+                transform: rotate(45deg);
+                transition: all .2s;
+            }
+        }
+    }
+
+    .top-menu {
+        ul {
+            display: flex;
+            list-style: none;
+
+            li {
+                &:not(:last-child) {
+                    margin-right: 30px;
+                }
+
+                &:hover {
+                    position: relative;
+
+                    ul.sub-menu {
+
+                        display: block;
+
+                        @include tablet{
+                            position: relative;
+                        }
+                    }
+                }
+
+                a {
+                    font-size: size(12);
+                    transition: all .2s ease-in-out;
+
+                    &:hover {
+                        opacity: .75;
+                        text-decoration: none;
+                    }
+                }
+
+                &.menu-item-has-children { // link has submenu
+                    cursor: pointer;
+                    display: inline-block;
+                    padding-right: size(22);
+                    position: relative;
+
+                    &::before {
+                        @include desktop {
+                            @include triangle( bottom, 5px, 5px, var(--header-second-text-color) );
+                            position: absolute;
+                            right: 0;
+                            top: 11px;
+                            transition: all .2s ease-in-out;
+                        }
+                    }
+
+                    i {
+                        display: none;
+                    }
+
+                    &:hover {
+                        .sub-menu { // ul
+                            @include desktop {
+                                display: block;
+                            }
+                        }
+    
+                        &::before {
+                            opacity: .75;
+                        }
+                    }
+                }
+
+                ul.sub-menu {
+                    background-color: var(--c-secondary);
+                    border-left: 0;
+                    box-shadow: 0px 3px 5px 0px rgba(#000000, 0.3);
+                    min-width: 300px;
+                    padding: 10px 0px 10px 0px;
+                    position: absolute;
+                    z-index: 5;
+    
+                    @include desktop {
+                        display: none;
+                    }
+
+                    @include tablet {
+                        box-shadow: none;
+                        display: block;
+                        margin-bottom: 0;
+                        padding: 0 0 10px 10px;
+                        position: relative;
+                    }
+
+                    li {
+                        padding: 5px 15px 5px 15px;
+
+                        &.menu-item-has-children { // link has submenu
+                            &::before {
+                                right: 15px;
+                            }
+                        }
+
+                        a {
+                            @include desktop {
+                                display: block;
+                                width: 100%;
+                            }
+                        }
+
+                        ul.sub-menu {
+                            box-shadow: none;
+                            padding-bottom: 0;
+                            position: relative;
+
+                            li {
+                                padding: 0 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

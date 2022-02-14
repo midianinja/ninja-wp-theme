@@ -29,16 +29,22 @@ const dist_dir = root_dir + '/dist';
 // Generate critical CSS
 mix.sass(assets_dir + '/scss/critical-app.scss','./css/critical.css');
 
+
+// Compile all blocks files into individual CSSs
+const blocksCSSPath = assets_dir + '/scss/5-blocks/';
+getDirFiles(blocksCSSPath).forEach((filepath) => {
+    mix.sass(blocksCSSPath + filepath , './css/');
+})
 // Compile all page files into individual CSSs
 const pagesPath = assets_dir + '/scss/6-pages/';
 getDirFiles(pagesPath).forEach((filepath) => {
     mix.sass(pagesPath + filepath , './css/');
 })
 
-// Compile all blocks files into individual CSSs
-const blocksCSSPath = assets_dir + '/scss/5-blocks/';
-getDirFiles(blocksCSSPath).forEach((filepath) => {
-    mix.sass(blocksCSSPath + filepath , './css/');
+// Compile all optional files into individual CSSs
+const optionalPath = assets_dir + '/scss/8-optional/';
+getDirFiles(optionalPath).forEach((filepath) => {
+    mix.sass(optionalPath + filepath , './css/');
 })
 
 // Compile all JS functionalitis into individual files
@@ -47,14 +53,12 @@ getDirFiles(functionalitiesPath).forEach((filepath) => {
     mix.js(functionalitiesPath + filepath , './js/functionalities');
 })
 
+
 // Compile all blocks into individual files
 const blocksPath = assets_dir + '/javascript/blocks/';
 mix.react(blocksPath + 'featuredSlider/index.js' , './js/blocks/featured-slider.js');
-mix.react(blocksPath + 'estimativesArea/index.js' , './js/blocks/estimatives-area.js');
-mix.react(blocksPath + 'deforestationInfo/index.js' , './js/blocks/deforestation-info.js');
 mix.react(blocksPath + 'embedTemplate/index.js' , './js/blocks/embed-template.js');
 mix.react(blocksPath + 'videoGallery/index.js' , './js/blocks/video-gallery.js');
-mix.react(blocksPath + 'timeline/index.js' , './js/blocks/timeline.js');
 
 mix.webpackConfig({
 	...defaultConfig,

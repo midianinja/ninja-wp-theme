@@ -123,8 +123,8 @@ function rename_taxonomies() {
     register_taxonomy( 'category', $object_type, (array) $category_args );
 
 }
-
-add_action( 'init', 'rename_taxonomies', 11 );
+// Descomentar para renomear as taxonomias padrão do WP
+// add_action( 'init', 'rename_taxonomies', 11 );
 
 /**
  * Return string of the terms to use on html class
@@ -154,18 +154,6 @@ function get_terms_like_class( int $post_id, string $tax, string $prefix = '' ) 
 
 }
 
-/**
- * Pagination issue fix via http://wordpress.stackexchange.com/a/23155/2807
- * @link https://codex.wordpress.org/Rewrite_API/add_rewrite_rule
- */
-function perguntas_frequentes_rewrite_rules() {
-    add_rewrite_rule(
-        '^perguntas-frequentes/([^/]+)/?$',
-        'index.php?taxonomy=category&post_type=perguntas_frequentes&term=$matches[1]',
-        'top'
-    );
-}
-add_action( 'init', 'perguntas_frequentes_rewrite_rules', 10, 0 );
 
 /**
  * Get terms by post type

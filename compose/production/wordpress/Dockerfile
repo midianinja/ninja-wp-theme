@@ -14,7 +14,7 @@ RUN su www-data -s /bin/bash -c 'npm run prod' && rm -rf node_modules;
 
 WORKDIR /var/www/html
 
-FROM hacklab/wordpress:v5.9-php7.4
+FROM hacklab/wp:v5.9-php7.4
 
 LABEL mantainer "hacklab/ <contato@hacklab.com.br>"
 

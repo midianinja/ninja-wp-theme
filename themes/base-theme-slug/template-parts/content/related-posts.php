@@ -31,7 +31,7 @@ if ( $related_posts->have_posts() ) : ?>
             $related_posts->the_post();
 
             // Thumbnail
-            $thumbnail = ( has_post_thumbnail() ) ? get_the_post_thumbnail() : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-aedas.png">'; ?>
+            $thumbnail = ( has_post_thumbnail() ) ? get_the_post_thumbnail() : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">'; ?>
             <a href="<?php the_permalink(); ?>">
                 <div class="related-post">
                     <div class="related-post-image"><?php echo $thumbnail; ?></div>

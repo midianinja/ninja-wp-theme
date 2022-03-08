@@ -1,20 +1,20 @@
 <?php
 
 /**
- * 
+ *
  * Create list of the terms by taxonomy
- * 
+ *
  * @param int $post_id Post ID
  * @param string $tax Slug tax to get terms
  * @param bool $use_link Define if is use link to the terms
- * 
+ *
  * @link https://developer.wordpress.org/reference/functions/get_the_terms/
  * @link https://developer.wordpress.org/reference/functions/sanitize_title/
  * @link https://developer.wordpress.org/reference/functions/esc_url/
  * @link https://developer.wordpress.org/reference/functions/get_term_link/
- * 
+ *
  * @return string $html
- * 
+ *
  */
 function get_html_terms( int $post_id, string $tax, bool $use_link = false ) {
 
@@ -128,11 +128,11 @@ function rename_taxonomies() {
 
 /**
  * Return string of the terms to use on html class
- * 
+ *
  * @param int $post_id Post ID
  * @param string $tax Slug tax to get terms
  * @param string $prefix Set prefix to each term
- * 
+ *
  * @link https://developer.wordpress.org/reference/functions/get_the_terms/
  * @link https://developer.wordpress.org/reference/functions/sanitize_title/
  */
@@ -189,7 +189,7 @@ function get_terms_by_post_type( $taxonomy, $post_type ) {
 
 /**
  * Returns total post views
- * 
+ *
  * @link https://developer.wordpress.org/reference/functions/get_post_meta/
  * @link https://developer.wordpress.org/reference/functions/get_the_ID/
  */
@@ -201,7 +201,7 @@ function gt_get_post_view() {
 
 /**
  * Defines total post views
- * 
+ *
  * @link https://developer.wordpress.org/reference/functions/get_post_meta/
  * @link https://developer.wordpress.org/reference/functions/get_the_ID/
  * * @link https://developer.wordpress.org/reference/functions/update_post_meta/
@@ -239,10 +239,10 @@ add_filter( 'body_class', 'add_slug_body_class' );
 
 /**
  * Return the structure HTML of the posts separetade by month
- * 
+ *
  * @param array $args use params of the class WP_Query
  * @link https://developer.wordpress.org/reference/classes/wp_query/#parameters
- * 
+ *
  * @return array months|slider
  */
 function get_posts_by_month( $args = [] ) {
@@ -286,11 +286,11 @@ function get_posts_by_month( $args = [] ) {
                 $close_ul = true;
             endif;
 
-            $thumbnail = ( has_post_thumbnail( get_the_ID() ) ) ? get_the_post_thumbnail( get_the_ID() ) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-aedas.png">';
+            $thumbnail = ( has_post_thumbnail( get_the_ID() ) ) ? get_the_post_thumbnail( get_the_ID() ) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
 
             $content_slider .= sprintf(
                 '<li id="item-%1$s" class="item item-month-%2$s"><a href="%3$s"><div class="thumb">%4$s</div><div class="title"><h3>%5$s</h3></div></a></li>',
-                get_the_ID(),            
+                get_the_ID(),
                 $month_title,
                 get_permalink( get_the_ID() ),
                 $thumbnail,

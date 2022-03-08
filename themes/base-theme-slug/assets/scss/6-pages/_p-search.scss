@@ -1,7 +1,7 @@
 @import "./../1-settings/_s-variables";
 @import "./../2-atoms/a-mixins";
 // Path assets
-$p_theme_assets: '/wp-content/themes/aedas-theme/assets';
+$p_theme_assets: '/wp-content/themes/base-theme-slug/assets';
 
 .search-results {
     header.c-title {
@@ -15,12 +15,12 @@ $p_theme_assets: '/wp-content/themes/aedas-theme/assets';
             padding-bottom: 60px;
             padding-top: 60px;
         }
-    
+
         aside {
             padding-bottom: 60px;
             padding-top: 60px;
         }
-    
+
         @import "./../7-parts/p-content-post";
     }
 }

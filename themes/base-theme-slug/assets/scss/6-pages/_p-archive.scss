@@ -3,7 +3,7 @@
 
 
 // Path assets
-$p_theme_assets: '/wp-content/themes/aedas-theme/assets';
+$p_theme_assets: '/wp-content/themes/base-theme-slug/assets';
 
 
 .index-wrapper {
@@ -39,7 +39,7 @@ $p_theme_assets: '/wp-content/themes/aedas-theme/assets';
             a {
                 text-decoration: none;
                 color: rgb(51, 51, 51);
-                
+
                 &:hover{
                     color: var(--c-primary)
                 }

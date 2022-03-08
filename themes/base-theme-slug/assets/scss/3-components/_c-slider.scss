@@ -1,4 +1,4 @@
-$p_theme_assets: '/wp-content/themes/aedas-theme/assets';
+$p_theme_assets: '/wp-content/themes/base-theme-slug/assets';
 
 @import "./../2-atoms/a-mixins";
 
@@ -58,20 +58,20 @@ $p_theme_assets: '/wp-content/themes/aedas-theme/assets';
             }
 
             .ultp-block-content-wrap, .ultp-block-image {
-                width: 100%; 
+                width: 100%;
             }
 
             a, img {
                 -o-object-fit: cover;
                 object-fit: cover;
                 height: 100%;
-                width: 100%;              
+                width: 100%;
             }
 
             .wp-block-ultimate-post-post-list-2 {
                 height: 100%;
-                & .ultp-block-wrapper, 
-                & .ultp-block-items-wrap, 
+                & .ultp-block-wrapper,
+                & .ultp-block-items-wrap,
                 & .ultp-block-item,
                 & .ultp-block-content-wrap,
                 & .ultp-block-image {
@@ -123,7 +123,7 @@ $p_theme_assets: '/wp-content/themes/aedas-theme/assets';
                         font-weight: bold;
                         font-size: 16px;
                         line-height: 19px;
-                
+
                         @include mobile {
                             font-size: 14px;
                         }
@@ -300,7 +300,7 @@ ul.slick-dots {
         width: 10px;
         height: 10px;
 
-        .cwp-block-slider-pagin {       
+        .cwp-block-slider-pagin {
             width: 10px;
             height: 10px;
             padding: 0!important;
@@ -309,7 +309,7 @@ ul.slick-dots {
             border-radius: 50%;
             background-color: $c_blue_secondary!important;
         }
-        
+
         &.slick-active {
             .cwp-block-slider-pagin {
                 background-color: $c_blue_primary!important;
@@ -342,7 +342,7 @@ ul.slick-dots {
 @media (max-width: $desktop-width) {
 
     #main-slider {
-        
+
         .home-slider {
             height: auto;
 
@@ -375,8 +375,8 @@ ul.slick-dots {
                 }
 
                 .ultp-block-content {
-                    
-                    .ultp-category-in, 
+
+                    .ultp-category-in,
                     .ultp-block-excerpt,
                     h3 {
                         max-width: 100%;

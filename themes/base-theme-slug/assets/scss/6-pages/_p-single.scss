@@ -12,7 +12,7 @@
         width: 30.57px;
         height: 38.91px;
         margin-top: 5px;
-        background-image: url(/wp-content/themes/aedas-theme/assets/images/pdf-icon.png);
+        background-image: url(/wp-content/themes/base-theme-slug/assets/images/pdf-icon.png);
         background-position: left center;
         background-repeat: no-repeat;
         content: " ";
@@ -64,9 +64,9 @@
     justify-content: space-between;
     margin-top: 80px;
 
-    @media (max-width:$tablet-width){ 
+    @media (max-width:$tablet-width){
         display: block;
-    } 
+    }
 
     #content {
         max-width: 800px;
@@ -79,7 +79,7 @@
 
             &-header {
                 margin: 0 0 40px;
-                
+
                 .info {
                     display: flex;
                     align-items: center;
@@ -88,7 +88,7 @@
 
                     span.category{
                         float: left;
-                        
+
                         a {
                             font-family: 'Lato', sans-serif;
                             font-style: normal;
@@ -126,7 +126,7 @@
                     height: 100%;
                 }
             }
-            
+
             &-content {
                 img {
                     width: 100%;
@@ -168,7 +168,7 @@
                             &::after {
                                 display: none;
                             }
-                        }                        
+                        }
                     }
                 }
 
@@ -197,19 +197,19 @@
                         }
 
                         @media (max-width: $tablet-width) {
-                            .hide-for-large { 
+                            .hide-for-large {
                                 display: unset;
                             }
-                            .show-for-large { 
+                            .show-for-large {
                                 display: none;
                             }
                         }
 
                         @media (min-width:$tablet-width) {
-                            .hide-for-large { 
+                            .hide-for-large {
                                 display: none;
                             }
-                            .show-for-large { 
+                            .show-for-large {
                                 display: unset;
                             }
                         }
@@ -231,7 +231,7 @@
                             opacity: 0;
                             pointer-events: none;
                         }
-                        
+
                     }
 
                     @media (max-width: 600px) {
@@ -246,8 +246,8 @@
                         .social-media {
                             width: 100%;
                             text-align: center;
-                            i { 
-                                margin: 0 20px;                            
+                            i {
+                                margin: 0 20px;
                             }
                         }
 
@@ -351,7 +351,7 @@
             max-width: 250px;
         }
 
-        @media (max-width: $tablet-width) { 
+        @media (max-width: $tablet-width) {
             max-width: none;
         }
 

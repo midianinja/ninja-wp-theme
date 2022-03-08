@@ -13,3 +13,4 @@ wp-content/languages/*
 mariadb_data/
 themes/base-theme-slug/mix-manifest.json
 .gitignore
+plugins/*

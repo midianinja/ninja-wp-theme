@@ -1,5 +1,6 @@
 .git/
 mariadb_data/
+mariadb_data/*
 themes/jaci/node_modules/
 *.sql*
 themes/jaci/dist/app.js

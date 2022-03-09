@@ -1,6 +1,5 @@
-themes/base-theme-slug/dist/app.js
-themes/base-theme-slug/dist/app.css
-themes/base-theme-slug/dist/
+**/dist
+**/node_modules
 wp-content/*
 wp-content/themes/*
 wp-content/plugins/*
@@ -9,8 +8,7 @@ wp-content/uploads/*
 wp-content/mu-plugins/*
 wp-content/languages/*
 *.sql
-*/base-theme-slug.zip
+*.zip
 mariadb_data/
-themes/base-theme-slug/mix-manifest.json
-.gitignore
+mix-manifest.json
 plugins/*

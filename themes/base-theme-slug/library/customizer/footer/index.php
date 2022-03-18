@@ -8,7 +8,7 @@ function footer_custom_options($wp_customize) {
 	$wp_customize->add_section(
 		$section,
 		array(
-			'title' => esc_html__('Footer', 'jaci'),
+			'title' => esc_html__( 'Footer', 'base-textdomain' ),
 			'section' => $section,
 		)
 	);
@@ -24,8 +24,8 @@ function footer_custom_options($wp_customize) {
 	$wp_customize->add_control(
 		$prefix . '_copyright_text',
 		array(
-			'label'       => __( 'Footer copyright text', 'jaci' ),
-			'description' => __( 'Leave it empty to hide all copyright info.', 'jaci' ),
+			'label'       => __( 'Footer copyright text', 'base-textdomain' ),
+			'description' => __( 'Leave it empty to hide all copyright info.', 'base-textdomain' ),
 			'section'     => $section,
 			'default'     => '',
 			'type'        => 'text',
@@ -47,7 +47,7 @@ function footer_custom_options($wp_customize) {
 		array(
 			'type' => 'checkbox',
 			'section' => $section,
-			'label' => __('Display year and site name aside copyright info?', 'jaci'),
+			'label' => __( 'Display year and site name aside copyright info?', 'base-textdomain' ),
 		)
 	);
 
@@ -65,7 +65,7 @@ function footer_custom_options($wp_customize) {
 			$wp_customize, 
 			$prefix . '_background_color', 
 			array(
-				'label' => __('Footer background', 'jaci'),
+				'label' => __( 'Footer background', 'base-textdomain' ),
 				'section' => $section,
 				'settings' => $prefix . '_background_color'
     		)
@@ -87,7 +87,7 @@ function footer_custom_options($wp_customize) {
 			$wp_customize, 
 			$prefix . '_text_color', 
 			array(
-				'label' => __('Footer text color', 'jaci'),
+				'label' => __( 'Footer text color', 'base-textdomain' ),
 				'section' => $section,
 				'settings' => $prefix . '_text_color'
     		)

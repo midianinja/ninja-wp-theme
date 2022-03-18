@@ -1,6 +1,6 @@
 <div id="search-overlay">
     <div class="content-limiter">
-        <span class="search-text"><?php _e('O que você está procurando?', 'jaci'); ?></span>
+        <span class="search-text"><?php _e( 'What are you looking for?', 'base-textdomain' ); ?></span>
         <?php get_search_form(); ?>
     </div>
 </div><!-- #header-overlay -->

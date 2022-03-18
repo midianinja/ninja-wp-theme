@@ -13,7 +13,7 @@ const DraggableImage = ({ title, button, description, image, removeImage, setDes
                     className="title-field"
                     value={title}
                     onChange={setTitle}
-                    placeholder={__('Type the title here', 'jaci')}
+                    placeholder={__('Type the title here', 'base-textdomain')}
                 />
                 </div>
                 
@@ -23,7 +23,7 @@ const DraggableImage = ({ title, button, description, image, removeImage, setDes
                     className="description-field"
                     value={description}
                     onChange={setDescription}
-                    placeholder={__('Type here your description', 'jaci')}
+                    placeholder={__('Type here your description', 'base-textdomain')}
                 />
                 </div>
 
@@ -33,7 +33,7 @@ const DraggableImage = ({ title, button, description, image, removeImage, setDes
                         className="button-field"
                         value={button}
                         onChange={setButtons}
-                        placeholder={__('Type button text', 'jaci')}
+                        placeholder={__('Type button text', 'base-textdomain')}
                     />
                 </div>
             </div>
@@ -114,7 +114,7 @@ const ImageGallery = ({ images, imagesTitle, imagesDescriptions, imagesButtons, 
 };
 
 registerBlockType('jaci/featured-slider', {
-    title: __('Featured Slider', 'jaci'),
+    title: __('Featured Slider', 'base-textdomain'),
     icon: 'format-gallery',
     category: 'common',
     keywords: [

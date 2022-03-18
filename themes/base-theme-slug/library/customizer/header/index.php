@@ -7,7 +7,7 @@ function header_custom_options($wp_customize) {
     $wp_customize->add_section(
 		$section,
 		array(
-			'title' => esc_html__('Header', 'jaci'),
+			'title' => esc_html__( 'Header', 'base-textdomain' ),
 			'section' => $section,
 		)
 	);

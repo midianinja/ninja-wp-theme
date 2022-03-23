@@ -47,7 +47,7 @@ get_header();
                     </div>
 
                     <div class="post-footer-share">
-                        <h6>Compartilhar</h6>
+                        <h6><?php _e( 'Share', 'base-textdomain' ); ?></h6>
 
                         <div class="social-media">
 

@@ -4,7 +4,7 @@ ARG target='prod'
 
 COPY themes /var/www/themes
 
-WORKDIR /var/www/themes/jaci
+WORKDIR /var/www/themes/base-theme-slug
 
 RUN npm install
 

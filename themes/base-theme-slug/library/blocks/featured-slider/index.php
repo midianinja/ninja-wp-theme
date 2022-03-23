@@ -23,11 +23,12 @@ function featured_slider_block() {
 		'all'
 	);
 
-
 	register_block_type('jaci/featured-slider', array(
 		'editor_script' => 'featured-slider-block',
 		'editor_style'  => 'featured-slider-block',
 	));
+
+	wp_set_script_translations( 'featured-slider-block', 'base-textdomain', get_template_directory() . '/languages' );
 }
 
 add_action('init', 'featured_slider_block');

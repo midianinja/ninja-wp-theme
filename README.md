@@ -70,13 +70,17 @@ docker-compose down -v # o parametro -v apaga os dados do mariadb
 docker-compose up 
 ```
 
-## Substituir strings:
+## Substituir strings e renomear arquivos/pastas:
 - **base-theme-slug** pela slug nova ex: fpa-theme
 - **base-theme-name** pelo nome (exemplo Tema FPA )
 - alterar nome da pasta para corresponder ao slug
+- alterar nome do arquivo /languages/*.pot
+
 # Instalando plugins e temas
 
 ## Copiando arquivos para dentro do repositório
 O conteúdo de `wp-content` está excluído do versionamento por padrão. Para adicionar seu plugin ou tema como parte do repositório, você deve colocá-los nas pastas `plugins` ou `themes` que estão na raiz do repositório.
 
+# Traduções
 
+Quando utilizar o comando `wp i18n make-json languages/` para gerar as traduções de arquivos .js e as traduções não funcionarem, uma das possíveis soluções pode ser renomear o arquivo gerado de {locale}-{hash}.json para {domain}-{locale}-{script-handle}.json

@@ -17,7 +17,6 @@ services:
     volumes:
       - ./themes/base-theme-slug:/var/www/html/wp-content/themes/base-theme-slug
       - ./wp-content:/var/www/html/wp-content
-      - ./compose/local/wordpress/wp-config.d:/var/www/html/wp-config.d
       - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
       - ./compose/local/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
 

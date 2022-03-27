@@ -1,0 +1,24 @@
+@import "./../1-settings/_s-variables";
+@import "./../2-atoms/a-mixins";
+
+
+.tags-component{
+    display:flex;
+    gap: 10px;
+    flex-wrap:wrap;
+    flex-direction: row;
+    font-family: "Lato", sans-serif;
+    h3{
+      font-weight:bold;
+      font-size:30px;
+      width:100%;
+    }
+    .tag{
+      border:1px solid #bdbdbd;
+      font-size:14px;
+      font-weight:bold;
+      line-height: 30px;
+      padding: 0 15px;
+      color:#333;
+    }  
+  }

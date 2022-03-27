@@ -15,24 +15,23 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DEBUG: 'true'
     volumes:
+      - ./themes/base-theme-slug:/var/www/html/wp-content/themes/base-theme-slug
       - ./wp-content:/var/www/html/wp-content
-      - ./plugins/guaraci:/var/www/html/wp-content/plugins/guaraci
-      - ./themes/jaci:/var/www/html/wp-content/themes/jaci
       - ./compose/local/wordpress/wp-config.d:/var/www/html/wp-config.d
       - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
-      - ./compose/production/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
+      - ./compose/local/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
 
   watcher:
     build:
       context: .
       dockerfile: ./compose/local/watcher/Dockerfile
     volumes:
-      - ./themes/jaci:/app
+      - ./themes/base-theme-slug:/app
       
   mariadb:
     image: mariadb:10.4
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - ./mariadb_data:/var/lib/mysql
       - ./compose/local/mariadb/data:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: therootpassword

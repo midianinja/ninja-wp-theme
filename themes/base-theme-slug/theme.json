@@ -1,0 +1,85 @@
+{
+    "version": 1,
+    "settings": {
+        "color": {
+            "custom": false,
+            "customGradient": false,
+            "gradients": [],
+            "link": false,
+            "palette": [
+                {
+                    "name": "Branco",
+                    "slug": "white",
+                    "color": "#FFFFFF"
+                },
+                {
+                    "name": "Azul",
+                    "slug": "blue",
+                    "color": "#035299"
+                },
+                {
+                    "name": "Azul claro",
+                    "slug": "light-blue",
+                    "color": "#b1d3e5"
+                },
+                {
+                    "name": "Bege",
+                    "slug": "beige",
+                    "color": "#d8d3bc"
+                },
+                {
+                    "name": "Amarelo",
+                    "slug": "yellow",
+                    "color": "#f2eb72"
+                },
+                {
+                    "name": "Amarelo claro",
+                    "slug": "light-yellow",
+                    "color": "#fbf6c0"
+                },
+                {
+                    "name": "Verde",
+                    "slug": "green",
+                    "color": "#93c278"
+                },
+                {
+                    "name": "Verde claro",
+                    "slug": "light-green",
+                    "color": "#b3d9be"
+                },
+                {
+                    "name": "Cinza escuro",
+                    "slug": "dark-gray",
+                    "color": "#333333"
+                }
+            ]
+        },
+        "spacing": {
+            "customPadding": true,
+            "customMargin": true,
+            "units": [ "px", "em", "rem", "vh", "vw" ]
+        },
+        "typography": {
+            "customFontSize": false,
+            "customLineHeight": false,
+            "dropCap": false,
+            "fontSizes": [
+                {
+                    "name": "Pequena",
+                    "slug": "small",
+                    "size": "14px"
+                },
+                {
+                    "name": "Média",
+                    "slug": "medium",
+                    "size": "24px"
+                },
+                {
+                    "name": "Grande",
+                    "slug": "large",
+                    "size": "40px"
+                }
+            ]
+        }
+    }
+}

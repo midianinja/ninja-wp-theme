@@ -1,0 +1,259 @@
+# Copyright (C) 2022 Hacklab
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: base-theme-name 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/base-theme-slug\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-03-23T17:26:14+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: base-textdomain\n"
+
+#. Theme Name of the theme
+msgid "base-theme-name"
+msgstr ""
+
+#. Theme URI of the theme
+#. Author URI of the theme
+msgid "https://hacklab.com.br/"
+msgstr ""
+
+#. Description of the theme
+msgid "Tema base para desenvolvimento de novos sites."
+msgstr ""
+
+#. Author of the theme
+msgid "Hacklab"
+msgstr ""
+
+#: 404.php:4
+msgid "erro"
+msgstr ""
+
+#: 404.php:8
+msgid "Página não encontrada"
+msgstr ""
+
+#: 404.php:9
+msgid "Voltar para a página inicial"
+msgstr ""
+
+#. translators: %s: Post title.
+#: comments.php:28
+msgctxt "comments title"
+msgid "One thought on &ldquo;%s&rdquo;"
+msgstr ""
+
+#. translators: 1: Number of comments, 2: Post title.
+#: comments.php:32
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:61
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:62
+msgid "&larr; Mais antigos"
+msgstr ""
+
+#: comments.php:63
+msgid "Mais Novos &rarr;"
+msgstr ""
+
+#: comments.php:68
+msgid "Os comentários estão desabilitados."
+msgstr ""
+
+#: header.php:30
+msgid "Toggle menu visibility"
+msgstr ""
+
+#: library/customizer/footer/index.php:11
+msgid "Footer"
+msgstr ""
+
+#: library/customizer/footer/index.php:27
+msgid "Footer copyright text"
+msgstr ""
+
+#: library/customizer/footer/index.php:28
+msgid "Leave it empty to hide all copyright info."
+msgstr ""
+
+#: library/customizer/footer/index.php:50
+msgid "Display year and site name aside copyright info?"
+msgstr ""
+
+#: library/customizer/footer/index.php:68
+msgid "Footer background"
+msgstr ""
+
+#: library/customizer/footer/index.php:90
+msgid "Footer text color"
+msgstr ""
+
+#: library/customizer/header/index.php:10
+msgid "Header"
+msgstr ""
+
+#: library/menus.php:6
+msgid "Menu Principal"
+msgstr ""
+
+#: library/menus.php:9
+msgid "Redes Sociais"
+msgstr ""
+
+#: library/menus.php:10
+msgid "Menu de Rodapé 1"
+msgstr ""
+
+#: library/menus.php:11
+msgid "Menu de Rodapé 2"
+msgstr ""
+
+#: library/menus.php:12
+msgid "Menu de Rodapé 3"
+msgstr ""
+
+#: library/menus.php:13
+msgid "Menu de Rodapé 4"
+msgstr ""
+
+#: library/settings.php:14
+msgid "Endereço"
+msgstr ""
+
+#: library/settings.php:17
+msgid "Número de palavras do resumo automático (excerpt)"
+msgstr ""
+
+#: single.php:50
+#: template-parts/share-links.php:2
+msgid "Share"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Pagebuilder sem título"
+msgstr ""
+
+#: template-parts/archive-title.php:3
+msgid "resultados encontrados"
+msgstr ""
+
+#: template-parts/authors-list.php:7
+msgid "Autores"
+msgstr ""
+
+#: template-parts/authors-list.php:7
+msgid "Autor"
+msgstr ""
+
+#: template-parts/card.php:37
+msgid "Por:"
+msgstr ""
+
+#: template-parts/card.php:43
+msgid "publicado em"
+msgstr ""
+
+#: template-parts/content/search-overlay.php:3
+msgid "What are you looking for?"
+msgstr ""
+
+#: template-parts/related-posts.php:10
+msgid "Leia Também"
+msgstr ""
+
+#: template-parts/site-by-hacklab.php:2
+msgid "site por"
+msgstr ""
+
+#: assets/javascript/blocks/featuredSlider/index.js:16
+#: dist/js/blocks/featured-slider.js:220
+msgid "Type the title here"
+msgstr ""
+
+#: assets/javascript/blocks/featuredSlider/index.js:26
+#: dist/js/blocks/featured-slider.js:228
+msgid "Type here your description"
+msgstr ""
+
+#: assets/javascript/blocks/featuredSlider/index.js:36
+#: dist/js/blocks/featured-slider.js:236
+msgid "Type button text"
+msgstr ""
+
+#: assets/javascript/blocks/featuredSlider/index.js:117
+#: dist/js/blocks/featured-slider.js:321
+msgid "Featured Slider"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Pequena"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Média"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Grande"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Branco"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Azul"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Azul claro"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bege"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Amarelo"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Amarelo claro"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Verde"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Verde claro"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Cinza escuro"
+msgstr ""

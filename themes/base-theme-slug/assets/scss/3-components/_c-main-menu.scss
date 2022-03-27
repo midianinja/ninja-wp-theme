@@ -1,0 +1,66 @@
+.base-menu-component {
+    ul {
+        display: flex;
+        list-style: none;
+
+        li {
+            font-size: size(16);
+
+            &:not(:last-child) {
+                margin-right: 30px;
+            }
+
+            &:hover {
+                position: relative;
+
+                .sub-menu {
+                    min-width: 300px;
+                    display: block;
+                    position: absolute;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    padding-left: 10px;
+                    border-left: 1px solid white;
+
+                    @include tablet{
+                        position: relative;
+                    }
+                }
+            }
+
+            ul.sub-menu {
+                @include desktop {
+                    display: none;
+                }
+
+                @media (max-width: 1024px) {
+                    display: block;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    padding-left: 10px;
+                    border-left: 1px solid white;
+                    margin-bottom: 0;
+
+                    li {
+                        font-size: size(20);
+                        line-height: 2;
+                    }
+                }
+            }
+
+            a {
+                color: white;
+                transition: color .2s ease;
+                &:hover {
+                    color: var(--c-primary);
+                    text-decoration: none;
+                }
+            }
+
+            i {
+                font-size: 15px;
+                margin-left: 10px;
+            }
+        }
+    }
+}

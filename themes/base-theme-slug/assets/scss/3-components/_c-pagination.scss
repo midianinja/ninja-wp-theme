@@ -1,0 +1,78 @@
+.navigation.pagination {
+    margin-bottom: 0;
+
+    .nav-links {
+        display: flex;
+        justify-content: center;
+
+        span,
+        a {
+            border-radius: 6px;
+            border: 2px solid transparent;
+            box-shadow: none;
+            color: var(--c-gray--darker);
+            font-size: var(--s-h5);
+            height: 40px;
+            line-height: 1.2;
+            margin-right: 5px;
+            padding: 4px 11px;
+            transition: all .2s;
+            width: 40px;
+
+            &.current,
+            &:hover,
+            &:active,
+            &:focus {
+                color: var(--c-primary);
+                border-color: var(--c-primary);
+                text-decoration: none;
+            }
+
+            &:visited {
+                color: var(--c-secondary);
+                border-color: var(--c-secondary);
+            }
+
+            &.prev, 
+            &.next {
+                align-items: center;
+                display: flex;
+                position: relative;
+
+                svg {
+                    height: 20px;
+                    width: 20px;
+
+                    path {
+                        color: var(--c-primary);
+                        fill: currentColor;
+                        margin-top: 2px;
+                    }
+                }
+
+                &:visited {
+                    color: var(--c-primary);
+                    border-color: var(--c-primary);
+                }
+            }
+
+            &.prev {
+                svg {
+                    path {
+                        transform: rotate(90deg);
+                        transform-origin: center;
+                    }
+                }
+            }
+
+            &.next {
+                svg {
+                    path {
+                        transform: rotate(-90deg);
+                        transform-origin: center;
+                    }
+                }
+            }
+        }
+    }
+}

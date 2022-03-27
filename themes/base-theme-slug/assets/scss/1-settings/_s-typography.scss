@@ -1,0 +1,30 @@
+
+html{font-size: $s_html;}
+
+h1{
+    font-size: $s_h1;
+}
+h2{
+    font-size: $s_h2;
+}
+h3{
+    font-size:  var(--s-h3);
+}
+h4{
+    font-size: $s_h4;
+}
+h5{
+    font-size: $s_h5;
+}
+h6{
+    font-size: var(--s-h6);
+    font-weight:bold;
+}
+
+p{
+    font-size: $s_p;
+    font-style: normal;
+    font-weight: normal;
+    line-height: $s_p * 1.5;
+    color: var(--c-gray--darker);
+}

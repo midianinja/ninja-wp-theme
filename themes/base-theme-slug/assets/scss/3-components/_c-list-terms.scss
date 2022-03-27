@@ -1,0 +1,29 @@
+ul.list-terms {
+    list-style: none;
+    margin-bottom: 5px;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    @include desktop {
+        margin-bottom: 10px;
+    }
+
+    li {
+        display: inline-block;
+        margin-right: 5px;
+
+        &:after {
+            content: "\2022";
+            margin-left: 5px;
+        }
+
+        &:last-child {
+            margin-right: 0;
+
+            &:after {
+                content: "";
+            }
+        }
+    }
+}

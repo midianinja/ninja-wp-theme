@@ -1,0 +1,2 @@
+## The critical CSS will be added before anything and will be render blocking
+## Every single file on the page will be individually compiled into a CSS. The enqueue is page based, so every page has its own CSS and dependencies

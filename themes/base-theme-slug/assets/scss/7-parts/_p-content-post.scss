@@ -1,0 +1,115 @@
+@import "./../2-atoms/a-mixins";
+
+.post {
+    transition: all .2s;
+
+    &:hover {
+        background-color: darken(white, 3%);
+    }
+
+    .post-card {
+        display: flex;
+        margin-bottom: 40px;
+        left: 376px;
+        top: 409px;
+
+        @include mobile {
+            border-bottom: 1px solid #CCC;
+            display: block;
+            margin-bottom: 2.25em;
+            padding-bottom: 2.25em;
+        }
+
+        a {
+            color: var(--c-gray--darker);
+            text-decoration: none;
+        }
+
+        &--thumb {
+            flex-shrink: 0;
+            padding-right: 30px;
+            width: 50%;
+
+            @media(max-width: $tablet-width) {
+                width: 100%;
+                margin-bottom: 15px;
+                padding-right: 0;
+            }
+
+            .aspect-ratio {
+                // aspect-ratio: 16 / 9;
+                overflow: hidden;
+                position: relative;
+
+                &::before {
+                    content: "";
+                    padding-top: 56.25%;
+                    float: left;
+                }
+
+                &::after {
+                    clear: left;
+                    content: " ";
+                    display: table;
+                }
+
+                img {
+                    max-width: 100%;
+                    width: 100%;
+                    height: auto;
+                    position: absolute;
+                    top:  50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+
+                    @media(max-width: $tablet-width){
+                        min-width: 100%;
+                    }
+                }
+            }
+        }
+
+        &--content {
+            font-family: 'Lato', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+
+            .list-terms {
+                margin-bottom: 5px;
+                margin-top: 0;
+
+                li {
+                    a {
+                        font-size: size(20);
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .entry-title {
+                color: var(--c-primary);
+                font-size: 24px;
+                line-height: 29px;
+                margin: 0;
+            }
+
+            .entry-date {
+                font-size: 14px!important;
+                line-height: 17px;
+                color: var(--c-gray--darker);
+                margin: 10px 0 16px 0;
+            }
+
+            .entry-excerpt {
+                font-size: 16px;
+                line-height: 24px;
+                padding-right: 15px;
+
+                p {
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,73 @@
+@import "./../1-settings/_s-variables";
+@import "./../2-atoms/a-mixins";
+
+
+html{
+    font-size: var(--s-html);
+}
+header{
+    .header-content {
+        button.toggle-menu {
+            display: block;
+        }
+    
+        .menus {
+            display: none;
+            .primary-menu {
+                margin-right: 0;
+                ul.menu {
+                    > li {
+                        &:not(.menu-item-has-children) {
+                            margin-bottom: 10px;   
+                        }    
+                        &.menu-item-has-children {
+    
+                            padding-right: 0;
+    
+                            &:after {
+                                display: none;
+                            }
+                            &:hover{
+                                .sub-menu{
+                                    &:not(.active){
+                                        display: none;
+                                    }
+                                }    
+                            }
+                            .sub-menu{
+                                &:not(.active){
+                                    display: none;
+                                }
+                                margin-top: 15px;
+                                padding-top: 0;
+                                box-shadow: none;
+                                >li{
+                                    background-color: transparent;
+                                    border-left: 2px solid #035299;                   
+                                    a {
+                                        display: block;
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
+    
+        &.active {
+            .menus {    
+                .primary-menu {
+                    ul {
+                        li{
+                            font-size: 16px;
+                            line-height: 1.5;
+                        }                   
+                    } 
+                }
+            }
+        }
+    }
+}

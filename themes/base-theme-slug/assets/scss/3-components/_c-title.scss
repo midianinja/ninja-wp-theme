@@ -1,0 +1,111 @@
+
+.title-with-graphics {
+    align-items: center;
+    color: $c_blue_primary;
+    display: flex;
+    flex-direction: row;
+    font-family: $f_title;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+
+    &.title-transform-none {
+        text-transform: none;
+    }
+
+    &.title-transform-lowercase {
+        text-transform: lowercase;
+    }
+
+    &.title-transform-capitalize {
+        text-transform: capitalize;
+    }
+
+    &.title-transform-uppercase {
+        text-transform: uppercase;
+    }
+
+    span {
+        max-width: 85%;
+
+        &.ico-title {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-right: 20px;
+
+            &--partners {
+                background-image: url($p_theme_assets+"/images/logo-slider-footer.png");
+                width: 51px;
+                height: 43px;
+            }
+            &--channel {
+                background-image: url($p_theme_assets+"/images/logo-slider-footer.png");
+                width: 51px;
+                height: 43px;
+            }
+            &--projects {
+                background-image: url($p_theme_assets+"/images/logo-slider-footer.png");
+                width: 51px;
+                height: 43px;
+            }
+        }
+
+        &.line {
+            background: $c_blue_primary;
+            flex-grow: 1;
+            height: 1px;
+            margin-left: 20px;
+            margin-top: 2px;
+
+            &:before {
+                content: " ";
+                width: 10px;
+                height: 10px;
+                display: inline-block;
+                border-radius: 50%;
+                border: 2px solid $c_blue_primary;
+                position: absolute;
+                background-color: $c_blue_secondary;
+                margin-top: -5px;
+            }
+        }
+    }
+}
+
+header.c-title {
+    background-color: var(--c-primary);
+    margin-left: calc(50% - 50vw);
+    max-width: 100vw;
+    width: 100vw;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+
+    &::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        background-color: var(--c-primary);
+        opacity: 0.75;
+        z-index: 1;
+    }
+
+    .entry-title {
+        color: white;
+        text-align: center;
+        text-transform: uppercase;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        position: relative;
+        z-index: 2;
+    }
+
+    // Blog
+    .blog & {
+        background-image: url($p_theme_assets+"/images/header-posts.png");
+    }
+}

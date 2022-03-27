@@ -76,6 +76,24 @@ docker-compose up
 - alterar nome da pasta para corresponder ao slug
 - alterar nome do arquivo /languages/*.pot
 
+
+## Variaveis de ambiente
+
+### Variaveis da imagem wordpress    
+https://hub.docker.com/_/wordpress
+
+Exemplo: desativando o debug do wordpress
+    
+    WORDPRESS_DEBUG: 0
+
+## Configurações PHP
+Editar arquivo compose/local/wordpress/php/extra.ini e reiniciar container
+
+Exemplo: desativando avisos de recursos depreciados do PHP
+
+    error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED
+
+
 # Instalando plugins e temas
 
 ## Copiando arquivos para dentro do repositório

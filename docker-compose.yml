@@ -2,6 +2,8 @@ version: '2'
 
 services:
   wordpress:
+    stdin_open: true
+    tty: true
     build:
       context: .
       dockerfile: ./compose/local/wordpress/Dockerfile
@@ -13,8 +15,9 @@ services:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DEBUG: 'true'
+      WORDPRESS_DEBUG: 1
     volumes:
+      - ./wp-root:/var/www/html/
       - ./themes/base-theme-slug:/var/www/html/wp-content/themes/base-theme-slug
       - ./wp-content:/var/www/html/wp-content
       - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess

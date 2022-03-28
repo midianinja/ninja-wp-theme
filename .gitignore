@@ -11,4 +11,4 @@ wp-content/languages/*
 *.zip
 mariadb_data/
 mix-manifest.json
-plugins/*
+wp-root

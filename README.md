@@ -93,6 +93,31 @@ Exemplo: desativando avisos de recursos depreciados do PHP
 
     error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED
 
+## Debug utilizando PSY
+1. é necessária a instalação do plugin hacklab-dev-utils
+2. você ja deve ter rodado o docker-compose up pelo menos uma vez
+
+Para iniciar o ambiente de debug utilizar o script dev-scripts/dev.sh
+adicione 
+    eval(\psy\sh());
+na linha onde deseja debugar
+O código será interrompido no lugar onde adicionou e você terá acesso pelo terminal às variavés declaradas, classes instanciadas, funções disponíveis.
+
+Exemplo: 
+ao adicionar ```eval(\psy\sh());``` dentro do loop você pode chamar a função get_the_title() no terminal.
+
+###Adicione um snippet no vscode para facilitar:
+
+- ctrl+shift+p, va em Configure User Snippets
+- selecione PHP
+- adicione:
+        "psy": {
+            "scope": "php",
+            "prefix": "psy",
+            "body": [
+                "eval(\\psy\\sh());",
+            ],
+        }
 
 # Instalando plugins e temas
 
@@ -102,3 +127,4 @@ O conteúdo de `wp-content` está excluído do versionamento por padrão. Para a
 # Traduções
 
 Quando utilizar o comando `wp i18n make-json languages/` para gerar as traduções de arquivos .js e as traduções não funcionarem, uma das possíveis soluções pode ser renomear o arquivo gerado de {locale}-{hash}.json para {domain}-{locale}-{script-handle}.json
+

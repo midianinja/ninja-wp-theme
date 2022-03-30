@@ -94,30 +94,34 @@ Exemplo: desativando avisos de recursos depreciados do PHP
     error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED
 
 ## Debug utilizando PSY
-1. é necessária a instalação do plugin hacklab-dev-utils
-2. você ja deve ter rodado o docker-compose up pelo menos uma vez
+1. Você ja deve ter rodado o docker-compose up pelo menos uma vez
+2. Instale e ative o plugin hacklab-dev-utils (esse plugin é um submódulo desse repositório, caso não tenha clonado o repositório com --recursive, rode `git submodule init` e depois `git submodule update`)
 
-Para iniciar o ambiente de debug utilizar o script dev-scripts/dev.sh
-adicione 
-    eval(\psy\sh());
-na linha onde deseja debugar
-O código será interrompido no lugar onde adicionou e você terá acesso pelo terminal às variavés declaradas, classes instanciadas, funções disponíveis.
+Para iniciar o ambiente de debug, rode o script `./dev-scripts/dev.sh`
 
-Exemplo: 
-ao adicionar ```eval(\psy\sh());``` dentro do loop você pode chamar a função get_the_title() no terminal.
+Adicione `<?php eval(\psy\sh()); ?>` na linha onde deseja debugar. No terminal, o código será interrompido exatamente no lugar onde adicionou o comando e você terá às variavés declaradas, classes instanciadas, funções disponíveis e etc.
 
-###Adicione um snippet no vscode para facilitar:
+**Exemplo:** 
+Ao adicionar `eval(\psy\sh());` dentro do loop você pode chamar a função get_the_title() no terminal.
 
-- ctrl+shift+p, va em Configure User Snippets
-- selecione PHP
-- adicione:
-        "psy": {
-            "scope": "php",
-            "prefix": "psy",
-            "body": [
-                "eval(\\psy\\sh());",
-            ],
-        }
+### Adicione um snippet no VSCode para facilitar:
+
+- Pressione `ctrl+shift+p`, va em *Configure User Snippets*
+- Selecione PHP
+- E adicione:
+```
+"psy": {
+    "scope": "php",
+    "prefix": "psy",
+    "body": [
+        "eval(\\psy\\sh());",
+    ],
+}
+```
+
+Com isso, ao digitar `psy` e pressionar a tecla Tab, o VSCode vai imprimir o códígo `eval(\\psy\\sh());`
+
+Para sair desbloquear o processo de debug no terminal, utilize o comando `exit`.
 
 # Instalando plugins e temas
 

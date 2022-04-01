@@ -1,3 +1,6 @@
 [submodule "plugins/hacklab-dev-utils"]
 	path = plugins/hacklab-dev-utils
 	url = git@gitlab.hacklab.com.br:open-source/hacklab-dev-utils.git
+[submodule "plugins/hacklab-blocks"]
+	path = plugins/hacklab-blocks
+	url = git@gitlab.hacklab.com.br:open-source/hacklab-blocks.git

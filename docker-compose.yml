@@ -20,6 +20,7 @@ services:
       - ./wp-root:/var/www/html/
       - ./themes/base-theme-slug:/var/www/html/wp-content/themes/base-theme-slug
       - ./plugins/hacklab-dev-utils:/var/www/html/wp-content/plugins/hacklab-dev-utils
+      - ./plugins/hacklab-blocks:/var/www/html/wp-content/plugins/hacklab-blocks
       - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
       - ./compose/local/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
 

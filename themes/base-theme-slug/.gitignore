@@ -1,3 +1,4 @@
 node_modules
 plugins/*
 zips/*
+themes/base-theme-slug/node_modules

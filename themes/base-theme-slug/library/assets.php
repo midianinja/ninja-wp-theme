@@ -347,7 +347,12 @@ class Assets {
 					return is_search();
 				},
             ],
-
+			'author' => [
+				'file' => '_p-author.css',
+				'preload_callback' => function () {
+					return is_author();
+				},
+			],
 			'projects' => [
                 'file' => '_p-projects.css',
                 'preload_callback' => function() {

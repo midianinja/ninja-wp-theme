@@ -10,4 +10,24 @@
         }
     }
 
+    h1.author-name {
+        text-align:center;
+    }
+    .blog-description {
+        text-align: center;
+    }
+    header.title-author {
+        background-size:cover;
+        .container {
+            text-align: center;
+            * {
+                color:var(--wp--preset--color--white);
+            }
+        }
+        p {
+            position: relative;
+            z-index: 2;
+        }
+    }
+
 }

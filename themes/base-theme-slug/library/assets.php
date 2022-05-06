@@ -413,13 +413,6 @@ class Assets {
 				'global' => true,
 			],
 
-            'page'     => [
-                'file' => 'page.js',
-                'preload_callback' => function() {
-					return is_front_page();
-				},
-			],
-
 			'search' => [
 				'file'   => 'search.js',
 				'global' => true,

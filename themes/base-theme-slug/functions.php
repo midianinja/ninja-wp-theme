@@ -1,5 +1,12 @@
 <?php
-namespace jaci;
+namespace hacklabTema;
+
+// Blocos ativos:
+add_filter('hacklab_blocos_ativos','hacklabTema\\blocos_ativos');
+function blocos_ativos($blocos_ativos){
+    // unset($blocos_ativos['sample-block']);
+    return $blocos_ativos;
+}
 
 // exemplo de como adicionar elementos através dos filtros no bloco de posts via API
 // Descomentar a linha abaixo para adicionar, exemplo utilizando atributos (image_credits e meta_authors) adicionados à resposta da API no projeto de onde vem os posts.

@@ -6,8 +6,6 @@ stages:
 - build_assets
 - create_pack
 - deploy
-- cache_bust
-
      
 variables:
   KUBECONFIG: /etc/k8s-config
@@ -96,17 +94,3 @@ deploy_to_production:
     - tags
   tags:
     - docker
-
-cache bust for production:
-  stage: cache_bust
-  image: hacklab/docker-nettools:latest
-  script:
-    - curl -i -X DELETE -H "GoCache-Token:${GO_CACHE_API_KEY}" "https://api.gocache.com.br/v1/cache/ims.com.br/all"
-  only:
-    - tags
-  environment: production
-  variables:
-    GIT_STRATEGY: none
-  tags:
-    - docker
-

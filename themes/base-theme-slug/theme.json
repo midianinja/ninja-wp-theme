@@ -80,6 +80,10 @@
                     "size": "40px"
                 }
             ]
-        }
+        },
+        "layout": {
+			"contentSize": "1140px",
+			"wideSize": "1140px"
+		}
     }
 }

@@ -1,0 +1,41 @@
+@import "./../1-settings/_s-variables";
+@import '../2-atoms/a-mixins';
+
+#app {
+    background-color: #FFF !important;
+
+    .page-template-page-anchor & {
+        overflow-x: initial;
+    }
+
+    .sidebar-page {
+        @include desktop {
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 100px;
+
+            .admin-bar & {
+                top: 132px;
+            }
+        }
+    }
+
+    .anchor-title {
+        border-bottom: solid 1px;
+        font-weight: bold;
+        padding-bottom: 15px;
+    }
+
+    #anchors {
+        list-style: none;
+        padding-left: 0;
+
+        li a {
+            color: #333333;
+            display: block;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+    }
+}

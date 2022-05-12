@@ -347,11 +347,22 @@ class Assets {
 					return is_search();
 				},
             ],
-
+			'author' => [
+				'file' => '_p-author.css',
+				'preload_callback' => function () {
+					return is_author();
+				},
+			],
 			'projects' => [
                 'file' => '_p-projects.css',
                 'preload_callback' => function() {
 					return !is_front_page() && is_page();
+				},
+            ],
+			'anchor' => [
+				'file' => '_p-page-anchor.css',
+				'preload_callback' => function() {
+					return is_page_template( 'page-anchor.php' );
 				},
             ]
 		];
@@ -428,6 +439,13 @@ class Assets {
 			'copy-url' => [
                 'file' => 'copy-url.js',
                 'global' => true,
+			],
+
+			'anchor-sidebar'     => [
+				'file' => 'anchor-sidebar.js',
+				'preload_callback' => function () {
+					return is_page_template( 'page-anchor.php' );
+				}
 			],
 			
  		];

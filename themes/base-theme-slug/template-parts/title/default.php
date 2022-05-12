@@ -7,6 +7,8 @@ $title = '';
 
 if ( is_category() ) {
     $title = single_cat_title( '', false );
+} else {
+    $title = get_the_title();
 } ?>
 
 <header class="c-title title-default">

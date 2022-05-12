@@ -358,6 +358,12 @@ class Assets {
                 'preload_callback' => function() {
 					return !is_front_page() && is_page();
 				},
+            ],
+			'anchor' => [
+				'file' => '_p-page-anchor.css',
+				'preload_callback' => function() {
+					return is_page_template( 'page-anchor.php' );
+				},
             ]
 		];
 		
@@ -433,6 +439,13 @@ class Assets {
 			'copy-url' => [
                 'file' => 'copy-url.js',
                 'global' => true,
+			],
+
+			'anchor-sidebar'     => [
+				'file' => 'anchor-sidebar.js',
+				'preload_callback' => function () {
+					return is_page_template( 'page-anchor.php' );
+				}
 			],
 			
  		];

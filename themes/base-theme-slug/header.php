@@ -34,8 +34,10 @@
                     <div class="menus">
                         <?= wp_nav_menu(['theme_location' => 'main-menu', 'container' => 'nav', 'menu_id' => 'main-menu', 'menu_class' => 'menu', 'container_class' => 'primary-menu']) ?>
                         <?= the_social_networks_menu() ?>
-                        <?php the_search_icon(); ?>
-                        <?php the_search_overlay(); ?>
+
+                        <div class="search-component">
+                            <?php get_search_form(); ?>
+                        </div><!-- .search-component -->
                     </div>
                 </div>
             </div>

@@ -35,6 +35,13 @@ Clone o repositório e seus submódulos recursivamente:
 $ git clone git@git.hacklab.com.br:open-source/base-wordpress-project.git --recursive
 ```
 
+## Adicionando submódulos
+Exemplo aplicando o plugin Hacklab Blocks como submódulo na pasta /plugins. O -f é necessário quando a pasta plugins está no .gitignore
+
+```
+$ git submodule add -f git@gitlab.hacklab.com.br:open-source/hacklab-blocks.git plugins/hacklab-blocks
+```
+
 ## Compilando os assets do tema
 Abra um terminar, vá até a a pasta `themes/base-theme-slug/` e execute os comandos abaixo:
 

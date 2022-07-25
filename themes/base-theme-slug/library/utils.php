@@ -1,4 +1,12 @@
 <?php
+/**
+ *
+ * Remove recaptcha from tainacan
+ *  
+ */
+add_action( 'init', function() {
+    wp_dequeue_script( 'tainacan-google-recaptcha-script' );
+}, 150 );
 
 /**
  *

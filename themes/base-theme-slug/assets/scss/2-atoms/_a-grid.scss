@@ -35,14 +35,15 @@
  // Block alignment grid behavior
 #app { overflow-x: hidden; background-color: #FFFFFF; }
 
-.alignfull {
+.alignfull,
+.wp-block-cover.alignfull {
     margin-left: calc( 50% - 50vw);
     margin-right: calc( 50% - 50vw);
     max-width: 100vw;
     width: 100vw;
 }
-
-.alignwide {
+.alignwide,
+.wp-block-cover.alignwide {
     width: calc(100% + 160px);
     position: relative;
     left: 50%;

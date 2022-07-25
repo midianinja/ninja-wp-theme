@@ -58,3 +58,8 @@ function custom_excerpt( $limit ) {
     return $excerpt;
 
 }
+
+/**
+ * Add support to load blocks scripts only if needed
+ */
+add_filter( 'should_load_separate_core_block_assets', '__return_true' );

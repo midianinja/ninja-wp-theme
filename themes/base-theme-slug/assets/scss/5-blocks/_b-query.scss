@@ -1,0 +1,90 @@
+@import "./../1-settings/_s-variables";
+@import "./../2-atoms/a-mixins";
+
+.wp-block-query {
+
+    &.query-slider {
+        overflow: hidden;
+
+        .wp-block-post {
+            width: 100% !important;
+        }
+
+        .tns-outer {
+            position: relative;
+
+            .tns-controls {
+                display: flex;
+                justify-content: space-between;
+                left: 0;
+                position: absolute;
+                top: 285px;
+                width: 100%;
+
+                @include tablet {
+                    top: 130px;
+                }
+
+                @include small {
+                    top: 91px;
+                }
+
+                @media (max-width: 400px) {
+                    top: 18%;
+                }
+
+                button[data-controls="prev"] {
+                    background-color: rgba(255, 255, 255, 0.45);
+                    background-image: url($p_theme_assets+'/images/arrow-left-slider.png');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 11px;
+                    border: 0;
+                    border-radius: 50px;
+                    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.4);
+                    height: 50px;
+                    margin-left: 25px;
+                    text-indent: -9999px;
+                    transition: all 0.2s ease-in-out;
+                    width: 50px;
+
+                    &:hover {
+                        margin-left: 22px;
+                    }
+
+                    @include small {
+                        background-size: 8px;
+                        height: 35px;
+                        width: 35px;
+                    }
+                }
+
+                button[data-controls="next"] {
+                    background-color: rgba(255, 255, 255, 0.45);
+                    background-image: url($p_theme_assets+'/images/arrow-right-slider.png');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 11px;
+                    border-radius: 50px;
+                    border: 0;
+                    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.4);
+                    height: 50px;
+                    margin-right: 25px;
+                    text-indent: -9999px;
+                    transition: all 0.2s ease-in-out;
+                    width: 50px;
+
+                    &:hover {
+                        margin-right: 22px;
+                    }
+
+                    @include small {
+                        background-size: 8px;
+                        height: 35px;
+                        width: 35px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -599,6 +599,39 @@ class Assets {
                     'all'
                 );
             },
+
+			'core/query' => function() {
+				wp_enqueue_style(
+					'tiny-slider',
+					get_stylesheet_directory_uri() . '/assets/vendor/tiny-slider/tiny-slider.css',
+					[],
+					filemtime(get_stylesheet_directory() . '/assets/vendor/tiny-slider/tiny-slider.css'),
+					'all'
+				);
+
+				wp_enqueue_style(
+					'core-query',
+					get_stylesheet_directory_uri() . '/dist/css/_b-query.css',
+					[],
+					filemtime(get_stylesheet_directory() . '/dist/css/_b-query.css'),
+					'all'
+				);
+
+				wp_enqueue_script(
+					'tiny-slider',
+					get_stylesheet_directory_uri() . '/assets/vendor/tiny-slider/tiny-slider.js',
+					[], '2.9.3',
+					true
+				);
+
+				wp_enqueue_script(
+					'query-slider',
+					get_stylesheet_directory_uri() . '/dist/js/functionalities/query-slider.js',
+					['tiny-slider'],
+					filemtime(get_stylesheet_directory() . '/dist/js/functionalities/query-slider.js'),
+					true
+				);
+			}
 		];
 
         // Enqueue only used blocks

@@ -3,7 +3,7 @@
  * Template part for displaying a pagination
  */
 
-$arrow_icon = file_get_contents( get_template_directory_uri() . '/assets/images/menu-arrow.svg' );
+$arrow_icon = file_get_contents( get_template_directory() . '/assets/images/menu-arrow.svg' );
 
 if ( $arrow_icon ) {
 	the_posts_pagination(

@@ -1,39 +1,55 @@
+@use "./../1-settings/s-variables" as variables;
+
 @mixin small {
-  @media (max-width: $small-width) {
+  @media (max-width: variables.$small-width) {
+    @content;
+  }
+}
+
+@mixin small-up {
+  @media (min-width: #{variables.$small-width + 1px}) {
     @content;
   }
 }
 
 @mixin mobile {
-    @media (max-width: $tablet-width) {
+    @media (max-width: variables.$tablet-width) {
         @content;
     }
 }
 
+@mixin mobile-up {
+  @media (min-width: #{variables.$tablet-width + 1px}) {
+      @content;
+  }
+}
+
 @mixin tablet { 
-    @media (max-width: $desktop-width) {
+    @media (max-width: variables.$desktop-width) {
         @content;
     }
 }
 
 @mixin tablet-only {
-    @media (min-width: $tablet-width) and (max-width: $desktop-width) {
+    @media (min-width: variables.$tablet-width) and (max-width: variables.$desktop-width) {
         @content;
     }
 }
 
 @mixin desktop {
-    @media (min-width: $desktop-width) {
+    @media (min-width: variables.$desktop-width) {
         @content;
     }
 }
+
 @mixin desktop-large {
-  @media (min-width: $desktop-large-width) {
+  @media (min-width: variables.$desktop-large-width) {
       @content;
   }
 }
+
 @mixin desktop-xlarge {
-  @media (min-width: $desktop--xlarge-width) {
+  @media (min-width: variables.$desktop--xlarge-width) {
       @content;
   }
 }
@@ -49,7 +65,6 @@
         @content;
     }
 }
-
 
 @mixin triangle($direction, $sizeH, $sizeV, $color){
     content: '';

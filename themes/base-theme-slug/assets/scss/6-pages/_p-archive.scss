@@ -1,14 +1,10 @@
-@import "./../1-settings/_s-variables";
-@import "./../2-atoms/a-mixins";
-
-
-// Path assets
-$p_theme_assets: '/wp-content/themes/base-theme-slug/assets';
-
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
+@use "./../7-parts/p-filter-posts";
 
 .index-wrapper {
     header.c-title {
-        background-image: url($p_theme_assets + '/images/header-posts.png');
+        background-image: url(variables.$p_theme_assets + '/images/header-posts.png');
     }
 
     main {

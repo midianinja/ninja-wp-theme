@@ -316,3 +316,54 @@ function get_posts_by_month( $args = [] ) {
     ];
 
 }
+
+
+function archive_filter_posts( $query ) {
+    // Apply filter of the archives
+    if ( $query->is_main_query() && ! is_admin() ) {
+
+        $is_blog = false;
+        $page_for_posts = get_option( 'page_for_posts' );
+
+        if ( $query->is_home() && isset( $query->get_queried_object()->ID ) && $query->get_queried_object()->ID == $page_for_posts ) {
+            $is_blog = true;
+        }
+
+        if ( is_archive() || $is_blog ) {
+            if ( isset( $_GET['filter_term'] ) && 'all' !== $_GET['filter_term'] ) {
+                $term = get_term_by_slug( $_GET['filter_term'] );
+
+                if ( $term && ! is_wp_error( $term ) ) {
+                    $tax_query = [
+                        [
+                            'field'    => 'slug',
+                            'taxonomy' => $term->taxonomy,
+                            'terms'    => [ $term->slug ]
+                        ]
+                    ];
+
+                    $query->set( 'tax_query', $tax_query );
+                }
+            }
+        }
+    }
+}
+add_action( 'pre_get_posts', 'archive_filter_posts' );
+
+/**
+ * Get term by slug
+ */
+function get_term_by_slug( $term_slug ) {
+    $term_object = "";
+    $taxonomies = get_taxonomies();
+    foreach ( $taxonomies as $tax_type_key => $taxonomy ) {
+        // If term object is returned, break out of loop. (Returns false if there's no object);
+        if ( $term_object = get_term_by( 'slug', $term_slug, $taxonomy ) ) {
+            break;
+        } else {
+            $term_object = false;
+        }
+    }
+
+    return $term_object;
+}

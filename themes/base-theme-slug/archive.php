@@ -7,6 +7,10 @@ get_header();
         <div class="row">
             <?php get_template_part( 'template-parts/title/default' ); ?>
 
+            <div class="infos">
+                <?php get_template_part( 'template-parts/filter', 'posts', ['taxonomy' => 'category'] ); ?>
+            </div><!-- .infos -->
+
             <main class="col-md-9">
                 <?php while ( have_posts() ) : the_post(); ?>
                     <?php get_template_part( 'template-parts/content/post' ); ?>

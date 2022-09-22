@@ -1,0 +1,58 @@
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
+
+.filter-posts {
+    align-items: center;
+    display: flex;
+    flex-basis: 50%;
+    justify-content: flex-end;
+
+    @include mixins.small {
+        justify-content: flex-start;
+        margin-bottom: 30px;
+        margin-top: 15px;
+    }
+
+    p {
+        color: var(--wp--preset--color--low-pure);
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    form {
+        margin-left: 10px;
+        position: relative;
+
+        @include mixins.small {
+            margin-left: 0;
+        }
+
+        &::after {
+            content: "";
+            height: 100%;
+            background-image: url(variables.$p_theme_assets + '/images/icon-filter.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 30px;
+        }
+
+        select {
+            background-color: var(--wp--preset--color--high-pure);
+            border: 1px solid var(--wp--preset--color--low-pure);
+            border-radius: 8px;
+            color: var(--wp--preset--color--low-dark);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            min-width: 230px;
+            outline: none;
+            padding: 10px 15px 10px 30px;
+
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+    }
+}

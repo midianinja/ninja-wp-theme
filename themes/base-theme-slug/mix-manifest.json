@@ -10,6 +10,7 @@
     "/css/_b-estimatives-area.css": "/css/_b-estimatives-area.css",
     "/css/_b-featured-slider.css": "/css/_b-featured-slider.css",
     "/css/_b-image.css": "/css/_b-image.css",
+    "/css/_b-query.css": "/css/_b-query.css",
     "/css/_b-tags.css": "/css/_b-tags.css",
     "/css/_b-timeline.css": "/css/_b-timeline.css",
     "/css/_b-video-gallery.css": "/css/_b-video-gallery.css",
@@ -33,6 +34,7 @@
     "/js/functionalities/menu.js": "/js/functionalities/menu.js",
     "/js/functionalities/page.js": "/js/functionalities/page.js",
     "/js/functionalities/perguntas-frequentes.js": "/js/functionalities/perguntas-frequentes.js",
+    "/js/functionalities/query-slider.js": "/js/functionalities/query-slider.js",
     "/js/functionalities/search.js": "/js/functionalities/search.js",
     "/js/functionalities/video-gallery.js": "/js/functionalities/video-gallery.js"
 }

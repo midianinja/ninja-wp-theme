@@ -364,7 +364,15 @@ class Assets {
 				'preload_callback' => function() {
 					return is_page_template( 'page-anchor.php' );
 				},
-            ]
+            ],
+
+			// Tutor
+			'tutorstarter' => [
+				'file' => '_p-tutorstarter.css',
+				'preload_callback' => function() {
+					return is_plugin_active( 'tutor/tutor.php' );
+				},
+			]
 		];
 		
 		/**
@@ -416,6 +424,12 @@ class Assets {
 		$js_files = [
 			'menu'     => [
                 'file' => 'menu.js',
+				'global' => true,
+			],
+
+			// Tutor
+			'tutorstarter'     => [
+                'file' => 'tutorstarter.js',
 				'global' => true,
 			],
 

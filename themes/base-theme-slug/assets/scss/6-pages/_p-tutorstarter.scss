@@ -1,0 +1,264 @@
+header.header-default {
+    border-bottom: 2px solid #f8f8f8;
+}
+.tutor-header-profile-menu-items {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.tutor-header-profile-content {
+    padding-left: 7px;
+
+    .tutor-header-profile-content-text {
+        font-size: 13px;
+        line-height: 1.1em;
+        color: var(--wp--preset--color--high-pure);
+    }
+
+    .tutor-header-profile-submenu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        .tutor-header-profile-name {
+            line-height: 1.2;
+            font-weight: 600;
+            color: var(--wp--preset--color--high-pure);
+            font-size: 14px;
+
+            @media (min-width: 1200px) {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.tutor-header-login {
+    margin-right: 15px;
+
+    a {
+        font-weight: 700;
+    }
+}
+
+
+.tutor-header-submenu-icon {
+    font-size: 12px;
+    color: #212327;
+    padding: 0 5px;
+    transition: 0.3s ease;
+}
+.tutor-header-submenu {
+    background-color: #f5f7fa;
+    display: flex;
+    opacity: 0;
+}
+.tutor-header-profile-menu-items .tutor-header-submenu {
+    position: absolute;
+    z-index: 999;
+    width: 655px;
+    top: 70px;
+    right: 88px;
+    transition: 0.3s;
+    height: auto;
+    visibility: hidden;
+}
+.tutor-header-profile-menu-items:hover .tutor-header-submenu {
+    opacity: 1;
+    visibility: visible;
+}
+.tutor-submenu-login-section {
+    background: linear-gradient(318.61deg, #ec653b, #9d1878 96.92%), #fff;
+}
+.tutor-submenu-login-section,
+.tutor-submenu-login-section-instructor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    width: 33.33%;
+}
+.tutor-submenu-login-section-instructor {
+    background-color: var(--wp--preset--color--primary-pure);
+}
+.tutor-submenu-login-content {
+    font-size: 24px;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    p {
+        color: var(--wp--preset--color--high-pure) !important;
+    }
+}
+.tutor-submenu-login-profile {
+    font-weight: 600;
+}
+.tutor-submenu-login {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    color: #fff !important;
+    display: flex;
+    font-size: 16px;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.tutor-submenu-links {
+    width: 33.33%;
+    position: relative;
+    padding: 30px 10px;
+
+    ul {
+        display: block !important;
+    }
+}
+.navbar-utils .tutor-header-profile-menu-items .tutor-header-profile-photo span.tutor-text-avatar {
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.tutor-header-submenu .tutor-submenu-links ul li a {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    color: #212327;
+    line-height: 1.75em;
+    padding: 3px 6px;
+}
+.tutor-header-profile-menu-items ul li a:hover {
+    color: #456bed;
+}
+.tutor-header-submenu:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 45px;
+    z-index: 1024;
+    border-color: rgba(0, 0, 255, 0) rgba(102, 51, 153, 0) #f5f7fa rgba(255, 0, 0, 0);
+    border-style: solid;
+    border-width: 10px 12px;
+}
+.burger-icon {
+    width: 30px;
+    cursor: pointer;
+    display: none;
+}
+.burger-icon span {
+    display: block;
+    height: 2px;
+    background-color: #091e42;
+    margin: 6px 0;
+    transition: background-color 0.3s ease-in, opacity 0.3s ease-in, transform 0.3s ease-in;
+}
+@media (max-width: 992px) {
+    .tutor-header-profile-menu-items {
+        margin: 15px 0 !important;
+        order: 9;
+
+        .tutor-header-submenu {
+            display: grid;
+            left: 0;
+            padding-top: 20px;
+            right: 0;
+            top: 56px;
+            width: 100% !important;
+
+            &:before {
+                top: -18px;
+                left: 6px;
+                right: auto;
+            }
+
+            .tutor-submenu-links ul li a {
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.5em;
+                padding: 10px 25px;
+            }
+        }
+    }
+
+    .tutor-submenu-login-content {
+        font-size: 16px;
+        line-height: 1.2em;
+        padding-bottom: 15px;
+        padding-top: 5px;
+    }
+    .tutor-submenu-login-section,
+    .tutor-submenu-login-section-instructor {
+        padding-left: 30px;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-brand {
+        order: 1;
+    }
+    .navbar-utils {
+        order: 2;
+    }
+    .burger-icon {
+        display: block;
+    }
+    
+    .tutor-submenu-login-section,
+    .tutor-submenu-login-section-instructor {
+        width: 100%;
+        padding-left: 25px;
+        padding-top: 10px;
+        order: 3;
+    }
+    .tutor-submenu-links {
+        width: 100%;
+        padding: 0;
+        order: 1;
+    }
+    .tutor-submenu-links ul {
+        padding-left: 0;
+    }
+    .tutor-submenu-login-avatar {
+        display: none;
+    }
+    .tutor-submenu-login-btn {
+        position: absolute;
+        right: 40px;
+        bottom: 12px;
+    }
+    .tutor-header-profile-menu-items:hover .tutor-header-submenu {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .tutor-header-profile-menu-items.active .tutor-header-submenu {
+        opacity: 1;
+        visibility: visible;
+    }
+    .tutor-header-profile-menu-items.active .tutor-header-submenu-icon {
+        transform: rotate(180deg);
+    }
+ 
+}
+@media (max-width: 500px) {
+    .navbar {
+        display: grid;
+        grid-gap: 0;
+    }
+    .tutor-header-submenu-icon {
+        font-size: 14px;
+        padding: 0 8px;
+    }
+}

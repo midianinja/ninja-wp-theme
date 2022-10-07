@@ -25,6 +25,7 @@
     "/css/_p-projects.css": "/css/_p-projects.css",
     "/css/_p-search.css": "/css/_p-search.css",
     "/css/_p-single.css": "/css/_p-single.css",
+    "/css/_p-tutorstarter.css": "/css/_p-tutorstarter.css",
     "/css/.gitkeep.css": "/css/.gitkeep.css",
     "/css/_c-top-menu.css": "/css/_c-top-menu.css",
     "/css/menu-sempre-hamburguer.css": "/css/menu-sempre-hamburguer.css",
@@ -36,5 +37,6 @@
     "/js/functionalities/perguntas-frequentes.js": "/js/functionalities/perguntas-frequentes.js",
     "/js/functionalities/query-slider.js": "/js/functionalities/query-slider.js",
     "/js/functionalities/search.js": "/js/functionalities/search.js",
+    "/js/functionalities/tutorstarter.js": "/js/functionalities/tutorstarter.js",
     "/js/functionalities/video-gallery.js": "/js/functionalities/video-gallery.js"
 }

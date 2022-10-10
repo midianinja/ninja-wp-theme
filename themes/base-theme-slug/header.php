@@ -9,8 +9,15 @@
 	<title><?= is_front_page() ? get_bloginfo('name') : wp_title()?></title>
 	<link rel="icon" href="<?= get_site_icon_url() ?>" />
 </head>
-<body <?php body_class();?> >
-	<header class="main-header">
+<body <?php body_class();?>>
+    <?php
+    /**
+     * @link https://developer.wordpress.org/reference/hooks/wp_body_open/
+     */
+    if ( function_exists( 'wp_body_open' ) )
+        wp_body_open();
+    ?>
+    <header class="main-header">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 header-content">

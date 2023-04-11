@@ -24,7 +24,7 @@ build_assets:
  stage: build_assets
  only:
    - /main/
-   - /tag/
+   - tags
  tags:
    - docker
  image: node:12

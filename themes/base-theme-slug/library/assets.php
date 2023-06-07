@@ -542,7 +542,7 @@ class Assets {
 		}
 
 		$query_args = [
-			'family'  => implode( '|', $font_families ),
+			'family'  => implode( '&family=', $font_families ),
 			'display' => 'swap',
 		];
 

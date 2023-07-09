@@ -7,18 +7,13 @@ html{
 }
 header{
     &.main-header {
-        position: fixed;
+        position: sticky;
         left: 0%;
         top: 0;
         z-index: 999;
         width: 100%;
         transition: all .5s;
         background-color: var(--header-background-color);
-    
-        @include mobile {
-            top: 0px;
-            position: relative;
-        }
     
         .logged-in & {
             top: 32px;
@@ -28,7 +23,7 @@ header{
             }
     
             @include mobile {
-                top: 46px;
+                top: 0;
             }
         }
     

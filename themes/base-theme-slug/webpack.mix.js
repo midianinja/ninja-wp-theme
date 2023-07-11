@@ -53,18 +53,11 @@ getDirFiles(functionalitiesPath).forEach((filepath) => {
     mix.js(functionalitiesPath + filepath , './js/functionalities');
 })
 
-
-// Compile all blocks into individual files
-const blocksPath = assets_dir + '/javascript/blocks/';
-mix.react(blocksPath + 'featuredSlider/index.js' , './js/blocks/featured-slider.js');
-mix.react(blocksPath + 'embedTemplate/index.js' , './js/blocks/embed-template.js');
-mix.react(blocksPath + 'videoGallery/index.js' , './js/blocks/video-gallery.js');
-
 mix.webpackConfig({
 	...defaultConfig,
 	entry: {
     },
-    
+
     output: {
         chunkFilename: dist_dir + '/[name].js',
         path: path.resolve( __dirname, './dist/' ),
@@ -73,8 +66,8 @@ mix.webpackConfig({
     },
 
     module: {
-		
+
     },
-  
-	devtool: "inline-source-map" 
+
+	devtool: "inline-source-map"
 });

@@ -1,10 +1,6 @@
 @import "./../1-settings/_s-variables";
 @import "./../2-atoms/a-mixins";
 
-
-html{
-    font-size: var(--s-html);
-}
 header{
     &.main-header {
         position: sticky;
@@ -14,47 +10,47 @@ header{
         width: 100%;
         transition: all .5s;
         background-color: var(--header-background-color);
-    
+
         .logged-in & {
             top: 32px;
-    
+
             &.scrolled {
                 top: 32px;
             }
-    
+
             @include mobile {
                 top: 0;
             }
         }
-    
+
         &.active {
             transition: all .5s;
             min-height: 100vh;
         }
-    
+
         &.scrolled {
             transition: all .5s;
             top: 0;
         }
-    
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
             min-height: 100px;
-    
+
             .logo {
                 @media (min-width: 1025px) and (max-width: 1199px) {
                     max-width: 150px;
                     min-height: auto;
                 }
-    
+
                 img {
                     height: auto;
                     max-width: 100%;
                 }
             }
-    
+
         }
     }
     .header-content {
@@ -67,11 +63,11 @@ header{
             width: 32px;
             height: 32px;
             display: none;
-    
+
             @media (max-width: $desktop-width) {
                 display: block;
             }
-    
+
             &:before, &:after{
                 content: "";
                 display: block;
@@ -82,12 +78,12 @@ header{
                 top: 13px;
                 transition: all .4s;
             }
-    
+
             &:after {
                 top: 19.3px;
             }
-    
-    
+
+
             &.active {
                 justify-self: flex-end;
                 &:before, &:after{
@@ -98,7 +94,7 @@ header{
                     transform: rotate(-45deg);
                     transition: all .2s;
                 }
-    
+
                 &:after {
                     top: 16px;
                     transform: rotate(45deg);
@@ -106,29 +102,29 @@ header{
                 }
             }
         }
-    
+
         .menus {
             display: flex;
             margin-top: 6px;
-    
+
             @media (max-width: $desktop-width) {
                 display: none;
             }
             i.fa-angle-down, i.fa-angle-up {
                 font-size: 15px;
                 margin-left: 10px;
-                
+
                 &:not(.up) {
                     &::before {
                         content: url($p_theme_assets+'/images/arrow-down.svg') !important;
                         transition: opacity .2s ease;
-    
+
                         @include tablet {
                             opacity: 1;
                         }
                     }
                 }
-    
+
                 &.up {
                     &::before {
                         content: url($p_theme_assets+'/images/arrow-up.svg') !important;
@@ -136,47 +132,47 @@ header{
                         transition: opacity .2s ease;
                     }
                 }
-    
+
             }
             .primary-menu {
                 margin-right: 50px;
-    
-                .fa, .fas { 
+
+                .fa, .fas {
                     color: var(--c-gray--darker)!important;
                     margin-right: 0;
                     width: auto;
                 }
-                
+
                 @media (max-width: $desktop-width) {
                     margin-right: 0;
                 }
                 ul.menu {
                     padding-left: 0;
-    
+
                     > li {
                         margin-right: 15px;
                         position: relative;
                         text-transform: uppercase;
                         font-size: 1.8rem;
                         font-weight: bold;
-    
+
                         @media (min-width: 1025px) and (max-width: 1199px) {
                             font-size: 1.6rem;
                         }
-    
+
                         &:not(.menu-item-has-children) {
                             @media (max-width: $desktop-width) {
                                 margin-bottom: 10px;
                             }
                         }
-    
+
                         &.menu-item-has-children {
                             padding-right: 15px;
-    
+
                             @media (min-width: 1025px) and (max-width: 1199px) {
                                 padding-right: 0;
                             }
-    
+
                             &:after {
                                 @media (max-width: $desktop-width) {
                                     display: none;
@@ -188,27 +184,27 @@ header{
                             padding: 10px 0px 10px 0px;
                             box-shadow: 0px 3px 5px 0px rgba(#000000, 0.3);
                             z-index: 5;
-    
+
                             @media (max-width: $desktop-width) {
                                 margin-top: 15px;
                                 padding-top: 0;
                             }
-    
+
                             @media (max-width: $desktop-width) {
                                 box-shadow: none;
                             }
-    
+
                             >li{
                                 background-color: var(--header-background-color);
                                 padding: 5px 15px 5px 15px;
                                 margin-right: 0;
                                 font-size: 80%;
-    
+
                                 @media (max-width: $desktop-width) {
                                     background-color: transparent;
                                     border-left: 2px solid #035299;
                                 }
-    
+
                                 a {
                                     @include desktop {
                                         display: block;
@@ -216,24 +212,24 @@ header{
                                     }
                                 }
                             }
-    
+
                         }
-    
+
                         }
                         a{
                             color: #333333;
-                            
+
                         }
                     }
                 }
-    
+
                 @include mobile {
                     margin-right: 0;
                 }
             }
         }
-    
-    
+
+
         &.active {
             background-color: var(--header-background-color);
             display: grid;
@@ -241,36 +237,36 @@ header{
             grid-template-rows: 78px auto;
             grid-template-areas: "a b"
                                  "c c";
-            .menus {    
+            .menus {
                 display: flex;
                 flex-direction: column;
                 grid-area: c;
-    
+
                 .primary-menu {
                     ul {
                         flex-direction: column;
                         margin-left: 0;
                         padding-left: 0;
-    
+
                         li{
                             font-size: 24px;
                             line-height: 2;
-    
+
                             @media (max-width: $desktop-width) {
                                 font-size: 16px;
                                 line-height: 1.5;
                             }
                         }
-                                         
-                    } 
-    
+
+                    }
+
                     ul.sub-menu {
                         padding-left: 20px
                     }
                 }
             }
         }
-    
+
         @import "./../3-components/c-wpml-language-menu";
         @import "./../3-components/c-social-menu";
         @import "./../3-components/c-search";

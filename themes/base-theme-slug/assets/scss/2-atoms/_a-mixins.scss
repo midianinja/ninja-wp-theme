@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "./../1-settings/s-variables" as variables;
 
 @mixin small {
@@ -24,7 +25,7 @@
   }
 }
 
-@mixin tablet { 
+@mixin tablet {
     @media (max-width: variables.$desktop-width) {
         @content;
     }
@@ -49,7 +50,7 @@
 }
 
 @mixin desktop-xlarge {
-  @media (min-width: variables.$desktop--xlarge-width) {
+  @media (min-width: variables.$desktop-xlarge-width) {
       @content;
   }
 }
@@ -73,7 +74,7 @@
     height: 0;
     border-style: solid;
     -moz-transform: scale(.9999);
-      
+
   @if $direction == top {
     border-width: 0 $sizeV $sizeH $sizeV;
     border-color: transparent transparent $color transparent;
@@ -113,5 +114,5 @@ $base-size: 16;
 //Function to convert px value into rem
 //You can replace rem with any other value you want (rem is most preferred value for web)
 @function size($target, $context: $base-size) {
-    @return ($target / $context) * 1rem;
+		@return math.div($target, $context) * 1rem;
 }

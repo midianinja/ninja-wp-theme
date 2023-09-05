@@ -32,7 +32,7 @@ function tutor_multi_column_dropdown() {
             <?php if ( ! defined( 'TDC_VERSION' ) && is_user_priviledged() ) : ?>
                 <div class="tutor-submenu-login-section-instructor">
                     <div class="tutor-submenu-login-avatar">
-                        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/instructor-submenu-icon.svg' ); ?>" alt="profile avatar">
+                        <img src="<?php echo get_template_directory() . '/assets/images/instructor-submenu-icon.svg'; ?>" alt="profile avatar">
                     </div>
                     <div class="tutor-submenu-login-content">
                         <div class="tutor-submenu-login-profile" style="margin-top: 10px;"><?php wp_kses_post( _e( 'Create a<br />New Course', 'tutorstarter' ) ) ?></div>
@@ -53,7 +53,7 @@ function tutor_multi_column_dropdown() {
 
                         if ( is_array( $menu_item ) ) {
                             $menu_title = tutor_utils()->array_get( 'title', $menu_item );
-                            
+
                             if ( isset( $menu_item['url'] ) ) {
                                 $menu_link = $menu_item['url'];
                             }
@@ -76,7 +76,7 @@ function tutor_multi_column_dropdown() {
 
                         if ( is_array( $nav_item ) ) {
                             $menu_title = tutor_utils()->array_get( 'title', $nav_item );
-                            
+
                             if ( isset( $nav_item['url'] ) ) {
                                 $menu_link = $nav_item['url'];
                             }
@@ -142,7 +142,7 @@ function default_menus() {
 
 /**
  * Check role
- * 
+ *
  * @return bool
  */
 function is_user_priviledged() {
@@ -164,7 +164,7 @@ function is_user_priviledged() {
 
 /**
  * Filtered nav items based on capabilities
- * 
+ *
  * @return array
  */
 function filtered_nav() {

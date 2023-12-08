@@ -1,4 +1,4 @@
-# base-theme-name
+# Tema Mídia Ninja
 
 Este repositório contém os arquivos iniciais para se ter um projeto WordPress
 nos moldes do Hacklab. Isso significa que as ferramentas de desenvolvimento
@@ -43,7 +43,7 @@ $ git submodule add -f git@gitlab.hacklab.com.br:open-source/hacklab-blocks.git 
 ```
 
 ## Compilando os assets do tema
-Abra um terminar, vá até a a pasta `themes/base-theme-slug/` e execute os comandos abaixo:
+Abra um terminar, vá até a a pasta `themes/midia-ninja-theme/` e execute os comandos abaixo:
 
 ```
 $ npm install
@@ -78,8 +78,8 @@ docker-compose up
 ```
 
 ## Substituir strings e renomear arquivos/pastas:
-- **base-theme-slug** pela slug nova ex: fpa-theme
-- **base-theme-name** pelo nome (exemplo Tema FPA )
+- **midia-ninja-theme** pela slug nova ex: fpa-theme
+- **Tema Mídia Ninja** pelo nome (exemplo Tema FPA )
 - alterar nome da pasta para corresponder ao slug
 - alterar nome do arquivo /languages/*.pot
 

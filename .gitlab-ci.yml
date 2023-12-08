@@ -9,7 +9,7 @@ stages:
      
 variables:
   KUBECONFIG: /etc/k8s-config
-  THEME_NAME: base-theme-slug
+  THEME_NAME: midia-ninja-theme
   NAMESPACE_DEV: base-theme-site-dev
   NAMESPACE_PROD: base-theme-site-prod
   AUTH: JOB-TOKEN:$CI_JOB_TOKEN

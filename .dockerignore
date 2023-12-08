@@ -1,8 +1,8 @@
 .git/
 mariadb_data/
 mariadb_data/*
-themes/base-theme-slug/node_modules/
+themes/midia-ninja-theme/node_modules/
 *.sql*
-themes/base-theme-slug/dist/app.js
-themes/base-theme-slug/dist/app.css
+themes/midia-ninja-theme/dist/app.js
+themes/midia-ninja-theme/dist/app.css
 

@@ -18,7 +18,7 @@ services:
       WORDPRESS_DEBUG: 1
     volumes:
       - ./wp-root:/var/www/html/
-      - ./themes/base-theme-slug:/var/www/html/wp-content/themes/base-theme-slug
+      - ./themes/midia-ninja-theme:/var/www/html/wp-content/themes/midia-ninja-theme
       - ./plugins/hacklab-dev-utils:/var/www/html/wp-content/plugins/hacklab-dev-utils
       - ./plugins/hacklab-blocks:/var/www/html/wp-content/plugins/hacklab-blocks
       - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
@@ -29,7 +29,7 @@ services:
       context: .
       dockerfile: ./compose/local/watcher/Dockerfile
     volumes:
-      - ./themes/base-theme-slug:/app
+      - ./themes/midia-ninja-theme:/app
   
   watcher-plugin:
     build:

@@ -2,8 +2,8 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: base-theme-name 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/base-theme-slug\n"
+"Project-Id-Version: Tema Mídia Ninja 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/midia-ninja-theme\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Domain: base-textdomain\n"
 
 #. Theme Name of the theme
-msgid "base-theme-name"
+msgid "Tema Mídia Ninja"
 msgstr ""
 
 #. Theme URI of the theme

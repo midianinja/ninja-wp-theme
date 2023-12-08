@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: base-theme-name 1.0\n"
+"Project-Id-Version: Tema Mídia Ninja 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/themes\n"
 "Last-Translator: \n"
 "Language-Team: Português do Brasil\n"
@@ -28,7 +28,7 @@ msgid "Autores"
 msgstr ""
 
 #. Theme Name of the theme
-msgid "base-theme-name"
+msgid "Tema Mídia Ninja"
 msgstr ""
 
 #: theme.json

@@ -10,97 +10,97 @@
                 {
                     "name": "Primary pure",
                     "slug": "primary-pure",
-                    "color": "#1DACE4"
+                    "color": "#262626"
                 },
                 {
                     "name": "Primary light",
                     "slug": "primary-light",
-                    "color": "#C2ECFB"
+                    "color": "#848484"
                 },
                 {
                     "name": "Primary dark",
                     "slug": "primary-dark",
-                    "color": "#007CB8"
+                    "color": "#1E1E1E"
                 },
                 {
                     "name": "Secondary pure",
                     "slug": "secondary-pure",
-                    "color": "#333333"
+                    "color": "#CCCCCC"
                 },
                 {
                     "name": "Secondary light",
                     "slug": "secondary-light",
-                    "color": "#C9C9C9"
+                    "color": "#F5F5F5"
                 },
                 {
                     "name": "Secondary dark",
                     "slug": "secondary-dark",
-                    "color": "#111111"
+                    "color": "#D9D9D9"
                 },
                 {
                     "name": "Highlight pure",
                     "slug": "highlight-pure",
-                    "color": "#CCCC33"
+                    "color": "#FDF250"
                 },
                 {
-                    "name": "Highlight light",
-                    "slug": "highlight-light",
-                    "color": "#FFFF68"
+                    "name": "Verde Light",
+                    "slug": "verde-light",
+                    "color": "#99CE56"
                 },
                 {
-                    "name": "Highlight dark",
-                    "slug": "highlight-dark",
-                    "color": "#59631E"
+                    "name": "Verde dark",
+                    "slug": "verde-dark",
+                    "color": "#7AE695"
                 },
                 {
-                    "name": "Low Pure",
-                    "slug": "low-pure",
-                    "color": "#000000"
+                    "name": "Azul dark",
+                    "slug": "azul-dark",
+                    "color": "#3F24E5"
                 },
                 {
-                    "name": "Low light",
-                    "slug": "low-light",
-                    "color": "#666666"
+                    "name": "Azul light",
+                    "slug": "azul-light",
+                    "color": "#76C7E6"
                 },
                 {
-                    "name": "Low dark",
-                    "slug": "low-dark",
-                    "color": "#333333"
+                    "name": "Roxo feminismos",
+                    "slug": "roxo-feminismos",
+                    "color": "#8C52FF"
                 },
                 {
-                    "name": "High pure",
-                    "slug": "high-pure",
-                    "color": "#FFFFFF"
+                    "name": "Roxo educação",
+                    "slug": "roxo-educacao",
+                    "color": "#C9ADFF"
                 },
                 {
-                    "name": "High light",
-                    "slug": "high-light",
-                    "color": "#F5F5F5"
+                    "name": "Rosa LGBTQIAP+",
+                    "slug": "rosa-lgbtqiap+",
+                    "color": "#E14FCE"
                 },
                 {
-                    "name": "High dark",
-                    "slug": "high-dark",
-                    "color": "#DDDDDD"
+                    "name": "Rosa tecnologia",
+                    "slug": "rosa-tecnologia",
+                    "color": "#F0A8E7"
                 },
                 {
-                    "name": "Warning pure",
-                    "slug": "warning-pure",
-                    "color": "#FF358B"
+                    "name": "Laranja dark",
+                    "slug": "laranja-dark",
+                    "color": "#F27900"
                 },
                 {
-                    "name": "Warning light",
-                    "slug": "warning-light",
-                    "color": "#FF72BB"
+                    "name": "Laranja light",
+                    "slug": "laranja-light",
+                    "color": "#F1BC4E"
                 },
                 {
-                    "name": "Warning dark",
-                    "slug": "warning-dark",
-                    "color": "#C6005E"
+                    "name": "Vermelho dark",
+                    "slug": "vermelho-dark",
+                    "color": "#F63333"
                 },
                 {
-                    "name": "Helper pure",
-                    "slug": "helper-pure",
-                    "color": "#29D9C2"
+                    "name": "Vermelho light",
+                    "slug": "vermelhor-light",
+                    "color": "#DB565E"
                 },
                 {
                     "name": "Helper light",
@@ -108,9 +108,9 @@
                     "color": "#70FFF5"
                 },
                 {
-                    "name": "Helper dark",
-                    "slug": "helper-dark",
-                    "color": "#00A792"
+                    "name": "Amarelo alimentação",
+                    "slug": "amarelo-alimentacao",
+                    "color": "#F7F100"
                 }
             ]
         },
@@ -162,7 +162,7 @@
             ]
         },
         "layout": {
-            "contentSize": "1170px",
+            "contentSize": "960px",
             "wideSize": "1170px"
         }
     }

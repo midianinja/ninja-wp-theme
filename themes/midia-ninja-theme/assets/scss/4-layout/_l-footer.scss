@@ -1,5 +1,42 @@
+.footer-widgets{
+    .wp-block-cover{
+        .wp-block-cover__inner-container{
+            .social-footer{
+                margin-top: 48px;
+                gap: 40px;
+                justify-content: center;
+            }
+            .menu-footer{
+                .wp-block-group{
+                    display: flex;
+
+                    h2{
+                        &::after{
+                            content: "|";
+                            font-weight: 100;
+                            padding-left: 10px;
+                        }
+
+                        a{
+                            color: var(--wp--preset--color--secondary-light);
+                            font-family: Manrope;
+                            font-size: var(--wp--preset--font-size--default);
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 100%; /* 16px */
+                            letter-spacing: -0.48px;
+                            text-transform: uppercase;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 footer.main-footer {
     background-color: var(--c-primary);
+
 
     .footer-menus {
         .footer-menu {

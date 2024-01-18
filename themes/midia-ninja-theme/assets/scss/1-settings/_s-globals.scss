@@ -5,6 +5,7 @@ html {
 
     body {
         overflow-x:  hidden;
+        width: 100vw;
 
         @include mobile {
             margin-top: 0;

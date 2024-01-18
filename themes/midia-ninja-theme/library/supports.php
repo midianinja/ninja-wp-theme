@@ -17,6 +17,17 @@ function theme_supports() {
     add_theme_support( 'editor-styles' );
     add_theme_support( 'widgets' );
 
+    /**
+     * Adds support for project CPTs to the Newspack Blocks plugin when it is active
+     */
+    if ( is_plugin_active( 'newspack-blocks/newspack-blocks.php' ) ) {
+        add_post_type_support( 'afluente', 'newspack_blocks' );
+        add_post_type_support( 'entrevista', 'newspack_blocks' );
+        add_post_type_support( 'especial', 'newspack_blocks' );
+        add_post_type_support( 'news', 'newspack_blocks' );
+        add_post_type_support( 'opiniao', 'newspack_blocks' );
+    }
+
     global $wp_version;
     if ( version_compare( $wp_version, '5.8', '<' ) ) {
         add_theme_support( 'custom-line-height' );

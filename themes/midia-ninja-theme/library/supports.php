@@ -15,6 +15,7 @@ function theme_supports() {
     add_theme_support( 'core-block-patterns' );
     add_theme_support( 'customize-selective-refresh-widgets' );
     add_theme_support( 'editor-styles' );
+    add_theme_support( 'responsive-embeds' );
     add_theme_support( 'widgets' );
 
     /**

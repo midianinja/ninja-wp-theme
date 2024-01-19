@@ -10,14 +10,29 @@
                 .wp-block-group{
                     display: flex;
 
-                    h2{
+                    h2 {
+                        align-items: center;
+                        display: flex;
+                        line-height: 0;
+                        margin-left: 10px;
+                        margin-right: 10px;
+
                         &::after{
-                            content: "|";
-                            font-weight: 100;
-                            padding-left: 10px;
+                            background-color: #fff;
+                            content: "";
+                            height: 20px;
+                            margin-left: 20px;
+                            overflow: hidden;
+                            width: 1px;
+                        }
+                        
+                        &:last-child {
+                            &::after {
+                                display: none;
+                            }
                         }
 
-                        a{
+                        a {
                             color: var(--wp--preset--color--secondary-light);
                             font-family: Manrope;
                             font-size: var(--wp--preset--font-size--default);
@@ -27,6 +42,11 @@
                             letter-spacing: -0.48px;
                             text-transform: uppercase;
                             text-decoration: none;
+                            transition: all .3s ease-in-out;
+                            
+                            &:hover {
+                                color: var(--wp--preset--color--primary-light);
+                            }
                         }
                     }
                 }

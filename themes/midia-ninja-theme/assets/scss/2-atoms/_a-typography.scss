@@ -8,36 +8,30 @@ body {
 
 h1 {
     font-family: $f_title;
-    font-size: 2.5rem;
-
-    @include mobile {
-        font-size: 1.5rem;
-    }
+    font-size: var(--wp--preset--font-size--really-large);
+    font-weight: 800;
+    letter-spacing: -1.92px;
 }
 
 h2 {
     font-family: $f_title;
-    font-size: 2rem;
-
-    @include mobile {
-        font-size: 1.5rem;
-    }
+    font-size: var(--wp--preset--font-size--large);
+    font-weight: 800;
+    letter-spacing: -1.44px;
 }
 
 h3 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--medium);
-    font-weight: 400;
+    font-weight: 800;
+    letter-spacing: -0.64px;
 }
 
 h4 {
     font-family: $f_title;
-    /*font-size: 1rem;*/
-    font-size: var(--s-h4);
-
-    @include mobile {
-        font-size: 0.85rem;
-    }
+    font-size: var(--wp--preset--font-size--intermediate-standard);
+    font-weight: 800;
+    letter-spacing: -0.48px;
 }
 
 h5 {

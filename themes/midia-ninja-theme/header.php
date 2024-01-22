@@ -21,6 +21,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 header-content">
+					<?php the_social_networks_menu() ?>
+
                     <div class="logo">
                         <a href="<?= home_url() ?>">
                             <img src="<?= get_template_directory_uri() ?>/assets/images/logo.png" width="200" alt="<?= get_bloginfo( 'name' ) ?>">
@@ -32,7 +34,6 @@
 
                     <div class="menus">
                         <?= wp_nav_menu(['theme_location' => 'main-menu', 'container' => 'nav', 'menu_id' => 'main-menu', 'menu_class' => 'menu', 'container_class' => 'primary-menu']) ?>
-                        <?= the_social_networks_menu() ?>
 
                         <?php if ( is_plugin_active( 'tutor/tutor.php' ) ) : ?>
                             <div class="tutor-header-profile-menu-items">

@@ -1,6 +1,6 @@
 <?php
 
-function the_social_networks_menu( $image = true ) {
+function the_social_networks_menu() {
     $menu_items = get_menu_by_position( 'social-networks' );
 
     if ( ! $menu_items ) {
@@ -13,21 +13,18 @@ function the_social_networks_menu( $image = true ) {
 
         foreach ( $menu_items as $item ) {
 			$network_name = sanitize_title( $item->post_title );
-			$html = '';
+			$icon_path = $icons_directory . $network_name . '.svg';
 
-            if ( $image ) {
-				// Checks if the icon file exists
-				if ( ! file_exists( $icons_directory . $network_name . '.svg' ) ) {
-					continue;
-				}
+			if ( ! file_exists( $icon_path ) ) {
+				continue;
+			}
 
-				$html = file_get_contents( $icons_directory . $network_name . '.svg' );
-            }
+			$html = file_get_contents( $icon_path );
 
-			if ( $html ) {
-				echo '<div class="social-icon icon-' . $network_name . '">';
-				echo '<a href="' . $item->url . '" target="_blank">' . $html . '</a>';
-				echo '</div>';
+			if ( $html ) { ?>
+				<div class="social-icon icon-<?= esc_attr( $network_name ) ?>">
+					<a href="<?= esc_url( $item->url ) ?>" title="<?= esc_attr( $item->post_title ) ?>" target="_blank"><?= $html ?></a>
+				</div><?php
 			}
         }
 

@@ -11,11 +11,11 @@
     .social-icon {
         padding: 5px;
         margin: 3px;
-        
+
         a {
+			color: inherit;
             svg {
-                path {
-                    color: var(--c-primary);
+                path, circle {
                     fill: currentColor;
                 }
             }

@@ -7,6 +7,7 @@ body {
 }
 
 h1 {
+    font-family: $f_title;
     font-size: 2.5rem;
 
     @include mobile {
@@ -15,6 +16,7 @@ h1 {
 }
 
 h2 {
+    font-family: $f_title;
     font-size: 2rem;
 
     @include mobile {
@@ -23,24 +25,13 @@ h2 {
 }
 
 h3 {
-    font-size: var(--s-h3);
+    font-family: $f_title;
+    font-size: var(--wp--preset--font-size--medium);
     font-weight: 400;
-
-    @include tablet {
-        font-size: 36px;
-    }
-
-    @include mobile {
-        font-size: 32px;
-    }
-
-    @include small {
-        font-size: 26px;
-    }
 }
 
-
 h4 {
+    font-family: $f_title;
     /*font-size: 1rem;*/
     font-size: var(--s-h4);
 
@@ -50,11 +41,13 @@ h4 {
 }
 
 h5 {
+    font-family: $f_title;
     font-size: var(--s-h5);
     line-height: calc(var(--s-h5) * 1.2);
 }
 
 h6 {
+    font-family: $f_title;
     font-size: var(--s-h6);
     font-weight: 400;
 

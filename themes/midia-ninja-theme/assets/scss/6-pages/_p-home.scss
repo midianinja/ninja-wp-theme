@@ -159,107 +159,111 @@
             margin-bottom: 0;
             max-width: 1170px;
             position: relative;
-
-            article {
-                align-items: center;
-                justify-content: flex-end;
-                text-align: right;
-                
-                @include mixins.mobile {
-                    align-items: initial;
-                    flex-direction: column;
-                }
-
-                .post-thumbnail {
-                    background-color: var(--wp--preset--color--primary-dark);
-                    flex-basis: 70%;
+            
+            &.show-image.image-alignright {
+                article {
+                    align-items: center;
+                    justify-content: flex-end;
                     margin-bottom: 0;
-                    max-height: 500px;
-                    overflow: hidden;
-                    position: relative;
-
+                    padding-bottom: 0;
+                    text-align: right;
+                    
                     @include mixins.mobile {
-                        flex-basis: 100%;
-                        margin-left: 0;
+                        align-items: initial;
+                        flex-direction: column;
                     }
-
-                    &::before {
-                        content: "";
-                        float: left;
-                        padding-top: 56.25%;
-
-                        @include mixins.tablet {
-                            padding-top: 100%;
-                        }
-                    }
-
-                    &::after {
-                        clear: left;
-                        content: " ";
-                        display: table;
-                    }
-
-                    img {
-                        height: auto;
-                        left: 50%;
-                        max-width: 100%;
-                        position: absolute;
-                        top: 50%;
-                        transform: translate(-50%, -50%);
-                        width: 100%;
-
-                        @include mixins.tablet {
-                            min-width: 100%;
-                        }
-                    }
-                }
-
-                .entry-wrapper {
-                    max-width: 375px;
-                    padding: 15px;
-                    position: relative;
-
-                    @include mixins.mobile {
-                        max-width: 100%;
-                        padding: 30px 15px;
-                    }
-
-                    // arrow
-                    &::before {
-                        @include mixins.triangle( right, 15px, 15px, var(--wp--preset--color--primary-dark));
-                        position: absolute;
-                        right: -30px;
-                        top: 30px;
-                        z-index: 1;
-
+    
+                    .post-thumbnail {
+                        background-color: var(--wp--preset--color--primary-dark);
+                        flex-basis: 70%;
+                        margin-bottom: 0;
+                        max-height: 500px;
+                        overflow: hidden;
+                        position: relative;
+    
                         @include mixins.mobile {
-                            @include mixins.triangle( bottom, 15px, 15px, var(--wp--preset--color--primary-dark));
-                            right: 70px;
-                            top: inherit;
-                            bottom: -15px;
+                            flex-basis: 100%;
+                            margin-left: 0;
+                        }
+    
+                        &::before {
+                            content: "";
+                            float: left;
+                            padding-top: 56.25%;
+    
+                            @include mixins.tablet {
+                                padding-top: 100%;
+                            }
+                        }
+    
+                        &::after {
+                            clear: left;
+                            content: " ";
+                            display: table;
+                        }
+    
+                        img {
+                            height: auto;
+                            left: 50%;
+                            max-width: 100%;
+                            position: absolute;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 100%;
+    
+                            @include mixins.tablet {
+                                min-width: 100%;
+                            }
                         }
                     }
-
-                    .cat-links {
-                        justify-content: flex-end;
-
-                        a {
-                            background-color: var(--wp--preset--color--laranja-dark); // @todo - make dynamic
-                            color: var(--wp--preset--color--primary-dark);
+    
+                    .entry-wrapper {
+                        max-width: 375px;
+                        padding: 15px;
+                        position: relative;
+    
+                        @include mixins.mobile {
+                            max-width: 100%;
+                            padding: 30px 15px;
                         }
-                    }
-
-                    .entry-title {
-                        color: var(--wp--preset--color--secondary-light);
-                        font-size: var(--wp--preset--font-size--medium);
-                        font-weight: 800;
-                        letter-spacing: -0.96px;
-                        line-height: 1.2;
-                    }
-
-                    .entry-meta {
-                        color: var(--wp--preset--color--secondary-dark);
-                        justify-content: flex-end;
+    
+                        // arrow
+                        &::before {
+                            @include mixins.triangle( right, 15px, 15px, var(--wp--preset--color--primary-dark));
+                            position: absolute;
+                            right: -30px;
+                            top: 30px;
+                            z-index: 1;
+    
+                            @include mixins.mobile {
+                                @include mixins.triangle( bottom, 15px, 15px, var(--wp--preset--color--primary-dark));
+                                right: 70px;
+                                top: inherit;
+                                bottom: -15px;
+                            }
+                        }
+    
+                        .cat-links {
+                            justify-content: flex-end;
+    
+                            a {
+                                background-color: var(--wp--preset--color--laranja-dark); // @todo - make dynamic
+                                color: var(--wp--preset--color--primary-dark);
+                            }
+                        }
+    
+                        .entry-title {
+                            color: var(--wp--preset--color--secondary-light);
+                            font-size: var(--wp--preset--font-size--medium);
+                            font-weight: 800;
+                            letter-spacing: -0.96px;
+                            line-height: 1.2;
+                        }
+    
+                        .entry-meta {
+                            color: var(--wp--preset--color--secondary-dark);
+                            justify-content: flex-end;
+                        }
                     }
                 }
             }

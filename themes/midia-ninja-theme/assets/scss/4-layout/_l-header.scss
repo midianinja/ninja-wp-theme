@@ -40,14 +40,9 @@ header{
             min-height: 100px;
 
             .logo {
-                @media (min-width: 1025px) and (max-width: 1199px) {
-                    max-width: 150px;
-                    min-height: auto;
-                }
-
                 img {
                     height: auto;
-                    max-width: 100%;
+                    width: auto;
                 }
             }
 

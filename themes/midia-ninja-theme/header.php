@@ -23,15 +23,7 @@
                 <div class="col-md-12 header-content">
                     <div class="logo">
                         <a href="<?= home_url() ?>">
-                            <?php 
-                            $custom_logo_id = get_theme_mod( 'custom_logo' );
-                            if ( has_custom_logo() ) {
-                                the_custom_logo();
-                            } else { ?>
-                                <img src="<?= get_template_directory_uri() ?>/assets/images/logo.png" width="200" alt="<?= get_bloginfo( 'name' ) ?>">
-                            <?php
-                            }
-                            ?>
+                            <img src="<?= get_template_directory_uri() ?>/assets/images/logo.png" width="200" alt="<?= get_bloginfo( 'name' ) ?>">
                         </a>
                     </div>
                     <button menu-container-class='primary-menu' class="toggle-menu" aria-label="<?= __("Toggle menu visibility", "base-textdomain") ?>">
@@ -55,6 +47,6 @@
                 </div>
             </div>
         </div>
-        
+
 	</header>
 	<div id="app">

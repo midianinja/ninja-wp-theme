@@ -34,10 +34,23 @@ header{
         }
 
         .header-content {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
+			color: black;
+            display: grid;
+			grid-template-columns: repeat(3, 1fr);
             min-height: 100px;
+
+			& > :nth-child(1) {
+				justify-self: start;
+			}
+
+			& > :nth-child(2) {
+				justify-self: center;
+			}
+
+			& > :nth-child(3) {
+				justify-self: end;
+			}
 
             .logo {
                 img {

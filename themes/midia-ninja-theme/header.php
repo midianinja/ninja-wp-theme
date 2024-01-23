@@ -28,26 +28,19 @@
                             <img src="<?= get_template_directory_uri() ?>/assets/images/logo.png" width="200" alt="<?= get_bloginfo( 'name' ) ?>">
                         </a>
                     </div>
-                    <button menu-container-class='primary-menu' class="toggle-menu" aria-label="<?= __("Toggle menu visibility", "base-textdomain") ?>">
 
-                    </button>
-
+					<button menu-container-class='primary-menu' class="toggle-menu" aria-label="<?= __("Toggle menu visibility", "base-textdomain") ?>"> </button>
                     <div class="menus">
-                        <?= wp_nav_menu(['theme_location' => 'main-menu', 'container' => 'nav', 'menu_id' => 'main-menu', 'menu_class' => 'menu', 'container_class' => 'primary-menu']) ?>
-
-                        <?php if ( is_plugin_active( 'tutor/tutor.php' ) ) : ?>
-                            <div class="tutor-header-profile-menu-items">
-                                <?php tutor_multi_column_dropdown(); ?>
-                            </div><!-- .tutor-header-profile-menu -->
-                        <?php endif; ?>
 
                         <div class="search-component">
-                            <?php get_search_form(); ?>
+							<?php get_search_form(); ?>
                         </div><!-- .search-component -->
                     </div>
                 </div>
             </div>
         </div>
+
+		<?php wp_nav_menu(['theme_location' => 'main-menu', 'container' => 'nav', 'menu_id' => 'main-menu', 'menu_class' => 'menu', 'container_class' => 'primary-menu']) ?>
 
 	</header>
 	<div id="app">

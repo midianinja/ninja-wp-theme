@@ -55,11 +55,13 @@ $p_theme_assets: $p_theme + '/assets';
 // Fonts
 $f_body: 'Inter', sans-serif;
 $f_title: 'Manrope', sans-serif;
+$f_mark: 'Michroma', sans-serif;
 $s_meta: .875rem; //equivalente 14px
 
 // Spacings
-$s_small: 20px;
-$s_large: 40px;
+$s_small: 0.938rem;
+$s_medium: 1.875rem;
+$s_large: 2.813rem;
 
 :root {
     // Sizes
@@ -106,5 +108,6 @@ $s_large: 40px;
 
     // Spacings
     --s-small: #{$s_small};
+    --s-medium: #{$s_medium};
     --s-large: #{$s_large};
 }

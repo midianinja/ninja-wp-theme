@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Microgramma Medium';
+    src: url("#{$p_theme_assets}/fonts/Microgramma-D-Extended-Medium.otf") format('opentype');
+}
+
+@font-face {
+    font-family: 'Microgramma Bold';
+    src: url("#{$p_theme_assets}/fonts/Microgramma-D-Extended-Bold.otf") format('opentype');
+}
+
 html {
     font-size: var(--s-html);
 }

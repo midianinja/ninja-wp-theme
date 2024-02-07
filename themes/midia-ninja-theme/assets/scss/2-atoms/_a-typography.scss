@@ -1,11 +1,6 @@
 @font-face {
-    font-family: 'Microgramma Medium';
-    src: url("#{$p_theme_assets}/fonts/Microgramma-D-Extended-Medium.otf") format('opentype');
-}
-
-@font-face {
-    font-family: 'Microgramma Bold';
-    src: url("#{$p_theme_assets}/fonts/Microgramma-D-Extended-Bold.otf") format('opentype');
+    font-family: 'MidiaNinja';
+    src: url("#{$p_theme_assets}/fonts/TipoNinja-Regular.otf") format('opentype');
 }
 
 html {
@@ -27,7 +22,6 @@ h2 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--large);
     font-weight: 800;
-    letter-spacing: -1.44px;
 }
 
 h3 {

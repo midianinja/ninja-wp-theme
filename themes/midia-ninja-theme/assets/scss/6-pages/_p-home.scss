@@ -2,6 +2,15 @@
 @use "./../2-atoms/a-mixins" as mixins;
 
 .home {
+    .index-wrapper {
+        padding-top: mixins.size(30);
+
+        // Remove margin-bottom of the all .wp-block-columns on Home
+        .wp-block-columns {
+            margin-bottom: 0;
+        }
+    }
+
     .wp-block-newspack-blocks-homepage-articles {
         // general style of the Newspack Blocks/Homepage Articles card
         article {
@@ -11,9 +20,9 @@
                         background-color: var(--wp--preset--color--highlight-pure); // @todo - make dynamic
                         border-radius: mixins.size(4);
                         color: var(--wp--preset--color--primary-pure);
-                        font-family: 'Microgramma Medium', sans-serif;
+                        font-family: variables.$f_title;
                         font-size: var(--wp--preset--font-size--small);
-                        letter-spacing: 1px;
+                        letter-spacing: -0.42px;
                         text-transform: uppercase;
                         padding-left: 5px;
                         padding-right: 5px;
@@ -27,20 +36,31 @@
                     }
                 }
 
+                // Base of the all titles 
                 .entry-title {
+                    color: var(--wp--preset--color--primary-pure);
                     font-size: var(--wp--preset--font-size--default);
                     font-weight: 700;
-                    letter-spacing: -0.48px;
+                    padding-bottom: 5px;
+                    padding-top: 5px;
                 }
 
                 .entry-meta {
                     color: var(--wp--preset--color--primary-light);
+                    font-size: mixins.size(13);
+                    font-weight: 700;
                 }
             }
         }
 
-        // posts with image
+        // Newspack Blocks/Homepage Articles card with image
         &.show-image {
+            article {
+                .post-thumbnail {
+                    border-radius: 8px;
+                }
+            }
+
             // posts with image align on top
             &.image-aligntop {
                 article {
@@ -75,7 +95,7 @@
                             top: 50%;
                             transform: translate(-50%, -50%);
                             width: 100%;
-    
+
                             @include mixins.tablet {
                                 min-width: 100%;
                             }
@@ -85,7 +105,8 @@
                     .entry-wrapper {
                         .cat-links {
                             margin-bottom: 15px;
-                            margin-top: -35px;
+                            margin-left: variables.$s_small;
+                            margin-top: mixins.size(-50);
 
                             a {
                                 background-color: var(--wp--preset--color--laranja-dark); // @todo - make dynamic
@@ -97,21 +118,6 @@
                                 text-transform: uppercase;
                                 padding-left: 5px;
                                 padding-right: 5px;
-                            }
-                        }
-
-                        .entry-title {
-                            font-size: var(--wp--preset--font-size--small-standard);
-                            font-weight: 800;
-                            letter-spacing: -0.6px;
-                            line-height: 1.2;
-                        }
-
-                        > p {
-                            margin-bottom: 15px;
-
-                            @include mixins.mobile {
-                                display: none;
                             }
                         }
 
@@ -144,202 +150,19 @@
                 }
             }
         }
-    }
 
-    .destaque-superior {
-        margin-bottom: 60px;
-        min-height: 200px;
-        padding: 0;
-
-        @include mixins.mobile {
-            margin-bottom: 30px;
-        }
-
-        .wp-block-newspack-blocks-homepage-articles {
-            margin-bottom: 0;
-            max-width: 1170px;
-            position: relative;
-
-            &.show-image.image-alignright {
-                article {
-                    align-items: center;
-                    justify-content: flex-end;
-                    margin-bottom: 0;
-                    padding-bottom: 0;
-                    text-align: right;
-                    
-                    @include mixins.mobile {
-                        align-items: initial;
-                        flex-direction: column;
-                    }
-
-                    .post-thumbnail {
-                        background-color: var(--wp--preset--color--primary-dark);
-                        flex-basis: 70%;
-                        margin-bottom: 0;
-                        max-height: 500px;
-                        overflow: hidden;
-                        position: relative;
-    
-                        @include mixins.mobile {
-                            flex-basis: 100%;
-                            margin-left: 0;
-                        }
-    
-                        &::before {
-                            content: "";
-                            float: left;
-                            padding-top: 56.25%;
-    
-                            @include mixins.tablet {
-                                padding-top: 100%;
-                            }
-                        }
-    
-                        &::after {
-                            clear: left;
-                            content: " ";
-                            display: table;
-                        }
-    
-                        img {
-                            height: auto;
-                            left: 50%;
-                            max-width: 100%;
-                            position: absolute;
-                            top: 50%;
-                            transform: translate(-50%, -50%);
-                            width: 100%;
-    
-                            @include mixins.tablet {
-                                min-width: 100%;
-                            }
-                        }
-                    }
-
-                    .entry-wrapper {
-                        max-width: 375px;
-                        padding: 15px;
-                        position: relative;
-
-                        @include mixins.mobile {
-                            max-width: 100%;
-                            padding: 30px 15px;
-                        }
-
-                        // arrow
-                        &::before {
-                            @include mixins.triangle( right, 15px, 15px, var(--wp--preset--color--primary-dark));
-                            position: absolute;
-                            right: -30px;
-                            top: 30px;
-                            z-index: 1;
-
-                            @include mixins.mobile {
-                                @include mixins.triangle( bottom, 15px, 15px, var(--wp--preset--color--primary-dark));
-                                right: 70px;
-                                top: inherit;
-                                bottom: -15px;
-                            }
-                        }
-
-                        .cat-links {
-                            justify-content: flex-end;
-
-                            a {
-                                background-color: var(--wp--preset--color--laranja-dark); // @todo - make dynamic
-                                color: var(--wp--preset--color--primary-dark);
-                            }
-                        }
-
-                        .entry-title {
-                            color: var(--wp--preset--color--secondary-light);
-                            font-size: var(--wp--preset--font-size--medium);
-                            font-weight: 800;
-                            letter-spacing: -0.96px;
-                            line-height: 1.2;
-                        }
-
-                        .entry-meta {
-                            color: var(--wp--preset--color--secondary-dark);
-                            justify-content: flex-end;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .slider-especiais {
-        .wp-block-newspack-blocks-homepage-articles {
-            &.show-image.image-aligntop {
-                article {
-                    align-items: center;
-                    display: flex;
-                    flex-direction: column;
-
-                    .post-thumbnail {
-                        border-radius: 50%;
-                        border: 2px solid var(--wp--preset--color--primary-dark);
-                        outline: 2px solid var(--wp--preset--color--highlight-pure);
-                        width: 105px;
-                        height: 105px;
-
-                        img {
-                            height: 100%;
-                            left: inherit;
-                            max-width: inherit;
-                            object-fit: cover;
-                            position: relative;
-                            top: inherit;
-                            transform: none;
-                            width: 100%;
-                        }
-
-                        &::before,
-                        &::after {
-                            display: none;
-                        }
-                    }
-
-                    .entry-wrapper {
-                        .entry-title {
-                            font-size: var(--wp--preset--font-size--default);
-                            font-weight: 700;
-                            letter-spacing: -0.48px;
-                            line-height: 1.2;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // Block heading <h1>, <h2>, etc...
-    .wp-block-heading {
-        margin-bottom: 15px;
-        margin-top: 0;
-    }
-}
-
-.home {
-    .index-wrapper {
-        padding-top: 30px;
-
-        // Remove margin-bottom of the all .wp-block-columns on Home
-        .wp-block-columns {
-            margin-bottom: 0;
-        }
-    }
-
-    .wp-block-newspack-blocks-homepage-articles {
         &.destaque-principal {
             border-radius: 8px;
-            margin-bottom: 30px;
+            margin-bottom: mixins.size(30);
             overflow: hidden;
+
+            @include mixins.mobile {
+                margin-bottom: 0;
+            }
 
             article {
                 aspect-ratio: 16 / 9;
+                background-color: var(--wp--preset--color--primary-pure);
                 display: block;
                 position: relative;
                 
@@ -405,7 +228,9 @@
                     z-index: 2;
 
                     @include mixins.mobile {
-                        padding: mixins.size(20);
+                        gap: mixins.size(15);
+                        justify-content: flex-end;
+                        padding: mixins.size(30) mixins.size(20);
                     }
 
                     p {
@@ -419,6 +244,7 @@
                     }
 
                     h2 {
+                        color: var(--wp--preset--color--secondary-light);
                         font-size: var(--wp--preset--font-size--medium);
                         font-weight: 800;
                         line-height: 1.2;
@@ -426,5 +252,68 @@
                 }
             }
         }
+
+        &.destaque-pequeno-sem-imagem {
+            background-color: var(--wp--preset--color--primary-pure);
+            border-radius: 8px;
+            color: var(--wp--preset--color--primary-light);
+            margin-bottom: mixins.size(30);
+            overflow: hidden;
+            padding: variables.$s_medium;
+
+            @include mixins.tablet {
+                padding: variables.$s_small;
+            }
+
+            article {
+                .entry-wrapper {
+                    .cat-links {
+                        margin-bottom: variables.$s_small;
+                    }
+                }
+
+                .entry-title {
+                    color: var(--wp--preset--color--secondary-light);
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &.posts-sidebar {
+            article {
+                align-items: center;
+
+                .post-thumbnail {
+                    max-width: mixins.size(110);
+                    overflow: hidden;
+                }
+
+                .entry-wrapper {
+                    @include mixins.mobile {
+                        flex-basis: 100%;
+                    }
+
+                    .entry-title {
+                        a {
+                            color: var(--wp--preset--color--primary-pure);
+                            font-size: var(--wp--preset--font-size--small);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Section Especiais
+    .sessao-especiais {
+        h2 {
+            font-family: "MidiaNinja", sans-serif;
+        }
+    }
+
+    // Block heading <h1>, <h2>, etc...
+    .wp-block-heading {
+        margin-bottom: 15px;
+        margin-top: 0;
     }
 }

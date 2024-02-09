@@ -1,68 +1,74 @@
 .base-menu-component {
-    ul {
-        display: flex;
-        list-style: none;
+	ul {
+		display: flex;
+		list-style: none;
 
-        li {
-            font-size: size(16);
+		li {
+			font-size: size(16);
 
-            &:not(:last-child) {
-                margin-right: 30px;
-            }
+			&:not(:last-child) {
+				margin-right: 30px;
+			}
 
-            &:hover {
-                position: relative;
+			&:hover {
+				position: relative;
 
-                .sub-menu {
-                    min-width: 300px;
-                    display: block;
-                    position: absolute;
-                    padding-top: 10px;
-                    padding-bottom: 10px;
-                    padding-left: 10px;
-                    border-left: 1px solid white;
+				.sub-menu {
+					min-width: 300px;
+					display: block;
+					position: absolute;
+					padding-top: 10px;
+					padding-bottom: 10px;
+					padding-left: 10px;
+					border-left: 1px solid white;
 
-                    @include tablet{
-                        position: relative;
-                    }
-                }
-            }
+					@include tablet {
+						position: relative;
+					}
+				}
+			}
 
-            ul.sub-menu {
-                @include desktop {
-                    display: none;
-                }
+			ul.sub-menu {
+				@include desktop {
+					display: none;
+				}
 
-                @media (max-width: 1024px) {
-                    display: block;
-                    padding-top: 10px;
-                    padding-bottom: 10px;
-                    padding-left: 10px;
-                    border-left: 1px solid white;
-                    margin-bottom: 0;
+				@media (max-width: 1024px) {
+					display: block;
+					padding-top: 10px;
+					padding-bottom: 10px;
+					padding-left: 10px;
+					border-left: 1px solid white;
+					margin-bottom: 0;
 
-                    li {
-                        font-size: size(20);
-                        line-height: 2;
-                    }
-                }
-            }
+					li {
+						font-size: size(20);
+						line-height: 2;
+					}
+				}
+			}
 
-            a {
-                color: white;
-				font-size: size(16);
-                transition: color .2s ease;
+			a {
+				transition: color 0.2s ease;
+				text-decoration: none;
+				color: var(--Primary-dark, var(--DARK, #111));
+				font-family: "Manrope";
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 800;
+				line-height: 150%; /* 24px */
+				letter-spacing: -0.48px;
 
-                &:hover {
-                    color: var(--c-primary);
-                    text-decoration: none;
-                }
-            }
+				&:hover {
+					color: var(--c-primary);
+					text-decoration: none;
+				}
+			}
 
-            i {
-                font-size: 15px;
-                margin-left: 10px;
-            }
-        }
-    }
+			i {
+				font-size: 15px;
+				margin-left: 10px;
+			}
+		}
+	}
 }

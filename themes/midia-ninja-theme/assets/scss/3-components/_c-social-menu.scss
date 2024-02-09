@@ -1,24 +1,27 @@
 .social-menu {
-    align-items: center;
-    display: flex;
-    margin-left: 0;
-    margin-right: 30px;
+	grid-column: 1;
+	align-items: center;
+	display: flex;
+	margin-left: 0;
+	margin-right: 30px;
 
-    @media (max-width: $tablet-width){
-        margin-right: 0;
-    }
+	@media (max-width: $tablet-width) {
+		margin-right: 0;
+	}
 
-    .social-icon {
-        padding: 5px;
-        margin: 3px;
+	.social-icon {
+		padding: 5px;
+		margin: 3px;
 
-        a {
+		a {
 			color: inherit;
-            svg {
-                path, circle {
-                    fill: currentColor;
-                }
-            }
-        }
-    }
+			svg {
+				width: 24px;
+				path,
+				circle {
+					fill: currentColor;
+				}
+			}
+		}
+	}
 }

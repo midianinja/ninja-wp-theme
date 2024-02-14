@@ -28,6 +28,7 @@ if ( is_plugin_active( 'tutor/tutor.php' ) ) {
 }
 
 require __DIR__ . '/library/supports.php';
+require __DIR__ . '/library/blocks/index.php';
 require __DIR__ . '/library/sidebars.php';
 require __DIR__ . '/library/menus.php';
 require __DIR__ . '/library/assets.php';

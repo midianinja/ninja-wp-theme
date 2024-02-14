@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "ninja/sample-block",
+  "version": "0.1.0",
+  "title": "Bloco Ninja de exemplo",
+  "category": "text",
+  "icon": "smiley",
+  "description": "Um bloco de exemplo para iniciar o desenvolvimento de blocos personalizados.",
+  "attributes": {
+    "message": {
+      "type": "string",
+      "source": "text",
+      "selector": "div"
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "textdomain": "ninja",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

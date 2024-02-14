@@ -1,0 +1,19 @@
+{
+	"name": "ninja",
+	"version": "0.1.0",
+	"description": "Example block scaffolded with Create Block tool.",
+	"author": "The WordPress Contributors",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"start": "wp-scripts start --webpack-src-dir=src/ --output-path=build/",
+		"build": "wp-scripts build --webpack-src-dir=src/ --output-path=build/",
+		"start:static": "wp-scripts start --webpack-src-dir=src/sample-block --output-path=build/sample-block",
+		"build:static": "wp-scripts build --webpack-src-dir=src/sample-block --output-path=build/sample-block",
+		"start:dynamic": "wp-scripts start --webpack-src-dir=src/dynamic --output-path=build/dynamic",
+		"build:dynamic": "wp-scripts build --webpack-src-dir=src/dynamic --output-path=build/dynamic"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.2.0"
+	}
+}

@@ -30,7 +30,14 @@ services:
       dockerfile: ./compose/local/watcher/Dockerfile
     volumes:
       - ./themes/midia-ninja-theme:/app
-  
+
+  watcher-blocks:
+    build:
+      context: .
+      dockerfile: ./compose/local/watcher/blocks/Dockerfile
+    volumes:
+      - ./themes/midia-ninja-theme/library/blocks:/app
+
   watcher-plugin:
     build:
       context: .

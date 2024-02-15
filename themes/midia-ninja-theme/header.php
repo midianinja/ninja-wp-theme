@@ -43,6 +43,8 @@
                         <?php endif; ?>
                     </div>
 
+                    <div class="menu-hamburguer"></div>
+                    
                     <div class="search-component">
                         <?php get_search_form(); ?>
                     </div><!-- .search-component -->

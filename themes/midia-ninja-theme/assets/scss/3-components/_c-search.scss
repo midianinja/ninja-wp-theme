@@ -1,8 +1,4 @@
 .search-component {
-	@include mobile {
-		display: none;
-	}
-
 	form {
 		div {
 			display: flex;

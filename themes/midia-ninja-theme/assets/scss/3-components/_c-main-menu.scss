@@ -5,16 +5,20 @@
 
 		li {
 			font-size: size(16);
+			min-width: fit-content;
 
 			&:not(:last-child) {
-				margin-right: 30px;
+				margin-right: 16px;
+
+				@media (min-width: $tablet-width) {
+					margin-right: 32px;
+				}
 			}
 
 			&:hover {
 				position: relative;
 
 				.sub-menu {
-					min-width: 300px;
 					display: block;
 					position: absolute;
 					padding-top: 10px;
@@ -29,12 +33,9 @@
 			}
 
 			ul.sub-menu {
-				@include desktop {
-					display: none;
-				}
+				display: none;
 
 				@media (max-width: 1024px) {
-					display: block;
 					padding-top: 10px;
 					padding-bottom: 10px;
 					padding-left: 10px;

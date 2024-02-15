@@ -1,12 +1,15 @@
 .social-menu {
-	grid-column: 1;
+	display: none;
+	grid-area: 1 / 1;
 	align-items: center;
-	display: flex;
 	margin-left: 0;
-	margin-right: 30px;
 
 	@media (max-width: $tablet-width) {
 		margin-right: 0;
+	}
+
+	@media (min-width: $tablet-width) {
+		display: flex;
 	}
 
 	.social-icon {

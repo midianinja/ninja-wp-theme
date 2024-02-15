@@ -105,6 +105,8 @@ header {
 			grid-row: 2;
 			display: flex;
 			margin-top: 6px;
+			width: 857px;
+			justify-content: center;
 
 			@media (max-width: $desktop-width) {
 				display: none;
@@ -133,14 +135,14 @@ header {
 					}
 				}
 			}
-			.primary-menu {
-				margin-right: 50px;
 
+			.primary-menu {
 				.fa,
 				.fas {
 					color: var(--c-gray--darker) !important;
 					margin-right: 0;
 					width: auto;
+					display: none;
 				}
 
 				@media (max-width: $desktop-width) {
@@ -167,8 +169,6 @@ header {
 						}
 
 						&.menu-item-has-children {
-							padding-right: 15px;
-
 							@media (min-width: 1025px) and (max-width: 1199px) {
 								padding-right: 0;
 							}

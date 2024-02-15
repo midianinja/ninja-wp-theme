@@ -58,6 +58,7 @@
 				font-weight: 800;
 				line-height: 150%; /* 24px */
 				letter-spacing: -0.48px;
+				text-transform: capitalize;
 
 				&:hover {
 					color: var(--c-primary);

@@ -1,47 +1,47 @@
 .search-component {
-    @include mobile {
-        display: none;
-    }
+	@include mobile {
+		display: none;
+	}
 
-    form {
-        div {
-            display: flex;
-            justify-content: flex-end;
+	form {
+		div {
+			display: flex;
+			justify-content: flex-end;
 
-            .screen-reader-text {
-                display: none;
-            }
+			.screen-reader-text {
+				display: none;
+			}
 
-            input[type="submit"] {
-                background-color: transparent;
-                background-image: url($p_theme_assets + '/images/search-icon.svg');
-                background-position: 9px center;
-                background-repeat: no-repeat;
-                background-size: 65%;
-                border-radius: 50%;
-                border: 0;
-                height: 35px;
-                text-indent: -9999px;
-                width: 35px;
-            }
+			input[type="submit"] {
+				background-color: transparent;
+				background-image: url($p_theme_assets+"/images/search-icon.svg");
+				background-position: 9px center;
+				background-repeat: no-repeat;
+				background-size: 65%;
+				border-radius: 50%;
+				border: 0;
+				height: 24px;
+				text-indent: -9999px;
+				width: 24px;
+			}
 
-            input[type="text"] {
-                background-color: transparent;
-                border: 0;
-                margin-right: -35px;
-                padding: 5px 45px 5px 15px;
-                transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
-                width: 120px;
+			input[type="text"] {
+				background-color: transparent;
+				border: 0;
+				margin-right: -35px;
+				padding: 5px 45px 5px 15px;
+				transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+				width: 120px;
 
-                &.open-input {
+				&.open-input {
 					border: 1px solid black;
-                    width: 100%;
-                }
+					width: 100%;
+				}
 
-                &:focus {
-                    outline: 0;
-                }
-            }
-        }
-    }
+				&:focus {
+					outline: 0;
+				}
+			}
+		}
+	}
 }

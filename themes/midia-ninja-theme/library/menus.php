@@ -12,6 +12,7 @@ function custom_menus()
     register_nav_menu('footer-menu-second', __('Menu de Rodapé 2', 'base-textdomain'));
     register_nav_menu('footer-menu-third', __('Menu de Rodapé 3', 'base-textdomain'));
     register_nav_menu('footer-menu-fourth', __('Menu de Rodapé 4', 'base-textdomain'));
+    register_nav_menu('hamburguer-menu', __('Menu Hamburguer', 'base-textdomain'));
 }
 
 add_action('init', 'jaci\\custom_menus');

@@ -42,8 +42,26 @@
                             </div><!-- .tutor-header-profile-menu -->
                         <?php endif; ?>
                     </div>
-
-                    <div class="menu-hamburguer"></div>
+                    
+                    <section id="hamburguer-button" class="hamburguer">
+                         <div class="container nav-container">
+                            <input class="checkbox" type="checkbox" name="" id="" />
+                            
+                            <div class="hamburger-lines">
+                                <span class="line line1"></span>
+                                <span class="line line2"></span>
+                                <span class="line line3"></span>
+                            </div>  
+                        
+                            <div class="menu-items hide">
+                                <?= wp_nav_menu(['theme_location' => 'hamburguer-menu', 'container' => 'nav']) ?>  
+                            </div>
+                        </div>
+                            
+                        
+                    </section>
+                    
+                    
                     
                     <div class="search-component">
                         <?php get_search_form(); ?>

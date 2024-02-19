@@ -367,3 +367,7 @@ function get_term_by_slug( $term_slug ) {
 
     return $term_object;
 }
+
+function get_the_time_ago() {
+    return ( get_the_time( 'U' ) >= strtotime( '-1 week' ) ) ? sprintf( esc_html__( '%s ago', 'ninja' ), human_time_diff( get_the_time ( 'U' ), current_time( 'timestamp' ) ) ) : get_the_date();
+}

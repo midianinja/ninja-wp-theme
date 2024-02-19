@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ninja/latest-vertical-posts",
+	"version": "0.1.0",
+	"title": "Últimos posts (Vertical)",
+	"category": "text",
+	"icon": "excerpt-view",
+	"description": "Exibe os últimos posts em formato vertical e com slider.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"blockId": {
+			"type": "string"
+		},
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"postsToShow": {
+			"type": "number",
+			"default": 5
+		},
+		"heading": {
+			"type": "string"
+		},
+		"showHeading": {
+			"type": "boolean"
+		},
+		"showTaxonomy": {
+			"type": "string",
+			"default": "category"
+		},
+		"postsBySlide": {
+			"type": "number",
+			"default": 3
+		},
+		"order": {
+			"type": "string",
+			"default": "desc"
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "date"
+		}
+	},
+	"textdomain": "ninja",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

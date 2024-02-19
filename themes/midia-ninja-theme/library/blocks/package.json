@@ -6,7 +6,7 @@
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
-		"start": "wp-scripts start --webpack-src-dir=src/ --output-path=build/",
+		"start": "wp-scripts start --webpack-src-dir=src/ --output-path=build/ --stats-error-details",
 		"build": "wp-scripts build --webpack-src-dir=src/ --output-path=build/",
 		"start:static": "wp-scripts start --webpack-src-dir=src/sample-block --output-path=build/sample-block",
 		"build:static": "wp-scripts build --webpack-src-dir=src/sample-block --output-path=build/sample-block",
@@ -15,5 +15,8 @@
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^27.2.0"
+	},
+	"dependencies": {
+		"slick-carousel": "^1.8.1"
 	}
 }

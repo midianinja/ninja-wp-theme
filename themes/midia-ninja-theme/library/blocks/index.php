@@ -2,6 +2,8 @@
 
 namespace Ninja;
 
+require __DIR__ . '/includes/api.php';
+
 function blocks_init() {
 	if ( ! function_exists( 'register_block_type' ) ) {
 		return;
@@ -11,7 +13,10 @@ function blocks_init() {
 		'sample-block' => null,
 		'dynamic' => [
 			'render_callback' => 'Ninja\\dynamic_block_recent_posts',
-		] 
+		],
+		'latest-vertical-posts' => [
+			'render_callback' => 'Ninja\\latest_vertical_posts_callback'
+		]
 	];
 
 	$active_blocks = apply_filters( 'ninja/active_blocks', $active_blocks );

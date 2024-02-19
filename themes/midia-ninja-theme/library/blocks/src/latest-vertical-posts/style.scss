@@ -1,0 +1,83 @@
+@import "../../node_modules/slick-carousel/slick/slick.scss";
+
+.latest-vertical-posts-block {
+}
+
+.latest-vertical-posts-block__footer {
+	position: relative;
+
+	.latest-vertical-posts-block__dots {
+		align-items: center;
+		display: flex;
+
+		.slick-dots {
+			align-items: center;
+			display: flex ;
+			gap: 8px;
+			justify-content: center;
+			margin-left: 40px;
+			padding: 0;
+			width: 140px;
+
+			li {
+				background-color: #111111;
+				border-radius: 8px;
+				list-style: none;
+				transition: all .2s ease-in-out;
+				height: 8px;
+				width: 8px;
+
+				&:hover {
+					opacity: .7;
+				}
+
+				button {
+					background-color: transparent;
+					border-style: unset;
+					text-indent: -9999px;
+				}
+
+				&.slick-active {
+					cursor: default;
+					pointer-events: none;
+					opacity: .5;
+				}
+			}
+		}
+	}
+
+	.latest-vertical-posts-block__arrows {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		margin-top: -36px;
+		width: 220px;
+
+		.slick-arrow {
+			background-color: #848484;
+			background-image: url("./images/slider-arrow.svg");
+			background-position: center;
+			background-repeat: no-repeat;
+			border-radius: 30px;
+			border-style: unset;
+			height: 30px;
+			padding: 0;
+			text-indent: -9999px;
+			transition: all .2s ease-in-out;
+			width: 30px;
+
+			&.slick-next {
+				transform: rotate(180deg);
+			}
+
+			&.slick-disabled {
+				background-color: #FFFFFF;
+				pointer-events: none;
+			}
+
+			&:hover {
+				background-color: #84848470;
+			}
+		}
+	}
+}

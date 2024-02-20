@@ -26,14 +26,22 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		className: 'latest-vertical-posts-block'
 	} )
 
-	const { blockId, heading, order, orderBy, postsBySlide, postsToShow, postType, showHeading, showTaxonomy } = attributes
+	const { 
+		blockId,
+		heading,
+		order,
+		orderBy,
+		postsBySlide,
+		postsToShow,
+		postType,
+		showAuthor,
+		showTaxonomy,
+		showThumbnail,
+		thumbnailFormat
+	} = attributes
 
 	const onChangeHeading = ( newHeading ) => {
 		setAttributes( { heading: newHeading } )
-	}
-
-	const toggleHeading = () => {
-		setAttributes( { showHeading: ! showHeading } )
 	}
 
 	const onChangeTaxonomy = ( newTaxonomy ) => {
@@ -81,40 +89,16 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					initialOpen={ true }
 				>
 					<PanelRow>
-						<ToggleControl
-							label={ __(
-								'Show a heading before',
+						<TextControl
+							label={ __( 'Heading', 'ninja' ) }
+							value={ heading }
+							onChange={ onChangeHeading }
+							help={ __(
+								'The block title. Leave blank to not display',
 								'ninja'
 							) }
-							help={
-								showHeading
-									? __(
-											'Heading displayed',
-											'ninja'
-										)
-									: __(
-											'No Heading displayed',
-											'ninja'
-										)
-							}
-							checked={ showHeading }
-							onChange={ toggleHeading }
 						/>
 					</PanelRow>
-
-					{ showHeading && (
-						<PanelRow>
-							<TextControl
-								label={ __( 'Heading', 'ninja' ) }
-								value={ heading }
-								onChange={ onChangeHeading }
-								help={ __(
-									'Text to display above the alert box',
-									'ninja'
-								) }
-							/>
-						</PanelRow>
-					) }
 
 					<QueryControls
 						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
@@ -146,8 +130,34 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					</PanelRow>
 
 					<PanelRow>
+						<ToggleControl
+							label={ __( 'Show the post thumbnail?', 'ninja' ) }
+							checked={ showThumbnail }
+							onChange={ () => { setAttributes( { showThumbnail: ! showThumbnail } ) } }
+						/>
+					</PanelRow>
+
+					{ showThumbnail && (
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Use rounded thumbnail?', 'ninja' ) }
+								checked={ thumbnailFormat }
+								onChange={ () => { setAttributes( { thumbnailFormat: ! thumbnailFormat } ) } }
+							/>
+						</PanelRow>
+					) }
+
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Show the post author?', 'ninja' ) }
+							checked={ showAuthor }
+							onChange={ () => { setAttributes( { showAuthor: ! showAuthor } ) } }
+						/>
+					</PanelRow>
+
+					<PanelRow>
 						<SelectControl
-							label={ __( 'Exibir taxonomia', 'ninja' ) }
+							label={ __( 'Taxonomy to display', 'ninja' ) }
 							value={showTaxonomy}
 							options={taxonomies.map(taxonomy => ({
 								label: taxonomy.label,
@@ -173,5 +183,5 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 				</Disabled>
 			</div>
 		</>
-	);
+	)
 }

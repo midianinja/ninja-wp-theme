@@ -320,24 +320,10 @@ class Assets {
 				},
             ],
 
-            'archive' => [
-                'file' => '_p-archive.css',
-                'preload_callback' => function() {
+			'archive' => [
+				'file' => '_p-archive.css',
+				'preload_callback' => function() {
 					return ( is_archive() || is_home() ) ? true : false;
-				},
-            ],
-
-			'archive-editais' => [
-				'file' => '_p-archive-editais.css',
-				'preload_callback' => function() {
-					return ( is_post_type_archive( 'editais' ) || is_singular( 'editais' ) ) ? true : false;
-				},
-			],
-
-			'archive-perguntas-frequentes' => [
-				'file' => '_p-archive-perguntas-frequentes.css',
-				'preload_callback' => function() {
-					return ( is_post_type_archive( 'perguntas_frequentes' ) || is_singular( 'perguntas_frequentes' ) ) ? true : false;
 				},
 			],
 
@@ -548,48 +534,6 @@ class Assets {
 		$id = get_the_ID();
 
         $block_list = [
-            'jaci/featured-slider' => function() {
-                wp_enqueue_style(
-                    'tiny-slider',
-                    get_stylesheet_directory_uri() . '/assets/vendor/tiny-slider/tiny-slider.css',
-                    [],
-                    filemtime(get_stylesheet_directory() . '/assets/vendor/tiny-slider/tiny-slider.css'),
-                    'all'
-                );
-
-                wp_enqueue_style(
-                    'featured-slider',
-                    get_stylesheet_directory_uri() . '/dist/css/_b-featured-slider.css',
-                    ['tiny-slider'],
-                    filemtime(get_stylesheet_directory() . '/dist/css/_b-featured-slider.css'),
-                    'all'
-                );
-
-                wp_enqueue_script( 'tiny-slider', get_stylesheet_directory_uri() . '/assets/vendor/tiny-slider/tiny-slider.js', [], false, true );
-		        wp_enqueue_script( 'news-slider', get_stylesheet_directory_uri() . '/dist/js/functionalities/featured-slider.js', ['tiny-slider'], false, true );
-            },
-            
-			'jaci/embed-template' => function() {
-				wp_enqueue_style(
-					'embed-template',
-					get_stylesheet_directory_uri() . '/dist/css/_b-embed-template.css',
-					[],
-					filemtime(get_stylesheet_directory() . '/dist/css/_b-embed-template.css'),
-					'all'
-				);
-				wp_enqueue_script( 'embed-template', get_stylesheet_directory_uri() . '/dist/js/blocks/embed-template.js', [], false, true );
-			},
-			'jaci/video-gallery' => function() {
-				wp_enqueue_style(
-					'video-gallery',
-					get_stylesheet_directory_uri() . '/dist/css/_b-video-gallery.css',
-					[],
-					filemtime(get_stylesheet_directory() . '/dist/css/_b-video-gallery.css'),
-					'all'
-				);
-				wp_enqueue_script( 'video-gallery', get_stylesheet_directory_uri() . '/dist/js/blocks/video-gallery.js', [], false, true );
-				wp_enqueue_script( 'functionalities-video-gallery', get_stylesheet_directory_uri() . '/dist/js/functionalities/video-gallery.js', ['video-gallery'], false, true );
-			},
             'core/cover' => function() {
                 wp_enqueue_style(
                     'core-cover',

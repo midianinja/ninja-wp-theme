@@ -130,6 +130,22 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					</PanelRow>
 
 					<PanelRow>
+						<SelectControl
+							label={ __( 'Taxonomy to display', 'ninja' ) }
+							value={showTaxonomy}
+							options={taxonomies.map(taxonomy => ({
+								label: taxonomy.label,
+								value: taxonomy.value
+							}))}
+							onChange={ onChangeTaxonomy }
+							help={ __(
+								'Leave blank to not display any taxonomy',
+								'ninja'
+							) }
+						/>
+					</PanelRow>
+
+					<PanelRow>
 						<ToggleControl
 							label={ __( 'Show the post thumbnail?', 'ninja' ) }
 							checked={ showThumbnail }
@@ -152,22 +168,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							label={ __( 'Show the post author?', 'ninja' ) }
 							checked={ showAuthor }
 							onChange={ () => { setAttributes( { showAuthor: ! showAuthor } ) } }
-						/>
-					</PanelRow>
-
-					<PanelRow>
-						<SelectControl
-							label={ __( 'Taxonomy to display', 'ninja' ) }
-							value={showTaxonomy}
-							options={taxonomies.map(taxonomy => ({
-								label: taxonomy.label,
-								value: taxonomy.value
-							}))}
-							onChange={ onChangeTaxonomy }
-							help={ __(
-								'Leave blank to not display any taxonomy',
-								'ninja'
-							) }
 						/>
 					</PanelRow>
 				</PanelBody>

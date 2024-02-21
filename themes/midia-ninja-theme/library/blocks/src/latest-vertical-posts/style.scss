@@ -25,17 +25,18 @@
 			.post-meta {
 				align-items: center;
 				display: flex;
-				
+				gap: 5px;
+
 				&--date {
 					align-items: center;
 					display: flex;
-					gap: 10px;
+					gap: 5px;
 				}
 
 				&--terms {
 					align-items: center;
 					display: flex;
-					gap: 10px;
+					gap: 5px;
 				}
 			}
 		}

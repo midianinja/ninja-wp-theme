@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n'
+
 const { SelectControl } = wp.components
 const { useEffect, useState } = wp.element
 
@@ -17,10 +19,10 @@ export default function SelectPostType({ postType, onChangePostType }) {
 
     return (
         <SelectControl
-            label="Selecione o tipo de post (CPT):"
+            label={ __( 'Select post type', 'ninja' ) }
             value={postType}
             options={options}
             onChange={onChangePostType}
         />
-    );
+    )
 }

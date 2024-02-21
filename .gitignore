@@ -1,5 +1,6 @@
 **/dist
 **/node_modules
+themes/midia-ninja-theme/library/blocks/build/*
 wp-content/*
 wp-content/themes/*
 wp-content/plugins/*

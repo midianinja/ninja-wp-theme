@@ -367,3 +367,41 @@ function get_term_by_slug( $term_slug ) {
 
     return $term_object;
 }
+
+function get_the_time_ago() {
+    return ( get_the_time( 'U' ) >= strtotime( '-1 week' ) ) ? sprintf( esc_html__( '%s ago', 'ninja' ), human_time_diff( get_the_time ( 'U' ), current_time( 'timestamp' ) ) ) : get_the_date();
+}
+
+if ( function_exists( 'get_coauthors' ) && ! function_exists( 'get_list_coauthors' ) ) {
+    /**
+     * Get list of coauthors using Co Authors Plus plugin.
+     */
+    function get_list_coauthors() {
+        $all_authors = get_coauthors();
+
+        $output = '';
+
+        $count_authors = count( $all_authors );
+        $i = 0;
+
+        foreach ( $all_authors as $author ) {
+            $i++;
+            if ( is_a( $author, 'WP_User' ) ) {
+                $output .= '<span>' . $author->data->display_name . '</span>';
+            } else {
+                $output .= '<span>' . $author->display_name . '</span>';
+            }
+
+            if ( $i < $count_authors ) {
+                $output .= '<span class="comma">, </span>';
+            }
+        }
+
+        return $output;
+    }
+
+    /**
+     * Override the default WordPress author filter to use the list of coauthors.
+     */
+    add_filter( 'the_author', 'get_list_coauthors' );
+}

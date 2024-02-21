@@ -299,12 +299,12 @@ class Assets {
 				},
 			],
 
-            'page' => [
-                'file' => '_p-page.css',
-                'preload_callback' => function() {
-					return !is_front_page() && is_page();
+			'page' => [
+				'file' => '_p-page.css',
+				'preload_callback' => function() {
+					return ! is_front_page() && is_page();
 				},
-            ],
+			],
 
             'single' => [
                 'file' => '_p-single.css',
@@ -353,12 +353,6 @@ class Assets {
 					return is_author();
 				},
 			],
-			'projects' => [
-                'file' => '_p-projects.css',
-                'preload_callback' => function() {
-					return !is_front_page() && is_page();
-				},
-            ],
 			'anchor' => [
 				'file' => '_p-page-anchor.css',
 				'preload_callback' => function() {

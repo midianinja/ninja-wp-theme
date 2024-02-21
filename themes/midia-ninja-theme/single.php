@@ -15,7 +15,7 @@ get_header();
                     <div class="info">
                         <span class="category"><?php the_category( ', ' ); ?></span>
                     </div>
-                    <h2 class="title"><?php the_title(); ?></h2>
+                    <h1 class="title"><?php the_title(); ?></h1>
                     <time class="date" datetime="<?php echo get_the_date( 'c' ); ?>"><?php the_date(); ?></time>
                 </header>
 
@@ -30,4 +30,4 @@ get_header();
     </main>
 </div>
 
-<?php get_footer();
+<?php get_footer(); ?>

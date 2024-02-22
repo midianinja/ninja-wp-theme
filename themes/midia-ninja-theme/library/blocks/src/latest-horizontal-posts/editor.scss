@@ -1,0 +1,8 @@
+.latest-horizontal-posts-block-inspector-controls {
+	// Fixed on: https://github.com/WordPress/gutenberg/pull/41768/files
+	.components-panel__row {
+		.components-base-control {
+			width: 100%;
+		}
+	}
+}

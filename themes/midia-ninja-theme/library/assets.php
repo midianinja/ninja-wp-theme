@@ -27,7 +27,7 @@ class Assets {
 	public function initialize() {
         $this->enqueue_styles();
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_javascripts' ] );
-        add_action( 'wp_enqueue_scripts', [ $this, 'gutenberg_block_enqueues' ] );
+        add_action( 'enqueue_block_assets', [ $this, 'gutenberg_block_enqueues' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_style' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_action( 'after_setup_theme', [ $this, 'action_add_editor_styles' ] );
@@ -530,28 +530,13 @@ class Assets {
 		return add_query_arg( $query_args, 'https://fonts.googleapis.com/css2' );
 	}
 
-    public function gutenberg_block_enqueues() {
+	public function gutenberg_block_enqueues() {
 		$id = get_the_ID();
 
-        $block_list = [
-            'core/cover' => function() {
-                wp_enqueue_style(
-                    'core-cover',
-                    get_stylesheet_directory_uri() . '/dist/css/_b-cover.css',
-                    [],
-                    filemtime(get_stylesheet_directory() . '/dist/css/_b-cover.css'),
-                    'all'
-                );
-            },
-            'core/image' => function() {
-                wp_enqueue_style(
-                    'core-image',
-                    get_stylesheet_directory_uri() . '/dist/css/_b-image.css',
-                    [],
-                    filemtime(get_stylesheet_directory() . '/dist/css/_b-image.css'),
-                    'all'
-                );
-            },
+		$block_list = [
+			'ninja/latest-vertical-posts' => function() {
+				$this->format_enqueue_css( 'ninja-latest-vertical-posts', '_b-latest-vertical-posts.css' );
+			},
 
 			'core/query' => function() {
 				wp_enqueue_style(
@@ -587,13 +572,28 @@ class Assets {
 			}
 		];
 
-        // Enqueue only used blocks
-		foreach($block_list as $key => $block) {
-			if(has_block($key, $id)){
+		// Enqueue only used blocks
+		foreach ( $block_list as $key => $block ) {
+			if ( has_block( $key, $id ) ) {
 				$block();
 			}
 		}
-    }
+	}
+
+	public function format_enqueue_css( $handle, $file_name, $deps = [], $media = 'all' ) {
+		$css_file_path = get_stylesheet_directory() . '/dist/css/' . $file_name;
+		$css_version = file_exists( $css_file_path ) ? filemtime( $css_file_path ) : false;
+
+		if ( $css_version ) {
+			wp_enqueue_style(
+				$handle,
+				get_stylesheet_directory_uri() . '/dist/css/' . $file_name,
+				$deps,
+				$css_version,
+				$media
+			);
+		}
+	}
 }
 
 

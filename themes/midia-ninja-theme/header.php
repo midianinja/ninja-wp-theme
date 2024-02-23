@@ -43,9 +43,9 @@
                         <?php endif; ?>
                     </div>
                     
-                    <section id="hamburguer-button" class="hamburguer">
+                    <section class="hamburguer">
                          <div class="container nav-container">
-                            <input class="checkbox" type="checkbox" name="" id="" />
+                            <input class="checkbox" type="checkbox" name=""  />
                             
                             <div class="hamburger-lines">
                                 <span class="line line1"></span>
@@ -53,8 +53,14 @@
                                 <span class="line line3"></span>
                             </div>  
                         
-                            <div class="menu-items hide">
-                                <?= wp_nav_menu(['theme_location' => 'hamburguer-menu', 'container' => 'nav']) ?>  
+                            <div class="menu-items">
+                                <div class="search-component">
+                                  <?php get_search_form(); ?>
+                                </div>
+                                
+                                <?= wp_nav_menu(['theme_location' => 'hamburguer-menu', 'container' => 'nav']); ?>  
+                                
+                                <?php the_social_networks_menu(); ?>
                             </div>
                         </div>
                             

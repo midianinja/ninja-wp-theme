@@ -13,6 +13,23 @@
 		display: flex;
 	}
 
+	> div {
+		display: flex;
+		align-items: center;
+	}
+
+	p {
+		display: none;
+		color: var(--White, #fff);
+		text-align: center;
+		font-family: Inter;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 150%; /* 21px */
+		letter-spacing: -0.42px;
+	}
+
 	.social-icon {
 		padding: 5px;
 		margin: 3px;

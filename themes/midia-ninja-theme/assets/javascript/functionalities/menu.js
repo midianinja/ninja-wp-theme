@@ -57,6 +57,31 @@ document.addEventListener("DOMContentLoaded", function() {
     //         menu.classList.add("hide");
     //     }
     // })
+
+    const menuItens = document.querySelector(".menu-items");
+    const menuButton = document.querySelector("#burguer-checkbox");
+    const buttonMais = document.querySelector(".mais");
+
+    menuButton.addEventListener ("click", function(ev) {
+            ev.preventDefault();
+    
+            if (menuButton.classList.contains("checked")) {
+                menuButton.classList.remove("checked");
+            } else {
+                menuButton.classList.add("checked");
+            }
+        })
+
+    buttonMais.addEventListener ("click", function(ev) {
+        ev.preventDefault();
+
+        if (menuButton.classList.contains("checked")) {
+            menuButton.classList.remove("checked");
+        } else {
+            menuButton.classList.add("checked");
+        }
+    })
+
 })
 
 

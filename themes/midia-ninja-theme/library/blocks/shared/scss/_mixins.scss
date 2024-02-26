@@ -1,0 +1,92 @@
+// Breakpoints variables
+$break-huge: 1440px;
+$break-wide: 1280px;
+$break-xlarge: 1080px;
+$break-large: 960px;
+$break-medium: 782px;
+$break-mobile: 600px;
+$break-small: 480px;
+
+@mixin break-small {
+    @media (max-width: $break-small) {
+        @content;
+    }
+}
+
+@mixin break-small-up {
+    @media (min-width: #{$break-small + 1px}) {
+        @content;
+    }
+}
+
+@mixin break-mobile {
+    @media (max-width: $break-mobile) {
+        @content;
+    }
+}
+
+@mixin break-mobile-up {
+    @media (min-width: #{$break-mobile + 1px}) {
+        @content;
+    }
+}
+
+@mixin break-medium {
+    @media (max-width: $break-medium) {
+        @content;
+    }
+}
+
+@mixin break-medium-up {
+    @media (min-width: #{$break-medium + 1px}) {
+        @content;
+    }
+}
+
+@mixin break-large {
+    @media (max-width: $break-large) {
+        @content;
+    }
+}
+
+@mixin break-large-up {
+    @media (min-width: #{$break-large + 1px}) {
+        @content;
+    }
+}
+
+@mixin break-xlarge {
+    @media (max-width: $break-xlarge) {
+        @content;
+    }
+}
+
+@mixin break-xlarge-up {
+    @media (min-width: #{$break-xlarge + 1px}) {
+        @content;
+    }
+}
+
+@mixin break-wide {
+    @media (max-width: $break-wide) {
+        @content;
+    }
+}
+
+@mixin break-wide-up {
+    @media (min-width: #{$break-wide + 1px}) {
+        @content;
+    }
+}
+
+@mixin break-huge {
+    @media (max-width: $break-huge) {
+        @content;
+    }
+}
+
+@mixin break-huge-up {
+    @media (min-width: #{$break-huge + 1px}) {
+        @content;
+    }
+}

@@ -11,7 +11,6 @@ import {
 	__experimentalNumberControl as NumberControl,
 	Disabled,
 	TextControl,
-	ToggleControl,
 	PanelBody,
 	PanelRow,
 	QueryControls,
@@ -28,17 +27,21 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 	const { 
 		blockId,
+		cardFormat,
+		contentPosition,
+		description,
 		heading,
 		order,
 		orderBy,
-		postsBySlide,
 		postsToShow,
 		postType,
-		showAuthor,
 		showTaxonomy,
-		showThumbnail,
-		thumbnailFormat
+		slidesToShow,
 	} = attributes
+
+	const onChangeContentPosition = ( value ) => {
+		setAttributes( { contentPosition: value } )
+	}
 
 	const onChangeHeading = ( newHeading ) => {
 		setAttributes( { heading: newHeading } )
@@ -100,6 +103,18 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						/>
 					</PanelRow>
 
+					<PanelRow>
+						<TextControl
+							label={ __( 'Description', 'ninja' ) }
+							value={ description }
+							onChange={ ( value ) => { setAttributes( { description: value } ) } }
+							help={ __(
+								'The block description. Leave blank to not display',
+								'ninja'
+							) }
+						/>
+					</PanelRow>
+
 					<QueryControls
 						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
 						numberOfItems={ postsToShow }
@@ -116,12 +131,12 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 					<PanelRow>
 						<NumberControl
-							label={ __( 'Posts by slide', 'ninja' ) }
+							label={ __( 'Slides to show', 'ninja' ) }
 							max={ 5 }
-							min={ 1 }
-							onChange={ ( value ) => { setAttributes( { postsBySlide: value } ) } }
+							min={ 3 }
+							onChange={ ( value ) => { setAttributes( { slidesToShow: value } ) } }
 							step={ 1 }
-							value={ postsBySlide }
+							value={ slidesToShow }
 						/>
 					</PanelRow>
 
@@ -131,43 +146,59 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 					<PanelRow>
 						<SelectControl
-							label={ __( 'Taxonomy to display', 'ninja' ) }
-							value={showTaxonomy}
-							options={taxonomies.map(taxonomy => ({
-								label: taxonomy.label,
-								value: taxonomy.value
-							}))}
-							onChange={ onChangeTaxonomy }
-							help={ __(
-								'Leave blank to not display any taxonomy',
-								'ninja'
-							) }
+							label={ __( 'Card format', 'ninja' ) }
+							value={cardFormat}
+							options={[
+								{
+									label: __( 'Collection', 'ninja' ),
+									value: "collection"
+								},
+								{
+									label: __( 'Specials', 'ninja' ),
+									value: "specials"
+								},
+								{
+									label: __( 'Videos', 'ninja' ),
+									value: "videos"
+								}
+							]}
+							onChange={ (value) => { setAttributes( { cardFormat: value } ) } }
 						/>
 					</PanelRow>
 
-					<PanelRow>
-						<ToggleControl
-							label={ __( 'Show the post thumbnail?', 'ninja' ) }
-							checked={ showThumbnail }
-							onChange={ () => { setAttributes( { showThumbnail: ! showThumbnail } ) } }
-						/>
-					</PanelRow>
-
-					{ showThumbnail && (
+					{ ( cardFormat != 'specials' ) && (
 						<PanelRow>
-							<ToggleControl
-								label={ __( 'Use rounded thumbnail?', 'ninja' ) }
-								checked={ thumbnailFormat }
-								onChange={ () => { setAttributes( { thumbnailFormat: ! thumbnailFormat } ) } }
+							<SelectControl
+								label={ __( 'Taxonomy to display', 'ninja' ) }
+								value={showTaxonomy}
+								options={taxonomies.map(taxonomy => ({
+									label: taxonomy.label,
+									value: taxonomy.value
+								}))}
+								onChange={ onChangeTaxonomy }
+								help={ __(
+									'Leave blank to not display any taxonomy',
+									'ninja'
+								) }
 							/>
 						</PanelRow>
 					) }
 
 					<PanelRow>
-						<ToggleControl
-							label={ __( 'Show the post author?', 'ninja' ) }
-							checked={ showAuthor }
-							onChange={ () => { setAttributes( { showAuthor: ! showAuthor } ) } }
+						<SelectControl
+							label={ __( 'Content position', 'ninja' ) }
+							value={contentPosition}
+							options={[
+								{
+									label: __( 'Left', 'ninja' ),
+									value: "left"
+								},
+								{
+									label: __( 'Right', 'ninja' ),
+									value: "right"
+								}
+							]}
+							onChange={ onChangeContentPosition }
 						/>
 					</PanelRow>
 				</PanelBody>

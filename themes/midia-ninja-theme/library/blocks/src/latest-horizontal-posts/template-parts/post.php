@@ -1,30 +1,20 @@
 <?php
 $show_taxonomy = isset( $args['attributes']['showTaxonomy'] ) ? $args['attributes']['showTaxonomy'] : false;
-$show_thumbnail = isset( $args['attributes']['showThumbnail'] ) ? $args['attributes']['showThumbnail'] : false;
-$show_author = isset( $args['attributes']['showAuthor'] ) ? $args['attributes']['showAuthor'] : false;
 ?>
 
 <a href="<?php echo get_permalink();?>">
     <div class="post">
-        <?php if ( $show_thumbnail ) : ?>
-            <div class="post-thumbnail">
-                <div class="post-thumbnail--image">
-                    <?php if ( has_post_thumbnail() ) : ?>
-                        <?php echo get_the_post_thumbnail( $args['post']->ID, 'thumbnail' ); ?>
-                    <?php else : ?>
-                        <img src="https://via.placeholder.com/100">
-                    <?php endif; ?>
-                </div>
+        <div class="post-thumbnail">
+            <div class="post-thumbnail--image">
+                <?php if ( has_post_thumbnail() ) : ?>
+                    <?php echo get_the_post_thumbnail( $args['post']->ID, 'thumbnail' ); ?>
+                <?php else : ?>
+                    <img src="https://via.placeholder.com/100">
+                <?php endif; ?>
             </div>
-        <?php endif; ?>
+        </div>
         <div class="post-content">
             <h2 class="post-title"><?php echo apply_filters( 'the_title', $args['post']->post_title ); ?></h2>
-
-            <?php if ( $show_author ) : ?>
-                <div class="post-author">
-                    <?php echo get_the_author(); ?>
-                </div>
-            <?php endif; ?>
 
             <div class="post-meta">
                 <span class="post-meta--date"><?php echo get_the_time_ago(); ?></span>

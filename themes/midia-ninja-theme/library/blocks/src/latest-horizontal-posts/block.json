@@ -15,6 +15,17 @@
 		"blockId": {
 			"type": "string"
 		},
+		"contentPosition": {
+			"type": "string",
+			"default": "left"
+		},
+		"cardFormat": {
+			"type": "string",
+			"default": "specials"
+		},
+		"description": {
+			"type": "string"
+		},
 		"postType": {
 			"type": "string",
 			"default": "post"
@@ -26,23 +37,11 @@
 		"heading": {
 			"type": "string"
 		},
-		"showAuthor": {
-			"type": "boolean",
-			"default": true
-		},
-		"showThumbnail": {
-			"type": "boolean",
-			"default": true
-		},
-		"thumbnailFormat": {
-			"type": "boolean",
-			"default": false
-		},
 		"showTaxonomy": {
 			"type": "string",
 			"default": "category"
 		},
-		"postsBySlide": {
+		"slidesToShow": {
 			"type": "number",
 			"default": 3
 		},

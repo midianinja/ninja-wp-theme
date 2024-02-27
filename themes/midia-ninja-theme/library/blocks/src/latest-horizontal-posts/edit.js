@@ -27,15 +27,18 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 	const { 
 		blockId,
-		cardFormat,
+		blockModel,
 		contentPosition,
 		description,
+		flickrAPIKey,
+		flickrByType,
+		flickrUserId,
+		flickrAlbumId,
 		heading,
 		order,
 		orderBy,
 		postsToShow,
 		postType,
-		showTaxonomy,
 		slidesToShow,
 	} = attributes
 
@@ -61,18 +64,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 			setAttributes( { blockId: clientId } )
 		}
 	})
-
-	// Get taxonomies from the post type selected
-	const [taxonomies, setTaxonomies] = useState([])
-
-	useEffect(() => {
-		if(postType) {
-			apiFetch({ path: `/ninja/v1/taxonomias/${postType}` })
-				.then((taxonomies) => {
-					setTaxonomies(taxonomies)
-				})
-		}
-	}, [postType])
 
 	// Init query args
 	const [ query ] = useState( {
@@ -115,6 +106,82 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						/>
 					</PanelRow>
 
+					<PanelRow>
+						<SelectControl
+							label={ __( 'Block model', 'ninja' ) }
+							value={blockModel}
+							options={[
+								{
+									label: __( 'Collection', 'ninja' ),
+									value: "collection"
+								},
+								{
+									label: __( 'Specials', 'ninja' ),
+									value: "specials"
+								},
+								{
+									label: __( 'Videos', 'ninja' ),
+									value: "videos"
+								}
+							]}
+							onChange={ ( value ) => { setAttributes( { blockModel: value } ) } }
+						/>
+					</PanelRow>
+
+					{ ( blockModel == 'collection' ) && (
+						<>
+							<PanelRow>
+								<TextControl
+									label={ __( 'Flickr API Key', 'ninja' ) }
+									value={ flickrAPIKey }
+									onChange={ ( value ) => { setAttributes( { flickrAPIKey: value } ) } }
+								/>
+							</PanelRow>
+
+							<PanelRow>
+								<SelectControl
+									label={ __( 'Type of the content', 'ninja' ) }
+									value={ flickrByType }
+									options={[
+										{
+											label: __( 'Images by user', 'ninja' ),
+											value: "user"
+										},
+										{
+											label: __( 'Images by album', 'ninja' ),
+											value: "album"
+										}
+									]}
+									onChange={ ( value ) => {
+										setAttributes( { flickrByType: value } )
+									} }
+								/>
+							</PanelRow>
+
+							<PanelRow>
+								{ ( flickrByType == 'album' ) && (
+									<TextControl
+										label={ __( 'Album ID', 'ninja' ) }
+										value={ flickrAlbumId }
+										onChange={ ( value ) => {
+											setAttributes( { flickrAlbumId: value } )
+										} }
+									/>
+								) }
+
+								{ ( flickrByType == 'user' ) && (
+									<TextControl
+										label={ __( 'User ID', 'ninja' ) }
+										value={ flickrUserId }
+										onChange={ ( value ) => {
+											setAttributes( { flickrUserId: value } )
+										} }
+									/>
+								) }
+							</PanelRow>
+						</>
+					) }
+
 					<QueryControls
 						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
 						numberOfItems={ postsToShow }
@@ -143,46 +210,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					<PanelRow>
 						<SelectPostType postType={postType} onChangePostType={onChangePostType} />
 					</PanelRow>
-
-					<PanelRow>
-						<SelectControl
-							label={ __( 'Card format', 'ninja' ) }
-							value={cardFormat}
-							options={[
-								{
-									label: __( 'Collection', 'ninja' ),
-									value: "collection"
-								},
-								{
-									label: __( 'Specials', 'ninja' ),
-									value: "specials"
-								},
-								{
-									label: __( 'Videos', 'ninja' ),
-									value: "videos"
-								}
-							]}
-							onChange={ (value) => { setAttributes( { cardFormat: value } ) } }
-						/>
-					</PanelRow>
-
-					{ ( cardFormat != 'specials' ) && (
-						<PanelRow>
-							<SelectControl
-								label={ __( 'Taxonomy to display', 'ninja' ) }
-								value={showTaxonomy}
-								options={taxonomies.map(taxonomy => ({
-									label: taxonomy.label,
-									value: taxonomy.value
-								}))}
-								onChange={ onChangeTaxonomy }
-								help={ __(
-									'Leave blank to not display any taxonomy',
-									'ninja'
-								) }
-							/>
-						</PanelRow>
-					) }
 
 					<PanelRow>
 						<SelectControl

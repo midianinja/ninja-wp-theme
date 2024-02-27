@@ -66,12 +66,12 @@
 
 		&::before {
 			background: linear-gradient(-270deg, #262626 44.44%, rgba(38, 38, 38, 0.00) 90%);
-			left: -15px;
+			left: -30px;
 		}
 
 		&::after {
 			background: linear-gradient(270deg, #262626 44.44%, rgba(38, 38, 38, 0.00) 90%);
-			right: -15px;
+			right: -30px;
 		}
 
 		.slide {
@@ -114,6 +114,7 @@
 			max-width: 240px;
 			overflow: hidden;
 			position: relative;
+			transition: all 0.3s ease-in-out;
 
 			&::before {
 				content: "";
@@ -133,6 +134,37 @@
 				background-color: transparent;
 			}
 
+			&__info {
+				background: rgb(0,0,0);
+				background: linear-gradient(0deg, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0) 100%);
+				bottom: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				height:100%;
+				left: 0;
+				padding: 15px;
+				position: absolute;
+				width: 100%;
+				z-index: 2;
+
+				h2 {
+					color: #F5F5F5;
+					font-size: 1.2rem;
+					margin-bottom: .8rem;
+				}
+
+				.tag,
+				.date {
+					background-color: #fbf36d;
+					color: #000000;
+					display: table;
+					font-size: 1rem;
+					font-weight: 600;
+					padding: 2px 6px;
+				}
+			}
+
 			img {
 				border-radius: 8px;
 				height: 100%;
@@ -141,12 +173,23 @@
 				position: absolute;
 				top:  50%;
 				transform: translate(-50%, -50%);
+				transition: all 0.3s ease-in-out;
 				width: 100%;
-				
+
 				&:focus-visible {
 					border: 0;
 					outline: none;
 					background-color: transparent;
+				}
+			}
+		}
+		
+		&:hover {
+			.post-thumbnail {
+				box-shadow: rgb(0, 0, 0) 0px 15px 15px -5px;
+				
+				img {
+					opacity: .8;
 				}
 			}
 		}

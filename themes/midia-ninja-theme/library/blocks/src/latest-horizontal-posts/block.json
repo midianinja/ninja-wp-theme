@@ -15,15 +15,28 @@
 		"blockId": {
 			"type": "string"
 		},
+		"blockModel": {
+			"type": "string",
+			"default": "specials"
+		},
 		"contentPosition": {
 			"type": "string",
 			"default": "left"
 		},
-		"cardFormat": {
-			"type": "string",
-			"default": "specials"
-		},
 		"description": {
+			"type": "string"
+		},
+		"flickrAPIKey": {
+			"type": "string"
+		},
+		"flickrByType": {
+			"type": "string",
+			"default": "user"
+		},
+		"flickrAlbumId": {
+			"type": "string"
+		},
+		"flickrUserId": {
 			"type": "string"
 		},
 		"postType": {
@@ -36,10 +49,6 @@
 		},
 		"heading": {
 			"type": "string"
-		},
-		"showTaxonomy": {
-			"type": "string",
-			"default": "category"
 		},
 		"slidesToShow": {
 			"type": "number",

@@ -95,7 +95,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                 if ( ! is_a( $has_content, 'WP_Query' ) ) {
                     // Flickr
                     foreach( $has_content as $photo ) :
-                        get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', 'collection', ['photo' => $photo, 'attributes' => $attributes] );
+                        get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['photo' => $photo, 'attributes' => $attributes] );
                     endforeach;
                 } else {
                     // Posts
@@ -106,7 +106,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                         $latest_horizontal_posts_ids[] = $post->ID;
 
                         echo "<div class='slide'>";
-                        get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $card_format, ['post' => $post, 'attributes' => $attributes] );
+                        get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['post' => $post, 'attributes' => $attributes] );
                         echo "</div>";
 
                     endwhile;

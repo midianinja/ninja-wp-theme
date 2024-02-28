@@ -64,7 +64,7 @@ function add_more_itens_on_menu($items, $args)
     }
 
     $link  = '<li class="menu-item nav-item mais">
-                <a href="/login">Mais +</a>
+                <a href="#">Mais +</a>
             </li>';
 
     $items .= $link;

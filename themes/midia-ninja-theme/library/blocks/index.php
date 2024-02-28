@@ -2,6 +2,7 @@
 
 namespace Ninja;
 
+require __DIR__ . '/includes/helpers.php';
 require __DIR__ . '/includes/api.php';
 
 function blocks_init() {
@@ -13,6 +14,9 @@ function blocks_init() {
 		'sample-block' => null,
 		'dynamic' => [
 			'render_callback' => 'Ninja\\dynamic_block_recent_posts',
+		],
+		'latest-horizontal-posts' => [
+			'render_callback' => 'Ninja\\latest_horizontal_posts_callback'
 		],
 		'latest-vertical-posts' => [
 			'render_callback' => 'Ninja\\latest_vertical_posts_callback'

@@ -60,10 +60,6 @@ header {
 			height: 32px;
 			display: none;
 
-			@media (max-width: $desktop-width) {
-				//display: block;
-			}
-
 			&:before,
 			&:after {
 				content: "";
@@ -115,7 +111,7 @@ header {
 
 				&:not(.up) {
 					&::before {
-						content: url($p_theme_assets+"/images/arrow-down.svg") !important;
+						content: url($p_theme_assets + "/images/arrow-down.svg") !important;
 						transition: opacity 0.2s ease;
 
 						@include tablet {
@@ -126,7 +122,7 @@ header {
 
 				&.up {
 					&::before {
-						content: url($p_theme_assets+"/images/arrow-up.svg") !important;
+						content: url($p_theme_assets + "/images/arrow-up.svg") !important;
 						opacity: 1;
 						transition: opacity 0.2s ease;
 					}
@@ -378,6 +374,7 @@ header {
 				visibility: hidden;
 				position: absolute;
 				transition: visibility 0s linear;
+				overflow: auto;
 
 				@media (min-width: $tablet-width) {
 					width: 100%;
@@ -389,9 +386,41 @@ header {
 					padding: 0;
 
 					li {
-						margin-bottom: 1.2rem;
 						font-size: 1.5rem;
 						font-weight: 500;
+						margin: 0 0 1.2rem;
+
+						&.menu-item-has-children i::after {
+							content: url($p_theme_assets + "/images/menu-plus-white.svg");
+							float: right;
+						}
+
+						&.menu-item-has-children:hover {
+							.sub-menu {
+								display: grid;
+								position: relative;
+							}
+						}
+
+						.sub-menu {
+							border: none;
+							grid-template-columns: 1fr 1fr;
+
+							li {
+								display: grid;
+								place-content: center;
+								padding: 21px;
+								margin: 0;
+
+								a {
+									font-size: 14px;
+								}
+
+								&:nth-child(odd) {
+									border-right: 1px solid #fff;
+								}
+							}
+						}
 					}
 				}
 
@@ -435,30 +464,29 @@ header {
 			}
 
 			.nav-container {
-				input[type="checkbox"]:checked ~ .menu-items {
-					//transform: translateX(0);
+				//input[type="checkbox"]:checked ~ .menu-items,
+				input.checked ~ .menu-items {
 					visibility: visible;
 					width: 360px;
 					height: 846px;
 					left: -13rem;
 				}
 
-				input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+				//input[type="checkbox"]:checked ~ .hamburger-lines .line1,
+				input.checked ~ .hamburger-lines .line1 {
 					transform: rotate(45deg);
 					background: white;
 				}
 
-				input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+				//input[type="checkbox"]:checked ~ .hamburger-lines .line2,
+				input.checked ~ .hamburger-lines .line2 {
 					transform: scaleY(0);
 				}
 
-				input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+				//input[type="checkbox"]:checked ~ .hamburger-lines .line3,
+				input.checked ~ .hamburger-lines .line3 {
 					transform: rotate(-45deg);
 					background: white;
-				}
-
-				input[type="checkbox"]:checked ~ .logo {
-					display: none;
 				}
 			}
 		}

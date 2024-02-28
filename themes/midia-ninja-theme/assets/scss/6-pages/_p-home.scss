@@ -2,6 +2,9 @@
 @use "./../2-atoms/a-mixins" as mixins;
 
 .home {
+    .page-header{
+        display: none;
+    }
     .index-wrapper {
         padding-top: mixins.size(30);
 
@@ -11,6 +14,12 @@
         }
     }
 
+    .anuncio-topo{
+        margin-top : 2rem;
+        margin-bottom : 2rem;
+        display: flex;
+        justify-content: center;
+    }
     .wp-block-newspack-blocks-homepage-articles {
         // general style of the Newspack Blocks/Homepage Articles card
         article {

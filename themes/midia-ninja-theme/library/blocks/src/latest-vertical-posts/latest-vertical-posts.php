@@ -6,11 +6,11 @@ function latest_vertical_posts_callback( $attributes ) {
 
     global $latest_vertical_posts_ids;
 
-    if ( ! $latest_vertical_posts_ids ) {
+    if ( ! is_array( $latest_vertical_posts_ids ) ) {
         $latest_vertical_posts_ids = [];
     }
 
-    $args = build_posts_query( $attributes );
+    $args = build_posts_query( $attributes, $latest_vertical_posts_ids );
 
     $posts_query = new \WP_Query( $args );
     $posts = [];
@@ -95,63 +95,5 @@ function latest_vertical_posts_callback( $attributes ) {
     $output = ob_get_clean();
 
     return $output;
-
-}
-
-function enqueue_scripts() {
-    $args = [
-        'public' => true,
-        'publicly_queryable' => true
-    ];
-
-    $post_types_objects = get_post_types( $args, 'objects' );
-
-    unset( $post_types_objects['attachment'] );
-
-    $post_types = [];
-
-    foreach ( $post_types_objects as $post_type ) {
-        $post_types[$post_type->name] = $post_type->label;
-    }
-
-    $post_types = apply_filters( 'ninja/latest_vertical_posts/post_types', $post_types );
-
-    wp_localize_script( 'ninja-latest-vertical-posts-editor-script', 'ninja_latest_vertical_posts_editor_data',
-        [
-            'post_types' => $post_types
-        ]
-    );
-}
-
-add_action( 'admin_enqueue_scripts', 'Ninja\\enqueue_scripts' );
-
-function build_posts_query( $attributes ) {
-
-    global $latest_vertical_posts_ids;
-
-    if ( ! is_array( $latest_vertical_posts_ids ) ) {
-        $latest_vertical_posts_ids = [];
-    }
-
-    $post_type = isset( $attributes['postType'] ) ? $attributes['postType'] : [ 'post' ];
-    $posts_to_show = intval( $attributes['postsToShow'] );
-
-    $order = isset( $attributes['order'] ) ? $attributes['order'] : 'desc';
-    $order_by = isset( $attributes['orderBy'] ) ? $attributes['orderBy'] : 'date';
-
-    $args = [
-        'ignore_sticky_posts' => true,
-        'order'               => $order,
-        'orderby'             => $order_by,
-        'post_type'           => $post_type,
-        'posts_per_page'      => $posts_to_show
-    ];
-
-    $args['post__not_in'] = array_merge(
-        $latest_vertical_posts_ids,
-        get_the_ID() ? [ get_the_ID() ] : []
-    );
-
-    return $args;
 
 }

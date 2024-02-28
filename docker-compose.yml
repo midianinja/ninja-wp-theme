@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 services:
   wordpress:
@@ -21,7 +21,7 @@ services:
       - ./themes/midia-ninja-theme:/var/www/html/wp-content/themes/midia-ninja-theme
       - ./plugins/hacklab-dev-utils:/var/www/html/wp-content/plugins/hacklab-dev-utils
       - ./plugins/hacklab-blocks:/var/www/html/wp-content/plugins/hacklab-blocks
-      - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
+      - ./compose/local/wordpress/htaccess-dev:/var/www/html/.htaccess
       - ./compose/local/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
 
   watcher:
@@ -55,6 +55,20 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
+
+  phpmyadmin:
+    depends_on:
+      - mariadb
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8081:80'
+    environment:
+      - PMA_HOST=mariadb
+      - MYSQL_ROOT_PASSWORD=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_PASSWORD=wordpress
 
 volumes:
   mariadb_data:

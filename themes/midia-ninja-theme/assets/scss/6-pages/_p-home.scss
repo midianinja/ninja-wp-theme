@@ -315,26 +315,125 @@
 
     // Section Especiais
     .sessao-especiais {
+        margin-bottom: 0 !important;
         h2 {
             font-family: "MidiaNinja", sans-serif;
+            font-size: 38px;
+            font-weight: 400;
+           
         }
     }
-
-    // Block heading <h1>, <h2>, etc...
-    .wp-block-heading {
-        margin-bottom: 15px;
-        margin-top: 0;
+    
+    .sessao-mais-lidas{
+        background-color: #111;
+        h2 {
+            font-family: "MidiaNinja", sans-serif;
+            font-size: 54px;
+            font-weight: 400;
+            margin-bottom: 0;
+            letter-spacing: -2.7px;
+        }
     }
 
     .who-finances{
         background: #111 !important;
-        min-height: 100px;
+        min-height: 108px;
+        display: flex;
+        align-items: center;
+
+        @media(max-width: 1320px){
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        @media(max-width: 992px){
+            background: #FDF250 !important;
+            border-radius: 16px;
+            padding: 25px 42px 25px 45px;
+        }
+        .wp-block-columns{
+            margin-top: 1.8rem;
+            @media(max-width: 992px){
+                flex-direction: column;
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+        }
         h2{
             font-family: "MidiaNinja", sans-serif;
             color: #FBF36E;
+            font-size: 38px;
+            font-weight: 400;
+            margin-bottom: 0;
+            margin-top: 0;
+            @media(max-width: 992px){
+                color: #000;
+                font-family: 'Manrope', serif;
+                font-size: 24px;
+                font-weight: 800;
+                text-align: center;
+                margin-bottom: -15px;
+                line-height: 130%;
+            }
+            img{
+                margin-left: 4.5rem;
+                @media(max-width: 992px){
+                    display: none;
+                }
+            }
         }
-        
-       
+        .finances-title-mobile{
+            @media(max-width: 992px){
+                color: #000;
+                font-family: "MidiaNinja", sans-serif;
+                font-weight: 400;
+                text-align: center;
+                font-size: 24px;
+                line-height: 130%;
+            }
+        }
+        .wp-block-buttons{
+            @media(max-width: 992px){
+                display: flex;
+                justify-content: center;
+            }
+        }
+        .wp-block-button{
+            @media(max-width: 992px){
+                background-color: #111;
+                border-radius: 8px;
+            }
+            a{
+                font-family: 'Manrope', serif;
+                color: #fff;
+                border-radius: 4px;
+                border: 2px solid #FFF;
+                font-size: 13px;
+                font-weight: 700;
+                padding: 15px 30px;
+                color: #FFF !important;
+                @media(max-width: 992px){
+                   
+                    border: 2px solid #111;
+                }  
+            }
+        } 
     }
-
+    .seleta{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 0;
+        .wp-element-caption{
+            text-align: center;
+            margin-top: -185px;
+            margin-bottom: 155px;
+            font-family: 'Manrope', serif;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 125%; /* 30px */
+            letter-spacing: -0.24px;
+            color: #FFF;
+        }
+    }
 }

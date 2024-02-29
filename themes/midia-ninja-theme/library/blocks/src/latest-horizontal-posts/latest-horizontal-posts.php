@@ -81,11 +81,13 @@ function latest_horizontal_posts_callback( $attributes ) {
                     echo '</div>';
                 }
 
-                // The footer with dots and arrows
-                echo '<div class="latest-horizontal-posts-block__footer">';
+                if ( $content_position !== 'full' ) {
+                    // The footer with dots and arrows
+                    echo '<div class="latest-horizontal-posts-block__footer">';
                     echo '<div class="latest-horizontal-posts-block__dots"></div>';
                     echo '<div class="latest-horizontal-posts-block__arrows"></div>';
-                echo '</div><!-- .latest-horizontal-posts-block__footer -->';
+                    echo '</div><!-- .latest-horizontal-posts-block__footer -->';
+                }
 
             echo '</div><!-- .latest-horizontal-posts-block__content -->';
 
@@ -114,8 +116,10 @@ function latest_horizontal_posts_callback( $attributes ) {
 
             echo '</div><!-- .latest-horizontal-posts-block__slides -->';
 
+            $footer_class = ( $content_position === 'full') ? 'latest-horizontal-posts-block__footer' : 'latest-horizontal-posts-block__footer medium-only';
+
             // The footer with dots and arrows on medium
-            echo '<div class="latest-horizontal-posts-block__footer medium-only">';
+            echo '<div class="' . $footer_class . '">';
                 echo '<div class="latest-horizontal-posts-block__dots"></div>';
                 echo '<div class="latest-horizontal-posts-block__arrows"></div>';
             echo '</div><!-- .latest-horizontal-posts-block__footer -->';

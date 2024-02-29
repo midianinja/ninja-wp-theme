@@ -333,6 +333,15 @@
             margin-bottom: 0;
             letter-spacing: -2.7px;
         }
+        .latest-horizontal-posts-block__slides{
+            &::after{
+                background: linear-gradient(270deg,#111 44.44%,rgba(38,38,38,0) 90%);
+            }
+            &::before{
+                background: linear-gradient(-270deg,#111 44.44%,rgba(38,38,38,0) 90%);
+                
+            }
+        }
     }
 
     .who-finances{

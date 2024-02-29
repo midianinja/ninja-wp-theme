@@ -344,6 +344,34 @@
         }
     }
 
+    .sessao-opiniao{
+        .grid-cards-opiniao{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            .wp-block-buttons{
+                display: flex;
+                justify-content: right;                
+            }
+            .wp-block-button{
+                background-color: #111;
+                border-radius: 8px;
+                
+                
+                a{
+                    font-family: 'Manrope', serif;
+                    color: #fff;
+                    font-size: 13px;
+                    font-weight: 700;
+                    padding: 18px 30px;
+                    color: #FFF !important;
+                    border: none;
+                }
+            } 
+        }
+
+    }
+
     .who-finances{
         background: #111 !important;
         min-height: 108px;

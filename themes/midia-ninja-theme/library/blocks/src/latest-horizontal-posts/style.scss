@@ -315,4 +315,39 @@
 			width: 100%;
 		}
 	}
+
+	// Videos
+	&.model-videos {
+		.post {
+			// .post-thumbnail
+			&-thumbnail {
+				max-width: 340px;
+
+				&::before {
+					padding-top: 56.25%;
+				}
+
+				.play {
+					background-image: url("./images/play.png");
+					background-position: center;
+					background-repeat: no-repeat;
+					display: block;
+					height: 100%;
+					left: 0;
+					position: absolute;
+					top: 0;
+					width: 100%;
+					z-index: 2;
+				}
+			}
+
+			&:hover {
+				.post-thumbnail {
+					img {
+						opacity: .6;
+					}
+				}
+			}
+		}
+	}
 }

@@ -37,6 +37,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		heading,
 		order,
 		orderBy,
+		playlistId,
 		postsToShow,
 		postType,
 		showTaxonomy,
@@ -140,6 +141,16 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							onChange={ ( value ) => { setAttributes( { blockModel: value } ) } }
 						/>
 					</PanelRow>
+
+					{ ( blockModel == 'videos' ) && (
+						<PanelRow>
+							<TextControl
+								label={ __( 'YouTube Playlist ID', 'ninja' ) }
+								value={ playlistId }
+								onChange={ ( value ) => { setAttributes( { playlistId: value } ) } }
+							/>
+						</PanelRow>
+					) }
 
 					{ ( blockModel == 'collection' ) && (
 						<>

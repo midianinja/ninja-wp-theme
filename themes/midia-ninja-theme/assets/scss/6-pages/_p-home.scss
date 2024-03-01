@@ -578,10 +578,10 @@
     .colunistas-ninja{
         background-color: #fff;
         .container{
-            max-width: 1170px;
+            max-width: 1170px !important;
             width: 100%;
             .slick-slide{
-                width: 270px;
+                width: 270px !important;
             }
         }
         .latest-horizontal-posts-block__slides{

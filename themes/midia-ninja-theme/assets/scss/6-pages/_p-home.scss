@@ -528,8 +528,62 @@
             }
         } 
     }
+    .acervo{
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+    .newslwtter{
+        .wp-block-columns{
+            gap: 100px;
+        }
+        .wp-block-heading{
+            color: #FFF;
+            font-family: "MidiaNinja", serif;
+            font-size: 42px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 100%; 
+            letter-spacing: -2.52px;
+        }
+        p{
+            font-family: 'Manrope', serif;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 145%; 
+        }
+        form{
+            .mc4wp-form-fields{
+                input[type=name],
+                input[type=email]{
+                    width: 572px;
+                    padding: 1rem;
+                    border-radius: 8px;
+                }
+                input[type=submit]{
+                    background-color: #FBF36E;
+                    border: none;
+                    color: #333;
+                    font-family: 'Manrope', serif;
+                    font-size: 14px;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    padding: 1rem 3.8rem;
+                    border-radius: 8px;
+                }
+            }
+        }
+
+    }
     .colunistas-ninja{
         background-color: #fff;
+        .container{
+            max-width: 1170px;
+            width: 100%;
+            .slick-slide{
+                width: 270px;
+            }
+        }
         .latest-horizontal-posts-block__slides{
             &::after{
                display: none;

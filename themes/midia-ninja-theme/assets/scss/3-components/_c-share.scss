@@ -1,4 +1,4 @@
-.page--share{
+.page--share {
     position: fixed;
     top: 50vh;
     left: 15px;
@@ -8,7 +8,7 @@
     text-align: center;
     padding-top: 10px;
 
-    @include mobile{
+    @include mobile {
         top: auto;
         bottom: 0;
         transform: none;
@@ -16,12 +16,12 @@
         width: 100vw;
         left: 0;
 
-        a{
+        a {
             flex: 1;    
         }
     }
 
-    a{
+        a {
         display: block;
         width: 42px;
         height: 42px;
@@ -35,11 +35,35 @@
         &:hover{ color: white; filter: brightness(1.1) }
     }
 
-    .facebook{ background-color: #316ac2; }
-    .twitter{ background-color: #25a5ee; }
-    .whatsapp{ background-color: #5fcd0f; }
-    .messenger{ background-color: #0584ff; }
-    .linkedin{ background-color: #0879b4; }
-    .mail{ background-color: #f36f1a; }
-    .telegram{ background-color: #5682a3; }
+        .facebook {
+            background-color: #316ac2;
+        }
+    
+        .twitter {
+            background-color: #25a5ee;
+        }
+    
+        .whatsapp {
+            background-color: #5fcd0f;
+        }
+    
+        .messenger {
+            background-color: #0584ff;
+        }
+    
+        .linkedin {
+            background-color: #0879b4;
+        }
+    
+        .mail {
+            background-color: #f36f1a;
+        }
+    
+        .telegram {
+            background-color: #5682a3;
+        }
+    
+        .fa-facebook-f {
+            background-image: url('/assets/images/social-networks/facebook.svg');
+        }
 }

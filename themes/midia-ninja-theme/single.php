@@ -17,11 +17,30 @@ get_header();
                     <div class="info">
                         <span class="category"><?php the_category( ', ' ); ?></span>
                     </div>
+
+                    <?php the_post_thumbnail();?>
+                    
                     <h1 class="title"><?php the_title(); ?></h1>
-                    <time class="date" datetime="<?php echo get_the_date( 'c' ); ?>"><?php the_date(); ?></time>
+
+                    <h5 class="excerpt"><?php the_excerpt(); ?></h5>
+                    
                 </header>
 
                 <section class="post-content">
+                    <div class="content-author">
+                        
+                        <?php echo get_avatar( get_the_author_meta( 'ID' ), 70 );?>
+
+                        <div class="">
+                            <?php the_author(); ?>
+                            <time class="date" datetime="<?php echo get_the_date( 'c' ); ?>"><?php the_date(); ?></time>
+                        </div>
+                        
+                        <div class="page--share">
+                            <?php get_template_part('template-parts/share-links'); ?>
+                        </div>
+                    </div>
+
                     <?php the_content(); ?>
                 </section>
 

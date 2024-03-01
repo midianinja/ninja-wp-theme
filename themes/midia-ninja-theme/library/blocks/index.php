@@ -3,6 +3,7 @@
 namespace Ninja;
 
 require __DIR__ . '/includes/helpers.php';
+require __DIR__ . '/includes/settings.php';
 require __DIR__ . '/includes/api.php';
 
 function blocks_init() {

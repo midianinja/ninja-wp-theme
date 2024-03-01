@@ -12,7 +12,7 @@ function latest_horizontal_posts_callback( $attributes ) {
 
     $block_classes[] = 'latest-horizontal-posts-block';
     $block_classes[] = $custom_class;
-    $block_classes[] = 'mnodel-' . $block_model;
+    $block_classes[] = 'model-' . $block_model;
     $block_classes[] = 'content-' . $content_position;
     $block_classes[] = 'show-slides-' . $slides_to_show;
 
@@ -34,6 +34,19 @@ function latest_horizontal_posts_callback( $attributes ) {
         }
 
         $has_content = flickr_get_contents( $api_key, $flickr_by_type, $data_id );
+    } elseif ( $block_model == 'videos' ) {
+        // Vídeos
+        require_once  __DIR__ . '/includes/videos.php';
+
+        $api_key = get_option( 'youtube_key', false );
+        $playlist_id = ( isset( $attributes['playlistId'] ) && ! empty( $attributes['playlistId'] ) ) ? esc_attr( $attributes['playlistId'] ) : false;
+        $posts_to_show = intval( $attributes['postsToShow'] );
+
+        if ( ! $api_key || ! $playlist_id ) {
+            return;
+        }
+
+        $has_content = videos_get_contents( $api_key, $playlist_id, $posts_to_show );
     } else {
         // Posts
         global $latest_horizontal_posts_ids;
@@ -81,11 +94,13 @@ function latest_horizontal_posts_callback( $attributes ) {
                     echo '</div>';
                 }
 
-                // The footer with dots and arrows
-                echo '<div class="latest-horizontal-posts-block__footer">';
+                if ( $content_position !== 'full' ) {
+                    // The footer with dots and arrows
+                    echo '<div class="latest-horizontal-posts-block__footer">';
                     echo '<div class="latest-horizontal-posts-block__dots"></div>';
                     echo '<div class="latest-horizontal-posts-block__arrows"></div>';
-                echo '</div><!-- .latest-horizontal-posts-block__footer -->';
+                    echo '</div><!-- .latest-horizontal-posts-block__footer -->';
+                }
 
             echo '</div><!-- .latest-horizontal-posts-block__content -->';
 
@@ -93,10 +108,17 @@ function latest_horizontal_posts_callback( $attributes ) {
             echo '<div class="latest-horizontal-posts-block__slides">';
 
                 if ( ! is_a( $has_content, 'WP_Query' ) ) {
-                    // Flickr
-                    foreach( $has_content as $photo ) :
-                        get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['photo' => $photo, 'attributes' => $attributes] );
-                    endforeach;
+                    if ( $block_model == 'videos' ) {
+                         // Videos
+                        foreach( $has_content as $video ) :
+                            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['video' => $video, 'attributes' => $attributes] );
+                        endforeach;
+                    } else {
+                        // Flickr
+                        foreach( $has_content as $photo ) :
+                            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['photo' => $photo, 'attributes' => $attributes] );
+                        endforeach;
+                    }
                 } else {
                     // Posts
                     while ( $has_content->have_posts() ) :
@@ -114,8 +136,10 @@ function latest_horizontal_posts_callback( $attributes ) {
 
             echo '</div><!-- .latest-horizontal-posts-block__slides -->';
 
+            $footer_class = ( $content_position === 'full') ? 'latest-horizontal-posts-block__footer' : 'latest-horizontal-posts-block__footer medium-only';
+
             // The footer with dots and arrows on medium
-            echo '<div class="latest-horizontal-posts-block__footer medium-only">';
+            echo '<div class="' . $footer_class . '">';
                 echo '<div class="latest-horizontal-posts-block__dots"></div>';
                 echo '<div class="latest-horizontal-posts-block__arrows"></div>';
             echo '</div><!-- .latest-horizontal-posts-block__footer -->';

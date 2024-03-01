@@ -45,19 +45,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     //Hamburguer Menu
-    // const menuButton = document.getElementById("hamburguer-button");
-    // const menu = document.querySelector(".menu-items");
-
-    // menuButton.addEventListener ("click", function(ev) {
-    //     ev.preventDefault();
-
-    //     if ( menu.classList.contains("hide") ) {
-    //         menu.classList.remove("hide");
-    //     } else {
-    //         menu.classList.add("hide");
-    //     }
-    // })
-
     const menuItens = document.querySelector(".menu-items");
     const menuButton = document.querySelector("#burguer-checkbox");
     const buttonMais = document.querySelector(".mais");
@@ -81,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function() {
             menuButton.classList.add("checked");
         }
     })
-
 })
 
 

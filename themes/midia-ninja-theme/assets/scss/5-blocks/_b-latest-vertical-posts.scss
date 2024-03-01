@@ -73,6 +73,37 @@
 				}
 			}
 		}
+
+		&.colunas {
+			background-color: #000;
+			border: 2px solid var(--SECONDARY, #000);
+			margin: 30px 0;
+
+			h2,
+			span {
+				color: #fff;
+			}
+
+			.post-meta--date {
+				display: none;
+			}
+
+			.post-author {
+				color: #fff;
+				font-size: 13px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 145%; /* 18.85px */
+				text-transform: uppercase;
+			}
+
+			.latest-vertical-posts-block__footer
+				.latest-vertical-posts-block__dots
+				.slick-dots
+				li {
+				background-color: #fff;
+			}
+		}
 	}
 }
 

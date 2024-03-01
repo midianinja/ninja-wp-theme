@@ -63,7 +63,33 @@
             background-color: #5682a3;
         }
     
-        .fa-facebook-f {
-            background-image: url('/assets/images/social-networks/facebook.svg');
+                .post-content--subshare {
+                    display: flex;
+                    gap: 16px;
+                    width: fit-content;
+        
+                    span {
+                        display: none;
+                    }
+        
+                    i {
+                        display: flex;
+                        width: 24px;
+                        height: 24px;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+        
+                        &.fa-facebook-f {
+                            background-image: url(variables.$p_theme_assets + '/images/social-networks/facebook.svg');
+                        }
+        
+                        &.fa-twitter {
+                            background-image: url(variables.$p_theme_assets + '/images/social-networks/Twitter.svg');
+                        }
+        
+                        &.fa-whatsapp {
+                            background-image: url(variables.$p_theme_assets + '/images/social-networks/whatsapp.svg');
+                        }
+                    }
         }
 }

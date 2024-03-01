@@ -14,7 +14,8 @@
         }
     }
 
-    .anuncio-topo{
+    .midia-antes-do-conteudo_2, 
+    .midia-conteudo_2{
         margin-top : 2rem;
         margin-bottom : 2rem;
         display: flex;
@@ -384,6 +385,9 @@
                     color: #333;
                     padding-top: 18px;
                     padding-bottom: 15px; 
+                   }
+                   .midia-conteudo_2{
+                    display: none;
                    } 
                 }
             }

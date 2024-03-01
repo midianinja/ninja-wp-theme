@@ -43,6 +43,12 @@
                     "color": "#FDF250"
                 },
                 {
+                    "name": "Dark pure",
+                    "slug": "dark-pure",
+                    "color": "#111"
+                },
+
+                {
                     "name": "Verde Light",
                     "slug": "verde-light",
                     "color": "#99CE56"
@@ -111,7 +117,118 @@
                     "name": "Amarelo alimentação",
                     "slug": "amarelo-alimentacao",
                     "color": "#F7F100"
+                },
+                {
+                    "name": "gray ligh",
+                    "slug": "gray-light",
+                    "color": "#F2F2F2"
+                },
+                {
+                    "name": "green mata",
+                    "slug": "green-mata",
+                    "color": "#A4CC66"
+                },
+                {
+                    "name": "green",
+                    "slug": "green",
+                    "color": "#219653"
+                },
+                {
+                    "name": "green medium",
+                    "slug": "green-medium",
+                    "color": "#27AE60"
+                },
+                {
+                    "name": "green ligh",
+                    "slug": "green-light",
+                    "color": "#27AE60"
+                },
+                {
+                    "name": "green esmeralda",
+                    "slug": "green-esmeralda",
+                    "color": "#9BE385"
+                },
+                {
+                    "name": "blue tupi",
+                    "slug": "blue-tupi",
+                    "color": "#3B25DC"
+                },
+                {
+                    "name": "blue tupi",
+                    "slug": "blue-tupi",
+                    "color": "#3B25DC"
+                },
+                {
+                    "name": "blue medium ",
+                    "slug": "blue-medium",
+                    "color": "#2F80ED"
+                },
+                {
+                    "name": "blue light ",
+                    "slug": "blue-light",
+                    "color": "#2D9CDB"
+                },
+                {
+                    "name": "blue baby ",
+                    "slug": "blue-baby",
+                    "color": "#89C5E2"
+                },
+                {
+                    "name": "gold ",
+                    "slug": "gold",
+                    "color": "#FBF36E"
+                },
+                {
+                    "name": "yellow ",
+                    "slug": "yellow",
+                    "color": "#F2C94C"
+                },
+                {
+                    "name": "yellow ocre",
+                    "slug": "yellow-ocre",
+                    "color": "#E9BE61"
+                },
+                {
+                    "name": "red rubi",
+                    "slug": "red-rubi",
+                    "color": "#E9BE61"
+                },
+                {
+                    "name": "rubi",
+                    "slug": "yellow-ocre",
+                    "color": "#CB5F61"
+                },
+                {
+                    "name": "purple ",
+                    "slug": "purple",
+                    "color": "#6F2BFF"
+                },
+                {
+                    "name": "purple medium ",
+                    "slug": "purple-medium",
+                    "color": "#9B51E0"
+                },
+                {
+                    "name": "purple light ",
+                    "slug": "purple-light",
+                    "color": "#BB6BD9"
+                },
+                {
+                    "name": "purple lgbtq ",
+                    "slug": "punple-lgbtq",
+                    "color": "#FF7EE3"
+                },
+                {
+                    "name": "redsystem ",
+                    "slug": "red-system",
+                    "color": "#EB5757"
                 }
+
+
+                
+
+
+
             ]
         },
         "spacing": {

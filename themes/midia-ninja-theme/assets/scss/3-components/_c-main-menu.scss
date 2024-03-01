@@ -15,20 +15,16 @@
 				}
 			}
 
-			&:hover {
-				position: relative;
+			.sub-menu.active {
+				display: block;
+				position: absolute;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 10px;
+				border-left: 1px solid white;
 
-				.sub-menu {
-					display: block;
-					position: absolute;
-					padding-top: 10px;
-					padding-bottom: 10px;
-					padding-left: 10px;
-					border-left: 1px solid white;
-
-					@include tablet {
-						position: relative;
-					}
+				@include tablet {
+					position: relative;
 				}
 			}
 

@@ -24,8 +24,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const mainMenu = document.querySelector('.main-header #main-menu');
     const itensWithChild = mainMenu.querySelectorAll('#main-menu li.menu-item-has-children');
+
+    const menuBurguer = document.querySelector('.main-header #menu-hamburguer');
+    const burguerWithChild = menuBurguer.querySelectorAll('#menu-hamburguer li.menu-item-has-children');
     
     itensWithChild.forEach(item => {
+
+        if (item.parentElement.classList.contains('sub-menu')){
+            return;
+        }
+
+        item.querySelector('a').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const arrowIcon = this.parentElement.getElementsByTagName("i").item(0);
+            arrowIcon.classList.toggle('up');
+
+            const subMenu = this.parentElement.querySelector('.sub-menu');
+            subMenu.classList.toggle('active');
+            subMenu.parentNode.classList.toggle('active');
+        });
+    })
+
+    burguerWithChild.forEach(item => {
 
         if (item.parentElement.classList.contains('sub-menu')){
             return;

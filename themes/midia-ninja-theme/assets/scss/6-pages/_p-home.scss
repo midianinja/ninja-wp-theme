@@ -345,13 +345,52 @@
     }
 
     .sessao-opiniao{
+        font-family: 'Manrope', serif;
         .grid-cards-opiniao{
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
+            @media(max-width: 992px){
+                grid-template-columns: 1fr;
+            }
+            .wp-block-newspack-blocks-homepage-articles{
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                img{
+                    border-radius: 8px 8px 0px 0px;
+                }
+                .entry-wrapper{
+                    padding-left: 32px;
+                    padding-right: 32px;
+                   .cat-links{
+                    position: relative;
+                    top: -150px;
+                    left: -32px;
+                    @media(max-width: 992px){
+                        top: -195px;
+                    }
+                   }
+                   .entry-title {
+                    padding: 18px 0px 27px 0px;
+                    border-bottom: 1px solid #ccc;
+                    font-size: 20px;
+                    line-height: 130%;
+                   }
+                   p{
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 145%;
+                    color: #333;
+                    padding-top: 18px;
+                    padding-bottom: 15px; 
+                   } 
+                }
+            }
             .wp-block-buttons{
                 display: flex;
-                justify-content: right;                
+                justify-content: right;
+                margin-right: -100px;                
             }
             .wp-block-button{
                 background-color: #111;
@@ -369,7 +408,36 @@
                 }
             } 
         }
-
+        .wp-block-newspack-blocks-homepage-articles{
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            .article-section-title{
+                padding-top: 40px;
+                padding-left: 35px;
+                span{
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 145%;
+                    color: #535353;
+                    text-transform: uppercase;
+                }
+            }
+            h3{
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 130%;
+                padding-left: 35px;
+                padding-right: 35px;
+                margin-bottom: 25px;
+            }
+            .entry-meta{
+                padding-left: 35px;
+                padding-right: 35px;
+                margin-bottom: 2rem;
+            }   
+        }
     }
 
     .who-finances{

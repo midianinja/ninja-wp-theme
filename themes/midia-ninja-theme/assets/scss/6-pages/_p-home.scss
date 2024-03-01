@@ -2,6 +2,7 @@
 @use "./../2-atoms/a-mixins" as mixins;
 
 .home {
+
     .page-header{
         display: none;
     }
@@ -317,6 +318,9 @@
     // Section Especiais
     .sessao-especiais {
         margin-bottom: 0 !important;
+        .container{
+            padding: 50px 0px 50px 100px !important;
+        }
         h2 {
             font-family: "MidiaNinja", sans-serif;
             font-size: 38px;
@@ -531,6 +535,16 @@
     .acervo{
         margin-top: 2rem;
         margin-bottom: 0;
+        .container{
+            gap: 2rem;
+        }
+        .latest-horizontal-posts-block__slides{
+            flex-basis: 80% !important;
+        }
+        .latest-horizontal-posts-block__heading{
+            flex-basis: 20% !important;
+            
+        }
     }
     .newsletter{
         .wp-block-columns{
@@ -611,6 +625,17 @@
             line-height: 120%; 
             letter-spacing: -0.96px;
             color: #111;
+        }
+        .slick-arrow {
+            background-color: #ccc !important; 
+        }
+
+        .slick-arrow.slick-disabled {
+            background-color: #fff !important;
+        }
+        li.slick-active {
+            background-color: #ccc !important;
+           
         }
     }
     .seleta{

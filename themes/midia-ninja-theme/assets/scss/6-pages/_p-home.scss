@@ -528,6 +528,37 @@
             }
         } 
     }
+    .colunistas-ninja{
+        background-color: #fff;
+        .latest-horizontal-posts-block__slides{
+            &::after{
+               display: none;
+            }
+            &::before{
+                display: none;
+                
+            }
+        }
+        .post-thumbnail{
+            max-width: 80px;
+            height: 80px;
+            border-radius: 50px;
+            img{
+                max-width: 80px;
+                height: 80px;
+                border-radius: 50px;
+            }
+        }
+        h2{
+            font-family: 'Manrope', serif;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 120%; 
+            letter-spacing: -0.96px;
+            color: #111;
+        }
+    }
     .seleta{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;

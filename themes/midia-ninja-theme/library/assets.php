@@ -512,7 +512,7 @@ class Assets {
 		foreach ( $google_fonts as $font_name => $font_variants ) {
 			if ( ! empty( $font_variants ) ) {
 				if ( ! is_array( $font_variants ) ) {
-					$font_variants = explode( ';', str_replace( ' ', '', $font_variants ) );
+					$font_variants = explode( ';', str_replace( ' ', '', $font_variants ) );				
 				}
 
 				$font_families[] = $font_name . ':wght@' . implode( ';', $font_variants );

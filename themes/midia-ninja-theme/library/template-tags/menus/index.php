@@ -12,7 +12,8 @@ function the_social_networks_menu()
 
     echo '<div class="social-menu">'; ?>
         
-        <p>Siga nossas redes sociais</p>
+        <p><?php _e('Follow our social networks', 'ninja'); ?></p>
+        
         <div>
             <?php foreach ($menu_items as $item) {
                 $network_name = sanitize_title($item->post_title);

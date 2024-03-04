@@ -33,6 +33,14 @@ function latest_horizontal_posts_callback( $attributes ) {
             $data_id = ( isset( $attributes['flickrUserId'] ) && ! empty( $attributes['flickrUserId'] ) ) ? esc_attr( $attributes['flickrUserId'] ) : false;
         }
 
+        if ( ! $api_key || ! $data_id ) {
+            if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+                return '<h2>' . __( 'Check the API Key, user or album ID', 'ninja' ) . '</h2>';
+            }
+
+            return;
+        }
+
         $has_content = flickr_get_contents( $api_key, $flickr_by_type, $data_id );
     } elseif ( $block_model == 'videos' ) {
         // Vídeos
@@ -128,9 +136,8 @@ function latest_horizontal_posts_callback( $attributes ) {
                         $latest_horizontal_posts_ids[] = $post->ID;
 
                         echo "<div class='slide'>";
-                        get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['post' => $post, 'attributes' => $attributes] );
+                            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['post' => $post, 'attributes' => $attributes] );
                         echo "</div>";
-
                     endwhile;
                 }
 

@@ -206,19 +206,21 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</>
 					) }
 
-					<QueryControls
-						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
-						numberOfItems={ parseInt(postsToShow) }
-						onOrderChange={ ( value ) =>
-							setAttributes( { order: value } )
-						}
-						onOrderByChange={ ( value ) =>
-							setAttributes( { orderBy: value } )
-						}
-						onNumberOfItemsChange={ ( value ) =>
-							setAttributes( { postsToShow: parseInt(value) } )
-						}
-					/>
+					{ ( blockModel != 'collection' ) && (
+						<QueryControls
+							{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
+							numberOfItems={ parseInt(postsToShow) }
+							onOrderChange={ ( value ) =>
+								setAttributes( { order: value } )
+							}
+							onOrderByChange={ ( value ) =>
+								setAttributes( { orderBy: value } )
+							}
+							onNumberOfItemsChange={ ( value ) =>
+								setAttributes( { postsToShow: parseInt(value) } )
+							}
+						/>
+					) }
 
 					<PanelRow>
 						<NumberControl
@@ -231,9 +233,11 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						/>
 					</PanelRow>
 
-					<PanelRow>
-						<SelectPostType postType={postType} onChangePostType={onChangePostType} />
-					</PanelRow>
+					{ ( blockModel != 'collection' ) && (
+						<PanelRow>
+							<SelectPostType postType={postType} onChangePostType={onChangePostType} />
+						</PanelRow>
+					) }
 
 					{ ( blockModel =='most-read' ) && (
 						<PanelRow>

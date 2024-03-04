@@ -1,3 +1,6 @@
+@import "./../1-settings/s-variables";
+@import "./../2-atoms/a-mixins"; 
+
 .page--share {
     position: fixed;
     top: 50vh;

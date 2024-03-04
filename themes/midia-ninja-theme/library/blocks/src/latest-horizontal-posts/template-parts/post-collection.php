@@ -1,9 +1,9 @@
 <?php
-$flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';
-$title = ( isset( $args['photo']->title ) && ! empty( $args['photo']->title ) ) ? esc_attr( $args['photo']->title ) : false;
+$flickr_by_type = ( isset( $args['attributes']['flickrByType'] ) && ! empty( $args['attributes']['flickrByType'] ) ) ? esc_attr( $args['attributes']['flickrByType'] ) : 'user';
+$title = ( isset( $args['photo']['title'] ) && ! empty( $args['photo']['title'] ) ) ? esc_attr( $args['photo']['title'] ) : false;
 
 // Tags
-$tags = ( isset( $args['photo']->tags ) && ! empty( $args['photo']->tags ) ) ? esc_attr( $args['photo']->tags ) : false;
+$tags = ( isset( $args['photo']['tags'] ) && ! empty( $args['photo']['tags'] ) ) ? esc_attr( $args['photo']['tags'] ) : false;
 $tag = '';
 
 if ( $tags ) {
@@ -15,19 +15,17 @@ if ( $tags ) {
 $date = ( isset( $args['photo']->dateupload ) && ! empty( $args['photo']->dateupload ) ) ? esc_attr( $args['photo']->dateupload ) : false;
 
 if ( $flickr_by_type == 'album' ) {
-    $thumb = ( isset( $args['photo']->url_z ) && ! empty( $args['photo']->url_z ) ) ? esc_url( $args['photo']->url_z ) : false;
-    $owner = ( isset( $args['photo']->owner ) && ! empty( $args['photo']->owner ) ) ? esc_attr( $args['photo']->owner ) : false;
-    $photo_id = ( isset( $args['photo']->id ) && ! empty( $args['photo']->id ) ) ? esc_attr( $args['photo']->id ) : false;
-    $data_id = ( isset( $attributes['flickrAlbumId'] ) && ! empty( $attributes['flickrAlbumId'] ) ) ? esc_attr( $attributes['flickrAlbumId'] ) : false;
+    $data_id  = ( isset( $attributes['flickrAlbumId'] ) && ! empty( $attributes['flickrAlbumId'] ) ) ? esc_attr( $attributes['flickrAlbumId'] ) : false;
+    $owner    = ( isset( $args['photo']['owner'] ) && ! empty( $args['photo']['owner'] ) ) ? esc_attr( $args['photo']['owner'] ) : false;
+    $photo_id = ( isset( $args['photo']['id'] ) && ! empty( $args['photo']['id'] ) ) ? esc_attr( $args['photo']['id'] ) : false;
+    $thumb    = ( isset( $args['photo']['url_z'] ) && ! empty( $args['photo']['url_z'] ) ) ? esc_url( $args['photo']['url_z'] ) : false;
 } else {
-    $thumb = ( isset( $args['photo']->url_z ) && ! empty( $args['photo']->url_z ) ) ? esc_url( $args['photo']->url_z ) : false;
-    $owner = ( isset( $args['photo']->owner ) && ! empty( $args['photo']->owner ) ) ? esc_attr( $args['photo']->owner ) : false;
-    $photo_id = ( isset( $args['photo']->id ) && ! empty( $args['photo']->id ) ) ? esc_attr( $args['photo']->id ) : false;
+    $owner    = ( isset( $args['photo']['owner'] ) && ! empty( $args['photo']['owner'] ) ) ? esc_attr( $args['photo']['owner'] ) : false;
+    $photo_id = ( isset( $args['photo']['id'] ) && ! empty( $args['photo']['id'] ) ) ? esc_attr( $args['photo']['id'] ) : false;
+    $thumb    = ( isset( $args['photo']['url_z'] ) && ! empty( $args['photo']['url_z'] ) ) ? esc_url( $args['photo']['url_z'] ) : false;
 }
 
-if ( ! $thumb || ! $photo_id || ! $owner )
-    return;
-?>
+if ( $thumb && $photo_id && $owner ) : ?>
 
 <div class='slide'>
     <a href="https://www.flickr.com/photos/<?php echo $owner; ?>/<?php echo $photo_id; ?>" target="_blank">
@@ -54,4 +52,4 @@ if ( ! $thumb || ! $photo_id || ! $owner )
     </a>
 </div>
 
-<?php do_action( 'qm/debug', $args['photo'] );
+<?php endif; ?>

@@ -3,6 +3,12 @@
 namespace Ninja;
 
 function videos_get_contents( $youtube_key, $playlist_id, $max_results ) {
+    $cache_key = 'youtube_videos_' . md5( $playlist_id . '_' . $max_results );
+    $cached_data = get_transient( $cache_key );
+
+    if ( false !== $cached_data ) {
+        return $cached_data;
+    }
 
     $url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=$playlist_id&maxResults=$max_results&key=$youtube_key";
 
@@ -42,9 +48,9 @@ function videos_get_contents( $youtube_key, $playlist_id, $max_results ) {
     }
 
     if ( is_array( $data ) && count( $data ) > 0 ) {
+        set_transient( $cache_key, $data, 3600 );
         return $data;
     }
 
     return false;
-
 }

@@ -21,6 +21,11 @@
         margin-bottom : 2rem;
         display: flex;
         justify-content: center;
+        a{
+            img{
+                width: 100%;
+            }
+        }
     }
     .wp-block-newspack-blocks-homepage-articles {
         // general style of the Newspack Blocks/Homepage Articles card
@@ -325,6 +330,7 @@
             font-family: "MidiaNinja", sans-serif;
             font-size: 38px;
             font-weight: 400;
+            letter-spacing: normal;
            
         }
     }
@@ -336,7 +342,7 @@
             font-size: 54px;
             font-weight: 400;
             margin-bottom: 0;
-            letter-spacing: -2.7px;
+            letter-spacing: normal;
         }
         .latest-horizontal-posts-block__slides{
             &::after{
@@ -482,6 +488,7 @@
             font-weight: 400;
             margin-bottom: 0;
             margin-top: 0;
+            letter-spacing: normal;
             @media(max-width: 992px){
                 color: #000;
                 font-family: 'Manrope', serif;
@@ -560,7 +567,7 @@
             font-style: normal;
             font-weight: 400;
             line-height: 100%; 
-            letter-spacing: -2.52px;
+            letter-spacing: normal;
         }
         p{
             font-family: 'Manrope', serif;
@@ -646,6 +653,14 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 0;
+        @media(max-width: 782px){
+            grid-template-columns: 1fr 1fr;
+        }
+        figure{
+            img{
+                width: 100%;
+            }
+        }
         .wp-element-caption{
             text-align: center;
             margin-top: -185px;
@@ -657,6 +672,19 @@
             line-height: 125%; /* 30px */
             letter-spacing: -0.24px;
             color: #FFF;
+            @media(max-width: 992px){
+                margin-top: -130px;
+                margin-bottom: 100px;  
+            }
+            @media(max-width: 782px){
+                margin-top: -185px;
+                margin-bottom: 155px;   
+            }
+
+            @media(max-width: 400px){
+                margin-top: -105px;
+                margin-bottom: 45px;  
+            }
         }
     }
 }

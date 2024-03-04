@@ -48,11 +48,13 @@
 
 					span {
 						word-break: normal;
-						margin-right: 5px;
 					}
 
 					ul.list-terms {
 						margin: 0;
+						:nth-child(n+2){
+							display: none;
+						}
 
 						li::after {
 							content: "";

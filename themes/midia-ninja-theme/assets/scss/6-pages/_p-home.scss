@@ -359,14 +359,17 @@
                 grid-template-columns: 1fr;
             }
             .wp-block-newspack-blocks-homepage-articles{
-                border: 1px solid #ccc;
-                border-radius: 8px;
+                border: none;
                 figure, img{
                     border-radius: 8px 8px 0px 0px;
                 }
                 .entry-wrapper{
                     padding-left: 32px;
                     padding-right: 32px;
+                    border-bottom: 1px solid #ccc;
+                    border-right: 1px solid #ccc;
+                    border-left: 1px solid #ccc;
+                    border-radius: 0px 0px 8px 8px;
                    .cat-links{
                     position: relative;
                     top: -150px;

@@ -83,15 +83,15 @@
                         background-repeat: no-repeat;
         
                         &.fa-facebook-f {
-                            background-image: url(variables.$p_theme_assets + '/images/social-networks/facebook.svg');
+                            background-image: url(variables.$p_theme_assets + '/images/social-networks/facebook-black.svg');
                         }
         
                         &.fa-twitter {
-                            background-image: url(variables.$p_theme_assets + '/images/social-networks/Twitter.svg');
+                            background-image: url(variables.$p_theme_assets + '/images/social-networks/x.svg');
                         }
         
                         &.fa-whatsapp {
-                            background-image: url(variables.$p_theme_assets + '/images/social-networks/whatsapp.svg');
+                            background-image: url(variables.$p_theme_assets + '/images/social-networks/whatsapp-black.svg');
                         }
                     }
         }

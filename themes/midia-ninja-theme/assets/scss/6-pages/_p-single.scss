@@ -2,115 +2,180 @@
 @import "./../2-atoms/a-mixins";
 
 .single {
-    .post {
-        font-family: Manrope;
-            font-style: normal;
-            max-width: 786px;
-            margin: auto;
-        .post-header {
-                width: 770px;
-                margin: auto;
-            }
-        
-            .info {
-                font-size: 20px;
-                font-weight: 800;
-                line-height: 150%;
-                /* 30px */
-                letter-spacing: -0.6px;
-            position: absolute;
-                margin: 20px;
-            
-                a {
-                    text-decoration: none;
-                border-radius: 4px;
-                padding: 0 4px;
-                }
-                                                                }
-        
-                        h1 {
-                            font-size: 48px;
-                                font-style: normal;
-                                font-weight: 800;
-                                line-height: 115%;
-                                /* 55.2px */
-                                letter-spacing: -1.44px;
-                            }
-                                                                h2 {
-                                                                    font-size: 20px;
-                                                                    font-weight: 700;
-                                                                    line-height: 130%;
-                                                                    /* 26px */
-                                                                }
-                .excerpt {
-                    p {
-                        color: var(--PRIMARY-PURE, #848484);
-                        /* <h5> Manrope */
-                        font-size: 20px;
-                        font-weight: 700;
-                        line-height: 130%;
-                        /* 26px */
-                    }
-                }
-        
-                .content-author {
-                    display: flex;
-                    align-items: center;
-                    border-top: 1px solid;
-                    padding-top: 26px;
-                    margin: 60px 0 40px;
-        
-                    img {
-                        border-radius: 100%;
-                    }
-        
-                    .author {
-                        display: flex;
-                        flex-direction: column;
-                        margin: 0 30px;
-                        // font-family: Manrope;
-                        font-size: 16px;
-                        font-style: normal;
-                        font-weight: 700;
-                        line-height: 140%;
-        
-                        time {
-                            color: var(--Primary-light, var(--PRIMARY-PURE, #848484));
-                            font-weight: 500;
-                        }
-                    }
-        
-                    .page--share {
-                        margin-left: auto;
-                        position: relative;
-                        top: 0;
-                        left: 0;
-                        transform: none;
-                        padding: 0;
-                    }
-                }
-        
-                .post-content {
-            width: 570px;
-                margin: auto;
-            p {
-                    color: var(--PURE, #262626);
-                    /* <p> Manrope */
-                    font-size: 16px;
-                    font-weight: 500;
-                    line-height: 140%;
-                    /* 22.4px */
-                }
-.page--share {
-    margin: auto;
-    width: max-content;
-    position: relative;
-    top: 0;
-    left: 0;
-    transform: none;
-    padding: 0;
-}
-                                                }
-    }
-        @import "../3-components/c-share";
+	header .container .row {
+		max-width: 1170px;
+		margin: auto;
+	}
+
+	.container {
+		max-width: 100%;
+		padding: 0;
+
+		main.content {
+			max-width: 1170px;
+			margin: auto;
+
+			.post {
+				font-family: Manrope;
+				font-style: normal;
+				max-width: 786px;
+				margin: auto;
+
+				.addtoany_list {
+					display: flex;
+				}
+
+				.post-header {
+					width: 770px;
+					margin: auto;
+
+					img {
+						max-width: 100%;
+						height: auto;
+					}
+				}
+
+				.info {
+					font-size: 20px;
+					font-weight: 800;
+					line-height: 150%;
+					/* 30px */
+					letter-spacing: -0.6px;
+					position: absolute;
+					margin: 20px;
+
+					a {
+						text-decoration: none;
+						border-radius: 4px;
+						padding: 0 4px;
+					}
+
+					a:nth-child(n + 2) {
+						display: none;
+					}
+				}
+
+				h1 {
+					font-size: 48px;
+					font-style: normal;
+					font-weight: 800;
+					line-height: 115%;
+					/* 55.2px */
+					letter-spacing: -1.44px;
+				}
+
+				h2 {
+					font-size: 20px;
+					font-weight: 700;
+					line-height: 130%;
+					/* 26px */
+				}
+				.excerpt {
+					p {
+						color: var(--PRIMARY-PURE, #848484);
+						/* <h5> Manrope */
+						font-size: 20px;
+						font-weight: 700;
+						line-height: 130%;
+						/* 26px */
+					}
+				}
+
+				.content-author {
+					display: flex;
+					align-items: center;
+					border-top: 1px solid;
+					padding-top: 26px;
+					margin: 60px 0 40px;
+
+					img {
+						border-radius: 100%;
+					}
+
+					.author {
+						display: flex;
+						flex-direction: column;
+						margin: 0 30px;
+						font-size: 16px;
+						font-style: normal;
+						font-weight: 700;
+						line-height: 140%;
+
+						time {
+							color: var(--Primary-light, var(--PRIMARY-PURE, #848484));
+							font-weight: 500;
+						}
+					}
+
+					.page-share {
+						margin-left: auto;
+
+						svg path {
+							fill: #000;
+						}
+					}
+				}
+
+				.post-content {
+					width: 570px;
+					margin: auto;
+
+					img {
+						max-width: 570px;
+						height: auto;
+					}
+
+					p {
+						color: var(--PURE, #262626);
+						/* <p> Manrope */
+						font-size: 16px;
+						font-weight: 500;
+						line-height: 140%;
+						/* 22.4px */
+					}
+
+					.page-share {
+						margin: auto;
+						width: max-content;
+						position: relative;
+						top: 0;
+						left: 0;
+						transform: none;
+						padding: 0;
+
+						.a2a_button_facebook {
+							svg path {
+								fill: #3b5998;
+							}
+						}
+
+						.a2a_button_whatsapp {
+							svg path {
+								fill: #128c7e;
+							}
+						}
+
+						.a2a_button_x,
+						.a2a_button_copy_link {
+							svg path {
+								fill: #000;
+							}
+						}
+					}
+				}
+			}
+			@import "../3-components/c-share";
+
+			.comments {
+				border-top: 1px solid;
+				border-bottom: 1px solid;
+				width: 100vw;
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+				margin: 32px 0;
+				padding: 32px 0;
+			}
+		}
+	}
 }

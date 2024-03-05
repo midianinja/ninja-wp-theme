@@ -16,6 +16,9 @@ function blocks_init() {
 		'dynamic' => [
 			'render_callback' => 'Ninja\\dynamic_block_recent_posts',
 		],
+		'latest-editorial-posts' => [
+			'render_callback' => 'Ninja\\latest_editorial_posts_callback'
+		],
 		'latest-horizontal-posts' => [
 			'render_callback' => 'Ninja\\latest_horizontal_posts_callback'
 		],

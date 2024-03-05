@@ -15,12 +15,14 @@
         }
     }
 
-    .midia-antes-do-conteudo_2, 
-    .midia-conteudo_2{
+    .midia-antes-do-conteudo_2{
         margin-top : 2rem;
         margin-bottom : 2rem;
         display: flex;
         justify-content: center;
+        @media(max-width: 992px){
+            display: none;
+        }
         a{
             img{
                 width: 100%;
@@ -320,11 +322,82 @@
         }
     }
 
+    .grid-latest-posts{
+        @media(max-width: 992px){
+            display: flex;
+            flex-direction: column;
+        }
+        .middle-column{
+            @media(max-width: 992px){
+                display: none;
+            }    
+        }
+        :first-child{
+            @media(max-width: 992px){
+                order: 2;
+            }
+        }
+        :nth-child(3){
+            @media(max-width: 992px){
+                order: 1;
+            }
+            
+        } 
+    }
+
+    .anuncio-ninja-desktop,
+    .anuncio-doritos-desktop{
+        margin-top : 2rem;
+        margin-bottom : 2rem;
+        display: flex;
+        justify-content: center;
+        @media(max-width: 992px){
+            display: none;
+        }
+    }
+
+    .anuncio-ninja-mobile,
+    .anuncio-doritos-mobile{
+        margin-top : 2rem;
+        margin-bottom : 2rem;
+        display: flex;
+        justify-content: center;
+        @media(min-width: 993px){
+            display: none;
+        }
+    }
+
+    .btn-latest-posts{
+        display: flex;
+        justify-content: center;
+        @media(min-width: 993px){
+            display: none;
+        }
+        .wp-block-button{
+            background-color: #111;
+            border-radius: 8px;
+            
+            
+            a{
+                font-family: 'Manrope', serif;
+                color: #fff;
+                font-size: 13px;
+                font-weight: 700;
+                padding: 18px 30px;
+                color: #FFF !important;
+                border: none;
+            }
+        }  
+    }
+
     // Section Especiais
     .sessao-especiais {
         margin-bottom: 0 !important;
         .container{
             padding: 50px 0px 50px 100px !important;
+            @media(max-width: 992px){
+                padding: 50px 0px !important;
+            }
         }
         h2 {
             font-family: "MidiaNinja", sans-serif;
@@ -369,6 +442,12 @@
             }
             .wp-block-newspack-blocks-homepage-articles{
                 border: none;
+                &:nth-child(n+2){
+                    @media(max-width: 992px){
+                        display: none;
+                    }
+                    
+                }
                 figure, img{
                     border-radius: 8px 8px 0px 0px;
                 }
@@ -412,8 +491,7 @@
                 justify-content: right;
                 margin-right: -100px;
                 @media(max-width: 992px){
-                    margin-right: 0;
-                    justify-content: center;
+                    display: none;
                 }                
             }
             .wp-block-button{

@@ -51,6 +51,9 @@ function latest_horizontal_posts_callback( $attributes ) {
         $posts_to_show = intval( $attributes['postsToShow'] );
 
         if ( ! $api_key || ! $playlist_id ) {
+            if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+                return '<h2>' . __( 'Check the API Key or playlist ID', 'ninja' ) . '</h2>';
+            }
             return;
         }
 

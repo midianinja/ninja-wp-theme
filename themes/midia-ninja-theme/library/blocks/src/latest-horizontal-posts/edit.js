@@ -206,7 +206,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel != 'collection' ) && (
+					{ ( blockModel != 'collection' && blockModel != 'videos' ) && (
 						<QueryControls
 							{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
 							numberOfItems={ parseInt(postsToShow) }
@@ -233,7 +233,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						/>
 					</PanelRow>
 
-					{ ( blockModel != 'collection' ) && (
+					{ ( blockModel != 'collection' && blockModel != 'videos' ) && (
 						<PanelRow>
 							<SelectPostType postType={postType} onChangePostType={onChangePostType} />
 						</PanelRow>

@@ -7,6 +7,8 @@
 
 gt_set_post_view();
 get_header(); 
+
+$category = get_the_terms( $post->ID, 'category' );
 ?>
 
 <div class="container">
@@ -16,7 +18,9 @@ get_header();
                 <header class="post-header">
                     <div>
                         <div class="info">
-                            <span class="category"><?php the_category( ', ' ); ?></span>
+                            <span class="term-<?= $category[0]->slug; ?>">
+                                <?php the_category( ', ' ); ?>
+                            </span> 
                         </div>
 
                         <?php the_post_thumbnail();?>
@@ -44,9 +48,15 @@ get_header();
 
                 <section class="post-content">
                     <?php the_content(); ?>
+
+                    <div class="page--share">
+                        <?php get_template_part('template-parts/share-links'); ?>
+                    </div>
                 </section>
 
                 <footer class="post-footer">
+                   
+
                 </footer>
             </article>
         <?php endwhile; ?>

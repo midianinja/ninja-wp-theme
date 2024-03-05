@@ -77,10 +77,8 @@ document.addEventListener("DOMContentLoaded", function() {
         item.querySelector('a').addEventListener('click', function(e) {
             e.preventDefault();
 
-            const arrowIcon = this.parentElement.getElementsByTagName("i").item(0);
-            arrowIcon.classList.toggle('up');
-
             const subMenu = this.parentElement.querySelector('.sub-menu');
+            
             subMenu.classList.toggle('active');
             subMenu.parentNode.classList.toggle('active');
         });

@@ -323,7 +323,7 @@ class Assets {
 			'archive' => [
 				'file' => '_p-archive.css',
 				'preload_callback' => function() {
-					return ( is_archive() || is_home() ) ? true : false;
+					return is_archive();
 				},
 			],
 

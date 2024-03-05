@@ -15,12 +15,12 @@
 				}
 			}
 
-			&:hover {
-				position: relative;
+			&.active {
+				//position: relative;
 
 				.sub-menu {
 					display: block;
-					position: absolute;
+					position: fixed;
 					padding-top: 10px;
 					padding-bottom: 10px;
 					padding-left: 10px;

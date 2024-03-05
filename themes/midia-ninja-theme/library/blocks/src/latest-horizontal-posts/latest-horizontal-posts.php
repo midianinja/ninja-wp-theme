@@ -66,12 +66,24 @@ function latest_horizontal_posts_callback( $attributes ) {
             $latest_horizontal_posts_ids = [];
         }
 
-        $args = build_posts_query( $attributes, $latest_horizontal_posts_ids );
+        $cache_key = 'horizontal_posts_' . md5(serialize($attributes) . serialize($latest_horizontal_posts_ids));
+        $cached_posts = get_transient( $cache_key );
 
-        $posts_query = new \WP_Query( $args );
+        if ( false !== $cached_posts ) {
+            $posts_query = $cached_posts;
+        } else {
+            $args = build_posts_query( $attributes, $latest_horizontal_posts_ids );
+            $posts_query = new \WP_Query( $args );
 
-        if ( false === $posts_query->have_posts() ) {
-            return;
+            if ( false === $posts_query->have_posts() ) {
+                if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+                    return '<h2>'. __( 'No content found', 'ninja' ). '</h2>';
+                }
+
+                return;
+            }
+
+            set_transient( $cache_key, $posts_query, 3600 );
         }
 
         $has_content = $posts_query;

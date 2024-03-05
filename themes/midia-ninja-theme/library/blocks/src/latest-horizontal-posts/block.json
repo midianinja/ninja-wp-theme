@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "ninja/latest-horizontal-posts",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"title": "Últimos posts (Horizontal)",
 	"category": "text",
 	"icon": "excerpt-view",

@@ -19,14 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     });
 
-
-
-
     const mainMenu = document.querySelector('.main-header #main-menu');
     const itensWithChild = mainMenu.querySelectorAll('#main-menu li.menu-item-has-children');
-
-    const menuBurguer = document.querySelector('.main-header #menu-hamburguer');
-    const burguerWithChild = menuBurguer.querySelectorAll('#menu-hamburguer li.menu-item-has-children');
     
     itensWithChild.forEach(item => {
 
@@ -45,25 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
             subMenu.parentNode.classList.toggle('active');
         });
     })
-
-    burguerWithChild.forEach(item => {
-
-        if (item.parentElement.classList.contains('sub-menu')){
-            return;
-        }
-
-        item.querySelector('a').addEventListener('click', function(e) {
-            e.preventDefault();
-
-            const arrowIcon = this.parentElement.getElementsByTagName("i").item(0);
-            arrowIcon.classList.toggle('up');
-
-            const subMenu = this.parentElement.querySelector('.sub-menu');
-            subMenu.classList.toggle('active');
-            subMenu.parentNode.classList.toggle('active');
-        });
-    })
-
 
     //Hamburguer Menu
     const menuItens = document.querySelector(".menu-items");
@@ -89,6 +64,25 @@ document.addEventListener("DOMContentLoaded", function() {
             menuButton.classList.add("checked");
         }
     })
+
+    const burguerMenu = document.querySelector('.hamburguer #menu-hamburguer');
+    const burguerWithChild = burguerMenu.querySelectorAll('#menu-hamburguer li.menu-item-has-children');
+    
+    burguerWithChild.forEach(item => {
+
+        if (item.parentElement.classList.contains('sub-menu')){
+            return;
+        }
+
+        item.querySelector('a').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const arrowIcon = this.parentElement.getElementsByTagName("i").item(0);
+            arrowIcon.classList.toggle('up');
+
+            const subMenu = this.parentElement.querySelector('.sub-menu');
+            subMenu.classList.toggle('active');
+            subMenu.parentNode.classList.toggle('active');
+        });
+    })
 })
-
-

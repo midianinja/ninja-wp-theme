@@ -15,16 +15,20 @@
 				}
 			}
 
-			.sub-menu.active {
-				display: block;
-				position: absolute;
-				padding-top: 10px;
-				padding-bottom: 10px;
-				padding-left: 10px;
-				border-left: 1px solid white;
+			&.active {
+				//position: relative;
 
-				@include tablet {
-					position: relative;
+				.sub-menu {
+					display: block;
+					position: fixed;
+					padding-top: 10px;
+					padding-bottom: 10px;
+					padding-left: 10px;
+					border-left: 1px solid white;
+
+					@include tablet {
+						position: relative;
+					}
 				}
 			}
 

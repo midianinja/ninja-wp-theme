@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 menuButton.classList.add("checked");
             }
+
+            document.getElementById("s").focus();
         })
 
     buttonMais.addEventListener ("click", function(ev) {
@@ -83,25 +85,18 @@ document.addEventListener("DOMContentLoaded", function() {
         item.querySelector('a').addEventListener('click', function(e) {
             e.preventDefault();
 
-            let allItens = burguerMenu.querySelectorAll('.active');
-            console.log(allItens)
-            
-            allItens.forEach ( function(item) {
-                item.classList.remove('active');
-            });
+            item.classList.toggle('active');
 
-            const subMenu = this.parentElement.querySelector('.sub-menu');
-            
-            subMenu.classList.toggle('active');
-            subMenu.parentNode.classList.toggle('active');
         });
+
+        
     })
 
     document.addEventListener('click', function(e) {
         
         if ( e.target.closest('.primary-menu') === null ) {
             let allItens = mainMenu.querySelectorAll('.active');
-            
+
             allItens.forEach ( function(item) {
                 item.classList.remove('active');
             });

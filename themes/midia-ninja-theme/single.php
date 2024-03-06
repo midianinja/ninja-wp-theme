@@ -57,13 +57,16 @@ $category = get_the_terms($post->ID, 'category');
 
                     </div>
                 </section>
-
-                <footer class="post-footer">
-                    <div class="related-posts"></div>
-                </footer>
             </article>
         <?php endwhile; ?>
+
+        <section class="post-footer">
+            <div class="related-posts">
+                <?php get_template_part('./template-parts/content/related-posts'); ?>
+            </div>
+        </section>
     </main>
+
 </div>
 
 <?php get_footer(); ?>

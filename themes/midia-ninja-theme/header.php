@@ -44,28 +44,31 @@
                     </div>
                 </div>
             </div>
+
+            <section class="hamburguer">
+                <div class="container nav-container">
+                    <input class="checkbox" type="checkbox" name="" id="burguer-checkbox"/>
+                    
+                    <div class="menu-items">
+
+                        <div class="hamburger-lines">
+                            <span class="line line1"></span>
+                            <span class="line line2"></span>
+                            <span class="line line3"></span>
+                        </div>
+
+                        <div class="search-component">
+                            <?php get_search_form(); ?>
+                        </div>
+                        
+                        <?= wp_nav_menu(['theme_location' => 'hamburguer-menu', 'container' => 'nav']); ?>  
+                        
+                        <?php the_social_networks_menu(); ?>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <section class="hamburguer">
-            <div class="container nav-container">
-                <input class="checkbox" type="checkbox" name="" id="burguer-checkbox"/>
-                
-                <div class="hamburger-lines">
-                    <span class="line line1"></span>
-                    <span class="line line2"></span>
-                    <span class="line line3"></span>
-                </div>  
-            
-                <div class="menu-items">
-                    <div class="search-component">
-                        <?php get_search_form(); ?>
-                    </div>
-                    
-                    <?= wp_nav_menu(['theme_location' => 'hamburguer-menu', 'container' => 'nav']); ?>  
-                    
-                    <?php the_social_networks_menu(); ?>
-                </div>
-            </div>
-        </section>
+        
 	</header>
 	<div id="app">

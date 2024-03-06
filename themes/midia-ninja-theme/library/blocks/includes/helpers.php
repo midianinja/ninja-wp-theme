@@ -16,7 +16,7 @@ namespace Ninja;
 function build_posts_query( $attributes, $post__not_in = [] ) {
 
     $post_type = isset( $attributes['postType'] ) ? $attributes['postType'] : [ 'post' ];
-    $posts_to_show = intval( $attributes['postsToShow'] );
+    $posts_to_show = isset( $attributes['postsToShow'] ) ? intval( $attributes['postsToShow'] ) : 3;
 
     $order = isset( $attributes['order'] ) ? $attributes['order'] : 'desc';
     $order_by = isset( $attributes['orderBy'] ) ? $attributes['orderBy'] : 'date';

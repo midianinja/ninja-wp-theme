@@ -1,0 +1,209 @@
+@use "./../2-atoms/a-mixins" as mixins;
+@use "./../1-settings/s-variables" as variables;
+
+body{
+    &.block-editor-page{ 
+        .block-editor-block-list__layout{
+            .wp-block-columns,
+            .grid-latest-posts{
+                .wp-block-column{
+                    .wp-block{
+                        .wp-block-newspack-blocks-homepage-articles{
+                            &.destaque-principal,
+                            &.destaque-pequeno-sem-imagem{
+                                margin-top: 100px;
+                            }
+                            article{
+                                .entry-wrapper{
+                                    font-family: 'Manrope', serif;
+                                    .cat-links {
+                                        margin-bottom: 15px;
+                                        margin-left: 0;
+                                        
+            
+                                        a {
+                                            background-color: var(--wp--preset--color--laranja-dark); // @todo - make dynamic
+                                            color: var(--wp--preset--color--secondary-light);
+                                            font-family: variables.$f_title;
+                                            font-size: var(--wp--preset--font-size--small);
+                                            font-weight: 800;
+                                            letter-spacing: -0.42px;
+                                            text-transform: uppercase;
+                                            padding-left: 5px;
+                                            padding-right: 5px;
+                                        }
+                                    }
+                                    .entry-title {
+                                        color: var(--wp--preset--color--primary-pure);
+                                        font-size: var(--wp--preset--font-size--default);
+                                        font-weight: 700;
+                                        padding-bottom: 5px;
+                                        padding-top: 5px;
+                                    }
+                    
+                                    .entry-meta {
+                                        font-family: 'Inter', serif;
+                                        color: var(--wp--preset--color--primary-light);
+                                        font-size: mixins.size(13);
+                                        font-weight: 700;
+                                    }
+                                }    
+                            }
+                            &.destaque-principal {
+                                border-radius: 8px;
+                                margin-bottom: mixins.size(30);
+                                overflow: hidden;
+                    
+                                @include mixins.mobile {
+                                    margin-bottom: 0;
+                                }
+                    
+                                article {
+                                    aspect-ratio: 16 / 9;
+                                    background-color: var(--wp--preset--color--primary-pure);
+                                    display: block;
+                                    position: relative;
+                                    
+                                    @include mixins.tablet {
+                                        aspect-ratio: 1 / 1;
+                                    }
+                    
+                                    .post-thumbnail {
+                                        height: 100%;
+                                        left: 0;
+                                        position: absolute;
+                                        top: 0;
+                                        width: 100%;
+                                        z-index: 1;
+                    
+                                        a {
+                                            display: block;
+                                            // aspect-ratio: 16 / 9;
+                                            overflow: hidden;
+                    
+                                            &::before {
+                                                content: "";
+                                                padding-top: 56.25%;
+                                                float: left;
+                                            }
+                    
+                                            &::after {
+                                                clear: left;
+                                                content: " ";
+                                                display: table;
+                                            }
+                    
+                                            img {
+                                                height: 100%;
+                                                left: 50%;
+                                                object-fit: cover;
+                                                position: absolute;
+                                                top:  50%;
+                                                transform: translate(-50%, -50%);
+                                                width: 100%;
+                    
+                                                @media(max-width: variables.$tablet-width){
+                                                    min-width: 100%;
+                                                }
+                                            }
+                                        }
+                                    }
+                    
+                                    .entry-wrapper {
+                                        backdrop-filter: blur(10px);
+                                        background-color: rgba(51, 51, 51, 0.70);
+                                        color: var(--wp--preset--color--secondary-light);
+                                        display: flex;
+                                        flex-direction: column;
+                                        height: auto;
+                                        justify-content: space-between;
+                                        left: 0;
+                                        max-width: mixins.size(375);
+                                        overflow-y: auto;
+                                        padding: var(--s-large);
+                                        position: relative;
+                                        right: 0;
+                                        z-index: 2;
+                    
+                                        @include mixins.mobile {
+                                            gap: mixins.size(15);
+                                            justify-content: flex-end;
+                                            padding: mixins.size(30) mixins.size(20);
+                                        }
+                    
+                                        p {
+                                            color: var(--wp--preset--color--secondary-light);
+                                            font-family: variables.$f_title;
+                                            margin-top: 0;
+                    
+                                            &:last-of-type {
+                                                margin-bottom: 0;
+                                            }
+                                        }
+                    
+                                        h2 {
+                                            color: var(--wp--preset--color--secondary-light);
+                                            font-size: var(--wp--preset--font-size--medium);
+                                            font-weight: 800;
+                                            line-height: 1.2;
+                                        }
+                                    }
+                                }
+                            }
+                            &.destaque-pequeno-sem-imagem {
+                                background-color: var(--wp--preset--color--primary-pure);
+                                border-radius: 8px;
+                                color: var(--wp--preset--color--primary-light);
+                                margin-bottom: mixins.size(30);
+                                overflow: hidden;
+                                padding: variables.$s_medium;
+                    
+                                @include mixins.tablet {
+                                    padding: variables.$s_small;
+                                }
+                    
+                                article {
+                                    .entry-wrapper {
+                                        .cat-links {
+                                            margin-bottom: variables.$s_small;
+                                            margin-top: 10px;
+                                        }
+                                    }
+                    
+                                    .entry-title {
+                                        color: var(--wp--preset--color--secondary-light);
+                                        margin-bottom: 0;
+                                    }
+                                }
+                            }
+                    
+                            &.posts-sidebar {
+                                article {
+                                    align-items: center;
+                    
+                                    .post-thumbnail {
+                                        max-width: mixins.size(110);
+                                        overflow: hidden;
+                                    }
+                    
+                                    .entry-wrapper {
+                                        @include mixins.mobile {
+                                            flex-basis: 100%;
+                                        }
+                    
+                                        .entry-title {
+                                            a {
+                                                color: var(--wp--preset--color--primary-pure);
+                                                font-size: var(--wp--preset--font-size--small);
+                                            }
+                                        }
+                                    }
+                                }
+                            }    
+                        }    
+                    }    
+                }    
+            }    
+        }
+    }
+}

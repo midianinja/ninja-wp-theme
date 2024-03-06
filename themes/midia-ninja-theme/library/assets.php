@@ -147,7 +147,7 @@ class Assets {
         $css_uri = get_theme_file_uri( '/dist/css/' );
         $css_dir = get_theme_file_path( '/dist/css/' );
 
-        // wp_enqueue_style( 'buddyx-admin', $css_uri . '/admin.min.css' );			
+        wp_enqueue_style( 'midia-ninja-editor', $css_uri . '_p-editor.css' );		
         // wp_enqueue_script(
         //     'buddyx-admin-script',
         //     get_theme_file_uri( '/assets/js/buddyx-admin.min.js' ),

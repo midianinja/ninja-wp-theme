@@ -31,6 +31,12 @@ document.addEventListener("DOMContentLoaded", function() {
         item.querySelector('a').addEventListener('click', function(e) {
             e.preventDefault();
 
+            let allItens = mainMenu.querySelectorAll('.active');
+            
+            allItens.forEach ( function(item) {
+                item.classList.remove('active');
+            });
+
             const arrowIcon = this.parentElement.getElementsByTagName("i").item(0);
             arrowIcon.classList.toggle('up');
 
@@ -40,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     })
 
-    //Hamburguer Menu
+    //Hamburguer Menu Open/Close
     const menuItens = document.querySelector(".menu-items");
     const menuButton = document.querySelector("#burguer-checkbox");
     const buttonMais = document.querySelector(".mais");
@@ -64,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
             menuButton.classList.add("checked");
         }
     })
-
+    //Hamburger Menu Itens
     const burguerMenu = document.querySelector('.hamburguer #menu-hamburguer');
     const burguerWithChild = burguerMenu.querySelectorAll('#menu-hamburguer li.menu-item-has-children');
     
@@ -77,10 +83,28 @@ document.addEventListener("DOMContentLoaded", function() {
         item.querySelector('a').addEventListener('click', function(e) {
             e.preventDefault();
 
+            let allItens = burguerMenu.querySelectorAll('.active');
+            console.log(allItens)
+            
+            allItens.forEach ( function(item) {
+                item.classList.remove('active');
+            });
+
             const subMenu = this.parentElement.querySelector('.sub-menu');
             
             subMenu.classList.toggle('active');
             subMenu.parentNode.classList.toggle('active');
         });
+    })
+
+    document.addEventListener('click', function(e) {
+        
+        if ( e.target.closest('.primary-menu') === null ) {
+            let allItens = mainMenu.querySelectorAll('.active');
+            
+            allItens.forEach ( function(item) {
+                item.classList.remove('active');
+            });
+        }
     })
 })

@@ -1,0 +1,130 @@
+@import "../../shared/scss/mixins";
+
+.latest-editorial-posts-block {
+    // .latest-editorial-posts-block__header
+    &__header {
+    }
+
+    // .latest-editorial-posts-block__filter
+    &__filter {
+        display: flex;
+        gap: 8px;
+
+        .term {
+            background-color: cadetblue;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 4px;
+            text-transform: uppercase;
+        }
+    }
+
+   // .latest-editorial-posts-block__content
+    &__content {
+        display: flex;
+        gap: 15px;
+        min-height: 50vh;
+
+        @include break-medium {
+            flex-direction: column;
+        }
+    }
+
+    // .latest-editorial-posts-block__sidebar
+    &__sidebar {
+        width: 25%;
+    }
+
+    // .latest-editorial-posts-block__posts
+    &__posts {
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .post {
+            // .post-thumbnail
+            &-thumbnail {
+                position: relative;
+                
+                &::before {
+                    content: "";
+                    padding-top: 56.25%;
+                    float: left;
+                }
+
+                &::after {
+                    clear: left;
+                    content: " ";
+                    display: table;
+                }
+
+                img {
+                    border-radius: 8px;
+                    height: 100%;
+                    left: 50%;
+                    object-fit: cover;
+                    position: absolute;
+                    top:  50%;
+                    transform: translate(-50%, -50%);
+                    transition: all 0.3s ease-in-out;
+                    width: 100%;
+                }
+
+                // Overwrite the style on _p-single.scss
+                main.content & {
+                    .container & {
+                        .single & {
+                            img {
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // .post-content
+            &-content {
+                
+            }
+
+            // .post-meta
+            &-meta {
+                &--date {
+                    color: #828282;
+                    font-size: 13px;
+                    font-weight: 700;
+                }
+            }
+
+            // .post-title
+            &-title {
+                font-size: 1rem;
+                letter-spacing: 0;
+                line-height: 140%;
+                font-weight: 700;
+                margin-bottom: 5px;
+                margin-top: 5px;
+
+                // Overwrite the style on _p-single.scss
+                main.content & {
+                    .container & {
+                        .single & {
+                            font-size: 1rem;
+                            letter-spacing: 0;
+                            line-height: 140%;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

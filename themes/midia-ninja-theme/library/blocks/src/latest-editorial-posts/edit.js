@@ -16,6 +16,8 @@ import {
 	SelectControl
 } from '@wordpress/components'
 
+import SelectCategory from './components/SelectCategory'
+
 import metadata from './block.json'
 import './editor.scss'
 
@@ -26,9 +28,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 	const { 
 		blockId,
-		order,
-		orderBy,
-		postsToShow
+		termsToFilter
 	} = attributes
 
 	useEffect(() => {
@@ -46,6 +46,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 	const { maxItems, minItems, numberOfItems } = query
 
+	const onChangeSelectCategory = (value) => {
+		setAttributes({ termsToFilter: value })
+	}
+
 	return (
 		<>
 			<InspectorControls>
@@ -54,19 +58,9 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					title={ __( 'Settings', 'ninja' ) }
 					initialOpen={ true }
 				>
-					<QueryControls
-						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
-						numberOfItems={ parseInt(postsToShow) }
-						onOrderChange={ ( value ) =>
-							setAttributes( { order: value } )
-						}
-						onOrderByChange={ ( value ) =>
-							setAttributes( { orderBy: value } )
-						}
-						onNumberOfItemsChange={ ( value ) =>
-							setAttributes( { postsToShow: parseInt(value) } )
-						}
-					/>
+					<PanelRow>
+						<SelectCategory onChangeSelectCategory={ onChangeSelectCategory } selectedCategories={ termsToFilter } />
+					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 

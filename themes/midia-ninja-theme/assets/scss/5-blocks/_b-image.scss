@@ -1,9 +1,14 @@
 @import "./../1-settings/_s-variables";
 @import "./../2-atoms/a-mixins";
 
-
 .wp-block-image {
-    img {
-        height: auto;
-    }
+	img {
+		height: auto;
+	}
+}
+
+.wp-block-image.aligncenter,
+.wp-block-image.alignleft,
+.wp-block-image.alignright {
+	display: block !important;
 }

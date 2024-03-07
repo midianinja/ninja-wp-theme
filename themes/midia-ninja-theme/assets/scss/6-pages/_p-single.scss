@@ -1,5 +1,7 @@
 @use "./../1-settings/s-variables" as variables;
 @import "./../2-atoms/a-mixins";
+@import "../3-components/c-share";
+@import "../5-blocks/b-image";
 
 .single {
 	header .container .row {
@@ -169,7 +171,6 @@
 					}
 				}
 			}
-			@import "../3-components/c-share";
 
 			.comments {
 				border-top: 1px solid;

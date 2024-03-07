@@ -53,6 +53,14 @@
     // .latest-editorial-posts-block__sidebar
     &__sidebar {
         width: 25%;
+        .anuncio-ninja-mobile{
+            display: inherit !important;
+            margin-top: 0;
+            img{
+                max-width: 270px;
+                width: 100%;
+            }
+        }
     }
 
     // .latest-editorial-posts-block__posts

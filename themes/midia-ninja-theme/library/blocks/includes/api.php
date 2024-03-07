@@ -13,7 +13,8 @@ function register_endpoints() {
         '/posttypes',
         [
             'methods'  => 'GET',
-            'callback' => 'Ninja\\get_public_post_types'
+            'callback' => 'Ninja\\get_public_post_types',
+            'permission_callback' => __return_true()
         ]
     );
 
@@ -30,7 +31,8 @@ function register_endpoints() {
                         return post_type_exists( $param );
                     }
                 ],
-            ]
+            ],
+            'permission_callback' => __return_true()
         ]
     );
 }

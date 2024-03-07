@@ -3,15 +3,32 @@
 .latest-editorial-posts-block {
     // .latest-editorial-posts-block__header
     &__header {
+        display: flex;
+        margin-bottom: 2rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px 30px;
+        align-items: center;
+        h2{
+            margin: 0;
+            font-family: 'Manrope', serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 1.3rem;
+        }
     }
 
     // .latest-editorial-posts-block__filter
     &__filter {
         display: flex;
         gap: 8px;
+        margin-left: 4.5rem;
 
         .term {
-            background-color: cadetblue;
             border-radius: 4px;
             cursor: pointer;
             font-size: 13px;

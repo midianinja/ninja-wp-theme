@@ -37,6 +37,9 @@ function latest_editorial_posts_callback( $attributes ) {
 
                 if ( $terms_to_filter && is_array( $terms_to_filter ) ) :
                     echo '<div class="latest-editorial-posts-block__header">';
+                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M8.90822 7.5L23.0918 7.50001C24.1457 7.50001 25 8.35435 25 9.40823C25 9.89532 24.8137 10.364 24.4794 10.7182L18.0769 17.5L18.0769 22.3173C18.0769 23.791 16.5371 24.7586 15.2093 24.1193L15.0554 24.0452C14.3632 23.7119 13.9231 23.0115 13.9231 22.2432L13.9231 17.5L7.52065 10.7182C7.18627 10.364 7 9.89532 7 9.40822C7 8.35434 7.85434 7.5 8.90822 7.5Z" stroke="black"/>
+                            </svg>';
                         echo '<h2>'. __( 'Filter by editorial', 'ninja' ). '</h2>';
                         echo '<div class="latest-editorial-posts-block__filter">';
                             foreach ( $terms_to_filter as $term ) :

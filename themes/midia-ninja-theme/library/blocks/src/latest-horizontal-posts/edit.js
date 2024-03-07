@@ -126,6 +126,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 									value: "collection"
 								},
 								{
+									label: __( 'Columnists', 'ninja' ),
+									value: "columnists"
+								},
+								{
 									label: __( 'Most read', 'ninja' ),
 									value: "most-read"
 								},

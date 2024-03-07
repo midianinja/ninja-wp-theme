@@ -11,25 +11,17 @@
 	"supports": {
 		"html": false
 	},
-    "attributes": {
-        "blockId": {
-            "type": "string"
-        },
-        "order": {
-            "type": "string",
-            "default": "desc"
-        },
-        "orderBy": {
-            "type": "string",
-            "default": "date"
-        },
-        "postsToShow": {
-            "type": "number",
-            "default": 5
-        }
+	"attributes": {
+		"blockId": {
+			"type": "string"
+		},
+		"termsToFilter": {
+			"type": "array"
+		}
 	},
 	"textdomain": "ninja",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
 }

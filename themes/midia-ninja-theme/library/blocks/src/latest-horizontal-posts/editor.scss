@@ -6,3 +6,23 @@
 		}
 	}
 }
+.block-editor-block-list__block{
+	&.latest-horizontal-posts-block{
+		margin-top: 2rem;
+		margin-top: 2rem;
+
+		.latest-horizontal-posts-block__slides{
+			display: flex;
+			flex-basis: unset;
+			:nth-child(n+4){
+				display: none;
+			}
+			.slide{
+				width: 194px;
+				height: 260px;
+				margin-right: 30px;
+			}
+		}
+	}
+}
+

@@ -6,3 +6,38 @@
 		}
 	}
 }
+.block-editor-block-list__block{
+	&.latest-vertical-posts-block{
+		font-family: 'Manrope', serif;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+		font-size: 12px;
+		.latest-vertical-posts-block__slides{
+			:nth-child(n+3){
+				display: none;
+			}
+			.slide{
+				a{
+					color: #333;
+					text-decoration: none;
+					text-transform: uppercase;
+					.post-meta{
+						font-size: 10px;
+						.post-meta--terms{
+							:nth-child(n+3){
+								display: none;
+							}
+						}
+						
+					}
+				}	
+			}
+			
+		}
+	}
+}
+
+.latest-vertical-posts-block{
+	background-color: #fff;
+}

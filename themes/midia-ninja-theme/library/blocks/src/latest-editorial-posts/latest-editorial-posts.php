@@ -51,7 +51,7 @@ function latest_editorial_posts_callback( $attributes ) {
 
                 echo '<div class="latest-editorial-posts-block__content">';
                     echo '<div class="latest-editorial-posts-block__sidebar">';
-                    echo '<h2>'. __( 'Anúncio', 'ninja' ). '</h2>';
+                    echo do_shortcode( '[the_ad id="4539489"]' );
                     echo '</div><!-- .latest-editorial-posts-block__sidebar -->';
 
                     echo '<div class="latest-editorial-posts-block__posts">';

@@ -2,8 +2,15 @@
 @use "./../1-settings/s-variables" as variables;
 
 body{
-    &.block-editor-page{ 
+    &.block-editor-page{
+        .editor-styles-wrapper{
+            background-color: #f5f5f5;
+        } 
         .block-editor-block-list__layout{
+            background-color: #f5f5f5;
+            .wp-block-shortcode{
+                margin-top: 50px;
+            }
             .wp-block-columns,
             .grid-latest-posts{
                 .wp-block-column{
@@ -13,6 +20,7 @@ body{
                             &.destaque-pequeno-sem-imagem{
                                 margin-top: 50px;
                             }
+                           
                             article{
                                 .entry-wrapper{
                                     font-family: 'Manrope', serif;
@@ -218,26 +226,35 @@ body{
                         display: none;
                     }
                     .wp-block-button{
-                        background-color: #111;
-                        border-radius: 8px;
-                        
-                        
-                        a{
-                            font-family: 'Manrope', serif;
-                            color: #fff;
-                            font-size: 13px;
-                            font-weight: 700;
-                            padding: 18px 30px;
-                            color: #FFF !important;
-                            border: none;
-                        }
+                        font-family: 'Manrope', serif;
+                        color: #fff;
+                            
                     }
+                    .wp-block-button__link{
+                        border-radius: 4px;
+                        border: 2px solid #FFF;
+                        font-size: 13px;
+                        font-weight: 700;
+                        padding: 15px 30px;
+                        color: #FFF !important;
+                    } 
                 }
             }
             .wp-block-cover{
                 &.newsletter{
+                    .wp-block-cover__inner-container{
+                        background-color: #111;
+
+                    }
                     .wp-block-columns{
                         gap: 100px;
+                        background-color: #111;
+                        .wp-block-column{
+                            background-color: #111;
+                            
+                        }
+
+                        
                     }
                     .wp-block-heading{
                         color: #FFF;
@@ -254,6 +271,7 @@ body{
                         font-style: normal;
                         font-weight: 500;
                         line-height: 145%;
+                        color: #fff;
                     }
                 }
             }
@@ -263,46 +281,38 @@ body{
                     min-height: 108px;
                     display: flex;
                     align-items: center;
-            
-                    @media(max-width: 1320px){
-                        padding-left: 15px;
-                        padding-right: 15px;
+                        .wp-block-columns, .wp-block-column{
+                        background-color: #111;
+                        }
+        
+                        h2{
+                            font-family: "MidiaNinja", sans-serif;
+                            color: #FBF36E;
+                            font-size: 28px;
+                            font-weight: 400;
+                            margin-bottom: 0;
+                            margin-top: 0;
+                            letter-spacing: normal;
+                            background-color: #111;
+                        }
+                        .wp-block-buttons{
+                            background-color: #111;
+                            .wp-block-button{
+                                font-family: 'Manrope', serif;
+                                color: #fff;
+                                    
+                            }
+                            .wp-block-button__link{
+                                border-radius: 4px;
+                                border: 2px solid #FFF;
+                                font-size: 13px;
+                                font-weight: 700;
+                                padding: 15px 30px;
+                                color: #FFF !important;
+                            } 
+                        }
                     }
-                    
                    
-                    .wp-block-columns{
-                        margin-top: 1.8rem;
-                        
-                    }
-                    h2{
-                        font-family: "MidiaNinja", sans-serif;
-                        color: #FBF36E;
-                        font-size: 28px;
-                        font-weight: 400;
-                        margin-bottom: 0;
-                        margin-top: 0;
-                        letter-spacing: normal;
-                       
-                        img{
-                            margin-left: 4.5rem;
-                            
-                        }
-                    }
-                    .wp-block-button{
-                        
-                        a{
-                            font-family: 'Manrope', serif;
-                            color: #fff;
-                            border-radius: 4px;
-                            border: 2px solid #FFF;
-                            font-size: 13px;
-                            font-weight: 700;
-                            padding: 15px 30px;
-                            color: #FFF !important;
-                            
-                        }
-                    } 
-                }
                 &.seleta{
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr 1fr;

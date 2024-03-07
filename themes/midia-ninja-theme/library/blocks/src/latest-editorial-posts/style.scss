@@ -29,13 +29,84 @@
         margin-left: 4.5rem;
         flex-wrap: wrap;
 
-        .term {
+        span.term {
             border-radius: 4px;
             cursor: pointer;
             font-size: 13px;
             font-weight: 800;
             padding: 4px;
             text-transform: uppercase;
+            color: #111;
+
+            &-cultura {
+                background-color: #DB565E;
+                
+            }
+        
+            &-meio-ambiente {
+                background-color: #99CE56;
+                
+            }
+        
+            &-alimentacao {
+                background-color: #F7F100 ;
+                
+            }
+        
+            &-lgbtqiapn {
+                background-color: #E14FCE;
+                
+            }
+        
+            &-indigenas {
+                background-color: #F27900;
+                
+            }
+        
+            &-entrevistas {
+                background-color: #111111;
+                color: #fff;
+            }
+        
+            &-politica {
+                background-color: #76C7E6;
+                
+            }
+        
+            &-negritude {
+                background-color: #F1BC4E;
+                
+            }
+        
+            &-educacao {
+                background-color: #C9ADFF;
+                
+            }
+        
+            &-negritude {
+                background-color: #F1BC4E;
+                
+            }
+        
+            &-internacional {
+                background-color: #F63333;
+                color: #fff;
+            }
+        
+            &-esportes {
+                background-color: #7AE695;
+                
+            }
+        
+            &-tecnologia {
+                background-color: #F0A8E7;
+                
+            }
+        
+            &-feminismos {
+                background-color: #8C52FF;
+                color: #fff;
+            }
         }
     }
 
@@ -59,6 +130,7 @@
             img{
                 max-width: 270px;
                 width: 100%;
+                height: auto;
             }
         }
     }

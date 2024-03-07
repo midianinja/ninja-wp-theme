@@ -36,7 +36,15 @@ $category = get_the_terms($post->ID, 'category');
 
                         <div class="author">
                             <?php the_author(); ?>
-                            <time class="date" datetime="<?php echo get_the_date('c'); ?>"><?php the_date(); ?></time>
+                            <time class="date" datetime="<?php echo get_the_date('c'); ?>">
+                                <span>
+                                    <?php the_date();?>
+                                </span> 
+                                <span class="clock"></span>
+                                <span>
+                                    <?php the_time('G:i');?>
+                                </span>
+                            </time>
                         </div>
                         
                         <div class="page-share">

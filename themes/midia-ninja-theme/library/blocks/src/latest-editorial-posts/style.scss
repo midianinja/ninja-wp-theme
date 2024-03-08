@@ -35,9 +35,10 @@
             cursor: pointer;
             font-size: 13px;
             font-weight: 800;
-            padding: 4px;
+            padding: 1px 9px 0;
             text-transform: uppercase;
             color: #111;
+            font-family: 'Archivo';
 
             &-cultura {
                 background-color: #DB565E;
@@ -73,12 +74,7 @@
                 background-color: #76C7E6;
                 
             }
-        
-            &-negritude {
-                background-color: #F1BC4E;
-                
-            }
-        
+     
             &-educacao {
                 background-color: #C9ADFF;
                 

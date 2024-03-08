@@ -768,68 +768,44 @@
         }
         .slide{
             display: flex;
-            .post{
-                display: flex;
-                .post-thumbnail{
-                    margin-top: 15px;    
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 50px;
-                    img{
-                        max-width: 80px;
+            a{
+                text-decoration: none;
+                .post{
+                    display: flex;
+                    gap: 13px;
+                    .post-thumbnail{
+                        margin-top: 15px;    
+                        width: 80px;
                         height: 80px;
                         border-radius: 50px;
+                        box-shadow: none;
+                        img{
+                            max-width: 80px;
+                            height: 80px;
+                            border-radius: 50px;
+                        }
+                    }
+                    .post-content{
+                        font-family: 'Manrope', serif;
+                        max-width: 170px;
+                        width: 100%;
+                       .post-title{
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 140%;
+                       }
+                       p{
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 145%;
+                        color: #848484;
+                       } 
                     }
                 }
-                .post-content{
-                    font-family: 'Manrope', serif;
-                    max-width: 170px;
-                    width: 100%;
-                   .post-title{
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 140%;
-                   }
-                   p{
-                    font-size: 13px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 145%;
-                    color: #848484;
-                   } 
-                }
             }
-        }
-        .post-thumbnail{
-            
-            width: 80px;
-            height: 80px;
-            border-radius: 50px;
-            img{
-                max-width: 80px;
-                height: 80px;
-                border-radius: 50px;
-            }
-        }
-        .post-content{
-            font-family: 'Manrope', serif;
-            max-width: 170px;
-            width: 100%;
-           .post-title{
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 140%;
-           }
-           p{
-            font-size: 13px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 145%;
-            color: #848484;
-           } 
-        }
+        }  
         .slick-arrow {
             background-color: #ccc !important; 
         }

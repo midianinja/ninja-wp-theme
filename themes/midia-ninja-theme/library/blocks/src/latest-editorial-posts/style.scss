@@ -41,72 +41,75 @@
             padding: 1px 9px 0;
             text-transform: uppercase;
 
-            &:not(.active) {
-                &.term {
-                    &-cultura {
-                        background-color: #DB565E;
-                    }
+            &.term {
+                &-cultura {
+                    background-color: #DB565E;
+                }
 
-                    &-meio-ambiente {
-                        background-color: #99CE56;
-                    }
+                &-meio-ambiente {
+                    background-color: #99CE56;
+                }
 
-                    &-alimentacao {
-                        background-color: #F7F100 ;
-                    }
+                &-alimentacao {
+                    background-color: #F7F100 ;
+                }
 
-                    &-lgbtqia {
-                        background-color: #E14FCE;
-                    }
+                &-lgbtqia {
+                    background-color: #E14FCE;
+                }
 
-                    &-indigenas {
-                        background-color: #F27900;
-                    }
+                &-indigenas {
+                    background-color: #F27900;
+                }
 
-                    &-entrevistas {
-                        background-color: #111111;
-                        color: #fff;
-                    }
+                &-entrevistas {
+                    background-color: #111111;
+                    color: #fff;
+                }
 
-                    &-politica {
-                        background-color: #76C7E6;
-                    }
+                &-politica {
+                    background-color: #76C7E6;
+                }
 
-                    &-educacao {
-                        background-color: #C9ADFF;
-                        
-                    }
+                &-educacao {
+                    background-color: #C9ADFF;
+                    
+                }
 
-                    &-negritude {
-                        background-color: #F1BC4E;
-                        
-                    }
+                &-negritude {
+                    background-color: #F1BC4E;
+                    
+                }
 
-                    &-internacional {
-                        background-color: #F63333;
-                        color: #fff;
-                    }
+                &-internacional {
+                    background-color: #F63333;
+                    color: #fff;
+                }
 
-                    &-esportes {
-                        background-color: #7AE695;
-                    }
+                &-esportes {
+                    background-color: #7AE695;
+                }
 
-                    &-tecnologia {
-                        background-color: #F0A8E7;
-                    }
+                &-tecnologia {
+                    background-color: #F0A8E7;
+                }
 
-                    &-feminismos {
-                        background-color: #8C52FF;
-                        color: #fff;
-                    }
+                &-feminismos {
+                    background-color: #8C52FF;
+                    color: #fff;
+                }
+                
+                &-arts {
+                    background-color: pink;
                 }
             }
+        }
 
-            &.active {
-                &.term {
-                    background-color: #F5F5F5;
-                    border: 1px solid #111;
-                    color: #111;
+        &.active {
+            span.term {
+                &:not(.active) {
+                    background-color: #CCC;
+                    color: #848484;
                 }
             }
         }
@@ -143,6 +146,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
+        position: relative;
 
         a {
             color: inherit;
@@ -261,7 +265,7 @@
             display: flex;
             height: 100%;
             justify-content: center;
-            position: relative;
+            position: absolute;
             text-indent: -9999px;
             width: 100%;
 

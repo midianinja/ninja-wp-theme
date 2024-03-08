@@ -178,6 +178,27 @@
 						transform: none;
 						padding: 0;
 
+						.social-menu {
+							position: absolute;
+							top: 0;
+							left: -34px;
+
+							.social-icon {
+								display: none;
+
+								&.icon-instagram {
+									display: block;
+									padding: 0 8px;
+									margin: 0;
+
+									svg {
+										width: 20px;
+										color: #e1306c;
+									}
+								}
+							}
+						}
+
 						.a2a_button_facebook {
 							svg path {
 								fill: #3b5998;
@@ -200,19 +221,19 @@
 				}
 			}
 
-			// .comments {
-			// 	border-top: 1px solid;
-			// 	border-bottom: 1px solid;
-			// 	width: 100vw;
-			// 	position: relative;
-			// 	left: 50%;
-			// 	transform: translateX(-50%);
-			// 	margin: 32px 0;
-			// 	padding: 32px 0;
-			// }
+			.comments {
+				border-top: 1px solid;
+				//border-bottom: 1px solid;
+				width: 100vw;
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+				margin: 32px 0;
+				padding: 32px 0;
+			}
 
 			section.post-footer {
-				margin-bottom: 80px;
+				margin: 80px;
 
 				.related-posts {
 					h2 {

@@ -60,6 +60,7 @@ $category = get_the_terms($post->ID, 'category');
 
                     <div class="page-share">
                         <?php echo do_shortcode('[addtoany]'); ?>
+                        <?php the_social_networks_menu() ?>
                     </div>
 
                     <div class="comments">

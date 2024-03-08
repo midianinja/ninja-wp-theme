@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     filters.forEach(filter => {
         filter.addEventListener('click', function() {
+            filters.forEach(filter => filter.classList.remove('active'))
+            this.classList.add('active')
             const termId = this.getAttribute('data-term-id')
             fetchPostsByCategoryId(termId)
         })

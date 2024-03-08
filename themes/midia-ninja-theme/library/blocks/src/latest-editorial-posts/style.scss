@@ -32,77 +32,82 @@
 
         span.term {
             border-radius: 4px;
+            border: 1px solid transparent;
+            color: #111;
             cursor: pointer;
+            font-family: 'Archivo';
             font-size: 13px;
             font-weight: 800;
             padding: 1px 9px 0;
             text-transform: uppercase;
-            color: #111;
-            font-family: 'Archivo';
 
-            &-cultura {
-                background-color: #DB565E;
-                
+            &:not(.active) {
+                &.term {
+                    &-cultura {
+                        background-color: #DB565E;
+                    }
+
+                    &-meio-ambiente {
+                        background-color: #99CE56;
+                    }
+
+                    &-alimentacao {
+                        background-color: #F7F100 ;
+                    }
+
+                    &-lgbtqia {
+                        background-color: #E14FCE;
+                    }
+
+                    &-indigenas {
+                        background-color: #F27900;
+                    }
+
+                    &-entrevistas {
+                        background-color: #111111;
+                        color: #fff;
+                    }
+
+                    &-politica {
+                        background-color: #76C7E6;
+                    }
+
+                    &-educacao {
+                        background-color: #C9ADFF;
+                        
+                    }
+
+                    &-negritude {
+                        background-color: #F1BC4E;
+                        
+                    }
+
+                    &-internacional {
+                        background-color: #F63333;
+                        color: #fff;
+                    }
+
+                    &-esportes {
+                        background-color: #7AE695;
+                    }
+
+                    &-tecnologia {
+                        background-color: #F0A8E7;
+                    }
+
+                    &-feminismos {
+                        background-color: #8C52FF;
+                        color: #fff;
+                    }
+                }
             }
-        
-            &-meio-ambiente {
-                background-color: #99CE56;
-                
-            }
-        
-            &-alimentacao {
-                background-color: #F7F100 ;
-                
-            }
-        
-            &-lgbtqia {
-                background-color: #E14FCE;
-                
-            }
-        
-            &-indigenas {
-                background-color: #F27900;
-                
-            }
-        
-            &-entrevistas {
-                background-color: #111111;
-                color: #fff;
-            }
-        
-            &-politica {
-                background-color: #76C7E6;
-                
-            }
-     
-            &-educacao {
-                background-color: #C9ADFF;
-                
-            }
-        
-            &-negritude {
-                background-color: #F1BC4E;
-                
-            }
-        
-            &-internacional {
-                background-color: #F63333;
-                color: #fff;
-            }
-        
-            &-esportes {
-                background-color: #7AE695;
-                
-            }
-        
-            &-tecnologia {
-                background-color: #F0A8E7;
-                
-            }
-        
-            &-feminismos {
-                background-color: #8C52FF;
-                color: #fff;
+
+            &.active {
+                &.term {
+                    background-color: #F5F5F5;
+                    border: 1px solid #111;
+                    color: #111;
+                }
             }
         }
     }
@@ -246,6 +251,40 @@
                         }
                     }
                 }
+            }
+        }
+
+        .loading {
+            align-items: center;
+            background-color: #e9e9e9;
+            border-radius: 8px;
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            position: relative;
+            text-indent: -9999px;
+            width: 100%;
+
+            &::after {
+                content: '';
+                animation: rotation 1s linear infinite;
+                border-radius: 50%;
+                border: 4px solid #666;
+                border-bottom-color: #CCC;
+                box-sizing: border-box;
+                display: inline-block;
+                height: 35px;
+                position: absolute;
+                width: 35px;
+
+                @keyframes rotation {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                } 
             }
         }
     }

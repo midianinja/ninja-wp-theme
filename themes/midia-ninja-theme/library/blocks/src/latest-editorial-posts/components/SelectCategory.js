@@ -40,10 +40,8 @@ const SelectCategory = ({ onChangeSelectCategory, selectedCategories = [] }) => 
     const handleTokensChange = (newTokenNames) => {
         const newTokens = newTokenNames.map(tokenName => {
             return tokens.find(token => token.name === tokenName) ||
-                   suggestions.find(suggestion => suggestion.name === tokenName) ||
-                   { name: tokenName }
-        });
-
+                suggestions.find(suggestion => suggestion.name === tokenName)
+        }).filter(token => token !== undefined)
         setTokens(newTokens)
         onChangeSelectCategory(newTokens)
     }

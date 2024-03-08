@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const filtersWrap = document.querySelectorAll('.latest-editorial-posts-block__filter')
     const filters = document.querySelectorAll('.latest-editorial-posts-block__filter [data-term-id]')
 
     filters.forEach(filter => {
         filter.addEventListener('click', function() {
             filters.forEach(filter => filter.classList.remove('active'))
+            filtersWrap.forEach(filter => filter.classList.remove('active'))
             this.classList.add('active')
+            this.closest('.latest-editorial-posts-block__filter').classList.add('active')
             const termId = this.getAttribute('data-term-id')
             fetchPostsByCategoryId(termId)
         })

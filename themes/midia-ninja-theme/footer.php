@@ -9,15 +9,18 @@
             <?php the_social_networks_menu(); ?>
         </div>
 
-        <div class="menus">
-            <?= wp_nav_menu(['theme_location' => 'main-menu', 'container' => 'nav', 'menu_id' => 'main-menu', 'menu_class' => 'menu', 'container_class' => 'primary-menu']) ?>
-            
-            <?php if (is_plugin_active('tutor/tutor.php')) : ?>
-                <div class="tutor-header-profile-menu-items">
-                    <?php tutor_multi_column_dropdown(); ?>
-                </div><!-- .tutor-header-profile-menu -->
-            <?php endif; ?>
-        </div>
+        <?= wp_nav_menu([
+            'menu'           => 'footer',
+            'container' => 'nav',
+            'menu_class' => 'footer-menu'
+            ]); ?> 
+        
+        <?php if (is_plugin_active('tutor/tutor.php')) : ?>
+            <div class="tutor-header-profile-menu-items">
+                <?php tutor_multi_column_dropdown(); ?>
+            </div><!-- .tutor-header-profile-menu -->
+        <?php endif; ?>
+       
         
         <div class="footer-credit">
             <div class="content">

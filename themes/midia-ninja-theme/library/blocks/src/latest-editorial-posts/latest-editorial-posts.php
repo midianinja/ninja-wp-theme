@@ -43,7 +43,9 @@ function latest_editorial_posts_callback( $attributes ) {
                         echo '<h2>'. __( 'Filter by editorial', 'ninja' ). '</h2>';
                         echo '<div class="latest-editorial-posts-block__filter">';
                             foreach ( $terms_to_filter as $term ) :
-                                echo '<span class="term term-' . sanitize_title( $term['name'] ) . '" data-term-id="' . $term['id'] . '">'. $term['name'] . '</span>';
+                                if ( isset( $term['name'] ) && isset( $term['id'] ) ) {
+                                    echo '<span class="term term-' . sanitize_title( $term['name'] ) . '" data-term-id="' . $term['id'] . '">'. $term['name'] . '</span>';
+                                }
                             endforeach;
                         echo '</div>';
                     echo '</div><!-- .latest-editorial-posts-block__header -->';

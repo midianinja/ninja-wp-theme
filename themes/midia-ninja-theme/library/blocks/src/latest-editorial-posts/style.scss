@@ -35,9 +35,10 @@
             cursor: pointer;
             font-size: 13px;
             font-weight: 800;
-            padding: 4px;
+            padding: 1px 9px 0;
             text-transform: uppercase;
             color: #111;
+            font-family: 'Archivo';
 
             &-cultura {
                 background-color: #DB565E;
@@ -73,12 +74,7 @@
                 background-color: #76C7E6;
                 
             }
-        
-            &-negritude {
-                background-color: #F1BC4E;
-                
-            }
-        
+     
             &-educacao {
                 background-color: #C9ADFF;
                 
@@ -152,7 +148,7 @@
             // .post-thumbnail
             &-thumbnail {
                 position: relative;
-                
+
                 &::before {
                     content: "";
                     padding-top: 56.25%;
@@ -163,6 +159,33 @@
                     clear: left;
                     content: " ";
                     display: table;
+                }
+                
+                .post--terms {
+                    bottom: 10px;
+                    left: 15px;
+                    position: absolute;
+                    z-index: 2;
+
+                    .list-terms {
+                        margin-bottom: 0;
+
+                        li {
+                            background-color: yellow;
+                            border-radius: 4px;
+                            font-family: 'Archivo Expanded', sans-serif;
+                            font-size: 13px;
+                            font-weight: 800;
+                            margin-bottom: 5px;
+                            margin-right: 5px;
+                            padding: 3px 6px 2px 6px;
+                            text-transform: uppercase;
+
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
                 }
 
                 img {

@@ -88,7 +88,7 @@ header {
 						position: absolute;
 						display: block;
 						height: 32px;
-						width: 70px;
+						width: 30px;
 						top: 14px;
 						left: 14px;
 						z-index: 5;
@@ -96,10 +96,10 @@ header {
 						cursor: pointer;
 
 						@media (min-width: 768px) {
-							left: 21rem;
+							left: 20.1rem;
 						}
 						@media (min-width: 1200px) {
-							left: 20rem;
+							left: 21rem;
 						}
 					}
 
@@ -118,8 +118,8 @@ header {
 						height: 17px;
 						width: 21px;
 						position: absolute;
-						top: 52px;
-						left: 2rem;
+						top: 21px;
+						left: 18px;
 						z-index: 2;
 						display: flex;
 						flex-direction: column;
@@ -127,11 +127,11 @@ header {
 						visibility: visible;
 
 						@media (min-width: 768px) {
-							left: 20rem;
+							left: 20.4rem;
 						}
 
 						@media (min-width: 1200px) {
-							left: 18rem;
+							left: 21.2rem;
 						}
 
 						.line {
@@ -158,6 +158,28 @@ header {
 					}
 				}
 
+				button.search-menu {
+					background-image: url($p_theme_assets + "/images/search-icon.svg");
+					background-repeat: no-repeat;
+					background-position: center;
+					width: 24px;
+					height: 24px;
+					background-color: transparent;
+					border: none;
+					position: absolute;
+					top: 18px;
+					right: 13px;
+					z-index: 1;
+
+					@media (min-width: 768px) {
+						right: -18px;
+					}
+
+					@media (min-width: 1200px) {
+						right: -35px;
+					}
+				}
+
 				.menu-items {
 					padding: 110px 24px 0;
 					background-color: rgba(51, 51, 51, 0.7);
@@ -168,9 +190,9 @@ header {
 					flex-direction: column;
 					margin-left: -30px;
 					margin-top: -30px;
-					visibility: hidden;
+					opacity: 0;
 					position: absolute;
-					transition: visibility 0s linear;
+					transition: all 0.4s ease;
 					overflow: auto;
 					border-radius: 5px;
 
@@ -244,11 +266,6 @@ header {
 					}
 
 					.search-component {
-						visibility: visible;
-						top: 43px;
-						position: absolute;
-						right: 0;
-
 						@media (min-width: 768px) {
 							right: 3rem;
 						}
@@ -295,33 +312,41 @@ header {
 
 				.nav-container {
 					input.checked {
-						left: 21rem;
+						left: 0;
 
-						@media (min-width: 1200px) {
+						@media (min-width: 768px) {
 							left: 5rem;
 						}
 					}
 
+					input.checked ~ .search-menu {
+						display: none;
+					}
+
 					input.checked ~ .menu-items {
-						visibility: visible;
+						opacity: 1;
 						height: 100vh;
-						right: -54px;
+						right: 0;
+
+						@media (min-width: 768px) {
+							right: -54px;
+						}
 					}
 
-					input.checked ~ .menu-items .hamburger-lines {
-						left: 2rem;
+					input.checked ~ .hamburger-lines {
+						left: 5.5rem;
 					}
 
-					input.checked ~ .menu-items .hamburger-lines .line1 {
+					input.checked ~ .hamburger-lines .line1 {
 						transform: rotate(45deg);
 						background: white;
 					}
 
-					input.checked ~ .menu-items .hamburger-lines .line2 {
+					input.checked ~ .hamburger-lines .line2 {
 						transform: scaleY(0);
 					}
 
-					input.checked ~ .menu-items .hamburger-lines .line3 {
+					input.checked ~ .hamburger-lines .line3 {
 						transform: rotate(-45deg);
 						background: white;
 					}
@@ -333,13 +358,22 @@ header {
 						form div {
 							input[type="submit"] {
 								background-image: url("/wp-content/themes/midia-ninja-theme/assets/images/search-icon-white.svg");
-								background-position: -3px 2px;
+								background-position: -4px 6px;
 							}
 
 							input[type="text"] {
 								border-radius: 8px;
 								border: 2px solid #fff;
 								width: 100%;
+								background-color: transparent;
+								color: var(--SECONDARY, #ccc);
+								font-family: Manrope;
+								font-size: 14px;
+								font-style: normal;
+								font-weight: 500;
+								line-height: 150%; /* 21px */
+								letter-spacing: -0.42px;
+								padding: 10px 8px;
 							}
 						}
 					}

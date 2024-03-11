@@ -49,16 +49,17 @@
                 <div class="container nav-container">
                     <input class="checkbox" type="checkbox" name="" id="burguer-checkbox"/>
                     
+                    <button class="search-menu"></button>
+
+                    <div class="hamburger-lines">
+                        <span class="line line1"></span>
+                        <span class="line line2"></span>
+                        <span class="line line3"></span>
+                    </div>
+
                     <div class="menu-items">
-
-                        <div class="hamburger-lines">
-                            <span class="line line1"></span>
-                            <span class="line line2"></span>
-                            <span class="line line3"></span>
-                        </div>
-
                         <div class="search-component">
-                            <?php get_search_form(); ?>
+                            <?php get_search_form(array('placeholder' => "<?php echo esc_attr_x('Search …', 'placeholder') ?>")); ?>
                         </div>
                         
                         <?= wp_nav_menu(['theme_location' => 'hamburguer-menu', 'container' => 'nav']); ?>  

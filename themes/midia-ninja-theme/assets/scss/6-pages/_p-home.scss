@@ -717,6 +717,9 @@
     .acervo{
         margin-top: 2rem;
         margin-bottom: 0;
+        @media(max-width: 992px){
+            margin-bottom: 2rem;
+        }
         .container{
             gap: 2rem;
         }

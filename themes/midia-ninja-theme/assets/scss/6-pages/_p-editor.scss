@@ -276,7 +276,8 @@ body{
                 }
             }
             .wp-block-group{
-                &.who-finances{
+                &.who-finances-desktop,
+                &.who-finances-mobile{
                     background: #111 !important;
                     min-height: 108px;
                     display: flex;

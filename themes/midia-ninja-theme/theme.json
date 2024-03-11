@@ -1,5 +1,6 @@
 {
-    "version": 1,
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
     "settings": {
         "color": {
             "custom": false,
@@ -238,8 +239,24 @@
         },
         "typography": {
             "customFontSize": false,
-            "customLineHeight": false,
             "dropCap": false,
+            "fontFamilies": [
+                {
+                    "fontFamily": "\"Manrope\", sans-serif",
+                    "slug": "manrope",
+                    "name": "Manrope"
+                },
+                {
+                    "fontFamily": "MidiaNinja",
+                    "slug": "midianinja",
+                    "name": "MidiaNinja"
+                },
+                {
+                    "fontFamily": "\"Archivo Expanded\", sans-serif",
+                    "slug": "archivo-expanded",
+                    "name": "Archivo Expanded"
+                }
+            ],
             "fontSizes": [
                 {
                     "name": "Pequena",

@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Archivo Expanded';
+    src: url("/wp-content/themes/midia-ninja-theme/assets/fonts/Archivo_Expanded-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'MidiaNinja';
+    src: url("/wp-content/themes/midia-ninja-theme/assets/fonts/TipoNinja-Regular.otf") format("otf");
+    src: url("/wp-content/themes/midia-ninja-theme/assets/fonts/TipoNinja-Regular.otf") format("opentype");
+}

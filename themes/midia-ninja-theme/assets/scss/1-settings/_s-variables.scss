@@ -6,54 +6,27 @@ $desktop-large-width: 1200px;
 $desktop-xlarge-width:1400px;
 
 // Sizes
-    // Typo sizes
-    $s_html: 16px;
-
-    $s_p: 1.6rem;
-    $s_span: 1.4rem;
-
-    $s_h1: 6.4rem;  //equivalente a 64px
-    $s_h2: 4.8rem;  //equivalente a 48px
-    $s_h3: 4rem;    //equivalente a 32px
-    $s_h4: 2rem;  //equivalente a 44px
-    $s_h5: 1.5rem;  //equivalente a 20px
-    $s_h6: 0.875em;    //equivalente a 14px
-
-    // Spacing sizes
-    $s_h1_mt: 1em;
-    $s_h1_mb: 1em;
-
-    $s_h2_mt: 0.75em;
-    $s_h2_mb: 0.75em;
-
-    $s_h3_mt: 0.585em;
-    $s_h3_mb: 0.585em;
-
-    $s_h4_mt: 0.5em;
-    $s_h4_mb: 0.5em;
+// Typo sizes
+$s_html: 16px;  //equivalente a 16px
+$s_h1: 6.4rem;  //equivalente a 64px
+$s_h2: 4.8rem;  //equivalente a 48px
+$s_h3: 4rem;    //equivalente a 32px
+$s_h4: 2rem;    //equivalente a 44px
+$s_h5: 1.5rem;  //equivalente a 20px
+$s_h6: 0.875em; //equivalente a 14px
 
 // Colors
 $c_blue_primary: #035299;
 $c_blue_secondary: #B1D3E5;
-
-$c_yellow_primary: #FBF6C0;
-$c_yellow_secondary: #F2EB72;
-
-$c_green_primary: #93C278;
-$c_green_secondary: #B3D9BE;
-
-$c_bege: #D8D3BC;
-$c_gray_darker: #333333;
-
 
 // Paths
 $p_theme: '/wp-content/themes/midia-ninja-theme';
 $p_theme_assets: $p_theme + '/assets';
 
 // Fonts
-$f_body: 'Inter', sans-serif;
+$f_body: 'Manrope', sans-serif;
 $f_title: 'Manrope', sans-serif;
-$f_mark: 'Michroma', sans-serif;
+$f_ninja: 'MidiaNinja', sans-serif;
 $s_meta: .875rem; //equivalente 14px
 
 // Spacings
@@ -64,10 +37,8 @@ $s_large: 2.813rem;
 :root {
     // Sizes
     // Typo sizes
-    $s_span: $s_p;
     --s-html: #{$s_html};
-    --s-p: #{$s_p};
-
+    --s-p: #{$s_html};
     --s-h1: #{$s_h1};
     --s-h2: #{$s_h2};
     --s-h3: #{$s_h3};
@@ -77,24 +48,9 @@ $s_large: 2.813rem;
 
     --s-meta: #{$s_meta};
 
-    // Spacing sizes
-    --s-h1-mt: #{$s_h1_mt};
-    --s-h1-mb: #{$s_h1_mb};
-
-    --s-h2-mt: #{$s_h2_mt};
-    --s-h2-mb: #{$s_h2_mb};
-
-    --s-h3-mt: #{$s_h3_mt};
-    --s-h3-mb: #{$s_h3_mb};
-
-    --s-h4-mt: #{$s_h4_mt};
-    --s-h4-mb: #{$s_h4_mb};
-
     // Colors
     --c-primary: #{$c_blue_primary};
     --c-secondary: #{$c_blue_secondary};
-    --c-gray--darker: #{$c_gray_darker};
-    --c-yellow-primary: #{$c_yellow_primary};
 
     // Paths
     --p-theme: #{$p_theme};
@@ -103,6 +59,7 @@ $s_large: 2.813rem;
     // Fonts
     --f-body: #{$f_body};
     --f-title: #{$f_title};
+    --f-ninja: #{$f_ninja};
 
     // Spacings
     --s-small: #{$s_small};

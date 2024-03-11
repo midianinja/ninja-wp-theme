@@ -56,7 +56,7 @@ header {
 
 					li {
 						list-style: none;
-						border-bottom: 1px solid #fff;
+						border-bottom: 1px solid #cccccc;
 						padding-bottom: 16px;
 
 						&.active {
@@ -67,6 +67,10 @@ header {
 								padding-top: 20px;
 							}
 						}
+					}
+
+					.sub-menu li {
+						border-bottom: 1px solid #848484;
 					}
 
 					a {
@@ -87,7 +91,7 @@ header {
 					.checkbox {
 						position: absolute;
 						display: block;
-						height: 32px;
+						height: 25px;
 						width: 30px;
 						top: 14px;
 						left: 14px;
@@ -103,28 +107,24 @@ header {
 						}
 					}
 
-					#menu-burger {
-						background-image: url($p_theme_assets + "/images/menu-burguer.svg");
-						background-color: #fff;
-						border: none;
-						width: 24px;
-						height: 24px;
-						margin-left: 15px;
-						align-self: center;
-					}
+					// #menu-burger {
+					// 	background-image: url($p_theme_assets + "/images/menu-burguer.svg");
+					// 	background-color: #fff;
+					// 	border: none;
+					// 	width: 24px;
+					// 	height: 24px;
+					// 	margin-left: 15px;
+					// 	align-self: center;
+					// }
 
 					.hamburger-lines {
+						background-image: url($p_theme_assets + "/images/hamburguer-menu.svg");
 						display: block;
-						height: 17px;
-						width: 21px;
+						height: 24px;
+						width: 24px;
 						position: absolute;
-						top: 21px;
+						top: 12px;
 						left: 18px;
-						z-index: 2;
-						display: flex;
-						flex-direction: column;
-						justify-content: space-between;
-						visibility: visible;
 
 						@media (min-width: 768px) {
 							left: 20.4rem;
@@ -134,27 +134,27 @@ header {
 							left: 21.2rem;
 						}
 
-						.line {
-							display: block;
-							height: 3px;
-							width: 100%;
-							border-radius: 10px;
-							background: #000;
-						}
+						// .line {
+						// 	display: block;
+						// 	height: 2px;
+						// 	width: 105%;
+						// 	border-radius: 10px;
+						// 	background: #000;
+						// }
 
-						.line1 {
-							transform-origin: 0% 0%;
-							transition: transform 0.4s ease-in-out;
-						}
+						// .line1 {
+						// 	transform-origin: 0% 0%;
+						// 	transition: transform 0.4s ease-in-out;
+						// }
 
-						.line2 {
-							transition: transform 0.2s ease-in-out;
-						}
+						// .line2 {
+						// 	transition: transform 0.2s ease-in-out;
+						// }
 
-						.line3 {
-							transform-origin: 0% 100%;
-							transition: transform 0.4s ease-in-out;
-						}
+						// .line3 {
+						// 	transform-origin: 0% 100%;
+						// 	transition: transform 0.4s ease-in-out;
+						// }
 					}
 				}
 
@@ -167,7 +167,7 @@ header {
 					background-color: transparent;
 					border: none;
 					position: absolute;
-					top: 18px;
+					top: 12px;
 					right: 13px;
 					z-index: 1;
 
@@ -254,11 +254,11 @@ header {
 									}
 
 									&:nth-child(odd) {
-										border-right: 1px solid #fff;
+										border-right: 1px solid #848484;
 									}
 
 									&:nth-child(-n + 2) {
-										border-top: 1px solid #fff;
+										border-top: 1px solid #848484;
 									}
 								}
 							}
@@ -312,7 +312,7 @@ header {
 
 				.nav-container {
 					input.checked {
-						left: 0;
+						left: 25px;
 
 						@media (min-width: 768px) {
 							left: 5rem;
@@ -334,22 +334,29 @@ header {
 					}
 
 					input.checked ~ .hamburger-lines {
-						left: 5.5rem;
+						left: 25px;
+						background-image: url($p_theme_assets + "/images/hamburguer-close.svg");
+						background-position: center;
+						z-index: 1;
+
+						@media (min-width: 768px) {
+							left: 5rem;
+						}
 					}
 
-					input.checked ~ .hamburger-lines .line1 {
-						transform: rotate(45deg);
-						background: white;
-					}
+					// input.checked ~ .hamburger-lines .line1 {
+					// 	transform: rotate(45deg);
+					// 	background: white;
+					// }
 
-					input.checked ~ .hamburger-lines .line2 {
-						transform: scaleY(0);
-					}
+					// input.checked ~ .hamburger-lines .line2 {
+					// 	transform: scaleY(0);
+					// }
 
-					input.checked ~ .hamburger-lines .line3 {
-						transform: rotate(-45deg);
-						background: white;
-					}
+					// input.checked ~ .hamburger-lines .line3 {
+					// 	transform: rotate(-45deg);
+					// 	background: white;
+					// }
 
 					input.checked ~ .menu-items .search-component {
 						position: initial;

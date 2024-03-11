@@ -1,9 +1,3 @@
-@font-face {
-    font-family: 'MidiaNinja';
-    src: url("#{$p_theme_assets}/fonts/TipoNinja-Regular.otf") format('otf');
-    src: url("#{$p_theme_assets}/fonts/TipoNinja-Regular.otf") format('opentype');
-}
-
 html {
     font-size: var(--s-html);
 }
@@ -16,28 +10,24 @@ h1 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--really-large);
     font-weight: 800;
-    letter-spacing: -1.92px;
 }
 
 h2 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--large);
     font-weight: 800;
-    letter-spacing: -1.44px;
 }
 
 h3 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--medium);
     font-weight: 800;
-    letter-spacing: -0.64px;
 }
 
 h4 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--intermediate-standard);
     font-weight: 800;
-    letter-spacing: -0.48px;
 }
 
 h5 {

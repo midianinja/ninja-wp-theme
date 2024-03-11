@@ -218,16 +218,16 @@ body{
                 }
             }
             .wp-block-buttons{
-                &.btn-latest-posts{
+                &.btn-latest-posts,
+                &.btn-colunistas{
                     display: flex;
                     justify-content: center;
                     margin-bottom: 2rem;
-                    @media(min-width: 993px){
-                        display: none;
-                    }
+                    margin-top: 2rem;
                     .wp-block-button{
                         font-family: 'Manrope', serif;
                         color: #fff;
+                        background-color: #111;
                             
                     }
                     .wp-block-button__link{
@@ -276,7 +276,8 @@ body{
                 }
             }
             .wp-block-group{
-                &.who-finances{
+                &.who-finances-desktop,
+                &.who-finances-mobile{
                     background: #111 !important;
                     min-height: 108px;
                     display: flex;

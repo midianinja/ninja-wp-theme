@@ -586,12 +586,14 @@
     }
 
     .afluentes-mobile{
+        margin-bottom: 2rem;
         @media(min-width: 993px){
             display: none;
         }
     }
 
-    .who-finances{
+    .who-finances-desktop,
+    .who-finances-mobile{
         background: #111 !important;
         min-height: 108px;
         display: flex;
@@ -676,13 +678,34 @@
             }
         } 
     }
-    .videos{
+    .who-finances-desktop{
+        @media(max-width: 992px){
+            display: none;
+        }
+    }
+    .who-finances-mobile{
+        @media(min-width: 993px){
+            display: none;
+        }
+    }
+    .videos-desktop,
+    .videos-mobile{
         h2 {
             font-family: "MidiaNinja", sans-serif;
             font-size: 54px;
             font-weight: 400;
             margin-bottom: 0;
             letter-spacing: normal;
+        }
+    }
+    .videos-desktop{
+        @media(max-width: 992px){
+            display: none;
+        }
+    }
+    .videos-mobile{
+        @media(min-width: 993px){
+            display: none;
         }
     }
     .acervo{
@@ -714,10 +737,14 @@
                 line-height: 140%;
                 max-width: 208px;
                 width: 100%;
+                @media(max-width: 782px){
+                    margin-left: auto;
+                    margin-right: auto;
+                }
             }
         }
     }
-    .newsletter{
+    .newsletter-desktop, .newsletter-mobile{
         background-color: #111;
         .wp-block-columns{
             gap: 100px;
@@ -792,6 +819,16 @@
                     }
                 }
             }
+        }
+    }
+    .newsletter-desktop{
+        @media(max-width: 992px){
+            display: none;
+        }
+    }
+    .newsletter-mobile{
+        @media(min-width: 993px){
+            display: none;
         }
     }
     .colunistas-ninja{

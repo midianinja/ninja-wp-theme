@@ -9,7 +9,7 @@ get_header(); ?>
         <?php get_template_part( 'template-parts/title/default' ); ?>
         <div class="row">
             <div class="col-md-3 sidebar-page">
-                <p class="anchor-title"><?= __( 'Sections', 'base-textdomain' ) ?></p>
+                <p class="anchor-title"><?= __( 'What is Mídia Ninja', 'base-textdomain' ) ?></p>
                 <ul id="anchors"></ul>
             </div>
             <div class="col-md-9 content">

@@ -233,7 +233,11 @@
 			}
 
 			section.post-footer {
-				margin: 80px;
+				margin: 80px 0;
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 1200px;
 
 				.related-posts {
 					h2 {

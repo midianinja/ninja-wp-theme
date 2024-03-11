@@ -25,6 +25,8 @@ class Assets {
 	 * Adds the action and filter hooks to integrate with WordPress.
 	 */
 	public function initialize() {
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_local_fonts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_local_fonts' ] );
         $this->enqueue_styles();
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_javascripts' ] );
         add_action( 'enqueue_block_assets', [ $this, 'gutenberg_block_enqueues' ] );
@@ -45,6 +47,15 @@ class Assets {
 	public function enqueue_styles() {
         add_action( 'wp_head', [ $this, 'enqueue_inline_styles' ], 99);
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_generic_styles' ] );
+	}
+
+	/**
+	 * Enqueues a local font stylesheet in the theme.
+	 * 
+	 * @see wp_enqueue_style() for more information on enqueuing stylesheets in WordPress.
+	 */
+	public function enqueue_local_fonts() {
+		wp_enqueue_style( 'ninja-fonts', get_template_directory_uri() . '/assets/fonts/fonts.css', [], null );
 	}
 
     public function add_rel_preload($html, $handle, $href, $media) {
@@ -479,9 +490,8 @@ class Assets {
 		}
 
 		$google_fonts = [
-			'Inter'   => [ '400', '500', '600', '700', '800' ],
-			'Manrope' => [ '400', '500', '600', '700', '800' ],
-			'Archivo' => [ '400', '500', '600', '700', '800' ]
+			'Archivo' => [ '400', '500', '600', '700', '800' ],
+			'Manrope' => [ '400', '500', '600', '700', '800' ]
 		];
 
 		/**

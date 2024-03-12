@@ -29,6 +29,20 @@
 
 				.addtoany_list {
 					display: flex;
+
+					a.a2a_button_facebook {
+						span {
+							background-image: url($p_theme_assets + "/images/social-networks/facebook-black.svg");
+							width: 24px;
+							display: block;
+							height: 24px;
+							padding: 3px;
+
+							svg {
+								display: none;
+							}
+						}
+					}
 				}
 
 				h1 {
@@ -122,7 +136,7 @@
 
 							.social-menu {
 								position: absolute;
-								top: 0;
+								top: 2px;
 								left: -34px;
 
 								.social-icon {
@@ -180,7 +194,7 @@
 
 						.social-menu {
 							position: absolute;
-							top: 0;
+							top: 2px;
 							left: -34px;
 
 							.social-icon {

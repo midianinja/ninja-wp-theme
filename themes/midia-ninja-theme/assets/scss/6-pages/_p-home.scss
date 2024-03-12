@@ -288,6 +288,9 @@
             margin-bottom: mixins.size(30);
             overflow: hidden;
             padding: variables.$s_medium;
+            @media(min-width: 783px){
+                display: none;
+            }
 
             @include mixins.tablet {
                 padding: variables.$s_small;

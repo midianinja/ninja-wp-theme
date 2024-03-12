@@ -350,4 +350,23 @@
 			}
 		}
 	}
+	
+	// Most read
+	&.model-most-read {
+		background-color: var(--wp--preset--color--dark-pure);
+
+		.latest-horizontal-posts-block {
+			&__slides {
+				&::before,
+				&::after {
+					display: none;
+				}
+			}
+		}
+
+		a {
+			color: var(--wp--preset--color--secondary-light);
+			text-decoration: none;
+		}
+	}
 }

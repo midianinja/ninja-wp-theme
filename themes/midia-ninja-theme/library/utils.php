@@ -15,6 +15,8 @@ add_action( 'init', function() {
  * @param int $post_id Post ID
  * @param string $tax Slug tax to get terms
  * @param bool $use_link Define if is use link to the terms
+ * @param bool $use_primary_term Define if is use primary term
+ * @param int $limit_terms Limit of terms to get
  *
  * @link https://developer.wordpress.org/reference/functions/get_the_terms/
  * @link https://developer.wordpress.org/reference/functions/sanitize_title/
@@ -24,9 +26,15 @@ add_action( 'init', function() {
  * @return string $html
  *
  */
-function get_html_terms( int $post_id, string $tax, bool $use_link = false ) {
+function get_html_terms( int $post_id, string $tax, bool $use_link = false, bool $use_primary_term = false, int $limit_terms = 0 ) {
 
-    $terms = get_the_terms( $post_id, sanitize_title( $tax ) );
+    if ( $use_primary_term && is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+        // Get primary term using Yoast SEO plugin
+        $primary_term_id = get_post_meta( $post_id, '_yoast_wpseo_primary_' . sanitize_title( $tax ), true );
+        $terms[] = get_term( $primary_term_id, sanitize_title( $tax ) );
+    } else {
+        $terms = get_the_terms( $post_id, sanitize_title( $tax ) );
+    }
 
     if ( ! $terms || is_wp_error( $terms ) ) {
         return false;
@@ -34,7 +42,11 @@ function get_html_terms( int $post_id, string $tax, bool $use_link = false ) {
 
     $html = '<ul class="list-terms tax-' . sanitize_title( $tax ) . '">';
 
+    $count = 0;
+
     foreach ( $terms as $term ) {
+
+        $count++;
 
         $html .= '<li class="term-' . sanitize_title( $term->slug ) . '">';
 
@@ -49,6 +61,10 @@ function get_html_terms( int $post_id, string $tax, bool $use_link = false ) {
         }
 
         $html .= '</li>';
+
+        if ( $limit_terms > 0 && $count >= $limit_terms ) {
+            break;
+        }
 
     }
 

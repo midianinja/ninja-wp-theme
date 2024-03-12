@@ -16,6 +16,9 @@ get_header(); ?>
                 <?php the_content() ?>
             </div>
         </div>
+        <div class="col-md-12 content-bottom">
+            <?php the_content() ?>
+        </div>
     </div>
 </div>
 

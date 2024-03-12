@@ -11,4 +11,26 @@ figure.wp-block-image.aligncenter,
 figure.wp-block-image.alignleft,
 figure.wp-block-image.alignright {
 	display: block;
+
+	&.size-full {
+		img {
+			width: 100%;
+		}
+	}
+
+	img {
+		width: 100%;
+	}
+}
+
+figure.wp-block-image.size-full {
+	img {
+		width: 960px;
+	}
+}
+
+figure.wp-block-image.alignwide {
+	img {
+		width: 1170px;
+	}
 }

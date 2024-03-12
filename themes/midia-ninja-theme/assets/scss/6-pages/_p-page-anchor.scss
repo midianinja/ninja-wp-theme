@@ -10,6 +10,23 @@
         background-color: #f5f5f5;
         z-index: 1;
         position: relative;
+        margin-left: 70px;
+    }
+
+    .col-md-9.content{
+        .wp-block-heading{
+            margin-left: 70px;
+
+        }
+        .who-finances-desktop, .newsletter-desktop{
+            display: none;
+        }
+    }
+
+    .col-md-12.content-bottom{
+        .page-title, .wp-block-coblocks-accordion, .wp-block-heading{
+            display: none;
+        }
     }
 
     .page-template-page-anchor & {
@@ -57,10 +74,10 @@
 			
 			border-radius: 0;
 			details{
-				padding: 0 15px;
+				padding: 0 15px 0 0;
 				summary.wp-block-coblocks-accordion-item__title{
 					background-color: #F5F5F5;
-					padding: 32px 25px;
+					padding: 32px 25px 32px 0;
 					font-size: 21px;
 					font-style: normal;
 					display: block;
@@ -147,10 +164,10 @@
 				}
 				
 				.wp-block-coblocks-accordion-item__content{
-					padding: 15px 25px 5px;
+					padding: 0px 25px 25px 0;
 					border-left: none !important;
 					border-right: none !important;
-					border-top: 1px solid #CAC9D4;
+					
 					p{
 						font-size: 19.2px;
 					}
@@ -241,8 +258,7 @@
 			
 		}
 	}
-    .who-finances-desktop,
-    .who-finances-mobile{
+    .who-finances-desktop{
         background: #111 !important;
         min-height: 108px;
         display: flex;
@@ -266,9 +282,9 @@
                 margin-top: 0;
             }
         }
-        h2{
+        p{
             font-family: "MidiaNinja", sans-serif;
-            color: #FBF36E;
+            color: #FFF;
             font-size: 38px;
             font-weight: 400;
             margin-bottom: 0;
@@ -327,15 +343,16 @@
             }
         } 
     }
-    .newsletter-desktop, .newsletter-mobile{
+    .newsletter-desktop{
         background-color: #111;
+        margin-top: 2rem;
         .wp-block-columns{
             gap: 100px;
             @media(max-width: 992px){
                 display: block;  
             }
         }
-        .wp-block-heading{
+        p.newsletter-title{
             color: #FFF;
             font-family: "MidiaNinja", serif;
             font-size: 42px;

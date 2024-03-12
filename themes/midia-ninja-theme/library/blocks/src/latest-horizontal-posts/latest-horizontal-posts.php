@@ -116,17 +116,17 @@ function latest_horizontal_posts_callback( $attributes ) {
             echo '<div class="latest-horizontal-posts-block__content">';
                 $heading = $attributes['heading'] ?? '';
 
-                if ( $heading || $description ) {
-                    echo '<div class="latest-horizontal-posts-block__heading">';
-                        if ( ! empty( $heading ) ) {
-                            echo '<h2>' . $heading . '</h2>';
-                        }
+                echo '<div class="latest-horizontal-posts-block__heading">';
+                    if ( ! empty( $heading ) ) {
+                        echo '<h2>' . $heading . '</h2>';
+                    } else {
+                        echo '<div></div>';
+                    }
 
-                        if ( ! empty( $description ) ) {
-                            echo $description;
-                        }
-                    echo '</div>';
-                }
+                    if ( ! empty( $description ) ) {
+                        echo $description;
+                    }
+                echo '</div>';
 
                 if ( $content_position !== 'full' ) {
                     // The footer with dots and arrows

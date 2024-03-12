@@ -6,7 +6,7 @@ $show_taxonomy = isset( $args['attributes']['showTaxonomy'] ) ? $args['attribute
     <div class="post">
         <div class="post-content">
             <?php if ( $show_taxonomy ) : ?>
-                <?php $get_html_terms = get_html_terms( $args['post']->ID, $args['attributes']['showTaxonomy'], false ); ?>
+                <?php $get_html_terms = get_html_terms( $args['post']->ID, $args['attributes']['showTaxonomy'], false, true, 1 ); ?>
                 <?php if ( $get_html_terms ) : ?>
                     <div class="post-meta">
                         <span class="post-meta--terms">

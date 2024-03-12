@@ -41,7 +41,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		min-height: 300px;
-		flex-basis: 25%;
+		flex-basis: 24%;
 
 		@include break-medium {
 			min-height: inherit;
@@ -217,7 +217,7 @@
 				display: flex !important;
 				gap: 8px;
 				justify-content: center;
-				margin-left: 40px;
+				margin-left: 28px;
 				padding: 0;
 				width: 140px;
 
@@ -257,7 +257,7 @@
 			display: flex;
 			justify-content: space-between;
 			margin-top: -36px;
-			width: 220px;
+			width: 195px;
 
 			@include break-medium {
 				margin-left: auto;

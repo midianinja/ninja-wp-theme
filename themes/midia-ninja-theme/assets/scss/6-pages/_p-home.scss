@@ -244,7 +244,7 @@
                     left: 0;
                     max-width: mixins.size(375);
                     overflow-y: auto;
-                    padding: var(--s-large);
+                    padding: 65px 60px;
                     position: relative;
                     right: 0;
                     z-index: 2;
@@ -259,6 +259,7 @@
                         color: var(--wp--preset--color--secondary-light);
                         font-family: variables.$f_title;
                         margin-top: 0;
+                        line-height: 140%;
                         @media(max-width: 782px){
                             font-size: 14px;
                         }
@@ -272,7 +273,8 @@
                         color: var(--wp--preset--color--secondary-light);
                         font-size: var(--wp--preset--font-size--medium);
                         font-weight: 800;
-                        line-height: 1.2;
+                        line-height: 120%;
+                        letter-spacing: -0.64px;
                         @media(max-width: 782px){
                             font-size: 20px;
                         }
@@ -325,10 +327,12 @@
         &.posts-sidebar {
             article {
                 align-items: center;
+                margin-bottom: 2.7rem;
 
                 .post-thumbnail {
                     max-width: mixins.size(110);
                     overflow: hidden;
+                    margin-right: 1.5em;
                 }
 
                 .entry-wrapper {
@@ -339,7 +343,10 @@
                     .entry-title {
                         a {
                             color: var(--wp--preset--color--primary-pure);
-                            font-size: var(--wp--preset--font-size--small);
+                            font-size: 13px;
+                            font-weight: 500;
+                            line-height: 145%;
+                            color: #333;
                         }
                     }
                 }
@@ -348,6 +355,7 @@
     }
 
     .grid-latest-posts{
+        margin-bottom: 0.8rem;
         .middle-column{
             @media(max-width: 992px){
                 display: none;
@@ -424,7 +432,7 @@
     .sessao-especiais {
         margin-bottom: 0 !important;
         .container{
-            padding: 50px 0px 50px 100px !important;
+            padding: 59px 0px 64px 100px !important;
             @media(max-width: 992px){
                 padding: 50px 0px !important;
             }
@@ -440,6 +448,13 @@
     
     .sessao-mais-lidas{
         background-color: #111;
+        margin-bottom: 0;
+        .container{
+            padding: 69px 0px 68px 20px !important;
+            @media(max-width: 992px){
+                padding: 50px 0px !important;
+            }
+        }
         h2 {
             font-family: "MidiaNinja", sans-serif;
             font-size: 54px;

@@ -22,7 +22,7 @@ header {
 						display: none;
 					}
 
-					.logo a img {
+					> div .logo img {
 						width: 65px;
 					}
 				}
@@ -387,6 +387,7 @@ header {
 	.header-content {
 		min-height: 100px;
 		padding-top: 21px;
+		transition: all 0.4s ease-in-out;
 
 		> div {
 			display: grid;
@@ -394,9 +395,11 @@ header {
 			.logo {
 				grid-area: 1/1;
 				justify-self: center;
+
 				img {
 					height: auto;
 					width: auto;
+					transition: all 0.5s ease-in-out;
 				}
 			}
 		}

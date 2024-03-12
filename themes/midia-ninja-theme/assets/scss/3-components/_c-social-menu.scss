@@ -22,7 +22,6 @@
 		display: none;
 		color: var(--White, #fff);
 		text-align: center;
-		font-family: Inter;
 		font-size: 14px;
 		font-style: normal;
 		font-weight: 400;
@@ -39,6 +38,8 @@
 			svg {
 				width: 24px;
 				height: 24px;
+				padding: 3px;
+
 				path,
 				circle {
 					fill: currentColor;

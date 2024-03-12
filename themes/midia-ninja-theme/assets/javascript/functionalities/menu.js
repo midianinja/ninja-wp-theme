@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const menuItens = document.querySelector(".menu-items");
     const menuButton = document.querySelector("#burguer-checkbox");
     const buttonMais = document.querySelector(".mais");
+    const searchMenu = document.querySelector(".search-menu");
 
     menuButton.addEventListener ("click", function(ev) {
             ev.preventDefault();
@@ -62,6 +63,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("s").focus();
         })
+
+    searchMenu.addEventListener ("click", function(ev) {
+        ev.preventDefault();
+
+        if (menuButton.classList.contains("checked")) {
+            menuButton.classList.remove("checked");
+        } else {
+            menuButton.classList.add("checked");
+        }
+    })
 
     buttonMais.addEventListener ("click", function(ev) {
         ev.preventDefault();

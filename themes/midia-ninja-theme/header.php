@@ -22,17 +22,43 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 header-content">
-					<?php the_social_networks_menu() ?>
+                    <div>
+                        <?php the_social_networks_menu() ?>
 
-                    <div class="logo">
-                        <a href="<?= home_url() ?>">
-                            <img src="<?= get_template_directory_uri() ?>/assets/images/logo.png" width="200" alt="<?= get_bloginfo('name') ?>">
-                        </a>
+                        <div class="logo">
+                            <a href="<?= home_url() ?>">
+                                <img src="<?= get_template_directory_uri() ?>/assets/images/logo.png" width="200" alt="<?= get_bloginfo('name') ?>">
+                            </a>
+                        </div>
+
+                        <section class="hamburguer">
+                            <div class="container nav-container">
+                                <input class="checkbox" type="checkbox" name="" id="burguer-checkbox"/>
+                                
+                                <button class="search-menu"></button>
+
+                                <div class="hamburger-lines">
+                                    <span class="line line1"></span>
+                                    <span class="line line2"></span>
+                                    <span class="line line3"></span>
+                                </div>
+
+                                <div class="menu-items">
+                                    <div class="search-component">
+                                        <?php get_search_form(array('placeholder' => "<?php echo esc_attr_x('Search …', 'placeholder') ?>")); ?>
+                                    </div>
+                                    
+                                    <?= wp_nav_menu(['theme_location' => 'hamburguer-menu', 'container' => 'nav']); ?>  
+                                    
+                                    <?php the_social_networks_menu(); ?>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <button menu-container-class='primary-menu' class="toggle-menu" aria-label="<?= __("Toggle menu visibility", "base-textdomain") ?>">
+                        </button>
                     </div>
-                    <button menu-container-class='primary-menu' class="toggle-menu" aria-label="<?= __("Toggle menu visibility", "base-textdomain") ?>">
-
-                    </button>
-
+					
                     <div class="menus">
                         <?= wp_nav_menu(['theme_location' => 'main-menu', 'container' => 'nav', 'menu_id' => 'main-menu', 'menu_class' => 'menu', 'container_class' => 'primary-menu']) ?>
                         
@@ -45,29 +71,6 @@
                 </div>
             </div>
 
-            <section class="hamburguer">
-                <div class="container nav-container">
-                    <input class="checkbox" type="checkbox" name="" id="burguer-checkbox"/>
-                    
-                    <button class="search-menu"></button>
-
-                    <div class="hamburger-lines">
-                        <span class="line line1"></span>
-                        <span class="line line2"></span>
-                        <span class="line line3"></span>
-                    </div>
-
-                    <div class="menu-items">
-                        <div class="search-component">
-                            <?php get_search_form(array('placeholder' => "<?php echo esc_attr_x('Search …', 'placeholder') ?>")); ?>
-                        </div>
-                        
-                        <?= wp_nav_menu(['theme_location' => 'hamburguer-menu', 'container' => 'nav']); ?>  
-                        
-                        <?php the_social_networks_menu(); ?>
-                    </div>
-                </div>
-            </section>
         </div>
 
         

@@ -11,10 +11,27 @@ header {
 		transition: all 0.5s;
 		background-color: #f5f5f5;
 		border-bottom: 1px solid;
+		transition: all 0.5s ease;
+
+		&.scrolled {
+			.container {
+				.header-content {
+					min-height: 88px;
+					.menus {
+						display: none;
+					}
+
+					.logo a img {
+						width: 65px;
+					}
+				}
+			}
+		}
 
 		.container {
 			position: relative;
 			top: 0 !important;
+			max-width: 100%;
 
 			.logged-in & {
 				top: 32px;
@@ -43,6 +60,7 @@ header {
 				top: 17px;
 				right: 0;
 				width: 100%;
+				z-index: 1;
 
 				@media (min-width: $tablet-width) {
 					width: 360px;
@@ -91,19 +109,19 @@ header {
 					.checkbox {
 						position: absolute;
 						display: block;
-						height: 25px;
-						width: 30px;
+						height: 22px;
+						width: 25px;
 						top: 14px;
-						left: 14px;
+						//left: 14px;
 						z-index: 5;
 						opacity: 0;
 						cursor: pointer;
 
 						@media (min-width: 768px) {
-							left: 20.1rem;
+							right: 15%;
 						}
 						@media (min-width: 1200px) {
-							left: 21rem;
+							right: 15%;
 						}
 					}
 
@@ -114,14 +132,14 @@ header {
 						width: 20px;
 						position: absolute;
 						top: 12px;
-						left: 18px;
+						//left: 18px;
 
 						@media (min-width: 768px) {
-							left: 20.4rem;
+							right: 16%;
 						}
 
 						@media (min-width: 1200px) {
-							left: 21.2rem;
+							right: 16%;
 						}
 					}
 				}
@@ -140,11 +158,11 @@ header {
 					z-index: 1;
 
 					@media (min-width: 768px) {
-						right: -18px;
+						right: 8%;
 					}
 
 					@media (min-width: 1200px) {
-						right: -35px;
+						right: 8%;
 					}
 				}
 
@@ -366,17 +384,19 @@ header {
 	}
 
 	.header-content {
-		display: grid;
-		align-items: center;
 		min-height: 100px;
 		padding-top: 21px;
 
-		.logo {
-			grid-area: 1/1/1/4;
-			justify-self: center;
-			img {
-				height: auto;
-				width: auto;
+		> div {
+			display: grid;
+
+			.logo {
+				grid-area: 1/1;
+				justify-self: center;
+				img {
+					height: auto;
+					width: auto;
+				}
 			}
 		}
 

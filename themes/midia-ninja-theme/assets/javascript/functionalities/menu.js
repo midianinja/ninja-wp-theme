@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     
     const menuIcons = document.querySelectorAll('button.toggle-menu');
+   
     menuIcons.forEach(icon => {
         icon.addEventListener('click', function() {
-            var width = window.matchMedia("(max-width: 768px)");
+            const width = window.matchMedia("(max-width: 768px)");
             if (width.matches) {
                 document.getElementsByTagName("body").item(0).classList.toggle('menu-active');
             }
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.classList.toggle('active');
             this.parentNode.classList.toggle('active');
             this.closest('header').classList.toggle('active');
-            var menuContainerClass =this.getAttribute('menu-container-class')
+            const menuContainerClass =this.getAttribute('menu-container-class')
             document.querySelector('.'+ menuContainerClass).classList.toggle('active');
             searchButton = document.querySelector('.search-toggle');
             searchButton.disabled = ( searchButton.disabled ? false : true );
@@ -83,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
             menuButton.classList.add("checked");
         }
     })
+
     //Hamburger Menu Itens
     const burguerMenu = document.querySelector('.hamburguer #menu-hamburguer');
     const burguerWithChild = burguerMenu.querySelectorAll('#menu-hamburguer li.menu-item-has-children');
@@ -113,4 +115,24 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     })
+
+    //Menu reduzido no scroll
+    
+    
+    window.addEventListener("scroll", function() {
+        const scroll = window.scrollY || document.documentElement.scrollTop;
+        const mainHeader = document.querySelector(".main-header");
+        
+        if (scroll >= 200) {
+            
+            mainHeader.classList.add("scrolled");
+        } else {
+            
+            mainHeader.classList.remove("scrolled");
+        }
+    });
+    
+    
 })
+
+

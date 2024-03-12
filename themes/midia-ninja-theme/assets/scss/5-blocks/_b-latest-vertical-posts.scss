@@ -4,15 +4,15 @@
 		border-radius: 12px;
 		border: 2px solid var(--SECONDARY, #ccc);
 		background: var(--White, #fff);
-		padding: 44px 43px;
+		padding: 38px 29px;
 
 		h2 {
 			color: var(--Gray-1, #333);
-			font-family: Manrope;
+			font-family: 'Manrope', serif;
 			font-size: 32px;
 			font-style: normal;
 			font-weight: 800;
-			line-height: 100%; /* 32px */
+			line-height: 100%;
 			text-transform: uppercase;
 		}
 
@@ -20,7 +20,7 @@
 			a {
 				text-decoration: none;
 				color: var(--Gray-1, #333);
-				font-family: Manrope;
+				font-family: 'Manrope', serif;
 
 				.post {
 					margin-bottom: 30px;
@@ -33,6 +33,7 @@
 				font-weight: 700;
 				line-height: 140%; /* 22.4px */
 				margin-bottom: 5px;
+				text-transform: none;
 			}
 
 			.post-meta {
@@ -66,6 +67,13 @@
 
 		.slick-slide .slide {
 			display: none !important;
+		}
+
+		.slide{
+			padding-left: 6px;
+			@media(max-width:782px){
+				padding-left: 0;
+			}
 		}
 
 		.slick-slide.slick-active .slide {

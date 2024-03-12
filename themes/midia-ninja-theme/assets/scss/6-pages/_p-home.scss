@@ -369,9 +369,8 @@
         :nth-child(3){
             @media(max-width: 992px){
                 order: 1;
-            }
-            
-        } 
+            }   
+        }
     }
 
     .anuncio-ninja-desktop,
@@ -536,10 +535,12 @@
                    } 
                 }
             }
-            .wp-block-buttons{
+            .wp-block-buttons.btn-latest-posts{
                 display: flex;
                 justify-content: right;
                 margin-right: -100px;
+                margin-top: -1rem;
+                margin-bottom: 0;
                 @media(max-width: 992px){
                     display: none;
                 }                

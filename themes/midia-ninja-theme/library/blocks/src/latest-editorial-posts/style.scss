@@ -27,7 +27,7 @@
     &__filter {
         display: flex;
         gap: 8px;
-        margin-left: 0;
+        margin-left: 0 !important;
         flex-wrap: wrap;
 
         span.term {

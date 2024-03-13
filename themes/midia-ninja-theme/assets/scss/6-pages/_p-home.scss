@@ -462,9 +462,22 @@
         .container{
             max-width: 1170px;
             width: 100%;
-            padding: 69px 100px 68px 100px !important;
+            padding: 69px 100px 155px 100px !important;
             @media(max-width: 992px){
                 padding: 50px 0px !important;
+            }
+            h2{
+                margin-bottom: -37px !important;
+                @media(max-width: 782px){
+                    margin-bottom: 0 !important;
+                }
+            }
+            .latest-horizontal-posts-block__footer{
+                top: 285px !important;
+                @media(max-width: 782px){
+                    top: 0 !important;
+                    margin-top: -15px !important;
+                }
             }
         }
     }
@@ -722,15 +735,12 @@
         .container{
             padding: 55px 25px 76px !important;
         }
-      
-
         .latest-horizontal-posts-block__slides{
             flex-basis: 80% !important;
             &::before {
                 display: none;
             }
         }
-
         @media(max-width: 992px){
             display: none;
         }

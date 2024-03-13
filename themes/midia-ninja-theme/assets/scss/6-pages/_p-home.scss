@@ -437,7 +437,7 @@
             }
         }
         .latest-horizontal-posts-block__slides{
-            &::before {
+            &::after {
                 display: none;
             }
         }
@@ -711,13 +711,13 @@
     }
     .videos-desktop{
         .container{
-            padding: 55px 0 76px !important;
+            padding: 55px 25px 76px !important;
         }
       
 
         .latest-horizontal-posts-block__slides{
             flex-basis: 80% !important;
-            &::after {
+            &::before {
                 display: none;
             }
         }
@@ -854,6 +854,10 @@
         }
         form{
             .mc4wp-form-fields{
+                margin-top: 2rem;
+                @media(max-width: 992px){
+                    margin-top: 0;
+                }
                 input[type=name],
                 input[type=email]{
                     width: 572px;
@@ -932,8 +936,9 @@
         .container{
             max-width: 1170px !important;
             width: 100%;
+            padding: 97px 0 26px !important;
             @media(max-width: 992px){
-                padding: 0px 0 48px;
+                padding: 0px 0 48px !important;
             }
             
         }

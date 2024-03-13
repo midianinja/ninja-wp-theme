@@ -354,12 +354,127 @@
 	// Most read
 	&.model-most-read {
 		background-color: var(--wp--preset--color--dark-pure);
-
-		.latest-horizontal-posts-block {
+		.latest-horizontal-posts-block{
+			&__content{
+				.latest-horizontal-posts-block__heading{
+					h2{
+						font-family: "MidiaNinja", sans-serif;
+						font-size: 54px;
+						font-weight: 400;
+						margin-bottom: 0;
+						letter-spacing: normal;
+						@media(max-width: 782px){
+						font-size: 38px;
+						}
+					}
+				}
+			}
 			&__slides {
 				&::before,
 				&::after {
 					display: none;
+				}
+				.slide{
+					@media(max-width: 782px){
+						width: 280px !important;
+						display: flex !important;
+						margin-left: auto;
+						margin-right: auto;
+						padding-left: 1.7rem;
+					}
+					.post{
+						max-width: 280px;
+						width: 100%;
+						&-content{
+							.post-meta{
+								&--terms{
+									.list-terms{
+										li{
+											font-family: "Archivo Expanded",serif;
+											font-size: 13px;
+											font-weight: 800;
+											line-height: 150%;
+											letter-spacing: -0.39px;
+											text-transform: uppercase;
+											padding: 3px 4px 1px 6px;
+											border-radius: 4px;
+											&.term{
+												&-noticias{
+													background-color: #0000ff;
+													color: #fff;
+												}
+												&-audiovisual{
+													background-color: #808080;
+													color: #111;
+												}
+												&-cultura {
+													background-color: #DB565E;
+													color: #111;
+												}
+												&-meio-ambiente {
+													background-color: #99CE56;
+													color: #111;
+												}
+												&-alimentacao {
+													background-color: #F7F100 ;
+													color: #111;
+												}
+												&-lgbtqia {
+													background-color: #E14FCE;
+													color: #111;
+												}
+												&-indigenas {
+													background-color: #F27900;
+													color: #111;
+												}
+												&-entrevistas {
+													background-color: #111111;
+													color: #fff;
+												}
+												&-politica {
+													background-color: #76C7E6;
+													color: #111;
+												}
+												&-educacao {
+													background-color: #C9ADFF;
+													color: #111;
+												}
+												&-negritude {
+													background-color: #F1BC4E;
+													color: #111;
+												}
+												&-internacional {
+													background-color: #F63333;
+													color: #fff;
+												}
+												&-esportes {
+													background-color: #7AE695;
+													color: #111;
+													
+												}
+												&-tecnologia {
+													background-color: #F0A8E7;
+													color: #111;
+												}
+											
+												&-feminismos {
+													background-color: #8C52FF;
+													color: #fff;
+												}
+											}
+										}
+									}
+								}
+							}
+							.post-title{
+								font-family: 'Manrope', serif;
+								font-size: 20px;
+								font-style: normal;
+								font-weight: 700;
+								line-height: 130%;
+							}
+						}
+					}
 				}
 			}
 		}

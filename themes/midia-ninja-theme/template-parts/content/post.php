@@ -13,7 +13,7 @@
         </div><!-- /.post-card--thumb -->
 
         <div class="post-card--content">
-            <div class="entry-meta"><?php echo get_html_terms( get_the_ID(), 'category', true ); ?></div>
+            <div class="entry-meta"><?php echo get_html_terms( get_the_ID(), 'category', true, true, 1 ); ?></div>
             <a href="<?php the_permalink(); ?>"><h5 class="entry-title"><?php the_title(); ?></h5></a>
             <div class="entry-date"><?php echo get_the_date(); ?></div>
             <div class="entry-excerpt">

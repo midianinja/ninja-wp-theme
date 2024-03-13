@@ -1,7 +1,7 @@
 <a href="<?php echo get_permalink();?>">
     <div class="post">
         <div class="post-thumbnail">
-            <?php $get_html_terms = get_html_terms( $args['post']->ID, 'category', false ); ?>
+            <?php $get_html_terms = get_html_terms( $args['post']->ID, 'category', false, true, 1 ); ?>
             <?php if ( $get_html_terms ) : ?>
                 <span class="post--terms">
                     <?php echo $get_html_terms; ?>

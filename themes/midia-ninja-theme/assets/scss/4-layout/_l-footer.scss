@@ -47,6 +47,18 @@ footer.main-footer {
 					width: 32px;
 					height: 32px;
 				}
+
+				&.icon-facebook {
+					a {
+						background-image: url($p_theme_assets + "/images/social-networks/facebook-white.svg");
+						background-repeat: no-repeat;
+						background-position: center;
+
+						svg {
+							display: none;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -112,13 +124,9 @@ footer.main-footer {
 		.content {
 			max-width: 1170px;
 			margin: auto;
-			display: none;
+			display: flex;
 			justify-content: end;
-			padding: 9px 24px;
-
-			@media (min-width: 768px) {
-				display: flex;
-			}
+			padding: 5px 24px;
 		}
 	}
 }

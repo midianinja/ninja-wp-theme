@@ -344,6 +344,10 @@ header {
 						@media (min-width: 768px) {
 							right: -54px;
 						}
+
+						.social-menu {
+							display: flex;
+						}
 					}
 
 					input.checked ~ .hamburger-lines {
@@ -372,6 +376,10 @@ header {
 								border: 2px solid #fff;
 								width: 100%;
 								background-color: transparent;
+								padding: 10px 8px;
+							}
+
+							input::placeholder {
 								color: var(--SECONDARY, #ccc);
 								font-family: Manrope;
 								font-size: 14px;
@@ -379,7 +387,6 @@ header {
 								font-weight: 500;
 								line-height: 150%; /* 21px */
 								letter-spacing: -0.42px;
-								padding: 10px 8px;
 							}
 						}
 					}

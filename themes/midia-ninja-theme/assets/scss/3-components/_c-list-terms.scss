@@ -10,149 +10,22 @@ ul.list-terms {
     }
 
     li {
+        border-radius: 4px;
         display: inline-block;
+        font-family: $f_tag;
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 5px;
         margin-right: 5px;
+        padding: 3px 6px 2px 6px;
+        text-transform: uppercase;
 
-        &:after {
-            content: "\2022";
-            margin-left: 5px;
+        &::after {
+            display: none;
         }
 
         &:last-child {
             margin-right: 0;
-
-            &:after {
-                content: "";
-            }
-        }
-    }
-}
-
-.term {
-
-    &-cultura {
-        color: #DB565E;
-
-        a {
-            background-color: #DB565E;
-            color: #111;
-        }
-    }
-
-    &-meio-ambiente {
-        color: #99CE56;
-
-        a {
-            background-color: #99CE56;
-            color: #111;
-        }
-    }
-
-    &-alimentacao {
-        color: #F7F100;
-
-        a {
-            background-color: #F7F100;
-            color: #111;
-        }
-    }
-
-    &-lgbtqiapn {
-        color: #E14FCE;
-
-        a {
-            background-color: #E14FCE;
-            color: #111;
-        }
-    }
-
-    &-indiginas {
-        color: #F27900;
-
-        a {
-            background-color: #F27900;
-            color: #111;
-        }
-    }
-
-    &-entrevista {
-        color: #111111;
-
-        a {
-            background-color: #111111;
-            color: #fff;
-        }
-    }
-
-    &-politica {
-        color: #76C7E6;
-
-        a {
-            background-color: #76C7E6;
-            color: #111;
-        }
-    }
-
-    &-negritude {
-        color: #F1BC4E;
-
-        a {
-            background-color: #F1BC4E;
-            color: #111;
-        }
-    }
-
-    &-educacao {
-        color: #C9ADFF;
-
-        a {
-            background-color: #C9ADFF;
-            color: #111;
-        }
-    }
-
-    &-negritude {
-        color: #F1BC4E;
-
-        a {
-            background-color: #F1BC4E;
-            color: #111;
-        }
-    }
-
-    &-internacional {
-        color: #F63333;
-
-        a {
-            background-color: #F63333;
-            color: #fff;
-        }
-    }
-
-    &-esportes {
-        color: #7AE695;
-
-        a {
-            background-color: #7AE695;
-            color: #111;
-        }
-    }
-
-    &-tecnologia {
-        color: #F0A8E7;
-
-        a {
-            background-color: #F0A8E7;
-            color: #111;
-        }
-    }
-
-    &-feminismos {
-        color: #8C52FF;
-
-        a {
-            background-color: #8C52FF;
-            color: #fff;
         }
     }
 }

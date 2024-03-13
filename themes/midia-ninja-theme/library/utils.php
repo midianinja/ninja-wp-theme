@@ -48,7 +48,18 @@ function get_html_terms( int $post_id, string $tax, bool $use_link = false, bool
 
         $count++;
 
-        $html .= '<li class="term-' . sanitize_title( $term->slug ) . '">';
+        $background_term_color = get_term_meta( $term->term_id, 'ninja_background_term_color', true );
+        $font_term_color = get_term_meta( $term->term_id, 'ninja_font_term_color', true );
+
+        if ( ! $background_term_color ) {
+            $background_term_color = '#333333';
+        }
+
+        if ( ! $font_term_color ) {
+            $font_term_color = '#FFFFFF';
+        }
+
+        $html .= '<li class="term-' . sanitize_title( $term->slug ) . '" style="background-color:'. $background_term_color. '; color:'. $font_term_color. '">';
 
         if ( $use_link ) {
             $html .= '<a href="' . esc_url( get_term_link( $term->term_id, $tax ) ) . '">';

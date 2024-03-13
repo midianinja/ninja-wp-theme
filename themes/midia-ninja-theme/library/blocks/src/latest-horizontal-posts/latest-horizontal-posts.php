@@ -10,12 +10,17 @@ function latest_horizontal_posts_callback( $attributes ) {
     $content_position = ( isset( $attributes['contentPosition'] ) && ! empty( $attributes['contentPosition'] ) ) ? esc_attr( $attributes['contentPosition'] ) : 'left';
     $custom_class     = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
     $description      = ( isset( $attributes['description'] ) && ! empty( $attributes['description'] ) ) ? apply_filters( 'the_content', $attributes['description'] ) : false;
+    $heading          = $attributes['heading'] ?? '';
 
     $block_classes[] = 'latest-horizontal-posts-block';
     $block_classes[] = $custom_class;
     $block_classes[] = 'model-' . $block_model;
     $block_classes[] = 'content-' . $content_position;
     $block_classes[] = 'show-slides-' . $slides_to_show;
+
+    if ( ! $description && ! $heading ) {
+        $block_classes[] = 'without-title-description';
+    }
 
     $block_classes = array_filter( $block_classes );
 
@@ -114,7 +119,6 @@ function latest_horizontal_posts_callback( $attributes ) {
     echo '<div id="block__' . esc_attr( $attributes['blockId'] ) . '" class="' . implode( ' ', $block_classes ) . '" data-slider="horizontal-posts" data-slides-to-show="'. $slides_to_show . '">';
         echo '<div class="container">';
             echo '<div class="latest-horizontal-posts-block__content">';
-                $heading = $attributes['heading'] ?? '';
 
                 echo '<div class="latest-horizontal-posts-block__heading">';
                     if ( ! empty( $heading ) ) {
@@ -128,7 +132,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                     }
                 echo '</div>';
 
-                if ( $content_position !== 'full' ) {
+                if ( $block_model == 'most-read' || $content_position !== 'full' ) {
                     // The footer with dots and arrows
                     echo '<div class="latest-horizontal-posts-block__footer">';
                     echo '<div class="latest-horizontal-posts-block__dots"></div>';
@@ -194,7 +198,11 @@ function latest_horizontal_posts_callback( $attributes ) {
 
             echo '</div><!-- .latest-horizontal-posts-block__slides -->';
 
-            $footer_class = ( $content_position === 'full') ? 'latest-horizontal-posts-block__footer' : 'latest-horizontal-posts-block__footer medium-only';
+            $footer_class = 'latest-horizontal-posts-block__footer';
+
+            if ( $content_position !== 'full' || $block_model == 'most-read' ) {
+                $footer_class .= ' medium-only';
+            }
 
             // The footer with dots and arrows on medium
             echo '<div class="' . $footer_class . '">';

@@ -47,7 +47,9 @@ if ($related_posts->have_posts()) : ?>
                     </span> 
             
                     <div class="info">
-                        <h6><?php the_title(); ?></h6>
+                        <a href="<?php the_permalink();?>">
+                            <h5><?php the_title(); ?></h5>
+                        </a>
                         
                         <time><?php echo get_the_date(); ?></time> 
                     </div>

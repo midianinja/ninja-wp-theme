@@ -3,31 +3,31 @@ $small-width: 576px;
 $tablet-width: 768px;
 $desktop-width: 992px;
 $desktop-large-width: 1200px;
-$desktop-xlarge-width:1400px;
+$desktop-xlarge-width: 1400px;
 
 // Sizes
 // Typo sizes
-$s_html: 16px;  //equivalente a 16px
-$s_h1: 6.4rem;  //equivalente a 64px
-$s_h2: 4.8rem;  //equivalente a 48px
-$s_h3: 4rem;    //equivalente a 32px
-$s_h4: 2rem;    //equivalente a 44px
-$s_h5: 1.5rem;  //equivalente a 20px
+$s_html: 16px; //equivalente a 16px
+$s_h1: 6.4rem; //equivalente a 64px
+$s_h2: 4.8rem; //equivalente a 48px
+$s_h3: 4rem; //equivalente a 32px
+$s_h4: 2rem; //equivalente a 44px
+$s_h5: 1.25rem; //equivalente a 20px
 $s_h6: 0.875em; //equivalente a 14px
 
 // Colors
 $c_blue_primary: #035299;
-$c_blue_secondary: #B1D3E5;
+$c_blue_secondary: #b1d3e5;
 
 // Paths
-$p_theme: '/wp-content/themes/midia-ninja-theme';
-$p_theme_assets: $p_theme + '/assets';
+$p_theme: "/wp-content/themes/midia-ninja-theme";
+$p_theme_assets: $p_theme + "/assets";
 
 // Fonts
-$f_body: 'Manrope', sans-serif;
-$f_title: 'Manrope', sans-serif;
-$f_ninja: 'MidiaNinja', sans-serif;
-$s_meta: .875rem; //equivalente 14px
+$f_body: "Manrope", sans-serif;
+$f_title: "Manrope", sans-serif;
+$f_ninja: "MidiaNinja", sans-serif;
+$s_meta: 0.875rem; //equivalente 14px
 
 // Spacings
 $s_small: 0.938rem;
@@ -35,34 +35,34 @@ $s_medium: 1.875rem;
 $s_large: 2.813rem;
 
 :root {
-    // Sizes
-    // Typo sizes
-    --s-html: #{$s_html};
-    --s-p: #{$s_html};
-    --s-h1: #{$s_h1};
-    --s-h2: #{$s_h2};
-    --s-h3: #{$s_h3};
-    --s-h4: #{$s_h4};
-    --s-h5: #{$s_h5};
-    --s-h6: #{$s_h6};
+	// Sizes
+	// Typo sizes
+	--s-html: #{$s_html};
+	--s-p: #{$s_html};
+	--s-h1: #{$s_h1};
+	--s-h2: #{$s_h2};
+	--s-h3: #{$s_h3};
+	--s-h4: #{$s_h4};
+	--s-h5: #{$s_h5};
+	--s-h6: #{$s_h6};
 
-    --s-meta: #{$s_meta};
+	--s-meta: #{$s_meta};
 
-    // Colors
-    --c-primary: #{$c_blue_primary};
-    --c-secondary: #{$c_blue_secondary};
+	// Colors
+	--c-primary: #{$c_blue_primary};
+	--c-secondary: #{$c_blue_secondary};
 
-    // Paths
-    --p-theme: #{$p_theme};
-    --p-theme-assets: #{$p_theme + '/assets'};
+	// Paths
+	--p-theme: #{$p_theme};
+	--p-theme-assets: #{$p_theme + "/assets"};
 
-    // Fonts
-    --f-body: #{$f_body};
-    --f-title: #{$f_title};
-    --f-ninja: #{$f_ninja};
+	// Fonts
+	--f-body: #{$f_body};
+	--f-title: #{$f_title};
+	--f-ninja: #{$f_ninja};
 
-    // Spacings
-    --s-small: #{$s_small};
-    --s-medium: #{$s_medium};
-    --s-large: #{$s_large};
+	// Spacings
+	--s-small: #{$s_small};
+	--s-medium: #{$s_medium};
+	--s-large: #{$s_large};
 }

@@ -26,7 +26,7 @@ $category = get_the_terms($post->ID, 'category');
                         <?php the_post_thumbnail();?>
                     </div>
                     
-                    <h1 class="title"><?php the_title(); ?></h1>
+                    <h2 class="title"><?php the_title(); ?></h2>
 
                     <h5 class="excerpt"><?php the_excerpt(); ?></h5>
 

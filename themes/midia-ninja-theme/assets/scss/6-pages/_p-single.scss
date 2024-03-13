@@ -30,34 +30,34 @@
 				.addtoany_list {
 					display: flex;
 
-					a.a2a_button_facebook {
+					a.a2a_button_copy_link {
 						span {
-							background-image: url($p_theme_assets + "/images/social-networks/facebook-black.svg");
-							width: 24px;
-							display: block;
-							height: 24px;
-							padding: 3px;
+							background-image: url($p_theme_assets + "/images/social-networks/share.svg");
+							background-size: 22px !important;
+							background-position: 0 1px;
 
 							svg {
 								display: none;
 							}
 						}
 					}
+
+					a.a2a_button_x {
+						svg {
+							width: 28px;
+							margin: -2px;
+						}
+					}
 				}
 
 				h1 {
 					color: var(--PURE, #262626);
-					font-size: 48px;
-					font-style: normal;
-					font-weight: 800;
 					line-height: 115%;
 					/* 55.2px */
 					letter-spacing: -1.44px;
 				}
 
 				h2 {
-					font-size: 20px;
-					font-weight: 700;
 					line-height: 130%;
 					/* 26px */
 				}
@@ -145,10 +145,10 @@
 									&.icon-instagram {
 										display: block;
 										padding: 0 8px;
-										margin: 0;
+										margin: 0 -8px;
 
 										svg {
-											width: 20px;
+											width: 19px;
 										}
 									}
 								}
@@ -156,6 +156,24 @@
 
 							svg path {
 								fill: #000;
+							}
+
+							.addtoany_list {
+								//display: flex;
+
+								a.a2a_button_facebook {
+									span {
+										background-image: url($p_theme_assets + "/images/social-networks/facebook-black.svg");
+										width: 24px;
+										display: block;
+										height: 24px;
+										padding: 3px;
+
+										svg {
+											display: none;
+										}
+									}
+								}
 							}
 						}
 					}
@@ -203,10 +221,10 @@
 								&.icon-instagram {
 									display: block;
 									padding: 0 8px;
-									margin: 0;
+									margin: 0 -10px;
 
 									svg {
-										width: 20px;
+										width: 19px;
 										color: #e1306c;
 									}
 								}
@@ -294,10 +312,8 @@
 							}
 
 							.info {
-								h6 {
+								h5 {
 									color: var(--Gray-1, #333);
-									font-size: 20px;
-									font-style: normal;
 									font-weight: 700;
 									line-height: 130%; /* 26px */
 									margin: 10px 0;

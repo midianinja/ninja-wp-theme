@@ -30,7 +30,7 @@ $show_author = isset( $args['attributes']['showAuthor'] ) ? $args['attributes'][
                 <span class="post-meta--date"><?php echo get_the_time_ago(); ?></span>
 
                 <?php if ( $show_taxonomy ) : ?>
-                    <?php $get_html_terms = get_html_terms( $args['post']->ID, $args['attributes']['showTaxonomy'], false ); ?>
+                    <?php $get_html_terms = get_html_terms( $args['post']->ID, $args['attributes']['showTaxonomy'], false, true, 1 ); ?>
                     <?php if ( $get_html_terms ) : ?>
                         <span class="post-meta--terms">
                             <span><?php _e( 'in', 'ninja' ); ?></span>

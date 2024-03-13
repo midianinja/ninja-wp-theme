@@ -357,6 +357,13 @@
 	// Most read
 	&.model-most-read {
 		background-color: var(--wp--preset--color--dark-pure);
+
+		&.without-title-description {
+			.container {
+				flex-direction: column-reverse;
+			}
+		}
+
 		.latest-horizontal-posts-block{
 			&__content{
 				.latest-horizontal-posts-block__heading{

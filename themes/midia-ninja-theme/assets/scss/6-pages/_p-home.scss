@@ -430,17 +430,15 @@
     // Section Especiais
     .sessao-especiais {
         margin-bottom: 0 !important;
-        &.latest-horizontal-posts-block{
-            &__slides {
-				&::before {
-					display: none;
-				}
-            }
-        }
         .container{
             padding: 59px 0px 64px 100px !important;
             @media(max-width: 992px){
                 padding: 50px 0px !important;
+            }
+        }
+        .latest-horizontal-posts-block__slides{
+            &::before {
+                display: none;
             }
         }
         h2 {
@@ -712,12 +710,15 @@
         }
     }
     .videos-desktop{
-        padding: 55px 0 76px !important;
-        &.latest-horizontal-posts-block{
-            &__slides {
-				&::after {
-					display: none;
-				}
+        .container{
+            padding: 55px 0 76px !important;
+        }
+      
+
+        .latest-horizontal-posts-block__slides{
+            flex-basis: 80% !important;
+            &::after {
+                display: none;
             }
         }
 
@@ -736,18 +737,14 @@
         @media(max-width: 992px){
             margin-bottom: 2rem;
         }
-        &.latest-horizontal-posts-block{
-            &__slides {
-				&::before {
-					display: none;
-				}
-            }
-        }
         .container{
             gap: 2rem;
         }
         .latest-horizontal-posts-block__slides{
             flex-basis: 80% !important;
+            &::before {
+                display: none;
+            }
         }
         .latest-horizontal-posts-block__heading{
             flex-basis: 20% !important;

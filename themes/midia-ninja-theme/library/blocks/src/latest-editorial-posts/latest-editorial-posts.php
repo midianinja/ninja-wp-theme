@@ -52,9 +52,22 @@ function latest_editorial_posts_callback( $attributes ) {
                 endif;
 
                 echo '<div class="latest-editorial-posts-block__content">';
-                    echo '<div class="latest-editorial-posts-block__sidebar">';
-                    echo do_shortcode( '[the_ad id="4539489"]' );
-                    echo '</div><!-- .latest-editorial-posts-block__sidebar -->';
+
+                    $ad_shortcode_raw = ( isset( $attributes['adShortcode'] ) && ! empty( $attributes['adShortcode'] ) ) ? $attributes['adShortcode'] : false;
+                    $ad_shortcode = '';
+
+                    preg_match( '/^\[([^\]\s]+)/', $ad_shortcode_raw, $matches );
+                    $shortcode_name = $matches[1] ?? '';
+
+                    if ( ! empty( $shortcode_name ) && shortcode_exists( $shortcode_name ) ) {
+                        $ad_shortcode = $ad_shortcode_raw;
+                    }
+
+                    if ( $ad_shortcode ) {
+                        echo '<div class="latest-editorial-posts-block__sidebar">';
+                            echo do_shortcode( $ad_shortcode );
+                        echo '</div><!-- .latest-editorial-posts-block__sidebar -->';
+                    }
 
                     echo '<div class="latest-editorial-posts-block__posts">';
                         while ( $posts_query->have_posts() ) :

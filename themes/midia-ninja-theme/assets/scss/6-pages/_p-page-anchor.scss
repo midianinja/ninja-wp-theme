@@ -1,8 +1,93 @@
-@import "./../1-settings/_s-variables";
-@import '../2-atoms/a-mixins';
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
 
 #app {
     background-color: #F5F5F5 !important;
+
+    .header-faq{
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        padding: 0;
+        .aspect-ratio{
+            aspect-ratio: 16 / 9;
+            display: block;
+            position: relative;
+            max-width: 770px;
+            width: 100%;
+           
+            .post-thumbnail {
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 1;
+                
+
+                img {
+                    height: 100%;
+                    left: 50%;
+                    object-fit: cover;
+                    position: absolute;
+                    top:  50%;
+                    transform: translate(-50%, -50%);
+                    width: 100%;
+                    border-radius: 8px;
+
+                    @media(max-width: variables.$tablet-width){
+                        min-width: 100%;
+                    }
+                }
+                
+            }
+
+            .entry-wrapper {
+                backdrop-filter: blur(10px);
+                background-color: rgba(51, 51, 51, 0.70);
+                color: var(--wp--preset--color--secondary-light);
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: start;
+                left: 0;
+                max-width: mixins.size(375);
+                padding: 65px 60px;
+                position: relative;
+                right: 0;
+                z-index: 2;
+                border-radius: 8px 0 0 8px;
+
+                @include mixins.mobile {
+                    gap: mixins.size(15);
+                    justify-content: center;
+                    padding: mixins.size(30) mixins.size(20);
+                }
+                .titulo-tag{
+                    text-transform: uppercase;
+                    font-family: "Archivo Expanded";
+                    font-size: 14px;
+                    font-weight: 800;
+                    line-height: 155%;
+                    letter-spacing: -0.42px;
+                }
+                h2{
+                    font-size: 32px;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+                .meta-subtitle{
+                    p{
+                        font-size: 13px;
+                        max-width: 242px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    
 
     .page-title{
         font-size: 32px;
@@ -11,6 +96,8 @@
         z-index: 1;
         position: relative;
         margin-left: 70px;
+       
+       
     }
 
     .col-md-9.content{
@@ -34,7 +121,7 @@
     }
 
     .sidebar-page {
-        @include desktop {
+        @include mixins.desktop {
             position: -webkit-sticky; /* Safari */
             position: sticky;
             top: 100px;
@@ -64,7 +151,7 @@
         }
     }
     .wp-block-coblocks-accordion{
-		margin: 2.5rem auto;
+		margin: 0 auto 2.5rem;
 		max-width: 700px;
 		width: 100%;
 		.wp-block-coblocks-accordion-item{
@@ -75,6 +162,8 @@
 			border-radius: 0;
 			details{
 				padding: 0 15px 0 0;
+                font-size: 24px;
+                color: #111;
 				summary.wp-block-coblocks-accordion-item__title{
 					background-color: #F5F5F5;
 					padding: 32px 25px 32px 0;

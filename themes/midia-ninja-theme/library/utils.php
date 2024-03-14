@@ -46,6 +46,10 @@ function get_html_terms( int $post_id, string $tax, bool $use_link = false, bool
 
     foreach ( $terms as $term ) {
 
+        if ( is_wp_error( $term ) ) {
+            continue;
+        }
+
         $count++;
 
         $html .= '<li class="term-' . sanitize_title( $term->slug ) . '">';

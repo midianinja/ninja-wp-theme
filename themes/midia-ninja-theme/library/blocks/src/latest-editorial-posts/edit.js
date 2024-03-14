@@ -9,7 +9,8 @@ import {
 	__experimentalNumberControl as NumberControl,
 	Disabled,
 	PanelBody,
-	PanelRow
+	PanelRow,
+	TextControl
 } from '@wordpress/components'
 
 import SelectCategory from './components/SelectCategory'
@@ -22,7 +23,8 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		className: 'latest-editorial-posts-block'
 	} )
 
-	const { 
+	const {
+		adShortcode,
 		blockId,
 		termsToFilter
 	} = attributes
@@ -47,6 +49,18 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 				>
 					<PanelRow>
 						<SelectCategory onChangeSelectCategory={ onChangeSelectCategory } selectedCategories={ termsToFilter } />
+					</PanelRow>
+
+					<PanelRow>
+						<TextControl
+							label={ __( 'Shortcode Ads', 'ninja' ) }
+							value={ adShortcode }
+							onChange={ ( value ) => { setAttributes( { adShortcode: value } ) } }
+							help={ __(
+								'Paste the shortcode of the ad you want to show.',
+								'ninja'
+							) }
+						/>
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>

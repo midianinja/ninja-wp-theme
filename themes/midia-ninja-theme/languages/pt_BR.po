@@ -11,7 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2022-03-23 17:26+0000\n"
 "Language: pt_BR\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Domain: base-textdomain\n"
+"X-Domain: ninja\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Loco-Version: 2.6.1; wp-5.9.2\n"
 

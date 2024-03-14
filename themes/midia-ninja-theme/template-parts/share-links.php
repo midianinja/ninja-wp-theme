@@ -1,7 +1,7 @@
 <div class="post-content--subshare">
     <span>
-        <?php 
-        _e( 'Share', 'base-textdomain' ); ?>
+        <?php
+        _e('Share', 'ninja'); ?>
     </span>
 
     <a href="https://www.facebook.com/sharer/sharer.php?u=<?= get_the_permalink() ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>

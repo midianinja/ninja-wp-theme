@@ -11,13 +11,13 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
     <div class="container">
         <div class="row">
             <div class="title">
-                <h1><?php _e('Search Results', 'base-textdomain'); ?></h1>
+                <h1><?php _e('Search Results', 'ninja'); ?></h1>
                 <p>(<?= $total_results . " $singular";?>)</p>
             </div>
 
             <aside class="col-md-3">
-                <h4><?php _e('Results', 'base-textdomain'); ?></h4>
-                <p><?php _e('Click below on what types of results you would like for your search', 'base-textdomain'); ?></p>
+                <h4><?php _e('Results', 'ninja'); ?></h4>
+                <p><?php _e('Click below on what types of results you would like for your search', 'ninja'); ?></p>
                 <?php the_category()?>
             </aside>
 

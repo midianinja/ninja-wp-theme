@@ -398,7 +398,7 @@ header {
 	.header-content {
 		min-height: 100px;
 		padding-top: 21px;
-		transition: all 0.4s ease-in-out;
+		transition: all 0.4s 0.4s ease-in-out;
 
 		> div {
 			display: grid;

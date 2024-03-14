@@ -27,6 +27,7 @@ if ( is_plugin_active( 'tutor/tutor.php' ) ) {
     require __DIR__ . '/library/tutorstarter.php';
 }
 
+require __DIR__ . '/library/header-and-footer-archive/header-and-footer-archive.php';
 require __DIR__ . '/library/supports.php';
 require __DIR__ . '/library/blocks/index.php';
 require __DIR__ . '/library/sidebars.php';

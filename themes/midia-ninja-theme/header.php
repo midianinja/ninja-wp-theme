@@ -55,7 +55,7 @@
                             </div>
                         </section>
                         
-                        <button menu-container-class='primary-menu' class="toggle-menu" aria-label="<?= __("Toggle menu visibility", "base-textdomain") ?>">
+                        <button menu-container-class='primary-menu' class="toggle-menu" aria-label="<?= __("Toggle menu visibility", "ninja") ?>">
                         </button>
                     </div>
 					

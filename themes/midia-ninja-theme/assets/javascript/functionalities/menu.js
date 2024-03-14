@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("s").focus();
         })
-
+    
     searchMenu.addEventListener ("click", function(ev) {
         ev.preventDefault();
 
@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             menuButton.classList.add("checked");
         }
+        document.getElementById("s").focus();
+        
     })
 
     buttonMais.addEventListener ("click", function(ev) {
@@ -83,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             menuButton.classList.add("checked");
         }
+        document.getElementById("s").focus();
     })
 
     //Hamburger Menu Itens
@@ -117,8 +120,6 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     //Menu reduzido no scroll
-    
-    
     window.addEventListener("scroll", function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");

@@ -338,6 +338,13 @@ class Assets {
 				},
 			],
 
+			'archive-opiniao' => [
+				'file' => '_p-archive-opiniao.css',
+				'preload_callback' => function() {
+					return is_archive('opiniao');
+				},
+			],
+
             'search' => [
                 'file' => '_p-search.css',
                 'preload_callback' => function() {

@@ -22,7 +22,7 @@ $uses_excerpt = post_type_supports(get_post_type(), 'excerpt');
 
 ?>
 <div class="card <?= $horizontal ? 'horizontal' : '' ?>">
-    <?php if( $has_image ): ?>
+    <?php if($has_image): ?>
     <a tabindex="-1" href="<?= get_the_permalink() ?>" class="card--image-wrapper">
         <?= $image_tag ?>
     </a>    
@@ -34,13 +34,13 @@ $uses_excerpt = post_type_supports(get_post_type(), 'excerpt');
         </div>
         <?php if ($show_author && $authors) : ?>
             <span class="authors">
-                <?php _e('Por:', 'base-textdomain') ?>
+                <?php _e('Por:', 'ninja') ?>
                 <strong><?php authors::display($author_taxonomy) ?></strong>
             </span>
         <?php endif; ?>
         <?php if ($show_date) : ?>
             <span class="date">
-                <?php _e('publicado em', 'base-textdomain') ?>
+                <?php _e('publicado em', 'ninja') ?>
                 <?php echo get_the_date('d/m/Y'); ?>
             </span>
         <?php endif; ?>

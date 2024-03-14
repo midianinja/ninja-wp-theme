@@ -4,15 +4,15 @@ namespace jaci;
 
 function custom_menus()
 {
-    register_nav_menu('main-menu', __('Menu Principal', 'base-textdomain'));
-    /* register_nav_menu('footer-menu', __('Menu de Rodapé', 'base-textdomain')); */
+    register_nav_menu('main-menu', __('Menu Principal', 'ninja'));
+    /* register_nav_menu('footer-menu', __('Menu de Rodapé', 'ninja')); */
 
-    register_nav_menu('social-networks', __('Redes Sociais', 'base-textdomain'));
-    register_nav_menu('footer-menu-first', __('Menu de Rodapé 1', 'base-textdomain'));
-    register_nav_menu('footer-menu-second', __('Menu de Rodapé 2', 'base-textdomain'));
-    register_nav_menu('footer-menu-third', __('Menu de Rodapé 3', 'base-textdomain'));
-    register_nav_menu('footer-menu-fourth', __('Menu de Rodapé 4', 'base-textdomain'));
-    register_nav_menu('hamburguer-menu', __('Menu Hamburguer', 'base-textdomain'));
+    register_nav_menu('social-networks', __('Redes Sociais', 'ninja'));
+    register_nav_menu('footer-menu-first', __('Menu de Rodapé 1', 'ninja'));
+    register_nav_menu('footer-menu-second', __('Menu de Rodapé 2', 'ninja'));
+    register_nav_menu('footer-menu-third', __('Menu de Rodapé 3', 'ninja'));
+    register_nav_menu('footer-menu-fourth', __('Menu de Rodapé 4', 'ninja'));
+    register_nav_menu('hamburguer-menu', __('Menu Hamburguer', 'ninja'));
 }
 
 add_action('init', 'jaci\\custom_menus');

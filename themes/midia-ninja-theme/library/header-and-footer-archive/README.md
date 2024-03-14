@@ -7,9 +7,11 @@ Importe o arquivo `/library/header-and-footer-archive/pods/header-and-footer-arc
 
 ## Como usar
 
-### Criando cabeçalhos e rodapés
+### Registrando e criando cabeçalhos e rodapés
 
-No painel, acesse o menu Aparência/Cabeçalho/Rodapé das Listagens (disponível apenas para usuários Admin) e adicione um novo. Edite como um post normal, usando blocos Gutenberg.
+No painel, acesse o menu do Pods em Editar Pods. No CPT Cabeçalho/Rodapé das Listagens clique em Editar, em seguida em Listagem (archive/página), clique em Editar. Role o modal de configuração do campo até o final e coloque um nome relacionado ao cabeçalho ou rodapé que você irá criar seguindo o modelo (ex: post|Post). Salve o campo e depois salve o Pod. Esse processo irá registrar a archive para receber o cabeçalho e/ou rodapé.
+
+No menu Aparência acesse Cabeçalho/Rodapé das Listagens (disponível apenas para usuários Admin) e adicione um novo. Edite como um post normal, usando blocos Gutenberg.
 Na parte inferior da edição, marque a posição (Cabeçalho ou Rodapé) e em qual página ele será usado (no campo Listagem (archive)).
 
 ### Como exibir na archive/page template

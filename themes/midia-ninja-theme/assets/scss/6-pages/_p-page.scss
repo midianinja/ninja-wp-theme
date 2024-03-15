@@ -4,6 +4,149 @@
 .page{
     &-fale-conosco{
 
+        .cover-contato-mobile{
+            display: none;
+
+            @include mixins.small{
+                display: flex;
+                border-radius: 8px;
+                max-width: 328px;
+                width: 100%;
+                height: 400px;
+                flex-shrink: 0;
+                padding: 0;
+                align-items: flex-end;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            h3{
+                @include mixins.small{
+                    color: #FFF;
+                    font-family: "Archivo Expanded";
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 155%; /* 21.7px */
+                    letter-spacing: -0.42px;
+                    text-transform: uppercase;
+                    position: relative;
+                }
+            }
+
+            h2{
+                @include mixins.small{
+                    color: #FFF;
+                    font-family: Manrope;
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 120%;
+                    letter-spacing: -0.64px;
+                    position: relative;
+                }
+            }
+
+            .coluna-contato-mobile{
+                padding-top: 40px;
+                padding-left: 18px;
+                fill: rgba(51, 51, 51, 0.70);
+                backdrop-filter: blur(10.699999809265137px);
+            }
+
+        }
+
+        .form-mobile{
+            display: none;
+
+            @include mixins.small{
+                display: block;
+            }
+
+            
+            form{        
+                max-width: 265px;
+                width: 100%;
+                margin-left: auto; 
+                margin-right: auto;
+
+                h4{
+                    color: var(--DARK, #111);
+                    font-family: Manrope;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 130%;
+                    max-width: 272px;
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-bottom: 0;
+                }
+
+                input[type="text"],
+                input[type="email"]{
+                    border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    display: flex;
+                    max-width: 265px;
+                    width: 100%;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 8px;
+                }
+
+                textarea{
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
+                }
+            }
+        }
+
+        .midia-ninja-contato-mobile{
+            display: none;
+
+            @include mixins.small{
+                display: flex;
+                border-radius: 8px;
+                max-width: 272px;
+                width: 100%;
+            }
+
+            h2{
+                color: var(--White, #FFF);
+                font-family: Manrope;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 130%;
+                padding-bottom: 12px;
+                border-bottom: 1px solid #f2f2f2;
+            }
+
+            p{
+                color: var(--White, #FFF);
+                font-family: Manrope;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 145%;
+                max-width: 201px;
+                width: 100%;
+                height: 119px;
+                margin-left: 0 !important;
+            }
+
+            .wp-block-columns{
+                flex-wrap: inherit !important;
+
+                .wp-block-column{
+                    flex-grow: 0;           
+                    flex-basis: inherit !important;         
+                }
+            }
+        }
+
         .cover-contato{
             padding: 0;
             margin: 0 !important;
@@ -15,6 +158,14 @@
 
             @media (max-width: 1400px){
                 left: 47%;
+            }
+
+            @include mixins.small{
+                display: none;
+            }
+
+            @include mixins.mobile{
+                display: none;
             }
 
             .wp-block-cover__inner-container{
@@ -75,6 +226,7 @@
             }
         }
 
+
         .midia-ninja-contato{
 
             padding: 30px;
@@ -89,6 +241,14 @@
             @media (max-width: 1400px){
                 left: 80% !important;
             }            
+
+            @include mixins.small{
+                display: none;
+            }
+
+            @include mixins.mobile{
+                display: none;
+            }
 
             h2{
                 color: var(--White, #FFF);

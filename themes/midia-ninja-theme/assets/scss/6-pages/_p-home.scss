@@ -179,7 +179,7 @@
             overflow: hidden;
 
             @include mixins.mobile {
-                margin-bottom: 0;
+                margin-bottom: -1rem;
             }
 
             article {
@@ -298,6 +298,10 @@
                 padding: variables.$s_small;
             }
 
+            @include mixins.mobile {
+                margin-bottom: 1.2rem;
+            }
+
             article {
                 .post-thumbnail{
                     @include mixins.mobile{
@@ -325,19 +329,38 @@
         }
 
         &.posts-sidebar {
+            @include mixins.mobile {
+                margin-bottom: -1.3rem;
+            }
+            div[data-posts]{
+                :nth-child(n+3){
+                    @media(max-width: 768px){
+                        display: none;
+                    }
+                    
+                }
+            }
             article {
                 align-items: center;
                 margin-bottom: 2.7rem;
+                @include mixins.mobile {
+                    margin-bottom: 1rem;
+                }
 
                 .post-thumbnail {
-                    max-width: mixins.size(110);
+                    max-width: mixins.size(112);
                     overflow: hidden;
                     margin-right: 1.5em;
+                    img{
+                        width: 112px;
+                        height: 107px;
+                        object-fit: cover;    
+                    }
                 }
 
                 .entry-wrapper {
                     @include mixins.mobile {
-                        flex-basis: 100%;
+                        flex-basis: 60%;
                     }
 
                     .entry-title {
@@ -355,7 +378,11 @@
     }
 
     .grid-latest-posts{
-        margin-bottom: 0.8rem;
+        @include mixins.mobile {
+            gap: 0;
+            margin-bottom: 0;
+        }
+        
         .middle-column{
             @media(max-width: 992px){
                 display: none;
@@ -396,6 +423,7 @@
     }
 
     .anuncio-ninja-mobile{
+        margin-bottom : 0;
         img{
             max-width: 315px;
             width: 100%;
@@ -407,7 +435,7 @@
         display: flex;
         justify-content: center;
         margin-bottom: 2rem;
-        margin-top: 2rem;
+        margin-top: 1rem;
 
         @media(min-width: 993px){
             display: none;
@@ -484,6 +512,10 @@
 
     .sessao-opiniao{
         font-family: 'Manrope', serif;
+        @include mixins.mobile {
+            gap: 0;
+            margin-bottom: 0;
+        }
         .grid-cards-opiniao{
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -870,6 +902,45 @@
             @media(max-width: 992px){
                 display: none;  
             }
+        }
+        .latest-editorial-posts-block__posts{
+            @media(max-width: 768px){
+                margin-bottom: -2rem;
+            }
+            :nth-child(n+4){
+                @media(max-width: 768px){
+                    display: none;
+                } 
+            }
+            :nth-child(2),
+            :nth-child(3){
+                .post{
+                    .post-thumbnail{
+                        @media(max-width: 768px){
+                            height: 20px;
+                        }
+                        .post--terms{
+                            ul{
+                                @media(max-width: 768px){
+                                   margin-left: -1.3rem;
+                                   margin-bottom: -1rem;
+                                }
+                            }
+                        }     
+                        img{
+                            @media(max-width: 768px){
+                                display: none;
+                            }     
+                        }
+                        
+                    }    
+                }    
+            }
+            :nth-child(3){
+                @media(max-width: 768px){
+                    margin-top: -2.7rem;
+                }
+            }    
         }
     }
     .newsletter-desktop, .newsletter-mobile{

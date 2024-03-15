@@ -1,283 +1,428 @@
 @use "./../1-settings/s-variables" as variables;
 @use "./../2-atoms/a-mixins" as mixins;
+@import "./../5-blocks/b-latest-vertical-posts";
 
-.post-type-archive-opiniao{
-    #app{
-        background-color: #f5f5f5;
-        .colunistas-ninja{
-            background-color: #f5f5f5;
-            @media(max-width: 782px){
-                display: flex;
-            }
-            h2{
-                font-family: 'Manrope', serif;
-                font-size: 32px;
-                font-style: normal;
-                font-weight: 800;
-                line-height: 120%; 
-                letter-spacing: -0.96px;
-                color: #111;
-                @media(max-width: 992px){
-                    font-size: 24px;
-                    margin-top: 35px;
-    
-                }
-                
-            }
-            .container{
-                max-width: 1170px !important;
-                width: 100%;
-                padding: 97px 0 26px !important;
-                @media(max-width: 992px){
-                    padding: 0px 0 48px !important;
-                }
-                
-            }
-            .latest-horizontal-posts-block__slides{
-                &::after{
-                   display: none;
-                }
-                &::before{
-                    display: none;
-                }
-                @media(max-width: 782px){
-                    display: flex;
-                }
-            }
-            .slick-track{
-                @media(max-width: 782px){
-                    display: flex;
-                    flex-direction: column;
-                }
-            }
-            .slide{
-                display: flex;
-                @media(max-width:782px){
-                    margin-bottom: 0;
-                }
-                a{
-                    text-decoration: none;
-                    .post{
-                        display: flex;
-                        gap: 13px;
-                        @media(max-width:782px){
-                            gap: 0;
-                        }
-                        .post-thumbnail{
-                            margin-top: 15px;    
-                            width: 80px;
-                            height: 80px;
-                            border-radius: 50px;
-                            box-shadow: none;
-                            @media(max-width:782px){
-                                margin-right: 25px;
-                                margin-left: 2.5rem;
-                            }
-                            img{
-                                max-width: 80px;
-                                height: 80px;
-                                border-radius: 50px;
-                            }
-                        }
-                        .post-content{
-                            font-family: 'Manrope', serif;
-                            max-width: 170px;
-                            width: 100%;
-                           .post-title{
-                            font-size: 16px;
-                            font-style: normal;
-                            font-weight: 700;
-                            line-height: 140%;
-                           }
-                           p{
-                            font-size: 13px;
-                            font-style: normal;
-                            font-weight: 500;
-                            line-height: 145%;
-                            color: #848484;
-                           } 
-                        }
-                    }
-                }
-            }  
-            .slick-arrow {
-                background-color: #ccc !important; 
-            }
-    
-            .slick-arrow.slick-disabled {
-                background-color: #fff !important;
-            }
-            li.slick-active {
-                background-color: #ccc !important;
-               
-            }
-        }
-        .who-finances-desktop {
-            background: #111 !important;
-            min-height: 108px;
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-    
-            @media(max-width: 1320px){
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-            
-            @media(max-width: 992px){
-                background: #FDF250 !important;
-                border-radius: 16px;
-                padding: 25px 42px 25px 45px;
-            }
-            .wp-block-columns{
-                margin-top: 1.8rem;
-                @media(max-width: 992px){
-                    flex-direction: column;
-                    margin-bottom: 0;
-                    margin-top: 0;
-                }
-            }
-            p{
-                font-family: "MidiaNinja", sans-serif;
-                color: #FFF;
-                font-size: 38px;
-                font-weight: 400;
-                margin-bottom: 0;
-                margin-top: 0;
-                letter-spacing: normal;
-                @media(max-width: 992px){
-                    color: #000;
-                    font-family: 'Manrope', serif;
-                    font-size: 24px;
-                    font-weight: 800;
-                    text-align: center;
-                    margin-bottom: -15px;
-                    line-height: 130%;
-                }
-                img{
-                    margin-left: 4.5rem;
-                    @media(max-width: 992px){
-                        display: none;
-                    }
-                }
-            }
-            .finances-title-mobile{
-                @media(max-width: 992px){
-                    color: #000;
-                    font-family: "MidiaNinja", sans-serif;
-                    font-weight: 400;
-                    text-align: center;
-                    font-size: 24px;
-                    line-height: 130%;
-                }
-            }
-            .wp-block-buttons{
-                @media(max-width: 992px){
-                    display: flex;
-                    justify-content: center;
-                }
-            }
-            .wp-block-button{
-                @media(max-width: 992px){
-                    background-color: #111;
-                    border-radius: 8px;
-                }
-                a{
-                    font-family: 'Manrope', serif;
-                    color: #fff;
-                    border-radius: 4px;
-                    border: 2px solid #FFF;
-                    font-size: 13px;
-                    font-weight: 700;
-                    padding: 15px 30px;
-                    color: #FFF !important;
-                    @media(max-width: 992px){
-                       
-                        border: 2px solid #111;
-                    }  
-                }
-            } 
-        }
-        .newsletter-desktop {
-            background-color: #262626;
-            .wp-block-columns{
-                gap: 100px;
-                @media(max-width: 992px){
-                    display: block;  
-                }
-            }
-            .wp-block-heading{
-                color: #fff;
-                font-family: "MidiaNinja", serif;
-                font-size: 42px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 100%; 
-                letter-spacing: normal;
-                @media(max-width: 782px){
-                    font-size: 35px;
-                    text-align: center;
-                }
-            }
-            p{
-                font-family: 'Manrope', serif;
-                font-size: 13px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 145%;
-            }
-            form{
-                .mc4wp-form-fields{
-                    margin-top: 2rem;
-                    @media(max-width: 992px){
-                        margin-top: 0;
-                    }
-                    input[type=name],
-                    input[type=email]{
-                        width: 572px;
-                        padding: 1rem;
-                        border-radius: 8px;
-                        border: none;
-                        margin-bottom: 1rem;
-                        color: #111;
-                        &::placeholder{
-                            font-size: 16px;
-                            color: #595D62;
-                            @media(max-width: 782px){
-                                color: #f5f5f5;
-                            }
-                        }
-                        @media(max-width: 782px){
-                            background-color: transparent;
-                            border: 1px solid #d9d9d9;
-                            color: #f5f5f5;
-    
-                        }
-                        @media(max-width: 600px){
-                            width: 326px;
-                        }
-                        @media(max-width: 359px){
-                            width: 306px;
-                        }
-                        
-                    }
-                    input[type=submit]{
-                        background-color: #FBF36E;
-                        border: none;
-                        color: #333;
-                        font-family: 'Manrope', serif;
-                        font-size: 14px;
-                        font-weight: 800;
-                        text-transform: uppercase;
-                        padding: 1rem 3.8rem;
-                        border-radius: 8px;
-                        @media(max-width: 600px){
-                            max-width: 326px;
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-        }
-    }  
+.post-type-archive-opiniao {
+	#app {
+		background-color: #f5f5f5;
+
+		.container {
+			padding: 15px;
+
+			@media (min-width: 768px) {
+				padding: 0;
+			}
+
+			.header-and-footer-archive.position-header {
+				position: relative;
+
+				.opiniao-header {
+					background-color: #000;
+					padding: 51px 102px;
+					border-radius: 8px;
+					margin-top: 36px;
+					color: #fff;
+
+					.article-section-title {
+						font-family: "Archivo Expanded";
+						font-size: 14px;
+						font-style: normal;
+						font-weight: 800;
+						line-height: 155%; /* 21.7px */
+						letter-spacing: -0.42px;
+						text-transform: uppercase;
+						margin-bottom: 18px;
+					}
+
+					.entry-title {
+						/* <h2> Manrope */
+						font-size: 32px;
+						font-style: normal;
+						line-height: 120%; /* 38.4px */
+						letter-spacing: -0.64px;
+						margin-bottom: 35px;
+					}
+
+					p {
+						/* <p> Manrope */
+						font-weight: 500;
+						line-height: 140%; /* 22.4px */
+						margin-bottom: 35px;
+					}
+
+					.entry-meta .byline {
+						margin-left: 12px;
+
+						a {
+							text-decoration: none;
+							color: #fff;
+							font-size: 12px;
+							letter-spacing: 1.2px;
+							text-transform: uppercase;
+							line-height: 21px;
+						}
+
+						.author-prefix {
+							display: none;
+						}
+					}
+
+					.latest-vertical-posts-block {
+						margin: 0;
+						padding: 0;
+
+						.post {
+							border-bottom: 1px solid #fff;
+							padding-bottom: 30px;
+
+							.post-title {
+								color: #fff;
+								font-size: 18px;
+								line-height: 20px; /* 111.111% */
+								letter-spacing: -0.54px;
+							}
+
+							.post-author {
+								color: #fff;
+								font-size: 12px;
+								font-weight: 400;
+								line-height: 21px; /* 175% */
+								letter-spacing: 1.2px;
+							}
+						}
+
+						& ~ div {
+							.entry-title {
+								font-size: 14px;
+								font-weight: 700;
+								line-height: 20px; /* 142.857% */
+								letter-spacing: -0.42px;
+								margin: 0;
+							}
+
+							.entry-meta {
+								> a {
+									display: none;
+								}
+
+								.byline {
+									margin: 0;
+								}
+							}
+						}
+					}
+				}
+
+				.mais-lidas {
+					max-width: 30%;
+					position: absolute;
+					right: 0;
+
+					.slick-slide .slide .post {
+						max-width: 290px;
+					}
+				}
+			}
+
+			.content {
+				width: 70%;
+				padding-right: 30px;
+
+				.posts {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					gap: 30px;
+				}
+			}
+
+			.header-and-footer-archive.position-footer {
+				position: relative;
+
+				.btn-colunistas {
+					position: absolute;
+					bottom: 54rem;
+					right: 0;
+				}
+			}
+		}
+
+		.colunistas-ninja {
+			background-color: #f5f5f5;
+			@media (max-width: 782px) {
+				display: flex;
+			}
+
+			h2 {
+				font-family: "Manrope", serif;
+				font-size: 32px;
+				font-style: normal;
+				font-weight: 800;
+				line-height: 120%;
+				letter-spacing: -0.96px;
+				color: #111;
+				@media (max-width: 992px) {
+					font-size: 24px;
+					margin-top: 35px;
+				}
+			}
+
+			.container {
+				max-width: 1170px !important;
+				width: 100%;
+				padding: 97px 0 26px !important;
+				@media (max-width: 992px) {
+					padding: 0px 0 48px !important;
+				}
+			}
+
+			.latest-horizontal-posts-block__slides {
+				&::after {
+					display: none;
+				}
+				&::before {
+					display: none;
+				}
+				@media (max-width: 782px) {
+					display: flex;
+				}
+			}
+
+			.slick-track {
+				@media (max-width: 782px) {
+					display: flex;
+					flex-direction: column;
+				}
+			}
+
+			.slide {
+				display: flex;
+				@media (max-width: 782px) {
+					margin-bottom: 0;
+				}
+				a {
+					text-decoration: none;
+					.post {
+						display: flex;
+						gap: 13px;
+						@media (max-width: 782px) {
+							gap: 0;
+						}
+						.post-thumbnail {
+							margin-top: 15px;
+							width: 80px;
+							height: 80px;
+							border-radius: 50px;
+							box-shadow: none;
+							@media (max-width: 782px) {
+								margin-right: 25px;
+								margin-left: 2.5rem;
+							}
+							img {
+								max-width: 80px;
+								height: 80px;
+								border-radius: 50px;
+							}
+						}
+						.post-content {
+							font-family: "Manrope", serif;
+							max-width: 170px;
+							width: 100%;
+							.post-title {
+								font-size: 16px;
+								font-style: normal;
+								font-weight: 700;
+								line-height: 140%;
+							}
+							p {
+								font-size: 13px;
+								font-style: normal;
+								font-weight: 500;
+								line-height: 145%;
+								color: #848484;
+							}
+						}
+					}
+				}
+			}
+
+			.slick-arrow {
+				background-color: #ccc !important;
+			}
+
+			.slick-arrow.slick-disabled {
+				background-color: #fff !important;
+			}
+
+			li.slick-active {
+				background-color: #ccc !important;
+			}
+		}
+
+		.who-finances-desktop {
+			background: #111 !important;
+			min-height: 108px;
+			display: flex;
+			align-items: center;
+			margin-bottom: 2rem;
+
+			@media (max-width: 1320px) {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+
+			@media (max-width: 992px) {
+				background: #fdf250 !important;
+				border-radius: 16px;
+				padding: 25px 42px 25px 45px;
+			}
+			.wp-block-columns {
+				margin-top: 1.8rem;
+				@media (max-width: 992px) {
+					flex-direction: column;
+					margin-bottom: 0;
+					margin-top: 0;
+				}
+			}
+
+			p {
+				font-family: "MidiaNinja", sans-serif;
+				color: #fff;
+				font-size: 38px;
+				font-weight: 400;
+				margin-bottom: 0;
+				margin-top: 0;
+				letter-spacing: normal;
+				@media (max-width: 992px) {
+					color: #000;
+					font-family: "Manrope", serif;
+					font-size: 24px;
+					font-weight: 800;
+					text-align: center;
+					margin-bottom: -15px;
+					line-height: 130%;
+				}
+				img {
+					margin-left: 4.5rem;
+					@media (max-width: 992px) {
+						display: none;
+					}
+				}
+			}
+			.finances-title-mobile {
+				@media (max-width: 992px) {
+					color: #000;
+					font-family: "MidiaNinja", sans-serif;
+					font-weight: 400;
+					text-align: center;
+					font-size: 24px;
+					line-height: 130%;
+				}
+			}
+			.wp-block-buttons {
+				@media (max-width: 992px) {
+					display: flex;
+					justify-content: center;
+				}
+			}
+			.wp-block-button {
+				@media (max-width: 992px) {
+					background-color: #111;
+					border-radius: 8px;
+				}
+				a {
+					font-family: "Manrope", serif;
+					color: #fff;
+					border-radius: 4px;
+					border: 2px solid #fff;
+					font-size: 13px;
+					font-weight: 700;
+					padding: 15px 30px;
+					color: #fff !important;
+					@media (max-width: 992px) {
+						border: 2px solid #111;
+					}
+				}
+			}
+		}
+
+		.newsletter-desktop {
+			background-color: #262626;
+			.wp-block-columns {
+				gap: 100px;
+				@media (max-width: 992px) {
+					display: block;
+				}
+			}
+			.wp-block-heading {
+				color: #fff;
+				font-family: "MidiaNinja", serif;
+				font-size: 42px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 100%;
+				letter-spacing: normal;
+				@media (max-width: 782px) {
+					font-size: 35px;
+					text-align: center;
+				}
+			}
+			p {
+				font-family: "Manrope", serif;
+				font-size: 13px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 145%;
+			}
+			form {
+				.mc4wp-form-fields {
+					margin-top: 2rem;
+					@media (max-width: 992px) {
+						margin-top: 0;
+					}
+					input[type="name"],
+					input[type="email"] {
+						width: 572px;
+						padding: 1rem;
+						border-radius: 8px;
+						border: none;
+						margin-bottom: 1rem;
+						color: #111;
+						&::placeholder {
+							font-size: 16px;
+							color: #595d62;
+							@media (max-width: 782px) {
+								color: #f5f5f5;
+							}
+						}
+						@media (max-width: 782px) {
+							background-color: transparent;
+							border: 1px solid #d9d9d9;
+							color: #f5f5f5;
+						}
+						@media (max-width: 600px) {
+							width: 326px;
+						}
+						@media (max-width: 359px) {
+							width: 306px;
+						}
+					}
+					input[type="submit"] {
+						background-color: #fbf36e;
+						border: none;
+						color: #333;
+						font-family: "Manrope", serif;
+						font-size: 14px;
+						font-weight: 800;
+						text-transform: uppercase;
+						padding: 1rem 3.8rem;
+						border-radius: 8px;
+						@media (max-width: 600px) {
+							max-width: 326px;
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
 }

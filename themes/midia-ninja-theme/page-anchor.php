@@ -13,7 +13,7 @@ $titulo_tag = get_post_meta($post_id, 'titulo_tag', true);
 <div class="index-wrapper page-with-title">
     <div class="container">
         <div class="header-faq col-md-12" >
-            <div class="aspect-ratio">
+            <div class="aspect-ratio col-md-9">
                 <figure class="post-thumbnail">
                     <?php if ( has_post_thumbnail() ) : ?>
                         <?php the_post_thumbnail( 'medium_large' ); ?>
@@ -35,6 +35,9 @@ $titulo_tag = get_post_meta($post_id, 'titulo_tag', true);
                     <?php endif; ?>
                 </div>     
             </div><!-- /.aspect-ratio -->
+            <div class="col-md-3 pergunte">
+                <?php the_content() ?>            
+            </div>
         </div>
         <div class="row">
             <div class="col-md-3 sidebar-page">

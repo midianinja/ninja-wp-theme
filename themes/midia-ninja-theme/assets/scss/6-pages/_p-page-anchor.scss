@@ -15,6 +15,11 @@
             position: relative;
             max-width: 770px;
             width: 100%;
+            padding-left: 0;
+            margin-right: 2rem;
+            max-width: 725px;
+            width: 100%;
+            height: 468px;
            
             .post-thumbnail {
                 height: 100%;
@@ -85,6 +90,51 @@
                 }
             }
         }
+        .pergunte{
+            background-color: #fff;
+            height: auto;
+            border-radius: 12px;
+            border: 2px solid #ccc;
+            padding: 70px 43px 120px;
+            width: 335px;
+            .pergunte-ninjas{
+                p.titulo-pergunte{
+                    font-family: 'Manrope', serif;
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 100%; /* 32px */
+                    text-transform: uppercase;
+                    margin-bottom: 19px;
+                }
+                p{
+                    font-family: 'Manrope', serif;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 130%; /* 18.2px */
+                }
+                .wp-block-buttons{
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 28px;
+                    .wp-block-button{
+                        background-color: #fbf36e;
+                        border-radius: 8px;
+                        font-family: 'Manrope', serif;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 24px; /* 171.429% */
+                        a{
+                            border: none;
+                            text-decoration: none;
+                        }
+                        
+                    }
+                }
+            }    
+        }
     }
 
     
@@ -105,13 +155,19 @@
             margin-left: 70px;
 
         }
-        .who-finances-desktop, .newsletter-desktop{
+        .who-finances-desktop, .newsletter-desktop, .pergunte-ninjas{
             display: none;
         }
     }
 
     .col-md-12.content-bottom{
-        .page-title, .wp-block-coblocks-accordion, .wp-block-heading{
+        .page-title, .wp-block-coblocks-accordion, .wp-block-heading, .pergunte-ninjas{
+            display: none;
+        }
+    }
+
+    .col-md-3.pergunte{
+        .page-title, .wp-block-coblocks-accordion, .wp-block-heading, .newsletter-desktop, .who-finances-desktop{
             display: none;
         }
     }

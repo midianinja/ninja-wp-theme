@@ -1,17 +1,17 @@
-ul.list-terms {
+.list-terms {
+    display: flex;
     list-style: none;
-    margin-bottom: 5px;
+    margin-bottom: 0;
     margin-left: 0;
     padding-left: 0;
     padding-right: 0;
 
-    @include desktop {
-        margin-bottom: 10px;
-    }
-
-    li {
+    li,
+    span {
         border-radius: 4px;
+        cursor: pointer;
         display: inline-block;
+        flex-shrink: 0;
         font-family: $f_tag;
         font-size: 13px;
         font-weight: 800;

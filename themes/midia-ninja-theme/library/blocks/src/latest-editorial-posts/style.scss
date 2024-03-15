@@ -30,86 +30,11 @@
         margin-left: 0 !important;
         flex-wrap: wrap;
 
-        span.term {
-            border-radius: 4px;
-            border: 1px solid transparent;
-            color: #111;
-            cursor: pointer;
-            font-family: 'Archivo';
-            font-size: 13px;
-            font-weight: 800;
-            padding: 1px 9px 0;
-            text-transform: uppercase;
-
-            &.term {
-                &-cultura {
-                    background-color: #DB565E;
-                }
-
-                &-meio-ambiente {
-                    background-color: #99CE56;
-                }
-
-                &-alimentacao {
-                    background-color: #F7F100 ;
-                }
-
-                &-lgbtqia {
-                    background-color: #E14FCE;
-                }
-
-                &-indigenas {
-                    background-color: #F27900;
-                }
-
-                &-entrevistas {
-                    background-color: #111111;
-                    color: #fff;
-                }
-
-                &-politica {
-                    background-color: #76C7E6;
-                }
-
-                &-educacao {
-                    background-color: #C9ADFF;
-                    
-                }
-
-                &-negritude {
-                    background-color: #F1BC4E;
-                    
-                }
-
-                &-internacional {
-                    background-color: #F63333;
-                    color: #fff;
-                }
-
-                &-esportes {
-                    background-color: #7AE695;
-                }
-
-                &-tecnologia {
-                    background-color: #F0A8E7;
-                }
-
-                &-feminismos {
-                    background-color: #8C52FF;
-                    color: #fff;
-                }
-                
-                &-arts {
-                    background-color: pink;
-                }
-            }
-        }
-
         &.active {
             span.term {
                 &:not(.active) {
-                    background-color: #CCC;
-                    color: #848484;
+                    background-color: #CCCCCC !important;
+                    color: #848484 !important;
                 }
             }
         }

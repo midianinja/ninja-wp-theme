@@ -70,6 +70,77 @@
                 margin-left: auto; 
                 margin-right: auto;
 
+                label{
+                    color: #000;
+                    font-family: "Inter";
+                    font-size: var(--wp--preset--font-size--default);
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 150%; 
+                    letter-spacing: -0.48px;
+                }
+    
+                input[type="text"], input[type="email"]{
+                    border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
+                    display: flex;
+                    max-width: 265px;
+                    width: 100%;
+                    padding: 8px 14px;
+                    align-items: center;
+                    gap: 10px;
+                    border: none;
+                    color: var(--Main-trunks, #595D62);
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-family: "DM Sans";
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 24px;
+                }
+    
+                textarea{
+                    border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
+                    display: flex;
+                    max-width: 265px;
+                    width: 100%;
+                    height: 104px;
+                    padding: 8px 14px;
+                    align-items: flex-start;
+                    gap: 10px;
+                    flex-shrink: 0;
+                    border: none;
+                    color: var(--Main-trunks, #595D62);
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-family: "DM Sans";
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 24px;
+                }
+    
+                .submit-button{
+                    input[type="submit"]{
+                        border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                        background: var(--OURO, #FBF36E);
+                        display: flex;
+                        max-width: 265px;
+                        width: 100%;
+                        padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
+                        justify-content: center;
+                        align-items: center;
+                        gap: var(--gap-0, 0px);
+                        border: none;
+                        color: var(--Gray-1, #333);
+                        text-align: center;
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        font-family: Manrope;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 24px;
+                    }
+                }
+
                 h4{
                     color: var(--DARK, #111);
                     font-family: Manrope;
@@ -111,6 +182,7 @@
                 border-radius: 8px;
                 max-width: 272px;
                 width: 100%;
+                margin-bottom: 40px;
             }
 
             h2{
@@ -176,6 +248,89 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+
+                        form{
+
+                            h4{
+                                color: #FFF;
+                                font-family: Manrope;
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 800;
+                                line-height: 130%; 
+                            }
+                
+                            label{
+                                color: #000;
+                                font-family: "Inter";
+                                font-size: var(--wp--preset--font-size--default);
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 150%; 
+                                letter-spacing: -0.48px;
+                            }
+                
+                            input[type="text"], input[type="email"]{
+                                border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
+                                display: flex;
+                                max-width: 265px;
+                                width: 100%;
+                                padding: 8px 14px;
+                                align-items: center;
+                                gap: 10px;
+                                border: none;
+                                color: var(--Main-trunks, #595D62);
+                                font-feature-settings: 'clig' off, 'liga' off;
+                                font-family: "DM Sans";
+                                font-size: 14px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 24px;
+                            }
+                
+                            textarea{
+                                border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
+                                display: flex;
+                                max-width: 265px;
+                                width: 100%;
+                                height: 104px;
+                                padding: 8px 14px;
+                                align-items: flex-start;
+                                gap: 10px;
+                                flex-shrink: 0;
+                                border: none;
+                                color: var(--Main-trunks, #595D62);
+                                font-feature-settings: 'clig' off, 'liga' off;
+                                font-family: "DM Sans";
+                                font-size: 14px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 24px;
+                            }
+                
+                            .submit-button{
+                                input[type="submit"]{
+                                    border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                                    background: var(--OURO, #FBF36E);
+                                    display: flex;
+                                    max-width: 265px;
+                                    width: 100%;
+                                    padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
+                                    justify-content: center;
+                                    align-items: center;
+                                    gap: var(--gap-0, 0px);
+                                    border: none;
+                                    color: var(--Gray-1, #333);
+                                    text-align: center;
+                                    font-feature-settings: 'clig' off, 'liga' off;
+                                    font-family: Manrope;
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    line-height: 24px;
+                                }
+                            }
+                        }
                     }
 
                     .coluna-fale-conosco{    
@@ -211,6 +366,15 @@
                             margin-top: 0;
                             margin-block-start: 0;
                             margin-block-end: 0;
+                        }
+
+                        h4{
+                            color: #FFF;
+                            font-family: Manrope;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 800;
+                            line-height: 130%; 
                         }
 
                         p{
@@ -289,75 +453,6 @@
 
                 @media (max-width: 1400px){
                     left: 14%;
-                }
-            }
-        }
-
-        form{
-
-            span{
-                color: #FFF;
-                font-family: Manrope;
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 800;
-                line-height: 130%; 
-            }
-
-            label{
-                color: #000;
-                font-family: "Inter";
-                font-size: var(--wp--preset--font-size--default);
-                font-style: normal;
-                font-weight: 400;
-                line-height: 150%; 
-                letter-spacing: -0.48px;
-            }
-
-            input[type="text"], input[type="email"]{
-                border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
-                display: flex;
-                max-width: 265px;
-                width: 100%;
-                padding: 8px 14px;
-                align-items: center;
-                gap: 10px;
-                border: none;
-            }
-
-            textarea{
-                border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
-                display: flex;
-                max-width: 265px;
-                width: 100%;
-                height: 104px;
-                padding: 8px 14px;
-                align-items: flex-start;
-                gap: 10px;
-                flex-shrink: 0;
-                border: none;
-            }
-
-            .submit-button{
-                input[type="submit"]{
-                    border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
-                    background: var(--OURO, #FBF36E);
-                    display: flex;
-                    max-width: 265px;
-                    width: 100%;
-                    padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
-                    justify-content: center;
-                    align-items: center;
-                    gap: var(--gap-0, 0px);
-                    border: none;
-                    color: var(--Gray-1, #333);
-                    text-align: center;
-                    font-feature-settings: 'clig' off, 'liga' off;
-                    font-family: Manrope;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 24px;
                 }
             }
         }

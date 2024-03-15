@@ -456,113 +456,113 @@
                 }
             }
         }
-    }
 
-    .newsletter-desktop, .newsletter-mobile{
-        @include mixins.small{
-            display: none;
-        }
-
-        @include mixins.mobile{
-            display: none;
-        }
-
-        .wp-block-columns{
-            gap: 100px;
-            @media(max-width: 992px){
-                display: block;  
+        .newsletter-desktop, .newsletter-mobile{
+            @include mixins.small{
+                display: none;
             }
-        }
-        .wp-block-heading{
-            color: #fff;
-            font-family: "MidiaNinja", serif;
-            font-size: 42px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 100%; 
-            letter-spacing: normal;
-            @media(max-width: 782px){
-                font-size: 35px;
-                text-align: center;
+    
+            @include mixins.mobile{
+                display: none;
             }
-        }
-        p{
-            font-family: 'Manrope', serif;
-            font-size: 13px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 145%;
-        }
-        form{
-            .mc4wp-form-fields{
-                margin-top: 2rem;
+    
+            .wp-block-columns{
+                gap: 100px;
                 @media(max-width: 992px){
-                    margin-top: 0;
+                    display: block;  
                 }
-                input[type="name"],
-                input[type="email"]{
-                    max-width: 572px;
-                    width: 100%;
-                    padding: 1rem;
-                    border-radius: 8px;
-                    border: none;
-                    margin-bottom: 1rem;
-                    color: #111;
-
-                    &::placeholder{
-                        font-size: 16px;
-                        color: #595D62;
+            }
+            .wp-block-heading{
+                color: #fff;
+                font-family: "MidiaNinja", serif;
+                font-size: 42px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 100%; 
+                letter-spacing: normal;
+                @media(max-width: 782px){
+                    font-size: 35px;
+                    text-align: center;
+                }
+            }
+            p{
+                font-family: 'Manrope', serif;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 145%;
+            }
+            form{
+                .mc4wp-form-fields{
+                    margin-top: 2rem;
+                    @media(max-width: 992px){
+                        margin-top: 0;
+                    }
+                    input[type="name"],
+                    input[type="email"]{
+                        max-width: 572px;
+                        width: 100%;
+                        padding: 1rem;
+                        border-radius: 8px;
+                        border: none;
+                        margin-bottom: 1rem;
+                        color: #111;
+    
+                        &::placeholder{
+                            font-size: 16px;
+                            color: #595D62;
+                            @media(max-width: 782px){
+                                color: #f5f5f5;
+                            }
+                        }
+    
                         @media(max-width: 782px){
+                            background-color: transparent;
+                            border: 1px solid #d9d9d9;
                             color: #f5f5f5;
+    
+                        }
+    
+                        @media(max-width: 600px){
+                            width: 326px;
+                        }
+    
+                        @media(max-width: 359px){
+                            width: 306px;
+                        }
+                        
+                    }
+                    input[type="submit"]{
+                        background-color: #FBF36E;
+                        border: none;
+                        color: #333;
+                        font-family: 'Manrope', serif;
+                        font-size: 14px;
+                        font-weight: 800;
+                        text-transform: uppercase;
+                        padding: 1rem 3.8rem;
+                        border-radius: 8px;
+    
+                        @media(max-width: 600px){
+                            max-width: 326px;
+                            width: 100%;
                         }
                     }
-
-                    @media(max-width: 782px){
-                        background-color: transparent;
-                        border: 1px solid #d9d9d9;
-                        color: #f5f5f5;
-
-                    }
-
-                    @media(max-width: 600px){
-                        width: 326px;
-                    }
-
-                    @media(max-width: 359px){
-                        width: 306px;
-                    }
-                    
-                }
-                input[type="submit"]{
-                    background-color: #FBF36E;
-                    border: none;
-                    color: #333;
-                    font-family: 'Manrope', serif;
-                    font-size: 14px;
-                    font-weight: 800;
-                    text-transform: uppercase;
-                    padding: 1rem 3.8rem;
-                    border-radius: 8px;
-
-                    @media(max-width: 600px){
-                        max-width: 326px;
-                        width: 100%;
-                    }
                 }
             }
         }
-    }
-
-    .newsletter-desktop{
-        left: inherit !important;
-        transform: inherit !important;
-
-        @include mixins.small{
-            display: none;
-        }
-
-        @include mixins.mobile{
-            display: none;
+    
+        .newsletter-desktop{
+            left: inherit !important;
+            transform: inherit !important;
+    
+            @include mixins.small{
+                display: none;
+            }
+    
+            @include mixins.mobile{
+                display: none;
+            }
         }
     }
 

@@ -44,13 +44,13 @@ document.addEventListener('DOMContentLoaded', function() {
         posts.forEach(post => {
             const postElement = document.createElement('a')
             postElement.href = post.link
-            const imageUrl = post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : 'https://via.placeholder.com/400';
+            const imageUrl = post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : 'https://via.placeholder.com/400'
             postElement.innerHTML = `
                 <div class="post">
                     <div class="post-thumbnail">
-                        <div class="post-thumbnail--image">
-                            <img src="${imageUrl}" alt="${post.title.rendered}">
-                        </div>
+                    <span class="post--terms">
+                        <ul class="list-terms tax-category"><li class="term-${post.rendered_categories[0].slug}" style="background-color:${post.rendered_categories[0].background_color}; color:${post.rendered_categories[0].color}">${post.rendered_categories[0].name}</li></ul></span>
+                        <img src="${imageUrl}" alt="${post.title.rendered}">
                     </div>
                     <div class="post-content">
                         <h2 class="post-title">${post.title.rendered}</h2>

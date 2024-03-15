@@ -75,18 +75,6 @@
             font-style: normal;
             font-weight: normal;
 
-            .list-terms {
-                margin-bottom: 5px;
-                margin-top: 0;
-
-                li {
-                    a {
-                        font-size: mixins.size(16);
-                        font-weight: 700;
-                    }
-                }
-            }
-
             .entry-title {
                 color: var(--c-primary);
                 font-size: 24px;

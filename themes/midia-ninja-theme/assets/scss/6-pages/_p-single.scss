@@ -191,7 +191,7 @@
 						border-radius: 8px;
 						background: var(--OURO, #FBF36E);
 						max-width: 170px;
-						max-height: 300px;
+						height: 300px;
 						padding: 21px 13px 40px;
 						text-align: center;
 						.avatar{
@@ -208,6 +208,15 @@
 							font-weight: 400;
 							line-height: 130%;
 							letter-spacing: -0.36px;
+						}
+						.social-networks{
+							margin-top: 1rem;
+							display: flex;
+							justify-content: space-around;
+
+							a{
+								text-decoration: none;
+							}
 						}
 					}
 				}

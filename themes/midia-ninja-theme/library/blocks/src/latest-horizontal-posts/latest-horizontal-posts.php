@@ -47,7 +47,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             return;
         }
 
-        $has_content = flickr_get_contents( $api_key, $flickr_by_type, $data_id );
+        $has_content = flickr_get_contents( $api_key, $flickr_by_type, $data_id, $block_id );
     }
 
     if ( $block_model == 'columnists' ) {
@@ -64,7 +64,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             $latest_horizontal_posts_ids = [];
         }
 
-        $cache_key = 'horizontal_posts_' . md5(serialize($attributes) . serialize($latest_horizontal_posts_ids));
+        $cache_key = 'ninja_horizontal_' . $block_id;
         $cached_posts = get_transient( $cache_key );
 
         if ( false !== $cached_posts ) {
@@ -102,7 +102,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             return;
         }
 
-        $has_content = videos_get_contents( $api_key, $playlist_id, $posts_to_show );
+        $has_content = videos_get_contents( $api_key, $playlist_id, $posts_to_show, $block_id );
     }
 
     if ( ! $has_content ) {

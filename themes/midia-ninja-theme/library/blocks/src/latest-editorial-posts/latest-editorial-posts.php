@@ -58,6 +58,7 @@ function latest_editorial_posts_callback( $attributes ) {
                                     echo '<span class="term term-' . sanitize_title( $term['name'] ) . '" data-term-id="' . $term['id'] . '" style="background-color:'. $background_term_color. '; color:'. $font_term_color. '">'. $term['name'] . '</span>';
                                 }
                             endforeach;
+                            echo '<span class="term clear-filter">' . __( 'Clear filters', 'ninja' ) . '</span>';
                         echo '</div>';
                     echo '</div><!-- .latest-editorial-posts-block__header -->';
                 endif;

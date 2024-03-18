@@ -17,7 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const postsDiv = document.querySelector('.latest-editorial-posts-block__posts')
         postsDiv.innerHTML = '<div class="loading">Loading...</div>'
 
-        fetch(`/wp-json/wp/v2/posts?categories=${categoryId}&_embed`)
+        let url = '/wp-json/wp/v2/posts?_embed'
+        if (categoryId) {
+            url = `/wp-json/wp/v2/posts?categories=${categoryId}&_embed`
+        }
+
+        fetch(url)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok')
@@ -32,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
             .catch(error => {
-                console.error('Error fetching posts:', error);
+                console.error('Error fetching posts:', error)
                 postsDiv.innerHTML = '<div class="error">Error loading posts.</div>'
             })
     }
@@ -45,13 +50,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const postElement = document.createElement('a')
             postElement.href = post.link
             const imageUrl = post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : 'https://via.placeholder.com/400'
+
+            let termsHtml = '';
+            if (post.rendered_categories[0] !== undefined) {
+                termsHtml = `
+                <div class="post-thumbnail">
+                    <span class="post--terms">
+                        <ul class="list-terms tax-category">
+                            <li class="term-${post.rendered_categories[0].slug}" style="background-color:${post.rendered_categories[0].background_color}; color:${post.rendered_categories[0].color}">${post.rendered_categories[0].name}</li>
+                        </ul>
+                    </span>
+                    <img src="${imageUrl}" alt="${post.title.rendered}">
+                </div>
+                `
+            } else {
+                termsHtml = `
+                <div class="post-thumbnail">
+                    <img src="${imageUrl}" alt="${post.title.rendered}">
+                </div>
+                `
+            }
+
             postElement.innerHTML = `
                 <div class="post">
-                    <div class="post-thumbnail">
-                    <span class="post--terms">
-                        <ul class="list-terms tax-category"><li class="term-${post.rendered_categories[0].slug}" style="background-color:${post.rendered_categories[0].background_color}; color:${post.rendered_categories[0].color}">${post.rendered_categories[0].name}</li></ul></span>
-                        <img src="${imageUrl}" alt="${post.title.rendered}">
-                    </div>
+                    ${termsHtml}
                     <div class="post-content">
                         <h2 class="post-title">${post.title.rendered}</h2>
                         <div class="post-meta">
@@ -60,7 +82,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             `
-            document.querySelector('.latest-editorial-posts-block__posts').appendChild(postElement)
+            postsDiv.appendChild(postElement)
         })
     }
+
+    document.querySelectorAll('.clear-filter').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelectorAll('.latest-editorial-posts-block__filter [data-term-id]').forEach(filter => filter.classList.remove('active'))
+            document.querySelectorAll('.latest-editorial-posts-block__filter').forEach(filter => filter.classList.remove('active'))
+            fetchPostsByCategoryId('')
+        })
+    })
 })

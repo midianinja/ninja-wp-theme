@@ -88,12 +88,22 @@ function add_fields_to_post() {
     register_rest_field( 'post', 'rendered_categories', [
         'get_callback' => function( $attr ) {
 
+            $terms = [];
+
             if ( \is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
                 // Get primary term using Yoast SEO plugin
                 $primary_term_id = get_post_meta( $attr['id'], '_yoast_wpseo_primary_category', true );
-                $terms[] = get_term( $primary_term_id, 'category' );
+                $get_term = get_term( $primary_term_id, 'category' );
+
+                if ( $get_term && ! is_wp_error( $get_term ) ) {
+                    $terms[] = $get_term;
+                }
             } else {
                 $terms = get_the_terms( $attr['id'], 'category' );
+            }
+
+            if ( isset( $terms[0] ) && $terms[0] === NULL ) {
+                return [];
             }
 
             if ( $terms && ! is_wp_error( $terms ) ) {

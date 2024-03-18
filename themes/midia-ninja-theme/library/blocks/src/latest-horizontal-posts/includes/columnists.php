@@ -3,7 +3,7 @@
 namespace Ninja;
 
 function columnists_get_contents( $block_id ) {
-    $cache_key = 'ninja_columnists_data_'  . $block_id;
+    $cache_key = 'ninja_columnists_'  . $block_id;
     $cached_data = get_transient( $cache_key );
 
     if ( false !== $cached_data ) {

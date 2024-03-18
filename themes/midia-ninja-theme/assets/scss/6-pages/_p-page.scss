@@ -565,5 +565,139 @@
             }
         }
     }
+    .seja-ninja{
+        p{margin: 0px !important;}
+        h2{margin:0px !important;}
+        gap:0px;
+        width: 870px;
+        background-image: url(variables.$p_theme_assets + '/images/background-seja-ninja.png');
+        background-repeat: no-repeat;
+        border-radius: 10px 10px !important;
+        & .col-1{
+            fill: rgba(51, 51, 51, 0.70);
+            backdrop-filter: blur(10.699999809265137px);
+            padding-left: 64px;
+            padding-right: 74px;
+            padding-top: 64px;
+            padding-bottom: 111px;
+            max-width: 400px !important;
+            height: 451px;
+            border-radius: 10px  !important;
+            .title-seja-ninja{
+                margin-top: 16px;
+                margin-bottom: 20px;
+                .wp-block-column{
+                    p{
+                        color: #FFF;
+                        /* <h1> Manrope */
+                        font-family: Manrope;
+                        font-size: 48px;
+                        font-style: normal;
+                        font-weight: 800;
+                        line-height: 115%; /* 55.2px */
+                        letter-spacing: -1.44px;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+            p:first-child{
+                color: #FFF;
+                font-family: "Archivo Expanded";
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 155%; /* 21.7px */
+                letter-spacing: -0.42px;
+            }
+            & .description-inscrition{
+                color: #FFF;
+                font-family: Manrope;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 145%; /* 18.85px */
+                width: 257px;
+            }
+            
+        }
+        & .col-2{            
+            h4{
+                color: #FFF;
+                font-family: Manrope;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 130%; /* 15.6px */
+            }
+            & .wpcf7{
+                margin-top: 59px;
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 18px;
+                    align-content: center;
+                    align-items: center;
+                    label{
+                        input{
+                            max-width: 265px;
+                            padding: 7px 3px;
+                            border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                            border: 1px solid var(--Main-beerus, #E2E2E2);
+                            background: var(--Main-gohan, #FFF);
+                            padding-left: 10px;
+                            color: var(--Main-trunks, #595D62);
+                            font-feature-settings: 'clig' off, 'liga' off;
+                            font-family: "DM Sans";
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 24px;
+                        }
+                        
+                    }
+                    select{
+                        width: 265px;
+                        padding: 7px 3px;
+                        border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                        border: 1px solid var(--Main-beerus, #E2E2E2);
+                        background: var(--Main-gohan, #FFF);
+                        padding-left: 10px;
+                        color: var(--Main-trunks, #595D62);
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        font-family: "DM Sans";
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 24px;
+                        padding: 10px;
+                    }
+                    .submit-button{
+                        input{
+                            display: flex;
+                            width: 265px;
+                            padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
+                            justify-content: center;
+                            align-items: center;
+                            gap: var(--gap-0, 0px);
+                            border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                            background: var(--OURO, #FBF36E);
+                            border: none;
+                            color: var(--Gray-1, #333);
+                            text-align: center;
+                            font-feature-settings: 'clig' off, 'liga' off;
+                            font-family: Manrope;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 24px;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+                    
+            }
+        }
 
+        
+    }      
 }

@@ -5,6 +5,14 @@
 	img {
 		height: auto;
 	}
+figcaption,
+.wp-caption-text {
+	width: fit-content;
+}
+}
+
+.wp-caption {
+	width: auto !important;
 }
 
 figure.wp-block-image.aligncenter,

@@ -124,10 +124,7 @@ header {
 						cursor: pointer;
 
 						@media (min-width: 768px) {
-							right: 15%;
-						}
-						@media (min-width: 1200px) {
-							right: 15%;
+							right: 17%;
 						}
 					}
 
@@ -140,11 +137,7 @@ header {
 						top: 24px;
 
 						@media (min-width: 768px) {
-							right: 16%;
-						}
-
-						@media (min-width: 1200px) {
-							right: 16%;
+							right: 18%;
 						}
 					}
 				}
@@ -257,7 +250,7 @@ header {
 									}
 
 									&:nth-child(-n + 2) {
-										border-top: 1px solid #848484;
+										border-top: 1px solid #ccc;
 									}
 								}
 							}
@@ -297,7 +290,7 @@ header {
 						color: #fff;
 						flex-wrap: wrap;
 						justify-content: center;
-						margin-bottom: 30px;
+						margin: 0 0 30px;
 
 						p {
 							display: block;
@@ -337,7 +330,7 @@ header {
 
 					input.checked ~ .menu-items {
 						opacity: 1;
-						height: 100vh;
+						height: calc(100vh + 30px);
 						right: 0;
 						visibility: visible;
 

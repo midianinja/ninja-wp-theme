@@ -199,7 +199,8 @@
     
         .sidebar-page {
             margin-top: -70px;
-            @include mixins.desktop {
+            padding-left: 0;
+            @include mixins.desktop{
                 position: -webkit-sticky; /* Safari */
                 position: sticky;
                 top: 100px;
@@ -211,22 +212,25 @@
             @media(max-width: 992px){
                 margin-top: -247px;
             }
+            @media(max-width: 782px){
+                padding-left: 15px;
+            }
         }
     
         .anchor-title {
-            border-bottom: solid 1px;
-            padding-bottom: 15px;
+            border-left: 4px solid #262626;
             font-family: Manrope;
             font-size: 24px;
             font-style: normal;
             font-weight: 800;
             line-height: 125%; /* 30px */
             letter-spacing: -0.24px;
+            padding-left: 8px;
         }
     
         #anchors {
             list-style: none;
-            padding-left: 0;
+            padding-left: 12px;
     
             li{
                 margin-bottom: 1rem;
@@ -242,6 +246,12 @@
                 color: #848484;
                 text-decoration: none;
                
+            }
+        }
+        .content{
+            .wp-block-heading{
+                margin-top: -1rem;
+                margin-bottom: 0;
             }
         }
         .wp-block-coblocks-accordion{
@@ -280,75 +290,77 @@
                             font-size: 16px;
                             font-weight: 400;
                         }
+
+                        &:after{
+                            bottom: 0;
+                            content: "+";
+                            left: 680px;
+                            position: absolute;
+                            top: 29px;
+                            font-size: 38px;
+                            color: #000;
+                            font-weight: 400;
+                            @media(max-width:725px){
+                                left: 630px;							
+                            }
+                            @media(max-width:710px){
+                                left: 615px;							
+                            }
+                            @media(max-width:690px){
+                                left: 590px;							
+                            }
+                            @media(max-width:665px){
+                                left: 570px;							
+                            }
+                            @media(max-width:640px){
+                                left: 540px;							
+                            }
+                            @media(max-width:610px){
+                                left: 515px;							
+                            }
+                            @media(max-width:580px){
+                                left: 490px;							
+                            }
+                            @media(max-width:560px){
+                                left: 470px;							
+                            }
+                            @media(max-width:540px){
+                                left: 450px;							
+                            }
+                            @media(max-width:520px){
+                                left: 430px;							
+                            }
+                            @media(max-width:500px){
+                                left: 410px;							
+                            }
+                            @media(max-width:480px){
+                                left: 390px;							
+                            }
+                            @media(max-width:460px){
+                                left: 370px;							
+                            }
+                            @media(max-width:440px){
+                                left: 350px;							
+                            }
+                            @media(max-width:420px){
+                                left: 330px;							
+                            }
+                            @media(max-width:400px){
+                                left: 310px;							
+                            }
+                            @media(max-width:380px){
+                                left: 290px;							
+                            }
+                            @media(max-width:360px){
+                                left: 270px;							
+                            }
+                            @media(max-width:340px){
+                                left: 250px;							
+                            }
+        
+                        }
                     }
-                    ::after{
-                        bottom: 0;
-                        content: "+";
-                        left: 650px;
-                        position: absolute;
-                        top: 45px;
-                        font-size: 28px;
-                        color: #000;
-                        font-weight: 400;
-                        @media(max-width:725px){
-                            left: 630px;							
-                        }
-                        @media(max-width:710px){
-                            left: 615px;							
-                        }
-                        @media(max-width:690px){
-                            left: 590px;							
-                        }
-                        @media(max-width:665px){
-                            left: 570px;							
-                        }
-                        @media(max-width:640px){
-                            left: 540px;							
-                        }
-                        @media(max-width:610px){
-                            left: 515px;							
-                        }
-                        @media(max-width:580px){
-                            left: 490px;							
-                        }
-                        @media(max-width:560px){
-                            left: 470px;							
-                        }
-                        @media(max-width:540px){
-                            left: 450px;							
-                        }
-                        @media(max-width:520px){
-                            left: 430px;							
-                        }
-                        @media(max-width:500px){
-                            left: 410px;							
-                        }
-                        @media(max-width:480px){
-                            left: 390px;							
-                        }
-                        @media(max-width:460px){
-                            left: 370px;							
-                        }
-                        @media(max-width:440px){
-                            left: 350px;							
-                        }
-                        @media(max-width:420px){
-                            left: 330px;							
-                        }
-                        @media(max-width:400px){
-                            left: 310px;							
-                        }
-                        @media(max-width:380px){
-                            left: 290px;							
-                        }
-                        @media(max-width:360px){
-                            left: 270px;							
-                        }
-                        @media(max-width:340px){
-                            left: 250px;							
-                        }
-    
-                    }
+                    
                     
                     .wp-block-coblocks-accordion-item__content{
                         padding: 0px 25px 25px 0;
@@ -364,85 +376,80 @@
                     border-bottom: none;
                 }
                 details[open]{
-                    ::after{
-                        display: none;
-                    }
-                    :before{
-                        bottom: 0;
-                        content: "-";
-                        left: 650px;
-                        position: absolute;
-                        top: 45px;
-                        font-size: 28px;
-                        color: #000;
-                        font-weight: 400;
-                        @media(max-width:725px){
-                            left: 630px;							
+                    summary.wp-block-coblocks-accordion-item__title{
+                        &::after{
+                            display: none;
                         }
-                        @media(max-width:710px){
-                            left: 615px;							
+                        &::before{
+                            bottom: 0;
+                            content: "-";
+                            left: 680px;
+                            position: absolute;
+                            top: 20px;
+                            font-size: 38px;
+                            color: #000;
+                            font-weight: 400;
+                            @media(max-width:725px){
+                                left: 630px;							
+                            }
+                            @media(max-width:710px){
+                                left: 615px;							
+                            }
+                            @media(max-width:690px){
+                                left: 590px;							
+                            }
+                            @media(max-width:665px){
+                                left: 570px;							
+                            }
+                            @media(max-width:640px){
+                                left: 540px;							
+                            }
+                            @media(max-width:610px){
+                                left: 515px;							
+                            }
+                            @media(max-width:580px){
+                                left: 490px;							
+                            }
+                            @media(max-width:560px){
+                                left: 470px;							
+                            }
+                            @media(max-width:540px){
+                                left: 450px;							
+                            }
+                            @media(max-width:520px){
+                                left: 430px;							
+                            }
+                            @media(max-width:500px){
+                                left: 410px;							
+                            }
+                            @media(max-width:480px){
+                                left: 390px;							
+                            }
+                            @media(max-width:460px){
+                                left: 370px;							
+                            }
+                            @media(max-width:440px){
+                                left: 350px;							
+                            }
+                            @media(max-width:420px){
+                                left: 330px;							
+                            }
+                            @media(max-width:400px){
+                                left: 310px;							
+                            }
+                            @media(max-width:380px){
+                                left: 290px;							
+                            }
+                            @media(max-width:360px){
+                                left: 270px;							
+                            }
+                            @media(max-width:340px){
+                                left: 250px;							
+                            }
+            
                         }
-                        @media(max-width:690px){
-                            left: 590px;							
-                        }
-                        @media(max-width:665px){
-                            left: 570px;							
-                        }
-                        @media(max-width:640px){
-                            left: 540px;							
-                        }
-                        @media(max-width:610px){
-                            left: 515px;							
-                        }
-                        @media(max-width:580px){
-                            left: 490px;							
-                        }
-                        @media(max-width:560px){
-                            left: 470px;							
-                        }
-                        @media(max-width:540px){
-                            left: 450px;							
-                        }
-                        @media(max-width:520px){
-                            left: 430px;							
-                        }
-                        @media(max-width:500px){
-                            left: 410px;							
-                        }
-                        @media(max-width:480px){
-                            left: 390px;							
-                        }
-                        @media(max-width:460px){
-                            left: 370px;							
-                        }
-                        @media(max-width:440px){
-                            left: 350px;							
-                        }
-                        @media(max-width:420px){
-                            left: 330px;							
-                        }
-                        @media(max-width:400px){
-                            left: 310px;							
-                        }
-                        @media(max-width:380px){
-                            left: 290px;							
-                        }
-                        @media(max-width:360px){
-                            left: 270px;							
-                        }
-                        @media(max-width:340px){
-                            left: 250px;							
-                        }
-        
-                    }
-                   
+                    }   
                 }
-                p{
-                    ::before{
-                        display: none;
-                    }
-                }
-                
             }
         }
         .who-finances-desktop{

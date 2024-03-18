@@ -341,7 +341,7 @@ class Assets {
 			'archive-opiniao' => [
 				'file' => '_p-archive-opiniao.css',
 				'preload_callback' => function() {
-					return is_archive('opiniao');
+					return is_post_type_archive( 'opiniao' );
 				},
 			],
 

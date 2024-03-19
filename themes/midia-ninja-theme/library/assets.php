@@ -459,6 +459,10 @@ class Assets {
 					return is_page_template( 'page-anchor.php' );
 				}
 			],
+			'seja-ninja' => [
+				'file'   => 'seja-ninja.js',
+				'global' => true,
+			],
 			
  		];
 		

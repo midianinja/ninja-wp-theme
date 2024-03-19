@@ -1,5 +1,5 @@
-@use "./../1-settings/s-variables" as variables;
-@use "./../2-atoms/a-mixins" as mixins;
+@import "./../1-settings/s-variables";
+@import "./../2-atoms/a-mixins";
 
 .home {
 
@@ -11,7 +11,7 @@
         display: none;
     }
     .index-wrapper {
-        padding-top: mixins.size(30);
+        padding-top: size(30);
 
         // Remove margin-bottom of the all .wp-block-columns on Home
         .wp-block-columns {
@@ -40,7 +40,7 @@
                 .cat-links {
                     a {
                         background-color: var(--wp--preset--color--highlight-pure); // @todo - make dynamic
-                        border-radius: mixins.size(4);
+                        border-radius: size(4);
                         color: var(--wp--preset--color--primary-pure);
                         font-family: "Archivo Expanded", serif;
                         font-size: 13px;
@@ -70,7 +70,7 @@
 
                 .entry-meta {
                     color: var(--wp--preset--color--primary-light);
-                    font-size: mixins.size(13);
+                    font-size: size(13);
                     font-weight: 700;
                 }
             }
@@ -93,7 +93,7 @@
                         overflow: hidden;
                         position: relative;
 
-                        @include mixins.mobile {
+                        @include mobile {
                             flex-basis: 100%;
                             margin-left: 0;
                         }
@@ -119,7 +119,7 @@
                             transform: translate(-50%, -50%);
                             width: 100%;
 
-                            @include mixins.tablet {
+                            @include tablet {
                                 min-width: 100%;
                             }
                         }
@@ -128,8 +128,8 @@
                     .entry-wrapper {
                         .cat-links {
                             margin-bottom: 15px;
-                            margin-left: variables.$s_small;
-                            margin-top: mixins.size(-50);
+                            margin-left: $s_small;
+                            margin-top: size(-50);
 
                             a {
                                 background-color: var(--wp--preset--color--laranja-dark); // @todo - make dynamic
@@ -176,10 +176,10 @@
 
         &.destaque-principal {
             border-radius: 8px;
-            margin-bottom: mixins.size(30);
+            margin-bottom: size(30);
             overflow: hidden;
 
-            @include mixins.mobile {
+            @include mobile {
                 margin-bottom: -1rem;
             }
 
@@ -189,7 +189,7 @@
                 display: block;
                 position: relative;
                 
-                @include mixins.tablet {
+                @include tablet {
                     aspect-ratio: 1 / 1;
                 }
 
@@ -227,7 +227,7 @@
                             transform: translate(-50%, -50%);
                             width: 100%;
 
-                            @media(max-width: variables.$tablet-width){
+                            @media(max-width: $tablet-width){
                                 min-width: 100%;
                             }
                         }
@@ -243,21 +243,21 @@
                     height: auto;
                     justify-content: space-between;
                     left: 0;
-                    max-width: mixins.size(375);
+                    max-width: size(375);
                     padding: 65px 60px;
                     position: relative;
                     right: 0;
                     z-index: 2;
 
-                    @include mixins.mobile {
-                        gap: mixins.size(15);
+                    @include mobile {
+                        gap: size(15);
                         justify-content: center;
-                        padding: mixins.size(30) mixins.size(20);
+                        padding: size(30) size(20);
                     }
 
                     p {
                         color: #fff;
-                        font-family: variables.$f_title;
+                        font-family: $f_title;
                         margin-top: 0;
                         line-height: 140%;
                         @media(max-width: 782px){
@@ -287,24 +287,24 @@
             background-color: var(--wp--preset--color--primary-pure);
             border-radius: 8px;
             color: var(--wp--preset--color--primary-light);
-            margin-bottom: mixins.size(30);
+            margin-bottom: size(30);
             overflow: hidden;
-            padding: variables.$s_medium;
+            padding: $s_medium;
             @media(min-width: 783px){
                 display: none;
             }
 
-            @include mixins.tablet {
-                padding: variables.$s_small;
+            @include tablet {
+                padding: $s_small;
             }
 
-            @include mixins.mobile {
+            @include mobile {
                 margin-bottom: 1.2rem;
             }
 
             article {
                 .post-thumbnail{
-                    @include mixins.mobile{
+                    @include mobile{
                         height: 107px;
                         width: 112px;   
                     }
@@ -314,14 +314,14 @@
                         flex-basis: 60% !important;
                     }
                     .cat-links {
-                        margin-bottom: variables.$s_small;
+                        margin-bottom: $s_small;
                     }
                 }
 
                 .entry-title {
                     color: var(--wp--preset--color--primary-light);
                     margin-bottom: 0;
-                    @include mixins.mobile{
+                    @include mobile{
                         font-size: 20px;
                     }
                 }
@@ -330,7 +330,7 @@
 
         &.posts-sidebar {
             margin-top: 2rem;
-            @include mixins.mobile {
+            @include mobile {
                 margin-bottom: -1.3rem;
             }
             div[data-posts]{
@@ -344,12 +344,12 @@
             article {
                 align-items: center;
                 margin-bottom: 2.7rem;
-                @include mixins.mobile {
+                @include mobile {
                     margin-bottom: 1rem;
                 }
 
                 .post-thumbnail {
-                    max-width: mixins.size(112);
+                    max-width: size(112);
                     overflow: hidden;
                     margin-right: 1.5em;
                     img{
@@ -360,7 +360,7 @@
                 }
 
                 .entry-wrapper {
-                    @include mixins.mobile {
+                    @include mobile {
                         flex-basis: 60%;
                     }
 
@@ -379,7 +379,7 @@
     }
 
     .grid-latest-posts{
-        @include mixins.mobile {
+        @include mobile {
             gap: 0;
             margin-bottom: 0;
         }
@@ -535,7 +535,7 @@
 
     .sessao-opiniao{
         font-family: 'Manrope', serif;
-        @include mixins.mobile {
+        @include mobile {
             gap: 0;
             margin-bottom: 0;
         }
@@ -1164,13 +1164,36 @@
                     }
                 }
             }
-        }  
-        .slick-arrow {
-            background-color: #ccc !important; 
+        }
+        
+        .slick-arrow{
+            transition: none !important;
+        }
+       
+        .slick-arrow.slick-prev {
+            background-color: #ccc !important;
+            &:hover{
+                background-color: #333 !important;
+                background-image: url($p_theme_assets+"/images/arrow-white-next.svg");
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+                transform: rotate(180deg);
+                
+            } 
+        }
+
+        .slick-arrow.slick-next{
+            background-color: #ccc !important;
+            &:hover{
+                background-color: #333 !important;
+                background-image: url($p_theme_assets+"/images/arrow-left-slider-white.png");
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+            }
         }
 
         .slick-arrow.slick-disabled {
-            background-color: #fff !important;
+            background-color: #ccc !important;
         }
         li.slick-active {
             background-color: #ccc !important;

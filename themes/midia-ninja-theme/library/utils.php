@@ -43,8 +43,6 @@ function get_html_terms( int $post_id, string $tax, bool $use_link = false, bool
         $terms = get_the_terms( $post_id, sanitize_title( $tax ) );
     }
 
-    return;
-
     if ( ! $terms || is_wp_error( $terms ) ) {
         return false;
     }

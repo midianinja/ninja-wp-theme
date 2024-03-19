@@ -28,10 +28,17 @@ add_action( 'init', function() {
  */
 function get_html_terms( int $post_id, string $tax, bool $use_link = false, bool $use_primary_term = false, int $limit_terms = 0 ) {
 
+    $terms = [];
+
     if ( $use_primary_term && is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
         // Get primary term using Yoast SEO plugin
         $primary_term_id = get_post_meta( $post_id, '_yoast_wpseo_primary_' . sanitize_title( $tax ), true );
-        $terms[] = get_term( $primary_term_id, sanitize_title( $tax ) );
+
+        if ( $primary_term_id ) {
+            $terms[] = get_term( $primary_term_id, sanitize_title( $tax ) );
+        } else {
+            $terms = get_the_terms( $post_id, sanitize_title( $tax ) );
+        }
     } else {
         $terms = get_the_terms( $post_id, sanitize_title( $tax ) );
     }
@@ -436,3 +443,22 @@ if ( function_exists( 'get_coauthors' ) && ! function_exists( 'get_list_coauthor
      */
     add_filter( 'the_author', 'get_list_coauthors' );
 }
+
+function custom_search_filter( $query ) {
+    if ( $query->is_search && ! is_admin() && $query->is_main_query() ) {
+        if ( isset($_GET['filter']) && $_GET['filter'] != 'all') {
+            $filter = $_GET['filter'];
+            if ($filter == 'posts') {
+                $query->set('post_type', 'post');
+            } elseif ($filter == 'pages') {
+                $query->set('post_type', 'page');
+            }
+            // Adicione mais condições conforme necessário
+        }
+    }
+    
+    do_action( 'logger', $_GET );
+    
+    return $query;
+}
+add_action('pre_get_posts', 'custom_search_filter');

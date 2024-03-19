@@ -15,3 +15,30 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 })
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var checkboxAll = document.querySelector('input[name="content[all]"]')
+
+    checkboxAll.addEventListener('change', function() {
+        var otherCheckboxes = document.querySelectorAll('input[type="checkbox"]:not([name="content[all]"])')
+
+        otherCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = checkboxAll.checked
+        })
+    })
+
+    var otherCheckboxes = document.querySelectorAll('input[type="checkbox"]:not([name="content[all]"])')
+
+    otherCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            if (!this.checked) {
+                checkboxAll.checked = false
+            }
+            else {
+                const areAllChecked = Array.from(otherCheckboxes).every((checkbox) => checkbox.checked)
+                checkboxAll.checked = areAllChecked
+            }
+        })
+    })
+})

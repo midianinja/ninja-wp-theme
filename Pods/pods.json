@@ -1,7 +1,7 @@
 {
     "@meta": {
         "version": "3.0.10",
-        "build": 1710444040
+        "build": 1710866330
     },
     "settings": {
         "types_only": "0",
@@ -40,7 +40,7 @@
             "capability_type_extra": "1",
             "has_archive": "1",
             "can_export": "1",
-            "rewrite": "0",
+            "rewrite": "1",
             "supports_author": "1",
             "supports_thumbnail": "1",
             "supports_excerpt": "1",
@@ -52,6 +52,7 @@
             "query_var": "1",
             "built_in_taxonomies_marcador_afluente": "1",
             "built_in_taxonomies_marcador_especial": "1",
+            "rewrite_custom_slug": "afluentes",
             "groups": [
                 {
                     "name": "mais_campos",
@@ -76,7 +77,7 @@
             "rest_enable": "1",
             "supports_title": "1",
             "supports_editor": "1",
-            "_migrated_28": "0",
+            "_migrated_28": "1",
             "show_in_menu": "1",
             "menu_icon": "dashicons-layout",
             "menu_name": "Layout de listagens",
@@ -147,10 +148,11 @@
                             "roles_allowed": "administrator",
                             "rest_pick_response": "array",
                             "rest_pick_depth": "1",
-                            "pick_custom": "agenda|Agenda\nacao|A\u00e7\u00e3o\nacao-campanha|A\u00e7\u00f5es da campanha\natividade-da-rede|Banco de atividades\nblog|Blog\nglossario|Perguntas Frequentes\njornadas|Jornadas Pedag\u00f3gicas\nmidiateca|Midiateca\nprojetos|Projetos\nedicao|Edicao",
+                            "pick_custom": "opiniao|Opiniao\nperguntas-frequentes|Perguntas-Frequentes",
                             "pick_select_text": "-- Selecione uma listagem --",
                             "repeatable": "0",
-                            "repeatable_format": "default"
+                            "repeatable_format": "default",
+                            "enable_conditional_logic": "0"
                         },
                         {
                             "name": "position",
@@ -197,6 +199,7 @@
             "object": "category",
             "_migrated_28": "1",
             "built_in_post_types_opiniao": "1",
+            "built_in_post_types_afluente": "1",
             "groups": [
                 {
                     "name": "ninja_terms_colors",

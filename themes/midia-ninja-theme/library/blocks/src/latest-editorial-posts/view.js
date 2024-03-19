@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const postsDiv = document.querySelector('.latest-editorial-posts-block__posts')
         postsDiv.innerHTML = '<div class="loading">Loading...</div>'
 
-        let url = '/wp-json/wp/v2/posts?_embed'
+        let url = '/wp-json/wp/v2/posts?_embed&per_page=9'
         if (categoryId) {
-            url = `/wp-json/wp/v2/posts?categories=${categoryId}&_embed`
+            url = `/wp-json/wp/v2/posts?categories=${categoryId}&_embed&per_page=9`
         }
 
         fetch(url)

@@ -122,10 +122,9 @@ document.addEventListener("DOMContentLoaded", function() {
     //Menu reduzido no scroll
     window.addEventListener("scroll", function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
-        const mainHeader = document.querySelector(".main-header");
+        const mainHeader = document.querySelector(".main-header .header-content");
         
-        if (scroll >= 200) {
-            
+        if (scroll >= 100) {
             mainHeader.classList.add("scrolled");
         } else {
             

@@ -1,8 +1,6 @@
 <?php
 get_header();
 
-
-$latest_posts = get_posts(['numberposts' => 10]);
 ?>
 
 <div class="container">
@@ -14,7 +12,11 @@ $latest_posts = get_posts(['numberposts' => 10]);
             <?php endwhile; ?>
         </div>
 
-        <?php get_template_part('template-parts/content/pagination'); ?>
+        <div>
+            <button class="load-more">
+                <span><?php _e('Ler mais Opiniões', 'ninja'); ?></span>
+            </button>
+        </div>
     </main>
     
     <?php echo get_layout_footer('opiniao'); ?>

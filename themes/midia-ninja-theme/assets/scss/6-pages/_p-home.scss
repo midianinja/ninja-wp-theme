@@ -389,7 +389,7 @@
                 display: none;
             }
             .show-image.show-category{
-                margin-bottom: 4rem;
+                margin-bottom: 3.7rem;
 
                 h2{
                     a{
@@ -488,6 +488,7 @@
     // Section Especiais
     .sessao-especiais {
         margin-bottom: 0 !important;
+        padding: 0 0;
         .container{
             padding: 59px 0px 64px 100px !important;
             @media(max-width: 992px){
@@ -495,8 +496,17 @@
             }
         }
         .latest-horizontal-posts-block__slides{
+            flex-basis: 100%;
             &::after {
                 display: none;
+            }
+            .slick-track{
+                display: flex;
+                flex-wrap: nowrap;
+            }
+            .slick-slide{
+                width: 231px !important;
+                margin: 0 18px 0 15px;
             }
         }
         h2 {
@@ -622,37 +632,70 @@
                 }
             } 
         }
-        .wp-block-newspack-blocks-homepage-articles{
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            .article-section-title{
-                padding-top: 40px;
-                padding-left: 35px;
-                span{
-                    font-size: 13px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 145%;
-                    color: #535353;
-                    text-transform: uppercase;
-                }
-            }
-            h3{
-                font-size: 20px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 130%;
-                padding-left: 35px;
-                padding-right: 35px;
-                margin-bottom: 25px;
-            }
-            .entry-meta{
-                padding-left: 35px;
-                padding-right: 35px;
-                margin-bottom: 2rem;
-                color: #828282;
-            }   
+        .coluna-colunistas{
+            padding-top: 0.6rem;
         }
+        .wp-block-cover{
+            padding: 56px 35px 54px;
+           
+            .wp-block-newspack-blocks-homepage-articles{
+                .article-section-title{
+                    margin-bottom: 1rem;
+                    span{
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 145%;
+                        color: #535353;
+                        text-transform: uppercase;
+                    }
+                }
+                h3{
+                  
+                    margin-bottom: 1rem;
+    
+                    a{
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 130%;
+                        color: #111;
+                    }
+                    
+                }
+                .entry-meta{
+         
+                    margin-bottom: 2rem;
+                    color: #828282;
+                    a{
+                        margin-top: 16px;
+                    }
+                    .byline{
+                        .author-prefix{
+                            display: none;
+                        }
+                        .vcard{
+                            margin-left: 1rem;
+                            border-bottom: 1px solid #000;
+                            padding-bottom: 0.7rem;
+                            
+                           a{
+                            text-decoration: none;
+                            color: #000;
+                            text-transform: uppercase;
+                            font-family: 'Manrope', serif;
+                           } 
+                        }
+                        
+                    }
+                }   
+            }
+        }
+
+        .colunas{
+            margin-top: 20px !important;
+        }
+        
         .afluentes-desktop{
             @media(max-width: 992px){
                 display: none;
@@ -968,6 +1011,9 @@
         }
     }
     .newsletter-desktop, .newsletter-mobile{
+        .wp-block-cover__background{
+            opacity: 0 !important;
+        }
         .wp-block-columns{
             gap: 100px;
             @media(max-width: 992px){

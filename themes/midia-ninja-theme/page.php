@@ -13,13 +13,13 @@ get_header();
     <main class="content">
         <?php while ( have_posts() ) : the_post(); ?>
             <article class="page">
-                <header class="page-header">
+                <!-- <header class="page-header">
                     <div class="info">
                         <span class="category"><?php the_category( ', ' ); ?></span>
                     </div>
                     <h1 class="title"><?php the_title(); ?></h1>
                     <time class="date" datetime="<?php echo get_the_date( 'c' ); ?>"><?php the_date(); ?></time>
-                </header>
+                </header> -->
 
                 <section class="page-content">
                     <?php the_content(); ?>

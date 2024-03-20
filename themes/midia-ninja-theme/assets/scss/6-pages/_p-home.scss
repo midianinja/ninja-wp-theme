@@ -544,6 +544,9 @@
             .slick-slide{
                 width: 231px !important;
                 margin: 0 18px 0 15px;
+                @media(max-width: 582px){
+                    width: 150px !important;
+                }
             }
         }
         h2 {
@@ -568,6 +571,16 @@
                 margin-bottom: -37px !important;
                 @media(max-width: 782px){
                     margin-bottom: 0 !important;
+                }
+            }
+            .slick-slide, .slide, .post-content{
+                @media(max-width: 782px){
+                    width: 200px !important;
+                }
+            }
+            .slide{
+                @media(max-width: 782px){
+                   padding-left: 0.3rem !important;
                 }
             }
             .latest-horizontal-posts-block__footer{
@@ -674,7 +687,7 @@
         }
         .wp-block-cover{
             padding: 60px 35px 54px;
-            margin-bottom: -85px ;
+            margin-bottom: -30px ;
             @media(max-width: 782px){
                 margin-bottom: 0;
             }
@@ -949,6 +962,32 @@
             flex-basis: 80% !important;
             &::before {
                 display: none;
+            }
+            @media(max-width: 782px){
+                flex-basis: 100% !important;            
+            }
+
+            .slick-track{
+                display: flex;
+                flex-wrap: nowrap;
+                @media(max-width: 782px){
+                    padding-left: 15px;
+                }
+            }
+            .slick-slide{
+                @media(max-width: 782px){
+                    width: 172px !important;
+                    margin: 0 18px 0 15px;
+                }
+                .post-thumbnail__info{
+                    h2{
+                        @media(max-width: 782px){
+                            font-size: 0.9rem;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+                
             }
         }
         .latest-horizontal-posts-block__heading{

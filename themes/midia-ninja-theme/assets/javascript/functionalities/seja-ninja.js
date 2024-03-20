@@ -1,7 +1,8 @@
 
+
 document.addEventListener("DOMContentLoaded", function() {
-    
-    let cidades = {
+  console.log("Olá mundo");
+    const cidades = {
         "estados": {
           "AC": {
             "sigla": "AC",
@@ -5762,35 +5763,50 @@ document.addEventListener("DOMContentLoaded", function() {
           }
         }
       }
+      
+      
+      const newslettersEstado = document.querySelector('.estado');
+      console.log(newslettersEstado);
+      if (!newslettersEstado) {
+          return;
+      }
+      const newslettersCidade = document.querySelector('.cidade');
+      if (!newslettersCidade) {
+          return;
+      }
+      const defaultOptionText = 'selecionar';
+      
+      let defaultOption = document.createElement('option');
+      defaultOption.value = '';
+      defaultOption.innerHTML = defaultOptionText;
+      newslettersEstado.appendChild(defaultOption);
+
+      console.log(Object.values(cidades.estados));
+      for(const estado of Object.values(cidades.estados)){
+        const option = document.createElement('option');
+        option.value = estado.sigla;
+        option.innerHTML = estado.nome;
+        newslettersEstado.appendChild(option);
+      }
+
+      newslettersEstado.addEventListener('change', function(event) {
+          newslettersCidade.innerHTML = '';
+          defaultOption = document.createElement('option');
+          defaultOption.value = '';
+          defaultOption.innerHTML = defaultOptionText;
+          newslettersCidade.appendChild(defaultOption);
+          if (this.value == '') {
+              return;
+          }
+          let cidadesEstado = cidades.estados[this.value].cidades;
+
+          cidadesEstado.forEach(cidade => {
+              let option = document.createElement('option');
+              option.value = cidade;
+              option.innerHTML = cidade;
+              newslettersCidade.appendChild(option);
+          });
+      });
     
-      document.addEventListener('DOMContentLoaded', function() {
-        let newslettersEstado = document.querySelector('.estado');
-        console.log(newslettersEstado);
-        if (!newslettersEstado) {
-            return;
-        }
-        let newslettersCidade = document.querySelector('.cidade');
-        if (!newslettersCidade) {
-            return;
-        }
-        let defaultOptionText = newslettersCidade.querySelector('option').innerText;
-        newslettersEstado.addEventListener('change', function(event) {
-            newslettersCidade.innerHTML = '';
-            let defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.innerHTML = defaultOptionText;
-            newslettersCidade.appendChild(defaultOption);
-            if (this.value == '') {
-                return;
-            }
-            let cidadesEstado = cidades.estados[this.value].cidades;
-            cidadesEstado.forEach(cidade => {
-                let option = document.createElement('option');
-                option.value = cidade;
-                option.innerHTML = cidade;
-                newslettersCidade.appendChild(option);
-            });
-        });
-    });
     
 })

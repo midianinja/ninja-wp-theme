@@ -1412,11 +1412,26 @@
                 margin-bottom: 155px;   
             }
 
+            @media(max-width: 590px){
+                margin-top: -155px;
+                margin-bottom: 125px;   
+            }
+
+            @media(max-width: 460px){
+                margin-top: -120px;
+                margin-bottom: 88px;   
+            }
+
             @media(max-width: 400px){
-                margin-top: -105px;
-                margin-bottom: 45px;
+                margin-top: -120px;
+                margin-bottom: 54px;
                 font-size: 20px;
-                font-weight: 700;  
+                font-weight: 700;
+                padding: 0 25px;  
+            }
+            @media(max-width: 366px){
+                margin-top: -105px;
+                margin-bottom: 54px;
             }
         }
     }

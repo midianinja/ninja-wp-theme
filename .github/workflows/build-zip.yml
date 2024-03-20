@@ -19,5 +19,5 @@ jobs:
       id: upload-plugin-artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.version }}
+        name: ${{ github.event.repository.name }}-${{ matrix.version }}
         path: ./${{ github.event.repository.name }}/zips/*.zip

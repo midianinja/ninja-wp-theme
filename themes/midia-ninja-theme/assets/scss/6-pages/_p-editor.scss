@@ -219,7 +219,8 @@ body{
             }
             .wp-block-buttons{
                 &.btn-latest-posts,
-                &.btn-colunistas{
+                &.btn-colunistas-mobile
+                &.btn-colunistas-desktop{
                     display: flex;
                     justify-content: center;
                     margin-bottom: 2rem;

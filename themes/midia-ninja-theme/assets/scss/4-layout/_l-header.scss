@@ -1,6 +1,10 @@
 @import "./../1-settings/_s-variables";
 @import "./../2-atoms/a-mixins";
 
+body {
+	transition: all 0.4s 0.4s ease;
+}
+
 header {
 	&.main-header {
 		position: sticky;
@@ -8,32 +12,8 @@ header {
 		top: 0;
 		z-index: 999;
 		width: 100%;
-		transition: all 0.5s;
 		background-color: #f5f5f5;
 		border-bottom: 1px solid;
-		transition: all 0.5s ease;
-
-		&.scrolled {
-			.container {
-				.header-content {
-					min-height: 88px;
-
-					.menus {
-						display: none;
-					}
-
-					> div {
-						.logo img {
-							width: 65px;
-						}
-
-						.hamburguer {
-							top: 4px;
-						}
-					}
-				}
-			}
-		}
 
 		.container {
 			position: relative;
@@ -57,17 +37,13 @@ header {
 				min-height: 100vh;
 			}
 
-			&.scrolled {
-				transition: all 0.5s;
-				top: 0;
-			}
-
 			.hamburguer {
 				position: absolute;
 				top: 17px;
 				right: 0;
 				width: 100%;
 				z-index: 1;
+				transition: all 0.4s 0.2s ease;
 
 				@media (min-width: $tablet-width) {
 					width: 360px;
@@ -391,7 +367,7 @@ header {
 	.header-content {
 		min-height: 100px;
 		padding-top: 21px;
-		transition: all 0.4s 0.4s ease-in-out;
+		transition: all 0.4s 0.2s ease;
 
 		> div {
 			display: grid;
@@ -403,7 +379,25 @@ header {
 				img {
 					height: auto;
 					width: auto;
-					transition: all 0.5s ease-in-out;
+					transition: all 0.4s 0.2s ease;
+				}
+			}
+		}
+
+		&.scrolled {
+			min-height: 88px;
+
+			.menus {
+				display: none;
+			}
+
+			> div {
+				.logo img {
+					width: 65px;
+				}
+
+				.hamburguer {
+					top: 4px;
 				}
 			}
 		}

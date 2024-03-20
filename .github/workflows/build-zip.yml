@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Build theme # Remove or modify this step as needed
-      working-directory: ./${{ github.event.repository.name }}/dev-scripts
+      working-directory: dev-scripts
       run: |
         /bin/bash ./producao.sh
     - name: Upload the archive as an artifact

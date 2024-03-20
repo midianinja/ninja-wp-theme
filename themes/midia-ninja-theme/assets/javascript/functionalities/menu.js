@@ -127,7 +127,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (scroll >= 100) {
             mainHeader.classList.add("scrolled");
         } else {
-            
             mainHeader.classList.remove("scrolled");
         }
     });

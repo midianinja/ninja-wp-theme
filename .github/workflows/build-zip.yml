@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: Build release zip
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -19,5 +19,5 @@ jobs:
       id: upload-plugin-artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ github.event.repository.name }}
-        path: ./${{ github.event.repository.name }}/zips/
+        name: ${{ github.event.repository.name }}-${{ matrix.os }}-${{ matrix.version }}
+        path: ./${{ github.event.repository.name }}/zips/*.zip

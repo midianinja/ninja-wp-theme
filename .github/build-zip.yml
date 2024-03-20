@@ -1,0 +1,23 @@
+name: Build release zip
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build release zip
+    runs-on: debian-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Build theme # Remove or modify this step as needed
+      working-directory: ./${{ github.event.repository.name }}/dev-scripts
+      run: |
+        /bin/bash ./producao.sh
+    - name: Upload the archive as an artifact
+      id: upload-plugin-artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ github.event.repository.name }}
+        path: ./${{ github.event.repository.name }}/zips/

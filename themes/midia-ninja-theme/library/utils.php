@@ -481,3 +481,22 @@ function custom_search_filter($query)
     return $query;
 }
 add_action('pre_get_posts', 'custom_search_filter');
+
+function filter_newspack_sugestions($managed_plugins)
+{
+    $remove_sugestions = [
+        'mailchimp-for-woocommerce',
+        'woocommerce',
+        'woocommerce-gateway-stripe',
+        'woocommerce-name-your-price',
+        'woocommerce-subscriptions'
+    ];
+
+    foreach ($remove_sugestions as $sugestion) {
+        unset($managed_plugins[$sugestion]);
+    }
+
+    return $managed_plugins;
+}
+
+add_filter('newspack_managed_plugins', 'filter_newspack_sugestions');

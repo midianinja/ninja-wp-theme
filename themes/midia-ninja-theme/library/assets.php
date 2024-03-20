@@ -494,6 +494,10 @@ class Assets
                     return is_post_type_archive('opiniao');
                 }
             ],
+			'seja-ninja' => [
+				'file'   => 'seja-ninja.js',
+				'global' => true,
+			],
 
         ];
 

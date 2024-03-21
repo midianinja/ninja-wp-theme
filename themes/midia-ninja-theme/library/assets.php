@@ -371,6 +371,12 @@ class Assets
                     return is_post_type_archive('opiniao');
                 },
             ],
+            'archive-afluente' => [
+                'file' => '_p-archive-afluente.css',
+                'preload_callback' => function () {
+                    return is_post_type_archive('afluente');
+                },
+            ],
 
             'search' => [
                 'file' => '_p-search.css',

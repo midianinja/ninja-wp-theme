@@ -1,0 +1,40 @@
+.post-type-archive-afluente{
+    .content{
+        .posts{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin-top: 48px;
+            article{
+                .post-card{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 30px;
+                    .post-card--thumb{
+                        width: 370px;
+                        height: 208px;
+                    }
+                    .post-card--content{
+                        & .entry-title{
+                            color: var(--PURE, #262626);
+                            font-family: Manrope;
+                            font-size: 24px;
+                            font-style: normal;
+                            font-weight: 800;
+                            line-height: 120%; /* 28.8px */
+                            letter-spacing: -0.72px;
+                        }
+                        & .entry-meta{
+                           
+                        }
+                        & .entry-date{
+                            display: none;
+                        }
+                        & .entry-excerpt{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

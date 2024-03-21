@@ -11,10 +11,9 @@
         }
 
         .container{
-            @media(max-width: 768px){
-                padding-left: 0px;
-                padding-right: 0px;
-            }
+            padding-left: 0px;
+            padding-right: 0px;
+           
         }
     
         .position-header{
@@ -22,6 +21,13 @@
                 gap: 1rem;
                 @media(max-width: 992px){
                    flex-direction: column;
+                   display: flex;
+                }
+                :first-child{
+                    @media(max-width: 992px){
+                        flex-basis: 490px !important; 
+                    }
+                    
                 }
                 
             }
@@ -175,6 +181,7 @@
             margin-left: -74px;
             margin-top: 2.5rem;
             margin-bottom: 0;
+            color: #111;
             @media(max-width: 992px){
                 margin-top: 9.5rem;
                 margin-left: 0;
@@ -185,13 +192,12 @@
     
         .col-md-9.content{
             .wp-block-heading{
-                margin-left: 70px;
+                margin-left: 78px;
                 @media(max-width: 992px){
                     margin-left: 0;
                     margin-top: -46px;
                     margin-bottom: -72px;
                 }
-    
             }
             
             .who-finances-desktop, .newsletter-desktop, .pergunte-ninjas{
@@ -266,9 +272,17 @@
             }
         }
         .wp-block-coblocks-accordion{
-            margin: 0 auto 2.5rem;
-            max-width: 700px;
+            margin: 0 0 2.5rem 5rem;
+            max-width: 785px;
             width: 100%;
+            cursor: pointer;
+            @media(max-width: 1199px){
+                padding-right: 15px;
+                max-width: 635px;
+            }
+            @media(max-width: 782px){
+                padding-right: 0;
+            }
             @media(max-width: 992px){
                 margin: 68px auto 2.5rem;
 
@@ -306,68 +320,69 @@
                         &:after{
                             bottom: 0;
                             content: "+";
-                            left: 680px;
+                            left: 760px;
                             position: absolute;
                             top: 29px;
                             font-size: 38px;
                             color: #000;
                             font-weight: 400;
+                            @media(max-width:1199px){
+                                left: 600px;							
+                            }
+                           
                             @media(max-width:725px){
-                                left: 670px;							
+                                left: 600px;							
                             }
-                            @media(max-width:710px){
-                                left: 655px;							
-                            }
-                            @media(max-width:690px){
-                                left: 630px;							
-                            }
-                            @media(max-width:665px){
-                                left: 610px;							
-                            }
-                            @media(max-width:640px){
+                           
+                            @media(max-width:680px){
                                 left: 580px;							
                             }
+                            @media(max-width:650px){
+                                left: 590px;							
+                            }
+                            @media(max-width:630px){
+                                left: 570px;							
+                            }
                             @media(max-width:610px){
-                                left: 555px;							
+                                left: 550px;							
                             }
                             @media(max-width:580px){
                                 left: 530px;							
                             }
-                            @media(max-width:560px){
-                                left: 510px;							
+                           
+                            @media(max-width:570px){
+                                left: 500px;							
                             }
                             @media(max-width:540px){
-                                left: 490px;							
+                                left: 480px;							
                             }
-                            @media(max-width:520px){
-                                left: 470px;							
-                            }
-                            @media(max-width:500px){
+                            @media(max-width:525px){
                                 left: 450px;							
                             }
-                            @media(max-width:480px){
+                            @media(max-width:490px){
                                 left: 430px;							
                             }
-                            @media(max-width:460px){
-                                left: 410px;							
+                           
+                            @media(max-width:470px){
+                                left: 400px;							
                             }
                             @media(max-width:440px){
-                                left: 390px;							
-                            }
-                            @media(max-width:420px){
                                 left: 370px;							
                             }
-                            @media(max-width:400px){
-                                left: 350px;							
+                            @media(max-width:415px){
+                                left: 360px;							
                             }
-                            @media(max-width:380px){
+                            @media(max-width:400px){
+                                left: 345px;							
+                            }
+                            @media(max-width:385px){
+                                left: 335px;							
+                            }
+                            @media(max-width:375px){
                                 left: 320px;							
                             }
-                            @media(max-width:360px){
+                            @media(max-width:366px){
                                 left: 310px;							
-                            }
-                            @media(max-width:340px){
-                                left: 290px;							
                             }
         
                         }
@@ -395,68 +410,69 @@
                         &::before{
                             bottom: 0;
                             content: "-";
-                            left: 680px;
+                            left: 760px;
                             position: absolute;
                             top: 20px;
                             font-size: 38px;
                             color: #000;
                             font-weight: 400;
+                            @media(max-width:1199px){
+                                left: 600px;							
+                            }
+                           
                             @media(max-width:725px){
-                                left: 670px;							
+                                left: 600px;							
                             }
-                            @media(max-width:710px){
-                                left: 655px;							
-                            }
-                            @media(max-width:690px){
-                                left: 630px;							
-                            }
-                            @media(max-width:665px){
-                                left: 610px;							
-                            }
-                            @media(max-width:640px){
+                           
+                            @media(max-width:680px){
                                 left: 580px;							
                             }
+                            @media(max-width:650px){
+                                left: 590px;							
+                            }
+                            @media(max-width:630px){
+                                left: 570px;							
+                            }
                             @media(max-width:610px){
-                                left: 555px;							
+                                left: 550px;							
                             }
                             @media(max-width:580px){
                                 left: 530px;							
                             }
-                            @media(max-width:560px){
-                                left: 510px;							
+                           
+                            @media(max-width:570px){
+                                left: 500px;							
                             }
                             @media(max-width:540px){
-                                left: 490px;							
+                                left: 480px;							
                             }
-                            @media(max-width:520px){
-                                left: 470px;							
-                            }
-                            @media(max-width:500px){
+                            @media(max-width:525px){
                                 left: 450px;							
                             }
-                            @media(max-width:480px){
+                            @media(max-width:490px){
                                 left: 430px;							
                             }
-                            @media(max-width:460px){
-                                left: 410px;							
+                           
+                            @media(max-width:470px){
+                                left: 400px;							
                             }
                             @media(max-width:440px){
-                                left: 390px;							
-                            }
-                            @media(max-width:420px){
                                 left: 370px;							
                             }
-                            @media(max-width:400px){
-                                left: 350px;							
+                            @media(max-width:415px){
+                                left: 360px;							
                             }
-                            @media(max-width:380px){
+                            @media(max-width:400px){
+                                left: 345px;							
+                            }
+                            @media(max-width:385px){
+                                left: 335px;							
+                            }
+                            @media(max-width:375px){
                                 left: 320px;							
                             }
-                            @media(max-width:360px){
+                            @media(max-width:366px){
                                 left: 310px;							
-                            }
-                            @media(max-width:340px){
-                                left: 290px;							
                             }
             
                         }
@@ -481,8 +497,12 @@
                 padding: 25px 42px 25px 45px;
                 margin-top: -2rem;
             }
+            :nth-child(2){
+                padding-right: 2rem;
+            }
             .wp-block-columns{
                 margin-top: 1.8rem;
+                padding-left: 2rem;
                 @media(max-width: 992px){
                     flex-direction: column;
                     margin-bottom: 0;

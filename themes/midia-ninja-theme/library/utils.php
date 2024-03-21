@@ -2,11 +2,11 @@
 /**
  *
  * Remove recaptcha from tainacan
- *  
+ *
  */
-add_action( 'init', function() {
-    wp_dequeue_script( 'tainacan-google-recaptcha-script' );
-}, 150 );
+add_action('init', function () {
+    wp_dequeue_script('tainacan-google-recaptcha-script');
+}, 150);
 
 /**
  *
@@ -26,65 +26,66 @@ add_action( 'init', function() {
  * @return string $html
  *
  */
-function get_html_terms( int $post_id, string $tax, bool $use_link = false, bool $use_primary_term = false, int $limit_terms = 0 ) {
+function get_html_terms(int $post_id, string $tax, bool $use_link = false, bool $use_primary_term = false, int $limit_terms = 0)
+{
 
     $terms = [];
 
-    if ( $use_primary_term && is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+    if ($use_primary_term && is_plugin_active('wordpress-seo/wp-seo.php')) {
         // Get primary term using Yoast SEO plugin
-        $primary_term_id = get_post_meta( $post_id, '_yoast_wpseo_primary_' . sanitize_title( $tax ), true );
+        $primary_term_id = get_post_meta($post_id, '_yoast_wpseo_primary_' . sanitize_title($tax), true);
 
-        if ( $primary_term_id ) {
-            $terms[] = get_term( $primary_term_id, sanitize_title( $tax ) );
+        if ($primary_term_id) {
+            $terms[] = get_term($primary_term_id, sanitize_title($tax));
         } else {
-            $terms = get_the_terms( $post_id, sanitize_title( $tax ) );
+            $terms = get_the_terms($post_id, sanitize_title($tax));
         }
     } else {
-        $terms = get_the_terms( $post_id, sanitize_title( $tax ) );
+        $terms = get_the_terms($post_id, sanitize_title($tax));
     }
 
-    if ( ! $terms || is_wp_error( $terms ) ) {
+    if (! $terms || is_wp_error($terms)) {
         return false;
     }
 
-    $html = '<ul class="list-terms tax-' . sanitize_title( $tax ) . '">';
+    $html = '<ul class="list-terms tax-' . sanitize_title($tax) . '">';
 
     $count = 0;
 
-    foreach ( $terms as $term ) {
+    foreach ($terms as $term) {
 
-        if ( is_wp_error( $term ) ) {
+        if (is_wp_error($term)) {
             continue;
         }
 
         $count++;
 
-        $background_term_color = get_term_meta( $term->term_id, 'ninja_background_term_color', true );
-        $font_term_color = get_term_meta( $term->term_id, 'ninja_font_term_color', true );
+        $background_term_color = get_term_meta($term->term_id, 'ninja_background_term_color', true);
+        $font_term_color = get_term_meta($term->term_id, 'ninja_font_term_color', true);
 
-        if ( ! $background_term_color ) {
+        if (! $background_term_color) {
             $background_term_color = '#333333';
         }
 
-        if ( ! $font_term_color ) {
+        if (! $font_term_color) {
             $font_term_color = '#FFFFFF';
         }
 
-        $html .= '<li class="term-' . sanitize_title( $term->slug ) . '" style="background-color:'. $background_term_color. '; color:'. $font_term_color. '">';
+        $html .= '<li class="term-' . sanitize_title($term->slug) . '" style="background-color:'. $background_term_color. '; color:'. $font_term_color. '">';
 
-        if ( $use_link ) {
-            $html .= '<a href="' . esc_url( get_term_link( $term->term_id, $tax ) ) . '">';
+        if ($use_link) {
+            $html .= '<a href="' . esc_url(get_term_link($term->term_id, $tax)) . '">';
         }
 
-        $html .= esc_attr( $term->name );
+        $html .= esc_attr($term->name);
 
-        if ( $use_link ) {
+        if ($use_link) {
             $html .= '</a>';
         }
 
         $html .= '</li>';
 
-        if ( $limit_terms > 0 && $count >= $limit_terms ) {
+        if ($limit_terms > 0 && $count >= $limit_terms) {
             break;
         }
 
@@ -99,10 +100,11 @@ function get_html_terms( int $post_id, string $tax, bool $use_link = false, bool
 /**
  * Rename the defaults taxonomies
  */
-function rename_taxonomies() {
+function rename_taxonomies()
+{
 
     // Tags -> Temas
-    $post_tag_args = get_taxonomy( 'post_tag' );
+    $post_tag_args = get_taxonomy('post_tag');
 
     $post_tag_args->label = 'Temas';
     $post_tag_args->labels->name = 'Temas';
@@ -130,13 +132,13 @@ function rename_taxonomies() {
     $post_tag_args->labels->menu_name = 'Temas';
     $post_tag_args->hierarchical = true;
 
-    $object_type = array_merge( $post_tag_args->object_type, ['page'] );
-    $object_type = array_unique( $object_type );
+    $object_type = array_merge($post_tag_args->object_type, ['page']);
+    $object_type = array_unique($object_type);
 
-    register_taxonomy( 'post_tag', $object_type, (array) $post_tag_args );
+    register_taxonomy('post_tag', $object_type, (array) $post_tag_args);
 
     // Category -> Projetos
-    $category_args = get_taxonomy( 'category' );
+    $category_args = get_taxonomy('category');
 
     $category_args->label = 'Projetos';
     $category_args->labels->name = 'Projetos';
@@ -163,10 +165,10 @@ function rename_taxonomies() {
     $category_args->labels->item_link_description = 'Um link para o Projeto';
     $category_args->labels->menu_name = 'Projetos';
 
-    $object_type = array_merge( $category_args->object_type, ['page', 'perguntas_frequentes'] );
-    $object_type = array_unique( $object_type );
+    $object_type = array_merge($category_args->object_type, ['page', 'perguntas_frequentes']);
+    $object_type = array_unique($object_type);
 
-    register_taxonomy( 'category', $object_type, (array) $category_args );
+    register_taxonomy('category', $object_type, (array) $category_args);
 
 }
 // Descomentar para renomear as taxonomias padrão do WP
@@ -182,18 +184,19 @@ function rename_taxonomies() {
  * @link https://developer.wordpress.org/reference/functions/get_the_terms/
  * @link https://developer.wordpress.org/reference/functions/sanitize_title/
  */
-function get_terms_like_class( int $post_id, string $tax, string $prefix = '' ) {
+function get_terms_like_class(int $post_id, string $tax, string $prefix = '')
+{
 
-    $terms = get_the_terms( $post_id, sanitize_title( $tax ) );
+    $terms = get_the_terms($post_id, sanitize_title($tax));
     $class = '';
 
-    if ( $terms && ! is_wp_error( $terms ) ) {
-        foreach ( $terms as $term ) {
-            $class .= ( $prefix ) ? $prefix . $term->slug : $term->slug;
+    if ($terms && ! is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            $class .= ($prefix) ? $prefix . $term->slug : $term->slug;
             $class .= ' ';
         }
 
-        return sanitize_title( substr( $class, 0, -1 ) );
+        return sanitize_title(substr($class, 0, -1));
     }
 
     return '';
@@ -204,7 +207,8 @@ function get_terms_like_class( int $post_id, string $tax, string $prefix = '' ) 
 /**
  * Get terms by post type
  */
-function get_terms_by_post_type( $taxonomy, $post_type ) {
+function get_terms_by_post_type($taxonomy, $post_type)
+{
 
     // Get all terms that have posts
     $terms = get_terms([
@@ -213,7 +217,7 @@ function get_terms_by_post_type( $taxonomy, $post_type ) {
     ]);
 
     // Remove terms that don't have any posts in the current post type
-    $terms = array_filter( $terms, function ( $term ) use ( $post_type, $taxonomy ) {
+    $terms = array_filter($terms, function ($term) use ($post_type, $taxonomy) {
         $posts = get_posts([
             'fields'      => 'ids',
             'numberposts' => 1,
@@ -226,7 +230,7 @@ function get_terms_by_post_type( $taxonomy, $post_type ) {
             ]
         ]);
 
-        return ( count( $posts ) > 0 );
+        return (count($posts) > 0);
     });
 
     return $terms;
@@ -239,9 +243,10 @@ function get_terms_by_post_type( $taxonomy, $post_type ) {
  * @link https://developer.wordpress.org/reference/functions/get_post_meta/
  * @link https://developer.wordpress.org/reference/functions/get_the_ID/
  */
-function gt_get_post_view() {
-    $count = get_post_meta( get_the_ID(), 'post_views_count', true );
-    $count = ($count == 1 ? $count." Visualização" : $count." Visualizações" );
+function gt_get_post_view()
+{
+    $count = get_post_meta(get_the_ID(), 'post_views_count', true);
+    $count = ($count == 1 ? $count." Visualização" : $count." Visualizações");
     return "$count";
 }
 
@@ -252,36 +257,40 @@ function gt_get_post_view() {
  * @link https://developer.wordpress.org/reference/functions/get_the_ID/
  * * @link https://developer.wordpress.org/reference/functions/update_post_meta/
  */
-function gt_set_post_view() {
+function gt_set_post_view()
+{
     $key = 'post_views_count';
     $post_id = get_the_ID();
-    $count = (int) get_post_meta( $post_id, $key, true );
+    $count = (int) get_post_meta($post_id, $key, true);
     $count++;
-    update_post_meta( $post_id, $key, $count );
+    update_post_meta($post_id, $key, $count);
 }
 
-function gt_posts_column_views( $columns ) {
+function gt_posts_column_views($columns)
+{
     $columns['post_views'] = 'Views';
     return $columns;
 }
 
-function gt_posts_custom_column_views( $column ) {
-    if ( $column === 'post_views') {
+function gt_posts_custom_column_views($column)
+{
+    if ($column === 'post_views') {
         echo gt_get_post_view();
     }
 }
-add_filter( 'manage_posts_columns', 'gt_posts_column_views' );
-add_action( 'manage_posts_custom_column', 'gt_posts_custom_column_views' );
+add_filter('manage_posts_columns', 'gt_posts_column_views');
+add_action('manage_posts_custom_column', 'gt_posts_custom_column_views');
 
 //Page Slug Body Class
-function add_slug_body_class( $classes ) {
+function add_slug_body_class($classes)
+{
     global $post;
-    if ( isset( $post ) ) {
-    $classes[] = $post->post_type . '-' . $post->post_name;
+    if (isset($post)) {
+        $classes[] = $post->post_type . '-' . $post->post_name;
     }
     return $classes;
 }
-add_filter( 'body_class', 'add_slug_body_class' );
+add_filter('body_class', 'add_slug_body_class');
 
 /**
  * Return the structure HTML of the posts separetade by month
@@ -291,19 +300,20 @@ add_filter( 'body_class', 'add_slug_body_class' );
  *
  * @return array months|slider
  */
-function get_posts_by_month( $args = [] ) {
+function get_posts_by_month($args = [])
+{
 
     $args['orderby'] = 'date';
 
-    $items = new WP_Query( $args );
+    $items = new WP_Query($args);
 
-    if( $items->have_posts() ) :
+    if($items->have_posts()) :
 
         $month_titles   = [];
         $close_ul       = false;
         $content_slider = '';
 
-        while( $items->have_posts() ) : $items->the_post();
+        while($items->have_posts()) : $items->the_post();
 
             $month_full = [
                 'Jan' => 'Janeiro',
@@ -320,32 +330,36 @@ function get_posts_by_month( $args = [] ) {
                 'Dec' => 'Dezembro'
             ];
 
-            $year = date( 'Y', strtotime( get_the_date( 'Y-m-d H:i:s' ) ) );
-            $month = date( 'M', strtotime( get_the_date( 'Y-m-d H:i:s' ) ) );
+            $year = date('Y', strtotime(get_the_date('Y-m-d H:i:s')));
+            $month = date('M', strtotime(get_the_date('Y-m-d H:i:s')));
 
             $month_title = $month_full[$month] . ' ' . $year;
 
-            if ( ! in_array( $month_title, $month_titles ) ) :
-                if ( $close_ul ) $content_slider .= '</ul>';
-                $content_slider .= '<ul id="items-' . sanitize_title( $month_title ) . '" class="item-slider">';
+            if (! in_array($month_title, $month_titles)) :
+                if ($close_ul) {
+                    $content_slider .= '</ul>';
+                }
+                $content_slider .= '<ul id="items-' . sanitize_title($month_title) . '" class="item-slider">';
                 $month_titles[] = $month_title;
                 $close_ul = true;
             endif;
 
-            $thumbnail = ( has_post_thumbnail( get_the_ID() ) ) ? get_the_post_thumbnail( get_the_ID() ) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
+            $thumbnail = (has_post_thumbnail(get_the_ID())) ? get_the_post_thumbnail(get_the_ID()) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
 
             $content_slider .= sprintf(
                 '<li id="item-%1$s" class="item item-month-%2$s"><a href="%3$s"><div class="thumb">%4$s</div><div class="title"><h3>%5$s</h3></div></a></li>',
                 get_the_ID(),
                 $month_title,
-                get_permalink( get_the_ID() ),
+                get_permalink(get_the_ID()),
                 $thumbnail,
-                get_the_title( get_the_ID() )
+                get_the_title(get_the_ID())
             );
 
         endwhile;
 
-        if ( $close_ul ) $content_slider .= '</ul>';
+        if ($close_ul) {
+            $content_slider .= '</ul>';
+        }
     endif;
 
     return [
@@ -356,22 +370,23 @@ function get_posts_by_month( $args = [] ) {
 }
 
 
-function archive_filter_posts( $query ) {
+function archive_filter_posts($query)
+{
     // Apply filter of the archives
-    if ( $query->is_main_query() && ! is_admin() ) {
+    if ($query->is_main_query() && ! is_admin()) {
 
         $is_blog = false;
-        $page_for_posts = get_option( 'page_for_posts' );
+        $page_for_posts = get_option('page_for_posts');
 
-        if ( $query->is_home() && isset( $query->get_queried_object()->ID ) && $query->get_queried_object()->ID == $page_for_posts ) {
+        if ($query->is_home() && isset($query->get_queried_object()->ID) && $query->get_queried_object()->ID == $page_for_posts) {
             $is_blog = true;
         }
 
-        if ( is_archive() || $is_blog ) {
-            if ( isset( $_GET['filter_term'] ) && 'all' !== $_GET['filter_term'] ) {
-                $term = get_term_by_slug( $_GET['filter_term'] );
+        if (is_archive() || $is_blog) {
+            if (isset($_GET['filter_term']) && 'all' !== $_GET['filter_term']) {
+                $term = get_term_by_slug($_GET['filter_term']);
 
-                if ( $term && ! is_wp_error( $term ) ) {
+                if ($term && ! is_wp_error($term)) {
                     $tax_query = [
                         [
                             'field'    => 'slug',
@@ -380,23 +395,24 @@ function archive_filter_posts( $query ) {
                         ]
                     ];
 
-                    $query->set( 'tax_query', $tax_query );
+                    $query->set('tax_query', $tax_query);
                 }
             }
         }
     }
 }
-add_action( 'pre_get_posts', 'archive_filter_posts' );
+add_action('pre_get_posts', 'archive_filter_posts');
 
 /**
  * Get term by slug
  */
-function get_term_by_slug( $term_slug ) {
+function get_term_by_slug($term_slug)
+{
     $term_object = "";
     $taxonomies = get_taxonomies();
-    foreach ( $taxonomies as $tax_type_key => $taxonomy ) {
+    foreach ($taxonomies as $tax_type_key => $taxonomy) {
         // If term object is returned, break out of loop. (Returns false if there's no object);
-        if ( $term_object = get_term_by( 'slug', $term_slug, $taxonomy ) ) {
+        if ($term_object = get_term_by('slug', $term_slug, $taxonomy)) {
             break;
         } else {
             $term_object = false;
@@ -406,31 +422,33 @@ function get_term_by_slug( $term_slug ) {
     return $term_object;
 }
 
-function get_the_time_ago() {
-    return ( get_the_time( 'U' ) >= strtotime( '-1 week' ) ) ? sprintf( esc_html__( '%s ago', 'ninja' ), human_time_diff( get_the_time ( 'U' ), current_time( 'timestamp' ) ) ) : get_the_date();
+function get_the_time_ago()
+{
+    return (get_the_time('U') >= strtotime('-1 week')) ? sprintf(esc_html__('%s ago', 'ninja'), human_time_diff(get_the_time('U'), current_time('timestamp'))) : get_the_date('d M Y');
 }
 
-if ( function_exists( 'get_coauthors' ) && ! function_exists( 'get_list_coauthors' ) ) {
+if (function_exists('get_coauthors') && ! function_exists('get_list_coauthors')) {
     /**
      * Get list of coauthors using Co Authors Plus plugin.
      */
-    function get_list_coauthors() {
+    function get_list_coauthors()
+    {
         $all_authors = get_coauthors();
 
         $output = '';
 
-        $count_authors = count( $all_authors );
+        $count_authors = count($all_authors);
         $i = 0;
 
-        foreach ( $all_authors as $author ) {
+        foreach ($all_authors as $author) {
             $i++;
-            if ( is_a( $author, 'WP_User' ) ) {
+            if (is_a($author, 'WP_User')) {
                 $output .= '<span>' . $author->data->display_name . '</span>';
             } else {
                 $output .= '<span>' . $author->display_name . '</span>';
             }
 
-            if ( $i < $count_authors ) {
+            if ($i < $count_authors) {
                 $output .= '<span class="comma">, </span>';
             }
         }
@@ -441,12 +459,13 @@ if ( function_exists( 'get_coauthors' ) && ! function_exists( 'get_list_coauthor
     /**
      * Override the default WordPress author filter to use the list of coauthors.
      */
-    add_filter( 'the_author', 'get_list_coauthors' );
+    add_filter('the_author', 'get_list_coauthors');
 }
 
-function custom_search_filter( $query ) {
-    if ( $query->is_search && ! is_admin() && $query->is_main_query() ) {
-        if ( isset($_GET['filter']) && $_GET['filter'] != 'all') {
+function custom_search_filter($query)
+{
+    if ($query->is_search && ! is_admin() && $query->is_main_query()) {
+        if (isset($_GET['filter']) && $_GET['filter'] != 'all') {
             $filter = $_GET['filter'];
             if ($filter == 'posts') {
                 $query->set('post_type', 'post');
@@ -456,14 +475,15 @@ function custom_search_filter( $query ) {
             // Adicione mais condições conforme necessário
         }
     }
-    
-    do_action( 'logger', $_GET );
-    
+
+    do_action('logger', $_GET);
+
     return $query;
 }
 add_action('pre_get_posts', 'custom_search_filter');
 
-function filter_newspack_sugestions( $managed_plugins ) {
+function filter_newspack_sugestions($managed_plugins)
+{
     $remove_sugestions = [
         'mailchimp-for-woocommerce',
         'woocommerce',
@@ -472,11 +492,11 @@ function filter_newspack_sugestions( $managed_plugins ) {
         'woocommerce-subscriptions'
     ];
 
-    foreach ( $remove_sugestions as $sugestion ) {
-        unset( $managed_plugins[$sugestion] );
+    foreach ($remove_sugestions as $sugestion) {
+        unset($managed_plugins[$sugestion]);
     }
 
     return $managed_plugins;
 }
 
-add_filter( 'newspack_managed_plugins', 'filter_newspack_sugestions' );
+add_filter('newspack_managed_plugins', 'filter_newspack_sugestions');

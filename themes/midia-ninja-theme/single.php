@@ -59,7 +59,7 @@ $coauthors = get_coauthors();
                             
                         ?>    
                         <div class="author-info-card">
-                            <?php echo get_avatar($author_id, 70);?>
+                            <?php echo get_avatar($author_id, 128);?>
                                 <?php if($author_bio): ?>
                                 <div class="authbio">
                                     <?php echo $author_bio; ?>
@@ -153,7 +153,7 @@ $coauthors = get_coauthors();
                             
                         ?>    
                         <div class="author-info-card">
-                            <?php echo get_avatar($author_id, 70);?>
+                            <?php echo get_avatar($author_id, 128);?>
                                 <?php if($author_bio): ?>
                                 <div class="authbio">
                                     <?php echo $author_bio; ?>

@@ -5,7 +5,7 @@
 	#app {
 		.container {
 			.header-and-footer-archive {
-				.cover-categoria {
+				.cover-categoria-desktop {
 					padding: 0;
 					border-radius: 8px;
 					max-width: 773px;
@@ -46,7 +46,7 @@
                                 font-size: 36px;
                                 font-style: normal;
                                 font-weight: 400;
-                                line-height: 145%; /* 52.2px */
+                                line-height: 145%;
 							}
 
 							.slick-list {
@@ -135,6 +135,7 @@
 						}
 
 						.wp-block-latest-posts {
+
 							.wp-block-latest-posts__post-title {
 								color: #FFF;
 								font-family: var(--wp--preset--font-family--manrope);
@@ -164,10 +165,12 @@
                     width: 100%;
                     margin-left: auto;
                     margin-right: auto;
+
                 }
 			}
 
 			.content {
+
 				.posts {
 					display: grid;
 					grid-template-columns: 1fr 1fr;

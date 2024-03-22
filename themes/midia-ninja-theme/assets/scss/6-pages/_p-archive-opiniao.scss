@@ -26,7 +26,11 @@
 					@media (min-width: 768px) {
 						background-color: #000;
 						border-radius: 8px;
+					}
+
+					@media (min-width: 992px) {
 						padding: 40px 100px;
+						gap: 130px;
 					}
 
 					> div {
@@ -40,6 +44,7 @@
 
 						.wpnbha {
 							margin-bottom: 0;
+							padding-left: 6px;
 
 							article .avatar {
 								width: 46px;
@@ -48,11 +53,32 @@
 						}
 					}
 
-					.wp-block-newspack-blocks-homepage-articles {
+					.wp-block-column:nth-child(2) {
 						.entry-title {
 							font-size: 14px;
 							line-height: 20px; /* 142.857% */
 							letter-spacing: -0.42px;
+							margin-bottom: 0;
+						}
+
+						.entry-meta {
+							> a {
+								display: none;
+							}
+
+							.byline {
+								margin: 0;
+							}
+						}
+
+						.latest-vertical-posts-block.colunas {
+							padding: 0;
+							margin: 0;
+
+							.post {
+								border-bottom: 1px solid #fff;
+								padding-bottom: 30px;
+							}
 						}
 					}
 
@@ -359,7 +385,7 @@
 										}
 										img {
 											max-width: 80px;
-											height: 80px;
+											height: auto;
 											border-radius: 50px;
 										}
 									}

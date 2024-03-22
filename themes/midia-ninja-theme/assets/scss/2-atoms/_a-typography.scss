@@ -33,13 +33,16 @@ h4 {
 h5 {
     font-family: $f_title;
     font-size: var(--s-h5);
-    line-height: calc(var(--s-h5) * 1.2);
+    font-weight: 500;
+    line-height: calc(var(--s-h5) * 1.5);
 }
 
 h6 {
     font-family: $f_title;
     font-size: var(--s-h6);
-    font-weight: 400;
+    font-weight: 500;
+    color: var(--wp--preset--color--primary-dark);
+    line-height: calc(var(--s-h6) * 1.35);
 
     @include mobile {
         font-size: 16px;
@@ -48,8 +51,10 @@ h6 {
 
 p {
     font-size: 16px;
-    line-height: 1.4;
-    color: var(--c-gray--darker);
+    line-height: 16px;
+    color: var(--wp--preset--color--primary-dark);
+    font-weight: 500;
+    font-family: $f_title;
 
     &:not(.has-text-color) {
         color: var(--c-gray--darker);

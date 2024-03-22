@@ -25,10 +25,10 @@
 
 					@media (min-width: 768px) {
 						background-color: #000;
+						border-radius: 8px;
 					}
 
 					@media (min-width: 992px) {
-						border-radius: 8px;
 						padding: 40px 100px;
 						gap: 130px;
 					}
@@ -385,7 +385,7 @@
 										}
 										img {
 											max-width: 80px;
-											height: 80px;
+											height: auto;
 											border-radius: 50px;
 										}
 									}

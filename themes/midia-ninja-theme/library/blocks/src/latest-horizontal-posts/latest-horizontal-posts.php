@@ -70,6 +70,11 @@ function latest_horizontal_posts_callback( $attributes ) {
         if ( false !== $cached_posts ) {
             $posts_query = $cached_posts;
         } else {
+
+            if ( $block_model == 'specials' ) {
+                $attributes['postType'] = 'especial';
+            }
+
             $args = build_posts_query( $attributes, $latest_horizontal_posts_ids );
             $posts_query = new \WP_Query( $args );
 

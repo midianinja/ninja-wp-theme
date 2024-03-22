@@ -9,6 +9,7 @@ get_header();
 ?>
 
 <div class="container">
+    <?php echo get_layout_header( 'category' ); ?>
     <main class="content col-md-9">
         <div class="posts">
             <?php while ( have_posts() ) : the_post(); ?>

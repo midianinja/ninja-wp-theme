@@ -43,16 +43,18 @@ document.addEventListener("DOMContentLoaded", function() {
             const postElement = document.createElement('a')
             postElement.classList.add ('post-card')
             postElement.href = post.link
-    
+            const imageUrl = post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : 'https://via.placeholder.com/400'
+            const getAuthor = post._embedded['author'][0].name
+        
             postElement.innerHTML = `
                 <div class="post-card--thumb">
-                    <img src="" alt="">
+                    <img src="${imageUrl}" alt="${post.title.rendered}">
                 </div>
                 <div class="post-card--content">
                     <h5 class="entry-title">${post.title.rendered}</h5>
                     
                     <div class="card-author">
-                        <span></span>
+                        <span>${getAuthor}</span>
                     </div>
             `
             postsDiv.appendChild(postElement)

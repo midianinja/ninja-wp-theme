@@ -84,10 +84,10 @@
 				header.post-header {
 					width: 100%;
 					max-width: 970px;
-					
 					display: flex;
+					
 					gap: 30px;
-
+					
 					img {
 						max-width: 100%;
 						height: auto;
@@ -102,6 +102,8 @@
 						position: absolute;
 						margin: 20px;
 
+						
+
 						a {
 							text-decoration: none;
 							border-radius: 4px;
@@ -111,6 +113,18 @@
 						a:nth-child(n + 2) {
 							display: none;
 						}
+					}
+
+					.author-info-mobile{
+						@media(min-width: 783px){
+							display: none;
+						}
+						.author-info-card{	
+							max-width: 320px;
+							width: 100%;
+							margin-left: auto;
+							margin-right: auto;
+						} 
 					}
 
 					.content-author {
@@ -188,14 +202,23 @@
 						}
 					}
 					.author-info{
+						display: flex;
+						flex-direction: column;
+						@media(max-width: 782px){
+							display: none;
+						}
+					}
+					.author-info-card{
 						border-radius: 8px;
 						background: var(--OURO, #FBF36E);
-						max-width: 170px;
-						height: 300px;
-						padding: 21px 13px 40px;
+						width: 170px;
+						height: auto;
+						padding: 21px 13px 22px;
 						text-align: center;
+						margin-bottom: 1rem;
 						.avatar{
-							margin-bottom: 2rem;	
+							margin-bottom: 2rem;
+							border-radius: 50%;
 						}
 						.authbio{
 							text-align: left;

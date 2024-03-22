@@ -181,6 +181,7 @@
 
             @include mobile {
                 margin-bottom: -1rem;
+                overflow: inherit;
             }
 
             article {
@@ -189,8 +190,10 @@
                 display: block;
                 position: relative;
                 
-                @include tablet {
-                    aspect-ratio: 1 / 1;
+                @include mobile {
+                    aspect-ratio: auto;
+                    background-color: transparent;
+                    height: auto;
                 }
 
                 .post-thumbnail {
@@ -201,10 +204,16 @@
                     width: 100%;
                     z-index: 1;
 
+                    @include mobile {
+                        height: auto;
+                        margin-bottom: 15px;
+                        position: relative;
+                    }
+
                     a {
                         display: block;
                         // aspect-ratio: 16 / 9;
-                        overflow: hidden;
+                        // overflow: hidden;
 
                         &::before {
                             content: "";
@@ -226,6 +235,11 @@
                             top:  50%;
                             transform: translate(-50%, -50%);
                             width: 100%;
+
+                            @include mobile {
+                                border-radius: 8px;
+                                margin-bottom: 30px;
+                            }
 
                             @media(max-width: $tablet-width){
                                 min-width: 100%;
@@ -250,9 +264,12 @@
                     z-index: 2;
 
                     @include mobile {
+                        background-color: var(--wp--preset--color--primary-pure);
+                        border-radius: 8px;
                         gap: size(15);
                         justify-content: center;
                         padding: size(30) size(20);
+                        max-width: 100%;
                     }
 
                     p {
@@ -267,6 +284,10 @@
                         &:last-of-type {
                             margin-bottom: 0;
                         }
+
+                        @include mobile {
+                            display: none;
+                        }
                     }
 
                     h2 {
@@ -275,54 +296,13 @@
                         font-weight: 800;
                         line-height: 120%;
                         letter-spacing: -0.64px;
-                        @media(max-width: 782px){
+
+                        @include mobile {
                             font-size: 20px;
+                            margin-bottom: 0;
+                            padding-bottom: 0;
+                            color: var(--wp--preset--color--primary-light);
                         }
-                    }
-                }
-            }
-        }
-
-        &.destaque-pequeno-sem-imagem {
-            background-color: var(--wp--preset--color--primary-pure);
-            border-radius: 8px;
-            color: var(--wp--preset--color--primary-light);
-            margin-bottom: size(30);
-            overflow: hidden;
-            padding: $s_medium;
-            @media(min-width: 783px){
-                display: none;
-            }
-
-            @include tablet {
-                padding: $s_small;
-            }
-
-            @include mobile {
-                margin-bottom: 1.2rem;
-            }
-
-            article {
-                .post-thumbnail{
-                    @include mobile{
-                        height: 107px;
-                        width: 112px;   
-                    }
-                }
-                .entry-wrapper {
-                    @media(max-width:782px){
-                        flex-basis: 60% !important;
-                    }
-                    .cat-links {
-                        margin-bottom: $s_small;
-                    }
-                }
-
-                .entry-title {
-                    color: var(--wp--preset--color--primary-light);
-                    margin-bottom: 0;
-                    @include mobile{
-                        font-size: 20px;
                     }
                 }
             }
@@ -332,6 +312,7 @@
             margin-top: 2rem;
             @include mobile {
                 margin-bottom: -1.3rem;
+                margin-top: 0;
             }
             div[data-posts]{
                 :nth-child(n+3){
@@ -595,6 +576,9 @@
 
     .sessao-opiniao{
         font-family: 'Manrope', serif;
+        @media(max-width: 1199px){
+            display: block;
+        }
         @include mobile {
             gap: 0;
             margin-bottom: 0;
@@ -688,11 +672,36 @@
         .wp-block-cover{
             padding: 60px 35px 54px;
             margin-bottom: -30px ;
+            @media(max-width: 1199px){
+                max-width: 380px;
+                width: 100%;
+            }
+            
             @media(max-width: 782px){
                 margin-bottom: 0;
             }
+            @media(max-width: 400px){
+                max-width: 350px;
+                padding: 15px 35px 54px;        
+            }
+            .wp-block-cover__inner-container{
+                @media(max-width: 1199px){
+                    max-width: 302px;
+                    width: 100%;
+                }
+            }
+            
             img{
                 height: 347px;
+                @media(max-width: 1199px){
+                    width: 370px;
+                }
+                @media(max-width: 400px){
+                    margin-left: auto;
+                    margin-right: auto;
+                    max-width: 330px;
+                    height: 311px;        
+                }
             }
            
             .wp-block-newspack-blocks-homepage-articles{
@@ -717,6 +726,7 @@
                         font-weight: 700;
                         line-height: 130%;
                         color: #111;
+                       
                     }
                     
                 }
@@ -757,6 +767,7 @@
             margin-top: 20px !important;
             @media(max-width: 782px){
                margin-bottom: -2rem !important;
+               margin: -10px 0 !important;
             }
 
         }
@@ -1040,10 +1051,18 @@
         }
     }
     .latest-editorial-posts-block{
+        .container{
+            @media(max-width: 992px){
+                padding-left: 0; 
+                padding-right: 0; 
+                
+            }
+        }
         .latest-editorial-posts-block__header{
             
             @media(max-width: 992px){
-                display: none;  
+                display: none;
+               
             }
             svg, h2{
                 @media(max-width: 992px){
@@ -1096,7 +1115,7 @@
                         .post--terms{
                             ul{
                                 @media(max-width: 768px){
-                                   margin-left: -1.3rem;
+                                   margin-left: -1rem;
                                    margin-bottom: -1rem;
                                 }
                             }

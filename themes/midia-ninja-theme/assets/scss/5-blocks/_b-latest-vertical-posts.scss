@@ -59,6 +59,19 @@
 							display: none;
 						}
 
+						li {
+							background-color: transparent !important;
+							color: #333 !important;
+							font-family: Manrope;
+							font-size: 10px;
+							font-style: normal;
+							font-weight: 700;
+							line-height: 21px;
+							letter-spacing: 1px;
+							margin: 0;
+							padding: 0;
+						}
+
 						li::after {
 							content: "";
 						}

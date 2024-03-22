@@ -17,6 +17,7 @@ get_header();
 
 <div class="container">
     <main class="content col-md-9">
+    <?php echo get_layout_header('afluentes'); ?>
         <div class="search">
             <h2>Buscar por: </h2>
             <?php get_template_part( 'template-parts/search-form' ); ?>
@@ -26,6 +27,8 @@ get_header();
                 <?php get_template_part( 'template-parts/content/post' ); ?>
             <?php endwhile; ?>
         </div>
+        <?php echo get_layout_footer('afluentes'); ?>
+
         <?php get_template_part( 'template-parts/content/pagination' ); ?>
     </main>
 </div>

@@ -16,7 +16,7 @@ get_header();
 ?>
 
 <div class="container">
-    <main class="content col-md-9">
+    <main class="content col-md-12">
     <?php echo get_layout_header('afluentes'); ?>
         <div class="search">
             <h2>Buscar por: </h2>

@@ -4,7 +4,8 @@
 .home {
 
     #app{
-        background-color: #f5f5f5;
+        background-color:var(--wp--preset--color--secondary-light);
+        overflow-y: hidden;
     }
 
     .page-header{
@@ -429,7 +430,7 @@
     .anuncio-ninja-mobile{
         margin-bottom : 0;
         img{
-            max-width: 315px;
+            max-width: 329px;
             width: 100%;
         }
     }
@@ -905,6 +906,9 @@
             margin-bottom: 0;
             letter-spacing: normal;
         }
+        .video-title{
+            display: none;
+        }
     }
     .videos-desktop{
         padding: 0 0;
@@ -1184,13 +1188,13 @@
                         font-size: 16px;
                         color: #595D62;
                         @media(max-width: 782px){
-                            color: #f5f5f5;
+                            color: var(--wp--preset--color--secondary-light);
                         }
                     }
                     @media(max-width: 782px){
                         background-color: transparent;
                         border: 1px solid #d9d9d9;
-                        color: #f5f5f5;
+                        color: var(--wp--preset--color--secondary-light);
 
                     }
                     @media(max-width: 600px){
@@ -1235,14 +1239,14 @@
         h2{
             margin-top: 35px;
             margin-bottom: 25px;
-            color: #F5F5F5;
+            color: var(--wp--preset--color--secondary-light);
         }
         p{
             margin-bottom: 20px;
         }
     }
     .colunistas-ninja{
-        background-color: #f5f5f5;
+        background-color: var(--wp--preset--color--secondary-light);
         @media(max-width: 782px){
             display: flex;
         }

@@ -66,6 +66,7 @@
             .scroll-ratio{
                 height: auto;
                 .sidebar-itens{
+                    overflow-x: hidden;
                     button{
                         &:hover{
                             background: #262626 !important;
@@ -73,11 +74,17 @@
                     }
                     .embed-template-block{
                         display: block;
+                        p{
+                            color: #fff;
+                        }
                         figure{
                             margin-top: 1rem;
                             iframe{
                                 height: 96px;
                             }
+                        }
+                        .midia-conteudo_2{
+                            display: none;
                         }
                     }         
                 }

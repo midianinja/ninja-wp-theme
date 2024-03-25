@@ -397,6 +397,14 @@ class Assets
                     return is_author();
                 },
             ],
+
+            'category' => [
+				'file' => '_p-category.css',
+				'preload_callback' => function() {
+					return is_category( );
+				},
+			],
+            
             'anchor' => [
                 'file' => '_p-page-anchor.css',
                 'preload_callback' => function () {

@@ -113,6 +113,9 @@
 
         .grid-videos{
             background-color:var(--wp--preset--color--secondary-light);
+            .container{
+                padding: 0px 0 48px;
+            }
             .latest-horizontal-posts-block__slides{
                 &::before,
                 &::after{
@@ -168,11 +171,13 @@
         }
         .anuncio-ninja-mobile{
             margin-bottom : 0;
+            margin-top: 2rem; 
             display: flex;
             justify-content: center;
             img{
                 max-width: 270px;
                 width: 100%;
+                margin-left: auto;
             }
         }    
         .videos-desktop{

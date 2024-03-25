@@ -3,6 +3,7 @@
 
 .page-videos-midia-ninja{
     #app{
+        background-color:var(--wp--preset--color--secondary-light);
         .anuncio-desktop{
             margin-top : 2rem;
             margin-bottom : 2rem;
@@ -21,12 +22,156 @@
                 display: none;
             }
         }
+        .mais-videos {
+			background-color: #000;
+			border: 2px solid var(--SECONDARY, #000);
+			margin: 30px 0;
+            max-width: 367px;
+            width: 100%;
+            padding: 51px 33px 30px 33px;
+            border-radius: 12px;
+
+            h2{
+				font-family: 'Manrope', sans-serif;
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 120%; /* 38.4px */
+                letter-spacing: -0.64px;
+                text-transform: uppercase;
+                margin-bottom: 1.5rem;
+			}
+
+            .container{
+                padding: 0;
+                @media(max-width: 992px){
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+                .latest-horizontal-posts-block__slides{
+                    &::before,
+                    &::after{
+                        display: none;
+                    }
+                    .slick-track{
+                        width: 327px !important;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    .slick-slide{
+                       width: 300px !important;
+                       a{
+                        text-decoration: none;
+                        }
+                       .post{
+                            display: flex;
+                            margin-bottom: 2rem;
+                            gap: 0.9rem;
+                            .post-thumbnail{
+                                width: 136px;
+                                height: 97px;
+                                display: flex;
+                                margin-left: 0;
+                                margin-right: 0;
+                            }
+                            .play{
+                                display: none;
+                            }
+                            .post-content{
+                                max-width: 147px;
+                                width: 100%;
+                            }
+                            .video-title{
+                                font-family: 'Manrope', sans-serif;
+                                font-size: 13px;
+                                font-weight: 500;
+                                line-height: 145%;
+                                color: #FFF;
+                            }
+                        }
+                    }    
+                }
+            }
+
+			.latest-vertical-posts-block__footer {
+				.latest-vertical-posts-block__arrows .slick-arrow {
+					background-color: #fff;
+					opacity: 0.2;
+					background-image: url("/wp-content/themes/midia-ninja-theme/assets/images/arrow-left-slider-black.png");
+
+					&:hover {
+						//background-color: #fff;
+						opacity: 1;
+					}
+				}
+
+				.latest-vertical-posts-block__dots .slick-dots li {
+					background-color: #fff;
+				}
+			}
+		}
+
+        .grid-videos{
+            background-color:var(--wp--preset--color--secondary-light);
+            .latest-horizontal-posts-block__slides{
+                &::before,
+                &::after{
+                    display: none;
+                }
+                a{
+                    text-decoration: none;
+                }
+                flex-basis: 100%;
+                .slick-track{
+                   width: 810px !important;
+                   display: grid;
+                   grid-template-columns: 1fr 1fr;
+                   gap: 0rem;
+                   margin-left: 0;
+                   margin-right: 0;
+                }
+                .slick-slide{
+                    width: 370px !important;
+                    margin: 0 0 0 15px !important;
+                }
+                .post-thumbnail{
+                    max-width: 370px;
+                    height: 208px;
+                    margin-left: 0;
+                    margin-right: 0;
+                    margin-top: 2rem;
+                }
+                .play{
+                    display: none;
+                }
+                .post-content{
+                    margin-top: 1rem;
+                    width: 370px;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+                .video-title{
+                    font-family: 'Manrope', serif;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 125%;
+                    letter-spacing: -0.24px;
+                    color: #111;
+                    
+                }
+                
+            }
+            .latest-horizontal-posts-block__footer{
+                display: none !important;
+            }
+        }
         .anuncio-ninja-mobile{
             margin-bottom : 0;
             display: flex;
             justify-content: center;
             img{
-                max-width: 315px;
+                max-width: 270px;
                 width: 100%;
             }
         }    
@@ -40,6 +185,10 @@
                 font-weight: 400;
                 margin-bottom: 0;
                 letter-spacing: normal;
+            }
+
+            .video-title{
+                display: none;
             }
             .container{
                 padding: 55px 0 25px 76px !important;

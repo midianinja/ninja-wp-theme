@@ -42,7 +42,7 @@
 
 							h2 {
                                 color: var(--DARK, #111);
-                                font-family: "Tipo Ninja";
+                                font-family: "MidiaNinja", serif;
                                 font-size: 36px;
                                 font-style: normal;
                                 font-weight: 400;
@@ -78,20 +78,18 @@
 
 												&-meta {
 													&--date {
-														color: var(--Gray-1, #333);
+														color: #000;
 														font-family: var(--wp--preset--font-family--manrope);
-														font-size: 10px;
+														font-size: 13px;
 														font-style: normal;
-														font-weight: 400;
-														line-height: 21px;
-														letter-spacing: 1px;
-														text-transform: uppercase;
+														font-weight: 500;
+														line-height: 145%;
 													}
 
 													&--terms {
 														.tax-category {
 															li {
-																color: var(--Gray-1, #333) !important;
+																color: var(--wp--preset--color--azul-light) !important;
 																font-family: var(--wp--preset--font-family--manrope);
 																font-size: 10px;
 																font-style: normal;
@@ -121,6 +119,10 @@
 						padding: 60px 51px 59px 69px;
 
 						.taxonomy-category {
+							height: 22px;
+							overflow: hidden;
+							width: 150px;
+
 							a {
 								color: var(--wp--preset--color--secondary-light);
 								text-align: center;
@@ -131,6 +133,9 @@
 								line-height: 155%;
 								letter-spacing: -0.42px;
 								text-decoration: none;
+								width: 150px;
+								overflow: hidden;
+								display: flex;
 							}
 						}
 
@@ -145,6 +150,9 @@
 								line-height: 120%;
 								letter-spacing: -0.64px;
 								text-decoration: none;
+								height: 228px;
+								//overflow: hidden;
+								text-overflow: ellipsis;
 							}
 
 							.wp-block-latest-posts__post-excerpt {
@@ -170,6 +178,8 @@
 			}
 
 			.content {
+
+				margin-bottom: 100px;
 
 				.posts {
 					display: grid;

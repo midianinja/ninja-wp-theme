@@ -11,6 +11,20 @@
 					max-width: 773px;
 					width: 100%;
 
+					@include mixins.small{
+						max-width: 330px;
+						width: 100%;
+						margin-right: auto;
+						margin-left: auto;
+					}
+
+					@include mixins.mobile{
+						max-width: 330px;
+						width: 100%;
+						margin-right: auto;
+						margin-left: auto;
+					}
+
 					.wp-block-cover__inner-container {
 						.wp-block-columns {
 							margin-bottom: 0 !important;
@@ -21,6 +35,20 @@
 				}
 
 				.colunas-categoria {
+
+					@include mixins.small{
+						max-width: 330px;
+						width: 100%;
+						margin-right: auto;
+						margin-left: auto;
+					}
+
+					@include mixins.mobile{
+						max-width: 330px;
+						width: 100%;
+						margin-right: auto;
+						margin-left: auto;
+					}
 
 					.coluna-imagem {
 						width: calc(100% + 50px);
@@ -36,6 +64,22 @@
                         height: 448px;
                         position: relative;
                         left: -6%;
+
+						@include mixins.small{
+							max-width: 330px;
+							width: 100%;
+							margin-left: auto;
+							margin-right: auto;
+							left: -12px;
+						}
+
+						@include mixins.mobile{
+							max-width: 330px;
+							width: 100%;
+							margin-left: auto;
+							margin-right: auto;
+							left: -12px;
+						}
 
 						.latest-vertical-posts-block {
 							background-color: #fff;
@@ -118,6 +162,20 @@
 						height: 450px;
 						padding: 60px 51px 59px 69px;
 
+						@include mixins.small{
+							height: 315px;
+							padding: 16px;
+							position: relative;
+							top: 105px;
+						}
+
+						@include mixins.mobile{
+							height: 315px;
+							padding: 16px;
+							position: relative;
+							top: 105px;
+						}
+
 						.taxonomy-category {
 							height: 22px;
 							overflow: hidden;
@@ -164,6 +222,14 @@
 								font-weight: 500;
 								line-height: 140%;
 								margin-top: 24px;
+
+								@include mixins.small{
+									display: none;
+								}
+
+								@include mixins.mobile{
+									display: none;
+								}
 							}
 						}
 					}
@@ -175,16 +241,36 @@
                     margin-left: auto;
                     margin-right: auto;
 
+					@include mixins.small{
+						max-width: 300px;
+						height: 55px;
+					}
+
+
+					@include mixins.mobile{
+						max-width: 300px;
+						height: 55px;
+					}
+
                 }
 			}
 
 			.content {
-
 				margin-bottom: 100px;
 
 				.posts {
 					display: grid;
 					grid-template-columns: 1fr 1fr;
+
+					@include mixins.small{
+						display: flex;
+						flex-direction: column;
+					}
+
+					@include mixins.small{
+						display: flex;
+						flex-direction: column;
+					}
 
 					.post {
 
@@ -251,6 +337,14 @@
 				border-radius: 12px;
 				border: 2px solid #cccc;
 				background: #fff;
+
+				@include mixins.small{
+					display: none;
+				}
+
+				@include mixins.mobile{
+					display: none;
+				}
 
 				.latest-vertical-posts-block {
 					background-color: #fff;

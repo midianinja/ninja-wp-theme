@@ -2,6 +2,9 @@
 @import "./../2-atoms/a-mixins";
 
 .page-videos-midia-ninja{
+    header{
+        display: none;
+    }
     #app{
         background-color:var(--wp--preset--color--secondary-light);
         .anuncio-desktop{
@@ -20,6 +23,67 @@
             justify-content: center;
             @media(min-width: 993px){
                 display: none;
+            }
+        }
+        .tv-ninja{
+            background-color: var(--wp--preset--color--primary-pure);
+            border-radius: 8px;
+            padding: 42px 65px 76px 70px;
+            margin-top: 30px;
+
+
+            h4{
+                color: #FFF;
+                font-family: "Archivo Expanded", serif;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 155%;
+                letter-spacing: -0.42px;
+                text-transform: uppercase;
+            }
+            h2{
+                color: #FFF;
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 800;
+                line-height: 120%; /* 38.4px */
+                letter-spacing: -0.64px;
+                font-size: 32px;
+            }
+            .video-gallery-block-title{
+                display: none;
+            }
+            .video-gallery-wrapper{
+                grid-template-columns: 1.8fr 1fr;
+                box-shadow: none;
+            }
+            .embed-template-block{
+                figure{
+                    iframe{
+                    border-radius: 8px;
+
+                    }
+                }
+            }
+            .scroll-ratio{
+                height: auto;
+                .sidebar-itens{
+                    button{
+                        &:hover{
+                            background: #262626 !important;
+                        }
+                    }
+                    .embed-template-block{
+                        display: block;
+                        figure{
+                            margin-top: 1rem;
+                            iframe{
+                                height: 96px;
+                            }
+                        }
+                    }         
+                }
             }
         }
         .mais-videos {

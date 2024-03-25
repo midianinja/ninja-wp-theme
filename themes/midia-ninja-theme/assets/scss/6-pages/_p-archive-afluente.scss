@@ -1,5 +1,113 @@
 .post-type-archive-afluente{
     .content{
+		.col-md-9{
+			@media(min-width: 992px){
+				width: 100%;
+			}
+			
+		}
+		.afluentes{
+			p{margin: 0px !important;}
+			h2{margin:0px !important;}
+			gap:0px;
+			border-radius: 10px 10px !important;
+			margin-top: 32px;
+			@media(max-width:991px){
+				display: none;
+			}
+			
+			& .col-1{
+				width: 770px;
+				.wp-block-cover{
+					margin: 0px;
+					padding: 0px;
+					border-radius: 5px;
+					width: 770px;
+					.wp-block-columns {
+						margin: 0px;
+						height: 506px;
+						gap: 0px;
+						.col-inscription{
+							max-width: 400px;
+							padding-left: 64px;
+							padding-top: 64px;
+							fill: rgba(51, 51, 51, 0.70);
+							backdrop-filter: blur(17.6999998093px);
+							& .inscription{
+							 color: #FFF;
+							 font-family: "Archivo Expanded";
+							 font-size: 14px;
+							 font-style: normal;
+							 font-weight: 800;
+							 line-height: 155%; /* 21.7px */
+							 letter-spacing: -0.42px;
+							 text-transform: uppercase;
+							}
+							& .title-seja-ninja{
+							 color: #FFF;
+							 /* <h1> Manrope */
+							 font-family: Manrope;
+							 font-size: 48px;
+							 font-style: normal;
+							 font-weight: 800;
+							 line-height: 115%; /* 55.2px */
+							 letter-spacing: -1.44px;
+							}
+							& .description-seja-ninja{
+							 color: #FFF;
+							 font-family: Manrope;
+							 font-size: 13px;
+							 font-style: normal;
+							 font-weight: 500;
+							 line-height: 145%; /* 18.85px */
+							 margin-top: 20px !important;
+							 max-width: 257px;
+							}               
+						}
+					}
+				}
+			}
+			& .col-2{            
+				max-width: 367px !important;
+				height: 506px;
+				margin-left: 27px !important;
+				@media(max-width:991px){
+					display: none;
+				}
+				.wp-block-cover{
+					margin: 0px; 
+					padding: 0px;
+					border-radius: 5px;
+					.wp-block-cover__inner-container{
+						height: 506px;
+						figure{
+							margin-top: 30px;
+							margin-left: 8px;
+						}
+						.container-a-midia-ninja{
+							margin-left: 33px !important;
+							margin-right: 32px !important;
+							h4{
+								margin: 0px;
+								margin-top: 22px;
+							}
+						}
+						p{
+							color: var(--White, #FFF);
+							/* <small> Manrope */
+							font-family: Manrope;
+							font-size: 13px;
+							font-style: normal;
+							font-weight: 500;
+							line-height: 145%; /* 18.85px */
+						}
+					}
+				}
+				.colunas{
+					height: 506px;
+				}
+			}
+		}
         @import "../6-pages/p-search";
         .search{
             display: flex;

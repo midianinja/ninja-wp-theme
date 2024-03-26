@@ -73,13 +73,13 @@
                         }
                     }
                     .embed-template-block{
-                        display: block;
+                        display: flex;
+                        flex-direction: column-reverse;
                         padding-right: 0.5rem;
                         p{
                             color: #fff;
                         }
                         figure{
-                            margin-top: 1rem;
                             iframe{
                                 height: 96px;
                             }

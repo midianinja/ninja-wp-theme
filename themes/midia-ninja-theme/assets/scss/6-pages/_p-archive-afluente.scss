@@ -108,11 +108,19 @@
 				}
 			}
 		}
+		.afluentes-mob{
+			display: none;
+			@media(max-width:991px){
+				display: block;
+				margin-top: 32px;
+			}
+		}
         @import "../6-pages/p-search";
         .search{
             display: flex;
-            align-items: center;
-            margin-top: 47px;
+			align-items: center;
+			margin-top: 47px;
+			justify-content: center;
             h2{
                 margin: 0px;
                 color: var(--Gray-1, #333);
@@ -134,8 +142,8 @@
                     }
                     i{
                         position: absolute;
-                        right: 83px;
-                        top: 570px;
+						right: 200px;
+						top: 710px;
                         height: 32px;
                         width: 32px;
                         background-image: url($p_theme_assets + "/images/generic.png");

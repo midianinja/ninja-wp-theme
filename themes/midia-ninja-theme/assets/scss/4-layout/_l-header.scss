@@ -1,10 +1,6 @@
 @import "./../1-settings/_s-variables";
 @import "./../2-atoms/a-mixins";
 
-body {
-	transition: all 0.4s 0.4s ease;
-}
-
 #wpadminbar ~ header {
 	padding-top: 20px;
 }

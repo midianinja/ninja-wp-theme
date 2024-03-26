@@ -14,8 +14,12 @@ get_header();
         
         <div class="posts">
             <?php while (have_posts()) : the_post(); ?>
-                <?php get_template_part('template-parts/content/post'); ?>
+                <?php get_template_part('template-parts/content/post-galeria'); ?>
             <?php endwhile; ?>
+
+            <div class="acervo">
+                <?php flickr_get_contents($api_key, $flickr_by_type, $data_id, $block_id);?>
+            </div>
         </div>
         <?php echo get_layout_footer('galeria'); ?>
 

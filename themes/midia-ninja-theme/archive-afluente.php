@@ -16,21 +16,26 @@ get_header();
 ?>
 
 <div class="container">
-    <main class="content col-md-12">
     <?php echo get_layout_header('afluentes'); ?>
+    
+    <main class="content col-md-12">
+        
         <div class="search">
             <h2>Buscar por: </h2>
-            <?php get_template_part( 'template-parts/search-form' ); ?>
+            <?php get_template_part('template-parts/search-form'); ?>
         </div>
+        
         <div class="posts">
-            <?php while ( have_posts() ) : the_post(); ?>
-                <?php get_template_part( 'template-parts/content/post' ); ?>
+            <?php while (have_posts()) : the_post(); ?>
+                <?php get_template_part('template-parts/content/post'); ?>
             <?php endwhile; ?>
         </div>
-        <?php echo get_layout_footer('afluentes'); ?>
 
-        <?php get_template_part( 'template-parts/content/pagination' ); ?>
+        <?php get_template_part('template-parts/content/pagination'); ?>
+        
     </main>
+
+    <?php echo get_layout_footer('afluentes'); ?>
 </div>
 
 <?php get_footer(); ?>

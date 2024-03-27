@@ -13,13 +13,14 @@ get_header();
     <?php echo get_layout_header('galeria'); ?>
         
         <div class="posts">
-            <?php while (have_posts()) : the_post(); ?>
-                <?php get_template_part('template-parts/content/post-galeria'); ?>
-            <?php endwhile; ?>
-
-            <div class="acervo">
-               
+            <div class="seletas">
+                <h4><?php _e('Select', 'ninja');?></h4>
+            
+                <?php while (have_posts()) : the_post(); ?>
+                    <?php get_template_part('template-parts/content/post-galeria'); ?>
+                <?php endwhile; ?>
             </div>
+            
         </div>
         <?php echo get_layout_footer('galeria'); ?>
 

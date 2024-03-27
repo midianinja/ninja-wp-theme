@@ -500,3 +500,25 @@ function filter_newspack_sugestions($managed_plugins)
 }
 
 add_filter('newspack_managed_plugins', 'filter_newspack_sugestions');
+
+/**
+ * Add a social fields to Co-Authors Plus
+ */
+
+function add_guest_author_fields( $fields_to_return, $groups ) {
+    if ( in_array( 'contact-info', $groups ) ) {
+        $_fields_from_user = ['avatar', 'description', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube' ];
+
+        foreach ( $_fields_from_user as $_field ) {
+            $fields_to_return[] = [
+                'key'   => $_field,
+                'label' => ucfirst( $_field ),
+                'group' => 'contact-info'
+            ];
+        }
+    }
+
+    return $fields_to_return;
+}
+
+add_filter( 'coauthors_guest_author_fields', 'add_guest_author_fields', 10, 2 );

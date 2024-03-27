@@ -252,6 +252,7 @@
         .videos-desktop{
             padding: 0 0;
             margin-bottom: 0;
+            background-color: #262626 !important;
     
             h2 {
                 font-family: "MidiaNinja", sans-serif;
@@ -265,31 +266,53 @@
                 display: none;
             }
             .container{
-                padding: 55px 0 25px 76px !important;
+                padding: 80px 25px 0px 76px !important;
+            }
+            .latest-horizontal-posts-block__content{
+                margin-top: -7rem;
             }
             .latest-horizontal-posts-block__slides{
                 flex-basis: 100% !important;
                 &::before {
                     display: none;
                 }
+                .slick-list{
+                    min-height: 400px;
+                }
                 .slick-track{
                     display: flex;
                     flex-wrap: nowrap;
-                    margin-left: 90px;
+                    margin-left: 80px;
                 }
                 .slick-slide{
-                    width: 325px !important;
-                    height: 182px;
-                    margin: 0 18px 0 15px;
+                    width: 170px !important;
+                    height: 302px;
+                    margin: 0 15px;
+                    
+                }
+                .post{
+                    
+                    border-radius: 12px;  
+                }
+                .post-thumbnail{
+                    width: 170px;
+                    height: 302px; 
+                    border-radius: 12px;
+                    box-shadow: 0px 28px 36px 0px rgba(0, 0, 0, 0.50);
+                    .play{
+                        display: none;
+                    }
+                     
                 }
             }
-            @media(max-width: 992px){
-                display: none;
-            }
+            
         }
         .newsletter-desktop{
-            background-color: #111;
-            margin-top: 0;
+            background-color: #262626;
+            margin-top: -2.5rem;
+            .wp-block-cover__background{
+                opacity: 0;
+            }
             .wp-block-columns{
                 gap: 100px;
                 @media(max-width: 992px){

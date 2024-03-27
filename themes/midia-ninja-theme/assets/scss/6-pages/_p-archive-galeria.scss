@@ -10,6 +10,8 @@
 		background-color: #f5f5f5;
 
 		.container .content {
+			padding: 0;
+
 			.header-and-footer-archive.position-header {
 				.galeria {
 					gap: 16px;
@@ -74,10 +76,70 @@
 				}
 
 				.latest-vertical-posts-block.colunas {
-					margin-top: 0px;
+					margin: 0px;
+					height: 100%;
 
 					h2 {
 						font-size: 28px;
+
+						@media (min-width: 768px) {
+							font-size: 32px;
+						}
+					}
+
+					.slide {
+						display: grid !important;
+						grid-template-columns: 1fr 1fr;
+						gap: 20px;
+					}
+
+					.post {
+						display: flex;
+						flex-wrap: wrap;
+						width: 122px;
+
+						@media (min-width: 768px) {
+							width: 135px;
+						}
+
+						.post-thumbnail {
+							flex-basis: 122px;
+
+							@media (min-width: 768px) {
+								flex-basis: 135px;
+							}
+
+							img {
+								border-radius: 8px;
+							}
+						}
+
+						.post-title {
+							font-size: 14px;
+							font-weight: 500;
+							line-height: 130%;
+						}
+					}
+				}
+			}
+
+			.posts {
+				display: flex;
+
+				.post-card {
+					img {
+						max-width: 370px;
+						border-radius: 8px;
+					}
+
+					.post-card--content {
+						color: #000;
+						font-family: Manrope;
+						font-size: 24px;
+						font-style: normal;
+						font-weight: 800;
+						line-height: 120%; /* 28.8px */
+						letter-spacing: -0.72px;
 					}
 				}
 			}

@@ -191,6 +191,7 @@ $coauthors = get_coauthors();
         <?php endwhile; ?>
 
         <section class="post-footer">
+            <h4>Conheça outros colunistas</h4>
             <div class="related-posts">
                 <?php get_template_part('./template-parts/content/related-posts'); ?>
             </div>

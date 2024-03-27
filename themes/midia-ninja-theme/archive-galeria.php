@@ -13,13 +13,9 @@ get_header();
     <?php echo get_layout_header('galeria'); ?>
         
         <div class="posts">
-            <div class="seletas">
-                <h4><?php _e('Select', 'ninja');?></h4>
-            
-                <?php while (have_posts()) : the_post(); ?>
-                    <?php get_template_part('template-parts/content/post-galeria'); ?>
-                <?php endwhile; ?>
-            </div>
+            <?php while (have_posts()) : the_post(); ?>
+                <?php get_template_part('template-parts/content/post-galeria'); ?>
+            <?php endwhile; ?>
             
         </div>
         <?php echo get_layout_footer('galeria'); ?>

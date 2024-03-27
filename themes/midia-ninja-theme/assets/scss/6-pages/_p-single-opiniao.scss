@@ -1,7 +1,8 @@
 #single-opiniao{
     h2,p{margin: 0px!important; padding: 0px !important;}
-
+    
     main{
+        
         article{
             max-width: initial;
             margin: initial;
@@ -108,9 +109,57 @@
                 }
                 .page-share{
                     margin-top: 32px;
+                    
                 }
             }
         }
+        .related{
+            .related-post{
+                display: flex;
+                .related-post-image{
+                    img{
+                        height: 70px;
+                        width: 70px;
+                        flex-shrink: 0;
+                        border-radius: 70px;
+                        object-fit: cover;
+                        margin-right: 30px;
+                    }
+
+                }
+                .related-post-content{
+                    span{
+                        display: none;
+                    }
+                    .info{
+                        h5{
+                            color: var(--Primary-dark, var(--DARK, #111));
+                            /* <h4> Manrope */
+                            font-family: Manrope;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 130%; /* 26px */
+                        }
+                    }
+                    
+                }
+
+            }
+            .related-post:last-child{
+                display: none !important;
+            }
+           
+        }
+        .comments{
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            padding-top: 0px;
+        }
     }
-    
+    .post-footer{
+        h4{
+            margin-top: 0px;
+        }
+    }
 }

@@ -1,0 +1,73 @@
+#single-opiniao{
+    h2,p{margin: 0px!important; padding: 0px !important;}
+    
+    
+    main{
+        article{
+            max-width: initial;
+            margin: initial;
+            header{
+                max-width: initial !important;
+                gap:130px !important;
+                & .post-info{
+                    margin-top: 153px;
+                    img{
+                        display: none;
+                    }
+                    .title{
+                        h2{
+                            color: var(--PURE, #262626);
+                            font-family: 'Manrope',sans-serif;
+                            font-size: 48px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 120%; /* 57.6px */
+                            letter-spacing: -1.44px;
+                        }
+                    }
+                    .excerpt{
+                        p{
+                            color: var(--PRIMARY-PURE, #848484);
+                            font-family: Manrope;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 150%; /* 30px */
+                            margin-top: 24px;
+                            margin-bottom: 31px;
+                        }
+                    }
+                }
+                .author-info{
+                    & .author-info-card{
+                        width: 270px;
+                        height: 497px;
+                        border-radius: 8px;
+                        background: var(--Gray-1, #333);
+                        flex-shrink: 0;
+                        img{
+                            width: 175.648px;
+                            height: 175px;
+                        }
+                        .authbio{
+                            color: var(--White, #FFF);
+                            font-family: 'Manrope',sans-serif;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 130%; /* 15.6px */
+                            border-top: 1px solid #F2F2F2 ;
+                            margin: 0px 32px;
+                        }
+                        .social-networks{
+                            margin: 0px 32px;
+                            margin-top: 48px;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    
+}

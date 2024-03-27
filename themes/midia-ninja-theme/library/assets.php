@@ -385,10 +385,10 @@ class Assets
                 },
             ],
 
-            'archive-galeria' => [
-                'file' => '_p-archive-galeria.css',
+            'page-galeria' => [
+                'file' => '_p-page-galeria.css',
                 'preload_callback' => function () {
-                    return is_post_type_archive('galeria');
+                    return ! is_front_page() && is_page();
                 },
             ],
 

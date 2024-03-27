@@ -59,6 +59,9 @@
 				h2 {
 					line-height: 130%;
 					/* 26px */
+					@media(max-width: 782px){
+						font-size: 32px;
+					}
 				}
 
 				h1,
@@ -116,6 +119,8 @@
 					}
 
 					.author-info-mobile{
+						margin-bottom: -2rem;
+    					margin-top: -1rem;
 						@media(min-width: 783px){
 							display: none;
 						}
@@ -124,6 +129,37 @@
 							width: 100%;
 							margin-left: auto;
 							margin-right: auto;
+							text-align: left;
+							display: flex;
+							gap: 1.5rem;
+							align-items: center;
+							padding: 21px 13px 19px 20px;
+					
+							img.avatar{
+								width: 92px;
+								height: 92px;
+								margin-bottom: 0;
+							}
+							.auth-name-icons{
+								flex-direction: column;
+							}
+							.authname{
+								font-family: 'Manrope', serif;
+								font-size: 20px;
+								font-style: normal;
+								font-weight: 700;
+								line-height: 130%;
+								padding-bottom: 5px;
+								border-bottom: 1px solid #000;
+								max-width: 1740px;
+								width: 100%;
+							}
+							.social-networks{
+								max-width: 174px;
+								width: 100%;
+								justify-content: flex-start;
+								gap: 1rem;
+							}
 						} 
 					}
 
@@ -226,7 +262,7 @@
 							border-top: 1px solid #000;
 							color: var(--DARK, #111);
 							font-family: 'Manrope', serif;
-							font-size: 12px;
+							font-size: 13px;
 							font-style: normal;
 							font-weight: 400;
 							line-height: 130%;

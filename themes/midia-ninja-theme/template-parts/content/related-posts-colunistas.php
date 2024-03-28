@@ -9,17 +9,11 @@ if ($projects && ! is_wp_error($projects)) {
 }
 
 $args = [
-    'post_type'      => 'author',
+    'post_type'      => 'guest-author',
     'posts_per_page' => 3,
     'post__not_in'   => [ $post_id ],
     'order'          => 'DESC',
-    'cat'            => $cat
-    // 'tax_query'      => [
-    //     [
-    //         'taxonomy' => 'category',
-    //         'terms'    => $projects
-    //     ]
-    // ],
+    
 ];
 
 $related_posts = new WP_Query($args);
@@ -39,8 +33,7 @@ if ($related_posts->have_posts()) : ?>
                 <a class="related-post-image" href="<?php the_permalink();?>"><?php echo $thumbnail;?></a>
                 
                 <div class="related-post-content">
-                    <?php $category = get_the_category();?>
-                    <?php $term = $category[0]->cat_name;?>
+                  
                     
                     <span class="category term-<?= $term ?>">
                         <?= $category[0]->cat_name;  ?>

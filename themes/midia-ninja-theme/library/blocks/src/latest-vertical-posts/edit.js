@@ -28,11 +28,17 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 	const { 
 		blockId,
+		blockModel,
 		heading,
+		flickrAPIKey,
+		flickrByType,
+		flickrUserId,
+		flickrAlbumId,
 		order,
 		orderBy,
 		postsBySlide,
 		postsToShow,
+		playlistId,
 		postType,
 		showAuthor,
 		showTaxonomy,
@@ -99,6 +105,112 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							) }
 						/>
 					</PanelRow>
+
+					<PanelRow>
+						<SelectControl
+							label={ __( 'Block model', 'ninja' ) }
+							value={blockModel}
+							options={[
+								{
+									label: __( 'Collection', 'ninja' ),
+									value: "collection"
+								},
+								{
+									label: __( 'Columnists', 'ninja' ),
+									value: "columnists"
+								},
+								{
+									label: __( 'Posts', 'ninja' ),
+									value: "posts"
+								},
+								{
+									label: __( 'Videos', 'ninja' ),
+									value: "videos"
+								}
+							]}
+							onChange={ ( value ) => { setAttributes( { blockModel: value } ) } }
+						/>
+					</PanelRow>
+
+					{ ( blockModel == 'videos' ) && (
+						<PanelRow>
+							<TextControl
+								label={ __( 'YouTube Playlist ID', 'ninja' ) }
+								value={ playlistId }
+								onChange={ ( value ) => { setAttributes( { playlistId: value } ) } }
+							/>
+						</PanelRow>
+					) }
+
+					{ ( blockModel == 'collection' ) && (
+						<>
+							<PanelRow>
+								<TextControl
+									label={ __( 'Flickr API Key', 'ninja' ) }
+									value={ flickrAPIKey }
+									onChange={ ( value ) => { setAttributes( { flickrAPIKey: value } ) } }
+								/>
+							</PanelRow>
+
+							<PanelRow>
+								<SelectControl
+									label={ __( 'Type of the content', 'ninja' ) }
+									value={ flickrByType }
+									options={[
+										{
+											label: __( 'Images by user', 'ninja' ),
+											value: "user"
+										},
+										{
+											label: __( 'Images by album', 'ninja' ),
+											value: "album"
+										}
+									]}
+									onChange={ ( value ) => {
+										setAttributes( { flickrByType: value } )
+									} }
+								/>
+							</PanelRow>
+
+							<PanelRow>
+								{ ( flickrByType == 'album' ) && (
+									<TextControl
+										label={ __( 'Album ID', 'ninja' ) }
+										value={ flickrAlbumId }
+										onChange={ ( value ) => {
+											setAttributes( { flickrAlbumId: value } )
+										} }
+									/>
+								) }
+
+								{ ( flickrByType == 'user' ) && (
+									<TextControl
+										label={ __( 'User ID', 'ninja' ) }
+										value={ flickrUserId }
+										onChange={ ( value ) => {
+											setAttributes( { flickrUserId: value } )
+										} }
+									/>
+								) }
+							</PanelRow>
+						</>
+					) }
+
+					{ ( blockModel != 'collection' && blockModel != 'videos' ) && (
+						<QueryControls
+							{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
+							numberOfItems={ parseInt(postsToShow) }
+							onOrderChange={ ( value ) =>
+								setAttributes( { order: value } )
+							}
+							onOrderByChange={ ( value ) =>
+								setAttributes( { orderBy: value } )
+							}
+							onNumberOfItemsChange={ ( value ) =>
+								setAttributes( { postsToShow: parseInt(value) } )
+							}
+						/>
+					) }
 
 					<QueryControls
 						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }

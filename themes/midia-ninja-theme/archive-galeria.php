@@ -16,10 +16,7 @@ get_header();
             <?php while (have_posts()) : the_post(); ?>
                 <?php get_template_part('template-parts/content/post-galeria'); ?>
             <?php endwhile; ?>
-
-            <div class="acervo">
-               
-            </div>
+            
         </div>
         <?php echo get_layout_footer('galeria'); ?>
 

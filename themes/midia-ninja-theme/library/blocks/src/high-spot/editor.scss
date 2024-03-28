@@ -1,0 +1,43 @@
+.high-spot-block-inspector-controls {
+    .components-base-control {
+        width: 100%;
+    }
+
+    .high-spot-block-link-selector {
+        margin-bottom: 24px;
+        margin-top: 16px;
+
+        .components-base-control {
+            margin-bottom: 0;
+        }
+
+        .components-base-control__field,
+        .block-editor-block-list__block {
+            width: 100%;
+        }
+
+        input[type=text].block-editor-url-input__input {
+            border-radius: 2px;
+            border: 1px solid #949494;
+            box-shadow: 0 0 0 transparent;
+            max-width: 100%;
+            padding: 6px 8px;
+            transition: box-shadow .1s linear;
+            width: 100%;
+        }
+
+        .components-dropdown-menu__menu {
+            border-radius: 4px;
+            border: 1px solid #949494;
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+
+    .high-spot-block-post-selector {
+        > div {
+            width: 100%;
+        }
+    }
+}

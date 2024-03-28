@@ -1,8 +1,8 @@
 #single-opiniao{
     h2,p{margin: 0px!important; padding: 0px !important;}
     
-    
     main{
+        
         article{
             max-width: initial;
             margin: initial;
@@ -11,6 +11,9 @@
                 gap:130px !important;
                 & .post-info{
                     margin-top: 153px;
+                    @media(max-width:782px){
+                        margin-top: 0px;
+                    }
                     img{
                         display: none;
                     }
@@ -26,6 +29,9 @@
                         }
                     }
                     .excerpt{
+                        @media(max-width:782px){
+                            margin: 24px 0px;
+                        }
                         p{
                             color: var(--PRIMARY-PURE, #848484);
                             font-family: Manrope;
@@ -36,21 +42,27 @@
                             margin-top: 24px;
                             margin-bottom: 31px;
                         }
+                       
                     }
                 }
                 .author-info{
                     & .author-info-card{
                         width: 270px;
                         height: 497px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
                         border-radius: 8px;
                         background: var(--Gray-1, #333);
                         flex-shrink: 0;
+                        
                         img{
                             width: 175.648px;
                             height: 175px;
                         }
                         .authbio{
-                            color: var(--White, #FFF);
+                            color: var(--White, #FFF) !important;
                             font-family: 'Manrope',sans-serif;
                             font-size: 12px;
                             font-style: normal;
@@ -60,14 +72,217 @@
                             margin: 0px 32px;
                         }
                         .social-networks{
+                            display: flex;
                             margin: 0px 32px;
                             margin-top: 48px;
+                            flex-direction: row;
+                            margin-right: 115px;
+                            span{
+                                a{
+                                    margin-left: 8px;
+                                    svg{
+                                        path{
+                                            fill: white;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-                
+                .author-info-mobile{
+                    margin-bottom: -2rem;
+                    margin-top: -1rem;
+                    @media(min-width: 783px){
+                        display: none;
+                    }
+                    .author-info-card{
+                        display: flex;
+                        width: 320px;
+                        height: 242px;
+                        border-radius: 8px;
+                        background: var(--Gray-1, #333);
+                        padding: 0px;
+                        flex-direction: column;
+                        justify-content: center;
+                        .info-container{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-right: 43px;
+
+                        
+                            & .info-card-informations{
+                                margin-left: 24px;
+                                span{
+                                    display: flex;
+                                    color: var(--White, #FFF);
+                                    /* <p> Manrope */
+                                    font-family: Manrope;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    line-height: 140%; /* 22.4px */
+
+                                }
+                            }
+                        }
+                        .authbio{
+                            color: var(--White, #FFF) !important;
+                            font-family: 'Manrope',sans-serif;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 130%; /* 15.6px */
+                            border-top: 1px solid #F2F2F2 ;
+                            margin: 0px 32px;
+                        }
+                        img{
+                            display: block;
+                        }
+                        img.avatar{
+                            width: 92px;
+                            height: 92px;
+                            margin-bottom: 0;
+                        }
+                        .auth-name-icons{
+                            flex-direction: column;
+                        }
+                        .authname{
+                            font-family: 'Manrope', serif;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 130%;
+                            padding-bottom: 5px;
+                            border-bottom: 1px solid #000;
+                            max-width: 1740px;
+                            width: 100%;
+                        }
+                        .social-networks{
+                            max-width: 174px;
+                            width: 100%;
+                            justify-content: flex-start;
+                            gap: 1rem;
+                            span{
+                                a{
+                                    margin-left: 8px;
+                                    svg{
+                                        path{
+                                            fill: white;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } 
+            }
+            section{
+               
+                p{
+                    color: var(--PURE, #262626);
+                    font-family: Manrope;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 150%; /* 24px */
+                    margin: 0px;
+                    width: 570px;
+                    @media(max-width: 783px){
+                        width: initial;
+                        margin: auto;
+                    }
+                    h2{
+                        color: var(--PURE, #262626);
+                        font-family: 'Manrope',sans-serif;
+                        font-size: 48px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 120%; /* 57.6px */
+                        letter-spacing: -1.44px;
+                    }
+                    
+                }
+                .addtoany_share_save_container{
+                    display: none;
+                }
+                .midia-conteudo_2{
+                    display: none;
+                }
+                div{
+                    img{
+                        margin-top: 48px;
+                        margin-bottom: 48px;
+                    }
+                }
+                .page-share{
+                    margin-top: 32px;
+                    
+                }
+            }
+        }
+        .related{
+            @media(max-width:768px){
+                display: block;
+            }
+            .related-post{
+                display: flex;
+                @media(max-width:768px){
+                    margin-bottom: 32px;
+                }
+                .related-post-image{
+                    img{
+                        height: 70px;
+                        width: 70px;
+                        flex-shrink: 0;
+                        border-radius: 70px;
+                        object-fit: cover;
+                        margin-right: 30px;
+                    }
+
+                }
+                .related-post-content{
+                    span{
+                        display: none;
+                    }
+                    .info{
+                        h5{
+                            color: var(--Primary-dark, var(--DARK, #111));
+                            /* <h4> Manrope */
+                            font-family: Manrope;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 130%; /* 26px */
+                        }
+                    }
+                    
+                }
+
+            }
+           /*  .related-post:last-child{
+                display: none !important;
+            } */
+           
+        }
+        .comments{
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            padding-top: 0px;
+            @media(max-width:768px){
+                display: none;
             }
         }
     }
-    
+    .post-footer{
+        width: auto;
+        @media(max-width:768px){
+            margin-top: 46px;
+        }
+        h4{
+            margin-top: 0px;
+        }
+       
+    }
 }

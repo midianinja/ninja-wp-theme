@@ -56,23 +56,6 @@
 					letter-spacing: -1.44px;
 				}
 
-				h2 {
-					line-height: 130%;
-					/* 26px */
-					@media(max-width: 782px){
-						font-size: 32px;
-					}
-				}
-
-				h1,
-				h2,
-				h3,
-				h4,
-				h5,
-				h6 {
-					color: var(--PURE, #262626);
-				}
-
 				.excerpt {
 					p {
 						color: var(--PRIMARY-PURE, #848484);
@@ -291,15 +274,6 @@
 						left: 50%;
 						transform: translateX(-50%);
 						object-fit: contain;
-					}
-
-					p {
-						color: var(--PURE, #262626);
-						/* <p> Manrope */
-						font-size: 16px;
-						font-weight: 500;
-						line-height: 140%;
-						/* 22.4px */
 					}
 
 					.page-share {

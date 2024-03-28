@@ -1,0 +1,117 @@
+@import "../../shared/scss/mixins";
+
+.single .container main.content .post,
+.single .container main.content .post .post-content {
+    max-width: 1280px !important;
+}
+
+.high-spot-block {
+    .container {
+        .high-spot-block__content {
+            aspect-ratio: 16 / 9;
+            background-color: rgba(51, 51, 51, 0.70);
+            border-radius: 8px;
+            display: block;
+            overflow: hidden;
+            position: relative;
+
+            @include break-medium {
+                aspect-ratio: inherit;
+            }
+
+            &::before {
+                content: "";
+                padding-top: 56.25%;
+                float: left;
+
+                @include break-medium {
+                    display: none;
+                }
+            }
+
+            &::after {
+                clear: left;
+                content: " ";
+                display: table;
+
+                @include break-medium {
+                    display: none;
+                }
+            }
+
+            .background-image {
+                object-fit: cover !important;
+                height: 100%;
+                width: 100%;
+                z-index: 1;
+            }
+
+            .high-spot-block__info {
+                align-items: center;
+                backdrop-filter: blur(10px);
+                background-color: rgba(51, 51, 51, 0.70);
+                display: flex;
+                height: 100%;
+                left: 0;
+                overflow: hidden;
+                padding: 50px;
+                position: absolute;
+                top: 0;
+                width: 43%;
+                z-index: 2;
+
+                @include break-large {
+                    padding: 50px 30px;
+                }
+
+                @include break-medium {
+                    bottom: 0;
+                    display: block;
+                    height: auto;
+                    padding: 30px 15px;
+                    top: inherit;
+                    width: 100%;
+                }
+
+                .tag {
+                    color: var(--wp--preset--color--secondary-light);
+                    font-family: var(--wp--preset--font-family--archivo-expanded);
+                    font-size: var(--wp--preset--font-size--small);
+                    font-weight: 800;
+                    text-transform: uppercase;
+
+                    &:first-of-type {
+                        margin-top: 0;
+                    }
+                }
+
+                p {
+                    color: #FFFFFF; // @todo change to variable of the brand tokens
+                    font-size: 13px;
+                    line-height: 1.45;
+                    
+                    @include break-mobile {
+                        display: none;
+                    }
+                }
+
+                h2 {
+                    color: #FFFFFF; // @todo change to variable of the brand tokens
+                    font-size: 32px; // @todo change to variable of the brand tokens
+                    letter-spacing: -0.64px;
+                    line-height: 1.2;
+                    margin-bottom: 25px;
+                    margin-top: 15px;
+
+                    @include break-medium {
+                        font-size: 24px; // @todo change to variable of the brand tokens
+                    }
+
+                    @include break-mobile {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}

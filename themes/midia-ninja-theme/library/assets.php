@@ -357,8 +357,16 @@ class Assets
                     return is_single();
                 },
             ],
+
             'single-opiniao' => [
                 'file' => '_p-single-opiniao.css',
+                'preload_callback' => function () {
+                    return is_single();
+                },
+            ],
+
+            'single-galeria' => [
+                'file' => '_p-single-galeria.css',
                 'preload_callback' => function () {
                     return is_single();
                 },
@@ -385,10 +393,10 @@ class Assets
                 },
             ],
 
-            'archive-galeria' => [
-                'file' => '_p-archive-galeria.css',
+            'page-galeria' => [
+                'file' => '_p-page-galeria.css',
                 'preload_callback' => function () {
-                    return is_post_type_archive('galeria');
+                    return ! is_front_page() && is_page();
                 },
             ],
 

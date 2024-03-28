@@ -55,15 +55,11 @@ $coauthors = get_coauthors();
                             
                         ?>    
                         <div class="author-info-card">
-                            <?php echo get_avatar($author_id, 128);?>
-								<?php the_author(); ?> <!-- não exibe author -->
-                                <?php if($author_bio): ?>
-                                <div class="authbio">
-                                    <?php echo $author_bio; ?>
-                                </div>
-                                <?php endif; ?>
-
-                            <div class="social-networks">
+                                <div class="info-container">
+                                    <?php echo get_avatar($author_id, 128);?>
+                                    <div class="info-card-informations">
+                                        <?php the_author(); ?>
+                                        <div class="social-networks">
                                 <?php if($instagram): ?>
                                 <span class="instagram">
                                     <a href="<?php echo $instagram; ?>">
@@ -96,7 +92,19 @@ $coauthors = get_coauthors();
                                     </a>
                                 </span>
                                 <?php endif; ?>
+                                    </div>
+                                     <!-- não exibe author -->
+                                </div>
+                                
+                               
                             </div>
+                                <?php if($author_bio): ?>
+                                <div class="authbio">
+                                    <?php echo $author_bio; ?>
+                                </div>
+                                <?php endif; ?>
+
+                           
                         </div>
                         <?php endforeach; ?>
                     </div>

@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             mainHeader.classList.remove("scrolado");
         }
-    }, 15));
+    }, 30));
     
     // Função de debounce para limitar a frequência de chamadas
     function debounce(func, wait) {

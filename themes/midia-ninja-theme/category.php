@@ -24,11 +24,11 @@ get_header();
                 echo get_layout_header( 'educacao' );
             } elseif ( $category === 'esportes' ){
                 echo get_layout_header( 'esportes' );
-            } elseif ( $category === 'direitos_humanos' ){
+            } elseif ( $category === 'direitos-humanos' ){
                 echo get_layout_header( 'direitos_humanos' );
             } elseif ( $category === 'internacional' ){
                 echo get_layout_header( 'internacional' );
-            } elseif ( $category === 'meio_ambiente' ){
+            } elseif ( $category === 'meio-ambiente' ){
                 echo get_layout_header( 'meio_ambiente' );
             } elseif ( $category === 'politica' ){
                 echo get_layout_header( 'politica' );

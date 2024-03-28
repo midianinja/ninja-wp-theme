@@ -124,12 +124,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");
         
-        if (scroll >= 30) {
+        if (scroll >= 1) {
             mainHeader.classList.add("scrolado");
         } else {
             mainHeader.classList.remove("scrolado");
         }
-    }, 30));
+    }, 1));
     
     // Função de debounce para limitar a frequência de chamadas
     function debounce(func, wait) {

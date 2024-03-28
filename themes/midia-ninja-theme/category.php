@@ -6,10 +6,40 @@
  */
 
 get_header();
+
 ?>
 
 <div class="container">
-    <?php echo get_layout_header( 'category' ); ?>
+    
+    <?php
+        if( is_category() ){
+            $category_slug = get_queried_object();
+            $category = $category_slug->slug;
+
+            if ( $category === 'cultura' ){
+                echo get_layout_header( 'cultura' );
+            } elseif ( $category === 'alimentacao' ){
+                echo get_layout_header( 'alimentacao' );
+            } elseif ( $category === 'educacao' ){
+                echo get_layout_header( 'educacao' );
+            } elseif ( $category === 'esportes' ){
+                echo get_layout_header( 'esportes' );
+            } elseif ( $category === 'direitos_humanos' ){
+                echo get_layout_header( 'direitos_humanos' );
+            } elseif ( $category === 'internacional' ){
+                echo get_layout_header( 'internacional' );
+            } elseif ( $category === 'meio_ambiente' ){
+                echo get_layout_header( 'meio_ambiente' );
+            } elseif ( $category === 'politica' ){
+                echo get_layout_header( 'politica' );
+            } elseif ( $category === 'tecnologia' ){
+                echo get_layout_header( 'tecnologia' );
+            } elseif ( $category === 'economia' ){
+                echo get_layout_header( 'economia' );
+            }
+        }
+    ?>
+
     <main class="content col-md-9">
         <div class="posts">
             <?php while ( have_posts() ) : the_post(); ?>

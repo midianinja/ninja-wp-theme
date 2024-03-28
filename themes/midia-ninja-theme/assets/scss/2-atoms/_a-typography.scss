@@ -10,30 +10,50 @@ h1 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--really-large);
     font-weight: 800;
+
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
 }
 
 h2 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--large);
     font-weight: 800;
+
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
 }
 
 h3 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--medium);
     font-weight: 800;
+
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
 }
 
 h4 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--intermediate-standard);
     font-weight: 800;
+
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
 }
 
 h5 {
     font-family: $f_title;
     font-size: var(--s-h5);
     line-height: calc(var(--s-h5) * 1.2);
+
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
 }
 
 h6 {
@@ -41,17 +61,19 @@ h6 {
     font-size: var(--s-h6);
     font-weight: 400;
 
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
+
     @include mobile {
         font-size: 16px;
     }
 }
 
 p {
-    font-size: 16px;
-    line-height: 1.4;
-    color: var(--c-gray--darker);
+    font-size: 1rem;
 
     &:not(.has-text-color) {
-        color: var(--c-gray--darker);
+        color: var(--wp--preset--color--primary-pure);
     }
 }

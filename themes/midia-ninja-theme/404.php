@@ -3,7 +3,7 @@
     <div class="gif">
         
     </div>
-    <button onclick="redirectToHome()"><?php echo __('Back to home', 'ninja'); ?></button>
+    <button onclick="redirectToHome()"><?php echo __('back to homepage', 'ninja'); ?></button>
 
 </div>
 <?php get_footer(); ?>

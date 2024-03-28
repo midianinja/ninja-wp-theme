@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "ninja/high-spot",
+    "version": "0.0.1",
+    "title": "Destaque principal",
+    "category": "widgets",
+    "icon": "format-image",
+    "description": "Exibe uma imagem de destaque com texto sobreposto.",
+    "attributes": {
+        "blockId": {
+            "type": "string"
+        },
+        "blockModel": {
+            "type": "string",
+            "default": "manual"
+        },
+        "description": {
+            "type": "string"
+        },
+        "heading": {
+            "type": "string"
+        },
+        "imageAlt": {
+            "type": "string",
+            "default": ""
+        },
+        "imageId": {
+            "type": "number",
+            "default": 0
+        },
+        "imageUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "linkUrl": {
+            "type": "string"
+        },
+        "tag": {
+            "type": "string"
+        },
+        "postId": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "supports": {
+        "html": false,
+        "anchor": true
+    },
+    "usesContext": [],
+    "textdomain": "ninja",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css"
+}

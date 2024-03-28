@@ -357,8 +357,16 @@ class Assets
                     return is_single();
                 },
             ],
+
             'single-opiniao' => [
                 'file' => '_p-single-opiniao.css',
+                'preload_callback' => function () {
+                    return is_single();
+                },
+            ],
+
+            'single-galeria' => [
+                'file' => '_p-single-galeria.css',
                 'preload_callback' => function () {
                     return is_single();
                 },

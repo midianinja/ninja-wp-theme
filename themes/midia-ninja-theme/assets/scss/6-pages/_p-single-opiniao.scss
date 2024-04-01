@@ -61,6 +61,17 @@
                             width: 175.648px;
                             height: 175px;
                         }
+                        .author-name{
+                            color: var(--White, #FFF);
+                            font-family: Manrope;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 800;
+                            line-height: 24px; /* 120% */
+                            letter-spacing: -0.6px;
+                            margin-right: 40px;
+                            margin-bottom: 17px;
+                        }
                         .authbio{
                             color: var(--White, #FFF) !important;
                             font-family: 'Manrope',sans-serif;
@@ -114,6 +125,16 @@
                         
                             & .info-card-informations{
                                 margin-left: 24px;
+                                .author-name{
+                                    color: var(--White, #FFF);
+                                    /* <p> Manrope */
+                                    font-family: Manrope;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    line-height: 140%; /* 22.4px */
+                                    margin-left:7px;
+                                }
                                 span{
                                     display: flex;
                                     color: var(--White, #FFF);

@@ -337,15 +337,36 @@ class Assets
                 },
             ],
 
-			'page-fale-conosco' => [
-				'file' => '_p-page-fale-conosco.css',
-				'preload_callback' => function() {
-					return ! is_front_page() && is_page();
-				},
-			],
+            'page-fale-conosco' => [
+                'file' => '_p-page-fale-conosco.css',
+                'preload_callback' => function () {
+                    return ! is_front_page() && is_page();
+                },
+            ],
+
+            'page-videos' => [
+                'file' => '_p-page-videos.css',
+                'preload_callback' => function () {
+                    return ! is_front_page() && is_page();
+                },
+            ],
 
             'single' => [
                 'file' => '_p-single.css',
+                'preload_callback' => function () {
+                    return is_single();
+                },
+            ],
+
+            'single-opiniao' => [
+                'file' => '_p-single-opiniao.css',
+                'preload_callback' => function () {
+                    return is_single();
+                },
+            ],
+
+            'single-galeria' => [
+                'file' => '_p-single-galeria.css',
                 'preload_callback' => function () {
                     return is_single();
                 },
@@ -372,6 +393,20 @@ class Assets
                 },
             ],
 
+            'page-galeria' => [
+                'file' => '_p-page-galeria.css',
+                'preload_callback' => function () {
+                    return ! is_front_page() && is_page();
+                },
+            ],
+
+            'archive-afluente' => [
+                'file' => '_p-archive-afluente.css',
+                'preload_callback' => function () {
+                    return is_post_type_archive('afluente');
+                },
+            ],
+
             'search' => [
                 'file' => '_p-search.css',
                 'preload_callback' => function () {
@@ -384,6 +419,14 @@ class Assets
                     return is_author();
                 },
             ],
+
+            'category' => [
+                'file' => '_p-category.css',
+                'preload_callback' => function () {
+                    return is_category();
+                },
+            ],
+
             'anchor' => [
                 'file' => '_p-page-anchor.css',
                 'preload_callback' => function () {
@@ -494,10 +537,11 @@ class Assets
                     return is_post_type_archive('opiniao');
                 }
             ],
-			'seja-ninja' => [
-				'file'   => 'seja-ninja.js',
-				'global' => true,
-			],
+
+            'seja-ninja' => [
+                'file'   => 'seja-ninja.js',
+                'global' => true,
+            ],
 
         ];
 

@@ -1,8 +1,8 @@
 @import "./../1-settings/_s-variables";
 @import "./../2-atoms/a-mixins";
 
-body {
-	transition: all 0.4s 0.4s ease;
+#wpadminbar ~ header {
+	padding-top: 20px;
 }
 
 header {
@@ -14,6 +14,27 @@ header {
 		width: 100%;
 		background-color: #f5f5f5;
 		border-bottom: 1px solid;
+		min-height: 100px;
+		transition: all 0.4s ease;
+		height: fit-content;
+
+		&.scrolado {
+			min-height: 88px;
+
+			.menus {
+				display: none;
+			}
+
+			.header-content > div {
+				.logo img {
+					width: 65px;
+				}
+
+				.hamburguer {
+					top: 4px;
+				}
+			}
+		}
 
 		.container {
 			position: relative;
@@ -365,9 +386,7 @@ header {
 	}
 
 	.header-content {
-		min-height: 100px;
 		padding-top: 21px;
-		transition: all 0.4s 0.2s ease;
 
 		> div {
 			display: grid;
@@ -378,26 +397,8 @@ header {
 
 				img {
 					height: auto;
-					width: auto;
-					transition: all 0.4s 0.2s ease;
-				}
-			}
-		}
-
-		&.scrolled {
-			min-height: 88px;
-
-			.menus {
-				display: none;
-			}
-
-			> div {
-				.logo img {
-					width: 65px;
-				}
-
-				.hamburguer {
-					top: 4px;
+					width: 104px;
+					transition: all 0.4s ease;
 				}
 			}
 		}
@@ -490,10 +491,6 @@ header {
 					margin-right: 0;
 					width: auto;
 					display: none;
-				}
-
-				@media (max-width: $desktop-width) {
-					margin-right: 0;
 				}
 
 				ul.menu {

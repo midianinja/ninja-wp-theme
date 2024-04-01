@@ -12,11 +12,13 @@ get_header();
             <?php endwhile; ?>
         </div>
 
-        <div>
+        <!-- <div>
             <button class="load-more">
                 <span><?php _e('Ler mais Opiniões', 'ninja'); ?></span>
             </button>
-        </div>
+        </div> -->
+
+        <?php get_template_part('template-parts/content/pagination'); ?>
     </main>
     
     <?php echo get_layout_footer('opiniao'); ?>

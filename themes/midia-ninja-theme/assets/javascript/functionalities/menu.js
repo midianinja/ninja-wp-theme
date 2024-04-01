@@ -120,17 +120,29 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     //Menu reduzido no scroll
-    window.addEventListener("scroll", function() {
+    window.addEventListener("scroll", debounce(function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
-        const mainHeader = document.querySelector(".main-header .header-content");
+        const mainHeader = document.querySelector(".main-header");
         
-        if (scroll >= 100) {
-            mainHeader.classList.add("scrolled");
+        if (scroll >= 1) {
+            mainHeader.classList.add("scrolado");
         } else {
-            
-            mainHeader.classList.remove("scrolled");
+            mainHeader.classList.remove("scrolado");
         }
-    });
+    }, 1));
+    
+    // Função de debounce para limitar a frequência de chamadas
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
     
     
 })

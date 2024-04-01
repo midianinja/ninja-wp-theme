@@ -4,10 +4,10 @@
 body{
     &.block-editor-page{
         .editor-styles-wrapper{
-            background-color: #f5f5f5;
+            background-color: var(--wp--preset--color--secondary-light);
         } 
         .block-editor-block-list__layout{
-            background-color: #f5f5f5;
+            background-color: var(--wp--preset--color--secondary-light);
             .wp-block-shortcode{
                 margin-top: 50px;
             }
@@ -217,6 +217,49 @@ body{
                     }        
                 }
             }
+            .mais-videos {
+                background-color: #000;
+                border: 2px solid var(--SECONDARY, #000);
+                margin: 30px 0;
+                max-width: 367px;
+                width: 100%;
+                padding: 51px 33px 30px 33px;
+                border-radius: 12px;
+    
+                .container{
+                    padding: 0;
+                    .latest-horizontal-posts-block__slides{
+                        &::before,
+                        &::after{
+                            display: none;
+                        }
+                        .slick-track{
+                            width: 327px !important;
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        .slick-slide{
+                           width: 300px !important;
+                           a{
+                            text-decoration: none;
+                            }
+                           .post{
+                                display: flex;
+                                margin-bottom: 2rem;
+                                gap: 0.9rem;
+                                .post-thumbnail{
+                                    width: 136px;
+                                    height: 97px;
+                                    display: flex;
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                }
+                            }
+                        }    
+                    }
+                }
+            }
+
             .wp-block-buttons{
                 &.btn-latest-posts,
                 &.btn-colunistas-mobile

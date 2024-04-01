@@ -154,6 +154,31 @@
 							}
 						}
 					}
+					
+					.meio-ambiente{
+						border: 2px solid var(--Cores-de-categoria-Verde---Meio-Ambiente, #99CE56) !important;
+						.latest-vertical-posts-block {
+							.slick-list {
+								.slick-track {
+									.slide {
+										a {
+											.post {
+												&-meta {
+													&--terms {
+														.tax-category {
+															li {
+																color: var(--wp--preset--color--verde-light) !important;
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
 
 					.coluna-categoria {
 						border-radius: 8px 0px 0px 8px;

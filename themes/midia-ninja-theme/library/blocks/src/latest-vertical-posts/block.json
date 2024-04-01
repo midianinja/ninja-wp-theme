@@ -15,16 +15,36 @@
 		"blockId": {
 			"type": "string"
 		},
+		"blockModel": {
+			"type": "string",
+			"default": "posts"
+		},
+		"flickrAPIKey": {
+			"type": "string"
+		},
+		"flickrByType": {
+			"type": "string",
+			"default": "user"
+		},
+		"flickrAlbumId": {
+			"type": "string"
+		},
+		"flickrUserId": {
+			"type": "string"
+		},
+		"heading": {
+			"type": "string"
+		},
+		"playlistId": {
+			"type": "string"
+		},
 		"postType": {
 			"type": "string",
 			"default": "post"
 		},
 		"postsToShow": {
 			"type": "number",
-			"default": 5
-		},
-		"heading": {
-			"type": "string"
+			"default": 8
 		},
 		"showAuthor": {
 			"type": "boolean",

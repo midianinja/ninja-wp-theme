@@ -6,6 +6,7 @@
     .seja-ninja{
         p{margin: 0px !important;}
         h2{margin:0px !important;}
+        
         gap:0px;
         border-radius: 10px 10px !important;
         margin-top: 32px;
@@ -102,9 +103,9 @@
                                 }
         
                             }
-                            select{
+                            select {
                                 width: 265px;
-                                padding: 7px 3px;
+                                padding: 10px;
                                 border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                                 border: 1px solid var(--Main-beerus, #E2E2E2);
                                 background: var(--Main-gohan, #FFF);
@@ -116,7 +117,25 @@
                                 font-style: normal;
                                 font-weight: 400;
                                 line-height: 24px;
-                                padding: 10px;
+                                appearance: none;
+                                
+                            }
+                            .estados{
+                                position: relative; 
+                                
+                                
+                                
+                            }
+                            .estados::before{
+                                content: ''; 
+                                background-image: url("/wp-content/themes/midia-ninja-theme/assets/images/seta-midia-ninja.png"); 
+                                position: absolute; 
+                                right: 10px; 
+                                top: 50%;
+                                transform: translateY(-50%);
+                                width: 19px;
+                                height: 16px;
+                                
                             }
                             .submit-button{
                                 input{

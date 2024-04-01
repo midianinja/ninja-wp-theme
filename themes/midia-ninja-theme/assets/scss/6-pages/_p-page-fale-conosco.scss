@@ -279,6 +279,15 @@
                 @media (max-width: 1400px){
                     left: 47%;
                 }
+
+                @media (max-width: 1366px){
+                    left: 46%;
+                }
+
+                @media (max-width: 1920px){
+                    //width: calc(100% + 334px);
+                    left: 46%;
+                }
         
                 @include mixins.small{
                     display: none;
@@ -466,6 +475,7 @@
         transform: translateX(-50%);
         border-radius: 8px;
         max-width: 271px;
+        height: 450px;
 
         @media (min-width: 1200px){
             left: 70%;

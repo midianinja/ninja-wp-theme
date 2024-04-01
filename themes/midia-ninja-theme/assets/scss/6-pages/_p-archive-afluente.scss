@@ -1,0 +1,273 @@
+.post-type-archive-afluente{
+    .content{
+		.col-md-9{
+			@media(min-width: 992px){
+				width: 100%;
+			}
+			
+		}
+		.afluentes{
+			p{margin: 0px !important;}
+			h2{margin:0px !important;}
+			gap:0px;
+			border-radius: 10px 10px !important;
+			margin-top: 32px;
+			@media(max-width:991px){
+				display: none;
+			}
+			
+			& .col-1{
+				width: 770px;
+				.wp-block-cover{
+					margin: 0px;
+					padding: 0px;
+					border-radius: 5px;
+					width: 770px;
+					.wp-block-columns {
+						margin: 0px;
+						height: 506px;
+						gap: 0px;
+						.col-inscription{
+							max-width: 400px;
+							padding-left: 64px;
+							padding-top: 64px;
+							fill: rgba(51, 51, 51, 0.70);
+							backdrop-filter: blur(17.6999998093px);
+							& .inscription{
+							 color: #FFF;
+							 font-family: "Archivo Expanded";
+							 font-size: 14px;
+							 font-style: normal;
+							 font-weight: 800;
+							 line-height: 155%; /* 21.7px */
+							 letter-spacing: -0.42px;
+							 text-transform: uppercase;
+							}
+							& .title-seja-ninja{
+							 color: #FFF;
+							 /* <h1> Manrope */
+							 font-family: Manrope;
+							 font-size: 48px;
+							 font-style: normal;
+							 font-weight: 800;
+							 line-height: 115%; /* 55.2px */
+							 letter-spacing: -1.44px;
+							}
+							& .description-seja-ninja{
+							 color: #FFF;
+							 font-family: Manrope;
+							 font-size: 13px;
+							 font-style: normal;
+							 font-weight: 500;
+							 line-height: 145%; /* 18.85px */
+							 margin-top: 20px !important;
+							 max-width: 257px;
+							}               
+						}
+					}
+				}
+			}
+			& .col-2{            
+				max-width: 367px !important;
+				height: 506px;
+				margin-left: 27px !important;
+				@media(max-width:991px){
+					display: none;
+				}
+				.wp-block-cover{
+					margin: 0px; 
+					padding: 0px;
+					border-radius: 5px;
+					.wp-block-cover__inner-container{
+						height: 506px;
+						figure{
+							margin-top: 30px;
+							margin-left: 8px;
+						}
+						.container-a-midia-ninja{
+							margin-left: 33px !important;
+							margin-right: 32px !important;
+							h4{
+								margin: 0px;
+								margin-top: 22px;
+							}
+						}
+						p{
+							color: var(--White, #FFF);
+							/* <small> Manrope */
+							font-family: Manrope;
+							font-size: 13px;
+							font-style: normal;
+							font-weight: 500;
+							line-height: 145%; /* 18.85px */
+						}
+					}
+				}
+				.colunas{
+					height: 506px;
+				}
+			}
+		}
+		.afluentes-mob{
+			display: none;
+			@media(max-width:991px){
+				display: block;
+				margin-top: 32px;
+			}
+		}
+        @import "../6-pages/p-search";
+        .search{
+            display: flex;
+			align-items: center;
+			margin-top: 47px;
+			justify-content: center;
+            h2{
+                margin: 0px;
+                color: var(--Gray-1, #333);
+                font-family: Manrope;
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 120%;
+                letter-spacing: -0.64px; 
+            }
+            form{
+                & .input-search{
+                    input{
+                        width: 566px;
+                        height: 46px;
+                        border-radius: 8px; 
+                        border: 2px solid var(--PRIMARY-PURE, #848484);
+                        margin-left: 30px;
+                    }
+                    i{
+                        position: absolute;
+						right: 200px;
+						top: 710px;
+                        height: 32px;
+                        width: 32px;
+                        background-image: url($p_theme_assets + "/images/generic.png");
+                    }
+                }
+            }
+        }
+			
+        .posts{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin-top: 48px;
+            article{
+                .post-card{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 30px;
+                    .post-card--thumb{
+                        width: 370px;
+                        height: 208px;
+                    }
+                    .post-card--content{
+                        & .entry-title{
+                            color: var(--PURE, #262626);
+                            font-family: Manrope;
+                            font-size: 24px;
+                            font-style: normal;
+                            font-weight: 800;
+                            line-height: 120%; /* 28.8px */
+                            letter-spacing: -0.72px;
+                        }
+                        & .entry-meta{
+                           
+                        }
+                        & .entry-date{
+                            display: none;
+                        }
+                        & .entry-excerpt{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+        .newsletter-desktop {
+			background-color: #262626;
+			.wp-block-columns {
+				gap: 100px;
+				@media (max-width: 992px) {
+					display: block;
+				}
+			}
+			.wp-block-heading {
+				color: #fff;
+				font-family: "MidiaNinja", serif;
+				font-size: 42px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 100%;
+				letter-spacing: normal;
+				@media (max-width: 782px) {
+					font-size: 35px;
+					text-align: center;
+				}
+			}
+			p {
+				font-family: "Manrope", serif;
+				font-size: 13px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 145%;
+			}
+			form {
+				.mc4wp-form-fields {
+					margin-top: 2rem;
+					@media (max-width: 992px) {
+						margin-top: 0;
+					}
+					input[type="name"],
+					input[type="email"] {
+						width: 572px;
+						padding: 1rem;
+						border-radius: 8px;
+						border: none;
+						margin-bottom: 1rem;
+						color: #111;
+						&::placeholder {
+							font-size: 16px;
+							color: #595d62;
+							@media (max-width: 782px) {
+								color: #f5f5f5;
+							}
+						}
+						@media (max-width: 782px) {
+							background-color: transparent;
+							border: 1px solid #d9d9d9;
+							color: #f5f5f5;
+						}
+						@media (max-width: 600px) {
+							width: 326px;
+						}
+						@media (max-width: 359px) {
+							width: 306px;
+						}
+					}
+					input[type="submit"] {
+						background-color: #fbf36e;
+						border: none;
+						color: #333;
+						font-family: "Manrope", serif;
+						font-size: 14px;
+						font-weight: 800;
+						text-transform: uppercase;
+						padding: 1rem 3.8rem;
+						border-radius: 8px;
+						@media (max-width: 600px) {
+							max-width: 326px;
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+        
+    }
+    
+}

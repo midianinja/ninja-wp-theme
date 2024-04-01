@@ -14,10 +14,6 @@
 
     <div class="post-card--content">
         <h5 class="entry-title"><?php the_title(); ?></h5>
-        
-        <div class="card-author">
-            <?php the_author();?>
-        </div>
     </div><!-- /.post-card--content -->
    
 

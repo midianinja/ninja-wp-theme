@@ -212,20 +212,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						/>
 					) }
 
-					<QueryControls
-						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
-						numberOfItems={ postsToShow }
-						onOrderChange={ ( value ) =>
-							setAttributes( { order: value } )
-						}
-						onOrderByChange={ ( value ) =>
-							setAttributes( { orderBy: value } )
-						}
-						onNumberOfItemsChange={ ( value ) =>
-							setAttributes( { postsToShow: value } )
-						}
-					/>
-
 					<PanelRow>
 						<NumberControl
 							label={ __( 'Posts by slide', 'ninja' ) }

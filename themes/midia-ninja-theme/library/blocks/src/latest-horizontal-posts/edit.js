@@ -243,7 +243,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</PanelRow>
 					) }
 
-					{ ( blockModel =='most-read' ) && (
+					{ ( blockModel == 'most-read' ) && (
 						<PanelRow>
 							<SelectControl
 								label={ __( 'Taxonomy to display', 'ninja' ) }

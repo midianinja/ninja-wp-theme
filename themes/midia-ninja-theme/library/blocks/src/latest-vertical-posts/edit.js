@@ -6,6 +6,7 @@ import ServerSideRender from '@wordpress/server-side-render'
 import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
 import SelectPostType from "./components/SelectPostType"
+import SelectTerms from "./components/SelectTerms"
 
 import {
 	__experimentalNumberControl as NumberControl,
@@ -29,20 +30,21 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const { 
 		blockId,
 		blockModel,
-		heading,
+		flickrAlbumId,
 		flickrAPIKey,
 		flickrByType,
 		flickrUserId,
-		flickrAlbumId,
+		heading,
 		order,
 		orderBy,
+		playlistId,
 		postsBySlide,
 		postsToShow,
-		playlistId,
 		postType,
 		showAuthor,
 		showTaxonomy,
 		showThumbnail,
+		taxQueryTerms,
 		thumbnailFormat
 	} = attributes
 
@@ -57,6 +59,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const onChangePostType = ( value ) => {
 		setAttributes( { postType: value } )
 		setAttributes( { showTaxonomy: '' } )
+	}
+
+	const onChangeSelectTerm = (value) => {
+		setAttributes({ taxQueryTerms: value })
 	}
 
 	useEffect(() => {
@@ -196,35 +202,33 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel != 'collection' && blockModel != 'videos' ) && (
-						<QueryControls
-							{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
-							numberOfItems={ parseInt(postsToShow) }
-							onOrderChange={ ( value ) =>
-								setAttributes( { order: value } )
-							}
-							onOrderByChange={ ( value ) =>
-								setAttributes( { orderBy: value } )
-							}
-							onNumberOfItemsChange={ ( value ) =>
-								setAttributes( { postsToShow: parseInt(value) } )
-							}
-						/>
+					{ ( blockModel == 'posts' || blockModel == 'columnists' ) && (
+						<>
+							<PanelRow>
+								<SelectPostType postType={postType} onChangePostType={onChangePostType} />
+							</PanelRow>
+
+							<QueryControls
+								{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
+								numberOfItems={ parseInt(postsToShow) }
+								onOrderChange={ ( value ) =>
+									setAttributes( { order: value } )
+								}
+								onOrderByChange={ ( value ) =>
+									setAttributes( { orderBy: value } )
+								}
+								onNumberOfItemsChange={ ( value ) =>
+									setAttributes( { postsToShow: parseInt(value) } )
+								}
+							/>
+						</>
 					) }
 
-					<QueryControls
-						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
-						numberOfItems={ postsToShow }
-						onOrderChange={ ( value ) =>
-							setAttributes( { order: value } )
-						}
-						onOrderByChange={ ( value ) =>
-							setAttributes( { orderBy: value } )
-						}
-						onNumberOfItemsChange={ ( value ) =>
-							setAttributes( { postsToShow: value } )
-						}
-					/>
+					{ ( blockModel == 'posts' && postType == 'post' ) && (
+						<PanelRow>
+							<SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ taxQueryTerms } />
+						</PanelRow>
+					) }
 
 					<PanelRow>
 						<NumberControl
@@ -235,10 +239,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							step={ 1 }
 							value={ postsBySlide }
 						/>
-					</PanelRow>
-
-					<PanelRow>
-						<SelectPostType postType={postType} onChangePostType={onChangePostType} />
 					</PanelRow>
 
 					<PanelRow>

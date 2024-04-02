@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");
         
-        if (scroll >= 1) {
+        if (scroll >= 20) {
             mainHeader.classList.add("scrolado");
         } else {
             mainHeader.classList.remove("scrolado");

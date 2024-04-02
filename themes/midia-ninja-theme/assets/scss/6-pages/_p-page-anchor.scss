@@ -260,7 +260,7 @@
             }
         }
     
-        .anchor-title {
+        p.anchor-title {
             border-left: 4px solid #262626;
             font-family: 'Manrope', serif;
             font-size: 24px;
@@ -269,6 +269,7 @@
             line-height: 125%; /* 30px */
             letter-spacing: -0.24px;
             padding-left: 8px;
+            color: #111;
             @media(max-width: 992px){
                 margin-top: 0;
             }
@@ -283,7 +284,7 @@
             }
     
             li a {
-                font-family: Manrope;
+                font-family: 'Manrope', serif;
                 font-size: 24px;
                 font-style: normal;
                 font-weight: 800;

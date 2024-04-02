@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     //Menu reduzido no scroll
-    window.addEventListener("scroll", debounce(function() {
+    window.addEventListener("scroll", function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");
         
@@ -129,21 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             mainHeader.classList.remove("scrolado");
         }
-    }, 1));
-    
-    // Função de debounce para limitar a frequência de chamadas
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-    
+    }, {passive: true});
     
 })
 

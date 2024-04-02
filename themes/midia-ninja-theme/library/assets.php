@@ -407,6 +407,13 @@ class Assets
                 },
             ],
 
+            'archive-especial' => [
+                'file' => '_p-archive-especial.css',
+                'preload_callback' => function () {
+                    return is_post_type_archive( 'especial' );
+                },
+            ],
+
             'search' => [
                 'file' => '_p-search.css',
                 'preload_callback' => function () {

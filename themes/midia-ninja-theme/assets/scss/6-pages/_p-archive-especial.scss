@@ -1,0 +1,123 @@
+@use "./../1-settings/s-variables"as variables;
+@use "./../2-atoms/a-mixins"as mixins;
+
+
+.post-type-archive-especial{
+	.content{
+		.search{
+			display: flex;	
+			align-items: center;
+			justify-content: center;
+			gap: 16px;
+
+			h2{
+				color: var(--Gray-1, #333);
+				font-family: var(--wp--preset--font-family--manrope);
+				font-size: var(--wp--preset--font-size--medium);
+				font-style: normal;
+				font-weight: 800;
+				line-height: 120%; 
+				letter-spacing: -0.64px;
+			}
+
+			.advanced-search{
+				max-width: 460px;
+				width: 100%;
+
+				.input-search{
+					width: 100%;
+
+					input[type="text"]{
+						width: 100%;
+						height: 46px;
+						flex-shrink: 0;
+						border-radius: 8px;
+						border: 2px solid var(--PRIMARY-PURE, #848484);
+					}
+
+					i{
+						background-image: url(variables.$p_theme_assets + "/images/generic.png");
+						width: 22px;
+						height: 22px;
+						display: block;
+						background-position: center;
+						position: absolute;
+						top: 33px;
+						right: 263px;
+					}
+				}
+
+			}
+		}
+
+		.posts{
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			gap: 30px;
+			
+			.post{
+
+				&:hover{
+					background-color: transparent;
+				}
+
+				&-card{
+					flex-direction: column;
+
+					&--thumb{
+						padding-right: 0;
+						max-width: 270px;
+						width: 100%;
+						height: 337px;
+						border: none;
+
+						a{
+							.aspect-ratio{
+								width: 100%;
+								height: 335px;
+								border-radius: 8px;
+
+								img{
+									width: 100%;
+									height: 337px;
+								}
+							}
+						}
+					}
+
+					&--content{
+						.entry-date{
+							display: none;
+						}
+
+						.entry-meta{
+							display: none;
+						}
+
+						.entry-excerpt{
+							display: none;
+						}
+
+						a{
+							.entry-title{
+								color: var(--wp--preset--color--dark-pure);
+								font-family: var(--wp--preset--font-family--manrope);
+								font-size: var(--wp--preset--font-size--intermediate-standard);
+								font-style: normal;
+								font-weight: 800;
+								line-height: 125%;
+								letter-spacing: -0.24px;
+								margin-top: 3px;
+							}
+						}
+					}
+				}
+			}
+		}
+	
+		.pagination{
+			margin-bottom: 100px;
+		}
+	}
+    
+}

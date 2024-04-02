@@ -372,6 +372,13 @@ class Assets
                 },
             ],
 
+            'single-afluente' => [
+                'file'             => '_p-single-afluente.css',
+                'preload_callback' => function() {
+                    return is_singular( 'afluente' );
+                },
+            ],
+
             '404' => [
                 'file' => '_p-404.css',
                 'preload_callback' => function () {

@@ -37,6 +37,7 @@ $coauthors = get_coauthors();
                             $instagram = '';  
                             if (is_a($coauthor, 'WP_User')) {
                                 $author_id = $coauthor->data->ID;
+                                $author_name = $coauthor->data->display_name;
                                 $userdata = get_userdata( $author_id );
                                 $author_bio = isset( $userdata->user_description )? $userdata->user_description: '';
                                 $instagram = pods_field( 'user', $author_id, 'instagram', true);
@@ -55,10 +56,15 @@ $coauthors = get_coauthors();
                             
                         ?>    
                         <div class="author-info-card">
+                        
                                 <div class="info-container">
+                                    
                                     <?php echo get_avatar($author_id, 128);?>
+                                    
                                     <div class="info-card-informations">
-                                        <?php the_author(); ?>
+                                        <div class="author-name">
+                                            <?php echo  $author_name; ?>
+                                        </div>
                                         <div class="social-networks">
                                 <?php if($instagram): ?>
                                 <span class="instagram">
@@ -119,6 +125,7 @@ $coauthors = get_coauthors();
                             $instagram = '';  
                             if (is_a($coauthor, 'WP_User')) {
                                 $author_id = $coauthor->data->ID;
+                                $author_name = $coauthor->data->display_name;
                                 $userdata = get_userdata( $author_id );
                                 $author_bio = isset( $userdata->user_description )? $userdata->user_description: '';
                                 $instagram = pods_field( 'user', $author_id, 'instagram', true);
@@ -131,18 +138,19 @@ $coauthors = get_coauthors();
                                 $instagram = get_post_meta($author_id, 'instagram', true);
                                 $facebook = get_post_meta($author_id, 'facebook', true);
                                 $twitter = get_post_meta($author_id, 'twitter', true);   
-
                             }
-                            
-                            
-                        ?>    
+                        ?>  
                         <div class="author-info-card">
                             <?php echo get_avatar($author_id, 128);?>
-                                <?php if($author_bio): ?>
-                                <div class="authbio">
-                                    <?php echo $author_bio; ?>
-                                </div>
-                                <?php endif; ?>
+                            <div class="author-name">
+                                <?php echo  $author_name; ?>
+                            </div>
+                            
+                            <?php if($author_bio): ?>
+                            <div class="authbio">
+                                <?php echo $author_bio; ?>
+                            </div>
+                            <?php endif; ?>
 
                             <div class="social-networks">
                                 <?php if($instagram): ?>

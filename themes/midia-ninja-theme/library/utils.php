@@ -476,8 +476,6 @@ function custom_search_filter($query)
         }
     }
 
-    do_action('logger', $_GET);
-
     return $query;
 }
 add_action('pre_get_posts', 'custom_search_filter');

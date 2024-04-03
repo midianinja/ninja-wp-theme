@@ -95,6 +95,10 @@
 				margin: 0 0 40px;
 				border-top: 1px solid #848484;
 
+				@media (min-width: 768px) {
+					margin: 76px 0 64px;
+				}
+
 				.related-posts {
 					max-width: 960px;
 					margin: auto;
@@ -116,6 +120,10 @@
 						line-height: 110%; /* 35.2px */
 						letter-spacing: -0.96px;
 						margin: 32px 0;
+
+						@media (min-width: 768px) {
+							margin: 48px 0;
+						}
 					}
 
 					.related {

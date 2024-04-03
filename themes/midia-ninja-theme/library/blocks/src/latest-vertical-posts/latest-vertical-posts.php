@@ -38,7 +38,9 @@ function latest_vertical_posts_callback( $attributes ) {
             $latest_vertical_posts_ids = [];
         }
 
-        $cache_key = 'ninja_vertical_' . $block_id;
+        $attributes_hash = md5( serialize( $attributes ) );
+
+        $cache_key = 'ninja_vertical_' . $attributes_hash;
         $cached_posts = get_transient( $cache_key );
 
         if ( false !== $cached_posts ) {

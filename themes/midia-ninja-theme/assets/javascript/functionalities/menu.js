@@ -121,14 +121,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Menu reduzido no scroll
     window.addEventListener("scroll", function() {
-        const scroll = window.scrollY || document.documentElement.scrollTop;
+        let scroll = document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");
-        
-        if (scroll >= 1) {
+        console.log(scroll)
 
-            if (mainHeader.classList.contains('scrolado')){
-                return;
-            }
+        if (scroll > 20) {
             mainHeader.classList.add("scrolado");
         } else {
             mainHeader.classList.remove("scrolado");

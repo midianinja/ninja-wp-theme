@@ -5,9 +5,14 @@
 .post-type-archive-afluente{
 	.container{
 		padding: 0px;
+		
 	}
 	.header-and-footer-archive {
 		margin-top: 32px;
+		@media (max-width:468px){
+			margin: 0px 12px;
+			margin-top: 12px;
+		}
 		.wp-block-columns:first-child{ // BANNER
 			.wp-block-column:first-child{  //col1
 				max-width: 770px;
@@ -116,7 +121,6 @@
 							flex-direction: column;
 							margin-bottom: 33px;
 							a{
-								text-decoration: none;
 								& .post{
 									display: flex;
 									flex-direction: row;
@@ -239,22 +243,40 @@
 				grid-template-columns: 1fr 1fr; 
 			}
 			@media(max-width:767px){
-				grid-template-columns:  1fr;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			
+			}
+			@include mobile{
+				margin: auto;
+			
 			}
             article{
+				@include mobile{
+					margin: auto;
+				}
                 .post-card{
                     display: flex;
                     flex-direction: column;
                     margin-bottom: 30px;
 					border: none;
 					@media(max-width:767px){
-						
 						align-items: start;
 					}
+					@include mobile{
+						margin: 0px;
+   						padding: 0px;
+						margin-top: 13px;
 					
+					}
                     .post-card--thumb{
                         width: 370px;
                         height: 208px;
+						@include mobile{
+							width: 328px;
+							height: 184px;
+						}
                     }
                     .post-card--content{
                         & .entry-title{

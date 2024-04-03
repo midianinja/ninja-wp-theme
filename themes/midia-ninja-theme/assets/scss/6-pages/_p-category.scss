@@ -99,8 +99,6 @@
 
 									.slide {
 										a {
-											text-decoration: none;
-
 											.post {
 												&-title {
 													color: var(--Gray-1, #333);
@@ -110,7 +108,6 @@
 													font-weight: 500;
 													line-height: 140%;
 													text-transform: capitalize;
-													text-decoration: none;
 													margin-bottom: 0;
                                                     padding-top: 0;
 												}
@@ -215,7 +212,6 @@
 								font-weight: 800;
 								line-height: 155%;
 								letter-spacing: -0.42px;
-								text-decoration: none;
 								width: 150px;
 								overflow: hidden;
 								display: flex;
@@ -232,7 +228,6 @@
 								font-weight: 800;
 								line-height: 120%;
 								letter-spacing: -0.64px;
-								text-decoration: none;
 								height: 160px;
 								overflow: hidden;
 								text-overflow: ellipsis;
@@ -390,8 +385,6 @@
 						.slick-track {
 							.slide {
 								a {
-									text-decoration: none;
-
 									.post {
 										&-title {
 											color: var(--Gray-1, #333);
@@ -401,7 +394,6 @@
 											font-weight: 500;
 											line-height: 140%;
 											text-transform: capitalize;
-											text-decoration: none;
 											margin-bottom: 0;
 										}
 

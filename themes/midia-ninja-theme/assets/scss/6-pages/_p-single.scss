@@ -101,7 +101,6 @@
 						margin: 20px;
 
 						a {
-							text-decoration: none;
 							border-radius: 4px;
 							padding: 0 4px;
 						}
@@ -317,10 +316,6 @@
 							margin-top: 1rem;
 							display: flex;
 							justify-content: space-around;
-
-							a {
-								text-decoration: none;
-							}
 						}
 					}
 				}
@@ -468,7 +463,6 @@
 
 							a {
 								display: block;
-								text-decoration: none;
 							}
 
 							.related-post-image img {

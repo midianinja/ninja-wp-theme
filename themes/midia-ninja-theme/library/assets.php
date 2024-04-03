@@ -378,6 +378,13 @@ class Assets
                 },
             ],
 
+            'seja-ninja' => [
+                'file'             => '_p-seja-ninja.css',
+                'preload_callback' => function() {
+                    return ! is_front_page() && is_page();
+                },
+            ],
+
             '404' => [
                 'file' => '_p-404.css',
                 'preload_callback' => function () {

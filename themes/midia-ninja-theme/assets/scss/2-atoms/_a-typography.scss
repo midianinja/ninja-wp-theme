@@ -77,3 +77,15 @@ p {
         color: var(--wp--preset--color--primary-pure);
     }
 }
+
+a {
+    text-decoration: none;
+
+    &:where(:not(.wp-element-button)) {
+        text-decoration: none;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+}

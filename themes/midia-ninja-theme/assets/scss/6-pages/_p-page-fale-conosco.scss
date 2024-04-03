@@ -202,6 +202,8 @@
             max-width: 272px;
             width: 100%;
             margin-bottom: 40px;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
         h2{
@@ -231,6 +233,7 @@
         .wp-block-columns{
             flex-wrap: inherit !important;
             gap: 0;
+            margin-bottom: 0;
 
             .wp-block-column{
                 flex-grow: 0;           
@@ -476,6 +479,8 @@
         border-radius: 8px;
         max-width: 271px;
         height: 450px;
+        margin-bottom: 0;
+        padding-bottom: 0;
 
         @media (min-width: 1200px){
             left: 70%;

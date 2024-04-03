@@ -75,7 +75,7 @@ function latest_grid_posts_callback( $attributes ) {
             $counter++;
     
             if ( $counter == 1 ) {
-                echo "<div class='post-card'>";
+                echo "<div class='grid-cards'>";
             }
             
             get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['video' => $video, 'attributes' => $attributes] );

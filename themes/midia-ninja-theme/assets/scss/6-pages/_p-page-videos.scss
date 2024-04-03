@@ -157,33 +157,6 @@
 			}
 		}
 
-        .grid-videos{
-            background-color:var(--wp--preset--color--secondary-light);
-            .container{
-                padding: 0px 0 48px;
-            }
-            .latest-horizontal-posts-block__slides{
-                a{
-                    text-decoration: none;
-                }
-                flex-basis: 100%;
-                .slick-track{
-                   width: 810px !important;
-                   display: grid;
-                   grid-template-columns: 1fr 1fr;
-                   gap: 0rem;
-                   margin-left: 0;
-                   margin-right: 0;
-                }
-                .slick-slide{
-                    width: 370px !important;
-                    margin: 0 0 0 15px !important;
-                }
-            }
-            .latest-horizontal-posts-block__footer{
-                display: none !important;
-            }
-        }
         .anuncio-ninja-mobile{
             margin-bottom : 0;
             margin-top: 2rem; 
@@ -334,6 +307,5 @@
                 }
             }
         }
-    }
-    
+    } 
 }

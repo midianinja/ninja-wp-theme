@@ -32,6 +32,7 @@ function grid_videos_get_contents( $youtube_key, $playlist_id, $max_results, $bl
 
     foreach ( $videos->items as $item ) {
         $video_id  = ( isset( $item->snippet->resourceId->videoId ) && ! empty( $item->snippet->resourceId->videoId ) ) ? esc_attr( $item->snippet->resourceId->videoId ) : false;
+        $video_date = ( isset( $item->snippet->publishedAt ) && ! empty( $item->snippet->publishedAt ) ) ? $item->snippet->publishedAt : 'false';
         $video_url = ( isset( $video_id ) && ! empty( $video_id ) ) ? "https://www.youtube.com/watch?v=$video_id" : false;
         $thumbnail = ( isset( $item->snippet->thumbnails->medium->url ) && ! empty( $item->snippet->thumbnails->medium->url ) ) ? esc_url( $item->snippet->thumbnails->medium->url ) : false;
         $title     = ( isset( $item->snippet->title ) && ! empty( $item->snippet->title ) ) ? esc_attr( $item->snippet->title ) : false;
@@ -44,7 +45,8 @@ function grid_videos_get_contents( $youtube_key, $playlist_id, $max_results, $bl
             'id'        => $video_id,
             'title'     => $title,
             'thumbnail' => $thumbnail,
-            'video_url' => $video_url
+            'video_url' => $video_url,
+            'video_date'=> $video_date
         ];
     }
 

@@ -5,12 +5,36 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-ninja-dynamic {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
-
-	a {
-		color: #fff;
+.latest-grid-posts-block {
+	.grid-cards{
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		width: 100%;
+		@media(max-width: 782px){
+			grid-template-columns: 1fr;		
+		}
+		.post{
+			.post-thumbnail{
+				margin-bottom: 1rem;
+				img{
+					width: 100%;
+					height: auto;
+					border-radius: 8px;
+				}
+			}
+			.post-content{
+				.video-title{
+					font-family: 'Manrope', serif;
+					font-size: 24px;
+					font-style: normal;
+					font-weight: 800;
+					line-height: 125%; /* 30px */
+					letter-spacing: -0.24px;
+					color: var(--wp--preset--color--dark-pure);	
+				}	
+			}
+		}
 	}
+	
 }

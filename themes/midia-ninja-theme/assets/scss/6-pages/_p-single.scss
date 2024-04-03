@@ -56,6 +56,15 @@
 					letter-spacing: -1.44px;
 				}
 
+				h2 {
+					font-size: 32px;
+					line-height: 120%;
+
+					@media (min-width: 768px) {
+						font-size: 48px;
+					}
+				}
+
 				.excerpt {
 					p {
 						color: var(--PRIMARY-PURE, #848484);
@@ -71,8 +80,11 @@
 					width: 100%;
 					max-width: 970px;
 					display: flex;
-
 					gap: 30px;
+
+					@media (min-width: 1200px) {
+						width: max-content;
+					}
 
 					img {
 						max-width: 100%;
@@ -152,11 +164,22 @@
 
 					.content-author {
 						display: flex;
+						flex-direction: column;
 						align-items: center;
 						border-top: 1px solid;
 						padding-top: 26px;
-						margin: 60px 0 40px;
+						margin: 60px auto 8px;
 						color: #000;
+						max-width: 768px;
+
+						@media (min-width: 768px) {
+							flex-direction: row;
+						}
+
+						> div {
+							display: flex;
+							width: 100%;
+						}
 
 						img {
 							border-radius: 100%;
@@ -168,23 +191,58 @@
 							margin: 0 30px;
 							font-size: 16px;
 							font-style: normal;
-							font-weight: 700;
-							line-height: 140%;
+							font-weight: 500;
+							line-height: 150%; /* 24px */
+							letter-spacing: -0.48px;
+
+							@media (min-width: 768px) {
+								font-weight: 800;
+							}
 
 							time {
 								color: var(--Primary-light, var(--PRIMARY-PURE, #848484));
 								font-weight: 500;
+
+								.clock::before {
+									content: url($p_theme_assets + "/images/clock.svg");
+									position: relative;
+									top: 5px;
+								}
 							}
 						}
 
 						.page-share {
-							margin-left: auto;
-							position: relative;
+							width: 100%;
+							margin-top: 24px;
+
+							@media (min-width: 768px) {
+								justify-content: end;
+
+								> span {
+									display: none;
+								}
+							}
+
+							span {
+								color: #000;
+								font-family: Inter;
+								font-size: 16px;
+								font-style: normal;
+								font-weight: 500;
+								line-height: 150%; /* 24px */
+								letter-spacing: -0.48px;
+								align-self: center;
+							}
+
+							.social-icons {
+								display: flex;
+								margin-left: 16px;
+							}
 
 							.social-menu {
-								position: absolute;
-								top: 2px;
-								left: -34px;
+								position: initial;
+								padding: 3px;
+								display: block;
 
 								.social-icon {
 									display: none;
@@ -272,6 +330,25 @@
 					max-width: 570px;
 					margin: auto;
 
+					@media (min-width: 768px) {
+						margin-top: 22px;
+					}
+
+					p {
+						line-height: 150%;
+						letter-spacing: -0.48px;
+					}
+
+					h2 {
+						color: var(--PURE, #262626);
+						font-family: Manrope;
+						font-size: 20px;
+						font-style: normal;
+						font-weight: 800;
+						line-height: 150%; /* 30px */
+						letter-spacing: -0.6px;
+					}
+
 					img {
 						max-width: 100%;
 						width: auto;
@@ -298,6 +375,7 @@
 							position: absolute;
 							top: 2px;
 							left: -34px;
+							display: block;
 
 							.social-icon {
 								display: none;
@@ -349,23 +427,44 @@
 			}
 
 			section.post-footer {
-				margin: 80px 0;
-				position: relative;
-				left: 50%;
-				transform: translateX(-50%);
-				width: 1200px;
+				margin-bottom: 24px;
+
+				@media (min-width: 1200px) {
+					margin: 56px 0;
+					position: relative;
+					left: 50%;
+					transform: translateX(-50%);
+					width: 1200px;
+				}
 
 				.related-posts {
 					h2 {
-						display: none;
+						font-size: 24px;
+						line-height: 125%; /* 30px */
+						letter-spacing: -0.24px;
+						margin: 40px 0 16px;
+
+						@media (min-width: 768px) {
+							margin-bottom: 36px;
+						}
 					}
 
 					.related {
 						display: flex;
-						gap: 32px;
+						gap: 23px;
+						flex-wrap: wrap;
+
+						@media (min-width: 768px) {
+							gap: 30px;
+						}
 
 						.related-post {
 							position: relative;
+							max-width: 330px;
+
+							@media (min-width: 768px) {
+								max-width: 270px;
+							}
 
 							a {
 								display: block;
@@ -398,8 +497,12 @@
 							.info {
 								h5 {
 									color: var(--Gray-1, #333);
+									font-family: Manrope;
+									font-size: 20px;
+									font-style: normal;
 									font-weight: 700;
-									line-height: 130%; /* 26px */
+									line-height: 150%; /* 30px */
+									letter-spacing: -0.6px;
 									margin: 10px 0;
 								}
 

@@ -54,7 +54,7 @@ function get_html_terms(int $post_id, string $tax, bool $use_link = false, bool 
 
     foreach ($terms as $term) {
 
-        if (is_wp_error($term)) {
+        if ( ! $term || is_wp_error( $term ) ) {
             continue;
         }
 

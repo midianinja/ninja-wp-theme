@@ -372,6 +372,13 @@ class Assets
                 },
             ],
 
+            'single-afluente' => [
+                'file'             => '_p-single-afluente.css',
+                'preload_callback' => function() {
+                    return is_singular( 'afluente' );
+                },
+            ],
+
             '404' => [
                 'file' => '_p-404.css',
                 'preload_callback' => function () {
@@ -404,6 +411,13 @@ class Assets
                 'file' => '_p-archive-afluente.css',
                 'preload_callback' => function () {
                     return is_post_type_archive('afluente');
+                },
+            ],
+
+            'archive-especial' => [
+                'file' => '_p-archive-especial.css',
+                'preload_callback' => function () {
+                    return is_post_type_archive( 'especial' );
                 },
             ],
 

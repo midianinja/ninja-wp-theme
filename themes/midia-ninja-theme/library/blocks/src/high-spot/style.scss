@@ -1,10 +1,5 @@
 @import "../../shared/scss/mixins";
 
-.single .container main.content .post,
-.single .container main.content .post .post-content {
-    max-width: 1280px !important;
-}
-
 .high-spot-block {
     .container {
         .high-spot-block__content {
@@ -54,6 +49,7 @@
                 height: 100%;
                 left: 0;
                 overflow: hidden;
+                overflow-y: auto;
                 padding: 50px;
                 position: absolute;
                 top: 0;

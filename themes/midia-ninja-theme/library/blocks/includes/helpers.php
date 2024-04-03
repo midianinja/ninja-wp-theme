@@ -15,10 +15,10 @@ namespace Ninja;
  */
 function build_posts_query( $attributes, $post__not_in = [] ) {
 
-    $post_type = isset( $attributes['postType'] ) ? $attributes['postType'] : [ 'post' ];
+    $post_type     = isset( $attributes['postType'] ) ? $attributes['postType'] : 'post';
     $posts_to_show = isset( $attributes['postsToShow'] ) ? intval( $attributes['postsToShow'] ) : 3;
 
-    $order = isset( $attributes['order'] ) ? $attributes['order'] : 'desc';
+    $order    = isset( $attributes['order'] ) ? $attributes['order'] : 'desc';
     $order_by = isset( $attributes['orderBy'] ) ? $attributes['orderBy'] : 'date';
 
     $args = [
@@ -28,6 +28,19 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
         'post_type'           => $post_type,
         'posts_per_page'      => $posts_to_show
     ];
+
+    if ( $post_type === 'post' && isset( $attributes['taxQueryTerms'] ) && ! empty( $attributes['taxQueryTerms'] ) ) {
+
+        $args['tax_query'] = ['relation' => 'AND'];
+
+        foreach ( $attributes['taxQueryTerms'] as $term ) {
+            $args['tax_query'][] = [
+                'taxonomy' => 'category', // TODO: Make this dynamic
+                'field'    => 'term_id',
+                'terms'    => [$term['id']]
+            ];
+        }
+    }
 
     $args['post__not_in'] = array_merge(
         $post__not_in,

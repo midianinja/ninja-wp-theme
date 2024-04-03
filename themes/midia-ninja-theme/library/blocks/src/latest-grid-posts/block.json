@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ninja/latest-grid-posts",
+	"version": "0.1.0",
+	"title": "Últimos posts (Grid)",
+	"category": "text",
+	"icon": "excerpt-view",
+	"description": "Exibe um grid de cards.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"blockId": {
+			"type": "string"
+		},
+		"blockModel": {
+			"type": "string",
+			"default": "posts"
+		},
+		"playlistId": {
+			"type": "string"
+		},
+		"postsToShow": {
+			"type": "number",
+			"default": 5
+		},
+		"heading": {
+			"type": "string"
+		},
+		"showHeading": {
+			"type": "boolean"
+		},
+		"showAuthor": {
+			"type": "boolean",
+			"default": true
+		},
+		"showThumbnail": {
+			"type": "boolean",
+			"default": true
+		},
+		"thumbnailFormat": {
+			"type": "boolean",
+			"default": false
+		},
+		"showTaxonomy": {
+			"type": "string",
+			"default": "category"
+		},
+		"order": {
+			"type": "string",
+			"default": "desc"
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "date"
+		}
+	},
+	"textdomain": "ninja",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

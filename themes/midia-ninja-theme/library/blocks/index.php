@@ -22,6 +22,9 @@ function blocks_init() {
 		'latest-editorial-posts' => [
 			'render_callback' => 'Ninja\\latest_editorial_posts_callback'
 		],
+		'latest-grid-posts' => [
+			'render_callback' => 'Ninja\\latest_grid_posts_callback'
+		],
 		'latest-horizontal-posts' => [
 			'render_callback' => 'Ninja\\latest_horizontal_posts_callback'
 		],

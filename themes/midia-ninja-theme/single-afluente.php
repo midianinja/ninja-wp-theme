@@ -10,7 +10,7 @@ get_header();
 ?>
 
 <div class="container">
-    <main class="content">
+    <main class="content content-afluente">
         <?php while ( have_posts() ) : the_post(); ?>
             <article class="post">
                 <section class="post-content">

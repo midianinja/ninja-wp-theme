@@ -4,21 +4,21 @@ namespace Ninja;
 
 function latest_vertical_posts_callback( $attributes ) {
 
-    $block_id         = esc_attr( $attributes['blockId'] );
-    $block_model      = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'posts';
+    $block_id        = esc_attr( $attributes['blockId'] );
+    $block_model     = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'posts';
     $block_classes[] = 'latest-vertical-posts-block';
 
     if ( $block_model == 'posts' ){
-        $show_author = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
-        $show_taxonomy = ( isset( $attributes['showTaxonomy'] ) && ! empty( $attributes['showTaxonomy'] ) ) ? true : false;
-        $show_thumbnail = ( isset( $attributes['showThumbnail'] ) && ! empty( $attributes['showThumbnail'] ) ) ? true : false;
+        $show_author       = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
+        $show_taxonomy     = ( isset( $attributes['showTaxonomy'] ) && ! empty( $attributes['showTaxonomy'] ) ) ? true : false;
+        $show_thumbnail    = ( isset( $attributes['showThumbnail'] ) && ! empty( $attributes['showThumbnail'] ) ) ? true : false;
         $thumbnail_formtat = ( isset( $attributes['thumbnailFormat'] ) && ! empty( $attributes['thumbnailFormat'] ) ) ? true : '';
-        $custom_class = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
-        $block_classes[] = $custom_class;
-        $block_classes[] = $show_author ? 'post--has-author' : '';
-        $block_classes[] = $show_taxonomy ? 'post--has-taxonomy' : '';
-        $block_classes[] = $show_thumbnail ? 'post--has-thumbnail' : '';
-        $block_classes[] = $thumbnail_formtat ? 'post--thumbnail-rounded' : '';
+        $custom_class      = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
+        $block_classes[]   = $custom_class;
+        $block_classes[]   = $show_author ? 'post--has-author' : '';
+        $block_classes[]   = $show_taxonomy ? 'post--has-taxonomy' : '';
+        $block_classes[]   = $show_thumbnail ? 'post--has-thumbnail' : '';
+        $block_classes[]   = $thumbnail_formtat ? 'post--thumbnail-rounded' : '';
     }
 
     $block_classes[] = 'model-' . $block_model;
@@ -30,7 +30,6 @@ function latest_vertical_posts_callback( $attributes ) {
     $posts_by_slide = $attributes['postsBySlide'] ?? 2;
     $posts_to_show = $attributes['postsToShow'] ?? 8;
 
-
     if ( $block_model == 'posts' ) {
         // Posts
         global $latest_vertical_posts_ids;
@@ -39,7 +38,9 @@ function latest_vertical_posts_callback( $attributes ) {
             $latest_vertical_posts_ids = [];
         }
 
-        $cache_key = 'ninja_vertical_' . $block_id;
+        $attributes_hash = md5( serialize( $attributes ) );
+
+        $cache_key = 'ninja_vertical_' . $attributes_hash;
         $cached_posts = get_transient( $cache_key );
 
         if ( false !== $cached_posts ) {
@@ -95,9 +96,8 @@ function latest_vertical_posts_callback( $attributes ) {
 
     // Start the block structure
     echo '<div id="block__' . esc_attr( $attributes['blockId'] ) . '" class="' . implode( ' ', $block_classes ) . '" data-slider="vertical-posts">';
-    
-    $heading = $attributes['heading'] ?? '';
 
+    $heading = $attributes['heading'] ?? '';
 
     if ( ! empty( $heading ) ) {
         echo '<div class="latest-vertical-posts-block__heading"><h2>'. $heading. '</h2></div>';
@@ -106,17 +106,15 @@ function latest_vertical_posts_callback( $attributes ) {
      // List of the posts to mount slider
      echo '<div class="latest-vertical-posts-block__slides">';
 
-     
-
     if ( $block_model == 'videos' ){
         // Youtube
         foreach( $has_content as $video ) :
             $counter++;
-    
+
             if ( $counter == 1 ) {
                 echo "<div class='slide'>";
             }
-            
+
             get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['video' => $video, 'attributes' => $attributes] );
             
             if ( $counter == $posts_by_slide || $counter == $has_content->post_count ) {
@@ -132,38 +130,37 @@ function latest_vertical_posts_callback( $attributes ) {
 
     if ( $block_model == 'posts' ){
         if ( $has_content->have_posts() ) :
-   
+
             while ( $has_content->have_posts() ) :
                 $has_content->the_post();
                 global $post;
-    
+
                 $latest_vertical_posts_ids[] = $post->ID;
                 $counter++;
-    
+
                 if ( $counter == 1 ) {
                     echo "<div class='slide'>";
                 }
-    
+
                 get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', '', ['post' => $post, 'attributes' => $attributes] );
-    
+
                 if ( $counter == $posts_by_slide || $counter == $has_content->post_count ) {
                     echo "</div>";
                     $counter = 0;
                 }
-    
+
             endwhile;
-    
+
             if ( $counter != 0 ) {
                 echo "</div>";
             }
-    
+
         endif;
-    
+
         wp_reset_postdata();
     }
 
     echo '</div><!-- .latest-vertical-posts-block__slides -->';
-
 
     // The footer with dots and arrows
     echo '<div class="latest-vertical-posts-block__footer">';

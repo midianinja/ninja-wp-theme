@@ -136,7 +136,7 @@
         .pergunte{
             margin-top: 2rem !important;
             background-color: #fff;
-            height: auto;
+            height: 508px;
             border-radius: 12px;
             border: 2px solid #ccc;
             padding: 100px 43px 120px;
@@ -157,7 +157,7 @@
                 line-height: 100%; /* 32px */
                 text-transform: uppercase;
                 margin-bottom: 19px;
-                color: #111;
+                color: #333;
                 margin-bottom: 1.8rem;
             }
             p{
@@ -260,7 +260,7 @@
             }
         }
     
-        .anchor-title {
+        p.anchor-title {
             border-left: 4px solid #262626;
             font-family: 'Manrope', serif;
             font-size: 24px;
@@ -269,6 +269,7 @@
             line-height: 125%; /* 30px */
             letter-spacing: -0.24px;
             padding-left: 8px;
+            color: #111;
             @media(max-width: 992px){
                 margin-top: 0;
             }
@@ -283,7 +284,7 @@
             }
     
             li a {
-                font-family: Manrope;
+                font-family: 'Manrope', serif;
                 font-size: 24px;
                 font-style: normal;
                 font-weight: 800;
@@ -302,7 +303,7 @@
         }
         .wp-block-coblocks-accordion{
             margin: 0 0 59px 5rem;
-            max-width: 785px;
+            max-width: 770px;
             width: 100%;
             cursor: pointer;
             @media(max-width: 1199px){
@@ -349,7 +350,7 @@
                         &:after{
                             bottom: 0;
                             content: "+";
-                            left: 760px;
+                            left: 750px;
                             position: absolute;
                             top: 29px;
                             font-size: 38px;
@@ -439,7 +440,7 @@
                         &::before{
                             bottom: 0;
                             content: "-";
-                            left: 760px;
+                            left: 750px;
                             position: absolute;
                             top: 20px;
                             font-size: 38px;

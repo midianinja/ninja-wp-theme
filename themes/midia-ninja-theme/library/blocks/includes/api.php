@@ -14,7 +14,7 @@ function register_endpoints() {
         [
             'methods'  => 'GET',
             'callback' => 'Ninja\\get_public_post_types',
-            'permission_callback' => __return_true()
+            'permission_callback' => '__return_true'
         ]
     );
 
@@ -32,7 +32,7 @@ function register_endpoints() {
                     }
                 ],
             ],
-            'permission_callback' => __return_true()
+            'permission_callback' => '__return_true'
         ]
     );
 }
@@ -48,6 +48,7 @@ function get_public_post_types( $request ) {
     $post_types_objects = get_post_types( $args, 'objects' );
 
     unset( $post_types_objects['attachment'] );
+    unset( $post_types_objects['header-footer'] );
 
     $post_types = [];
 
@@ -56,9 +57,8 @@ function get_public_post_types( $request ) {
     }
 
     $post_types = apply_filters( 'ninja/helpers/post_types', $post_types );
-    
-    return new \WP_REST_Response( $post_types, 200 );
 
+    return new \WP_REST_Response( $post_types, 200 );
 }
 
 function get_taxonomies_by_post_type( $request ) {

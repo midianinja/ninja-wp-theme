@@ -448,9 +448,11 @@
 						display: flex;
 						gap: 23px;
 						flex-wrap: wrap;
+						justify-content: center;
 
 						@media (min-width: 768px) {
 							gap: 30px;
+							justify-content: normal;
 						}
 
 						.related-post {

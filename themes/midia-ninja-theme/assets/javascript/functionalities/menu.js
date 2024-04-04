@@ -123,15 +123,16 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener("scroll", function() {
         let scroll = document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");
-        console.log(scroll)
 
         if (scroll > 20) {
-            mainHeader.classList.add("scrolado");
-        } else {
+            if ( ! mainHeader.classList.contains("scrolado") ) {
+                mainHeader.classList.add("scrolado");
+            }
+            
+        } else if ( mainHeader.classList.contains("scrolado") ) {
             mainHeader.classList.remove("scrolado");
         }
     }, 1, { passive: true });
-    
 
     // window.addEventListener("scroll", debounce(function() {
     //     const scroll = window.scrollY || document.documentElement.scrollTop;

@@ -6,7 +6,7 @@
 	
 	.header-and-footer-archive{
 		margin-top: 17px;
-		
+
 		.wp-block-columns:first-child{
 			gap: 100px;
 			margin-bottom: 0;
@@ -27,6 +27,18 @@
 								width: 100%;
 								height: 483px;
 
+								@include mixins.small{
+									height: 230px;
+									position: relative;
+									top: 99px;
+								}
+
+								@include mixins.mobile{
+									height: 328px;
+									position: relative;
+									top: 99px;
+								}
+
 								>h4{
 									color: var(--Secondary-light, #F5F5F5);
 									font-family: var(--wp--preset--font-family--archivo-expanded);
@@ -38,6 +50,15 @@
 									margin: 0;
 									margin-right: auto;
 									margin-left: 73px;
+
+									@include mixins.small{
+										margin-left: 48px;
+									}
+
+
+									@include mixins.mobile{
+										margin-left: 48px;
+									}
 								}
 				
 								>h2{
@@ -52,6 +73,14 @@
 									width: 100%;
 									margin-top: 8px;
 									margin-bottom: 8px;
+
+									@include mixins.small{
+										font-size: var(--wp--preset--font-size--medium);
+									}
+
+									@include mixins.mobile{
+										font-size: var(--wp--preset--font-size--medium);
+									}
 								}
 				
 								>p{
@@ -63,6 +92,14 @@
 									line-height: 145%;
 									max-width: 257px;
 									width: 100%;
+
+									@include mixins.small{
+										display: none;
+									}
+
+									@include mixins.mobile{
+										display: none;
+									}
 								}
 							}
 							
@@ -101,21 +138,25 @@
 					}
 
 					.latest-vertical-posts-block__slides{
+
+
+
 						.slick-list{
 							.slick-track{
 
 								.slick-slide:nth-child(1){
-									width: 204px !important;
-									background: linear-gradient(270deg, #000 44.44%, rgba(0, 0, 0, 0.00) 89.62%);
-
-								}
-
-								.slick-slide:nth-child(2){
-									background: linear-gradient(270deg, #000 44.44%, rgba(0, 0, 0, 0.00) 89.62%);
+									width: 230px !important;
 								}
 
 								.slick-slide{
-
+									&::after{
+										background: linear-gradient(270deg, #262626 44.44%, rgba(38, 38, 38, 0) 90%);
+										height: 296px;
+										width: 60px;
+										border: 1px solid red;
+										position: relative;
+										top: -205px;									
+									}
 									.slide{
 										a{
 											text-decoration: none;
@@ -132,6 +173,15 @@
 														height: 294px;
 														border-radius: 8px;
 													}
+
+													// &::after{
+													// 	background: linear-gradient(270deg, #262626 44.44%, rgba(38, 38, 38, 0) 90%);
+													// 	height: 296px;
+													// 	width: 60px;
+													// 	border: 1px solid red;
+													// 	position: relative;
+													// 	top: -205px;									
+													// }
 												}
 
 												&-title{

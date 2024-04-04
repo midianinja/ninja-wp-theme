@@ -20,6 +20,9 @@ header {
 
 		&.scrolado {
 			min-height: 88px;
+			& * {
+				transition: none !important;
+			}
 
 			.menus {
 				display: none;

@@ -2,6 +2,7 @@
 $show_taxonomy = isset($args['attributes']['showTaxonomy']) ? $args['attributes']['showTaxonomy'] : false;
 $show_thumbnail = isset($args['attributes']['showThumbnail']) ? $args['attributes']['showThumbnail'] : false;
 $show_author = isset($args['attributes']['showAuthor']) ? $args['attributes']['showAuthor'] : false;
+$show_excerpt = isset($args['attributes']['showExcerpt']) ? $args['attributes']['showExcerpt'] : false;
 ?>
 
 <a href="<?php echo get_permalink();?>">
@@ -39,6 +40,12 @@ $show_author = isset($args['attributes']['showAuthor']) ? $args['attributes']['s
                     <div class="post-author">
                         <span><?php _e('by', 'ninja');?></span>
                         <?php echo get_the_author(); ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($show_excerpt) : ?>
+                    <div class="post-excerpt">
+                        <?php echo get_the_excerpt(); ?>
                     </div>
                 <?php endif; ?>
             </div>

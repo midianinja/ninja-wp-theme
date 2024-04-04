@@ -5763,47 +5763,34 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
 
+      document.querySelectorAll('.estado').forEach( newslettersEstado => {
+        for(const estado of Object.values(cidades.estados)){
+          const option = document.createElement('option');
+          option.value = estado.sigla;
+          option.innerHTML = estado.nome;
+          newslettersEstado.appendChild(option);
+        }
 
-      const newslettersEstado = document.querySelector('.estado');
-      if (!newslettersEstado) {
-          return;
-      }
-      const newslettersCidade = document.querySelector('.cidade');
-      if (!newslettersCidade) {
-          return;
-      }
-      const defaultOptionText = 'selecionar';
+        newslettersEstado.addEventListener('change', function(event) {
+          document.querySelectorAll('.cidade').forEach( newslettersCidade => {
+            newslettersCidade.innerHTML = '';
+            defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.innerHTML = 'Cidade';
+            newslettersCidade.appendChild(defaultOption);
+            if (this.value == '') {
+                return;
+            }
+            let cidadesEstado = cidades.estados[this.value].cidades;
 
-      let defaultOption = document.createElement('option');
-      defaultOption.value = '';
-      defaultOption.innerHTML = defaultOptionText;
-      newslettersEstado.appendChild(defaultOption);
-
-      for(const estado of Object.values(cidades.estados)){
-        const option = document.createElement('option');
-        option.value = estado.sigla;
-        option.innerHTML = estado.nome;
-        newslettersEstado.appendChild(option);
-      }
-
-      newslettersEstado.addEventListener('change', function(event) {
-          newslettersCidade.innerHTML = '';
-          defaultOption = document.createElement('option');
-          defaultOption.value = '';
-          defaultOption.innerHTML = defaultOptionText;
-          newslettersCidade.appendChild(defaultOption);
-          if (this.value == '') {
-              return;
-          }
-          let cidadesEstado = cidades.estados[this.value].cidades;
-
-          cidadesEstado.forEach(cidade => {
-              let option = document.createElement('option');
-              option.value = cidade;
-              option.innerHTML = cidade;
-              newslettersCidade.appendChild(option);
-          });
+            cidadesEstado.forEach(cidade => {
+                let option = document.createElement('option');
+                option.value = cidade;
+                option.innerHTML = cidade;
+                newslettersCidade.appendChild(option);
+            });
+          })
+          
       });
-
-
+      }) 
 })

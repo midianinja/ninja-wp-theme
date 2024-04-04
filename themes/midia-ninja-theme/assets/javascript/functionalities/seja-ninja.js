@@ -1,7 +1,6 @@
 
 
 document.addEventListener("DOMContentLoaded", function() {
-  console.log("Olá mundo");
     const cidades = {
         "estados": {
           "AC": {
@@ -5763,10 +5762,9 @@ document.addEventListener("DOMContentLoaded", function() {
           }
         }
       }
-      
-      
+
+
       const newslettersEstado = document.querySelector('.estado');
-      console.log(newslettersEstado);
       if (!newslettersEstado) {
           return;
       }
@@ -5775,13 +5773,12 @@ document.addEventListener("DOMContentLoaded", function() {
           return;
       }
       const defaultOptionText = 'selecionar';
-      
+
       let defaultOption = document.createElement('option');
       defaultOption.value = '';
       defaultOption.innerHTML = defaultOptionText;
       newslettersEstado.appendChild(defaultOption);
 
-      console.log(Object.values(cidades.estados));
       for(const estado of Object.values(cidades.estados)){
         const option = document.createElement('option');
         option.value = estado.sigla;
@@ -5807,6 +5804,6 @@ document.addEventListener("DOMContentLoaded", function() {
               newslettersCidade.appendChild(option);
           });
       });
-    
-    
+
+
 })

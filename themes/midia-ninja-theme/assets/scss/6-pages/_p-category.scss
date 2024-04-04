@@ -61,9 +61,13 @@
                         border: 2px solid var(--Cores-de-categoria-Ciano---Poltica, #76C7E6);
                         max-width: 367px;
                         width: 100%;
-                        height: 448px;
+                        height: 452px;
                         position: relative;
-                        left: 0%;
+                        left: -12%;
+
+						@media (max-width: 1200px){
+							left: -4%;
+						}
 
 						@include mixins.small{
 							max-width: 330px;
@@ -100,6 +104,7 @@
 									.slide {
 										a {
 											.post {
+
 												&-title {
 													color: var(--Gray-1, #333);
 													font-family: var(--wp--preset--font-family--manrope);
@@ -303,6 +308,7 @@
 							max-width: 370px;
 							width: 100%;
 							height: auto;
+							border-bottom: none;
 
 							&--thumb {
 								max-width: 371px;
@@ -383,7 +389,13 @@
 
 					.slick-list {
 						.slick-track {
+							.slick-slide{
+								width: 251px !important;
+								height: 137px !important;
+								overflow: hidden;
+							}
 							.slide {
+							
 								a {
 									.post {
 										&-title {

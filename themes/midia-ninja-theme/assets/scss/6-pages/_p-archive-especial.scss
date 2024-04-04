@@ -14,6 +14,9 @@
 
 			.wp-block-column{
 
+				.wp-block-cover.alignwide{
+					max-width: 770px;
+				}
 				.wp-block-cover:first-child{
 					padding: 0;
 					border-radius: 8px;
@@ -115,6 +118,7 @@
 			}
 
 			.wp-block-column:last-child{
+				
 				.latest-vertical-posts-block{
 					background-color: #000;
 					max-width: 367px;
@@ -123,8 +127,7 @@
 					padding-top: 51px;
 					padding-bottom: 30px;
 					padding-left: 18px;
-
-
+					
 					.latest-vertical-posts-block__heading{
 						>h2{
 							color: #FFF;
@@ -137,28 +140,28 @@
 						}
 					}
 
-					.latest-vertical-posts-block__slides{
-
-
-
+					.latest-vertical-posts-block__slides{	
+			
 						.slick-list{
 							.slick-track{
+
+								.slick-slide:not(:nth-child(1)) {
+									background: linear-gradient(352deg, #000 44.44%, #222 131.62%) !important;
+									height: 350px;
+								}
+							
+								// .slick-slide:not(:nth-child(1)) {
+								// 	box-shadow: none;
+								// }
 
 								.slick-slide:nth-child(1){
 									width: 230px !important;
 								}
 
 								.slick-slide{
-									&::after{
-										background: linear-gradient(270deg, #262626 44.44%, rgba(38, 38, 38, 0) 90%);
-										height: 296px;
-										width: 60px;
-										border: 1px solid red;
-										position: relative;
-										top: -205px;									
-									}
 									.slide{
 										a {
+											text-decoration: none;
 											.post{
 												flex-direction: column;
 
@@ -171,15 +174,6 @@
 														height: 294px;
 														border-radius: 8px;
 													}
-
-													// &::after{
-													// 	background: linear-gradient(270deg, #262626 44.44%, rgba(38, 38, 38, 0) 90%);
-													// 	height: 296px;
-													// 	width: 60px;
-													// 	border: 1px solid red;
-													// 	position: relative;
-													// 	top: -205px;									
-													// }
 												}
 
 												&-title{

@@ -15,7 +15,7 @@
             display: none;
         }
 
-        & .wp-block-column:first-child{
+        & .wp-block-column:first-child{ //div que envolve banner e aside
             width: 870px;
             .wp-block-cover{
                 margin: 0px;
@@ -25,7 +25,7 @@
                     margin: 0px;
                     height: 450px;
                     gap: 0px;
-                    .wp-block-column:first-child{
+                    .wp-block-column:first-child{  //coluna 1 do banner
                         max-width: 400px;
                         padding-left: 64px;
                         padding-top: 64px;
@@ -63,7 +63,7 @@
                          max-width: 257px;
                         }               
                     }
-                    .wp-block-column:last-child{
+                    .wp-block-column:last-child{ // coluna 2 do banner 
                         & .wpcf7{
                             margin: auto;
                             display: flex;
@@ -172,7 +172,8 @@
                 
             }
         }
-        & .wp-block-column:last-child{
+        & .wp-block-column:last-child{ // col-2 ASIDE 
+            max-width: 270px;
             margin-left: 27px !important;
             @media(max-width:991px){
                 display: none;
@@ -190,7 +191,7 @@
                     .wp-block-columns{
                         margin: 0px;
                         
-                        .wp-block-column{
+                        .wp-block-column{ // container que envolve descrição e rede social
                             margin-left: 33px !important;
                             margin-right: 32px !important;
                             h4{
@@ -202,9 +203,8 @@
                                 margin-top: -17px;
                                 margin-bottom: 12px;
                             }
-                            .wp-block-columns{ 
+                            .wp-block-columns{ //icones de rede sociais
                                 gap: 0px;
-                                /* width: 100px; */
                                 margin: 0px;
                                 max-width: 106px;
                                 .wp-block-column{

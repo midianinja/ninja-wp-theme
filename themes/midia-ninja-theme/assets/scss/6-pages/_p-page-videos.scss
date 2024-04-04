@@ -157,6 +157,55 @@
 			}
 		}
 
+        .yottie-widget{
+            .yottie-widget-feed-section-slide,
+            .yottie-widget-video-info,
+            .yottie-widget-feed-section-pagination {
+            background-color: #f5f5f5;
+            }
+            .yottie-widget-feed-section-slide{
+                padding: 0 !important;
+                .yottie-widget-video{
+                    width: 361px !important;
+                    margin-bottom: 0 !important;
+                    
+                }
+            }
+            .yottie-widget-video-preview-thumbnail{
+                width: 361px !important;
+                border-radius: 8px !important;
+                img{
+                    width: 361px;
+                    height: auto;
+                    
+                }
+               
+            }
+            .yottie-widget-video-info{
+                a{
+                    color: var(--Primary-dark, var(--DARK, #111));
+                    font-family: 'Manrope', serif;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 125%;
+                    letter-spacing: -0.24px;
+                    text-decoration: none;
+                }
+                .yottie-widget-video-info-passed-time{
+                    color: var(--PRIMARY-PURE, #848484);
+                    font-family: 'Manrope', serif;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 145%;
+                }
+            }
+            .yottie-widget-feed-section-arrow{
+                display: none;
+            }
+        }
+
         .anuncio-ninja-mobile{
             margin-bottom : 0;
             margin-top: 2rem; 

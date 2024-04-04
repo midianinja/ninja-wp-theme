@@ -49,8 +49,8 @@ class Assets
      * Stylesheets that are global are enqueued. All other stylesheets are only registered, to be enqueued later.
      */
     public function enqueue_styles() {
-        add_action( 'wp_footer', [$this, 'enqueue_inline_styles'], 999 );
-        add_action('wp_enqueue_scripts', [ $this, 'enqueue_generic_styles' ]);
+        add_action( 'wp_head', [ $this, 'enqueue_inline_styles' ] );
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_generic_styles' ] );
     }
 
     /**

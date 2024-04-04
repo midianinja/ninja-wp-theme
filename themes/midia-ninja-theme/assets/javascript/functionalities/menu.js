@@ -134,11 +134,11 @@ document.addEventListener("DOMContentLoaded", function() {
     //     }
     // }, 1, { passive: true });
 
-    window.addEventListener("scroll", throttle(function() {
+    window.addEventListener("wheel", throttle(function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");
         
-        if (scroll > 20) {
+        if (scroll > 0) {
             if ( ! mainHeader.classList.contains("scrolado") ) {
                 mainHeader.classList.add("scrolado");
             }

@@ -4,21 +4,88 @@
 $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
 .search-results {
-    header.c-title {
-        &.title-search {
-            background-image: url($p_theme_assets + '/images/header-posts.png');
-        }
-    }
-
     .index-wrapper {
-        main {
-            padding-bottom: 60px;
-            padding-top: 60px;
+        .col-md-3{
+            display: none
         }
+        
+        main{
+            .search-component{
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
 
-        aside {
-            padding-bottom: 60px;
-            padding-top: 60px;
+            .content{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+
+                .post{
+
+                    &:hover{
+                        background-color: transparent;
+                    }
+
+                    &-card{
+                        display: flex;
+                        flex-direction: column;
+
+                        &--thumb{
+                            margin-right: 0;
+                            padding-right: 0;
+                            max-width: 370px;
+                            width: 100%;
+
+                            a{
+                                text-decoration: none;
+
+                                .aspect-ratio{
+                                    max-width: 370px;
+                                    width: 100%;
+                                    height: 211px;
+                                    border-radius: 9px;
+
+                                    .entry-meta{
+                                        position: relative;
+                                        top: 140px;
+                                    }
+
+                                    img{
+                                        max-width: 370px;
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+
+                        &--content{
+                    
+                            .entry-title{
+                                color: var(--Gray-1, #333);
+                                font-family: var(--wp--preset--font-family--manrope);
+                                font-size: 21.926px;
+                                font-style: normal;
+                                font-weight: 700;
+                                line-height: 140%;
+                                max-width: 370px;
+                                width: 100%;
+                            }
+
+                            .entry-excerpt{
+                                display: none;
+                            }
+
+                            .entry-date{
+                                color: var(--Gray-3, #828282);
+                                font-family: var(--wp--preset--font-family--manrope);
+                                font-size: 17.815px;
+                                font-style: normal;
+                                font-weight: 700;
+                                line-height: 145%; 
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         @import "./../7-parts/p-content-post";

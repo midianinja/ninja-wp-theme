@@ -560,7 +560,9 @@ class Assets
 
             'seja-ninja' => [
                 'file'   => 'seja-ninja.js',
-                'global' => true,
+                'preload_callback' => function () {
+                    return is_page('seja-ninja');
+                }
             ],
 
         ];

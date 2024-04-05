@@ -10,12 +10,14 @@ function latest_vertical_posts_callback( $attributes ) {
 
     if ( $block_model == 'posts' ){
         $show_author       = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
+        $show_excerpt      = ( isset( $attributes['showExcerpt '] ) && ! empty( $attributes['showExcerpt '] ) ) ? true : false;
         $show_taxonomy     = ( isset( $attributes['showTaxonomy'] ) && ! empty( $attributes['showTaxonomy'] ) ) ? true : false;
         $show_thumbnail    = ( isset( $attributes['showThumbnail'] ) && ! empty( $attributes['showThumbnail'] ) ) ? true : false;
         $thumbnail_formtat = ( isset( $attributes['thumbnailFormat'] ) && ! empty( $attributes['thumbnailFormat'] ) ) ? true : '';
         $custom_class      = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
         $block_classes[]   = $custom_class;
         $block_classes[]   = $show_author ? 'post--has-author' : '';
+        $block_classes[]   = $show_excerpt ? 'post--has-excerpt' : '';
         $block_classes[]   = $show_taxonomy ? 'post--has-taxonomy' : '';
         $block_classes[]   = $show_thumbnail ? 'post--has-thumbnail' : '';
         $block_classes[]   = $thumbnail_formtat ? 'post--thumbnail-rounded' : '';

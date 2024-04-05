@@ -119,19 +119,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
-    window.addEventListener("wheel", throttle(function() {
-        const scroll = window.scrollY || document.documentElement.scrollTop;
-        const mainHeader = document.querySelector(".main-header");
+    // window.addEventListener("wheel", throttle(function() {
+    //     const scroll = window.scrollY || document.documentElement.scrollTop;
+    //     const mainHeader = document.querySelector(".main-header");
         
-        if (scroll > 0) {
-            if ( ! mainHeader.classList.contains("scrolado") ) {
-                mainHeader.classList.add("scrolado");
-            }
+    //     if (scroll > 0) {
+    //         if ( ! mainHeader.classList.contains("scrolado") ) {
+    //             mainHeader.classList.add("scrolado");
+    //         }
             
-        } else if ( mainHeader.classList.contains("scrolado") ) {
-            mainHeader.classList.remove("scrolado");
-        }
-    }, 50), { passive: true });
+    //     } else if ( mainHeader.classList.contains("scrolado") ) {
+    //         mainHeader.classList.remove("scrolado");
+    //     }
+    // }, 50), { passive: true });
 
     function throttle(func, wait) {
         let shouldWait = false;
@@ -148,10 +148,24 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     }
 
-    const detectScroll = throttle( func, wait);
-    document.addEventListener('wheel', detectScroll, { passive: true });
-    document.addEventListener('touchend', detectScroll, { passive: true });
+    const detectScroll = throttle(function() {
 
+        const scroll = window.scrollY || document.documentElement.scrollTop;
+        const mainHeader = document.querySelector(".main-header");
+        
+        if (scroll > 0) {
+            if ( ! mainHeader.classList.contains("scrolado") ) {
+                mainHeader.classList.add("scrolado");
+            }
+            
+        } else if ( mainHeader.classList.contains("scrolado") ) {
+            mainHeader.classList.remove("scrolado");
+        }
+        
+    }, 50);
+
+    document.addEventListener('wheel', detectScroll, { passive: true });
+    document.addEventListener('touchstart', detectScroll, { passive: true });
     
 })
 

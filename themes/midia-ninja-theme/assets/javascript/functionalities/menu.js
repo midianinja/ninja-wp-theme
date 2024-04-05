@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const detectScroll = throttle( func, wait);
     document.addEventListener('wheel', detectScroll, { passive: true });
-    document.addEventListener('touchstart', detectScroll, { passive: true });
+    document.addEventListener('touchend', detectScroll, { passive: true });
 
     
 })

@@ -4,24 +4,7 @@
 .page-videos-midia-ninja{
     #app{
         background-color:var(--wp--preset--color--secondary-light);
-        .anuncio-desktop{
-            margin-top : 2rem;
-            margin-bottom : 2rem;
-            display: flex;
-            justify-content: center;
-            @media(max-width: 992px){
-                display: none;
-            }
-        }
-        .anuncio-doritos-mobile{
-            margin-top : 2rem;
-            margin-bottom : 2rem;
-            display: flex;
-            justify-content: center;
-            @media(min-width: 993px){
-                display: none;
-            }
-        }
+      
         .tv-ninja{
             background-color: var(--wp--preset--color--primary-pure);
             border-radius: 8px;
@@ -93,7 +76,7 @@
                 }
             }
         }
-        .latest-vertical-posts-block.model-videos {
+        #yottie_1{
 			background-color: #000;
 			border: 2px solid var(--SECONDARY, #000);
 			margin: 30px 0;
@@ -102,34 +85,68 @@
             padding: 51px 33px 30px 33px;
             border-radius: 12px;
             min-height: 450px;
+            .swiper-container{
+                height: 305px !important;
+            }
 
-            h2{
-				font-family: 'Manrope', sans-serif;
-                font-size: 32px;
-                font-style: normal;
-                font-weight: 800;
-                line-height: 120%; /* 38.4px */
-                letter-spacing: -0.64px;
-                text-transform: uppercase;
-                margin-bottom: 1.5rem;
-                color: #FFF;
-			}
+            .yottie-widget-header {
+                background-color: #000;
+            }
 
-            .latest-vertical-posts-block__slides{   
-                .post{
-                    display: flex !important;
-                    gap: 13px;
-                    .post-thumbnail {
-                        
-                        img{
-                            border-radius: 8px;
-                            width: 136px !important;
-                            height: 97px !important;    
-                        }
-                        
+            .yottie-widget-header-channel-title{
+                a{
+                 text-decoration: none;
+                 color: #FFF;
+                 font-family: 'Manrope', serif;
+                 font-size: 32px;
+                 font-style: normal;
+                 font-weight: 800;
+                 line-height: 120%;
+                 letter-spacing: -0.64px;
+                }
+             }
+
+            .yottie-widget-video-info{
+                background-color: #000;
+                display: flex;
+                max-width: 147px;
+                width: 100%;
+                margin-left: 13px;
+                flex-wrap: wrap !important;
+                a{
+                    color: #FFF;
+                    font-family: 'Manrope', serif;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 145%;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    flex-wrap: wrap !important;
+                    display: flex;
+                }   
+            }
+
+            .yottie-widget-feed-section-slide{
+                background: #000;   
+                padding-left: 0 !important;
+                .yottie-widget-video{
+                    display: flex ;
+                    background-color: #000;   
+
+                    span{
+                        border-radius: 8px;
+                        width: 136px ;
+                        height: 97px !important;    
+                    }
+                    .yottie-widget-video-preview-thumbnail img  {
+                        border-radius: 8px;
+                        width: 136px ;
+                        height: 97px ;
+                        object-fit: cover;    
                     }
                     .post-content{
-                        width: 147px !important;
+                        width: 147px ;
                         color: #FFF;
                         font-family: 'Manrope', sans-serif;
                         font-size: 13px;
@@ -139,25 +156,12 @@
                     }
                 }  
             }
-			.latest-vertical-posts-block__footer {
-				.latest-vertical-posts-block__arrows .slick-arrow {
-					background-color: #fff;
-					opacity: 0.2;
-					background-image: url("/wp-content/themes/midia-ninja-theme/assets/images/arrow-left-slider-black.png");
-
-					&:hover {
-						//background-color: #fff;
-						opacity: 1;
-					}
-				}
-
-				.latest-vertical-posts-block__dots .slick-dots li {
-					background-color: #fff;
-				}
-			}
+            .div.yottie-widget-feed-section-arrow {
+                top: 100% !important;
+            }
 		}
 
-        .yottie-widget{
+        #yottie_2{
             .yottie-widget-feed-section-slide,
             .yottie-widget-video-info,
             .yottie-widget-feed-section-pagination {
@@ -205,19 +209,9 @@
                 display: none;
             }
         }
-
-        .anuncio-ninja-mobile{
-            margin-bottom : 0;
-            margin-top: 2rem; 
-            display: flex;
-            justify-content: center;
-            img{
-                max-width: 270px;
-                width: 100%;
-                margin-left: auto;
-            }
-        }    
+  
         .latest-horizontal-posts-block.videos-desktop{
+            display: none;
             padding: 0 0;
             margin-bottom: 0;
             background-color: #262626 !important;

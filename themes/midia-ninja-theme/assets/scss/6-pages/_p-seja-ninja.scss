@@ -402,6 +402,8 @@
                     text-align: center;
                     width: 271px;
                     margin: auto;
+                    border-radius: 8px;
+                    background: var(--DARK, #111);
                 }
                 .wp-block-cover__inner-container{
                     text-align: center;
@@ -410,6 +412,9 @@
                     }
                     h4{
                         margin: 0;
+                        @include mixins.tablet{
+                            
+                        }
                         
                     }
                     & .social-icons-inscricao{

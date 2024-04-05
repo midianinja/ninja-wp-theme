@@ -133,20 +133,20 @@ document.addEventListener("DOMContentLoaded", function() {
     //     }
     // }, 50), { passive: true });
 
-    function throttle(func, wait) {
-        let shouldWait = false;
+    // function throttle(func, wait) {
+    //     let shouldWait = false;
       
-        return function executedFunction(...args) {
+    //     return function executedFunction(...args) {
         
-            if (shouldWait) return;
+    //         if (shouldWait) return;
             
-            func(...args);
-            shouldWait = true;
-            setTimeout(() => {
-                shouldWait = false;
-            }, wait);
-        };
-    }
+    //         func(...args);
+    //         shouldWait = true;
+    //         setTimeout(() => {
+    //             shouldWait = false;
+    //         }, wait);
+    //     };
+    // }
 
     const detectScroll = throttle(function() {
 

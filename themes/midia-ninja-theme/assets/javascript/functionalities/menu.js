@@ -119,11 +119,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
-    window.addEventListener("scroll", throttle(function() {
+    window.addEventListener("wheel", throttle(function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");
         
-        if (scroll >= 0) {
+        if (scroll > 0) {
             if ( ! mainHeader.classList.contains("scrolado") ) {
                 mainHeader.classList.add("scrolado");
             }
@@ -147,6 +147,12 @@ document.addEventListener("DOMContentLoaded", function() {
             }, wait);
         };
     }
+
+    const detectScroll = throttle( func, wait);
+    document.addEventListener('wheel', detectScroll, { passive: true });
+    document.addEventListener('touchstart', detectScroll, { passive: true });
+
+    
 })
 
 

@@ -119,12 +119,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
-    //Menu reduzido no scroll
-    // window.addEventListener("scroll", function() {
-    //     let scroll = document.documentElement.scrollTop;
+    // window.addEventListener("wheel", throttle(function() {
+    //     const scroll = window.scrollY || document.documentElement.scrollTop;
     //     const mainHeader = document.querySelector(".main-header");
-
-    //     if (scroll > 20) {
+        
+    //     if (scroll > 0) {
     //         if ( ! mainHeader.classList.contains("scrolado") ) {
     //             mainHeader.classList.add("scrolado");
     //         }
@@ -132,21 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //     } else if ( mainHeader.classList.contains("scrolado") ) {
     //         mainHeader.classList.remove("scrolado");
     //     }
-    // }, 1, { passive: true });
-
-    window.addEventListener("wheel", throttle(function() {
-        const scroll = window.scrollY || document.documentElement.scrollTop;
-        const mainHeader = document.querySelector(".main-header");
-        
-        if (scroll > 0) {
-            if ( ! mainHeader.classList.contains("scrolado") ) {
-                mainHeader.classList.add("scrolado");
-            }
-            
-        } else if ( mainHeader.classList.contains("scrolado") ) {
-            mainHeader.classList.remove("scrolado");
-        }
-    }, 50), { passive: true });
+    // }, 50), { passive: true });
 
     function throttle(func, wait) {
         let shouldWait = false;
@@ -162,6 +147,26 @@ document.addEventListener("DOMContentLoaded", function() {
             }, wait);
         };
     }
+
+    const detectScroll = throttle(function() {
+
+        const scroll = window.scrollY || document.documentElement.scrollTop;
+        const mainHeader = document.querySelector(".main-header");
+        
+        if (scroll > 0) {
+            if ( ! mainHeader.classList.contains("scrolado") ) {
+                mainHeader.classList.add("scrolado");
+            }
+            
+        } else if ( mainHeader.classList.contains("scrolado") ) {
+            mainHeader.classList.remove("scrolado");
+        }
+        
+    }, 50);
+
+    document.addEventListener('wheel', detectScroll, { passive: true });
+    document.addEventListener('touchstart', detectScroll, { passive: true });
+    
 })
 
 

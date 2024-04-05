@@ -523,11 +523,11 @@ add_filter( 'coauthors_guest_author_fields', 'add_guest_author_fields', 10, 2 );
 
 function alterar_consulta_pesquisa_afluente($query) {
     // Verificar se a consulta está acontecendo na página de pesquisa e se é a consulta principal
-    if (is_search() && $query->is_main_query()) {
+    if (is_post_type_archive('afluente') && $query->is_main_query()) {
         // Definir o tipo de post como 'afluente'
-        $query->set('post_type', 'afluente');
-        // Excluir todos os outros tipos de post
-        $query->set('post_type', array('afluente'));
+        if(!empty($_GET['pesquisar'])) {
+            $query->set('s', $_GET['pesquisar']);
+        }
     }
 }
 add_action('pre_get_posts', 'alterar_consulta_pesquisa_afluente');

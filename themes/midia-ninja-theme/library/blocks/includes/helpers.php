@@ -5,11 +5,11 @@ namespace Ninja;
 /**
  * Builds a WP_Query args array to query posts for a block.
  *
- * This takes in the block attributes and an optional array of post IDs 
+ * This takes in the block attributes and an optional array of post IDs
  * to exclude. It returns a WP_Query args array to query posts according
  * to the attributes, excluding the given IDs.
  *
- * @param array $attributes Block attributes. 
+ * @param array $attributes Block attributes.
  * @param array $post__not_in Optional array of post IDs to exclude.
  * @return array WP_Query args array.
  */
@@ -51,7 +51,7 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
 
 }
 
-function filter_save_post( $post_id, $post, $update ) {
+function filter_save_post( $post_id, $post ) {
     if ( ! current_user_can( 'edit_post', $post_id ) ) {
         return $post_id;
     }
@@ -59,8 +59,8 @@ function filter_save_post( $post_id, $post, $update ) {
     clear_block_transients( $post, 'ninja/latest-vertical-posts', 'ninja_vertical_' );
 }
 
-add_action( 'save_post', 'Ninja\\filter_save_post', 10, 3 );
-add_action( 'delete_post', 'Ninja\\filter_save_post', 10, 3 );
+add_action( 'save_post', 'Ninja\\filter_save_post', 10, 2 );
+add_action( 'delete_post', 'Ninja\\filter_save_post', 10, 2 );
 
 function clear_block_transients( $post, $block_name, $transient_name ) {
     if ( has_block( $block_name, $post ) ) {

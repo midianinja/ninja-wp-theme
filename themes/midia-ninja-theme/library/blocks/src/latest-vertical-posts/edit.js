@@ -42,6 +42,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		postsToShow,
 		postType,
 		showAuthor,
+		showExcerpt,
 		showTaxonomy,
 		showThumbnail,
 		taxQueryTerms,
@@ -280,6 +281,13 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							label={ __( 'Show the post author?', 'ninja' ) }
 							checked={ showAuthor }
 							onChange={ () => { setAttributes( { showAuthor: ! showAuthor } ) } }
+						/>
+					</PanelRow>
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Show the post excerpt?', 'ninja' ) }
+							checked={ showExcerpt }
+							onChange={ () => { setAttributes( { showExcerpt: ! showExcerpt } ) } }
 						/>
 					</PanelRow>
 				</PanelBody>

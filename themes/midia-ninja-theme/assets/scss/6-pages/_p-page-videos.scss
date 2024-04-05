@@ -93,6 +93,10 @@
                 background-color: #000;
             }
 
+            .yottie-widget-feed{
+                background: #000;
+            }
+
             .yottie-widget-header-channel-title{
                 a{
                  text-decoration: none;
@@ -210,18 +214,31 @@
             }
         }
   
-        .latest-horizontal-posts-block.videos-desktop{
-            display: none;
-            padding: 0 0;
-            margin-bottom: 0;
-            background-color: #262626 !important;
+        #yottie_3{
+            .yottie-widget-header {
+                background-color: #262626;
+            }
+
+            .yottie-widget-header-channel-title{
+                a{
+                 text-decoration: none;
+                 color: #FFF;
+                 font-family: 'Manrope', serif;
+                 font-size: 32px;
+                 font-style: normal;
+                 font-weight: 800;
+                 line-height: 120%;
+                 letter-spacing: -0.64px;
+                }
+            }
+
+            .yottie-widget-feed{
+                background: #262626;
+            }
     
-            h2 {
-                font-family: "MidiaNinja", sans-serif;
-                font-size: 54px;
-                font-weight: 400;
-                margin-bottom: 0;
-                letter-spacing: normal;
+            .yottie-widget-feed-section-slide{
+                background-color: #262626;
+                background: #262626;
             }
 
             .video-title{

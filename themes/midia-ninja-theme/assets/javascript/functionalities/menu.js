@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");
         
-        if (scroll > 0) {
+        if (scroll >= 0) {
             if ( ! mainHeader.classList.contains("scrolado") ) {
                 mainHeader.classList.add("scrolado");
             }

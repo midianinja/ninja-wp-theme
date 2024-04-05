@@ -14,6 +14,22 @@ footer.main-footer {
 			background-color: #262626;
 		}
 
+		.newsletter-mobile {
+			.wp-block-cover__inner-container {
+				margin-top: 20px;
+
+				> div {
+					gap: 0;
+				}
+
+				@media (min-width: 768px) {
+					> div {
+						gap: 90px;
+					}
+				}
+			}
+		}
+
 		h2 {
 			color: #fff;
 			text-align: center;
@@ -24,6 +40,15 @@ footer.main-footer {
 			font-weight: 400;
 			line-height: 100%; /* 32px */
 			text-transform: uppercase;
+			margin: 36px 0;
+
+			@media (min-width: 768px) {
+				text-align: left;
+			}
+
+			@media (min-width: 874px) {
+				width: 85%;
+			}
 		}
 
 		p {
@@ -34,9 +59,19 @@ footer.main-footer {
 			font-style: normal;
 			font-weight: 500;
 			line-height: 145%; /* 18.85px */
+			margin-bottom: 0;
 		}
 
 		form {
+			p {
+				width: 100%;
+				margin: 16px 0;
+
+				@media (min-width: 768px) {
+					margin: 30px 0;
+				}
+			}
+
 			input {
 				width: 100%;
 				border-radius: 8px;
@@ -47,6 +82,12 @@ footer.main-footer {
 				font-size: 16px;
 				line-height: 140%;
 
+				@media (min-width: 768px) {
+					background: #fff;
+					border: 2px solid #fff;
+					color: #595d62;
+				}
+
 				&[type="submit"] {
 					padding: 8px 24px;
 					background: var(--OURO, #fbf36e);
@@ -54,6 +95,14 @@ footer.main-footer {
 					font-weight: 700;
 					border: 2px solid #fbf36e;
 					text-transform: uppercase;
+
+					@media (min-width: 512px) {
+						max-width: 216px;
+					}
+
+					@media (min-width: 768px) {
+						padding: 16px 24px;
+					}
 				}
 			}
 		}

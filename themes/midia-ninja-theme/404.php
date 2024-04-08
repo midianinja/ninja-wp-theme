@@ -1,12 +1,15 @@
 <?php get_header(); ?>
 <div class="error-404">
-        <h1>   
-            <span class="error"><?php _e('erro', 'ninja') ?></span>
-            <span class="num">404</span>
-        </h1>
-
-        <p><?php _e('Página não encontrada', 'ninja') ?></p>
-        <a href="<?= home_url() ?>" class="button"> <span><?php _e('Voltar para a página inicial', 'ninja') ?></span> </a>
+    <div class="gif">
+        
     </div>
+    <button onclick="redirectToHome()"><?php echo __('back to homepage', 'ninja'); ?></button>
 
+</div>
 <?php get_footer(); ?>
+
+<script>
+function redirectToHome() {
+    window.location.href = "<?php echo home_url(); ?>";
+}
+</script>

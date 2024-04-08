@@ -2,8 +2,8 @@
 
 namespace Ninja;
 
-function videos_get_contents( $youtube_key, $playlist_id, $max_results ) {
-    $cache_key = 'youtube_videos_' . md5( $playlist_id . '_' . $max_results );
+function videos_get_contents( $youtube_key, $playlist_id, $max_results, $block_id ) {
+    $cache_key = 'ninja_youtube_'  . $block_id;
     $cached_data = get_transient( $cache_key );
 
     if ( false !== $cached_data ) {

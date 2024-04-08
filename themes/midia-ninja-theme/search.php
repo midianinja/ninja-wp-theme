@@ -26,10 +26,11 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
                     <div class="search-component">
                         <?php get_search_form();?>
                     </div>
-                   
-                    <?php while (have_posts()) : the_post(); ?>
-                        <?php get_template_part('template-parts/content/post'); ?>
-                    <?php endwhile; ?>
+                    <div class="content">
+                        <?php while (have_posts()) : the_post(); ?>
+                            <?php get_template_part('template-parts/content/post-search-results'); ?>
+                        <?php endwhile; ?>
+                    </div>
                 </div>
                 
                 <?php get_template_part('template-parts/content/pagination'); ?>

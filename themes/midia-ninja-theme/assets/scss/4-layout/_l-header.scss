@@ -1,6 +1,10 @@
 @import "./../1-settings/_s-variables";
 @import "./../2-atoms/a-mixins";
 
+#wpadminbar ~ header {
+	padding-top: 20px;
+}
+
 header {
 	&.main-header {
 		position: sticky;
@@ -8,29 +12,33 @@ header {
 		top: 0;
 		z-index: 999;
 		width: 100%;
-		transition: all 0.5s;
 		background-color: #f5f5f5;
-		border-bottom: 1px solid;
-		transition: all 0.5s ease;
+		min-height: 100px;
+		transition: all 0.4s ease;
+		height: fit-content;
+		padding-top: 20px;
 
-		&.scrolled {
-			.container {
-				.header-content {
-					min-height: 88px;
+		@media (min-width: 768px) {
+			border-bottom: 1px solid #848484;
+		}
 
-					.menus {
-						display: none;
-					}
+		&.scrolado {
+			min-height: 88px;
+			& * {
+				transition: none !important;
+			}
 
-					> div {
-						.logo img {
-							width: 65px;
-						}
+			.menus {
+				display: none;
+			}
 
-						.hamburguer {
-							top: 4px;
-						}
-					}
+			.header-content > div {
+				.logo img {
+					width: 65px;
+				}
+
+				.hamburguer {
+					top: -14px;
 				}
 			}
 		}
@@ -57,21 +65,17 @@ header {
 				min-height: 100vh;
 			}
 
-			&.scrolled {
-				transition: all 0.5s;
-				top: 0;
-			}
-
 			.hamburguer {
 				position: absolute;
-				top: 17px;
 				right: 0;
 				width: 100%;
 				z-index: 1;
+				transition: all 0.4s 0.2s ease;
 
 				@media (min-width: $tablet-width) {
 					width: 360px;
 					right: 54px;
+					top: -4px;
 				}
 
 				.nav-container {
@@ -124,10 +128,7 @@ header {
 						cursor: pointer;
 
 						@media (min-width: 768px) {
-							right: 15%;
-						}
-						@media (min-width: 1200px) {
-							right: 15%;
+							right: 17%;
 						}
 					}
 
@@ -140,11 +141,7 @@ header {
 						top: 24px;
 
 						@media (min-width: 768px) {
-							right: 16%;
-						}
-
-						@media (min-width: 1200px) {
-							right: 16%;
+							right: 18%;
 						}
 					}
 				}
@@ -257,7 +254,7 @@ header {
 									}
 
 									&:nth-child(-n + 2) {
-										border-top: 1px solid #848484;
+										border-top: 1px solid #ccc;
 									}
 								}
 							}
@@ -297,7 +294,7 @@ header {
 						color: #fff;
 						flex-wrap: wrap;
 						justify-content: center;
-						margin-bottom: 30px;
+						margin: 0 0 30px;
 
 						p {
 							display: block;
@@ -337,7 +334,7 @@ header {
 
 					input.checked ~ .menu-items {
 						opacity: 1;
-						height: 100vh;
+						height: calc(100vh + 30px);
 						right: 0;
 						visibility: visible;
 
@@ -396,10 +393,6 @@ header {
 	}
 
 	.header-content {
-		min-height: 100px;
-		padding-top: 21px;
-		transition: all 0.4s ease-in-out;
-
 		> div {
 			display: grid;
 
@@ -409,8 +402,8 @@ header {
 
 				img {
 					height: auto;
-					width: auto;
-					transition: all 0.5s ease-in-out;
+					width: 104px;
+					transition: all 0.4s ease;
 				}
 			}
 		}
@@ -468,6 +461,7 @@ header {
 			width: 100%;
 			justify-self: center;
 			overflow: auto;
+			margin-top: 0;
 
 			i.fa-angle-down,
 			i.fa-angle-up {
@@ -505,13 +499,9 @@ header {
 					display: none;
 				}
 
-				@media (max-width: $desktop-width) {
-					margin-right: 0;
-				}
-
 				ul.menu {
 					padding-left: 0;
-					margin-bottom: 8px;
+					margin: 8px 0;
 
 					> li {
 						position: relative;

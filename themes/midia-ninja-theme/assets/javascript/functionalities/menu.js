@@ -119,20 +119,54 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
-    //Menu reduzido no scroll
-    window.addEventListener("scroll", function() {
+    // window.addEventListener("wheel", throttle(function() {
+    //     const scroll = window.scrollY || document.documentElement.scrollTop;
+    //     const mainHeader = document.querySelector(".main-header");
+        
+    //     if (scroll > 0) {
+    //         if ( ! mainHeader.classList.contains("scrolado") ) {
+    //             mainHeader.classList.add("scrolado");
+    //         }
+            
+    //     } else if ( mainHeader.classList.contains("scrolado") ) {
+    //         mainHeader.classList.remove("scrolado");
+    //     }
+    // }, 50), { passive: true });
+
+    function throttle(func, wait) {
+        let shouldWait = false;
+      
+        return function executedFunction(...args) {
+        
+            if (shouldWait) return;
+            
+            func(...args);
+            shouldWait = true;
+            setTimeout(() => {
+                shouldWait = false;
+            }, wait);
+        };
+    }
+
+    const detectScroll = throttle(function() {
+
         const scroll = window.scrollY || document.documentElement.scrollTop;
         const mainHeader = document.querySelector(".main-header");
         
-        if (scroll >= 200) {
+        if (scroll > 0) {
+            if ( ! mainHeader.classList.contains("scrolado") ) {
+                mainHeader.classList.add("scrolado");
+            }
             
-            mainHeader.classList.add("scrolled");
-        } else {
-            
-            mainHeader.classList.remove("scrolled");
+        } else if ( mainHeader.classList.contains("scrolado") ) {
+            mainHeader.classList.remove("scrolado");
         }
-    });
-    
+        
+    }, 50);
+
+    document.addEventListener('wheel', detectScroll, { passive: true });
+    document.addEventListener('touchmove', detectScroll, { passive: true });
+    //document.addEventListener('touchend', detectScroll, { passive: true });
     
 })
 

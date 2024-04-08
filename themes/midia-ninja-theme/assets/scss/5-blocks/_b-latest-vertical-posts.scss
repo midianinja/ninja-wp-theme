@@ -8,7 +8,7 @@
 
 		h2 {
 			color: var(--Gray-1, #333);
-			font-family: 'Manrope', serif;
+			font-family: "Manrope", serif;
 			font-size: 32px;
 			font-style: normal;
 			font-weight: 800;
@@ -18,9 +18,8 @@
 
 		.slick-slider {
 			a {
-				text-decoration: none;
 				color: var(--Gray-1, #333);
-				font-family: 'Manrope', serif;
+				font-family: "Manrope", serif;
 
 				.post {
 					margin-bottom: 30px;
@@ -49,12 +48,27 @@
 
 					span {
 						word-break: normal;
+						color: #333;
+						font-weight: 400;
 					}
 
 					ul.list-terms {
 						margin: 0;
 						:nth-child(n + 2) {
 							display: none;
+						}
+
+						li {
+							background-color: transparent !important;
+							color: #333 !important;
+							font-family: Manrope;
+							font-size: 10px;
+							font-style: normal;
+							font-weight: 700;
+							line-height: 21px;
+							letter-spacing: 1px;
+							margin: 0;
+							padding: 0;
 						}
 
 						li::after {
@@ -69,9 +83,9 @@
 			display: none !important;
 		}
 
-		.slide{
+		.slide {
 			padding-left: 6px;
-			@media(max-width:782px){
+			@media (max-width: 782px) {
 				padding-left: 0;
 			}
 		}
@@ -80,14 +94,22 @@
 			display: block !important;
 		}
 
-		.latest-vertical-posts-block__footer
-			.latest-vertical-posts-block__dots
-			.slick-dots {
-			li {
-				opacity: 0.5;
+		.latest-vertical-posts-block__footer {
+			.latest-vertical-posts-block__arrows .slick-arrow {
+				background-color: #ccc;
+				&:hover {
+					background-color: #333;
+					background-image: url("/wp-content/themes/midia-ninja-theme/assets/images/arrow-left-slider-white.png");
+				}
+			}
 
-				&.slick-active {
-					opacity: 1;
+			.latest-vertical-posts-block__dots .slick-dots {
+				li {
+					opacity: 0.5;
+
+					&.slick-active {
+						opacity: 1;
+					}
 				}
 			}
 		}
@@ -115,11 +137,21 @@
 				text-transform: uppercase;
 			}
 
-			.latest-vertical-posts-block__footer
-				.latest-vertical-posts-block__dots
-				.slick-dots
-				li {
-				background-color: #fff;
+			.latest-vertical-posts-block__footer {
+				.latest-vertical-posts-block__arrows .slick-arrow {
+					background-color: #fff;
+					opacity: 0.2;
+					background-image: url("/wp-content/themes/midia-ninja-theme/assets/images/arrow-left-slider-black.png");
+
+					&:hover {
+						//background-color: #fff;
+						opacity: 1;
+					}
+				}
+
+				.latest-vertical-posts-block__dots .slick-dots li {
+					background-color: #fff;
+				}
 			}
 		}
 	}

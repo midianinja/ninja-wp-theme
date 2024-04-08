@@ -1,0 +1,28 @@
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
+
+body.single-afluente {
+    .container {
+        main.content {
+            .post {
+                max-width: 1280px;
+
+                .post-content {
+                    max-width: 1280px;
+
+                    img {
+                        max-width: 100%;
+                        left: initial;
+                        transform: initial;
+                        object-fit: inherit;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.content-afluente {
+    .post-content {
+    }
+}

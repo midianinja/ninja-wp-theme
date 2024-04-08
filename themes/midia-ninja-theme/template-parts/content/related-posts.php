@@ -26,7 +26,7 @@ $related_posts = new WP_Query($args);
 
 if ($related_posts->have_posts()) : ?>
 
-    <h2>Notícias Relacionadas</h2>
+    <h2><?php _e('Read too', 'ninja');?></h2>
     
     <div class="related">
         <?php while($related_posts->have_posts()) :

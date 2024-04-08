@@ -10,24 +10,40 @@ h1 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--really-large);
     font-weight: 800;
+
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
 }
 
 h2 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--large);
     font-weight: 800;
+
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
 }
 
 h3 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--medium);
     font-weight: 800;
+
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
 }
 
 h4 {
     font-family: $f_title;
     font-size: var(--wp--preset--font-size--intermediate-standard);
     font-weight: 800;
+
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
 }
 
 h5 {
@@ -44,19 +60,35 @@ h6 {
     color: var(--wp--preset--color--primary-dark);
     line-height: calc(var(--s-h6) * 1.35);
 
+    &:not(.has-text-color) {
+        color: var(--wp--preset--color--primary-pure);
+    }
+
     @include mobile {
         font-size: 16px;
     }
 }
 
 p {
-    font-size: 16px;
     line-height: 16px;
     color: var(--wp--preset--color--primary-dark);
     font-weight: 500;
     font-family: $f_title;
+    font-size: 1rem;
 
     &:not(.has-text-color) {
-        color: var(--c-gray--darker);
+        color: var(--wp--preset--color--primary-pure);
+    }
+}
+
+a {
+    text-decoration: none;
+
+    &:where(:not(.wp-element-button)) {
+        text-decoration: none;
+    }
+
+    &:hover {
+        text-decoration: none;
     }
 }

@@ -265,7 +265,7 @@
 			}
 
 			.slick-arrow {
-				background-color: #F5F5F5;
+				background-color: #414141;
 				background-image: url("./images/slider-arrow.svg");
 				background-position: center;
 				background-repeat: no-repeat;
@@ -287,7 +287,7 @@
 				}
 
 				&:hover {
-					background-color: #F5F5F5;
+					background-color: #f5f5f5;
 				}
 			}
 		}
@@ -396,86 +396,6 @@
 						max-width: 280px;
 						width: 100%;
 						&-content{
-							.post-meta{
-								&--terms{
-									.list-terms{
-										li{
-											font-family: "Archivo Expanded",serif;
-											font-size: 13px;
-											font-weight: 800;
-											line-height: 150%;
-											letter-spacing: -0.39px;
-											text-transform: uppercase;
-											padding: 3px 4px 1px 6px;
-											border-radius: 4px;
-											&.term{
-												&-noticias{
-													background-color: #0000ff;
-													color: #fff;
-												}
-												&-audiovisual{
-													background-color: #808080;
-													color: #111;
-												}
-												&-cultura {
-													background-color: #DB565E;
-													color: #111;
-												}
-												&-meio-ambiente {
-													background-color: #99CE56;
-													color: #111;
-												}
-												&-alimentacao {
-													background-color: #F7F100 ;
-													color: #111;
-												}
-												&-lgbtqia {
-													background-color: #E14FCE;
-													color: #111;
-												}
-												&-indigenas {
-													background-color: #F27900;
-													color: #111;
-												}
-												&-entrevistas {
-													background-color: #111111;
-													color: #fff;
-												}
-												&-politica {
-													background-color: #76C7E6;
-													color: #111;
-												}
-												&-educacao {
-													background-color: #C9ADFF;
-													color: #111;
-												}
-												&-negritude {
-													background-color: #F1BC4E;
-													color: #111;
-												}
-												&-internacional {
-													background-color: #F63333;
-													color: #fff;
-												}
-												&-esportes {
-													background-color: #7AE695;
-													color: #111;
-													
-												}
-												&-tecnologia {
-													background-color: #F0A8E7;
-													color: #111;
-												}
-											
-												&-feminismos {
-													background-color: #8C52FF;
-													color: #fff;
-												}
-											}
-										}
-									}
-								}
-							}
 							.post-title{
 								font-family: 'Manrope', serif;
 								font-size: 20px;

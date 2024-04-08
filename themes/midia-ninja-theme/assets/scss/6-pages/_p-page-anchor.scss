@@ -1,424 +1,713 @@
-@import "./../1-settings/_s-variables";
-@import '../2-atoms/a-mixins';
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
 
-#app {
-    background-color: #F5F5F5 !important;
+.page-perguntas-frequentes{
 
-    .page-title{
-        font-size: 32px;
-        font-weight: 800;
-        background-color: #f5f5f5;
-        z-index: 1;
-        position: relative;
-        margin-left: 70px;
-    }
-
-    .col-md-9.content{
-        .wp-block-heading{
-            margin-left: 70px;
-
-        }
-        .who-finances-desktop, .newsletter-desktop{
-            display: none;
-        }
-    }
-
-    .col-md-12.content-bottom{
-        .page-title, .wp-block-coblocks-accordion, .wp-block-heading{
-            display: none;
-        }
-    }
-
-    .page-template-page-anchor & {
-        overflow-x: initial;
-    }
-
-    .sidebar-page {
-        @include desktop {
-            position: -webkit-sticky; /* Safari */
-            position: sticky;
-            top: 100px;
-
-            .admin-bar & {
-                top: 132px;
-            }
-        }
-    }
-
-    .anchor-title {
-        border-bottom: solid 1px;
-        font-weight: bold;
-        padding-bottom: 15px;
-    }
-
-    #anchors {
-        list-style: none;
-        padding-left: 0;
-
-        li a {
-            color: #333333;
-            display: block;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-decoration: none;
-        }
-    }
-    .wp-block-coblocks-accordion{
-		margin: 2.5rem auto;
-		max-width: 700px;
-		width: 100%;
-		.wp-block-coblocks-accordion-item{
-			margin: 0 0 0;
-			
-            border-bottom: 1px solid #CAC9D4;;
-			
-			border-radius: 0;
-			details{
-				padding: 0 15px 0 0;
-				summary.wp-block-coblocks-accordion-item__title{
-					background-color: #F5F5F5;
-					padding: 32px 25px 32px 0;
-					font-size: 21px;
-					font-style: normal;
-					display: block;
-					&:hover{
-						&::after{
-							background: #F5F5F5 !important;
-						}	
-					}
-					&:focus{
-						outline: none !important;
-					}
-					span{
-						font-size: 16px;
-						font-weight: 400;
-					}
-				}
-				::after{
-					bottom: 0;
-					content: "+";
-					left: 650px;
-					position: absolute;
-					top: 45px;
-					font-size: 28px;
-					color: #000;
-					font-weight: 400;
-					@media(max-width:725px){
-						left: 630px;							
-					}
-					@media(max-width:710px){
-						left: 615px;							
-					}
-					@media(max-width:690px){
-						left: 590px;							
-					}
-					@media(max-width:665px){
-						left: 570px;							
-					}
-					@media(max-width:640px){
-						left: 540px;							
-					}
-					@media(max-width:610px){
-						left: 515px;							
-					}
-					@media(max-width:580px){
-						left: 490px;							
-					}
-					@media(max-width:560px){
-						left: 470px;							
-					}
-					@media(max-width:540px){
-						left: 450px;							
-					}
-					@media(max-width:520px){
-						left: 430px;							
-					}
-					@media(max-width:500px){
-						left: 410px;							
-					}
-					@media(max-width:480px){
-						left: 390px;							
-					}
-					@media(max-width:460px){
-						left: 370px;							
-					}
-					@media(max-width:440px){
-						left: 350px;							
-					}
-					@media(max-width:420px){
-						left: 330px;							
-					}
-					@media(max-width:400px){
-						left: 310px;							
-					}
-					@media(max-width:380px){
-						left: 290px;							
-					}
-					@media(max-width:360px){
-						left: 270px;							
-					}
-					@media(max-width:340px){
-						left: 250px;							
-					}
-
-				}
-				
-				.wp-block-coblocks-accordion-item__content{
-					padding: 0px 25px 25px 0;
-					border-left: none !important;
-					border-right: none !important;
-					
-					p{
-						font-size: 19.2px;
-					}
-				}
-			}
-			&:last-child{
-				border-bottom: none;
-			}
-			details[open]{
-				::after{
-					display: none;
-				}
-				:before{
-					bottom: 0;
-					content: "-";
-					left: 650px;
-					position: absolute;
-					top: 45px;
-					font-size: 28px;
-					color: #000;
-					font-weight: 400;
-					@media(max-width:725px){
-						left: 630px;							
-					}
-					@media(max-width:710px){
-						left: 615px;							
-					}
-					@media(max-width:690px){
-						left: 590px;							
-					}
-					@media(max-width:665px){
-						left: 570px;							
-					}
-					@media(max-width:640px){
-						left: 540px;							
-					}
-					@media(max-width:610px){
-						left: 515px;							
-					}
-					@media(max-width:580px){
-						left: 490px;							
-					}
-					@media(max-width:560px){
-						left: 470px;							
-					}
-					@media(max-width:540px){
-						left: 450px;							
-					}
-					@media(max-width:520px){
-						left: 430px;							
-					}
-					@media(max-width:500px){
-						left: 410px;							
-					}
-					@media(max-width:480px){
-						left: 390px;							
-					}
-					@media(max-width:460px){
-						left: 370px;							
-					}
-					@media(max-width:440px){
-						left: 350px;							
-					}
-					@media(max-width:420px){
-						left: 330px;							
-					}
-					@media(max-width:400px){
-						left: 310px;							
-					}
-					@media(max-width:380px){
-						left: 290px;							
-					}
-					@media(max-width:360px){
-						left: 270px;							
-					}
-					@media(max-width:340px){
-						left: 250px;							
-					}
-	
-				}
-               
-			}
-            p{
-                ::before{
-                    display: none;
-                }
-            }
-			
-		}
-	}
-    .who-finances-desktop{
-        background: #111 !important;
-        min-height: 108px;
-        display: flex;
-        align-items: center;
-
-        @media(max-width: 1320px){
+    #app {
+        background-color: #F5F5F5 !important;
+        @media(max-width: 768px){
             padding-left: 15px;
             padding-right: 15px;
         }
-        
-        @media(max-width: 992px){
-            background: #FDF250 !important;
-            border-radius: 16px;
-            padding: 25px 42px 25px 45px;
+
+        .container{
+            padding-left: 0px;
+            padding-right: 0px;
+           
         }
-        .wp-block-columns{
-            margin-top: 1.8rem;
+    
+        .position-header{
+            .wp-block-columns{
+                gap: 0.5rem;
+                @media(max-width: 992px){
+                   flex-direction: column;
+                   display: flex;
+                   gap: 1rem;
+                }
+                @media(max-width: 992px){
+                    flex-basis: 490px !important; 
+                }
+                &:first-child{
+                    .wp-block-cover{
+                        padding: 0;
+                        margin-top: 2rem !important;
+                        position: relative;
+                        transform: translateX(-50%);
+                        border-radius: 8px;
+            
+                        @media (min-width: 1401px){
+                            left: 47%;
+                        }
+                
+                        @media (max-width: 1400px){
+                            left: 48%;
+                        }
+            
+                        @media(max-width: 992px){
+                            left: 50%;
+                        }
+            
+                        img{
+                            @media(max-width: 992px){
+                                height: 370px;
+                                border-radius: 8px;
+                            }
+                        }
+                
+                        .wp-block-cover__inner-container{
+                            .wp-block-columns{
+                                margin: 0 !important;
+                
+                                .wp-block-column{    
+                                    border-radius: 8px 0px 0px 8px;
+                                    background: rgba(51, 51, 51, 0.70);
+                                    backdrop-filter: blur(11px);
+                                    height: 506px;
+                                    padding: 85px 31px 59px 39px;
+                                    @media(max-width: 992px){
+                                        flex-basis: 187px !important;
+                                        margin-top:103px;
+                                        border-radius: 8px;
+                                        backdrop-filter: blur(7.699999809265137px);
+                                        padding: 34px 66px 0px 25px;
+                                     }
+                
+                                    h2{
+                                        margin: 0;
+                                        color: #FFF;
+                                        font-family: 'Manrope', serif;
+                                        font-size: 32px;
+                                        font-weight: 800;
+                                        line-height: 120%; 
+                                        letter-spacing: -0.64px;
+                                        margin-top: 16px;
+                                        margin-bottom: 16px;
+                                    }
+                
+                                    h3{
+                                        color: #FFF !important;
+                                        font-family: "Archivo Expanded" !important;
+                                        font-size: 14px!important;
+                                        font-style: normal;
+                                        font-weight: 800;
+                                        line-height: 155%; 
+                                        letter-spacing: -0.42px;
+                                        text-transform: uppercase;
+                                        margin-bottom: 0;
+                                        margin-top: 0;
+                                        margin-block-start: 0;
+                                        margin-block-end: 0;
+                                    }
+                
+                                    h4{
+                                        color: #FFF;
+                                        font-family: 'Manrope', serif;
+                                        font-size: 12px;
+                                        font-style: normal;
+                                        font-weight: 800;
+                                        line-height: 130%; 
+                                    }
+                
+                                    p{
+                                        color: #FFF;
+                                        font-family: 'Manrope', serif;
+                                        font-size: 13px;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        line-height: 145%;
+                                        max-width: 242px;
+                                        width: 100%;
+                                        margin-top: 1.3rem;
+                                        @media(max-width: 992px){
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }
+            }
+            .pergunte{
+                margin-top: 2rem !important;
+                background-color: #fff;
+                height: 508px;
+                border-radius: 12px;
+                border: 2px solid #ccc;
+                padding: 100px 43px 120px;
+                width: 335px;
+                @media(max-width: 992px){
+                    margin-top: -5rem !important;
+                    margin-bottom: 2rem;
+                    max-width: 4000px;
+                    width: 100%;
+    
+                }
+                
+                h2.titulo-pergunte{
+                    font-family: 'Manrope', serif;
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 100%; /* 32px */
+                    text-transform: uppercase;
+                    margin-bottom: 19px;
+                    color: #333;
+                    margin-bottom: 1.8rem;
+                }
+                p{
+                    font-family: 'Manrope', serif;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 130%; /* 18.2px */
+                    color: #111;
+                    margin-bottom: 2.6rem;
+                }
+                .wp-block-buttons{
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 28px;
+                    .wp-block-button{
+                        background-color: #fbf36e;
+                        border-radius: 8px;
+                        font-family: 'Manrope', serif;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 24px; /* 171.429% */
+                        color: #333;
+                        text-align: center;
+                        max-width: 265px;
+                        width: 100%;
+                       
+                        @media(max-width: 992px){
+                            
+    
+                        }
+                        a{
+                            border: none;
+                        }
+                        
+                    }
+                }
+                   
+            }
+        }
+    
+        .page-title{
+            font-size: 32px;
+            font-weight: 800;
+            margin-left: -80px;
+            margin-top: 2.5rem;
+            margin-bottom: 0;
+            line-height: 120%;
+            color: #111;
+            letter-spacing: -0.64px;
             @media(max-width: 992px){
-                flex-direction: column;
-                margin-bottom: 0;
+                margin-top: 9.5rem;
+                margin-left: 0;
+                text-align: left !important;
+                font-size: 31px;
+            }
+        }
+    
+        .col-md-9.content{
+            .wp-block-heading{
+                margin-left: 78px;
+                line-height: 120%; /* 38.4px */
+                color: var(--Primary-dark, var(--DARK, #111));
+                font-family: 'Manrope', serif;
+                font-size: 32px;
+                font-weight: 800;
+                line-height: 120%;
+                letter-spacing: -0.64px;
+
+                @media(max-width: 992px){
+                    margin-left: 0;
+                    margin-top: -25px;
+                    margin-bottom: -72px;
+                    
+                }
+            }
+            
+            .who-finances-desktop, .newsletter-desktop, .pergunte-ninjas{
+                display: none;
+            }
+        }
+    
+        
+    
+        .page-template-page-anchor & {
+            overflow-x: initial;
+        }
+    
+        .sidebar-page {
+            margin-top: -70px;
+            padding-left: 0;
+            @include mixins.desktop{
+                position: -webkit-sticky; /* Safari */
+                position: sticky;
+                top: 100px;
+    
+                .admin-bar & {
+                    top: 132px;
+                }
+            }
+            @media(max-width: 992px){
+                margin-top: -200px;
+            }
+            @media(max-width: 782px){
+                padding-left: 15px;
+            }
+        }
+    
+        p.anchor-title {
+            border-left: 4px solid #111;
+            font-family: 'Manrope', serif;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 125%; /* 30px */
+            letter-spacing: -0.24px;
+            padding-left: 8px;
+            color: #111;
+            @media(max-width: 992px){
                 margin-top: 0;
             }
         }
-        p{
-            font-family: "MidiaNinja", sans-serif;
-            color: #FFF;
-            font-size: 38px;
-            font-weight: 400;
-            margin-bottom: 0;
-            margin-top: 0;
-            letter-spacing: normal;
-            @media(max-width: 992px){
-                color: #000;
+    
+        #anchors {
+            list-style: none;
+            padding-left: 12px;
+    
+            li{
+                margin-bottom: 1rem;
+            }
+    
+            li a {
                 font-family: 'Manrope', serif;
                 font-size: 24px;
+                font-style: normal;
                 font-weight: 800;
-                text-align: center;
-                margin-bottom: -15px;
-                line-height: 130%;
-            }
-            img{
-                margin-left: 4.5rem;
-                @media(max-width: 992px){
-                    display: none;
-                }
+                line-height: 125%; /* 30px */
+                letter-spacing: -0.24px;
+                color: #848484;
+               
             }
         }
-        .finances-title-mobile{
-            @media(max-width: 992px){
-                color: #000;
-                font-family: "MidiaNinja", sans-serif;
-                font-weight: 400;
-                text-align: center;
-                font-size: 24px;
-                line-height: 130%;
+        .content{
+            .wp-block-heading{
+                margin-top: -1rem;
+                margin-bottom: 0;
             }
         }
-        .wp-block-buttons{
-            @media(max-width: 992px){
-                display: flex;
-                justify-content: center;
+        .wp-block-coblocks-accordion{
+            margin: 0 0 59px 5rem;
+            max-width: 770px;
+            width: 100%;
+            cursor: pointer;
+            @media(max-width: 1199px){
+                padding-right: 15px;
+                max-width: 635px;
             }
-        }
-        .wp-block-button{
-            @media(max-width: 992px){
-                background-color: #111;
-                border-radius: 8px;
-            }
-            a{
-                font-family: 'Manrope', serif;
-                color: #fff;
-                border-radius: 4px;
-                border: 2px solid #FFF;
-                font-size: 13px;
-                font-weight: 700;
-                padding: 15px 30px;
-                color: #FFF !important;
-                @media(max-width: 992px){
-                   
-                    border: 2px solid #111;
-                }  
-            }
-        } 
-    }
-    .newsletter-desktop{
-        background-color: #111;
-        margin-top: 2rem;
-        .wp-block-columns{
-            gap: 100px;
-            @media(max-width: 992px){
-                display: block;  
-            }
-        }
-        p.newsletter-title{
-            color: #FFF;
-            font-family: "MidiaNinja", serif;
-            font-size: 42px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 100%; 
-            letter-spacing: normal;
             @media(max-width: 782px){
-                font-size: 32px;
-                text-align: center;
+                padding-right: 0;
             }
-        }
-        p{
-            font-family: 'Manrope', serif;
-            font-size: 13px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 145%;
-        }
-        form{
-            .mc4wp-form-fields{
-                input[type=name],
-                input[type=email]{
-                    width: 572px;
-                    padding: 1rem;
-                    border-radius: 8px;
-                    border: none;
-                    margin-bottom: 1rem;
+            @media(max-width: 992px){
+                margin: 68px auto 2.5rem;
+
+            }
+            .wp-block-coblocks-accordion-item{
+                margin: 0 0 0;
+                
+                border-bottom: 1px solid #848484;;
+                
+                border-radius: 0;
+                details{
+                    padding: 0 15px 0 0;
+                    font-size: 24px;
                     color: #111;
-                    &::placeholder{
-                        font-size: 16px;
-                        color: #595D62;
-                        @media(max-width: 782px){
-                            color: #f5f5f5;
+                    
+                    summary.wp-block-coblocks-accordion-item__title{
+                        background-color: #F5F5F5;
+                        padding: 32px 25px 32px 0;
+                        font-size: 24px;
+                        display: block;
+                        font-weight: 400;
+                        &:hover{
+                            &::after{
+                                background: #F5F5F5 !important;
+                            }	
+                        }
+                        &:focus{
+                            outline: none !important;
+                        }
+                        span{
+                            font-size: 16px;
+                            font-weight: 400;
+                        }
+
+                        &:after{
+                            bottom: 0;
+                            content: "+";
+                            left: 750px;
+                            position: absolute;
+                            top: 29px;
+                            font-size: 38px;
+                            color: #000;
+                            font-weight: 400;
+                            @media(max-width:1199px){
+                                left: 600px;							
+                            }
+                           
+                            @media(max-width:725px){
+                                left: 600px;							
+                            }
+                           
+                            @media(max-width:680px){
+                                left: 580px;							
+                            }
+                            @media(max-width:650px){
+                                left: 590px;							
+                            }
+                            @media(max-width:630px){
+                                left: 570px;							
+                            }
+                            @media(max-width:610px){
+                                left: 550px;							
+                            }
+                            @media(max-width:580px){
+                                left: 530px;							
+                            }
+                           
+                            @media(max-width:570px){
+                                left: 500px;							
+                            }
+                            @media(max-width:540px){
+                                left: 480px;							
+                            }
+                            @media(max-width:525px){
+                                left: 450px;							
+                            }
+                            @media(max-width:490px){
+                                left: 430px;							
+                            }
+                           
+                            @media(max-width:470px){
+                                left: 400px;							
+                            }
+                            @media(max-width:430px){
+                                left: 375px;							
+                            }
+                            @media(max-width:415px){
+                                left: 360px;							
+                            }
+                            @media(max-width:400px){
+                                left: 345px;							
+                            }
+                            @media(max-width:385px){
+                                left: 335px;							
+                            }
+                            @media(max-width:375px){
+                                left: 320px;							
+                            }
+                            @media(max-width:366px){
+                                left: 310px;							
+                            }
+        
                         }
                     }
-                    @media(max-width: 782px){
-                        background-color: transparent;
-                        border: 1px solid #d9d9d9;
-                        color: #f5f5f5;
 
-                    }
-                    @media(max-width: 600px){
-                        width: 326px;
-                    }
-                    @media(max-width: 359px){
-                        width: 306px;
+                    summary.wp-block-coblocks-accordion-item__title::-webkit-details-marker {
+                        display: none
                     }
                     
+                    
+                    .wp-block-coblocks-accordion-item__content{
+                        padding: 0px 25px 25px 0;
+                        border-left: none !important;
+                        border-right: none !important;
+                        
+                        p{
+                            font-size: 19.2px;
+                        }
+                    }
                 }
-                input[type=submit]{
-                    background-color: #FBF36E;
-                    border: none;
-                    color: #333;
+                &:last-child{
+                    border-bottom: none;
+                }
+                details[open]{
+                    summary.wp-block-coblocks-accordion-item__title{
+                        &::after{
+                            display: none;
+                        }
+                        &::before{
+                            bottom: 0;
+                            content: "-";
+                            left: 750px;
+                            position: absolute;
+                            top: 20px;
+                            font-size: 38px;
+                            color: #000;
+                            font-weight: 400;
+                            @media(max-width:1199px){
+                                left: 600px;							
+                            }
+                           
+                            @media(max-width:725px){
+                                left: 600px;							
+                            }
+                           
+                            @media(max-width:680px){
+                                left: 580px;							
+                            }
+                            @media(max-width:650px){
+                                left: 590px;							
+                            }
+                            @media(max-width:630px){
+                                left: 570px;							
+                            }
+                            @media(max-width:610px){
+                                left: 550px;							
+                            }
+                            @media(max-width:580px){
+                                left: 530px;							
+                            }
+                           
+                            @media(max-width:570px){
+                                left: 500px;							
+                            }
+                            @media(max-width:540px){
+                                left: 480px;							
+                            }
+                            @media(max-width:525px){
+                                left: 450px;							
+                            }
+                            @media(max-width:490px){
+                                left: 430px;							
+                            }
+                           
+                            @media(max-width:470px){
+                                left: 400px;							
+                            }
+                            @media(max-width:430px){
+                                left: 375px;							
+                            }
+
+                            @media(max-width:415px){
+                                left: 360px;							
+                            }
+                            @media(max-width:400px){
+                                left: 345px;							
+                            }
+                            @media(max-width:385px){
+                                left: 335px;							
+                            }
+                            @media(max-width:375px){
+                                left: 320px;							
+                            }
+                            @media(max-width:366px){
+                                left: 310px;							
+                            }
+            
+                        }
+                    }
+                    summary.wp-block-coblocks-accordion-item__title::-webkit-details-marker {
+                        display: none
+                    }   
+                }
+            }
+        }
+        .who-finances-desktop{
+            background: #111 !important;
+            min-height: 108px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+    
+            @media(max-width: 1320px){
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            @media(max-width: 992px){
+                background: #FDF250 !important;
+                border-radius: 12px;
+                padding: 25px 42px 25px 45px;
+            }
+            :nth-child(2){
+                padding-right: 2rem;
+                @media(max-width: 992px){
+                    padding-right: 0;
+                }
+            }
+            .wp-block-columns{
+                margin-top: 1.8rem;
+                padding-left: 2rem;
+                @media(max-width: 992px){
+                    flex-direction: column;
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    padding-left: 0rem;
+                }
+            }
+            p{
+                font-family: "Manrope", sans-serif;
+                color: #FFF;
+                font-size: 32px;
+                font-weight: 800;
+                margin-bottom: 0;
+                margin-top: 0;
+                line-height: 100%;
+                text-transform: uppercase;
+                margin-top: 0.6rem;
+                @media(max-width: 992px){
+                    color: #000;
                     font-family: 'Manrope', serif;
-                    font-size: 14px;
+                    font-size: 24px;
                     font-weight: 800;
-                    text-transform: uppercase;
-                    padding: 1rem 3.8rem;
+                    text-align: center;
+                    margin-bottom: -15px;
+                    line-height: 130%;
+                    text-transform: none;
+                    margin-top: 0;
+
+                }
+                .finances-title-mobile{
+                    color: #fff;
+                    font-family: "MidiaNinja", sans-serif;
+                    font-weight: 400;
+                    text-align: center;
+                    font-size: 32px;
+                    line-height: 100%;
+                    letter-spacing: normal;
+                    @media(max-width: 992px){
+                        color: #000;
+                        font-size: 24px;
+
+                    }
+                }
+                
+                img{
+                    margin-left: 4.5rem;
+                    @media(max-width: 992px){
+                        display: none;
+                    }
+                }
+            }
+            .wp-block-buttons{
+                @media(max-width: 992px){
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+            .wp-block-button{
+                @media(max-width: 992px){
+                    background-color: #111;
                     border-radius: 8px;
-                    @media(max-width: 600px){
-                        max-width: 326px;
-                        width: 100%;
+                }
+                a{
+                    font-family: 'Manrope', serif;
+                    color: #fff;
+                    border-radius: 4px;
+                    border: 2px solid #FFF;
+                    font-size: 13px;
+                    font-weight: 700;
+                    padding: 15px 30px;
+                    color: #FFF !important;
+                    line-height: 145%;
+                    
+                    @media(max-width: 992px){
+                        font-weight: 800;
+                        border: 2px solid #111;
+                    }  
+                }
+            } 
+        }
+        .newsletter-desktop{
+            background-color: #111;
+            margin-top: 2rem;
+            @media(max-width: 992px){
+                margin-top: 3.6rem;
+
+            }
+            .wp-block-columns{
+                gap: 100px;
+                @media(max-width: 992px){
+                    display: block;  
+                }
+            }
+            p.newsletter-title{
+                color: #FFF;
+                font-family: "MidiaNinja", serif;
+                font-size: 42px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 100%; 
+                letter-spacing: normal;
+                @media(max-width: 782px){
+                    font-size: 32px;
+                    text-align: center;
+                }
+            }
+            p{
+                font-family: 'Manrope', serif;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 145%;
+            }
+            form{
+                .mc4wp-form-fields{
+                    input[type=name],
+                    input[type=email]{
+                        width: 572px;
+                        padding: 1rem;
+                        border-radius: 8px;
+                        border: none;
+                        margin-bottom: 1rem;
+                        color: #111;
+                        &::placeholder{
+                            font-size: 16px;
+                            color: #595D62;
+                            @media(max-width: 782px){
+                                color: #f5f5f5;
+                            }
+                        }
+                        @media(max-width: 782px){
+                            background-color: transparent;
+                            border: 1px solid #d9d9d9;
+                            color: #f5f5f5;
+    
+                        }
+                        @media(max-width: 600px){
+                            width: 326px;
+                        }
+                        @media(max-width: 359px){
+                            width: 306px;
+                        }
+                        
+                    }
+                    input[type=submit]{
+                        background-color: #FBF36E;
+                        border: none;
+                        color: #333;
+                        font-family: 'Manrope', serif;
+                        font-size: 14px;
+                        font-weight: 800;
+                        text-transform: uppercase;
+                        padding: 1rem 3.8rem;
+                        border-radius: 8px;
+                        @media(max-width: 600px){
+                            max-width: 326px;
+                            width: 100%;
+                        }
                     }
                 }
             }
         }
     }
 }
+
+

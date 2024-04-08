@@ -19,8 +19,7 @@ $coauthors = get_coauthors();
             <article class="post">
                 <header class="post-header">
                     <div class="post-info">
-                        <div>
-                            
+                        <div class="date">
 						 <?php the_date(); ?></p>
                             <?php the_post_thumbnail();?>
                         </div>
@@ -56,9 +55,7 @@ $coauthors = get_coauthors();
                             
                         ?>    
                         <div class="author-info-card">
-                        
                                 <div class="info-container">
-                                    
                                     <?php echo get_avatar($author_id, 128);?>
                                     
                                     <div class="info-card-informations">
@@ -207,7 +204,6 @@ $coauthors = get_coauthors();
         <?php endwhile; ?>
 
         <section class="post-footer">
-            <h4>Conheça outros colunistas</h4>
             <div class="related-posts">
                 <?php get_template_part('template-parts/content/related-posts-colunistas'); ?>
             </div>

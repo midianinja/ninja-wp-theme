@@ -49,17 +49,16 @@ h4 {
 h5 {
     font-family: $f_title;
     font-size: var(--s-h5);
-    line-height: calc(var(--s-h5) * 1.2);
-
-    &:not(.has-text-color) {
-        color: var(--wp--preset--color--primary-pure);
-    }
+    font-weight: 500;
+    line-height: calc(var(--s-h5) * 1.5);
 }
 
 h6 {
     font-family: $f_title;
     font-size: var(--s-h6);
-    font-weight: 400;
+    font-weight: 500;
+    color: var(--wp--preset--color--primary-dark);
+    line-height: calc(var(--s-h6) * 1.35);
 
     &:not(.has-text-color) {
         color: var(--wp--preset--color--primary-pure);
@@ -71,6 +70,10 @@ h6 {
 }
 
 p {
+    line-height: 16px;
+    color: var(--wp--preset--color--primary-dark);
+    font-weight: 500;
+    font-family: $f_title;
     font-size: 1rem;
 
     &:not(.has-text-color) {

@@ -109,6 +109,7 @@
                                     }
             
                                 }
+                                
                                 select {
                                     width: 265px;
                                     padding: 10px;
@@ -123,9 +124,10 @@
                                     font-style: normal;
                                     font-weight: 400;
                                     line-height: 24px;
-                                    appearance: none;
                                     
                                 }
+                                
+                                
                                 select option[disabled] {
                                     font-family: 'Manrope', sans-serif; /* Define a fonte como Manrope */
                                     font-size: 13px; /* Tamanho da fonte */
@@ -133,23 +135,8 @@
                                     line-height: 18.85px; /* Altura da linha */
                                     color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
                                 }
-                                .estados{
-                                    position: relative; 
-                                    
-                                    
-                                    
-                                }
-                                .estados::before{
-                                    content: ''; 
-                                    background-image: url("/wp-content/themes/midia-ninja-theme/assets/images/seta-midia-ninja.png"); 
-                                    position: absolute; 
-                                    right: 10px; 
-                                    top: 45%;
-                                    transform: translateY(-50%);
-                                    width: 19px;
-                                    height: 16px;
-                                    
-                                }
+                                
+                                
                                 .submit-button{
                                     input{
                                         display: flex;

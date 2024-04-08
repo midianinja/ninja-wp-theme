@@ -165,7 +165,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 50);
 
     document.addEventListener('wheel', detectScroll, { passive: true });
-    document.addEventListener('touchstart', detectScroll, { passive: true });
+    document.addEventListener('touchmove', detectScroll, { passive: true });
+    //document.addEventListener('touchend', detectScroll, { passive: true });
     
 })
 

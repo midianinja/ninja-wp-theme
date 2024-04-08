@@ -240,6 +240,39 @@
             .yottie-widget-feed-section-arrow{
                 display: none;
             }
+            .yottie-widget-feed-section-pagination{
+                font-family: 'Manrope', serif !important;
+                align-items: center;
+                
+                .yottie-widget-feed-section-pagination-bullet{
+                    background: transparent !important;
+                    width: 32px !important;
+                    height: 32px !important;
+                    font-size: 14px !important;
+                    padding: 10px 7px 5px !important;
+                }
+                .swiper-pagination-bullet-active{
+                    color: #333;
+                    font-weight: 700;
+                    border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                    background: var(--OURO, #fbf36e) !important;
+                    
+                }
+                .yottie-widget-feed-section-pagination-bullet-more{
+                    border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                    border: 1px solid var(--Main-trunks, #595D62);
+                    &::before{
+                        top: 15px !important;
+                        width: 7px !important;
+                        background: #000 !important;
+                    }
+                    &::after{
+                        top: 15px !important;
+                        width: 7px !important;
+                        background: #000 !important;
+                    }
+                }
+            }
         }
         .wp-block-cover{
             background-color: #262626;

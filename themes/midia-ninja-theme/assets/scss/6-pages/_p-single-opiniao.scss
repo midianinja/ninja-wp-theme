@@ -76,8 +76,8 @@
                             font-weight: 800;
                             line-height: 24px; /* 120% */
                             letter-spacing: -0.6px;
-                            margin-right: 60px;
-                            margin-bottom: 17px;
+                            margin-right: 40px;
+                            margin-bottom: 7px;
                         }
                         .authbio{
                             color: var(--White, #FFF) !important;
@@ -213,7 +213,7 @@
                     line-height: 150%; /* 24px */
                     margin: 0px;
                     width: 570px;
-                    margin-bottom: 31px !important;
+                    margin-bottom: 12px !important;
                     @media(max-width: 783px){
                         width: initial;
                         margin: auto;

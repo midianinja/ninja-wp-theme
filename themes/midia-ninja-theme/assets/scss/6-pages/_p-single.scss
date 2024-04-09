@@ -29,6 +29,7 @@
 
 				.addtoany_list {
 					display: flex;
+					margin-right: 5px;
 
 					a.a2a_button_copy_link {
 						span {
@@ -58,7 +59,8 @@
 
 				h2 {
 					font-size: 32px;
-					line-height: 120%;
+					line-height: 115%;
+					letter-spacing: -1.44px;
 
 					@media (min-width: 768px) {
 						font-size: 48px;
@@ -102,7 +104,7 @@
 
 						a {
 							border-radius: 4px;
-							padding: 0 4px;
+							padding: 1px 11px;
 						}
 
 						a:nth-child(n + 2) {
@@ -216,6 +218,7 @@
 
 							@media (min-width: 768px) {
 								justify-content: end;
+								margin-top: 10px;
 
 								> span {
 									display: none;
@@ -330,8 +333,9 @@
 					}
 
 					p {
-						line-height: 150%;
+						line-height: 140%;
 						letter-spacing: -0.48px;
+						font-weight: 500;
 					}
 
 					h2 {
@@ -340,7 +344,7 @@
 						font-size: 20px;
 						font-style: normal;
 						font-weight: 800;
-						line-height: 150%; /* 30px */
+						line-height: 130%;
 						letter-spacing: -0.6px;
 					}
 
@@ -355,6 +359,9 @@
 
 					figcaption {
 						margin: 8px auto;
+						font-size: small;
+						font-weight: 500;
+						line-height: 18.85px;
 					}
 
 					.page-share {
@@ -435,7 +442,7 @@
 				.related-posts {
 					h2 {
 						font-size: 24px;
-						line-height: 125%; /* 30px */
+						line-height: 120%;
 						letter-spacing: -0.24px;
 						margin: 40px 0 16px;
 

@@ -10,6 +10,12 @@ get_header();
 
 $category = get_the_terms($post->ID, 'category');
 $coauthors = get_coauthors();
+$cat_id = $category[0]->term_id;
+
+$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true );
+$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true ); 
+
+
 
 ?>
 
@@ -22,7 +28,13 @@ $coauthors = get_coauthors();
                         <div>
                             <div class="info">
                                 <span class="term-<?= $category[0]->slug; ?>">
-                                    <?php the_category(' '); ?>
+                                    <?php 
+                                    $categories = get_the_category();
+
+                                    foreach ($categories as $category){
+                                    echo '<a style="color:' .  $cor_font . '; background-color:' .  $cor_fundo . ';" href="' . get_category_link($category->term_id) . '">' . $category->cat_name . '</a>';
+
+                                    }; ?>
                                 </span> 
                             </div>
 

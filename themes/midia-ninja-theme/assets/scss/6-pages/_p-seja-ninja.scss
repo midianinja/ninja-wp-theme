@@ -86,26 +86,25 @@
                                 }
                                 label{
                                     input{
-                                        max-width: 265px;
-                                        padding: 7px 3px;
+                                        width: 265px;
+                                        padding: 10px;
                                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                                         border: 1px solid var(--Main-beerus, #E2E2E2);
-                                        background: var(--Main-gohan, #FFF);
                                         padding-left: 10px;
-                                        color: var(--Main-trunks, #595D62);
-                                        font-feature-settings: 'clig' off, 'liga' off;
-                                        font-family: "DM Sans";
                                         font-size: 14px;
                                         font-style: normal;
-                                        font-weight: 400;
                                         line-height: 24px;
+                                        color: var(--Main-trunks, #595D62);
                                     }
                                     input::placeholder {
-                                        font-family: 'Manrope', sans-serif; /* Define a fonte como Manrope */
-                                        font-size: 13px; /* Tamanho da fonte */
-                                        font-weight: 500; /* Peso da fonte (medium) */
-                                        line-height: 18.85px; /* Altura da linha */
-                                        color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
+                                       
+                                        color: var(--Main-trunks, #595D62);
+                                        /* <small> Manrope */
+                                        font-family: Manrope;
+                                        font-weight: 500;
+                                        line-height: 145%; /* 18.85px */
+                                        background-color: white;
+
                                     }
             
                                 }
@@ -115,15 +114,18 @@
                                     padding: 10px;
                                     border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                                     border: 1px solid var(--Main-beerus, #E2E2E2);
-                                    background: var(--Main-gohan, #FFF);
-                                    padding-left: 10px;
-                                    color: var(--Main-trunks, #595D62);
-                                    font-feature-settings: 'clig' off, 'liga' off;
-                                    font-family: "DM Sans";
+                                    padding-left: 7px;
                                     font-size: 14px;
                                     font-style: normal;
-                                    font-weight: 400;
                                     line-height: 24px;
+                                    color: var(--Main-trunks, #595D62);
+
+                                    /* <small> Manrope */
+                                    font-family: Manrope;
+                                    font-weight: 500;
+                                    line-height: 145%; /* 18.85px */
+                                    background-color: white;
+
                                     
                                 }
                                 

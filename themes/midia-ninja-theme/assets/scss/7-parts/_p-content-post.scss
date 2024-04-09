@@ -42,6 +42,10 @@
                 overflow: hidden;
                 position: relative;
 
+                .entry-meta{
+                    position: absolute;
+                }
+
                 &::before {
                     content: "";
                     padding-top: 56.25%;

@@ -17,6 +17,7 @@
 			@include mobile{
 				display: flex;
 				justify-content: center;
+				margin: 0px 20px;
 			}
 			.wp-block-column:first-child{  //col1
 				max-width: 770px;
@@ -33,6 +34,7 @@
 					width: 770px;
 					margin: auto;
 					width: auto;
+					
 					.wp-block-cover__inner-container{
 						.wp-block-columns{
 							margin: 0px;
@@ -43,7 +45,7 @@
 								padding-top: 91px;
 								fill: rgba(51, 51, 51, 0.70);
 								backdrop-filter: blur(17.6999998093px);
-								@media(max-width:468px){
+								@media(max-width:468px){ 
 									max-width: 430px;
 									padding-top: 91px;
 									fill: rgba(51, 51, 51, 0.7);

@@ -14,8 +14,18 @@
 			margin-top: 12px;
 		}
 		.wp-block-columns:first-child{ // BANNER
+			@include mobile{
+				display: flex;
+				justify-content: center;
+			}
 			.wp-block-column:first-child{  //col1
 				max-width: 770px;
+				@include mobile{
+					margin: 0px 20px;
+				}
+				@include small{
+					margin: 0px;
+				}
 				& .wp-block-cover{
 					margin: 0px;
 					padding: 0px;
@@ -33,8 +43,8 @@
 								padding-top: 91px;
 								fill: rgba(51, 51, 51, 0.70);
 								backdrop-filter: blur(17.6999998093px);
-								@media(max-width:428px){
-									max-width: 400px;
+								@media(max-width:468px){
+									max-width: 430px;
 									padding-top: 91px;
 									fill: rgba(51, 51, 51, 0.7);
 									-webkit-backdrop-filter: blur(17.6999998093px);
@@ -42,7 +52,8 @@
 									height: 424px;
 									position: relative;
 									top: 48%;
-									transition: height 0.7s ease 
+									transition: height 0.7s ease;
+									margin: 0px;
 								}
 
 								h1{
@@ -88,7 +99,6 @@
 				display: block;
 				max-width: 367px;
 				height: 506px;
-				
 				flex-direction: column;
 				align-items: flex-start;
 				gap: 33px;
@@ -110,6 +120,9 @@
 							line-height: 120%; /* 38.4px */
 							letter-spacing: -0.64px;
 							margin-bottom: 33px;
+							@include mobile{
+								margin-bottom: 63px;
+							}
 						}
 						
 					}

@@ -82,7 +82,7 @@
 			margin: 30px 0;
             max-width: 367px;
             width: 100%;
-            padding: 51px 33px 30px 33px;
+            padding: 51px 27px 30px 27px;
             border-radius: 12px;
             min-height: 450px;
             .swiper-container{
@@ -109,7 +109,7 @@
             }
             .yottie-widget-header-channel-title{
                 max-height: 35px;
-                text-align: left !important;
+                margin-left: -92px;
                 a{
                  text-decoration: none;
                  color: #FFF;
@@ -122,35 +122,45 @@
                  text-transform: uppercase;
                  
                 }
-             }
+            }
 
             .yottie-widget-video-info{
                 background-color: #000;
                 display: flex;
-                max-width: 147px;
+                width: 147px !important;
                 width: 100%;
                 margin-left: 13px;
                 flex-wrap: wrap !important;
+                padding: 11px 0 14px !important;
+               
                 a{
                     color: #FFF;
                     font-family: 'Manrope', serif;
                     font-size: 13px;
+                    width: 147px !important;
                     font-style: normal;
                     font-weight: 500;
                     line-height: 145%;
                     text-decoration: none;
-                    text-transform: uppercase;
                     flex-wrap: wrap !important;
-                    display: flex;
-                }   
+                    display: flex !important;
+                }
+
+                a[title] {
+                    white-space: pre-wrap !important;
+                    padding-right: 3px !important;
+                }
+               
+
             }
 
             .yottie-widget-feed-section-slide{
                 background: #000;   
                 padding-left: 0 !important;
-                .yottie-widget-video{
+                .yottie-widget-video.yottie-widget-video-classic{
                     display: flex ;
-                    background-color: #000;   
+                    background-color: #000;
+                    width: 300px !important;   
 
                     span{
                         border-radius: 8px;
@@ -183,6 +193,11 @@
               
             }
             .yottie-widget-feed-section-arrow-prev.swiper-button-disabled{
+                opacity: 1 !important;
+                transform: scale(1) !important;
+
+            }
+            .yottie-widget-feed-section-arrow-next.swiper-button-disabled{
                 opacity: 1 !important;
                 transform: scale(1) !important;
 

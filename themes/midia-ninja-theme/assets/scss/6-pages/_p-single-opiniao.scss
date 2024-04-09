@@ -189,6 +189,9 @@
                             width: 100%;
                             justify-content: flex-start;
                             gap: 1rem;
+                            @media(max-width:468px){
+                                gap: inherit;
+                            }
                             span{
                                 a{
                                     margin-left: 8px;
@@ -243,7 +246,6 @@
                 strong{
                     color: var(--PURE, #262626);
                     font-family: 'Manrope',sans-serif;
-                    font-size: 48px;
                     font-style: normal;
                     font-weight: 700;
                     line-height: 120%; /* 57.6px */

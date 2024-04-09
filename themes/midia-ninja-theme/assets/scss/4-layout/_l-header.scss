@@ -29,7 +29,7 @@ header {
 			}
 
 			.menus {
-				display: none;
+				height: 0;
 			}
 
 			.header-content > div {
@@ -459,9 +459,11 @@ header {
 			display: flex;
 			margin-top: 6px;
 			width: 100%;
+			height: 57px;
 			justify-self: center;
 			overflow: auto;
 			margin-top: 0;
+			transition: all 0.4s ease-in-out;
 
 			i.fa-angle-down,
 			i.fa-angle-up {

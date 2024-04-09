@@ -1,3 +1,5 @@
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
 #single-opiniao{
     h2,p{margin: 0px!important; padding: 0px !important;}
     
@@ -7,7 +9,7 @@
             max-width: initial;
             margin: initial;
             header{
-                max-width: initial !important;
+                max-width: 100%;
                 gap:130px !important;
                 & .post-info{
                     margin-top: 153px;
@@ -41,9 +43,15 @@
                             line-height: 150%; /* 30px */
                             margin-top: 24px;
                             margin-bottom: 31px;
+
                         }
                        
                     }
+                    .date{
+                        margin-bottom: 16px;
+                       
+                    }
+                    
                 }
                 .author-info{
                     & .author-info-card{
@@ -56,7 +64,6 @@
                         border-radius: 8px;
                         background: var(--Gray-1, #333);
                         flex-shrink: 0;
-                        
                         img{
                             width: 175.648px;
                             height: 175px;
@@ -70,7 +77,7 @@
                             line-height: 24px; /* 120% */
                             letter-spacing: -0.6px;
                             margin-right: 40px;
-                            margin-bottom: 17px;
+                            margin-bottom: 7px;
                         }
                         .authbio{
                             color: var(--White, #FFF) !important;
@@ -85,7 +92,7 @@
                         .social-networks{
                             display: flex;
                             margin: 0px 32px;
-                            margin-top: 48px;
+                            margin-top: 34px;
                             flex-direction: row;
                             margin-right: 115px;
                             span{
@@ -104,8 +111,8 @@
                 .author-info-mobile{
                     margin-bottom: -2rem;
                     margin-top: -1rem;
-                    @media(min-width: 783px){
-                        display: none;
+                    @include mixins.mobile{
+                        margin-top: 24px;
                     }
                     .author-info-card{
                         display: flex;
@@ -119,10 +126,7 @@
                         .info-container{
                             display: flex;
                             align-items: center;
-                            justify-content: center;
-                            margin-right: 43px;
-
-                        
+                            justify-content: center;                        
                             & .info-card-informations{
                                 margin-left: 24px;
                                 .author-name{
@@ -200,7 +204,6 @@
                 } 
             }
             section{
-               
                 p{
                     color: var(--PURE, #262626);
                     font-family: Manrope;
@@ -210,6 +213,7 @@
                     line-height: 150%; /* 24px */
                     margin: 0px;
                     width: 570px;
+                    margin-bottom: 12px !important;
                     @media(max-width: 783px){
                         width: initial;
                         margin: auto;
@@ -227,6 +231,24 @@
                 }
                 h2{
                     margin-top: 12px !important;
+                    margin-bottom: 8px !important;
+                }
+                h1{
+                    margin-top: 12px !important;
+                    margin-bottom: 12px !important;
+                }
+                strong{
+                    color: var(--PURE, #262626);
+                    font-family: 'Manrope',sans-serif;
+                    font-size: 48px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 120%; /* 57.6px */
+                    letter-spacing: -1.44px;
+                    @include mixins.mobile{
+                        font-size:27px;
+                    }
+                    
                 }
                 .addtoany_share_save_container{
                     display: none;
@@ -300,13 +322,20 @@
         }
     }
     .post-footer{
-        width: auto;
-        @media(max-width:768px){
-            margin-top: 46px;
+        @include mixins.mobile{
+            display: flex;
+            justify-content: center;
         }
-        h4{
-            margin-top: 0px;
+        .related-posts{
+            width: auto;
+            padding-top: 45px;
+            padding-bottom: 64px;
+            h2{
+                margin-top: 0px !important;
+                margin-bottom: 32px !important;
+            }
         }
+       
        
     }
 }

@@ -3,19 +3,20 @@
 
 .page-seja-ninja{
 
-    .wp-block-columns{
+    .wp-block-columns:first-child{
         p{margin: 0px !important;}
         h2{margin:0px !important;}
         
         gap:0px;
         border-radius: 10px 10px !important;
         margin-top: 32px;
+        gap: 30px;
         @media(max-width:991px){
             display: none;
         }
 
         & .wp-block-column:first-child{ //div que envolve banner e aside
-            width: 870px;
+            max-width: 870px;
             .wp-block-cover{
                 margin: 0px;
                 padding: 0px;
@@ -99,8 +100,16 @@
                                         font-weight: 400;
                                         line-height: 24px;
                                     }
+                                    input::placeholder {
+                                        font-family: 'Manrope', sans-serif; /* Define a fonte como Manrope */
+                                        font-size: 13px; /* Tamanho da fonte */
+                                        font-weight: 500; /* Peso da fonte (medium) */
+                                        line-height: 18.85px; /* Altura da linha */
+                                        color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
+                                    }
             
                                 }
+                                
                                 select {
                                     width: 265px;
                                     padding: 10px;
@@ -115,26 +124,19 @@
                                     font-style: normal;
                                     font-weight: 400;
                                     line-height: 24px;
-                                    appearance: none;
                                     
                                 }
-                                .estados{
-                                    position: relative; 
-                                    
-                                    
-                                    
+                                
+                                
+                                select option[disabled] {
+                                    font-family: 'Manrope', sans-serif; /* Define a fonte como Manrope */
+                                    font-size: 13px; /* Tamanho da fonte */
+                                    font-weight: 500; /* Peso da fonte (medium) */
+                                    line-height: 18.85px; /* Altura da linha */
+                                    color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
                                 }
-                                .estados::before{
-                                    content: ''; 
-                                    background-image: url("/wp-content/themes/midia-ninja-theme/assets/images/seta-midia-ninja.png"); 
-                                    position: absolute; 
-                                    right: 10px; 
-                                    top: 45%;
-                                    transform: translateY(-50%);
-                                    width: 19px;
-                                    height: 16px;
-                                    
-                                }
+                                
+                                
                                 .submit-button{
                                     input{
                                         display: flex;
@@ -173,7 +175,7 @@
         }
         & .wp-block-column:last-child{ // col-2 ASIDE 
             max-width: 270px;
-            margin-left: 27px !important;
+            margin: auto;
             @media(max-width:991px){
                 display: none;
             }
@@ -196,6 +198,12 @@
                             h4{
                                 margin: 0px;
                                 margin-top: 22px;
+                                color: var(--White, #FFF);
+                                font-family: 'Manrope',sans-serif;
+                                font-size: 20px;
+                                font-style: normal;
+                                font-weight: 700;
+                                line-height: 130%; /* 26px */
                             }
                             .line{
                                 margin: 0px;
@@ -206,6 +214,8 @@
                                 gap: 0px;
                                 margin: 0px;
                                 max-width: 106px;
+                                margin-top: 16px;
+
                                 .wp-block-column{
                                     margin: 0px !important;
                                     .wp-block-image {
@@ -234,6 +244,7 @@
             display: block;
             margin-top: 32px;
         }
+        
         & .col-form{
             @media (min-width: 668px) and (max-width: 991px) {
                 display: flex;
@@ -269,7 +280,6 @@
                         
                     }
                     h4{
-                        
                         margin: 0px;
                         color: #FFF;
                         font-family: Manrope;
@@ -290,7 +300,20 @@
                             font-size: 24px;
                             color: var(--DARK, #111);
                             margin: 24px 0px;
+                            max-width: 250px;
+                            /* height: 21px; */
+                            /* margin: 0; */
+                            text-align: start;
+                            font-weight: 800;
+                            margin-bottom: 0px;
                         }
+                        @media(max-width:500px){
+                            p{
+                                margin-bottom: 0px;
+                            }
+                            
+                        }
+                        
                     }
                     label{
                         input{
@@ -362,6 +385,13 @@
         }
         .col-2{
             .wp-block-cover{
+                @include mixins.tablet{
+                    text-align: center;
+                    width: 271px;
+                    margin: auto;
+                    border-radius: 8px;
+                    background: var(--DARK, #111);
+                }
                 .wp-block-cover__inner-container{
                     text-align: center;
                     @include mixins.mobile{
@@ -369,6 +399,9 @@
                     }
                     h4{
                         margin: 0;
+                        @include mixins.tablet{
+                            
+                        }
                         
                     }
                     & .social-icons-inscricao{
@@ -376,8 +409,17 @@
                         @include mixins.mobile{
                             width: 128px;
                         }
+                        @include mixins.tablet{
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                        }
                     }
                     .container-a-midia-ninja{
+                        @include mixins.mobile{
+                            margin: auto;
+                        }
                         & .wp-block-column{
                             flex-basis: initial !important;
 

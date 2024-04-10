@@ -19,7 +19,7 @@
             max-height: 450px;
             @media(max-width: 992px){
                 padding: 42px 65px 32px 70px;
-                max-height: 900px;
+                max-height: 610px;
             }
             @media(max-width: 782px){
                 padding: 20px 15px 32px 15px;
@@ -145,8 +145,9 @@
             @media(max-width: 992px){
                 display: block;
             }
+            
             .swiper-container{
-                height: 305px !important;
+                height: 320px !important;
             }
 
             .yottie-widget-header {
@@ -194,7 +195,7 @@
                 width: 100%;
                 margin-left: 13px;
                 flex-wrap: wrap !important;
-                padding: 11px 0 14px !important;
+                padding: 0 0 14px !important;
                 @media(max-width: 1199px){
                     margin-left: 8px;
                 }
@@ -223,6 +224,7 @@
             .yottie-widget-feed-section-slide{
                 background: #000;   
                 padding-left: 0 !important;
+                
                 .yottie-widget-video.yottie-widget-video-classic{
                     display: flex ;
                     background-color: #000;
@@ -250,6 +252,7 @@
                     }
                 }  
             }
+           
             .yottie-widget-feed-section-arrow {
                 top: 93% !important;
                 background: var(--PRIMARY-PURE, #848484) !important;
@@ -489,6 +492,9 @@
                 }
                 .yottie-widget-feed-section-arrow-prev{
                     left: -16% !important;
+                    @media(max-width: 782px){
+                        left: 15% !important;
+                    }
                 }
                 .yottie-widget-feed-section-arrow-prev.swiper-button-disabled{
                     opacity: 1 !important;

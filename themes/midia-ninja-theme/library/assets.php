@@ -453,6 +453,12 @@ class Assets
                     return is_page_template('page-anchor.php');
                 },
             ],
+            'colunistas' => [
+                'file' => '_p-template-colunistas.css',
+                'preload_callback' => function () {
+                    return is_page_template('template-colunistas.php');
+                },
+            ],
 
             // Tutor
             'tutorstarter' => [
@@ -550,6 +556,7 @@ class Assets
                     return is_page_template('page-anchor.php');
                 }
             ],
+            
 
             'archive-opiniao' => [
                 'file'   => 'archive-opiniao.js',

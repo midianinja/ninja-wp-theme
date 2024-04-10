@@ -128,7 +128,7 @@ body.single-afluente {
 body{
     &.afluente-xepa-3{
 
-        .wp-block-cover{
+        .wp-block-cover, .p-block-cover__inner-container{
             background-color: #262626;
             padding-top: 80;
             margin-top: 2.7rem;
@@ -155,8 +155,8 @@ body{
                 }
     
                 .yottie-widget-contents{
+                    margin-top: 0;
                     margin-left: 185px;
-                    margin-top: -92px;
                     @media(max-width: 1199px){
                         margin-left: 0;
                         margin-top: 0;
@@ -200,27 +200,28 @@ body{
             
     
                 .yottie-widget-video{
-                    width: 326px !important ;
-                    height: 183px !important;
+                    width: 303px !important ;
+                    height: 160px !important;
                     border-radius: 12px;
                     box-shadow: 0px 28px 36px 0px rgba(0, 0, 0, 0.50);
                     background: #262626;  
                     span{
                         border-radius: 8px;
-                        width: 326px !important ;
-                        height: 183px !important;    
+                        width: 303px !important ;
+                        height: 160px !important;
                     }
                     .yottie-widget-video-preview-thumbnail img{
                         border-radius: 8px;
-                        width: 326px ;
-                        height: 183px ;
+                        width: 303px !important ;
+                        height: 160px !important;
                         object-fit: cover;
                         border-radius: 12px;
-                        box-shadow: 0px 28px 36px 0px rgba(0, 0, 0, 0.50);   
+                        box-shadow: 0px 28px 36px 0px rgba(0, 0, 0, 0.50);
+                        top: 0 !important;   
                     } 
                 }
                 .yottie-widget-feed-section-arrow {
-                    top: 76% !important;
+                    top: 56% !important;
                     background: var(--PRIMARY-PURE, #848484) !important;
                     &:hover{
                         background: #fff !important;    

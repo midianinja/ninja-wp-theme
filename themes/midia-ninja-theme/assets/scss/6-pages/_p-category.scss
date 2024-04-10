@@ -2,6 +2,10 @@
 @use "./../2-atoms/a-mixins"as mixins;
 
 .category {
+	a{
+		text-decoration: none !important;
+	}
+
 	#app {
 		.container {
 			.header-and-footer-archive {
@@ -10,6 +14,7 @@
 					border-radius: 8px;
 					max-width: 773px;
 					width: 100%;
+					height: 506px;
 
 					@include mixins.small{
 						max-width: 330px;
@@ -61,9 +66,11 @@
                         border: 2px solid var(--Cores-de-categoria-Ciano---Poltica, #76C7E6);
                         max-width: 367px;
                         width: 100%;
-                        height: 452px;
+                        height: 506px;
                         position: relative;
-                        left: -7%;
+                        left: -4%;
+						padding: 54px 43px 29px 36px;
+
 
 						@media (max-width: 1200px){
 							left: -4%;
@@ -102,8 +109,7 @@
                                     height: 250px;
 
 									.slide {
-										height: 205px;
-										overflow: hidden;
+										height: auto;
 
 										a {
 
@@ -112,12 +118,12 @@
 											.post {
 
 												&-title {
-													color: var(--Gray-1, #333);
+													color: #000000;
 													font-family: var(--wp--preset--font-family--manrope);
 													font-size: var(--wp--preset--font-size--default);
 													font-style: normal;
 													font-weight: 500;
-													line-height: 140%;
+													line-height: 138%;
 													margin-bottom: 0;
                                                     padding-top: 0;
 												}
@@ -145,7 +151,7 @@
 																font-size: 10px;
 																font-style: normal;
 																font-weight: 700;
-																line-height: 21px;
+																line-height: 18.85px;
 																letter-spacing: 1px;
 																text-transform: uppercase;
 																background-color: transparent !important;
@@ -164,7 +170,14 @@
 					
 					.meio-ambiente{
 						border: 2px solid var(--Cores-de-categoria-Verde---Meio-Ambiente, #99CE56) !important;
+
 						.latest-vertical-posts-block {
+							.latest-vertical-posts-block__heading{
+								width: 298px;
+								position: relative;
+								right: 15px;
+							}
+
 							.slick-list {
 								.slick-track {
 									.slide {
@@ -191,7 +204,7 @@
 						border-radius: 8px 0px 0px 8px;
 						background: rgba(51, 51, 51, 0.70);
 						backdrop-filter: blur(11px);
-						height: 450px;
+						height: 506px;
 						padding: 60px 51px 59px 69px;
 
 						@include mixins.small{
@@ -212,6 +225,7 @@
 							height: 22px;
 							overflow: hidden;
 							width: 150px;
+							text-transform: uppercase;
 
 							a {
 								color: var(--wp--preset--color--secondary-light);
@@ -225,6 +239,8 @@
 								width: 150px;
 								overflow: hidden;
 								display: flex;
+								text-transform: uppercase;
+								text-decoration: none;
 							}
 						}
 
@@ -238,10 +254,10 @@
 								font-weight: 800;
 								line-height: 120%;
 								letter-spacing: -0.64px;
-								height: 160px;
-								overflow: hidden;
+								height: auto;
 								text-overflow: ellipsis;
 								display: flex;
+								text-decoration: none;
 							}
 
 							.wp-block-latest-posts__post-excerpt {
@@ -291,6 +307,8 @@
 				.posts {
 					display: grid;
 					grid-template-columns: 1fr 1fr;
+					position: relative;
+					right: 60px;
 
 					@include mixins.small{
 						display: flex;
@@ -331,7 +349,7 @@
 								.entry-title {
 									color: var(--wp--preset--color--dark-pure);
 									font-family: var(--wp--preset--font-family--manrope);
-									font-size: var(--wp--preset--font-size--small-standard);
+									font-size: 24px;
 									font-style: normal;
 									font-weight: 800;
 									line-height: 125%;
@@ -349,7 +367,7 @@
 								.entry-date {
 									color: var(--wp--preset--color--primary-light);
 									font-family: var(--wp--preset--font-family--manrope);
-									font-size: var(--wp--preset--font-size--small);
+									font-size: 13px;
 									font-style: normal;
 									font-weight: 700;
 									line-height: 145%;
@@ -368,6 +386,8 @@
 				border-radius: 12px;
 				border: 2px solid #cccc;
 				background: #fff;
+				position: relative;
+				right: 70px;
 
 				@include mixins.small{
 					display: none;
@@ -392,11 +412,17 @@
 						padding-top: 30px;
 					}
 
+					a{
+						text-decoration: none !important;
+					}
+
 					.slick-list {
 						.slick-track {
 							.slide {
 							
 								a {
+									text-decoration: none !important;
+
 									.post {
 										&-title {
 											color: var(--Gray-1, #333);

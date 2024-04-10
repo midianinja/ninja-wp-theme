@@ -20,6 +20,22 @@ body.single-afluente {
                         transform: initial;
                         object-fit: inherit;
                     }
+
+                    // Block latest horizontal posts
+                    .latest-horizontal-posts-block {
+                        .post {
+                            .post-thumbnail {
+                                img {
+                                    left: 50%;
+                                    object-fit: cover;
+                                    position: absolute;
+                                    top: 50%;
+                                    transform: translate(-50%, -50%);
+                                    transition: all 0.3s ease-in-out;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

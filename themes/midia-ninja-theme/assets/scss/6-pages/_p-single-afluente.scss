@@ -122,16 +122,35 @@ body.single-afluente {
                 }
             }
         }
+        .wp-block-newspack-blocks-homepage-articles.columns-2{
+            .post-thumbnail{
+                aspect-ratio: 16 / 9;
+                img{
+                    aspect-ratio: 16 / 9;
+                    border-radius: 8px;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+.addtoany_share_save_container{
+    display: none;
+}
+
+footer.main-footer{
+    .has-primary-pure-background-color{
+        background-color: var(--wp--preset--color--primary-dark) !important;
     }
 }
 
 body{
-    &.afluente-xepa{
+    &.afluente-xepa-3{
 
         .wp-block-cover, .p-block-cover__inner-container{
             background-color: #262626;
             padding-top: 80;
-            margin-top: 2.7rem;
     
             .wp-block-cover__background{
                 opacity: 0;
@@ -258,6 +277,9 @@ body{
     
                 }    
             }
+        }
+        nav.wp-block-navigation{
+            background-color: #C0E54F;
         }
     }    
 }

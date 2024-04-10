@@ -57,16 +57,6 @@
 					letter-spacing: -1.44px;
 				}
 
-				h2 {
-					font-size: 32px;
-					line-height: 115%;
-					letter-spacing: -1.44px;
-
-					@media (min-width: 768px) {
-						font-size: 48px;
-					}
-				}
-
 				.excerpt {
 					p {
 						color: var(--PRIMARY-PURE, #848484);
@@ -336,16 +326,6 @@
 						line-height: 140%;
 						letter-spacing: -0.48px;
 						font-weight: 500;
-					}
-
-					h2 {
-						color: var(--PURE, #262626);
-						font-family: Manrope;
-						font-size: 20px;
-						font-style: normal;
-						font-weight: 800;
-						line-height: 130%;
-						letter-spacing: -0.6px;
 					}
 
 					img {

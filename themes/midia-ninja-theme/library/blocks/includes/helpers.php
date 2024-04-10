@@ -56,6 +56,7 @@ function filter_save_post( $post_id, $post ) {
         return $post_id;
     }
 
+    clear_block_transients( $post, 'ninja/latest-horizontal-posts', 'ninja_horizontal_' );
     clear_block_transients( $post, 'ninja/latest-vertical-posts', 'ninja_vertical_' );
 }
 
@@ -72,7 +73,6 @@ function clear_block_transients( $post, $block_name, $transient_name ) {
         foreach ( $cache_keys as $key ) {
             $transient_name = str_replace( '_transient_', '', $key );
             $delete_transient = delete_transient( $transient_name );
-            do_action( 'logger', 'Transient ' . $transient_name . ' deleted', $delete_transient );
         }
     }
 }

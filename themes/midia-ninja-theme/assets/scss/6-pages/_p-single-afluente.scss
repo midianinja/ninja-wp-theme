@@ -3,6 +3,10 @@
 
 body.single-afluente {
     .container {
+        @include mixins.desktop-xlarge {
+            max-width: 1200px;
+        }
+
         main.content {
             .post {
                 max-width: 1280px;
@@ -24,5 +28,83 @@ body.single-afluente {
 
 .content-afluente {
     .post-content {
+        .wp-block-cover {
+            padding-left: 30px;
+            padding-right: 30px;
+
+            &:not(.alignfull) {
+                border-radius: 8px;
+            }
+        }
+
+        .wp-block-columns {
+            &:where(.is-layout-flex) {
+                gap: 30px;
+            }
+        }
+
+        nav.wp-block-navigation {
+            li {
+                flex-shrink: 0;
+
+                a {
+                    font-weight: 700;
+                    font-size: 13px;
+                    padding: 22px 15px;
+                    text-transform: uppercase;
+                    transition: all .2s ease-in-out;
+
+                    &:hover {
+                        opacity: .8;
+                    }
+                }
+            }
+
+            .wp-block-navigation__container {
+                gap: 30px;
+                overflow-x: auto;
+
+                @include mixins.mobile {
+                    justify-content: flex-start;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+            }
+
+            &:not(.alignfull) {
+                position: relative;
+                margin-left: 15px;
+                width: calc(100% - 30px);
+
+                &::before {
+                    content: '';
+                    width: 15px;
+                    height: 100%;
+                    position: absolute;
+                    left: -15px;
+                    top: 0;
+                    border-top-left-radius: 8px;
+                    border-bottom-left-radius: 8px;
+                }
+
+                &::after {
+                    content: '';
+                    width: 15px;
+                    height: 100%;
+                    position: absolute;
+                    right: -15px;
+                    top: 0;
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                }
+
+                &.has-primary-pure-background-color {
+                    &::before,
+                    &::after {
+                        background-color: var(--wp--preset--color--primary-pure);
+                    }
+                }
+            }
+        }
     }
 }

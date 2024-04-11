@@ -189,6 +189,9 @@
                             width: 100%;
                             justify-content: flex-start;
                             gap: 1rem;
+                            @media(max-width:468px){
+                                gap: inherit;
+                            }
                             span{
                                 a{
                                     margin-left: 8px;
@@ -236,18 +239,18 @@
                 h1{
                     margin-top: 12px !important;
                     margin-bottom: 12px !important;
+                    @include mixins.mobile{
+                        font-size:27px;
+                    }
                 }
                 strong{
                     color: var(--PURE, #262626);
                     font-family: 'Manrope',sans-serif;
-                    font-size: 48px;
                     font-style: normal;
                     font-weight: 700;
                     line-height: 120%; /* 57.6px */
                     letter-spacing: -1.44px;
-                    @include mixins.mobile{
-                        font-size:27px;
-                    }
+                    
                     
                 }
                 .addtoany_share_save_container{

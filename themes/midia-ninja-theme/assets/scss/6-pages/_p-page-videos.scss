@@ -4,6 +4,12 @@
 .page-videos-midia-ninja{
     #app{
         background-color:var(--wp--preset--color--secondary-light);
+
+        .wp-block-columns{
+            @media(max-width: 992px){
+                display: block;
+            }
+        }
       
         .tv-ninja{
             background-color: var(--wp--preset--color--primary-pure);
@@ -11,6 +17,13 @@
             padding: 42px 65px 0px 70px;
             margin-top: 30px;
             max-height: 450px;
+            @media(max-width: 992px){
+                padding: 42px 65px 32px 70px;
+                max-height: 610px;
+            }
+            @media(max-width: 782px){
+                padding: 20px 15px 32px 15px;
+            }
 
 
             h4{
@@ -39,19 +52,50 @@
                 grid-template-columns: 1.8fr 1fr;
                 box-shadow: none;
                 height: 220px;
+                @media(max-width: 992px){
+                    height: auto;
+                }
+            
             }
             .embed-template-block{
                 figure{
                     iframe{
                     border-radius: 8px;
+                        @media(max-width: 992px){
+                            width: 296px;
+                            height: 160px;
+                        }
 
                     }
                 }
             }
             .scroll-ratio{
                 height: auto;
+                @media(max-width: 992px){
+                    margin-top: -260px;
+                }
+                @media(max-width: 782px){
+                    margin-top: -160px;
+                }
+                @media(max-width: 624px){
+                    margin-top: -120px;
+                }
+                @media(max-width: 550px){
+                    margin-top: -70px;
+                }
+                @media(max-width: 470px){
+                    margin-top: -30px;
+                }
+                @media(max-width: 370px){
+                    margin-top: -10px;
+                }
                 .sidebar-itens{ 
                     overflow-x: hidden;
+                    @media(max-width: 992px){
+                        overflow-y: hidden;
+                        overflow-x: auto;
+                        margin-bottom: 4rem;
+                    }
                     button{
                         &:hover{
                             background: #262626 !important;
@@ -61,12 +105,22 @@
                         display: flex;
                         flex-direction: column-reverse;
                         padding-right: 0.5rem;
+                        @media(max-width: 992px){
+                            flex-direction: column;
+                            margin-bottom: 1rem;
+                        }
                         p{
                             color: #fff;
                         }
                         figure{
                             iframe{
                                 height: 96px;
+                                @media(max-width: 992px){
+                                    width: 160px;
+                                    height: 110px;
+                                    border-radius: 4px;
+                                    
+                                }
                             }
                         }
                         .midia-conteudo_2{
@@ -82,11 +136,18 @@
 			margin: 30px 0;
             max-width: 367px;
             width: 100%;
-            padding: 51px 33px 30px 33px;
+            padding: 51px 27px 30px 27px;
             border-radius: 12px;
             min-height: 450px;
+            @media(max-width: 1199px){
+                padding: 51px 13px 30px 13px;
+            }
+            @media(max-width: 992px){
+                display: block;
+            }
+            
             .swiper-container{
-                height: 305px !important;
+                height: 320px !important;
             }
 
             .yottie-widget-header {
@@ -109,7 +170,10 @@
             }
             .yottie-widget-header-channel-title{
                 max-height: 35px;
-                text-align: left !important;
+                margin-left: -92px;
+                @media(max-width: 1199px){
+                    margin-left: -28px;
+                }
                 a{
                  text-decoration: none;
                  color: #FFF;
@@ -122,35 +186,49 @@
                  text-transform: uppercase;
                  
                 }
-             }
+            }
 
             .yottie-widget-video-info{
                 background-color: #000;
                 display: flex;
-                max-width: 147px;
+                width: 147px !important;
                 width: 100%;
                 margin-left: 13px;
                 flex-wrap: wrap !important;
+                padding: 0 0 14px !important;
+                @media(max-width: 1199px){
+                    margin-left: 8px;
+                }
                 a{
                     color: #FFF;
                     font-family: 'Manrope', serif;
                     font-size: 13px;
+                    width: 147px !important;
                     font-style: normal;
                     font-weight: 500;
                     line-height: 145%;
                     text-decoration: none;
-                    text-transform: uppercase;
                     flex-wrap: wrap !important;
-                    display: flex;
-                }   
+                    display: flex !important;
+                }
+
+                a[title] {
+                    white-space: pre-wrap !important;
+                    padding-right: 3px !important;
+                    height: auto !important;
+                }
+               
+
             }
 
             .yottie-widget-feed-section-slide{
                 background: #000;   
                 padding-left: 0 !important;
-                .yottie-widget-video{
+                
+                .yottie-widget-video.yottie-widget-video-classic{
                     display: flex ;
-                    background-color: #000;   
+                    background-color: #000;
+                    width: 300px !important;   
 
                     span{
                         border-radius: 8px;
@@ -174,6 +252,7 @@
                     }
                 }  
             }
+           
             .yottie-widget-feed-section-arrow {
                 top: 93% !important;
                 background: var(--PRIMARY-PURE, #848484) !important;
@@ -187,6 +266,11 @@
                 transform: scale(1) !important;
 
             }
+            .yottie-widget-feed-section-arrow-next.swiper-button-disabled{
+                opacity: 1 !important;
+                transform: scale(1) !important;
+
+            }
             .yottie-widget-feed-section-arrow-next {
                 right: 30% !important;
                 
@@ -196,8 +280,12 @@
         #yottie_2{
             .yottie-widget-feed-section-slide,
             .yottie-widget-video-info,
-            .yottie-widget-feed-section-pagination {
+            .yottie-widget-feed-section-pagination,
+            .yottie-widget-feed-inner {
             background-color: #f5f5f5;
+            }
+            .swiper-container{
+                height: auto !important;
             }
             .yottie-widget-feed-section-slide{
                 padding: 0 !important;
@@ -210,9 +298,17 @@
             .yottie-widget-video-preview-thumbnail{
                 width: 361px !important;
                 border-radius: 8px !important;
+                @media(max-width: 992px){
+                    width: 328px !important;
+
+                }
                 img{
                     width: 361px;
                     height: auto;
+                    @media(max-width: 992px){
+                        width: 328px;
+    
+                    }
                     
                 }
                
@@ -227,6 +323,10 @@
                     line-height: 125%;
                     letter-spacing: -0.24px;
                     text-decoration: none;
+                }
+                a[title] {
+                    white-space: pre-wrap !important;
+                    padding-right: 3px !important;
                 }
                 .yottie-widget-video-info-passed-time{
                     color: var(--PRIMARY-PURE, #848484);
@@ -243,6 +343,11 @@
             .yottie-widget-feed-section-pagination{
                 font-family: 'Manrope', serif !important;
                 align-items: center;
+                max-width: 770px !important;
+                width: 100% !important;
+                border-top: 1px solid var(--SECONDARY, #CCC);
+                margin-top: 0.7rem;
+                padding-top: 1.9rem !important;
                 
                 .yottie-widget-feed-section-pagination-bullet{
                     background: transparent !important;
@@ -277,38 +382,55 @@
         .wp-block-cover{
             background-color: #262626;
             padding-top: 80;
+            margin-top: 2.7rem;
+
             .wp-block-cover__background{
                 opacity: 0;
 
             }
             #yottie_3{
-                max-width: 2000px !important;
+                max-width: 1400px !important;
                 width: 100% !important;
                 margin-left: 0 !important;
                 margin-right: 0 !important;
                 padding: 45px 0 0px 76px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                @media(max-width: 782px){
+                    padding: 45px 0 0px 0px !important;
+
+                }
                 .yottie-widget-header {
                     background-color: #262626;
+                }
+
+                .yottie-widget-contents{
+                    margin-left: 185px;
+                    margin-top: -92px;
+                    @media(max-width: 1199px){
+                        margin-left: 0;
+                        margin-top: 0;
+                    }
                 }
 
                 .swiper-container{
                     height: 405px !important;
                     padding: 0px 25px 0px 45px !important;
+                    overflow: visible !important;
                 }
     
                 .yottie-widget-header-channel-title{
                     max-height: 60px;
-                    a{
-                        color: #FFF;
-                        font-family: "MidiaNinja", serif;
-                        font-size: 48px;
-                        font-style: normal;
-                        font-weight: 400;
-                        line-height: 100%; /* 48px */
-                        letter-spacing: -2.88px;
-                        text-transform: uppercase;
-                        text-decoration: none;
-                    }
+                    color: #FFF;
+                    font-family: "MidiaNinja", serif;
+                    font-size: 48px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 100%; /* 48px */
+                    letter-spacing: -2.88px;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    
                 }
     
                 .yottie-widget-feed{
@@ -322,6 +444,7 @@
 
                 .swiper-slide{
                     padding-left: 30px !important;
+                    width: 1030px !important;
                    
                 }
                 
@@ -347,20 +470,31 @@
                     } 
                 }
                 .yottie-widget-feed-section-arrow {
-                    top: 93% !important;
+                    top: 76% !important;
                     background: var(--PRIMARY-PURE, #848484) !important;
                     &:hover{
                         background: #fff !important;    
                     }
+                    @media(max-width: 1199px){
+                        top: 93% !important;
+
+                    }
                 }
                 .yottie-widget-feed-section-arrow-next{
-                    right: 80% !important;
+                    right: 98% !important;
+                    @media(max-width: 1199px){
+                        right: 80% !important;
+
+                    }
                     @media (max-width: 782px){
                         right: 20% !important;
                     }
                 }
                 .yottie-widget-feed-section-arrow-prev{
-                    left: 15px !important;
+                    left: -16% !important;
+                    @media(max-width: 782px){
+                        left: 15% !important;
+                    }
                 }
                 .yottie-widget-feed-section-arrow-prev.swiper-button-disabled{
                     opacity: 1 !important;

@@ -2,18 +2,9 @@
 @import "./../2-atoms/a-mixins";
 @import "../3-components/c-share";
 @import "../5-blocks/b-image";
-.post-type-archive-afluente{
-	.container{
-		padding: 0px;
-		
-	}
-	.header-and-footer-archive {
-		margin-top: 32px;
-		@media (max-width:468px){
-			margin: 0px 12px;
-			margin-top: 12px;
-		}
-		.wp-block-columns:first-child{ // BANNER
+.page-template-template-colunistas{
+    .container{
+        .wp-block-columns:first-child{ // BANNER
 			@include mobile{
 				display: flex;
 				justify-content: center;
@@ -70,6 +61,9 @@
 									margin: auto;
 									margin-top: 14px;
 									margin-bottom: 25px;
+                                    color: #FFF;
+
+                                    
 								
 								}
 								& p:nth-child(1){ //afluentes
@@ -91,6 +85,8 @@
 									line-height: 145%; /* 18.85px */
 									width: 257px;
 									margin: auto;
+                                    color: #FFF;
+
 								}
 							}
 						}
@@ -174,10 +170,10 @@
 									}
 								}
 							}
-						}
+						} 
 					}
 					.latest-vertical-posts-block__footer{
-						width: 135px;
+						width: 135px; 
 						.latest-vertical-posts-block__arrows{
 							max-width: 171px;
 						}
@@ -186,145 +182,5 @@
 			}
 			
 		}
-	}
-	main{
-		@import "../6-pages/p-search";
-		@import "./../2-atoms/a-mixins";
-		@import "../3-components/c-share";
-		@import "../5-blocks/b-image";
-        .search{
-            display: flex;
-			align-items: center;
-			margin-top: 47px;
-			justify-content: center;
-			width: 100%; /* Use 100% da largura do contêiner pai */
-		
-			@media(max-width:468px){
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				max-width: 90%;
-				margin-left: 19px;
-				margin-bottom: 24px;
-			}
-            h2{
-                margin: 0px;
-				color: #000;
-
-				/* <h2> Manrope */
-				font-family: Manrope;
-				font-size: 32px;
-				font-style: normal;
-				font-weight: 800;
-				line-height: 120%; /* 38.4px */
-				letter-spacing: -0.64px;
-				@include mobile{
-					margin-left: 27px; 
-					margin-bottom: 22px;
-				} 
-				@media(max-width:767px){
-						
-					margin-left: 0px;
-				}
-            }
-            form{
-				width: 100%;
-				max-width: 566px;
-				display: flex;
-                & .input-search{
-					flex-grow: 1;
-					position: relative;
-					margin-left: 30px;
-					@media(max-width:767px){
-						margin-left: 0px;
-					}
-                    input{
-                         width: 100%; /* Ocupa toda a largura disponível dentro do contêiner pai */
-						height: 46px;
-						border-radius: 8px;
-						border: 2px solid var(--PRIMARY-PURE, #848484);
-                    }
-                    i{
-                        position: absolute;
-						right: 7px;
-						top: 13%;
-						height: 32px;
-						width: 32px;
-                        background-image: url($p_theme_assets + "/images/generic.png");
-                    }
-                }
-            }
-        }
-
-        .posts{
-            display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 10px;
-			margin-top: 48px;
-			@media(max-width:1200px){
-				grid-template-columns: 1fr 1fr; 
-			}
-			@media(max-width:767px){
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			
-			}
-			@include mobile{
-				margin: auto;
-			
-			}
-            article{
-				@include mobile{
-					margin: auto;
-				}
-                .post-card{
-                    display: flex;
-                    flex-direction: column;
-                    margin-bottom: 30px;
-					border: none;
-					@media(max-width:767px){
-						align-items: start;
-					}
-					@include mobile{
-						margin: 0px;
-   						padding: 0px;
-						margin-top: 13px;
-					
-					}
-                    .post-card--thumb{
-                        width: 370px;
-                        height: 208px;
-						@include mobile{
-							width: 328px;
-							height: 184px;
-						}
-                    }
-                    .post-card--content{
-                        & .entry-title{
-                            color: var(--PURE, #262626);
-                            font-family: Manrope;
-                            font-size: 24px;
-                            font-style: normal;
-                            font-weight: 800;
-                            line-height: 120%; /* 28.8px */
-                            letter-spacing: -0.72px;
-                        }
-                        & .entry-meta{
-                           
-                        }
-                        & .entry-date{
-                            display: none;
-                        }
-                        & .entry-excerpt{
-                            display: none;
-                        }
-                    }
-                }
-            }
-        }
-		.navigation{
-			margin: 64px 0px;
-		}
-	}
-} 
+    }
+}

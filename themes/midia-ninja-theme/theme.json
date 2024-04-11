@@ -399,7 +399,7 @@
 					"name": "Manrope"
 				},
 				{
-					"fontFamily": "MidiaNinja",
+					"fontFamily": "\"MidiaNinja\", sans-serif",
 					"slug": "midianinja",
 					"name": "MidiaNinja"
 				},
@@ -448,8 +448,8 @@
 			]
 		},
 		"layout": {
-			"contentSize": "960px",
-			"wideSize": "1170px"
+			"contentSize": "1200px",
+			"wideSize": "1200px"
 		}
 	}
 }

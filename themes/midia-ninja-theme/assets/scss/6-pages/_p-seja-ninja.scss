@@ -20,7 +20,7 @@
             .wp-block-cover{
                 margin: 0px;
                 padding: 0px;
-                border-radius: 5px;
+                border-radius: 10px;
                 .wp-block-columns {
                     margin: 0px;
                     height: 450px;
@@ -77,7 +77,7 @@
                                 h4{
                                     margin: 0px;
                                     color: #FFF;
-                                    font-family: Manrope;
+                                    font-family: 'Manrope',sans-serif;
                                     font-size: 12px;
                                     font-style: normal;
                                     font-weight: 700;
@@ -86,26 +86,29 @@
                                 }
                                 label{
                                     input{
-                                        max-width: 265px;
-                                        padding: 7px 3px;
+                                        width: 265px;
+                                        padding: 10px;
                                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                                         border: 1px solid var(--Main-beerus, #E2E2E2);
-                                        background: var(--Main-gohan, #FFF);
                                         padding-left: 10px;
-                                        color: var(--Main-trunks, #595D62);
-                                        font-feature-settings: 'clig' off, 'liga' off;
-                                        font-family: "DM Sans";
-                                        font-size: 14px;
+                                        font-size: 13px;
                                         font-style: normal;
-                                        font-weight: 400;
-                                        line-height: 24px;
+                                        color: var(--Main-trunks, #595D62);
+                                        font-family: 'Manrope',sans-serif;
+                                        font-weight: 500;
+                                        line-height: 18.85px; /* 18.85px */
+
+
                                     }
                                     input::placeholder {
-                                        font-family: 'Manrope', sans-serif; /* Define a fonte como Manrope */
-                                        font-size: 13px; /* Tamanho da fonte */
-                                        font-weight: 500; /* Peso da fonte (medium) */
-                                        line-height: 18.85px; /* Altura da linha */
-                                        color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
+                                       
+                                        color: var(--Main-trunks, #595D62);
+                                        /* <small> Manrope */
+                                        font-family: 'Manrope',sans-serif;
+                                        font-weight: 500;
+                                        line-height: 18.85px; /* 18.85px */
+                                        background-color: white;
+
                                     }
             
                                 }
@@ -115,15 +118,18 @@
                                     padding: 10px;
                                     border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                                     border: 1px solid var(--Main-beerus, #E2E2E2);
-                                    background: var(--Main-gohan, #FFF);
-                                    padding-left: 10px;
-                                    color: var(--Main-trunks, #595D62);
-                                    font-feature-settings: 'clig' off, 'liga' off;
-                                    font-family: "DM Sans";
-                                    font-size: 14px;
+                                    padding-left: 7px;
+                                    font-size: 13px;
                                     font-style: normal;
-                                    font-weight: 400;
                                     line-height: 24px;
+                                    color: var(--Main-trunks, #595D62);
+
+                                    /* <small> Manrope */
+                                    font-family: 'Manrope',sans-serif;
+                                    font-weight: 500;
+                                    line-height: 18.85px; /* 18.85px */
+                                    background-color: white; 
+
                                     
                                 }
                                 
@@ -152,7 +158,7 @@
                                         text-align: center;
                                         font-feature-settings: 'clig' off, 'liga' off;
                                         font-family: Manrope;
-                                        font-size: 14px;
+                                        font-size: 13px;
                                         font-style: normal;
                                         font-weight: 700;
                                         line-height: 24px;
@@ -228,7 +234,7 @@
                     p{
                         color: var(--White, #FFF);
                         /* <small> Manrope */
-                        font-family: Manrope;
+                        font-family: 'Manrope',sans-serif;
                         font-size: 13px;
                         font-style: normal;
                         font-weight: 500;
@@ -282,14 +288,14 @@
                     h4{
                         margin: 0px;
                         color: #FFF;
-                        font-family: Manrope;
+                        font-family: 'Manrope',sans-serif;
                         font-size: 12px;
                         font-style: normal;
                         font-weight: 700;
                         line-height: 130%; /* 15.6px */
                         @media (min-width: 668px) and (max-width: 991px) {
                             color: var(--DARK, #111);
-                            font-family: Manrope;
+                            font-family: 'Manrope',sans-serif;
                             font-size: 15px;
                             font-style: normal;
                             font-weight: 800;
@@ -297,24 +303,29 @@
                             letter-spacing: -0.24px;
                         }
                         @media(max-width:667px){
-                            font-size: 24px;
                             color: var(--DARK, #111);
-                            margin: 24px 0px;
-                            max-width: 250px;
-                            /* height: 21px; */
-                            /* margin: 0; */
-                            text-align: start;
+                            /* <h3> Manrope */
+                            font-family: 'Manrope',sans-serif;
+                            font-size: 24px;
+                            font-style: normal;
                             font-weight: 800;
-                            margin-bottom: 0px;
-                        }
-                        @media(max-width:500px){
-                            p{
-                                margin-bottom: 0px;
-                            }
-                            
+                            line-height: 125%; /* 30px */
+                            letter-spacing: -0.24px;
+                            width: 248px;
+                            text-align: start;
+                            margin-top: 24px;
                         }
                         
+                        
                     }
+                    p{
+                        @media(max-width:500px){
+                            margin-bottom: 0px;
+                       
+                        
+                        }
+                    }
+                    
                     label{
                         input{
                             max-width: 265px;
@@ -326,10 +337,10 @@
                             color: var(--Main-trunks, #595D62);
                             font-feature-settings: 'clig' off, 'liga' off;
                             font-family: "DM Sans";
-                            font-size: 14px;
+                            font-size: 13px;
                             font-style: normal;
-                            font-weight: 400;
-                            line-height: 24px;
+                            font-weight: 500;
+                            line-height: 18.85px
                         }
 
                     }
@@ -343,10 +354,10 @@
                         color: var(--Main-trunks, #595D62);
                         font-feature-settings: 'clig' off, 'liga' off;
                         font-family: "DM Sans";
-                        font-size: 14px;
+                        font-size: 13px;
                         font-style: normal;
-                        font-weight: 400;
-                        line-height: 24px;
+                        font-weight: 500;
+                        line-height:18.85px;
                         padding: 10px;
                     }
                     .submit-button{
@@ -366,12 +377,15 @@
                             color: var(--Gray-1, #333);
                             text-align: center;
                             font-feature-settings: 'clig' off, 'liga' off;
-                            font-family: Manrope;
-                            font-size: 14px;
+                            font-family: 'Manrope',sans-serif;
+                            font-size: 13px;
                             font-style: normal;
-                            font-weight: 700;
-                            line-height: 24px;
+                            font-weight: 500;
+                            line-height: 18.85px;
                             text-transform: uppercase;
+                            @include mixins.mobile{
+                                font-weight: 800; 
+                            }
                         }
                     }
                 }
@@ -399,9 +413,6 @@
                     }
                     h4{
                         margin: 0;
-                        @include mixins.tablet{
-                            
-                        }
                         
                     }
                     & .social-icons-inscricao{

@@ -531,3 +531,11 @@ function alterar_consulta_pesquisa_afluente($query) {
     }
 }
 add_action('pre_get_posts', 'alterar_consulta_pesquisa_afluente');
+
+function order_category_posts($query) {
+    if (is_category( ) && $query->is_main_query( )) {
+       $query->set('order', 'DESC');
+       $query->set('orderby', 'date');
+    }
+}
+add_action('pre_get_posts', 'order_category_posts');

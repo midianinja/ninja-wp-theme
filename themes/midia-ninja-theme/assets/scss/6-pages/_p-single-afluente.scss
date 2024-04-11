@@ -159,16 +159,6 @@ body.single-afluente {
                 }
             }
         }
-        .wp-block-newspack-blocks-homepage-articles.columns-2{
-            .post-thumbnail{
-                aspect-ratio: 16 / 9;
-                img{
-                    aspect-ratio: 16 / 9;
-                    border-radius: 8px;
-                    margin-bottom: 0.5rem;
-                }
-            }
-        }
     }
 }
 
@@ -183,11 +173,25 @@ footer.main-footer{
 }
 
 body{
-    &.afluente-xepa-3{
+    &.afluente-xepa{
+
+        nav.wp-block-navigation {
+
+            &:not(.alignfull) {
+
+                &.has-verde-limao-background-color {
+                    &::before,
+                    &::after {
+                        background-color: var(--wp--preset--color--verde-limao);
+                    }
+                }
+            }
+        }
 
         .wp-block-cover, .p-block-cover__inner-container{
             background-color: #262626;
-            padding-top: 80;
+            padding-top: 111px;
+            max-height: 470px;
     
             .wp-block-cover__background{
                 opacity: 0;
@@ -199,7 +203,7 @@ body{
                 margin-left: 0 !important;
                 margin-right: 0 !important;
     
-                padding: 45px 0 0px 76px !important;
+                padding: 0!important;
                 margin-left: auto !important;
                 margin-right: auto !important;
                 @media(max-width: 782px){
@@ -260,7 +264,7 @@ body{
                     height: 160px !important;
                     border-radius: 12px;
                     box-shadow: 0px 28px 36px 0px rgba(0, 0, 0, 0.50);
-                    background: #262626;  
+                    background: #262626 !important;  
                     span{
                         border-radius: 8px;
                         width: 303px !important ;
@@ -274,10 +278,15 @@ body{
                         border-radius: 12px;
                         box-shadow: 0px 28px 36px 0px rgba(0, 0, 0, 0.50);
                         top: 0 !important;   
+                    }
+                    .yottie-widget-video-preview-play{
+                        .maincolor{
+                            fill:#4F4F4F !important;
+                        }
                     } 
                 }
                 .yottie-widget-feed-section-arrow {
-                    top: 56% !important;
+                    top: 66% !important;
                     background: var(--PRIMARY-PURE, #848484) !important;
                     &:hover{
                         background: #fff !important;    
@@ -288,7 +297,7 @@ body{
                     }
                 }
                 .yottie-widget-feed-section-arrow-next{
-                    right: 98% !important;
+                    right: 100% !important;
                     @media(max-width: 1199px){
                         right: 80% !important;
     
@@ -315,8 +324,33 @@ body{
                 }    
             }
         }
-        nav.wp-block-navigation{
-            background-color: #C0E54F;
+    }
+    &.afluente-s-o-m{
+        nav.wp-block-navigation {
+
+            &:not(.alignfull) {
+
+                &.has-verde-limao-background-color {
+                    &::before,
+                    &::after {
+                        background-color: var(--wp--preset--color--roxo-feminismos);
+                    }
+                }
+            }
+        }
+    }
+    &.afluente-nec{
+        nav.wp-block-navigation {
+
+            &:not(.alignfull) {
+
+                &.has-verde-limao-background-color {
+                    &::before,
+                    &::after {
+                        background-color: var(--wp--preset--color--environment);
+                    }
+                }
+            }
         }
     }    
 }

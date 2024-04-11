@@ -352,5 +352,19 @@ body{
                 }
             }
         }
+    }
+    &.afluente-estudantes-ninja{
+        nav.wp-block-navigation {
+
+            &:not(.alignfull) {
+
+                &.has-indigenas-color-background-color {
+                    &::before,
+                    &::after {
+                        background-color: var(--wp--preset--color--indigenas-color); 
+                    }
+                }
+            }
+        }
     }    
 }

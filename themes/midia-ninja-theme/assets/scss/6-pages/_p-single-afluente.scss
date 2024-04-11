@@ -36,6 +36,40 @@ body.single-afluente {
                             }
                         }
                     }
+
+                    // Block image
+                    .wp-block-image { // <figure>
+                        img {
+                            border-radius: 8px;
+                        }
+                    }
+
+                    // Block heading
+                    .wp-block-heading {
+                        margin-bottom: 0;
+                        margin-top: 0;
+                    }
+
+                    // Block buttons
+                    .wp-block-buttons {
+                        .wp-block-button {
+                            .wp-block-button__link { // <a>
+                                font-size: 13px;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                                transition: all .2s ease-in-out;
+
+                                &:hover {
+                                    opacity: .8;
+                                }
+                            }
+                        }
+                    }
+
+                    // Block latest horizontal posts
+                    .latest-horizontal-posts-block {
+                        margin-bottom: 0;
+                    }
                 }
             }
         }
@@ -53,7 +87,10 @@ body.single-afluente {
             }
         }
 
+        // Block columns
         .wp-block-columns {
+            margin-bottom: 0;
+
             &:where(.is-layout-flex) {
                 gap: 30px;
             }

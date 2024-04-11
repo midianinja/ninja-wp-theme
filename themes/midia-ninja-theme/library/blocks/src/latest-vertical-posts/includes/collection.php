@@ -2,7 +2,7 @@
 
 namespace Ninja;
 
-function flickr_get_contents( $api_key, $flickr_by_type = 'user', $data_id = '', $block_id ) {
+function flickr_get_contents( $block_id, $api_key, $flickr_by_type = 'user', $data_id = '' ) {
     $cache_key = 'ninja_flickr_' . $block_id;
     $cached_data = get_transient( $cache_key );
 

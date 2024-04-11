@@ -50,7 +50,7 @@
 								}
 
 								h1{
-									font-family: Manrope;
+									font-family: 'Manrope',sans-serif;
 									font-size: 48px;
 									font-style: normal;
 									font-weight: 800;
@@ -181,6 +181,55 @@
 				}
 			}
 			
+		}
+		.wp-block-columns:not(:first-child) {
+			border-bottom: 1px solid black;
+			.wp-block-column:first-child{
+				figure>img{
+					width: 170px;
+					height: 170px;
+					border-radius: 170px;
+	
+				}
+			}
+			.wp-block-column:last-child{
+				h4{
+					color: var(--Primary-Pure, var(--PURE, #262626));
+					/* <h4> Manrope */
+					font-family: Manrope;
+					font-size: 20px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: 130%; /* 26px */
+				}
+				article{
+					.entry-wrapper{
+						& h2{
+							color: var(--Primary-dark, var(--DARK, #111));
+							/* <h4> Manrope */
+							font-family: Manrope;
+							font-size: 20px;
+							font-style: normal;
+							font-weight: 700;
+							line-height: 130%; /* 26px */	
+						}
+									
+						&  p{
+							color: var(--Primary-light, var(--PRIMARY-PURE, #848484));
+							/* <p> Manrope */
+							font-family: Manrope;
+							font-size: 16px;
+							font-style: normal;
+							font-weight: 500;
+							line-height: 140%; /* 22.4px */
+
+						}
+						& .entry-meta{
+							display: none;
+						}		
+					}
+				}
+			}
 		}
     }
 }

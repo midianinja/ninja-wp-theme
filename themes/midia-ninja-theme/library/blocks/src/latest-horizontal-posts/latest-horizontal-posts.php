@@ -49,7 +49,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             return;
         }
 
-        $has_content = flickr_get_contents( $api_key, $flickr_by_type, $data_id, $block_id );
+        $has_content = flickr_get_contents( $block_id, $api_key, $flickr_by_type, $data_id );
     }
 
     if ( $block_model == 'columnists' ) {

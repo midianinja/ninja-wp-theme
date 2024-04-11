@@ -193,6 +193,11 @@
 					"color": "#99CE56"
 				},
 				{
+					"name": "Verde Limao",
+					"slug": "verde-limao",
+					"color": "#C0E54F"
+				},
+				{
 					"name": "Verde dark",
 					"slug": "verde-dark",
 					"color": "#7AE695"

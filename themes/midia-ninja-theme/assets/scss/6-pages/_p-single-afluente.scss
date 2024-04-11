@@ -36,6 +36,19 @@ body.single-afluente {
                             }
                         }
                     }
+
+                    // Block image
+                    .wp-block-image { // <figure>
+                        img {
+                            border-radius: 8px;
+                        }
+                    }
+
+                    // Block heading
+                    .wp-block-heading {
+                        margin-bottom: 15px;
+                        margin-top: 0;
+                    }
                 }
             }
         }

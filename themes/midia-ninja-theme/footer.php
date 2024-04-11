@@ -5,7 +5,7 @@
     <div class="container">   
 
         <div class="footer-widget-area">
-            <?php dynamic_sidebar('before_footer_logos_area'); ?>
+            <?php dynamic_sidebar('footer_widgets'); ?>
         </div>
         
         <div class="footer-logo">

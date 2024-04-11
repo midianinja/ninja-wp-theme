@@ -183,7 +183,7 @@
 			
 		}
 		.wp-block-columns:not(:first-child) {
-			border-bottom: 1px solid black;
+			border-bottom: 1px solid  #848484;
 			.wp-block-column:first-child{
 				figure>img{
 					width: 170px;
@@ -201,6 +201,7 @@
 					font-style: normal;
 					font-weight: 700;
 					line-height: 130%; /* 26px */
+					margin: 0;
 				}
 				article{
 					.entry-wrapper{

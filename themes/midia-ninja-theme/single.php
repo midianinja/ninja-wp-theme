@@ -13,10 +13,9 @@ $coauthors = get_coauthors();
 $cat_id = $category[0]->term_id;
 
 $cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true );
-$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true ); 
+$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
 
-
-
+get_template_part( 'template-parts/header-especiais' );
 ?>
 
 <div class="container">
@@ -28,19 +27,19 @@ $cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
                         <div>
                             <div class="info">
                                 <span class="term-<?= $category[0]->slug; ?>">
-                                    <?php 
+                                    <?php
                                     $categories = get_the_category();
 
                                     foreach ($categories as $category){
                                     echo '<a style="color:' .  $cor_font . '; background-color:' .  $cor_fundo . ';" href="' . get_category_link($category->term_id) . '">' . $category->cat_name . '</a>';
 
                                     }; ?>
-                                </span> 
+                                </span>
                             </div>
 
                             <?php the_post_thumbnail();?>
                         </div>
-                        
+
                         <h2 class="title"><?php the_title(); ?></h2>
 
                         <h5 class="excerpt"><?php the_excerpt(); ?></h5>
@@ -69,13 +68,13 @@ $cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
                                 }
 
 
-                                ?>    
+                                ?>
                                 <div class="author-info-card">
-                                
+
                                     <?php echo get_avatar($author_id, 128);?>
-                                
-                                    <div class="auth-name-icons">    
-                                        
+
+                                    <div class="auth-name-icons">
+
                                         <div class="authname">
                                             <?php the_author(); ?>
                                         </div>
@@ -119,14 +118,14 @@ $cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
                                         </div>
 
                                     </div>
-                            
+
                                 </div>
-                        
+
                                 <?php endforeach; ?>
                             </div>
 
                             <div class="content-author">
-                            
+
                             <div>
                                 <?php echo get_avatar(get_the_author_meta('ID'), 70);?>
 
@@ -135,11 +134,11 @@ $cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
                                         <span><?php _e('By', 'ninja');?></span>
                                         <?php the_author(); ?>
                                     </div>
-                                    
+
                                     <time class="date" datetime="<?php echo get_the_date('c'); ?>">
                                         <span>
                                             <?php the_date();?>
-                                        </span> 
+                                        </span>
                                         <span class="clock"></span>
                                         <span>
                                             <?php the_time('G:i');?>
@@ -147,15 +146,15 @@ $cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
                                     </time>
                                 </div>
                             </div>
-                            
+
                             <div class="page-share">
                                 <span><?php _e('Share:', 'ninja');?></span>
                                 <div class="social-icons">
                                     <?php the_social_networks_menu() ?>
                                     <?php echo do_shortcode('[addtoany]'); ?>
                                 </div>
-                                
-                                
+
+
                             </div>
                         </div>
                     </div>
@@ -183,7 +182,7 @@ $cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
                             }
 
 
-                            ?>    
+                            ?>
                         <div class="author-info-card">
                             <?php echo get_avatar($author_id, 128);?>
                                 <?php if($author_bio): ?>

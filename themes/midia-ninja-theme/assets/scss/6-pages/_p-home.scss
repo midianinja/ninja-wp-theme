@@ -511,6 +511,10 @@
             font-size: 38px;
             font-weight: 400;
             letter-spacing: normal;
+            @media (max-width: 782px){ 
+               display: flex;
+               justify-content: center; 
+            }
 
         }
     }
@@ -529,6 +533,8 @@
                 margin-bottom: -37px !important;
                 @media(max-width: 782px){
                     margin-bottom: 0 !important;
+                    display: flex;
+                    justify-content: center; 
                 }
             }
             .latest-horizontal-posts-block__slides{
@@ -755,9 +761,14 @@
 
         .colunas{
             margin-top: 20px !important;
+            h2{
+                display: flex;
+                justify-content: center; 
+            }
+           
             @media(max-width: 782px){
                margin-bottom: -2rem !important;
-               margin: -10px 0 !important;
+               margin: -10px 0 2rem !important;
             }
 
         }
@@ -861,6 +872,9 @@
 
         .container{
             padding: 55px 0 25px 76px !important;
+            @media (max-width: 782px){
+                padding: 55px 0 25px 15px !important;
+            }
         }
         .latest-horizontal-posts-block__slides{
             flex-basis: 100% !important;
@@ -871,12 +885,22 @@
                 display: flex;
                 flex-wrap: nowrap;
                 margin-left: 90px;
+                @media (max-width: 782px){
+                    margin-left: 15px;                    
+                }
             }
+            
             .slick-slide{
                 width: 325px !important;
                 height: 182px;
                 margin: 0 18px 0 15px;
+
+                @media(max-width: 7282px){
+                    margin: 32px 15px;
+    
+                }
             }
+
         }
         h2 {
             font-family: "MidiaNinja", sans-serif;
@@ -884,6 +908,10 @@
             font-weight: 400;
             margin-bottom: 0;
             letter-spacing: normal;
+            @media (max-width: 782px){ 
+                display: flex;
+                justify-content: center; 
+             }
         }
         .video-title{
             display: none;

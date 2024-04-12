@@ -986,9 +986,7 @@
 	.acervo {
 		margin-top: 2rem;
 		margin-bottom: 0;
-		@media (max-width: 992px) {
-			margin-bottom: 2rem;
-		}
+
 		.container {
 			gap: 2rem;
 
@@ -1160,7 +1158,9 @@
 			opacity: 0 !important;
 		}
 		.wp-block-columns {
-			gap: 100px;
+			gap: 90px;
+			margin-bottom: 50px;
+
 			@media (max-width: 992px) {
 				display: block;
 			}
@@ -1168,16 +1168,22 @@
 		.wp-block-heading {
 			color: #fff;
 			font-family: "MidiaNinja", serif;
-			font-size: 42px;
+			font-feature-settings: "calt" off;
+			font-size: 32px;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 100%;
 			letter-spacing: normal;
-			@media (max-width: 782px) {
-				font-size: 35px;
-				text-align: center;
+			margin: 32px 0;
+			text-align: center;
+
+			@media (min-width: 768px) {
+				font-size: 48px;
+				text-align: left;
+				line-height: 44px;
 			}
 		}
+
 		p {
 			color: #fff;
 			font-family: "Manrope", serif;
@@ -1185,40 +1191,48 @@
 			font-style: normal;
 			font-weight: 500;
 			line-height: 145%;
+			margin: 16px 0;
+
+			@media (min-width: 768px) {
+				margin: 30px 0;
+				width: 82%;
+			}
 		}
+
 		form {
 			.mc4wp-form-fields {
 				margin-top: 2rem;
+
 				@media (max-width: 992px) {
 					margin-top: 0;
 				}
+
 				input[type="name"],
 				input[type="email"] {
-					width: 572px;
+					width: 100%;
+					max-width: 540px;
 					padding: 1rem;
 					border-radius: 8px;
-					border: none;
-					margin-bottom: 1rem;
-					color: #111;
-					&::placeholder {
-						font-size: 16px;
+					color: #d9d9d9;
+					background-color: transparent;
+					border: 1px solid #d9d9d9;
+
+					@media (min-width: 768px) {
+						background-color: #fff;
 						color: #595d62;
-						@media (max-width: 782px) {
-							color: var(--wp--preset--color--secondary-light);
-						}
-					}
-					@media (max-width: 782px) {
-						background-color: transparent;
-						border: 1px solid #d9d9d9;
-						color: var(--wp--preset--color--secondary-light);
-					}
-					@media (max-width: 600px) {
-						width: 326px;
-					}
-					@media (max-width: 359px) {
-						width: 306px;
 					}
 				}
+
+				input::placeholder {
+					font-size: 16px;
+					color: #fff;
+					opacity: 1;
+
+					@media (min-width: 768px) {
+						color: #595d62;
+					}
+				}
+
 				input[type="submit"] {
 					background-color: #fbf36e;
 					border: none;
@@ -1227,11 +1241,18 @@
 					font-size: 14px;
 					font-weight: 800;
 					text-transform: uppercase;
-					padding: 1rem 3.8rem;
+					padding: 8px 24px;
 					border-radius: 8px;
-					@media (max-width: 600px) {
-						max-width: 326px;
-						width: 100%;
+					line-height: 140%;
+					margin-top: 16px;
+					width: 100%;
+					max-width: 540px;
+
+					@media (min-width: 768px) {
+						max-width: 168px;
+						line-height: 24px;
+						padding: 16px 24px;
+						margin: 0;
 					}
 				}
 			}

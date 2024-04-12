@@ -33,20 +33,16 @@ if ( ! empty( $especial_terms ) ):
 	if ( ! empty( $especial_menu->id ) && ! empty( $especial_pages ) ):
 		$especial_page = $especial_pages[0];
 ?>
-		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="--especial-menu-bg: <?= $especial_menu->background_color ?>; --especial-menu-link: <?= $especial_menu->link_color ?>">
-			<div class="menu-especial__desktop">
-				<a class="menu-especial__logo" href="<?= get_permalink( $especial_page->ID ) ?>">
-					<?= wp_get_attachment_image( $especial_menu->logo_desktop, 'thumbnail', true ) ?>
-				</a>
-				<?php wp_nav_menu( [ 'menu' => intval( $especial_menu->id ), 'menu_class' => 'especial-menu__nav', 'container' => 'nav' ] ) ?>
-			</div>
-
-			<div class="menu-especial__mobile">
-				<?php wp_nav_menu( [ 'menu' => intval( $especial_menu->id ), 'menu_class' => 'especial-menu__nav', 'container' => 'nav' ] ) ?>
-				<a class="menu-especial__logo" href="<?= get_permalink( $especial_page->ID ) ?>">
-					<?= wp_get_attachment_image( $especial_menu->logo_mobile, 'thumbnail', true ) ?>
-				</a>
-			</div>
+		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="--menu-especial-bg: <?= $especial_menu->background_color ?>; --menu-especial-link: <?= $especial_menu->link_color ?>">
+			<a class="menu-especial__logo-desktop" href="<?= get_permalink( $especial_page->ID ) ?>">
+				<?= wp_get_attachment_image( $especial_menu->logo_desktop, 'thumbnail', true ) ?>
+			</a>
+			<a class="menu-especial__logo-mobile" href="<?= get_permalink( $especial_page->ID ) ?>">
+				<?= wp_get_attachment_image( $especial_menu->logo_mobile, 'medium_large', true ) ?>
+			</a>
+			<nav class="menu-especial__links">
+				<?php wp_nav_menu( [ 'menu' => intval( $especial_menu->id ) ] ) ?>
+			</nav>
 		</div>
 	<?php endif; ?>
 <?php endif; ?>

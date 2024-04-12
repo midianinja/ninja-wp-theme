@@ -20,6 +20,11 @@
         }
     }
 
+    .midia-highlight-wrapper{
+        display: flex;
+        justify-content: center;
+    }
+
     .wp-block-newspack-blocks-homepage-articles {
         // general style of the Newspack Blocks/Homepage Articles card
         article {
@@ -759,11 +764,10 @@
     }
 
     .who-finances-desktop {
-        background: #111 !important;
+        background-color: #f5f5f5;
         min-height: 108px;
         display: flex;
         align-items: center;
-
         @media(max-width: 1320px){
             padding-left: 15px;
             padding-right: 15px;
@@ -775,7 +779,15 @@
             padding: 25px 42px 25px 45px;
         }
         .wp-block-columns{
+            padding-top: 1.2rem;
+            max-width: 1394px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            background: #111 !important;
             margin-top: 1.8rem;
+            display: flex;
+            align-items: center;
             @media(max-width: 992px){
                 flex-direction: column;
                 margin-bottom: 0;
@@ -787,8 +799,7 @@
             color: #FBF36E;
             font-size: 38px;
             font-weight: 400;
-            margin-bottom: 0;
-            margin-top: 0;
+            margin: 0.5rem 0 0 2.2rem;
             letter-spacing: normal;
             @media(max-width: 992px){
                 color: #000;
@@ -800,7 +811,8 @@
                 line-height: 130%;
             }
             img{
-                margin-left: 4.5rem;
+                margin-top: -7px;
+                margin-left: 2rem;
                 @media(max-width: 992px){
                     display: none;
                 }
@@ -817,6 +829,7 @@
             }
         }
         .wp-block-buttons{
+            margin-bottom: 1.3rem;
             @media(max-width: 992px){
                 display: flex;
                 justify-content: center;
@@ -1202,6 +1215,7 @@
                 margin-bottom: 0;
             }
             a{
+                text-decoration: none;
                 .post{
                     display: flex;
                     gap: 13px;

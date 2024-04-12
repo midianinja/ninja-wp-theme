@@ -20,7 +20,7 @@ $related_posts = new WP_Query($args);
 
 if ($related_posts->have_posts()) : ?>
 
-    <h2>Conheça outros colunistas</h2>
+    <h2>Mais colunistas NINJA</h2>
     
     <div class="related">
         <?php while($related_posts->have_posts()) :

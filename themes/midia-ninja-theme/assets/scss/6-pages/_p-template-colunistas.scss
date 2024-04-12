@@ -44,7 +44,7 @@
 									backdrop-filter: blur(17.6999998093px);
 									height: 424px;
 									position: relative;
-									top: 48%;
+									top: 59%;
 									transition: height 0.7s ease;
 									margin: 0px;
 								}
@@ -192,7 +192,7 @@
 			.wp-block-column:first-child{
 				@include mobile{
 					display: flex;
-					flex-direction: column;
+					flex-direction: column; 
 					align-items: center;				
 				}
 				figure>img{
@@ -200,6 +200,17 @@
 					height: 170px;
 					border-radius: 170px;
 	
+				}
+				p{
+					@include mobile{
+						color: var(--Primary-dark, var(--DARK, #111));
+						/* <h4> Manrope */
+						font-family: Manrope;
+						font-size: 20px;
+						font-style: normal;
+						font-weight: 700;
+						line-height: 130%; /* 26px */
+					}
 				}
 			}
 			.wp-block-column:last-child{
@@ -214,7 +225,11 @@
 					margin: 0;
 				}
 				article{
+					
 					.entry-wrapper{
+						@include mobile{
+							margin-top: 34px;
+						}
 						& h2{
 							color: var(--Primary-dark, var(--DARK, #111));
 							/* <h4> Manrope */
@@ -233,6 +248,9 @@
 							font-style: normal;
 							font-weight: 500;
 							line-height: 140%; /* 22.4px */
+							@include mobile{
+								margin-top:23px;
+							}
 
 						}
 						& .entry-meta{
@@ -240,6 +258,15 @@
 						}		
 					}
 				}
+				
+				article:nth-child(2),
+				article:nth-child(3){
+					@include mobile{
+						display: none;
+					}
+
+				}
+				
 			}
 		}
 		.related {
@@ -274,6 +301,14 @@
 				display: flex;
 				align-items: center;
 				flex-direction: column;
+				h2{
+					margin-top: 65px;
+					margin-bottom: 39px;
+					@include mobile{
+						margin-top: 32px;
+						margin-bottom: 32px;
+					}
+				}
                 .related-post-image{
                     img{
                         width: 170px;

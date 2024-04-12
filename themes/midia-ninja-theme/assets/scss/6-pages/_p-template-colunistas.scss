@@ -244,13 +244,10 @@
 		}
 		.related {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 			justify-items: center;
-			width: 90%;
-			max-width: 2000px; 
 			gap: 30px;
-			margin: 0 auto; 
-			margin-bottom: 32px;
+			margin: 0 auto 32px;
 			@media (min-width: 600px) {
 				.related {
 					grid-template-columns: repeat(2, 1fr); 

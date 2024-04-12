@@ -247,7 +247,7 @@
 			grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 			justify-items: center;
 			width: 90%;
-			max-width: 1000px; 
+			max-width: 2000px; 
 			gap: 30px;
 			margin: 0 auto; 
 			margin-bottom: 32px;
@@ -277,7 +277,6 @@
 				display: flex;
 				align-items: center;
 				flex-direction: column;
-				margin-bottom: 34px;
                 .related-post-image{
                     img{
                         width: 170px;

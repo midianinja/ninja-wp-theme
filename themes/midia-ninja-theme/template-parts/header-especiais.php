@@ -13,7 +13,7 @@ if ( ! empty( $especial_terms ) ):
 		]],
 	] );
 
-	$especial_menu = (object) [
+	$especial_menu = [
 		'background_color' => '#333333',
 		'id' => null,
 		'link_color' => '#FFFFFF',
@@ -25,23 +25,25 @@ if ( ! empty( $especial_terms ) ):
 
 	foreach ( $especial_menu_keys as $meta_key ) {
 		$meta_value = get_term_meta( $especial_term->term_id, 'menu_' . $meta_key, true );
+
 		if ( ! empty( $meta_value ) ) {
-			$especial_menu->{$meta_key} = $meta_value;
+			$especial_menu[ $meta_key ] = $meta_value;
 		}
 	}
 
-	if ( ! empty( $especial_menu->id ) && ! empty( $especial_pages ) ):
+	if ( ! empty( $especial_menu['id'] ) && ! empty( $especial_pages ) ):
 		$especial_page = $especial_pages[0];
+		$especial_style = "--menu-especial-bg: {$especial_menu['background_color']}; --menu-especial-link: {$especial_menu['link_color']}";
 ?>
-		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="--menu-especial-bg: <?= $especial_menu->background_color ?>; --menu-especial-link: <?= $especial_menu->link_color ?>">
+		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="<?= $especial_style ?>">
 			<a class="menu-especial__logo-desktop" href="<?= get_permalink( $especial_page->ID ) ?>">
-				<?= wp_get_attachment_image( $especial_menu->logo_desktop, 'thumbnail', true ) ?>
+				<?= wp_get_attachment_image( $especial_menu['logo_desktop'], 'thumbnail', true ) ?>
 			</a>
 			<a class="menu-especial__logo-mobile" href="<?= get_permalink( $especial_page->ID ) ?>">
-				<?= wp_get_attachment_image( $especial_menu->logo_mobile, 'medium_large', true ) ?>
+				<?= wp_get_attachment_image( $especial_menu['logo_mobile'], 'medium_large', true ) ?>
 			</a>
 			<nav class="menu-especial__links">
-				<?php wp_nav_menu( [ 'menu' => intval( $especial_menu->id ) ] ) ?>
+				<?php wp_nav_menu( [ 'menu' => intval( $especial_menu['id'] ) ] ) ?>
 			</nav>
 		</div>
 	<?php endif; ?>

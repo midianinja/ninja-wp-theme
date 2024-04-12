@@ -242,13 +242,37 @@
 				}
 			}
 		}
-		.related{
+		.related {
 			display: grid;
-			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+			grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 			justify-items: center;
-			width: 60vw;
+			width: 90%;
+			max-width: 1000px; 
 			gap: 30px;
+			margin: 0 auto; 
 			margin-bottom: 32px;
+			@media (min-width: 600px) {
+				.related {
+					grid-template-columns: repeat(2, 1fr); 
+				}
+			}
+			@media (min-width: 900px) {
+				.related {
+					grid-template-columns: repeat(3, 1fr); 
+				}
+			}
+			
+			@media (min-width: 1200px) {
+				.related {
+					grid-template-columns: repeat(4, 1fr);
+				}
+			}
+			
+			@media (min-width: 1600px) {
+				.related {
+					grid-template-columns: repeat(6, 1fr); 
+				}
+			}
             .related-post{
 				display: flex;
 				align-items: center;
@@ -278,21 +302,27 @@
 							color: #000;
 							text-align: center;
 							/* <h4> Manrope */
-							font-family: Manrope;
+							font-family: 'Manrope',sans-serif;
 							font-size: 20px;
 							font-style: normal;
 							font-weight: 700;
 							line-height: 130%; /* 26px */
 							text-decoration: none;
 						}
+						h5{
+							/* <h4> Manrope */
+							font-family: 'Manrope',sans-serif;
+							font-size: 20px;
+							font-style: normal;
+							font-weight: 700;
+							line-height: 130%; /* 26px */
+						}
                     }
                     
                 }
 
             }
-           /*  .related-post:last-child{
-                display: none !important;
-            } */
+
            
         }
 		

@@ -1154,6 +1154,8 @@
 		}
 	}
 	.newsletter-desktop {
+		background-color: #111;
+
 		.wp-block-cover__background {
 			opacity: 0 !important;
 		}
@@ -1233,13 +1235,6 @@
 					}
 				}
 			}
-		}
-	}
-	.newsletter-desktop {
-		background-color: #111;
-
-		@media (max-width: 992px) {
-			display: none;
 		}
 	}
 

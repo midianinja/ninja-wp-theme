@@ -247,12 +247,13 @@
 			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 			justify-items: center;
 			width: 60vw;
-			gap: 10px;
+			gap: 30px;
 			margin-bottom: 32px;
             .related-post{
-                display: flex;
+				display: flex;
 				align-items: center;
 				flex-direction: column;
+				margin-bottom: 34px;
                 .related-post-image{
                     img{
                         width: 170px;
@@ -273,15 +274,17 @@
 						time{
 							display: none;
 						}
-                        h5{
-                            color: var(--Primary-dark, var(--DARK, #111));
-                            /* <h4> Manrope */
-                            font-family: Manrope;
-                            font-size: 20px;
-                            font-style: normal;
-                            font-weight: 700;
-                            line-height: 130%; /* 26px */
-                        }
+						a{
+							color: #000;
+							text-align: center;
+							/* <h4> Manrope */
+							font-family: Manrope;
+							font-size: 20px;
+							font-style: normal;
+							font-weight: 700;
+							line-height: 130%; /* 26px */
+							text-decoration: none;
+						}
                     }
                     
                 }

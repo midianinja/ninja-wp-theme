@@ -122,7 +122,7 @@
                         height: 506px;
                         position: relative;
                         left: -4%;
-						padding: 54px 43px 29px 36px;
+						padding: 16px;
 
 
 						@media (max-width: 1200px){
@@ -144,135 +144,75 @@
 							margin-right: auto;
 							left: -10%;
 						}
+					}
 
-						.latest-vertical-posts-block {
-							background-color: #fff;
+					.posts-sidebar {
+						margin-top: 2rem;
 
-							h2 {
-                                color: var(--DARK, #111);
-                                font-family: "MidiaNinja", serif;
-                                font-size: 36px;
-                                font-style: normal;
-                                font-weight: 400;
-                                line-height: 145%;
+						@include mixins.mobile {
+							margin-bottom: -1.3rem;
+							margin-top: 0;
+						}
+
+						div[data-posts]{
+							:nth-child(n+3){
+
+								@media(max-width: 768px){
+									display: none;
+								}
+			
 							}
+						}
+						article {
+							align-items: center;
+							margin-bottom: 2.7rem;
+							display: flex;
+							gap: 20px;
 
-							.slick-list {
-								.slick-track {
-                                    height: 250px;
+							@include mixins.mobile {
+								margin-bottom: 1rem;
+							}
+			
+							.post-thumbnail {
+								border-radius: 9px;
 
-									.slide {
-										height: auto;
-
-										a {
-
-											text-decoration: none;
-
-											.post {
-
-												&-title {
-													color: #000000;
-													font-family: var(--wp--preset--font-family--manrope);
-													font-size: var(--wp--preset--font-size--default);
-													font-style: normal;
-													font-weight: 500;
-													line-height: 140%;
-													max-height: 3em;
-    												overflow: hidden;
-													margin-bottom: 0;
-
-													@include mixins.small{
-														padding-bottom: 0;
-													}
-
-
-													@include mixins.mobile{
-														padding-bottom: 0;
-													}
-												}
-
-												&-content {
-													display: flex;
-													flex-direction: column;
-													height: 135px;
-												}
-
-												&-meta {
-													height: 30px;
-
-													&--date {
-														color: #000;
-														font-family: var(--wp--preset--font-family--manrope);
-														font-size: 13px;
-														font-style: normal;
-														font-weight: 500;
-														line-height: 145%;
-													}
-
-													&--terms {
-														.tax-category {
-															li {
-																color: var(--wp--preset--color--azul-light) !important;
-																font-family: var(--wp--preset--font-family--manrope);
-																font-size: 10px;
-																font-style: normal;
-																font-weight: 700;
-																line-height: 18.85px;
-																letter-spacing: 1px;
-																text-transform: uppercase;
-																background-color: transparent !important;
-																margin-bottom: 11px;
-															}
-														}
-													}
-												}
-											}
-										}
+								img{
+									width: 112px;
+									height: 107px;
+									object-fit: cover;
+									border-radius: 9px;
+								}
+							}
+			
+							.entry-wrapper {
+								@include mixins.mobile {
+									flex-basis: 60%;
+								}
+			
+								.entry-title {
+									a {
+										color: var(--wp--preset--color--primary-pure);
+										font-size: 13px;
+										font-weight: 500;
+										line-height: 145%;
+										color: #333;
 									}
 								}
 							}
+						}
+
+						.article-section-title{
+							color: var(--DARK, #111);
+							font-family: "Tipo Ninja";
+							font-size: 36px;
+							font-style: normal;
+							font-weight: 400;
+							line-height: 145%; 
 						}
 					}
 					
 					.meio-ambiente{
 						border: 2px solid var(--Cores-de-categoria-Verde---Meio-Ambiente, #99CE56) !important;
-
-						.latest-vertical-posts-block {
-							.latest-vertical-posts-block__heading{
-								width: 298px;
-								position: relative;
-								right: 15px;
-
-								@include mixins.small{
-									right: 35px;
-								}
-
-
-								@include mixins.mobile{
-									right: 35px;
-								}
-							}
-
-							.slick-list {
-								.slick-track {
-									.slide {
-										a {
-											.post {
-												&-meta {
-													&--terms {
-														.tax-category {
-															li {
-																color: var(--wp--preset--color--verde-light) !important;
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
 					}
 
 					.coluna-categoria {
@@ -357,15 +297,10 @@
 				}
 
                 figure{
-                    max-width: 990px;
-                    width: 100%;
-                    margin-right: auto;
-
 					@include mixins.small{
 						max-width: 300px;
 						height: 55px;
 					}
-
 
 					@include mixins.mobile{
 						max-width: 300px;

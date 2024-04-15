@@ -26,10 +26,13 @@
         @media(max-width: 992px){
             display: none;
         }
-        &.anuncio-mobile{
-            @media(min-width: 993px){
-                display: none;
-            }
+    }
+    .midia-highlight-wrapper.anuncio-mobile{
+        @media(min-width: 993px){
+            display: none;
+        }
+        @media(max-width: 992px){
+            display: inherit;
         }
     }
 
@@ -795,6 +798,9 @@
             padding-left: 15px;
             padding-right: 15px;
         }
+        @media(max-width: 992px){
+            margin-bottom: 2rem;
+        }
 
         .wp-block-columns{
             padding-top: 1.2rem;
@@ -871,8 +877,12 @@
             }
         }
     }
-    .videos-desktop {
+    .model-videos {
         padding: 0 0;
+        margin-bottom: 0;
+        @media(max-width: 992px){
+            margin-bottom: 2rem;
+        }
 
         .container{
             padding: 55px 0 25px 76px !important;
@@ -928,11 +938,11 @@
 		}
     }
   
-    .acervo{
+    .model-collection{
         margin-top: 2rem;
         margin-bottom: 0;
         @media(max-width: 992px){
-            margin-bottom: 2rem;
+            margin-bottom: 0;
         }
         .container{
             gap: 2rem;
@@ -1199,10 +1209,11 @@
         }
     }
     
-    .colunistas-ninja{
+    .model-columnists{
         background-color: var(--wp--preset--color--secondary-light);
         @media(max-width: 782px){
             display: flex;
+            margin-top: 1.4rem;
         }
         h2{
             font-family: 'Manrope', serif;
@@ -1413,7 +1424,7 @@
         }
     }
     footer.main-footer{
-        .sidebar-area.before-footer-logos-area{
+        .newsletter{
             display: none;
         }
     }

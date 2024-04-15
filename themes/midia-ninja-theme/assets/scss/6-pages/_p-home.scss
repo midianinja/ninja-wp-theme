@@ -20,19 +20,18 @@
         }
     }
 
-    .midia-highlight-wrapper{
+    .anuncio-desktop{
         display: flex;
         justify-content: center;
         @media(max-width: 992px){
             display: none;
         }
     }
-    .midia-highlight-wrapper.anuncio-mobile{
+    .anuncio-mobile{
+        display: flex;
+        justify-content: center;
         @media(min-width: 993px){
             display: none;
-        }
-        @media(max-width: 992px){
-            display: inherit;
         }
     }
 
@@ -1074,11 +1073,12 @@
 
         }
         .latest-editorial-posts-block__sidebar{
-            .midia-highlight-wrapper{
-                &.anuncio-mobile{
-                    display: inherit !important;
-                }
+            
+            .anuncio-mobile{
+                display: flex !important;
+                max-width: 270px;
             }
+        
             @media(max-width: 992px){
                 display: none;
             }

@@ -82,79 +82,81 @@
 					img {
 						max-width: 100%;
 						height: auto;
+						border-radius: 8px;
 					}
 
 					.post-info{
 						max-width: 770px;
 						width: 100%;
+					}
 
-						.info {
-							font-size: 20px;
-							font-weight: 800;
-							line-height: 150%;
-							/* 30px */
-							letter-spacing: -0.6px;
-							position: absolute;
-							margin: 20px;
-							ma
-	
-							a {
-								border-radius: 4px;
-								padding: 1px 11px;
-							}
-	
-							a:nth-child(n + 2) {
-								display: none;
-							}
+					.info {
+						font-size: 20px;
+						font-weight: 800;
+						line-height: 150%;
+						/* 30px */
+						letter-spacing: -0.6px;
+						position: absolute;
+						margin: 20px;
+						ma
+
+						a {
+							border-radius: 4px;
+							padding: 1px 11px;
 						}
-						.author-info-mobile {
-							margin-bottom: -2rem;
-							margin-top: -1rem;
-							@media (min-width: 1200px) {
-								display: none;
+
+						a:nth-child(n + 2) {
+							display: none;
+						}
+					}
+
+					.author-info-mobile {
+						margin-bottom: -2rem;
+						margin-top: -1rem;
+						@media (min-width: 1200px) {
+							display: none;
+						}
+						.author-info-card {
+							max-width: 690px;
+							width: 100%;
+							margin-left: auto;
+							margin-right: auto;
+							text-align: left;
+							display: flex;
+							gap: 1.5rem;
+							align-items: center;
+							padding: 21px 25px 19px 20px;
+
+							img.avatar {
+								width: 92px;
+								height: 92px;
+								margin-bottom: 0;
 							}
-							.author-info-card {
-								max-width: 690px;
+							.auth-name-icons {
+								flex-direction: column;
 								width: 100%;
-								margin-left: auto;
-								margin-right: auto;
-								text-align: left;
-								display: flex;
-								gap: 1.5rem;
-								align-items: center;
-								padding: 21px 25px 19px 20px;
-	
-								img.avatar {
-									width: 92px;
-									height: 92px;
-									margin-bottom: 0;
-								}
-								.auth-name-icons {
-									flex-direction: column;
-									width: 100%;
-								}
-	
-								.authname {
-									font-family: "Manrope", serif;
-									font-size: 20px;
-									font-style: normal;
-									font-weight: 700;
-									line-height: 130%;
-									padding-bottom: 5px;
-									max-width: 1740px;
-									width: 100%;
-								}
-								hr {
-									border-top: 1px solid #f2f2f2;
-									width: 100%;
-									margin-top: 0rem;
-								}
-								.social-networks {
-									max-width: 174px;
-									width: 100%;
-									justify-content: flex-start;
-									gap: 1rem;
-								}
+							}
+
+							.authname {
+								font-family: "Manrope", serif;
+								font-size: 20px;
+								font-style: normal;
+								font-weight: 700;
+								line-height: 130%;
+								padding-bottom: 5px;
+								max-width: 1740px;
+								width: 100%;
+							}
+							hr {
+								border-top: 1px solid #f2f2f2;
+								width: 100%;
+								margin-top: 0rem;
+							}
+							.social-networks {
+								max-width: 174px;
+								width: 100%;
+								justify-content: flex-start;
+								gap: 1rem;
 							}
 						}
 					}
@@ -309,6 +311,7 @@
 							line-height: 24px;
 							letter-spacing: -0.6px;
 							margin-bottom: 0.6rem;
+							text-align: left;
 						}
 
 						hr {

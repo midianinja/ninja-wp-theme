@@ -1069,19 +1069,27 @@
                     margin-left: 0;
 
                 }
+                .term{
+                    margin-bottom: 0;
+                }
             }
 
         }
         .latest-editorial-posts-block__sidebar{
-            
-            .anuncio-mobile{
-                display: flex !important;
-                max-width: 270px;
-            }
-        
             @media(max-width: 992px){
                 display: none;
             }
+            
+            .anuncio-mobile{
+                display: flex;
+                margin-top: 0 !important;
+                img{
+                    width: 270px;
+                    height: auto;
+                }
+            }
+        
+           
         }
         .latest-editorial-posts-block__posts{
             @media(max-width: 768px){
@@ -1154,6 +1162,8 @@
             font-style: normal;
             font-weight: 500;
             line-height: 145%;
+            color: #fff;
+            max-width: 293px;
         }
         form{
             .mc4wp-form-fields{

@@ -61,9 +61,9 @@ get_template_part( 'template-parts/header-especiais' );
                             } else {
                                 $author_id = $coauthor->ID;
                                 $author_bio = $coauthor->description;
-                                $instagram = $guest_author->instagram;
-                                $facebook = $guest_author->facebook;
-                                $twitter = $guest_author->twitter;
+                                $instagram = $coauthor->instagram;
+                                $facebook = $coauthor->facebook;
+                                $twitter = $coauthor->twitter;
                             }
 
                             $terms = get_the_terms(get_the_ID(), 'marcador_afluente');
@@ -185,9 +185,9 @@ get_template_part( 'template-parts/header-especiais' );
                             } else {
                                 $author_id = $coauthor->ID;
                                 $author_bio = $coauthor->description;
-                                $instagram = $guest_author->instagram;
-                                $facebook = $guest_author->facebook;
-                                $twitter = $guest_author->twitter;
+                                $instagram = $coauthor->instagram;
+                                $facebook = $coauthor->facebook;
+                                $twitter = $coauthor->twitter;
                             }
 
                             $terms = get_the_terms(get_the_ID(), 'marcador_afluente');

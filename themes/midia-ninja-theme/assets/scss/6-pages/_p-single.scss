@@ -78,81 +78,87 @@
 						width: max-content;
 					}
 
+
 					img {
 						max-width: 100%;
 						height: auto;
 					}
 
-					.info {
-						font-size: 20px;
-						font-weight: 800;
-						line-height: 150%;
-						/* 30px */
-						letter-spacing: -0.6px;
-						position: absolute;
-						margin: 20px;
+					.post-info{
+						max-width: 770px;
+						width: 100%;
 
-						a {
-							border-radius: 4px;
-							padding: 1px 11px;
+						.info {
+							font-size: 20px;
+							font-weight: 800;
+							line-height: 150%;
+							/* 30px */
+							letter-spacing: -0.6px;
+							position: absolute;
+							margin: 20px;
+							ma
+	
+							a {
+								border-radius: 4px;
+								padding: 1px 11px;
+							}
+	
+							a:nth-child(n + 2) {
+								display: none;
+							}
 						}
-
-						a:nth-child(n + 2) {
-							display: none;
+						.author-info-mobile {
+							margin-bottom: -2rem;
+							margin-top: -1rem;
+							@media (min-width: 1200px) {
+								display: none;
+							}
+							.author-info-card {
+								max-width: 690px;
+								width: 100%;
+								margin-left: auto;
+								margin-right: auto;
+								text-align: left;
+								display: flex;
+								gap: 1.5rem;
+								align-items: center;
+								padding: 21px 25px 19px 20px;
+	
+								img.avatar {
+									width: 92px;
+									height: 92px;
+									margin-bottom: 0;
+								}
+								.auth-name-icons {
+									flex-direction: column;
+									width: 100%;
+								}
+	
+								.authname {
+									font-family: "Manrope", serif;
+									font-size: 20px;
+									font-style: normal;
+									font-weight: 700;
+									line-height: 130%;
+									padding-bottom: 5px;
+									max-width: 1740px;
+									width: 100%;
+								}
+								hr {
+									border-top: 1px solid #f2f2f2;
+									width: 100%;
+									margin-top: 0rem;
+								}
+								.social-networks {
+									max-width: 174px;
+									width: 100%;
+									justify-content: flex-start;
+									gap: 1rem;
+								}
+							}
 						}
 					}
-
-					.author-info-mobile {
-						margin-bottom: -2rem;
-						margin-top: -1rem;
-						@media (min-width: 783px) {
-							display: none;
-						}
-						.author-info-card {
-							max-width: 690px;
-							width: 100%;
-							margin-left: auto;
-							margin-right: auto;
-							text-align: left;
-							display: flex;
-							gap: 1.5rem;
-							align-items: center;
-							padding: 21px 25px 19px 20px;
-
-							img.avatar {
-								width: 92px;
-								height: 92px;
-								margin-bottom: 0;
-							}
-							.auth-name-icons {
-								flex-direction: column;
-								width: 100%;
-							}
-
-							.authname {
-								font-family: "Manrope", serif;
-								font-size: 20px;
-								font-style: normal;
-								font-weight: 700;
-								line-height: 130%;
-								padding-bottom: 5px;
-								max-width: 1740px;
-								width: 100%;
-							}
-							hr {
-								border-top: 1px solid #000;
-								width: 100%;
-								margin-top: 0rem;
-							}
-							.social-networks {
-								max-width: 174px;
-								width: 100%;
-								justify-content: flex-start;
-								gap: 1rem;
-							}
-						}
-					}
-
+					
 					.content-author {
 						display: flex;
 						flex-direction: column;
@@ -277,14 +283,14 @@
 					.author-info {
 						display: flex;
 						flex-direction: column;
-						@media (max-width: 782px) {
+						@media (max-width: 1199px) {
 							display: none;
 						}
 					}
 					.author-info-card {
 						border-radius: 8px;
-						background: var(--OURO, #fbf36e);
-						width: 170px;
+						background: var(--Gray-1, #333);
+						width: 230px;
 						height: auto;
 						padding: 21px 13px 22px;
 						text-align: center;
@@ -293,15 +299,33 @@
 							margin-bottom: 2rem;
 							border-radius: 50%;
 						}
+
+						.authname{
+							color: var(--White, #FFF);
+							font-family: Manrope;
+							font-size: 20px;
+							font-style: normal;
+							font-weight: 800;
+							line-height: 24px;
+							letter-spacing: -0.6px;
+							margin-bottom: 0.6rem;
+						}
+
+						hr {
+							border-top: 1px solid #f2f2f2;
+							width: 100%;
+							margin-top: 0rem;
+							margin-bottom: -5px;
+						}
+
 						.authbio {
 							text-align: left;
 							padding-top: 1rem;
-							border-top: 1px solid #000;
-							color: var(--DARK, #111);
+							color: #fff;
 							font-family: "Manrope", serif;
 							font-size: 13px;
 							font-style: normal;
-							font-weight: 400;
+							font-weight: 500;
 							line-height: 130%;
 							letter-spacing: -0.36px;
 						}

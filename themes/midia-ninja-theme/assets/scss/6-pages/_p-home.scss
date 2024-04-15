@@ -479,7 +479,7 @@
     }
 
     // Section Especiais
-    .sessao-especiais {
+    .model-specials {
         margin-bottom: 0 !important;
         padding: 0 0;
         .container{
@@ -520,8 +520,9 @@
                 }
             }
         }
+        
         h2 {
-            font-family: "MidiaNinja", sans-serif;
+            font-family: var($f_ninja);
             font-size: 38px;
             font-weight: 400;
             letter-spacing: normal;

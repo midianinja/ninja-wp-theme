@@ -61,9 +61,6 @@ get_template_part( 'template-parts/header-especiais' );
                             } else {
                                 $author_id = $coauthor->ID;
                                 $author_bio = $coauthor->description;
-                                $instagram = get_coauthors_meta('instagram', $coauthor->ID, true);
-                                $facebook = get_coauthors_meta('facebook', $coauthor->ID, true);
-                                $twitter = get_coauthors_meta('twitter', $coauthor->ID, true);
                             }
 
                             $terms = get_the_terms(get_the_ID(), 'marcador_afluente');
@@ -72,7 +69,7 @@ get_template_part( 'template-parts/header-especiais' );
                                 foreach ($terms as $term) {
                                     $afluente_name = $term->name;
                                     
-                                    if ($afluente_name) {
+                                    if ($coauthor->display_name === $afluente_name) {
                                     ?>
                                             <div class="author-info-card">
 
@@ -185,9 +182,7 @@ get_template_part( 'template-parts/header-especiais' );
                             } else {
                                 $author_id = $coauthor->ID;
                                 $author_bio = $coauthor->description;
-                                $instagram = get_coauthors_meta('instagram', $coauthor->ID, true);
-                                $facebook = get_coauthors_meta('facebook', $coauthor->ID, true);
-                                $twitter = get_coauthors_meta('twitter', $coauthor->ID, true);
+                                
                             }
 
                             $terms = get_the_terms(get_the_ID(), 'marcador_afluente');
@@ -196,7 +191,7 @@ get_template_part( 'template-parts/header-especiais' );
                                 foreach ($terms as $term) {
                                     $afluente_name = $term->name;
                                     
-                                    if ($afluente_name) {
+                                    if ($coauthor->display_name === $afluente_name) {
                                     ?>
                                         <div class="author-info-card">
                                             <?php echo get_avatar($author_id, 128);?>

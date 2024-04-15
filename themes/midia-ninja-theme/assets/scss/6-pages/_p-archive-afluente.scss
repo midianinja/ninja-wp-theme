@@ -53,7 +53,7 @@
 									backdrop-filter: blur(17.6999998093px);
 									height: 424px;
 									position: relative;
-									top: 48%;
+									top: 55%;
 									transition: height 0.7s ease;
 									margin: 0px;
 								}
@@ -70,6 +70,12 @@
 									margin: auto;
 									margin-top: 14px;
 									margin-bottom: 25px;
+									@include mobile{
+									font-family: Manrope;
+									font-size: 32px;
+									line-height: 120%; /* 38.4px */
+									letter-spacing: -0.64px;
+									}
 								
 								}
 								& p:nth-child(1){ //afluentes
@@ -82,6 +88,7 @@
 									font-weight: 800;
 									line-height: 155%; /* 21.7px */
 									letter-spacing: -0.42px;
+									text-transform: uppercase;
 								}
 								p:nth-of-type(2) {
 									font-family: Manrope;
@@ -231,13 +238,16 @@
 				width: 100%;
 				max-width: 566px;
 				display: flex;
+				margin: auto;
+				flex-direction: row;
+				@include mobile{
+					margin-left: 13px;
+				}
                 & .input-search{
 					flex-grow: 1;
 					position: relative;
 					margin-left: 30px;
-					@media(max-width:767px){
-						margin-left: 0px;
-					}
+					
                     input{
                          width: 100%; /* Ocupa toda a largura disponível dentro do contêiner pai */
 						height: 46px;

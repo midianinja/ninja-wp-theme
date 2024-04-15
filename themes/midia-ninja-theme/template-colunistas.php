@@ -15,13 +15,14 @@ get_header();
             endwhile;
         endif;
         ?>
-    </main>
-    <section class="post-footer">
+        <section class="post-footer">
         <div class="related-posts">
             <?php get_template_part('template-parts/content/related-posts-avatar'); ?>
         </div>  
         <?php get_template_part('template-parts/content/pagination'); ?>
     </section>
+    </main>
+    
 </div>
 
 <?php

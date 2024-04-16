@@ -24,6 +24,12 @@
 				.post {
 					margin-bottom: 30px;
 				}
+
+				&:last-child {
+					.post {
+						margin-bottom: 0;
+					}
+				}
 			}
 
 			h2 {

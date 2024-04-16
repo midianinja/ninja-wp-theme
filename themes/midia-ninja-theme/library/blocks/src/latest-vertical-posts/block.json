@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "ninja/latest-vertical-posts",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"title": "Últimos posts (Vertical)",
 	"category": "text",
 	"icon": "excerpt-view",
@@ -61,6 +61,10 @@
 		"showAuthor": {
 			"type": "boolean",
 			"default": true
+		},
+		"showDate": {
+			"type": "boolean",
+			"default": false
 		},
 		"showExcerpt": {
 			"type": "boolean",

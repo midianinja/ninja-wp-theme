@@ -523,7 +523,7 @@
         
         h2 {
             font-family: "MidiaNinja", sans-serif;
-            font-size: 38px;
+            font-size: 3rem;
             font-weight: 400;
             @media (max-width: 782px){ 
                display: flex;
@@ -547,7 +547,8 @@
                 h2{
                     font-family: "MidiaNinja", sans-serif;
                     margin-bottom: -37px !important;
-                    letter-spacing: -1px !important; 
+                    letter-spacing: -1px !important;
+                    font-size: 3rem !important; 
                     @media(max-width: 782px){
                         margin-bottom: 0 !important;
                         display: flex;
@@ -827,7 +828,7 @@
         h2{
             font-family: "MidiaNinja", sans-serif;
             color: #FBF36E;
-            font-size: 38px;
+            font-size: 44px;
             font-weight: 400;
             margin: 0.5rem 0 0 2.2rem;
             @media(max-width: 992px){
@@ -921,7 +922,7 @@
         }
         h2 {
             font-family: "MidiaNinja", sans-serif;
-            font-size: 54px;
+            font-size: 3rem;
             font-weight: 400;
             margin-bottom: 0;
             @media (max-width: 782px){ 
@@ -1149,7 +1150,7 @@
         .wp-block-heading{
             color: #fff;
             font-family: "MidiaNinja", serif;
-            font-size: 42px;
+            font-size: 3rem;
             font-weight: 400;
             line-height: 100%;
             @media(max-width: 782px){

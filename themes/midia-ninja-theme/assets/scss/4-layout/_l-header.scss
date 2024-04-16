@@ -599,8 +599,8 @@ header {
 							margin-left: 10px;
 
 							&::before {
-								content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
-								opacity: 1;
+								content: url($p_theme_assets + "/images/wpml-arrow.png");
+								display: block;
 								transition: opacity 0.2s ease;
 							}
 						}
@@ -608,9 +608,6 @@ header {
 						&.active {
 							i.fas {
 								&::before {
-									content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
-									opacity: 1;
-									transition: opacity 0.2s ease;
 									transform: rotate(180deg);
 								}
 							}

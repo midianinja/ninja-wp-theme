@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "ninja/image-card",
+	"version": "0.0.1",
+	"title": "Card com imagem",
+	"category": "text",
+	"icon": "cover-image",
+	"description": "Um bloco estático para exibição de informações em um card",
+	"attributes": {
+		"blockId": {
+			"type": "string"
+		},
+		"linkUrl": {
+			"type": "string"
+		},
+		"borderColor": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "ninja",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

@@ -1,0 +1,50 @@
+.wp-block-ninja-image-card {
+	border-radius: 8px;
+	border: 1px solid #CCCCCC;
+	overflow: hidden;
+
+	.wrapper-image {
+		.wp-block-image {
+			margin-bottom: 15px;
+
+			img {
+				max-width: 100%;
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+
+	.wrapper-content {
+		padding: 16px;
+
+		.wp-block-heading {
+			margin-top: 0;
+
+			&:empty {
+				display: none;
+			}
+		}
+
+		p {
+			&:empty {
+				display: none;
+			}
+		}
+
+		.wp-block-buttons {
+			padding-bottom: 15px;
+			padding-top: 15px;
+
+			.wp-block-button__link { // <a>
+				font-size: 13px;
+				font-weight: 700;
+				transition: all .2s ease-in-out;
+
+				&:hover {
+					opacity: .8;
+				}
+			}
+		}
+	}
+}

@@ -217,6 +217,7 @@
 							.article-section-title {
 								color: var(--DARK, #111);
 								font-family: var(--f-ninja);
+								font-feature-settings: "calt" on;
 								font-size: 36px;
 								font-style: normal;
 								font-weight: 400;

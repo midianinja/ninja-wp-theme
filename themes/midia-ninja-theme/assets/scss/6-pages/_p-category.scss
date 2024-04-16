@@ -147,7 +147,7 @@
 					}
 
 					.posts-sidebar {
-						margin-top: 2rem;
+						margin-top: 1rem;
 
 						@include mixins.mobile {
 							margin-bottom: -1.3rem;
@@ -163,11 +163,13 @@
 			
 							}
 						}
+
 						article {
 							align-items: center;
 							margin-bottom: 2.7rem;
 							display: flex;
 							gap: 20px;
+							height: 80px;
 
 							@include mixins.mobile {
 								margin-bottom: 1rem;
@@ -203,11 +205,13 @@
 
 						.article-section-title{
 							color: var(--DARK, #111);
-							font-family: "Tipo Ninja";
+							font-feature-settings: var(--f-ninja-config);
+							font-family: var(--f-ninja);
 							font-size: 36px;
 							font-style: normal;
 							font-weight: 400;
 							line-height: 145%; 
+							margin-top: 0;
 						}
 					}
 					
@@ -378,7 +382,7 @@
 							&--content {
 
 								.entry-title {
-									color: var(--wp--preset--color--dark-pure);
+									color: #111111;
 									font-family: var(--wp--preset--font-family--manrope);
 									font-size: 24px;
 									font-style: normal;

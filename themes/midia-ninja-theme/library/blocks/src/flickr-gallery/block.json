@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ninja/flickr-gallery",
+	"version": "0.1.10",
+	"title": "Galeria do Flickr com paginação",
+	"category": "embed",
+	"icon": "format-gallery",
+	"description": "Exibe um grid de fotos do Flickr com paginação.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"blockId": {
+			"type": "string"
+		},
+		"description": {
+			"type": "string"
+		},
+		"flickrAPIKey": {
+			"type": "string"
+		},
+		"flickrByType": {
+			"type": "string",
+			"default": "user"
+		},
+		"flickrAlbumId": {
+			"type": "string"
+		},
+		"flickrUserId": {
+			"type": "string"
+		},
+		"postsToShow": {
+			"type": "number",
+			"default": 5
+		},
+		"heading": {
+			"type": "string"
+		}
+	},
+	"textdomain": "ninja",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

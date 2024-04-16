@@ -7,6 +7,17 @@
 	#app {
 		background-color: #f5f5f5;
 		padding-top: 33px;
+
+		a {
+			transition: all .2s ease-in-out;
+			&:where(:not(.wp-element-button)) {
+				text-decoration: none;
+			}
+
+			&:hover {
+				opacity: .7;
+			}
+		}
 	}
 
 	header .container .row {

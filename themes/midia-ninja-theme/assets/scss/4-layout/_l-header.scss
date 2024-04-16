@@ -471,31 +471,31 @@ header {
 				text-decoration: none;
 			}
 
-			i.fa-angle-down,
-			i.fa-angle-up {
-				font-size: 15px;
-				margin-left: 10px;
+			// i.fa-angle-down,
+			// i.fa-angle-up {
+			// 	font-size: 15px;
+			// 	margin-left: 10px;
 
-				&:not(.up) {
-					&::before {
-						content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
-						transition: opacity 0.2s ease;
+			// 	&:not(.up) {
+			// 		&::before {
+			// 			content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
+			// 			transition: opacity 0.2s ease;
 
-						@include tablet {
-							opacity: 1;
-						}
-					}
-				}
+			// 			@include tablet {
+			// 				opacity: 1;
+			// 			}
+			// 		}
+			// 	}
 
-				&.up {
-					&::before {
-						content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
-						opacity: 1;
-						transition: opacity 0.2s ease;
-						transform: rotate(180deg);
-					}
-				}
-			}
+			// 	&.up {
+			// 		&::before {
+			// 			content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
+			// 			opacity: 1;
+			// 			transition: opacity 0.2s ease;
+			// 			transform: rotate(180deg);
+			// 		}
+			// 	}
+			// }
 
 			.primary-menu {
 				margin: auto;
@@ -595,6 +595,8 @@ header {
 
 						i.fas {
 							display: block;
+							font-size: 15px;
+							margin-left: 10px;
 
 							&::before {
 								content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
@@ -606,6 +608,9 @@ header {
 						&.active {
 							i.fas {
 								&::before {
+									content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
+									opacity: 1;
+									transition: opacity 0.2s ease;
 									transform: rotate(180deg);
 								}
 							}

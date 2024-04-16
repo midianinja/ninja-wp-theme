@@ -35,6 +35,68 @@ function register_endpoints() {
             'permission_callback' => '__return_true'
         ]
     );
+
+    register_rest_route(
+        'ninja/v1',
+        '/posts/(?P<post_type>[a-zA-Z0-9_-]+)',
+        [
+            'methods'  => 'GET',
+            'callback' => 'Ninja\\get_posts_by_taxonomy_term',
+            'args'     => [
+                'post_type' => [
+                    'required' => true,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return post_type_exists( sanitize_text_field( $param ) );
+                    }
+                ],
+                'taxonomy' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return taxonomy_exists( sanitize_text_field( $param ) );
+                    }
+                ],
+                'terms' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        $terms = explode( ',', sanitize_text_field( $request['terms'] ) );
+                        foreach ( $terms as $term ) {
+
+                            if ( is_numeric( $term ) ) {
+                                $term = intval( $term );
+                            }
+
+                            if ( ! term_exists( $term, $request['taxonomy'] ) ) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                ],
+                'max_posts' => [
+                    'required' => false,
+                    'default' => 10,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return is_numeric( $param ) && $param > 0;
+                    }
+                ],
+                'per_page' => [
+                    'required' => false,
+                    'default' => 10,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return is_numeric( $param ) && $param > 0;
+                    }
+                ],
+                'page' => [
+                    'required' => false,
+                    'default' => 1,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return is_numeric( $param ) && $param > 0;
+                    }
+                ]
+            ],
+            'permission_callback' => '__return_true'
+        ]
+    );
 }
 
 add_action( 'rest_api_init', 'Ninja\\register_endpoints' );
@@ -79,6 +141,68 @@ function get_taxonomies_by_post_type( $request ) {
     ] );
 
     return new \WP_REST_Response( $response, 200 );
+}
+
+function get_posts_by_taxonomy_term( $request ) {
+
+    $post_type = sanitize_text_field( $request['post_type'] );
+    $taxonomy  = sanitize_text_field( $request['taxonomy'] );
+    $terms     = explode( ',', sanitize_text_field( $request['terms'] ) );
+    $max_posts = ! empty( $request['max_posts']) ? intval( $request['max_posts'] ) : 10;
+    $per_page  = ! empty( $request['per_page'] ) ? intval( $request['per_page'] ) : 10;
+    $page      = ! empty( $request['page'] ) ? intval( $request['page'] ) : 1;
+
+    $no_found_rows = $page === 1 ? false : true;
+
+    $args = [
+        'post_type'           => $post_type,
+        'posts_per_page'      => $per_page,
+        'paged'               => $page,
+        'no_found_rows'       => $no_found_rows,
+        'ignore_sticky_posts' => true
+    ];
+
+    $terms_filter = array_filter( $terms, function( $item ) {
+        return trim( $item ) !== "";
+    } );
+
+    if ( $taxonomy && $terms_filter ) {
+        $args['tax_query'] = ['relation' => 'AND'];
+
+        foreach ( $terms_filter as $term ) {
+            $field = is_numeric( $term ) ? 'term_id' : 'slug';
+
+            $args['tax_query'][] = [
+                'taxonomy' => $taxonomy,
+                'field'    => $field,
+                'terms'    => [$term]
+            ];
+        }
+    }
+
+    $query = new \WP_Query( $args );
+    $data = [];
+
+    foreach ( $query->posts as $post ) {
+        $data[] = [
+            'ID'        => $post->ID,
+            'author'    => get_list_coauthors( $post->ID ),
+            'date'      => date_i18n( 'd \d\e F \d\e Y', strtotime( $post->post_date ) ),
+            'excerpt'   => $post->post_excerpt,
+            'link'      => get_permalink( $post ),
+            'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : "https://via.placeholder.com/400",
+            'title'     => $post->post_title
+        ];
+    }
+
+    if ( empty( $data ) ) {
+        return new \WP_Error( 'no_posts', 'Nenhum post encontrado com os critérios especificados', ['status' => 404] );
+    }
+
+    return new \WP_REST_Response( [
+        'posts'      => $data,
+        'totalPages' => ( $max_posts > $query->max_num_pages ) ? $query->max_num_pages : ceil( $max_posts / $per_page )
+    ], 200 );
 }
 
 /**

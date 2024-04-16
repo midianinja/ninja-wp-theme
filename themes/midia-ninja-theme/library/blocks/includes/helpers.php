@@ -17,6 +17,8 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
 
     $post_type     = isset( $attributes['postType'] ) ? $attributes['postType'] : 'post';
     $posts_to_show = isset( $attributes['postsToShow'] ) ? intval( $attributes['postsToShow'] ) : 3;
+    $taxonomy      = isset( $attributes['taxonomy'] ) ? $attributes['taxonomy'] : '';
+    $query_terms   = isset( $attributes['queryTerms'] ) ? $attributes['queryTerms'] : [];
 
     $order    = isset( $attributes['order'] ) ? $attributes['order'] : 'desc';
     $order_by = isset( $attributes['orderBy'] ) ? $attributes['orderBy'] : 'date';
@@ -29,13 +31,13 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
         'posts_per_page'      => $posts_to_show
     ];
 
-    if ( $post_type === 'post' && isset( $attributes['taxQueryTerms'] ) && ! empty( $attributes['taxQueryTerms'] ) ) {
+    if ( $taxonomy && $query_terms ) {
 
         $args['tax_query'] = ['relation' => 'AND'];
 
-        foreach ( $attributes['taxQueryTerms'] as $term ) {
+        foreach ( $query_terms as $term ) {
             $args['tax_query'][] = [
-                'taxonomy' => 'category', // TODO: Make this dynamic
+                'taxonomy' => $taxonomy,
                 'field'    => 'term_id',
                 'terms'    => [$term['id']]
             ];

@@ -7,6 +7,7 @@
 
 gt_set_post_view();
 get_header();
+get_template_part( 'template-parts/header-especiais' );
 ?>
 
 <div class="container">
@@ -16,13 +17,13 @@ get_header();
                 <header class="post-header">
                     <div class="post-thumb">
                         <?php the_post_thumbnail();?>
-                        
+
                         <span class="thumb-caption">
                             <?php the_post_thumbnail_caption();?>
                         </span>
                     </div>
 
-                       
+
                     <h1 class="post-title">
                         <?php the_title();?>
                     </h1>

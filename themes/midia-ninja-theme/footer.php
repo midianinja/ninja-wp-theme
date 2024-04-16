@@ -3,6 +3,11 @@
 
 <footer class="main-footer">
     <div class="container">   
+
+        <div class="footer-widget-area">
+            <?php dynamic_sidebar('footer_widgets'); ?>
+        </div>
+        
         <div class="footer-logo">
             <img class="logo-olhos" src="<?= get_template_directory_uri() ?>/assets/images/logo-olhos.png" alt="logo ninja">
             <img class="logo" src="<?= get_template_directory_uri() ?>/assets/images/logo-white.png" alt="logo ninja">

@@ -10,7 +10,7 @@ if ($projects && ! is_wp_error($projects)) {
 
 $args = [
     'post_type'      => 'guest-author',
-    'posts_per_page' => 3,
+    'posts_per_page' => 30,
     'post__not_in'   => [ $post_id ],
     'order'          => 'DESC',
     
@@ -20,7 +20,7 @@ $related_posts = new WP_Query($args);
 
 if ($related_posts->have_posts()) : ?>
 
-    <h2>Conheça outros colunistas</h2>
+    <h2>Mais colunistas NINJA</h2>
     
     <div class="related">
         <?php while($related_posts->have_posts()) :

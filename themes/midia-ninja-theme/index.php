@@ -4,6 +4,8 @@ get_header();
 
 <div class="index-wrapper">
     <div class="container">
+    <?php echo get_layout_header('blog'); ?>
+
         <div class="row">
             <?php if ( is_home() ) : ?>
 
@@ -13,11 +15,12 @@ get_header();
                     <?php get_template_part( 'template-parts/filter', 'posts', ['taxonomy' => 'category'] ); ?>
                 </div><!-- .infos -->
 
-                <main class="col-md-9">
-                    <?php while ( have_posts() ) : the_post(); ?>
-                        <?php get_template_part( 'template-parts/content/post' ); ?>
-                    <?php endwhile; ?>
-
+                <main class="content col-md-9">
+                    <div class="posts">
+                        <?php while ( have_posts() ) : the_post(); ?>
+                            <?php get_template_part( 'template-parts/content/post' ); ?>
+                        <?php endwhile; ?>
+                    </div>
                     <?php get_template_part( 'template-parts/content/pagination' ); ?>
                 </main>
 

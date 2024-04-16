@@ -11,16 +11,21 @@
 			.post {
 				.post-header {
 					flex-direction: column;
-					gap: 35px;
+					gap: 40px;
+					width: 1170px;
+					position: relative;
+					left: 50%;
+					transform: translateX(-50%);
+					max-width: 100%;
 
 					.post-thumb {
-						width: 100vw;
-						position: relative;
-						left: 50%;
-						transform: translateX(-50%);
 						display: grid;
 						justify-content: center;
 						gap: 8px;
+						width: 1170px;
+						position: relative;
+						left: 50%;
+						transform: translateX(-50%);
 
 						@media (min-width: 768px) {
 							max-width: 1170px;
@@ -52,40 +57,101 @@
 				}
 
 				.post-content {
-					padding: 32px 0;
+					padding: 16px 0;
 
-					h3 {
-						font-size: 24px;
+					@media (min-width: 768px) {
+						padding: 32px 0;
+						margin-top: 0;
 					}
 
 					.wp-block-heading {
-						margin-bottom: 24px;
+						font-size: 32px;
+						line-height: 120%; /* 38.4px */
+						letter-spacing: -0.64px;
+						margin: 0 0 24px;
+
+						@media (min-width: 768px) {
+							margin: 0 0 40px;
+						}
+					}
+
+					figure:has(+ .wp-block-heading) {
+						margin-bottom: 32px;
+
+						@media (min-width: 768px) {
+							margin-bottom: 40px;
+						}
+					}
+
+					p:has(+ figure) {
+						margin-bottom: 42px;
 					}
 
 					.wp-block-gallery {
-						max-width: 1170px;
-						position: relative;
-						left: 50%;
-						transform: translateX(-50%);
-						width: 94vw;
-					}
-					.wp-block-image {
-						img {
-							height: auto;
-							border-radius: 8px;
+						gap: 45px 8px;
+						margin-bottom: 50px;
+						padding: 0 15px;
+
+						@media (min-width: 768px) {
+							gap: 50px 30px;
+							padding: 0;
+							place-content: center;
 						}
 
-						figcaption {
-							position: relative;
-							background: transparent;
-							color: var(--Primary-light, var(--PRIMARY-PURE, #848484));
-							font-family: "Inter";
-							font-size: 14px;
-							font-style: normal;
-							font-weight: 500;
-							line-height: 150%; /* 21px */
-							letter-spacing: -0.42px;
+						.wp-block-image {
+							max-width: 570px;
+							margin: 0 0 -2rem;
+							padding: 0;
+
+							img {
+								height: auto;
+								border-radius: 8px;
+							}
 						}
+
+						&.columns-2 {
+							.wp-block-image {
+								width: 160px;
+
+								@media (min-width: 1170px) {
+									width: auto;
+								}
+							}
+						}
+
+						&.columns-3 {
+							.wp-block-image {
+								max-width: 370px;
+							}
+						}
+
+						&.columns-4 {
+							.wp-block-image {
+								max-width: 270px;
+							}
+						}
+					}
+
+					.wp-block-image {
+						margin: 25px 0;
+						padding: 0 15px;
+
+						@media (min-width: 768px) {
+							padding: 0;
+						}
+					}
+
+					figcaption {
+						position: relative;
+						background: transparent;
+						color: var(--Primary-light, var(--PRIMARY-PURE, #848484));
+						font-size: 14px;
+						font-style: normal;
+						font-weight: 500;
+						line-height: 150%; /* 21px */
+						letter-spacing: -0.42px;
+						margin: 12px auto;
+						padding: 0;
 					}
 				}
 			}
@@ -94,6 +160,9 @@
 				width: 100vw;
 				margin: 0 0 40px;
 				border-top: 1px solid #848484;
+				position: relative;
+				left: 50%;
+				transform: translate(-50%);
 
 				@media (min-width: 768px) {
 					margin: 76px 0 64px;
@@ -134,6 +203,13 @@
 						@media (min-width: 768px) {
 							grid-template-columns: 1fr 1fr 1fr;
 							gap: 30px;
+							justify-items: left;
+						}
+
+						.related-post {
+							@media (min-width: 768px) {
+								max-width: 370px;
+							}
 						}
 
 						img {
@@ -150,7 +226,6 @@
 								font-weight: 800;
 								line-height: 120%; /* 28.8px */
 								letter-spacing: -0.72px;
-								text-decoration: none;
 								margin-top: 16px;
 							}
 						}

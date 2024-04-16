@@ -5,25 +5,50 @@
 .post-type-archive-especial{
 	
 	.header-and-footer-archive{
+		margin-top: 17px;
+
 		.wp-block-columns:first-child{
-			gap: 100px;
 			margin-bottom: 0;
 			margin-left: 0 !important;
+			gap: 10px;
 
 			.wp-block-column{
 
+				.wp-block-cover.alignwide{
+					max-width: 770px;
+
+					@include mixins.small{
+						max-width: 328px;
+					}
+
+					@include mixins.mobile{
+						max-width: 328px;
+					}
+				}
 				.wp-block-cover:first-child{
 					padding: 0;
 					border-radius: 8px;
 
 					.wp-block-cover__inner-container {
 						.wp-block-columns{			
-							
+
 							.wp-block-column:first-child{
 								background: rgba(51, 51, 51, 0.70);
 								backdrop-filter: blur(10.699999809265137px);
 								width: 100%;
 								height: 483px;
+
+								@include mixins.small{
+									height: 230px;
+									position: relative;
+									top: 99px;
+								}
+
+								@include mixins.mobile{
+									height: 201px;
+									position: relative;
+									top: 99px;
+								}
 
 								>h4{
 									color: var(--Secondary-light, #F5F5F5);
@@ -36,12 +61,21 @@
 									margin: 0;
 									margin-right: auto;
 									margin-left: 73px;
+
+									@include mixins.small{
+										margin-left: 35px;
+									}
+
+
+									@include mixins.mobile{
+										margin-left: 35px;
+									}
 								}
 				
 								>h2{
 									color: #FFF;
 									font-family: var(--wp--preset--font-family--manrope);
-									font-size: var(--wp--preset--font-size--large);
+									font-size: 48px;
 									font-style: normal;
 									font-weight: 800;
 									line-height: 115%;
@@ -50,6 +84,14 @@
 									width: 100%;
 									margin-top: 8px;
 									margin-bottom: 8px;
+
+									@include mixins.small{
+										font-size: 32px;
+									}
+
+									@include mixins.mobile{
+										font-size: 32px;
+									}
 								}
 				
 								>p{
@@ -61,6 +103,14 @@
 									line-height: 145%;
 									max-width: 257px;
 									width: 100%;
+
+									@include mixins.small{
+										display: none;
+									}
+
+									@include mixins.mobile{
+										display: none;
+									}
 								}
 							}
 							
@@ -76,6 +126,7 @@
 			}
 
 			.wp-block-column:last-child{
+				
 				.latest-vertical-posts-block{
 					background-color: #000;
 					max-width: 367px;
@@ -84,50 +135,50 @@
 					padding-top: 51px;
 					padding-bottom: 30px;
 					padding-left: 18px;
+					position: relative;
+    				left: 4%;
 
+					@include mixins.small{
+						max-width: 328px;
+					}
 
+					@include mixins.mobile{
+						max-width: 328px;
+						margin-right: auto;
+						margin-left: auto;
+					}
+					
 					.latest-vertical-posts-block__heading{
 						>h2{
 							color: #FFF;
 							font-family: var(--wp--preset--font-family--manrope);
-							font-size: var(--wp--preset--font-size--medium);
+							font-size: 32px;
 							font-style: normal;
 							font-weight: 800;
 							line-height: 120%;
 							letter-spacing: -0.64px;
+							text-transform: uppercase;						
 						}
 					}
 
-					.latest-vertical-posts-block__slides{
+					.latest-vertical-posts-block__slides{	
+			
 						.slick-list{
 							.slick-track{
-
-								.slick-slide:nth-child(1){
-									width: 204px !important;
-									background: linear-gradient(270deg, #000 44.44%, rgba(0, 0, 0, 0.00) 89.62%);
-
-								}
-
-								.slick-slide:nth-child(2){
-									background: linear-gradient(270deg, #000 44.44%, rgba(0, 0, 0, 0.00) 89.62%);
-								}
-
 								.slick-slide{
-
 									.slide{
-										a{
+										a {
 											text-decoration: none;
-
 											.post{
 												flex-direction: column;
 
 												&-thumbnail{
-													max-width: 204px;
+													max-width: 200px;
 													width: 100%;
-													height: 294px;
+													height: 240px;
 
 													&--image{
-														height: 294px;
+														height: 240px;
 														border-radius: 8px;
 													}
 												}
@@ -141,6 +192,12 @@
 													line-height: 145%;
 													max-width: 204px;
 													width: 100%;
+													display: flex;
+													height: 10.125px;
+													flex-direction: column;
+													justify-content: center;
+													flex-shrink: 0;
+												
 												}
 
 												&-meta{
@@ -155,26 +212,90 @@
 							}
 						}
 					}
+					.latest-vertical-posts-block__footer{
+			
+						.latest-vertical-posts-block__arrows{
+							.slick-prev{
+								background-color: #848484;
+							}
+	
+							.slick-next {
+								background-color: #F5F5F5;
+							}
+						}
+
+						.latest-vertical-posts-block__dots{
+							.slick-dots{
+								li{
+									background-color: #4F4F4F;
+
+									&:active{
+										background-color: #848484;
+									}
+								}
+							}
+						}
+					}
+
 				}
 			}
 		}
 
+		.wp-block-spacer{
+			@include mixins.small{
+				display: none;
+			}
 
+			@include mixins.mobile{
+				display: none;
+			}
+		}
 
 		figure{
 			max-width: 970px;
 			width: 100%;
 			margin-right: auto;
 			margin-left: auto;
+
+			@include mixins.small{
+				max-width: 370px;
+				width: 100%;
+				object-fit: contain !important;
+			}
+
+			@include mixins.mobile{
+				max-width: 370px;
+				width: 100%;
+				object-fit: contain !important;
+			}
+
+			img{
+				@include mixins.small{
+					max-width: 370px;
+					width: 100%;
+					object-fit: contain !important;
+				}
+	
+				@include mixins.mobile{
+					max-width: 370px;
+					width: 100%;
+					object-fit: contain !important;
+				}
+			}
 		}
 	}
 
 	.content{
+		padding-left: 0;
+		padding-right: 0;
+
 		.search{
 			display: flex;	
 			align-items: center;
 			justify-content: center;
 			gap: 16px;
+			margin-top: 32px;
+			margin-bottom: 32px;
 
 			@include mixins.small{
 				display: none;
@@ -216,8 +337,8 @@
 						display: block;
 						background-position: center;
 						position: absolute;
-						top: 33px;
-						right: 263px;
+						top: 54px;
+						right: 290px;
 					}
 				}
 
@@ -228,17 +349,26 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 			gap: 30px;
+			justify-items: center;
 
 			@include mixins.small{
 				grid-template-columns: 1fr 1fr;
 				gap: 8px;
 				margin-top: 40px;
+				max-width: 343px;
+				width: 100%;
+				margin-right: auto;
+				margin-left: auto;
 			}
 
 			@include mixins.mobile{
 				grid-template-columns: 1fr 1fr;
 				gap: 8px;
 				margin-top: 40px;
+				max-width: 343px;
+				width: 100%;
+				margin-right: auto;
+				margin-left: auto;
 			}
 			
 			.post{
@@ -249,6 +379,8 @@
 
 				&-card{
 					flex-direction: column;
+					max-width: 270px;
+					width: 100%;
 
 					@include mixins.small{
 						border-bottom: none;
@@ -260,8 +392,7 @@
 
 					&--thumb{
 						padding-right: 0;
-						max-width: 270px;
-						width: 100%;
+						width: 270px;
 						height: 337px;
 						border: none;
 
@@ -321,7 +452,7 @@
 
 						a{
 							.entry-title{
-								color: var(--wp--preset--color--dark-pure);
+								color: #000000;
 								font-family: var(--wp--preset--font-family--manrope);
 								font-size: var(--wp--preset--font-size--intermediate-standard);
 								font-style: normal;

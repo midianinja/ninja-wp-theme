@@ -128,7 +128,6 @@
 						text-transform: uppercase;
 
 						a {
-							text-decoration: none;
 							color: #fff;
 							font-size: 12px;
 							letter-spacing: 1.2px;
@@ -169,7 +168,6 @@
 
 					.post-card {
 						display: flex;
-						text-decoration: none;
 
 						.post-card--thumb {
 							margin-right: 30px;
@@ -317,10 +315,6 @@
 							position: absolute;
 							right: 0;
 						}
-
-						a {
-							text-decoration: none;
-						}
 					}
 
 					.colunistas-ninja {
@@ -380,7 +374,6 @@
 								margin-bottom: 0;
 							}
 							a {
-								text-decoration: none;
 								.post {
 									display: flex;
 									gap: 13px;

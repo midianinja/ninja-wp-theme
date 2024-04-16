@@ -26,6 +26,8 @@ function latest_horizontal_posts_callback( $attributes ) {
 
     $has_content = false;
 
+    $attributes_hash = md5( serialize( $attributes ) );
+
     if ( $block_model == 'collection' ) {
         // Flickr
         require_once  __DIR__ . '/includes/collection.php';
@@ -47,7 +49,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             return;
         }
 
-        $has_content = flickr_get_contents( $api_key, $flickr_by_type, $data_id, $block_id );
+        $has_content = flickr_get_contents( $api_key, $flickr_by_type, $data_id );
     }
 
     if ( $block_model == 'columnists' ) {
@@ -64,7 +66,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             $latest_horizontal_posts_ids = [];
         }
 
-        $cache_key = 'ninja_horizontal_' . $block_id;
+        $cache_key = 'ninja_horizontal_' . $attributes_hash;
         $cached_posts = get_transient( $cache_key );
 
         if ( false !== $cached_posts ) {

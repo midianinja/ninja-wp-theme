@@ -1,0 +1,444 @@
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
+
+.page-seja-ninja{
+
+    .wp-block-columns:first-child{
+        p{margin: 0px !important;}
+        h2{margin:0px !important;}
+        
+        gap:0px;
+        border-radius: 10px 10px !important;
+        margin-top: 32px;
+        gap: 30px;
+        @media(max-width:991px){
+            display: none;
+        }
+
+        & .wp-block-column:first-child{ //div que envolve banner e aside
+            max-width: 870px;
+            .wp-block-cover{
+                margin: 0px;
+                padding: 0px;
+                border-radius: 10px;
+                .wp-block-columns {
+                    margin: 0px;
+                    height: 450px;
+                    gap: 0px;
+                    .wp-block-column:first-child{  //coluna 1 do banner
+                        max-width: 400px;
+                        padding-left: 64px;
+                        padding-top: 64px;
+                        fill: rgba(51, 51, 51, 0.70);
+                        backdrop-filter: blur(17.6999998093px);
+                        & p:first-child{
+                         color: #FFF;
+                         font-family: "Archivo Expanded";
+                         font-size: 14px;
+                         font-style: normal;
+                         font-weight: 800;
+                         line-height: 155%; /* 21.7px */
+                         letter-spacing: -0.42px;
+                         text-transform: uppercase;
+                        }
+                        & p:nth-child(2){
+                         color: #FFF;
+                         /* <h1> Manrope */
+                         font-family: Manrope;
+                         font-size: 48px;
+                         font-style: normal;
+                         font-weight: 800;
+                         line-height: 115%; /* 55.2px */
+                         letter-spacing: -1.44px;
+                         margin-top: 16px !important;
+                        }
+                        &  p:nth-child(3){
+                         color: #FFF;
+                         font-family: Manrope;
+                         font-size: 13px;
+                         font-style: normal;
+                         font-weight: 500;
+                         line-height: 145%; /* 18.85px */
+                         margin-top: 20px !important;
+                         max-width: 257px;
+                        }               
+                    }
+                    .wp-block-column:last-child{ // coluna 2 do banner 
+                        & .wpcf7{
+                            margin: auto;
+                            display: flex;
+                            align-items: center;
+                            flex-direction: column;
+                            margin-top: 84px;
+                            form{
+                                display: flex;
+                                flex-direction: column;
+                                gap: 18px;
+                                h4{
+                                    margin: 0px;
+                                    color: #FFF;
+                                    font-family: 'Manrope',sans-serif;
+                                    font-size: 12px;
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    line-height: 130%; /* 15.6px */
+    
+                                }
+                                label{
+                                    input{
+                                        width: 265px;
+                                        padding: 10px;
+                                        border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                                        border: 1px solid var(--Main-beerus, #E2E2E2);
+                                        padding-left: 10px;
+                                        font-size: 13px;
+                                        font-style: normal;
+                                        color: var(--Main-trunks, #595D62);
+                                        font-family: 'Manrope',sans-serif;
+                                        font-weight: 500;
+                                        line-height: 18.85px; /* 18.85px */
+
+
+                                    }
+                                    input::placeholder {
+                                       
+                                        color: var(--Main-trunks, #595D62);
+                                        /* <small> Manrope */
+                                        font-family: 'Manrope',sans-serif;
+                                        font-weight: 500;
+                                        line-height: 18.85px; /* 18.85px */
+                                        background-color: white;
+
+                                    }
+            
+                                }
+                                
+                                select {
+                                    width: 265px;
+                                    padding: 10px;
+                                    border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                                    border: 1px solid var(--Main-beerus, #E2E2E2);
+                                    padding-left: 7px;
+                                    font-size: 13px;
+                                    font-style: normal;
+                                    line-height: 24px;
+                                    color: var(--Main-trunks, #595D62);
+
+                                    /* <small> Manrope */
+                                    font-family: 'Manrope',sans-serif;
+                                    font-weight: 500;
+                                    line-height: 18.85px; /* 18.85px */
+                                    background-color: white; 
+
+                                    
+                                }
+                                
+                                
+                                select option[disabled] {
+                                    font-family: 'Manrope', sans-serif; /* Define a fonte como Manrope */
+                                    font-size: 13px; /* Tamanho da fonte */
+                                    font-weight: 500; /* Peso da fonte (medium) */
+                                    line-height: 18.85px; /* Altura da linha */
+                                    color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
+                                }
+                                
+                                
+                                .submit-button{
+                                    input{
+                                        display: flex;
+                                        width: 265px;
+                                        padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
+                                        justify-content: center;
+                                        align-items: center;
+                                        gap: var(--gap-0, 0px);
+                                        border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                                        background: var(--OURO, #FBF36E);
+                                        border: none;
+                                        color: var(--Gray-1, #333);
+                                        text-align: center;
+                                        font-feature-settings: 'clig' off, 'liga' off;
+                                        font-family: Manrope;
+                                        font-size: 13px;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        line-height: 24px;
+                                        text-transform: uppercase;
+                                    }
+                                }
+                            }
+                            .wpcf7-form{
+                                gap: 18px;
+                                .midia-conteudo_2{
+                                    display: none !important;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                
+            }
+        }
+        & .wp-block-column:last-child{ // col-2 ASIDE 
+            max-width: 270px;
+            margin: auto;
+            @media(max-width:991px){
+                display: none;
+            }
+            .wp-block-cover{
+                margin: 0px; 
+                padding: 0px;
+                border-radius: 5px;
+                .wp-block-cover__inner-container{
+                    height: 450px;
+                    figure{
+                        margin-top: 30px;
+                        margin-left: 8px;
+                    }
+                    .wp-block-columns{
+                        margin: 0px;
+                        
+                        .wp-block-column{ // container que envolve descrição e rede social
+                            margin-left: 33px !important;
+                            margin-right: 32px !important;
+                            h4{
+                                margin: 0px;
+                                margin-top: 22px;
+                                color: var(--White, #FFF);
+                                font-family: 'Manrope',sans-serif;
+                                font-size: 20px;
+                                font-style: normal;
+                                font-weight: 700;
+                                line-height: 130%; /* 26px */
+                            }
+                            .line{
+                                margin: 0px;
+                                margin-top: -17px;
+                                margin-bottom: 12px;
+                            }
+                            .wp-block-columns{ //icones de rede sociais
+                                gap: 0px;
+                                margin: 0px;
+                                max-width: 106px;
+                                margin-top: 16px;
+
+                                .wp-block-column{
+                                    margin: 0px !important;
+                                    .wp-block-image {
+                                        margin: 0px;
+                                    }
+                                }
+                            }
+                        }                      
+                    }
+                    p{
+                        color: var(--White, #FFF);
+                        /* <small> Manrope */
+                        font-family: 'Manrope',sans-serif;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 145%; /* 18.85px */
+                    }
+                }
+            }
+        }
+    }
+    .seja-ninja-mob{
+        display: none;
+        @media(max-width:991px){
+            display: block;
+            margin-top: 32px;
+        }
+        
+        & .col-form{
+            @media (min-width: 668px) and (max-width: 991px) {
+                display: flex;
+                align-items: center;
+                margin: auto;
+            }
+            @media(max-width:667px){
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            & .wpcf7{
+                margin: auto;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                margin-top: 84px;
+                @media(max-width:991px){
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;            
+                }
+                @media(max-width:667px){
+                    margin: auto;
+                    text-align: center;
+                }
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 18px;
+                    @media (max-width: 991px) {
+                        gap: 0px !important;
+                        
+                    }
+                    h4{
+                        margin: 0px;
+                        color: #FFF;
+                        font-family: 'Manrope',sans-serif;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 130%; /* 15.6px */
+                        @media (min-width: 668px) and (max-width: 991px) {
+                            color: var(--DARK, #111);
+                            font-family: 'Manrope',sans-serif;
+                            font-size: 15px;
+                            font-style: normal;
+                            font-weight: 800;
+                            line-height: 125%; /* 30px */
+                            letter-spacing: -0.24px;
+                        }
+                        @media(max-width:667px){
+                            color: var(--DARK, #111);
+                            /* <h3> Manrope */
+                            font-family: 'Manrope',sans-serif;
+                            font-size: 24px;
+                            font-style: normal;
+                            font-weight: 800;
+                            line-height: 125%; /* 30px */
+                            letter-spacing: -0.24px;
+                            width: 248px;
+                            text-align: start;
+                            margin-top: 24px;
+                        }
+                        
+                        
+                    }
+                    p{
+                        @media(max-width:500px){
+                            margin-bottom: 0px;
+                       
+                        
+                        }
+                    }
+                    
+                    label{
+                        input{
+                            max-width: 265px;
+                            padding: 7px 3px;
+                            border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                            border: 1px solid var(--Main-beerus, #E2E2E2);
+                            background: var(--Main-gohan, #FFF);
+                            padding-left: 10px;
+                            color: var(--Main-trunks, #595D62);
+                            font-feature-settings: 'clig' off, 'liga' off;
+                            font-family: "DM Sans";
+                            font-size: 13px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 18.85px
+                        }
+
+                    }
+                    select{
+                        width: 265px;
+                        padding: 7px 3px;
+                        border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                        border: 1px solid var(--Main-beerus, #E2E2E2);
+                        background: var(--Main-gohan, #FFF);
+                        padding-left: 10px;
+                        color: var(--Main-trunks, #595D62);
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        font-family: "DM Sans";
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height:18.85px;
+                        padding: 10px;
+                    }
+                    .submit-button{
+                        @media(max-width:667px){
+                            margin: auto;
+                        }
+                        input{
+                            display: flex;
+                            width: 265px;
+                            padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
+                            justify-content: center;
+                            align-items: center;
+                            gap: var(--gap-0, 0px);
+                            border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                            background: var(--OURO, #FBF36E);
+                            border: none;
+                            color: var(--Gray-1, #333);
+                            text-align: center;
+                            font-feature-settings: 'clig' off, 'liga' off;
+                            font-family: 'Manrope',sans-serif;
+                            font-size: 13px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 18.85px;
+                            text-transform: uppercase;
+                            @include mixins.mobile{
+                                font-weight: 800; 
+                            }
+                        }
+                    }
+                }
+                .wpcf7-form{
+                    gap: 18px;
+                    .midia-conteudo_2{
+                        display: none !important;
+                    }
+                }
+            }
+        }
+        .col-2{
+            .wp-block-cover{
+                @include mixins.tablet{
+                    text-align: center;
+                    width: 271px;
+                    margin: auto;
+                    border-radius: 8px;
+                    background: var(--DARK, #111);
+                }
+                .wp-block-cover__inner-container{
+                    text-align: center;
+                    @include mixins.mobile{
+                        text-align: start;
+                    }
+                    h4{
+                        margin: 0;
+                        
+                    }
+                    & .social-icons-inscricao{
+                        gap: 0px;
+                        @include mixins.mobile{
+                            width: 128px;
+                        }
+                        @include mixins.tablet{
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+                    .container-a-midia-ninja{
+                        @include mixins.mobile{
+                            margin: auto;
+                        }
+                        & .wp-block-column{
+                            flex-basis: initial !important;
+
+                        }
+                    }
+                }
+            } 
+        }
+
+    }     
+}

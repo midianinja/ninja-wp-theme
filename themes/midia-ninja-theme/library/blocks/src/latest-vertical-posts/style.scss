@@ -99,6 +99,29 @@
 			}
 		}
 	}
+
+	&.model-numbered {
+		.slide {
+			.post {
+				display: flex;
+				gap: 15px;
+
+				&-number{
+					color: #BDBDBD;
+					flex-shrink: 0;
+					font-size: 40px;
+					font-weight: 700;
+					padding-top: 5px;
+				}
+
+				&-content {
+					.post-meta {
+						display: block;
+					}
+				}
+			}
+		}
+	}
 }
 
 .latest-vertical-posts-block__footer {

@@ -48,10 +48,9 @@ class Assets
      *
      * Stylesheets that are global are enqueued. All other stylesheets are only registered, to be enqueued later.
      */
-    public function enqueue_styles()
-    {
-        add_action('wp_head', [ $this, 'enqueue_inline_styles' ], 99);
-        add_action('wp_enqueue_scripts', [ $this, 'enqueue_generic_styles' ]);
+    public function enqueue_styles() {
+        add_action( 'wp_head', [ $this, 'enqueue_inline_styles' ] );
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_generic_styles' ] );
     }
 
     /**
@@ -379,6 +378,13 @@ class Assets
                 },
             ],
 
+            'seja-ninja' => [
+                'file'             => '_p-seja-ninja.css',
+                'preload_callback' => function() {
+                    return ! is_front_page() && is_page();
+                },
+            ],
+
             '404' => [
                 'file' => '_p-404.css',
                 'preload_callback' => function () {
@@ -390,6 +396,13 @@ class Assets
                 'file' => '_p-archive.css',
                 'preload_callback' => function () {
                     return is_archive();
+                },
+            ],
+
+            'blog' => [
+                'file' => '_p-blog.css',
+                'preload_callback' => function () {
+                    return is_home();
                 },
             ],
 
@@ -445,6 +458,12 @@ class Assets
                 'file' => '_p-page-anchor.css',
                 'preload_callback' => function () {
                     return is_page_template('page-anchor.php');
+                },
+            ],
+            'colunistas' => [
+                'file' => '_p-template-colunistas.css',
+                'preload_callback' => function () {
+                    return is_page_template('template-colunistas.php');
                 },
             ],
 
@@ -544,6 +563,7 @@ class Assets
                     return is_page_template('page-anchor.php');
                 }
             ],
+            
 
             'archive-opiniao' => [
                 'file'   => 'archive-opiniao.js',
@@ -554,7 +574,9 @@ class Assets
 
             'seja-ninja' => [
                 'file'   => 'seja-ninja.js',
-                'global' => true,
+                'preload_callback' => function () {
+                    return is_page('seja-ninja');
+                }
             ],
 
         ];

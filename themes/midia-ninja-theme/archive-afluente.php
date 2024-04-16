@@ -22,7 +22,7 @@ get_header();
         
         <div class="search">
             <h2>Buscar por: </h2>
-            <?php get_template_part('template-parts/search-form'); ?>
+            <?php get_template_part('template-parts/search-afluente'); ?>
         </div>
         
         <div class="posts">

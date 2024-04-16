@@ -1,157 +1,166 @@
-import { __ } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n'
 
-import ServerSideRender from '@wordpress/server-side-render';
-const { useEffect, useState } = wp.element
+import { useEffect, useState } from 'react'
 
-
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import apiFetch from '@wordpress/api-fetch'
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
+import SelectPostType from "../../shared/components/SelectPostType"
+import SelectTerms from "../../shared/components/SelectTerms"
+import LatestGridPosts from "./components/LatestGridPosts"
 
 import {
-	Disabled,
-	TextControl,
-	ToggleControl,
-	PanelBody,
-	PanelRow,
-	QueryControls,
-	SelectControl
-} from '@wordpress/components';
+    Disabled,
+    PanelBody,
+    PanelRow,
+    RangeControl,
+    SelectControl,
+    ToggleControl
+} from '@wordpress/components'
 
-import metadata from './block.json';
-import './editor.scss';
+import metadata from './block.json'
+import './editor.scss'
 
 export default function Edit( { attributes, clientId, setAttributes } ) {
-	const blockProps = useBlockProps( {
-		className: 'latest-grid-posts-block',
-	} );
 
-	const { 
-		blockId,
-		blockModel,
-		heading,
-		order,
-		orderBy,
-		postsToShow,
-		playlistId,
-		showAuthor,
-		showThumbnail,
-		thumbnailFormat
-	} = attributes
+    const blockProps = useBlockProps( {
+        className: 'latest-grid-posts-block'
+    } )
 
-	const onChangeHeading = ( newHeading ) => {
-		setAttributes( { heading: newHeading } );
-	};
+    const { 
+        blockId,
+        postType,
+        postsPerPage,
+        postsToShow,
+        showAuthor,
+        showDate,
+        showExcerpt,
+        taxonomy,
+        queryTerms
+    } = attributes
 
-	useEffect(() => {
-		if (!blockId) {
-			setAttributes( { blockId: clientId } )
-		}
-	})
+    useEffect(() => {
+        if (!blockId) {
+            setAttributes( { blockId: clientId } )
+        }
+    })
 
-	// Init query args
-	const [ query ] = useState( {
-		maxItems: 10,
-		minItems: 1,
-		numberOfItems: 10
-	} )
+    const onChangePostType = ( value ) => {
+        setAttributes({ postType: value })
+        setAttributes({ queryTerms: [] })
+    }
 
-	const { maxItems, minItems, numberOfItems } = query
+    const onChangeSelectTerm = (value) => {
+        setAttributes({ queryTerms: value.length > 0 ? value : undefined })
+    }
 
+    // Get taxonomies from the post type selected
+    const [taxonomies, setTaxonomies] = useState([])
 
-	return (
-		<>
-			<InspectorControls>
-				<PanelBody
-					className="latest-grid-posts-block-inspector-controls"
-					title={ __( 'Settings', 'ninja' ) }
-					initialOpen={ true }
-				>
-					<PanelRow>
-						<TextControl
-							label={ __( 'Heading', 'ninja' ) }
-							value={ heading }
-							onChange={ onChangeHeading }
-							help={ __(
-								'The block title. Leave blank to not display',
-								'ninja'
-							) }
-						/>
-					</PanelRow>
+    useEffect(() => {
+        if(postType) {
+            apiFetch({ path: `/ninja/v1/taxonomias/${postType}` })
+                .then((taxonomies) => {
+                    setTaxonomies(taxonomies)
+                })
+        }
+    }, [postType])
 
-					<PanelRow>
-						<SelectControl
-							label={ __( 'Block model', 'ninja' ) }
-							value={blockModel}
-							options={[
-								{
-									label: __( 'Videos', 'ninja' ),
-									value: "videos"
-								}
-							]}
-							onChange={ ( value ) => { setAttributes( { blockModel: value } ) } }
-						/>
-					</PanelRow>
+    return (
+        <>
+            <InspectorControls>
+                <PanelBody
+                    className="latest-grid-posts-block-inspector-controls"
+                    title={ __( 'Settings', 'ninja' ) }
+                    initialOpen={ true }
+                >
+                    <PanelRow>
+                        <SelectPostType postType={postType} onChangePostType={onChangePostType} />
+                    </PanelRow>
 
-					{ ( blockModel == 'videos' ) && (
-						<PanelRow>
-							<TextControl
-								label={ __( 'YouTube Playlist ID', 'ninja' ) }
-								value={ playlistId }
-								onChange={ ( value ) => { setAttributes( { playlistId: value } ) } }
-							/>
-						</PanelRow>
-					) }
+                    <PanelRow>
+                        <SelectControl
+                            label={ __( 'Taxonomy to filter', 'ninja' ) }
+                            value={taxonomy}
+                            options={taxonomies.map(taxonomy => ({
+                                label: taxonomy.label,
+                                value: taxonomy.value
+                            }))}
+                            onChange={ ( value ) => setAttributes( { taxonomy: value } ) }
+                            help={ __(
+                                'Leave blank to not filter by taxonomy',
+                                'ninja'
+                            ) }
+                        />
+                    </PanelRow>
 
-					<QueryControls
-						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
-						numberOfItems={ postsToShow }
-						onOrderChange={ ( value ) =>
-							setAttributes( { order: value } )
-						}
-						onOrderByChange={ ( value ) =>
-							setAttributes( { orderBy: value } )
-						}
-						onNumberOfItemsChange={ ( value ) =>
-							setAttributes( { postsToShow: value } )
-						}
-					/>
+                    { taxonomy && (
+                        <PanelRow>
+                            <SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ queryTerms } taxonomy={ taxonomy } />
+                        </PanelRow>
+                    ) }
 
-					<PanelRow>
-						<ToggleControl
-							label={ __( 'Show the post thumbnail?', 'ninja' ) }
-							checked={ showThumbnail }
-							onChange={ () => { setAttributes( { showThumbnail: ! showThumbnail } ) } }
-						/>
-					</PanelRow>
+                    <PanelRow>
+                        <RangeControl
+                            label={ __( 'Qtd. total de posts para exibir', 'ninja' ) }
+                            value={ postsToShow }
+                            onChange={ ( value ) => setAttributes( { postsToShow: value } ) }
+                            min={ 2 }
+                            max={ 99 }
+                            step={ 2 }
+                        />
+                    </PanelRow>
 
-					{ showThumbnail && (
-						<PanelRow>
-							<ToggleControl
-								label={ __( 'Use rounded thumbnail?', 'ninja' ) }
-								checked={ thumbnailFormat }
-								onChange={ () => { setAttributes( { thumbnailFormat: ! thumbnailFormat } ) } }
-							/>
-						</PanelRow>
-					) }
+                    <PanelRow>
+                        <RangeControl
+                            label={ __( 'Qtd. de posts por página', 'ninja' ) }
+                            value={ postsPerPage }
+                            onChange={ ( value ) => setAttributes( { postsPerPage: value } ) }
+                            min={ 2 }
+                            max={ 99 }
+                            step={ 2 }
+                        />
+                    </PanelRow>
 
-					<PanelRow>
-						<ToggleControl
-							label={ __( 'Show the post author?', 'ninja' ) }
-							checked={ showAuthor }
-							onChange={ () => { setAttributes( { showAuthor: ! showAuthor } ) } }
-						/>
-					</PanelRow>
-				</PanelBody>
-			</InspectorControls>
+                    <PanelRow>
+                        <ToggleControl
+                            label={ __( 'Show the post author?', 'ninja' ) }
+                            checked={ showAuthor }
+                            onChange={ () => { setAttributes( { showAuthor: ! showAuthor } ) } }
+                        />
+                    </PanelRow>
 
-			<div { ...blockProps }>
-				<Disabled>
-					<ServerSideRender
-						block={ metadata.name }
-						skipBlockSupportAttributes
-						attributes={ attributes }
-					/>
-				</Disabled>
-			</div>
-		</>
-	);
+                    <PanelRow>
+                        <ToggleControl
+                            label={ __( 'Show the post date?', 'ninja' ) }
+                            checked={ showDate }
+                            onChange={ () => { setAttributes( { showDate: ! showDate } ) } }
+                        />
+                    </PanelRow>
+
+                    <PanelRow>
+                        <ToggleControl
+                            label={ __( 'Show the post excerpt?', 'ninja' ) }
+                            checked={ showExcerpt }
+                            onChange={ () => { setAttributes( { showExcerpt: ! showExcerpt } ) } }
+                        />
+                    </PanelRow>
+                </PanelBody>
+            </InspectorControls>
+
+            <div { ...blockProps }>
+                <Disabled>
+                    <LatestGridPosts
+                        postType={postType}
+                        perPage={postsPerPage}
+                        showAuthor={showAuthor}
+                        showDate={showDate}
+                        showExcerpt={showExcerpt}
+                        taxonomy={taxonomy}
+                        terms={queryTerms}
+                        isEditor={true}
+                    />
+                </Disabled>
+            </div>
+        </>
+    )
 }

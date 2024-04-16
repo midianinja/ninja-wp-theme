@@ -7,6 +7,7 @@
 
 gt_set_post_view();
 get_header();
+get_template_part( 'template-parts/header-especiais' );
 
 $category = get_the_terms($post->ID, 'category');
 $coauthors = get_coauthors();
@@ -19,12 +20,11 @@ $coauthors = get_coauthors();
             <article class="post">
                 <header class="post-header">
                     <div class="post-info">
-                        <div>
-                            
+                        <div class="date">
 						 <?php the_date(); ?></p>
                             <?php the_post_thumbnail();?>
                         </div>
-                        
+
                         <h2 class="title"><?php the_title(); ?></h2>
 
                         <h5 class="excerpt"><?php the_excerpt(); ?></h5>
@@ -34,7 +34,7 @@ $coauthors = get_coauthors();
                         <?php
                             $author_id = '';
                             $author_bio = '';
-                            $instagram = '';  
+                            $instagram = '';
                             if (is_a($coauthor, 'WP_User')) {
                                 $author_id = $coauthor->data->ID;
                                 $author_name = $coauthor->data->display_name;
@@ -42,25 +42,23 @@ $coauthors = get_coauthors();
                                 $author_bio = isset( $userdata->user_description )? $userdata->user_description: '';
                                 $instagram = pods_field( 'user', $author_id, 'instagram', true);
                                 $facebook = pods_field( 'user', $author_id, 'facebook', true);
-                                $twitter = pods_field( 'user', $author_id, 'twitter', true);   
+                                $twitter = pods_field( 'user', $author_id, 'twitter', true);
                             } else {
-                            
+
                                 $author_id = $coauthor->ID;
                                 $author_bio = $coauthor->description;
                                 $instagram = get_post_meta($author_id, 'instagram', true);
                                 $facebook = get_post_meta($author_id, 'facebook', true);
-                                $twitter = get_post_meta($author_id, 'twitter', true);   
+                                $twitter = get_post_meta($author_id, 'twitter', true);
 
                             }
-                            
-                            
-                        ?>    
+
+
+                        ?>
                         <div class="author-info-card">
-                        
                                 <div class="info-container">
-                                    
                                     <?php echo get_avatar($author_id, 128);?>
-                                    
+
                                     <div class="info-card-informations">
                                         <div class="author-name">
                                             <?php echo  $author_name; ?>
@@ -101,8 +99,8 @@ $coauthors = get_coauthors();
                                     </div>
                                      <!-- não exibe author -->
                                 </div>
-                                
-                               
+
+
                             </div>
                                 <?php if($author_bio): ?>
                                 <div class="authbio">
@@ -110,19 +108,19 @@ $coauthors = get_coauthors();
                                 </div>
                                 <?php endif; ?>
 
-                           
+
                         </div>
                         <?php endforeach; ?>
                     </div>
 
-                       
+
                     </div>
                     <div class="author-info">
                         <?php foreach( $coauthors as $coauthor ): ?>
                         <?php
                             $author_id = '';
                             $author_bio = '';
-                            $instagram = '';  
+                            $instagram = '';
                             if (is_a($coauthor, 'WP_User')) {
                                 $author_id = $coauthor->data->ID;
                                 $author_name = $coauthor->data->display_name;
@@ -130,22 +128,22 @@ $coauthors = get_coauthors();
                                 $author_bio = isset( $userdata->user_description )? $userdata->user_description: '';
                                 $instagram = pods_field( 'user', $author_id, 'instagram', true);
                                 $facebook = pods_field( 'user', $author_id, 'facebook', true);
-                                $twitter = pods_field( 'user', $author_id, 'twitter', true);   
+                                $twitter = pods_field( 'user', $author_id, 'twitter', true);
                             } else {
-                            
+
                                 $author_id = $coauthor->ID;
                                 $author_bio = $coauthor->description;
                                 $instagram = get_post_meta($author_id, 'instagram', true);
                                 $facebook = get_post_meta($author_id, 'facebook', true);
-                                $twitter = get_post_meta($author_id, 'twitter', true);   
+                                $twitter = get_post_meta($author_id, 'twitter', true);
                             }
-                        ?>  
+                        ?>
                         <div class="author-info-card">
                             <?php echo get_avatar($author_id, 128);?>
                             <div class="author-name">
                                 <?php echo  $author_name; ?>
                             </div>
-                            
+
                             <?php if($author_bio): ?>
                             <div class="authbio">
                                 <?php echo $author_bio; ?>
@@ -207,7 +205,6 @@ $coauthors = get_coauthors();
         <?php endwhile; ?>
 
         <section class="post-footer">
-            <h4>Conheça outros colunistas</h4>
             <div class="related-posts">
                 <?php get_template_part('template-parts/content/related-posts-colunistas'); ?>
             </div>

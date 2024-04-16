@@ -68,7 +68,7 @@ function high_spot_callback( $attributes ) {
                         }
 
                         if ( ! empty( $heading ) ) {
-                            echo '<h2>' . $heading . '</h2>';
+                            echo '<h3>' . $heading . '</h3>';
                         }
 
                         if ( ! empty( $description ) ) {

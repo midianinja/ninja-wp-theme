@@ -18,7 +18,6 @@
 
 		.slick-slider {
 			a {
-				text-decoration: none;
 				color: var(--Gray-1, #333);
 				font-family: "Manrope", serif;
 
@@ -98,8 +97,9 @@
 		.latest-vertical-posts-block__footer {
 			.latest-vertical-posts-block__arrows .slick-arrow {
 				background-color: #ccc;
+
 				&:hover {
-					background-color: #333;
+					background-color: #333333;
 					background-image: url("/wp-content/themes/midia-ninja-theme/assets/images/arrow-left-slider-white.png");
 				}
 			}
@@ -159,7 +159,3 @@
 }
 
 // editor
-.editor-styles-wrapper {
-	.latest-vertical-posts-block {
-	}
-}

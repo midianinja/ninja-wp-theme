@@ -24,191 +24,186 @@
                    display: flex;
                    gap: 1rem;
                 }
-                :first-child{
-                    @media(max-width: 992px){
-                        flex-basis: 490px !important; 
-                    }
-                    
-                }
-                
-            }
-        }
-    
-        .cover-faq{
-            padding: 0;
-            margin-top: 2rem !important;
-            position: relative;
-            transform: translateX(-50%);
-            border-radius: 8px;
-
-            @media (min-width: 1401px){
-                left: 47%;
-            }
-    
-            @media (max-width: 1400px){
-                left: 48%;
-            }
-
-            @media(max-width: 992px){
-                left: 50%;
-            }
-
-            img{
                 @media(max-width: 992px){
-                    height: 370px;
-                    border-radius: 8px;
+                    flex-basis: 490px !important; 
                 }
-            }
-    
-            .wp-block-cover__inner-container{
-                .wp-block-columns{
-                    margin: 0 !important;
-    
-                    .coluna-faq{    
-                        border-radius: 8px 0px 0px 8px;
-                        background: rgba(51, 51, 51, 0.70);
-                        backdrop-filter: blur(11px);
-                        height: 506px;
-                        padding: 85px 31px 59px 39px;
+                &:first-child{
+                    .wp-block-cover{
+                        padding: 0;
+                        margin-top: 2rem !important;
+                        position: relative;
+                        transform: translateX(-50%);
+                        border-radius: 8px;
+            
+                        @media (min-width: 1401px){
+                            left: 47%;
+                        }
+                
+                        @media (max-width: 1400px){
+                            left: 48%;
+                        }
+            
                         @media(max-width: 992px){
-                            flex-basis: 187px !important;
-                            margin-top:103px;
-                            border-radius: 8px;
-                            backdrop-filter: blur(7.699999809265137px);
-                            padding: 34px 66px 0px 25px;
-                         }
-    
-                        h2{
-                            margin: 0;
-                            color: #FFF;
-                            font-family: 'Manrope', serif;
-                            font-size: 32px;
-                            font-weight: 800;
-                            line-height: 120%; 
-                            letter-spacing: -0.64px;
-                            margin-top: 16px;
-                            margin-bottom: 16px;
+                            left: 50%;
                         }
-    
-                        h3{
-                            color: #FFF !important;
-                            font-family: "Archivo Expanded" !important;
-                            font-size: 14px!important;
-                            font-style: normal;
-                            font-weight: 800;
-                            line-height: 155%; 
-                            letter-spacing: -0.42px;
-                            text-transform: uppercase;
-                            margin-bottom: 0;
-                            margin-top: 0;
-                            margin-block-start: 0;
-                            margin-block-end: 0;
-                        }
-    
-                        h4{
-                            color: #FFF;
-                            font-family: 'Manrope', serif;
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 800;
-                            line-height: 130%; 
-                        }
-    
-                        p{
-                            color: #FFF;
-                            font-family: 'Manrope', serif;
-                            font-size: 13px;
-                            font-style: normal;
-                            font-weight: 500;
-                            line-height: 145%;
-                            max-width: 242px;
-                            width: 100%;
-                            margin-top: 1.3rem;
+            
+                        img{
                             @media(max-width: 992px){
-                                display: none;
+                                height: 370px;
+                                border-radius: 8px;
                             }
                         }
-                    }
+                
+                        .wp-block-cover__inner-container{
+                            .wp-block-columns{
+                                margin: 0 !important;
+                
+                                .wp-block-column{    
+                                    border-radius: 8px 0px 0px 8px;
+                                    background: rgba(51, 51, 51, 0.70);
+                                    backdrop-filter: blur(11px);
+                                    height: 506px;
+                                    padding: 85px 31px 59px 39px;
+                                    @media(max-width: 992px){
+                                        flex-basis: 187px !important;
+                                        margin-top:103px;
+                                        border-radius: 8px;
+                                        backdrop-filter: blur(7.699999809265137px);
+                                        padding: 34px 66px 0px 25px;
+                                     }
+                
+                                    h2{
+                                        margin: 0;
+                                        color: #FFF;
+                                        font-family: 'Manrope', serif;
+                                        font-size: 32px;
+                                        font-weight: 800;
+                                        line-height: 120%; 
+                                        letter-spacing: -0.64px;
+                                        margin-top: 16px;
+                                        margin-bottom: 16px;
+                                    }
+                
+                                    h3{
+                                        color: #FFF !important;
+                                        font-family: "Archivo Expanded" !important;
+                                        font-size: 14px!important;
+                                        font-style: normal;
+                                        font-weight: 800;
+                                        line-height: 155%; 
+                                        letter-spacing: -0.42px;
+                                        text-transform: uppercase;
+                                        margin-bottom: 0;
+                                        margin-top: 0;
+                                        margin-block-start: 0;
+                                        margin-block-end: 0;
+                                    }
+                
+                                    h4{
+                                        color: #FFF;
+                                        font-family: 'Manrope', serif;
+                                        font-size: 12px;
+                                        font-style: normal;
+                                        font-weight: 800;
+                                        line-height: 130%; 
+                                    }
+                
+                                    p{
+                                        color: #FFF;
+                                        font-family: 'Manrope', serif;
+                                        font-size: 13px;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        line-height: 145%;
+                                        max-width: 242px;
+                                        width: 100%;
+                                        margin-top: 1.3rem;
+                                        @media(max-width: 992px){
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } 
                 }
             }
-        }
+            .pergunte{
+                margin-top: 2rem !important;
+                background-color: #fff;
+                height: 508px;
+                border-radius: 12px;
+                border: 2px solid #ccc;
+                padding: 100px 43px 120px;
+                width: 335px;
+                @media(max-width: 992px){
+                    margin-top: -5rem !important;
+                    margin-bottom: 2rem;
+                    max-width: 4000px;
+                    width: 100%;
     
-        .pergunte{
-            margin-top: 2rem !important;
-            background-color: #fff;
-            height: 508px;
-            border-radius: 12px;
-            border: 2px solid #ccc;
-            padding: 100px 43px 120px;
-            width: 335px;
-            @media(max-width: 992px){
-                margin-top: -5rem !important;
-                margin-bottom: 2rem;
-                max-width: 4000px;
-                width: 100%;
-
-            }
-            
-            h2.titulo-pergunte{
-                font-family: 'Manrope', serif;
-                font-size: 32px;
-                font-style: normal;
-                font-weight: 800;
-                line-height: 100%; /* 32px */
-                text-transform: uppercase;
-                margin-bottom: 19px;
-                color: #333;
-                margin-bottom: 1.8rem;
-            }
-            p{
-                font-family: 'Manrope', serif;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 130%; /* 18.2px */
-                color: #111;
-                margin-bottom: 2.6rem;
-            }
-            .wp-block-buttons{
-                display: flex;
-                justify-content: center;
-                margin-top: 28px;
-                .wp-block-button{
-                    background-color: #fbf36e;
-                    border-radius: 8px;
+                }
+                
+                h2.titulo-pergunte{
+                    font-family: 'Manrope', serif;
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 100%; /* 32px */
+                    text-transform: uppercase;
+                    margin-bottom: 19px;
+                    color: #333;
+                    margin-bottom: 1.8rem;
+                }
+                p{
                     font-family: 'Manrope', serif;
                     font-size: 14px;
                     font-style: normal;
-                    font-weight: 700;
-                    line-height: 24px; /* 171.429% */
-                    color: #333;
-                    text-align: center;
-                    max-width: 265px;
-                    width: 100%;
-                   
-                    @media(max-width: 992px){
-                        
-
-                    }
-                    a{
-                        border: none;
-                        text-decoration: none;
-                       
-                    }
-                    
+                    font-weight: 500;
+                    line-height: 130%; /* 18.2px */
+                    color: #111;
+                    margin-bottom: 2.6rem;
                 }
+                .wp-block-buttons{
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 28px;
+                    .wp-block-button{
+                        background-color: #fbf36e;
+                        border-radius: 8px;
+                        font-family: 'Manrope', serif;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 24px; /* 171.429% */
+                        color: #333;
+                        text-align: center;
+                        max-width: 265px;
+                        width: 100%;
+                       
+                        @media(max-width: 992px){
+                            
+    
+                        }
+                        a{
+                            border: none;
+                        }
+                        
+                    }
+                }
+                   
             }
-               
         }
     
         .page-title{
             font-size: 32px;
             font-weight: 800;
-            margin-left: -74px;
+            margin-left: -80px;
             margin-top: 2.5rem;
             margin-bottom: 0;
             line-height: 120%;
             color: #111;
+            letter-spacing: -0.64px;
             @media(max-width: 992px){
                 margin-top: 9.5rem;
                 margin-left: 0;
@@ -221,11 +216,18 @@
             .wp-block-heading{
                 margin-left: 78px;
                 line-height: 120%; /* 38.4px */
+                color: var(--Primary-dark, var(--DARK, #111));
+                font-family: 'Manrope', serif;
+                font-size: 32px;
+                font-weight: 800;
+                line-height: 120%;
+                letter-spacing: -0.64px;
 
                 @media(max-width: 992px){
                     margin-left: 0;
                     margin-top: -25px;
                     margin-bottom: -72px;
+                    
                 }
             }
             
@@ -261,7 +263,7 @@
         }
     
         p.anchor-title {
-            border-left: 4px solid #262626;
+            border-left: 4px solid #111;
             font-family: 'Manrope', serif;
             font-size: 24px;
             font-style: normal;
@@ -291,7 +293,6 @@
                 line-height: 125%; /* 30px */
                 letter-spacing: -0.24px;
                 color: #848484;
-                text-decoration: none;
                
             }
         }
@@ -333,7 +334,7 @@
                         padding: 32px 25px 32px 0;
                         font-size: 24px;
                         display: block;
-                        font-weight: 500;
+                        font-weight: 400;
                         &:hover{
                             &::after{
                                 background: #F5F5F5 !important;
@@ -416,6 +417,10 @@
                             }
         
                         }
+                    }
+
+                    summary.wp-block-coblocks-accordion-item__title::-webkit-details-marker {
+                        display: none
                     }
                     
                     
@@ -507,6 +512,9 @@
                             }
             
                         }
+                    }
+                    summary.wp-block-coblocks-accordion-item__title::-webkit-details-marker {
+                        display: none
                     }   
                 }
             }
@@ -608,6 +616,8 @@
                     font-weight: 700;
                     padding: 15px 30px;
                     color: #FFF !important;
+                    line-height: 145%;
+                    
                     @media(max-width: 992px){
                         font-weight: 800;
                         border: 2px solid #111;

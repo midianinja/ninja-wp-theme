@@ -2,11 +2,18 @@
 $show_taxonomy = isset($args['attributes']['showTaxonomy']) ? $args['attributes']['showTaxonomy'] : false;
 $show_thumbnail = isset($args['attributes']['showThumbnail']) ? $args['attributes']['showThumbnail'] : false;
 $show_author = isset($args['attributes']['showAuthor']) ? $args['attributes']['showAuthor'] : false;
+$show_excerpt = isset($args['attributes']['showExcerpt']) ? $args['attributes']['showExcerpt'] : false;
+$block_model = ! empty( $args['attributes']['blockModel'] ) ? $args['attributes']['blockModel'] : 'posts';
+$counter_posts = ! empty( $args['attributes']['counter_posts'] ) ? $args['attributes']['counter_posts'] : 1;
 ?>
 
 <a href="<?php echo get_permalink();?>">
     <div class="post">
-        <?php if ($show_thumbnail) : ?>
+        <?php if ( 'numbered' === $block_model ) : ?>
+            <div class="post-number">
+                <span class="number"><?php echo $counter_posts;?></span><span class="point">.</span>
+        </div>
+        <?php elseif ( $show_thumbnail ) : ?>
             <div class="post-thumbnail">
                 <div class="post-thumbnail--image">
                     <?php if (has_post_thumbnail()) : ?>
@@ -39,6 +46,12 @@ $show_author = isset($args['attributes']['showAuthor']) ? $args['attributes']['s
                     <div class="post-author">
                         <span><?php _e('by', 'ninja');?></span>
                         <?php echo get_the_author(); ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($show_excerpt) : ?>
+                    <div class="post-excerpt">
+                        <?php echo get_the_excerpt(); ?>
                     </div>
                 <?php endif; ?>
             </div>

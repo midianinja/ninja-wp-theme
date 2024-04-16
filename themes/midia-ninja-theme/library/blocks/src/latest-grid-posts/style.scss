@@ -1,16 +1,163 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
+@import "../../shared/scss/mixins";
 
-.wp-block-ninja-dynamic {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+.latest-grid-posts-block {
+    .latest-grid-posts-block__posts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        min-height: 600px;
+        position: relative;
 
-	a {
-		color: #fff;
-	}
+        @include break-mobile {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .loading {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            background-color: #82828286;
+        }
+
+        a {
+            color: #333333;
+        }
+
+        .post {
+            width: 100%;
+
+            // .post-thumbnail
+            &-thumbnail {
+
+                // .post-thumbnail--image
+                &--image {
+                    border-radius: 8px;
+                    // aspect-ratio: 16 / 9;
+                    overflow: hidden;
+                    position: relative;
+
+                    &::before {
+                        content: "";
+                        padding-top: 56.25%;
+                        float: left;
+                    }
+
+                    &::after {
+                        clear: left;
+                        content: " ";
+                        display: table;
+                    }
+
+                    img {
+                        height: 100%;
+                        left: 50%;
+                        object-fit: cover;
+                        position: absolute;
+                        top:  50%;
+                        transform: translate(-50%, -50%);
+                        width: 100%;
+                    }
+                }
+            }
+
+            // .post-title
+            &-title {
+                font-size: 24px;
+                letter-spacing: 0;
+                line-height: 125%;
+                font-weight: 800;
+                margin-bottom: 5px;
+                margin-top: 5px;
+
+                // Overwrite the style on _p-single.scss
+                main.content & {
+                    .container & {
+                        .single & {
+                            font-size: 24px;
+                            letter-spacing: 0;
+                            line-height: 125%;
+                            font-weight: 800;
+                        }
+                    }
+                }
+            }
+
+            // .post-meta
+            &-meta {
+                &--author {
+                    color: #828282;
+                    font-size: 13px;
+                    font-weight: 700;
+                    margin-right: 10px;
+                }
+
+                &--date {
+                    color: #828282;
+                    font-size: 13px;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+    .container {
+        @include break-mobile {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .latest-grid-posts-block__pagination {
+            align-items: center;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            margin-top: 45px;
+            list-style: none;
+
+            li {
+                align-items: center;
+                border-radius: 8px;
+                border: 1px solid transparent;
+                color: var(--wp--preset--color--primary-light);
+                cursor: pointer;
+                display: flex;
+                font-size: 14px;
+                height: 32px;
+                justify-content: center;
+                width: 32px;
+
+                &.active {
+                    background-color: var(--wp--preset--color--gold);
+                    color: var(--wp--preset--color--low-pure);
+                    cursor: default;
+                    font-weight: 700;
+                }
+
+                &.next,
+                &.prev {
+                    border: 1px solid #595D62;
+                    text-indent: -999999px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+
+                    &.disabled {
+                        opacity: .5;
+                    }
+                }
+
+                &.next {
+                    background-image: url("../../shared/images/arrow.svg");
+                }
+
+                &.prev {
+                    background-image: url("../../shared/images/arrow.svg");
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
 }

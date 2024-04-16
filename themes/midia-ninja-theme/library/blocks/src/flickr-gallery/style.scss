@@ -52,7 +52,8 @@
 	&__grid {
 		display: grid;
 		gap: 20px;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		max-width: 100%;
 		width: 100%;
 
 		.flickr-photo {
@@ -119,6 +120,7 @@
 					height: 100%;
 					left: 0;
 					object-fit: cover;
+					object-position: center;
 					position: absolute;
 					top:  0;
 					transition: all 0.3s ease-in-out;
@@ -139,21 +141,6 @@
 					}
 				}
 			}
-		}
-	}
-
-	&.content-full {
-		.container {
-			align-items: flex-start;
-			flex-direction: column;
-		}
-
-		.flickr-gallery-block__content {
-			min-height: inherit;
-		}
-
-		.flickr-gallery-block__slides {
-			width: 100%;
 		}
 	}
 }

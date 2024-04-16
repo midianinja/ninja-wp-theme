@@ -399,6 +399,13 @@ class Assets
                 },
             ],
 
+            'blog' => [
+                'file' => '_p-blog.css',
+                'preload_callback' => function () {
+                    return is_home();
+                },
+            ],
+
             'archive-opiniao' => [
                 'file' => '_p-archive-opiniao.css',
                 'preload_callback' => function () {

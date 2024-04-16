@@ -9,13 +9,13 @@
 		padding-top: 33px;
 
 		a {
-			transition: all .2s ease-in-out;
+			transition: all 0.2s ease-in-out;
 			&:where(:not(.wp-element-button)) {
 				text-decoration: none;
 			}
 
 			&:hover {
-				opacity: .7;
+				opacity: 0.7;
 			}
 		}
 	}
@@ -89,14 +89,13 @@
 						width: max-content;
 					}
 
-
 					img {
 						max-width: 100%;
 						height: auto;
 						border-radius: 8px;
 					}
 
-					.post-info{
+					.post-info {
 						max-width: 770px;
 						width: 100%;
 					}
@@ -109,15 +108,16 @@
 						letter-spacing: -0.6px;
 						position: absolute;
 						margin: 20px;
-						ma
 
-						a {
-							border-radius: 4px;
-							padding: 1px 11px;
-						}
+						span {
+							a {
+								border-radius: 4px;
+								padding: 2px 10px;
+							}
 
-						a:nth-child(n + 2) {
-							display: none;
+							a:nth-child(n + 2) {
+								display: none;
+							}
 						}
 					}
 
@@ -171,7 +171,7 @@
 							}
 						}
 					}
-					
+
 					.content-author {
 						display: flex;
 						flex-direction: column;
@@ -313,8 +313,8 @@
 							border-radius: 50%;
 						}
 
-						.authname{
-							color: var(--White, #FFF);
+						.authname {
+							color: var(--White, #fff);
 							font-family: Manrope;
 							font-size: 20px;
 							font-style: normal;
@@ -563,7 +563,8 @@
 		&__links {
 			background-color: var(--menu-especial-bg);
 
-			ul, li {
+			ul,
+			li {
 				margin: 0;
 				padding: 0;
 			}
@@ -603,7 +604,6 @@
 			}
 
 			&__logo-mobile {
-
 				img {
 					aspect-ratio: 90 / 34;
 					height: auto;

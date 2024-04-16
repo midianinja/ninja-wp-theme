@@ -99,6 +99,22 @@
 			}
 		}
 	}
+
+	&.model-numbered {
+		.slide {
+			.post {
+				align-items: center;
+				display: flex;
+				gap: 15px;
+				
+				&-number{
+					color: #BDBDBD;
+					font-size: 40px;
+					font-weight: 700;
+				}
+			}
+		}
+	}
 }
 
 .latest-vertical-posts-block__footer {

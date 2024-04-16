@@ -32,7 +32,7 @@ function latest_vertical_posts_callback( $attributes ) {
     $posts_by_slide = $attributes['postsBySlide'] ?? 2;
     $posts_to_show = $attributes['postsToShow'] ?? 8;
 
-    if ( $block_model == 'posts' ) {
+    if ( $block_model == 'posts' || $block_model == 'numbered' ) {
         // Posts
         global $latest_vertical_posts_ids;
 
@@ -130,8 +130,10 @@ function latest_vertical_posts_callback( $attributes ) {
         }
     }
 
-    if ( $block_model == 'posts' ){
+    if ( $block_model == 'posts' || $block_model == 'numbered' ) {
         if ( $has_content->have_posts() ) :
+
+            $attributes['counter_posts'] = 0;
 
             while ( $has_content->have_posts() ) :
                 $has_content->the_post();
@@ -143,6 +145,8 @@ function latest_vertical_posts_callback( $attributes ) {
                 if ( $counter == 1 ) {
                     echo "<div class='slide'>";
                 }
+
+                $attributes['counter_posts']++;
 
                 get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', '', ['post' => $post, 'attributes' => $attributes] );
 

@@ -127,6 +127,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 									value: "columnists"
 								},
 								{
+									label: __( 'Numbered posts', 'ninja' ),
+									value: "numbered"
+								},
+								{
 									label: __( 'Posts', 'ninja' ),
 									value: "posts"
 								},
@@ -203,7 +207,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel == 'posts' || blockModel == 'columnists' ) && (
+					{ ( blockModel == 'posts' || blockModel == 'columnists' || blockModel == 'numbered' ) && (
 						<>
 							<PanelRow>
 								<SelectPostType postType={postType} onChangePostType={onChangePostType} />

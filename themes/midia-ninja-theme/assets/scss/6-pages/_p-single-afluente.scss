@@ -71,6 +71,15 @@ body.single-afluente {
                         margin-bottom: 0;
                     }
 
+                    // Block latest vertical posts
+                    .latest-vertical-posts-block {
+                        .post {
+                            &-author {
+                                color: #2D9CDB;
+                            }
+                        }
+                    }
+
                     // Block latest grid posts
                     .latest-grid-posts-block {
                         .post {

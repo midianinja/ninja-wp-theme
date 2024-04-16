@@ -103,7 +103,6 @@
 	&.model-numbered {
 		.slide {
 			.post {
-				align-items: center;
 				display: flex;
 				gap: 15px;
 
@@ -112,6 +111,7 @@
 					flex-shrink: 0;
 					font-size: 40px;
 					font-weight: 700;
+					padding-top: 5px;
 				}
 
 				&-content {

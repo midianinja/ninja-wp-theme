@@ -106,11 +106,18 @@
 				align-items: center;
 				display: flex;
 				gap: 15px;
-				
+
 				&-number{
 					color: #BDBDBD;
+					flex-shrink: 0;
 					font-size: 40px;
 					font-weight: 700;
+				}
+
+				&-content {
+					.post-meta {
+						display: block;
+					}
 				}
 			}
 		}

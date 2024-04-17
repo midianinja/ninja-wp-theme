@@ -587,16 +587,25 @@ header {
 					}
 
 					li.wpml-ls-item {
-						display: flex;
+						display: grid;
+
+						@media (min-width: 992px) {
+							display: flex;
+						}
 
 						.sub-menu.active {
-							margin-top: 1.5rem;
+							margin-top: 0;
+
+							@media (min-width: 992px) {
+								margin-top: 1.5rem;
+							}
 						}
 
 						i.fas {
 							display: block;
 							font-size: 15px;
 							margin-left: 5px;
+							grid-area: 1/2;
 
 							&::before {
 								content: url($p_theme_assets + "/images/wpml-arrow.png");
@@ -609,6 +618,7 @@ header {
 							i.fas {
 								&::before {
 									transform: rotate(180deg);
+									padding-bottom: 4px;
 								}
 							}
 						}

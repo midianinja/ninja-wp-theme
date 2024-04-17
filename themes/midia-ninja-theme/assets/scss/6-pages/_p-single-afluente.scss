@@ -183,6 +183,12 @@ body.single-afluente {
                     }
                 }
             }
+
+            &.items-justified-center {
+                li {
+                    justify-content: center;
+                }
+            }
         }
     }
 }

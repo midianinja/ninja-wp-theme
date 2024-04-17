@@ -47,6 +47,8 @@ if ($related_posts->have_posts()) : ?>
                         <time><?php echo get_the_date(); ?></time> 
                     </div>
                 </div>
+                <?php get_template_part('template-parts/content/pagination'); ?>
+
             </div>
         <?php endwhile; ?>
     </div>

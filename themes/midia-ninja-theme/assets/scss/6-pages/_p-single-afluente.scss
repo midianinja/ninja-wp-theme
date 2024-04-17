@@ -19,6 +19,10 @@ body.single-afluente {
                         left: initial;
                         transform: initial;
                         object-fit: inherit;
+
+                        @include mixins.mobile {
+                            width: auto;
+                        }
                     }
 
                     // Block latest horizontal posts
@@ -91,6 +95,24 @@ body.single-afluente {
                                     top: 50%;
                                     transform: translate(-50%, -50%);
                                     transition: all 0.3s ease-in-out;
+                                }
+                            }
+                        }
+                    }
+
+                    // Block image card
+                    .wp-block-ninja-image-card {
+                        .wrapper-image {
+                            .wp-block-image {
+
+                                img {
+                                    -webkit-border-top-left-radius: 8px;
+                                    -webkit-border-top-right-radius: 8px;
+                                    -moz-border-radius-topleft: 8px;
+                                    -moz-border-radius-topright: 8px;
+                                    border-top-left-radius: 8px;
+                                    border-top-right-radius: 8px;
+                                    width: 100%;
                                 }
                             }
                         }

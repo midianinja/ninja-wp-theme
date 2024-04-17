@@ -95,9 +95,11 @@
 						border-radius: 8px;
 					}
 
-					.post-info {
-						max-width: 770px;
+					.post-info{
+						max-width: 970px;
 						width: 100%;
+						display: flex;
+						gap: 32px;
 					}
 
 					.info {

@@ -37,7 +37,7 @@ if ( ! empty( $especial_terms ) ):
 ?>
 		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="<?= $especial_style ?>">
 			<a class="menu-especial__logo-desktop" href="<?= get_permalink( $especial_page->ID ) ?>">
-				<?= wp_get_attachment_image( $especial_menu['logo_desktop'], 'thumbnail', true ) ?>
+				<?= wp_get_attachment_image( $especial_menu['logo_desktop'], 'medium', true ) ?>
 			</a>
 			<a class="menu-especial__logo-mobile" href="<?= get_permalink( $especial_page->ID ) ?>">
 				<?= wp_get_attachment_image( $especial_menu['logo_mobile'], 'medium_large', true ) ?>

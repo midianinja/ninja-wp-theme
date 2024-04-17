@@ -70,6 +70,31 @@ body.single-afluente {
                     .latest-horizontal-posts-block {
                         margin-bottom: 0;
                     }
+
+                    // Block latest vertical posts
+                    .latest-vertical-posts-block {
+                        .post {
+                            &-author {
+                                color: #2D9CDB;
+                            }
+                        }
+                    }
+
+                    // Block latest grid posts
+                    .latest-grid-posts-block {
+                        .post {
+                            .post-thumbnail {
+                                img {
+                                    left: 50%;
+                                    object-fit: cover;
+                                    position: absolute;
+                                    top: 50%;
+                                    transform: translate(-50%, -50%);
+                                    transition: all 0.3s ease-in-out;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -38,6 +38,10 @@
 					display: flex;
 					gap: 5px;
 				}
+
+				.post-author {
+					font-weight: 700;
+				}
 			}
 		}
 	}
@@ -94,6 +98,31 @@
 				&-thumbnail {
 					&--image {
 						border-radius: 100px;
+					}
+				}
+			}
+		}
+	}
+
+	&.model-numbered {
+		.slide {
+			.post {
+				align-items: flex-start;
+				display: flex;
+				gap: 15px;
+
+				&-number{
+					color: #BDBDBD;
+					flex-shrink: 0;
+					flex-basis: 12%;
+					font-size: 40px;
+					font-weight: 700;
+					padding-top: 5px;
+				}
+
+				&-content {
+					.post-meta {
+						display: block;
 					}
 				}
 			}

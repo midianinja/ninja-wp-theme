@@ -25,6 +25,7 @@
 					width: 770px;
 					margin: auto;
 					width: auto;
+					margin: 30px 0;
 					
 					.wp-block-cover__inner-container{
 						.wp-block-columns{
@@ -35,16 +36,17 @@
 								max-width: 400px;
 								padding-top: 91px;
 								fill: rgba(51, 51, 51, 0.70);
-								backdrop-filter: blur(17.6999998093px);
+								backdrop-filter: blur(11px);
+								background: rgba(51, 51, 51, 0.70);
 								@media(max-width:468px){ 
 									max-width: 430px;
 									padding-top: 91px;
 									fill: rgba(51, 51, 51, 0.7);
-									-webkit-backdrop-filter: blur(17.6999998093px);
-									backdrop-filter: blur(17.6999998093px);
+									background: rgba(51, 51, 51, 0.70);
+									backdrop-filter: blur(11px);
 									height: 424px;
 									position: relative;
-									top: 59%;
+									top: 59%; 
 									transition: height 0.7s ease;
 									margin: 0px;
 								}

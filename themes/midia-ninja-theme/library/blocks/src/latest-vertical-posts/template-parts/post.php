@@ -3,11 +3,18 @@ $show_taxonomy = isset($args['attributes']['showTaxonomy']) ? $args['attributes'
 $show_thumbnail = isset($args['attributes']['showThumbnail']) ? $args['attributes']['showThumbnail'] : false;
 $show_author = isset($args['attributes']['showAuthor']) ? $args['attributes']['showAuthor'] : false;
 $show_excerpt = isset($args['attributes']['showExcerpt']) ? $args['attributes']['showExcerpt'] : false;
+$block_model = ! empty( $args['attributes']['blockModel'] ) ? $args['attributes']['blockModel'] : 'posts';
+$counter_posts = ! empty( $args['attributes']['counter_posts'] ) ? $args['attributes']['counter_posts'] : 1;
+$show_date = isset( $args['attributes']['showDate'] ) ? $args['attributes']['showDate'] : false;
 ?>
 
 <a href="<?php echo get_permalink();?>">
     <div class="post">
-        <?php if ($show_thumbnail) : ?>
+        <?php if ( 'numbered' === $block_model ) : ?>
+            <div class="post-number">
+                <span class="number"><?php echo $counter_posts;?></span><span class="point">.</span>
+        </div>
+        <?php elseif ( $show_thumbnail ) : ?>
             <div class="post-thumbnail">
                 <div class="post-thumbnail--image">
                     <?php if (has_post_thumbnail()) : ?>
@@ -20,10 +27,12 @@ $show_excerpt = isset($args['attributes']['showExcerpt']) ? $args['attributes'][
         <?php endif; ?>
         <div class="post-content">
             <h2 class="post-title"><?php echo apply_filters('the_title', $args['post']->post_title); ?></h2>
-            
+
             <div class="post-meta">
                 <div class="post-meta--date">
-                    <span><?php echo get_the_time_ago(); ?></span>
+                    <?php if ( $show_date ) : ?>
+                        <span><?php echo get_the_time_ago(); ?></span>
+                    <?php endif; ?>
 
                     <?php if ($show_taxonomy) : ?>
                         <?php $get_html_terms = get_html_terms($args['post']->ID, $args['attributes']['showTaxonomy'], false, true, 1); ?>

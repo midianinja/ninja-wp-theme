@@ -8,8 +8,15 @@ function latest_vertical_posts_callback( $attributes ) {
     $block_model     = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'posts';
     $block_classes[] = 'latest-vertical-posts-block';
 
-    if ( $block_model == 'posts' ){
+    $category = get_the_terms($post->ID, 'category');
+$cat_id = $category[0]->term_id;
+
+$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true );
+$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
+
+    if ( $block_model == 'posts' || $block_model == 'numbered' ){
         $show_author       = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
+        $show_date         = ( isset( $attributes['showDate'] ) && ! empty( $attributes['showDate'] ) ) ? true : false;
         $show_excerpt      = ( isset( $attributes['showExcerpt '] ) && ! empty( $attributes['showExcerpt '] ) ) ? true : false;
         $show_taxonomy     = ( isset( $attributes['showTaxonomy'] ) && ! empty( $attributes['showTaxonomy'] ) ) ? true : false;
         $show_thumbnail    = ( isset( $attributes['showThumbnail'] ) && ! empty( $attributes['showThumbnail'] ) ) ? true : false;
@@ -32,7 +39,7 @@ function latest_vertical_posts_callback( $attributes ) {
     $posts_by_slide = $attributes['postsBySlide'] ?? 2;
     $posts_to_show = $attributes['postsToShow'] ?? 8;
 
-    if ( $block_model == 'posts' ) {
+    if ( $block_model == 'posts' || $block_model == 'numbered' ) {
         // Posts
         global $latest_vertical_posts_ids;
 
@@ -130,8 +137,10 @@ function latest_vertical_posts_callback( $attributes ) {
         }
     }
 
-    if ( $block_model == 'posts' ){
+    if ( $block_model == 'posts' || $block_model == 'numbered' ) {
         if ( $has_content->have_posts() ) :
+
+            $attributes['counter_posts'] = 0;
 
             while ( $has_content->have_posts() ) :
                 $has_content->the_post();
@@ -143,6 +152,8 @@ function latest_vertical_posts_callback( $attributes ) {
                 if ( $counter == 1 ) {
                     echo "<div class='slide'>";
                 }
+
+                $attributes['counter_posts']++;
 
                 get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', '', ['post' => $post, 'attributes' => $attributes] );
 

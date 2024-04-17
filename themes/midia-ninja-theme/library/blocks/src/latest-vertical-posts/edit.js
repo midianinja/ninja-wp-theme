@@ -42,6 +42,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		postsToShow,
 		postType,
 		showAuthor,
+		showDate,
 		showExcerpt,
 		showTaxonomy,
 		showThumbnail,
@@ -127,6 +128,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 									value: "columnists"
 								},
 								{
+									label: __( 'Numbered posts', 'ninja' ),
+									value: "numbered"
+								},
+								{
 									label: __( 'Posts', 'ninja' ),
 									value: "posts"
 								},
@@ -203,7 +208,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel == 'posts' || blockModel == 'columnists' ) && (
+					{ ( blockModel == 'posts' || blockModel == 'columnists' || blockModel == 'numbered' ) && (
 						<>
 							<PanelRow>
 								<SelectPostType postType={postType} onChangePostType={onChangePostType} />
@@ -244,7 +249,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 					<PanelRow>
 						<SelectControl
-							label={ __( 'Taxonomy to display', 'ninja' ) }
+							label={ __( 'Show taxonomy', 'ninja' ) }
 							value={showTaxonomy}
 							options={taxonomies.map(taxonomy => ({
 								label: taxonomy.label,
@@ -258,15 +263,17 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						/>
 					</PanelRow>
 
-					<PanelRow>
-						<ToggleControl
-							label={ __( 'Show the post thumbnail?', 'ninja' ) }
-							checked={ showThumbnail }
-							onChange={ () => { setAttributes( { showThumbnail: ! showThumbnail } ) } }
-						/>
-					</PanelRow>
+					{ ( blockModel !== 'numbered' ) && (
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Show the post thumbnail?', 'ninja' ) }
+								checked={ showThumbnail }
+								onChange={ () => { setAttributes( { showThumbnail: ! showThumbnail } ) } }
+							/>
+						</PanelRow>
+					) }
 
-					{ showThumbnail && (
+					{ ( showThumbnail && blockModel !== 'numbered' ) && (
 						<PanelRow>
 							<ToggleControl
 								label={ __( 'Use rounded thumbnail?', 'ninja' ) }
@@ -283,6 +290,15 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							onChange={ () => { setAttributes( { showAuthor: ! showAuthor } ) } }
 						/>
 					</PanelRow>
+
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Show the post date?', 'ninja' ) }
+							checked={ showDate }
+							onChange={ () => { setAttributes( { showDate: ! showDate } ) } }
+						/>
+					</PanelRow>
+
 					<PanelRow>
 						<ToggleControl
 							label={ __( 'Show the post excerpt?', 'ninja' ) }

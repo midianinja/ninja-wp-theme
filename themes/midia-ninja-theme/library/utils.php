@@ -431,9 +431,9 @@ if (function_exists('get_coauthors') && ! function_exists('get_list_coauthors'))
     /**
      * Get list of coauthors using Co Authors Plus plugin.
      */
-    function get_list_coauthors()
+    function get_list_coauthors( $post_id = 0 )
     {
-        $all_authors = get_coauthors();
+        $all_authors = get_coauthors( $post_id );
 
         $output = '';
 

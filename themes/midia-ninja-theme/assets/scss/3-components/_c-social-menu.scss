@@ -47,14 +47,21 @@
 			}
 		}
 
+		&.icon-instagram,
+		&.icon-x {
+			svg {
+				padding: 2px;
+			}
+		}
+
 		a {
 			color: inherit;
 			display: grid;
 			align-content: center;
 
 			svg {
-				width: 20px;
-				height: 20px;
+				width: 24px;
+				height: auto;
 
 				path,
 				circle {

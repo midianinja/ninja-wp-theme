@@ -97,8 +97,10 @@
 					}
 
 					.post-info{
-						max-width: 770px;
+						max-width: 970px;
 						width: 100%;
+						display: flex;
+						gap: 32px;
 					}
 
 					.info {

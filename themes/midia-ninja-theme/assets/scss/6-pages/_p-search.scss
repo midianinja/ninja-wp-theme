@@ -91,3 +91,112 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
         @import "./../7-parts/p-content-post";
     }
 }
+
+
+.search-no-results{
+    #app{
+        .index-wrapper{
+            .container{
+                max-width: 1170px;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                display: flex;
+                justify-content: center;
+                
+                .row{
+
+                    .search-component{
+                        display: none;
+                    }
+
+                                            
+                    .title{
+                        display: flex;
+                        align-items: center;
+                        gap: 30px;
+                        max-width: 1170px;
+                        width: 100%;
+                    }
+
+                    .content{
+                        max-width: 770px;
+                        margin-right: auto;
+                        margin-left: auto;
+                        width: 100%;
+                        margin-bottom: 100px;
+
+                        h4{
+                            display: none;
+                        }
+
+                        >p{
+                            max-width: 770px;
+                            width: 100%;
+                            color: #666;
+                            text-align: center;
+                            font-family: var(--wp--preset--font-family--manrope);
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 140%; 
+                        }
+
+                        .no-result-buttons{
+                            display: flex;
+                            justify-content: center;
+                            gap: 10px;
+
+                            button{
+                                a{
+                                    text-decoration: none;
+                                }
+                            }
+
+                            .new-search{
+                                border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                                border: 2px solid #000;
+                                padding: 16px 24px;
+                                background-color: transparent;
+                                
+                                a{
+                                    color: var(--Primary-dark, var(--DARK, #111));
+                                    text-align: center;
+                                    font-family: var(--wp--preset--color--manrope);
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 800;
+                                    line-height: 150%;
+                                    letter-spacing: -0.42px;
+                                    text-transform: uppercase;
+                                }
+                            }
+
+                            .b-home{
+                                border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+                                border: none;
+                                background: var(--DARK, #111);
+                                padding: 16px 24px;
+                                max-width: 185px;
+                                width: 100%;
+
+                                a{
+                                    color: var(--White, #FFF);
+                                    text-align: center;
+                                    font-family: var(--wp--preset--color--manrope);
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 800;
+                                    line-height: 150%;
+                                    letter-spacing: -0.42px;
+                                    text-transform: uppercase;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

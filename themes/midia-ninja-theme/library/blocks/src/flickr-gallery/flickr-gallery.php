@@ -35,7 +35,7 @@ function flickr_gallery_callback( $attributes ) {
 		return;
 	}
 
-	$has_content = flickr_get_contents( $api_key, $flickr_by_type, $data_id );
+	$has_content = flickr_get_photos( $api_key, $flickr_by_type, $data_id, 9, 1 );
 
     if ( ! $has_content ) {
         if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
@@ -65,7 +65,7 @@ function flickr_gallery_callback( $attributes ) {
                 </div>
 
 				<div class="flickr-gallery-block__grid">
-				<?php foreach( $has_content as $photo ): ?>
+				<?php foreach( $has_content['data'] as $photo ): ?>
 					<?php get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, ['photo' => $photo, 'attributes' => $attributes] ); ?>
 				<?php endforeach; ?>
 				</div>

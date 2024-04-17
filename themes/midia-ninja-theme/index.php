@@ -1,5 +1,9 @@
 <?php
 get_header();
+
+
+$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true );
+$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
 ?>
 
 <div class="index-wrapper">
@@ -13,6 +17,17 @@ get_header();
 
                 <div class="infos">
                     <?php get_template_part( 'template-parts/filter', 'posts', ['taxonomy' => 'category'] ); ?>
+                    <div class="info">
+                                <span class="term-<?= $category[0]->slug; ?>">
+                                    <?php
+                                    $categories = get_the_category();
+
+                                    foreach ($categories as $category){
+                                    echo '<a style="color:' .  $cor_font . '; background-color:' .  $cor_fundo . ';" href="' . get_category_link($category->term_id) . '">' . $category->cat_name . '</a>';
+
+                                    }; ?>
+                                </span>
+                            </div>
                 </div><!-- .infos -->
 
                 <main class="content col-md-9">

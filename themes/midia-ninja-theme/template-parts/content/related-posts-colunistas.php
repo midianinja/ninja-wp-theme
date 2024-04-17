@@ -2,7 +2,6 @@
 
 $post_id = get_the_ID();
 $projects = get_the_terms($post_id, 'category');
-$cat = $projects[0]->term_id;
 
 if ($projects && ! is_wp_error($projects)) {
     $projects = wp_list_pluck($projects, 'term_id');
@@ -29,22 +28,17 @@ if ($related_posts->have_posts()) : ?>
             // Thumbnail
             $thumbnail = (has_post_thumbnail()) ? get_the_post_thumbnail() : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">'; ?>
             
-            <div class="related-post">
+            <div class="related-post-card">
                 <a class="related-post-image" href="<?php the_permalink();?>"><?php echo $thumbnail;?></a>
                 
                 <div class="related-post-content">
-                  
-                    
-                    <span class="category term-<?= $term ?>">
-                        <?= $category[0]->cat_name;  ?>
-                    </span> 
             
                     <div class="info">
                         <a href="<?php the_permalink();?>">
-                            <h5><?php the_title(); ?></h5>
+                            <h4><?php the_title(); ?></h4>
                         </a>
                         
-                        <time><?php echo get_the_date(); ?></time> 
+                            <h5><?php the_title(); ?></h5>
                     </div>
                 </div>
             </div>

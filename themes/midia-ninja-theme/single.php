@@ -128,16 +128,16 @@ get_template_part( 'template-parts/header-especiais' );
                                 $afluente_name = $term->name;
                                 $afluente_bio = $term->description;
                                 $term_id = $term->term_id;
-                                $avatar = get_term_meta($term_id, 'avatar', false);
+                                $avatar = get_term_meta($term_id, 'avatar', true);
                                 $instagram = get_term_meta($term_id, 'instagram', true);
                                 $facebook = get_term_meta($term_id, 'facebook', true);
                                 $twitter = get_term_meta($term_id, 'twitter', true);
 
                                 ?>
                                 <div class="author-info-card">
-
-                                    <img src="<?php $avatar; ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
-
+                                    <?php if($avatar): ?>
+                                        <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
+                                    <?php endif ?>    
                                     <div class="authname">
                                         <?php echo $afluente_name; ?>
                                     </div>

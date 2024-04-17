@@ -39,19 +39,22 @@
 		"flickrUserId": {
 			"type": "string"
 		},
-		"playlistId": {
+		"heading": {
 			"type": "string"
 		},
-		"postType": {
-			"type": "string",
-			"default": "post"
+		"playlistId": {
+			"type": "string"
 		},
 		"postsToShow": {
 			"type": "number",
 			"default": 5
 		},
-		"heading": {
-			"type": "string"
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"queryTerms": {
+			"type": "array"
 		},
 		"showTaxonomy": {
 			"type": "string",
@@ -61,13 +64,8 @@
 			"type": "number",
 			"default": 3
 		},
-		"order": {
-			"type": "string",
-			"default": "desc"
-		},
-		"orderBy": {
-			"type": "string",
-			"default": "date"
+		"taxonomy": {
+			"type": "string"
 		}
 	},
 	"textdomain": "ninja",

@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ninja/opinion-posts",
+	"version": "0.1.10",
+	"title": "Posts de opinião",
+	"category": "text",
+	"icon": "excerpt-view",
+	"description": "Exibe os posts de opinião em formato horizontal com slider.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"blockId": {
+			"type": "string",
+			"default": ""
+		},
+		"contentPosition": {
+			"type": "string",
+			"default": "left"
+		},
+		"linkText": {
+			"type": "string"
+		},
+		"postsToShow": {
+			"type": "number",
+			"default": 6
+		},
+		"heading": {
+			"type": "string"
+		},
+		"order": {
+			"type": "string",
+			"default": "desc"
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "date"
+		},
+		"slidesToShow": {
+			"type": "number",
+			"default": 3
+		}
+	},
+	"textdomain": "ninja",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

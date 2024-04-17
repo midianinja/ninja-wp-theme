@@ -101,8 +101,16 @@
 						width: 100%;
 						display: flex;
 						gap: 32px;
+						@media(max-width: 1199px){
+							display: block;
+						}
+						div{
+							img, h2, h5{
+								max-width: 770px;
+								width: 100%;
+							}
+						}
 					}
-
 					.info {
 						font-size: 20px;
 						font-weight: 800;
@@ -140,7 +148,7 @@
 							align-items: center;
 							padding: 21px 25px 19px 20px;
 
-							img.avatar {
+							.avatar {
 								width: 92px;
 								height: 92px;
 								margin-bottom: 0;
@@ -313,6 +321,8 @@
 						.avatar {
 							margin-bottom: 2rem;
 							border-radius: 50%;
+							width: 150px;
+							height: 150px;
 						}
 
 						.authname{

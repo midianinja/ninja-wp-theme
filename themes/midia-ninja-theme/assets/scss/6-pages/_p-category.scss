@@ -202,14 +202,12 @@
 
 						.article-section-title {
 							color: var(--DARK, #111);
-<<<<<<< HEAD
 							font-family: var(--f-ninja);
 							font-feature-settings: "calt" on;
 							font-size: 36px;
 							font-style: normal;
 							font-weight: 400;
 							line-height: 145%;
-=======
 							font-feature-settings: var(--f-ninja-config);
 							font-family: var(--f-ninja);
 							font-size: 36px;
@@ -217,7 +215,6 @@
 							font-weight: 400;
 							line-height: 145%; 
 							margin-top: 0;
->>>>>>> search-results
 						}
 					}
 

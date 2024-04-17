@@ -22,6 +22,7 @@ function blocks_init() {
 		'high-spot' => [
 			'render_callback' => 'Ninja\\high_spot_callback'
 		],
+		'image-card' => null,
 		'latest-editorial-posts' => [
 			'render_callback' => 'Ninja\\latest_editorial_posts_callback'
 		],

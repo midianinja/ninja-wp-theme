@@ -473,8 +473,9 @@ header {
 
 				&:not(.up) {
 					&::before {
-						content: url($p_theme_assets + "/images/arrow-down.svg") !important;
+						content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
 						transition: opacity 0.2s ease;
+						transform: rotate(180deg);
 
 						@include tablet {
 							opacity: 1;
@@ -484,7 +485,7 @@ header {
 
 				&.up {
 					&::before {
-						content: url($p_theme_assets + "/images/arrow-up.svg") !important;
+						content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
 						opacity: 1;
 						transition: opacity 0.2s ease;
 					}

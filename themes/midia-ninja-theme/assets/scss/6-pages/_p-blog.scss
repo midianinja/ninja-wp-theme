@@ -408,10 +408,10 @@
 
 								&--content{
 									.entry-meta{
-									    position: absolute;
+									    position: relative;
 										z-index: 2;
 										left: 15px;
-										top: 150px;
+										bottom: 50px;
 									}
 
 									a{

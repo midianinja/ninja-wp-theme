@@ -8,12 +8,6 @@ function latest_vertical_posts_callback( $attributes ) {
     $block_model     = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'posts';
     $block_classes[] = 'latest-vertical-posts-block';
 
-    $category = get_the_terms($post->ID, 'category');
-$cat_id = $category[0]->term_id;
-
-$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true );
-$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
-
     if ( $block_model == 'posts' || $block_model == 'numbered' ){
         $show_author       = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
         $show_date         = ( isset( $attributes['showDate'] ) && ! empty( $attributes['showDate'] ) ) ? true : false;

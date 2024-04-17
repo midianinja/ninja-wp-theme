@@ -1,6 +1,11 @@
 @import "../../shared/scss/mixins";
 
 .latest-grid-posts-block {
+    > .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .latest-grid-posts-block__posts {
         display: grid;
         grid-template-columns: repeat(2, 1fr);

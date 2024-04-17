@@ -15,11 +15,15 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
                 <p>(<?= $total_results . " $singular";?>)</p>
             </div>
 
-            <aside class="col-md-3">
+            <main class="content col-md-3">
                 <h4><?php _e('Results', 'ninja'); ?></h4>
-                <p><?php _e('Click below on what types of results you would like for your search', 'ninja'); ?></p>
-                <?php the_category()?>
-            </aside>
+                <p><?php _e('You can perform a new search or return to the home page', 'ninja'); ?></p>
+
+                <div class="no-result-buttons">
+                    <button class="new-search"><a href="#">New Search</a></button>
+                    <button class="b-home"><a href="#">Back to home</a></button>
+                </div>
+            </main>
 
             <main class="col-md-9">
                 <div>

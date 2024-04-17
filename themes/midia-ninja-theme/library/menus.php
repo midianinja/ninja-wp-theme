@@ -57,18 +57,18 @@ function sempre_hamburguer($files)
 
 
 //Adiciona item Mais + no main menu
-function add_more_itens_on_menu($items, $args)
-{
-    if ($args->theme_location != 'main-menu') {
-        return $items;
-    }
+// function add_more_itens_on_menu($items, $args)
+// {
+//     if ($args->theme_location != 'main-menu') {
+//         return $items;
+//     }
 
-    $link  = '<li class="menu-item nav-item mais">
-                <a href="#">Mais +</a>
-            </li>';
+//     $link  = '<li class="menu-item nav-item mais">
+//                 <a href="#">Mais +</a>
+//             </li>';
 
-    $items .= $link;
-    return $items;
-}
+//     $items .= $link;
+//     return $items;
+// }
 
-add_action('wp_nav_menu_items', 'jaci\\add_more_itens_on_menu', 10, 2);
+// add_action('wp_nav_menu_items', 'jaci\\add_more_itens_on_menu', 10, 2);

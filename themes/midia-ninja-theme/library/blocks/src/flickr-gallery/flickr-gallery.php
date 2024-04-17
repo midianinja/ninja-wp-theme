@@ -35,7 +35,7 @@ function flickr_gallery_callback( $attributes ) {
 		return;
 	}
 
-	$has_content = flickr_get_contents( $api_key, $flickr_by_type, $data_id );
+	$has_content = flickr_get_photos( $api_key, $flickr_by_type, $data_id, 10, 1 );
 
     if ( ! $has_content ) {
         if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {

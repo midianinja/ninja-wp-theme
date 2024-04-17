@@ -5,6 +5,7 @@ $show_author = isset($args['attributes']['showAuthor']) ? $args['attributes']['s
 $show_excerpt = isset($args['attributes']['showExcerpt']) ? $args['attributes']['showExcerpt'] : false;
 $block_model = ! empty( $args['attributes']['blockModel'] ) ? $args['attributes']['blockModel'] : 'posts';
 $counter_posts = ! empty( $args['attributes']['counter_posts'] ) ? $args['attributes']['counter_posts'] : 1;
+$show_date = isset( $args['attributes']['showDate'] ) ? $args['attributes']['showDate'] : false;
 ?>
 
 <a href="<?php echo get_permalink();?>">
@@ -26,10 +27,12 @@ $counter_posts = ! empty( $args['attributes']['counter_posts'] ) ? $args['attrib
         <?php endif; ?>
         <div class="post-content">
             <h2 class="post-title"><?php echo apply_filters('the_title', $args['post']->post_title); ?></h2>
-            
+
             <div class="post-meta">
                 <div class="post-meta--date">
-                    <span><?php echo get_the_time_ago(); ?></span>
+                    <?php if ( $show_date ) : ?>
+                        <span><?php echo get_the_time_ago(); ?></span>
+                    <?php endif; ?>
 
                     <?php if ($show_taxonomy) : ?>
                         <?php $get_html_terms = get_html_terms($args['post']->ID, $args['attributes']['showTaxonomy'], false, true, 1); ?>

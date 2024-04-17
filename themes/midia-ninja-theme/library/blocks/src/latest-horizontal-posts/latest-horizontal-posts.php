@@ -30,7 +30,7 @@ function latest_horizontal_posts_callback( $attributes ) {
 
     if ( $block_model == 'collection' ) {
         // Flickr
-        require_once  __DIR__ . '/includes/collection.php';
+        require_once  __DIR__ . '/../shared/includes/flickr.php';
 
         $api_key = ( isset( $attributes['flickrAPIKey'] ) && ! empty( $attributes['flickrAPIKey'] ) ) ? esc_attr( $attributes['flickrAPIKey'] ) : false;
         $flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';

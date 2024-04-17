@@ -16,9 +16,13 @@ function blocks_init() {
 		'dynamic' => [
 			'render_callback' => 'Ninja\\dynamic_block_recent_posts',
 		],
+		'flickr-gallery' => [
+			'render_callback' => 'Ninja\\flickr_gallery_callback',
+		],
 		'high-spot' => [
 			'render_callback' => 'Ninja\\high_spot_callback'
 		],
+		'image-card' => null,
 		'latest-editorial-posts' => [
 			'render_callback' => 'Ninja\\latest_editorial_posts_callback'
 		],

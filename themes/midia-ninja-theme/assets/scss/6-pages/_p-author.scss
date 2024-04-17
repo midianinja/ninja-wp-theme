@@ -90,5 +90,45 @@
             }
         }
     }
+    main{
+        .post-card{
+            width: 334px;
+            margin-top:60px;
+            .post-card--thumb{
+                display: none;
+            }
+            & .post-card--content{
+                .entry-date{
+                    color: var(--Gray-3, #828282);
+                    /* <h5> Manrope */
+                    font-family: Manrope;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 145%; /* 18.85px */
+                }
+                a,
+                h5{
+                    color: var(--Gray-1, #333);
+                    font-family: Manrope;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 130%; /* 26px */
+                    margin-bottom: 16px;
+                }
+                .entry-excerpt{
+                    color: var(--Gray-3, #828282);
+                    /* <p> Manrope */
+                    font-family: Manrope;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 140%; /* 22.4px */
+                }
+            }
+        }
+        
+    }
 }
  

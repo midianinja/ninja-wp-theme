@@ -10,19 +10,20 @@ function flickr_get_albums( $api_key, $user_id = '', $per_page = 10, $page = 1 )
         return $cached_data;
     }
 
-	$data = [];
+    $response = [ 'data' => [], 'pages' => 1 ];
 	if ( $user_id ) {
 		$request_api = 'https://www.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=' . $api_key . '&user_id=' . $user_id . '&per_page=' . $per_page . '&page=' . $page . '&format=json&nojsoncallback=1';
-		$file_get_contents = json_decode( file_get_contents( $request_api ), true );
+		$contents = json_decode( file_get_contents( $request_api ), true );
 
-		if ( isset( $file_get_contents['photosets']['photoset'] ) ) {
-			$data = $file_get_contents['photosets']['photoset'];
+		if ( isset( $contents['photosets']['photoset'] ) ) {
+			$response['data'] = $contents['photosets']['photoset'];
+			$response['pages'] = $contents['photosets']['pages'];
 		}
 	}
 
-	if ( is_array( $data ) && count( $data ) > 0 ) {
-		set_transient( $cache_key, $data, 3600 );
-		return $data;
+	if ( is_array( $response['data'] ) && count( $response['data'] ) > 0 ) {
+		set_transient( $cache_key, $response, 3600 );
+		return $response;
 	}
 
 	return false;
@@ -36,30 +37,32 @@ function flickr_get_photos( $api_key, $flickr_by_type = 'user', $data_id = '', $
         return $cached_data;
     }
 
-    $data = [];
+    $response = [ 'data' => [], 'pages' => 1 ];
     if ( $flickr_by_type == 'user' ) {
         $request_api = 'https://www.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=' . $api_key . '&user_id=' . $data_id . '&extras=url_l,url_z,tags,machine_tags,media,date_upload&per_page=' . $per_page . '&page=' . $page . '&format=json&nojsoncallback=1';
-        $file_get_contents = json_decode( file_get_contents( $request_api ), true );
+        $contents = json_decode( file_get_contents( $request_api ), true );
 
-        if ( isset( $file_get_contents['photos']['photo'] ) ) {
-            $data = $file_get_contents['photos']['photo'];
+        if ( isset( $contents['photos']['photo'] ) ) {
+            $response['data'] = $contents['photos']['photo'];
+			$response['pages'] = $contents['photos']['pages'];
         }
     } elseif ( $data_id ) {
         $request_api = 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' . $api_key . '&photoset_id=' . $data_id . '&extras=url_l,url_z,tags,machine_tags,media,date_upload&per_page=' . $per_page . '&page=' . $page . '&format=json&nojsoncallback=1';
-        $file_get_contents = json_decode( file_get_contents( $request_api ), true );
+        $contents = json_decode( file_get_contents( $request_api ), true );
 
-        if ( isset( $file_get_contents['photoset']['owner'] ) && isset( $file_get_contents['photoset']['photo'] ) ) {
-            $data = $file_get_contents['photoset']['photo'];
+        if ( isset( $contents['photoset']['owner'] ) && isset( $contents['photoset']['photo'] ) ) {
+            $response['data'] = $contents['photoset']['photo'];
+			$response['pages'] = $contents['photoset']['pages'];
 
-            foreach( $data as &$p ) {
-                $p['owner'] = $file_get_contents['photoset']['owner'];
+            foreach( $response['data'] as &$p ) {
+                $p['owner'] = $contents['photoset']['owner'];
             }
         }
     }
 
-    if ( is_array( $data ) && count( $data ) > 0 ) {
-        set_transient( $cache_key, $data, 3600 );
-        return $data;
+	if ( is_array( $response['data'] ) && count( $response['data'] ) > 0 ) {
+        set_transient( $cache_key, $response, 3600 );
+        return $response;
     }
 
     return false;

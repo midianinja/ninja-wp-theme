@@ -154,7 +154,7 @@ function latest_horizontal_posts_callback( $attributes ) {
 
                 if ( $block_model == 'collection' ) {
                     // Flickr
-                    foreach( $has_content as $photo ) :
+                    foreach( $has_content['data'] as $photo ) :
                         get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['photo' => $photo, 'attributes' => $attributes] );
                     endforeach;
                 }

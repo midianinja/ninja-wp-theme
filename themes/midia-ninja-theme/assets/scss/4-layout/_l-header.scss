@@ -459,38 +459,43 @@ header {
 			display: flex;
 			margin-top: 6px;
 			width: 100%;
-			height: 57px;
+			height: auto;
 			justify-self: center;
 			overflow: auto;
 			margin-top: 0;
 			transition: all 0.3s ease-in-out;
 			overflow: hidden;
 
-			i.fa-angle-down,
-			i.fa-angle-up {
-				font-size: 15px;
-				margin-left: 10px;
-
-				&:not(.up) {
-					&::before {
-						content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
-						transition: opacity 0.2s ease;
-						transform: rotate(180deg);
-
-						@include tablet {
-							opacity: 1;
-						}
-					}
-				}
-
-				&.up {
-					&::before {
-						content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
-						opacity: 1;
-						transition: opacity 0.2s ease;
-					}
-				}
+			a:hover {
+				color: #111;
+				text-decoration: none;
 			}
+
+			// i.fa-angle-down,
+			// i.fa-angle-up {
+			// 	font-size: 15px;
+			// 	margin-left: 10px;
+
+			// 	&:not(.up) {
+			// 		&::before {
+			// 			content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
+			// 			transition: opacity 0.2s ease;
+
+			// 			@include tablet {
+			// 				opacity: 1;
+			// 			}
+			// 		}
+			// 	}
+
+			// 	&.up {
+			// 		&::before {
+			// 			content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
+			// 			opacity: 1;
+			// 			transition: opacity 0.2s ease;
+			// 			transform: rotate(180deg);
+			// 		}
+			// 	}
+			// }
 
 			.primary-menu {
 				margin: auto;
@@ -501,7 +506,6 @@ header {
 					margin-right: 0;
 					width: auto;
 					display: none;
-					display: flex;
 				}
 
 				ul.menu {
@@ -560,7 +564,7 @@ header {
 
 									@media (max-width: $desktop-width) {
 										background-color: transparent;
-										border-left: 2px solid #035299;
+										//border-left: 2px solid #035299;
 									}
 
 									a {
@@ -579,6 +583,34 @@ header {
 
 						@media (min-width: $tablet-width) {
 							display: block;
+						}
+					}
+
+					li.wpml-ls-item {
+						display: flex;
+
+						.sub-menu.active {
+							margin-top: 1.5rem;
+						}
+
+						i.fas {
+							display: block;
+							font-size: 15px;
+							margin-left: 5px;
+
+							&::before {
+								content: url($p_theme_assets + "/images/wpml-arrow.png");
+								display: block;
+								transition: opacity 0.2s ease;
+							}
+						}
+
+						&.active {
+							i.fas {
+								&::before {
+									transform: rotate(180deg);
+								}
+							}
 						}
 					}
 

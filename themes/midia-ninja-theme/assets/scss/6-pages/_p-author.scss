@@ -1,33 +1,94 @@
-.author{
-    &--info{
-        display: flex;
-        margin: 20px 0 30px 0;
-        padding: 0;
-        
-        img{
-            border-radius: 7px;
-            margin-right: 10px;
-        }
-    }
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
+.container{margin-top:30px};
 
-    h1.author-name {
-        text-align:center;
-    }
-    .blog-description {
-        text-align: center;
-    }
-    header.title-author {
-        background-size:cover;
-        .container {
-            text-align: center;
-            * {
-                color:var(--wp--preset--color--white);
+.author{
+    .banner-principal{
+        width:870px;
+        height: 497px;
+        padding:0px;
+        background-image: url(variables.$p_theme_assets+"/images/banner-background.png");
+        .lado-esquerdo-banner{ 
+            max-width: 377px;
+            height: 497px;
+            border-radius: 8px 0px 0px 8px; 
+            background: rgba(51, 51, 51, 0.70);
+            backdrop-filter: blur(11px);
+            & .container-info{
+                padding-top: 82px;
+                padding-left: 57px;
+                margin: auto;
+                .tag{
+                    color: #FFF;
+                    font-family: "Archivo Expanded",sans-serif;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 155%; /* 21.7px */
+                    letter-spacing: -0.42px;
+                    text-transform: uppercase;
+                }
+                .title{
+                    color: #FFF;
+                    /* <h2> Manrope */
+                    font-family: 'Manrope',sans-serif;
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 120%; /* 38.4px */
+                    letter-spacing: -0.64px;
+                    margin-bottom: 38px;
+                }
+                .resumo{
+                    color: #FFF;
+                    font-family: 'Manrope',sans-serif;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 130%; /* 18.2px */
+                }
             }
         }
-        p {
-            position: relative;
-            z-index: 2;
+    }
+    .author-info{
+        width: 271px;
+        height: 497px;
+        border-radius: 8px;
+        background: var(--Gray-1, #333);
+        & .author-info-card{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            img{
+                width: 175.648px;
+                height: 175px;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+            .author-name{
+                color: var(--White, #FFF);
+                font-family: 'Manrope',sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 24px; /* 120% */
+                width: 201px;
+                letter-spacing: -0.6px;
+                margin-top: 35px;
+                margin-bottom: 17px;
+                border-bottom: #FFF solid 1px;
+                padding-bottom: 10px;
+            }
+            .authbio{
+                color: var(--White, #FFF);
+                font-family: 'Manrope',sans-serif;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 130%; /* 15.6px */
+                max-width: 201px;
+            }
         }
     }
-
 }
+ 

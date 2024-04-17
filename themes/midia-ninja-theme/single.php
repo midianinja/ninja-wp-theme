@@ -60,15 +60,12 @@ get_template_part( 'template-parts/header-especiais' );
                                     $instagram = get_term_meta($term_id, 'instagram', true);
                                     $facebook = get_term_meta($term_id, 'facebook', true);
                                     $twitter = get_term_meta($term_id, 'twitter', true);
+                                    
                                     ?>
                                     <div class="author-info-card">
                                         
-                                    <?php if ($avatar): ?>
-                                        <img src="<?php echo $avatar; ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
-                                        <?php else: ?>
-                                            <?php echo get_avatar(get_the_author_meta('ID'), 128); ?>
-                                        <?php endif; ?>
-                                            
+                                        <img src="<?php $avatar; ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
+                                   
                                         <div class="auth-name-icons">    
                                         
                                         <div class="authname">
@@ -131,14 +128,16 @@ get_template_part( 'template-parts/header-especiais' );
                                 $afluente_name = $term->name;
                                 $afluente_bio = $term->description;
                                 $term_id = $term->term_id;
-                                
+                                $avatar = get_term_meta($term_id, 'avatar', false);
                                 $instagram = get_term_meta($term_id, 'instagram', true);
                                 $facebook = get_term_meta($term_id, 'facebook', true);
                                 $twitter = get_term_meta($term_id, 'twitter', true);
+
                                 ?>
                                 <div class="author-info-card">
-                                    <?php echo get_avatar(get_the_author_meta('ID'), 128);?>
-                                    
+
+                                    <img src="<?php $avatar; ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
+
                                     <div class="authname">
                                         <?php echo $afluente_name; ?>
                                     </div>

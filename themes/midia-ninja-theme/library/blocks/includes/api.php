@@ -124,16 +124,30 @@ function get_public_post_types( $request ) {
 }
 
 function get_taxonomies_by_post_type( $request ) {
-    $post_type = $request['post_type'];
+    $post_type  = sanitize_text_field( $request['post_type'] );
     $taxonomies = get_object_taxonomies( $post_type, 'objects' );
-    $response = [];
+    $response   = [];
+
+    $remove_taxonomies = ['post_format', 'author'];
 
     foreach ( $taxonomies as $taxonomy ) {
-        $response[] = [
-            'label' => $taxonomy->label,
-            'value' => $taxonomy->name
-        ];
+        if ( ! in_array( $taxonomy->name, $remove_taxonomies ) ) {
+            $response[] = [
+                'label' => $taxonomy->label,
+                'value' => $taxonomy->name
+            ];
+        }
     }
+
+    /**
+     * Filters the list of taxonomies associated with a post type.
+     *
+     * @param array  $response   The list of taxonomies associated with the post type.
+     * @param string $post_type  The post type for which the taxonomies are being retrieved.
+     *
+     * @return array The modified list of taxonomies.
+     */
+    $response = apply_filters( 'ninja/helpers/taxonomies', $response, $post_type );
 
     array_unshift( $response, [
         'label' => __( 'Select an option', 'ninja' ),

@@ -99,10 +99,10 @@ $coauthors = get_coauthors();
                 <?php while ( have_posts() ) : the_post(); ?>
                     <?php get_template_part( 'template-parts/content/post' ); ?>    
                 <?php endwhile; ?>
-
+                <?php echo get_layout_footer('author'); ?>
                 <?php get_template_part( 'template-parts/content/pagination' ); ?>
             </main>
-        </div><!-- /.row -->
+        </div><!-- /.row --> 
     </div><!-- /.container -->
 </div><!-- /.index-wrapper -->
 

@@ -92,7 +92,18 @@ function register_endpoints() {
                     'validate_callback' => function( $param, $request, $key ) {
                         return is_numeric( $param ) && $param > 0;
                     }
-                ]
+                ],
+                'post_not_in' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        $post_not_in = explode( ',', sanitize_text_field( $request['post_not_in'] ) );
+                        foreach ( $post_not_in as $post_id ) {
+                            return is_numeric( $post_id );
+                        }
+
+                        return true;
+                    }
+                ],
             ],
             'permission_callback' => '__return_true'
         ]
@@ -159,12 +170,13 @@ function get_taxonomies_by_post_type( $request ) {
 
 function get_posts_by_taxonomy_term( $request ) {
 
-    $post_type = sanitize_text_field( $request['post_type'] );
-    $taxonomy  = sanitize_text_field( $request['taxonomy'] );
-    $terms     = explode( ',', sanitize_text_field( $request['terms'] ) );
-    $max_posts = ! empty( $request['max_posts']) ? intval( $request['max_posts'] ) : 10;
-    $per_page  = ! empty( $request['per_page'] ) ? intval( $request['per_page'] ) : 10;
-    $page      = ! empty( $request['page'] ) ? intval( $request['page'] ) : 1;
+    $post_type    = sanitize_text_field( $request['post_type'] );
+    $taxonomy     = sanitize_text_field( $request['taxonomy'] );
+    $terms        = explode( ',', sanitize_text_field( $request['terms'] ) );
+    $max_posts    = ! empty( $request['max_posts']) ? intval( $request['max_posts'] ) : 10;
+    $per_page     = ! empty( $request['per_page'] ) ? intval( $request['per_page'] ) : 10;
+    $page         = ! empty( $request['page'] ) ? intval( $request['page'] ) : 1;
+    $post__not_in = explode( ',', sanitize_text_field( $request['post_not_in'] ) );
 
     $no_found_rows = $page === 1 ? false : true;
 
@@ -173,7 +185,8 @@ function get_posts_by_taxonomy_term( $request ) {
         'posts_per_page'      => $per_page,
         'paged'               => $page,
         'no_found_rows'       => $no_found_rows,
-        'ignore_sticky_posts' => true
+        'ignore_sticky_posts' => true,
+        'post__not_in'        => $post__not_in
     ];
 
     $terms_filter = array_filter( $terms, function( $item ) {

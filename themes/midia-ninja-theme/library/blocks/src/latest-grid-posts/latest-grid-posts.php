@@ -19,20 +19,35 @@ function latest_grid_posts_callback( $attributes ) {
         $taxonomy = '';
     }
 
+    global $latest_blocks_posts_ids;
+
+    if ( ! is_array( $latest_blocks_posts_ids ) ) {
+        $latest_blocks_posts_ids = [];
+    }
+
+    $attributes['returnIds'] = true;
+    $post__not_in = $latest_blocks_posts_ids;
+
+    $args = build_posts_query( $attributes, $latest_blocks_posts_ids );
+    $posts_query = get_posts( $args );
+
+    $latest_blocks_posts_ids = array_merge( $post__not_in, $posts_query );
+
     ob_start();
 
     // Start the block structure
     echo '<div id="block__' . $block_id . '" class="' . implode( ' ', $block_classes ) . '">';
         echo '<div class="container">';
             echo '<div class="latest-grid-posts-block__content"
-                data-taxonomy="' . $taxonomy . '"
-                data-terms="' . implode( ',', array_column( $query_terms, 'id' ) ) . '"
-                data-post-type="' . $post_type . '"
-                data-per-page="' . $posts_per_page . '"
                 data-max-posts="' . $posts_to_show . '"
-                data-show-date="' . $show_date . '"
+                data-per-page="' . $posts_per_page . '"
+                data-post-not-in="' . implode( ',', $latest_blocks_posts_ids ) . '"
+                data-post-type="' . $post_type . '"
                 data-show-author="' . $show_author . '"
-                data-show-excerpt="' . $show_excerpt . '">';
+                data-show-date="' . $show_date . '"
+                data-show-excerpt="' . $show_excerpt . '"
+                data-taxonomy="' . $taxonomy . '"
+                data-terms="' . implode( ',', array_column( $query_terms, 'id' ) ) . '">';
             echo '</div><!-- .latest-grid-posts-block__content -->';
             echo '<ul class="latest-grid-posts-block__pagination"></ul>';
         echo '</div>';

@@ -157,7 +157,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
                         showExcerpt={showExcerpt}
                         taxonomy={taxonomy}
                         terms={queryTerms}
-                        isEditor={true}
                     />
                 </Disabled>
             </div>

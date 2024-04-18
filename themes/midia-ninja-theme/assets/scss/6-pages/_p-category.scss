@@ -381,6 +381,9 @@
 							}
 
 							&--content {
+								display: flex;
+								flex-direction: column-reverse;
+								
 								.entry-title {
 									color: #111111;
 									font-family: var(--wp--preset--font-family--manrope);

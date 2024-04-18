@@ -9,7 +9,7 @@ function flickr_gallery_callback( $attributes ) {
     $description      = ( isset( $attributes['description'] ) && ! empty( $attributes['description'] ) ) ? apply_filters( 'the_content', $attributes['description'] ) : false;
     $heading          = $attributes['heading'] ?? '';
 
-    $block_classes[] = 'ninja-flickr-gallery';
+    $block_classes[] = 'flickr-gallery-block';
     $block_classes[] = $custom_class;
 
     if ( ! $description && ! $heading ) {
@@ -70,6 +70,7 @@ function flickr_gallery_callback( $attributes ) {
 				<?php endforeach; ?>
 				</div>
 
+				<div class="flickr-gallery-block__pagination" data-pages="<?= $has_content['pages'] ?>"></div>
             </div><!-- .flickr-gallery-block__content -->
         </div>
     </div><!-- .flickr-gallery-block -->

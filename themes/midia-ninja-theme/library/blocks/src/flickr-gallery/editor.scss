@@ -1,8 +1,32 @@
-.flickr-gallery-block-inspector-controls {
-	// Fixed on: https://github.com/WordPress/gutenberg/pull/41768/files
-	.components-panel__row {
-		.components-base-control {
-			width: 100%;
+.flickr-gallery-block {
+
+	&__grid {
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	}
+}
+
+
+.select-user-album {
+	width: 100%;
+
+	li {
+		align-items: baseline;
+		display: flex;
+		gap: 1rem;
+		padding: 5px;
+		width: 100%;
+
+		& > :nth-child(1) {
+			flex: 1;
 		}
+
+		&:hover {
+			background-color: rgba(var(--wp-admin-theme-color--rgb), 0.04);
+		}
+	}
+
+	.fetch-more-albums {
+		display: block;
+		width: 100%;
 	}
 }

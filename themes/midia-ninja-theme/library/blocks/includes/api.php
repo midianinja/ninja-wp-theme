@@ -4,7 +4,7 @@ namespace Ninja;
 
 /**
  * Registers REST API endpoints.
- * 
+ *
  * Use the callback functions in the same order as the endpoints you created
  */
 function register_endpoints() {
@@ -108,6 +108,29 @@ function register_endpoints() {
             'permission_callback' => '__return_true'
         ]
     );
+
+	register_rest_route(
+		'ninja/v1',
+		'/flickr_albums',
+		[
+			'methods' => 'GET',
+			'callback' => 'Ninja\\flickr_album_rest_callback',
+			'args' => [
+				'api_key' => [
+					'required' => true,
+				],
+				'page' => [
+					'default' => 1,
+				],
+				'user_id' => [
+					'required' => true,
+				],
+			],
+			'permission_callback' => function () {
+				return current_user_can( 'edit_posts' );
+			},
+		]
+	);
 }
 
 add_action( 'rest_api_init', 'Ninja\\register_endpoints' );
@@ -286,6 +309,12 @@ function add_fields_to_post() {
             return [];
         }
     ]);
+}
+
+function flickr_album_rest_callback( \WP_REST_Request $request ) {
+	require_once __DIR__ . '/../src/shared/includes/flickr.php';
+
+	return flickr_get_albums( $request['api_key'], $request['user_id'], 10, $request['page'] );
 }
 
 add_action( 'rest_api_init', 'Ninja\\add_fields_to_post' );

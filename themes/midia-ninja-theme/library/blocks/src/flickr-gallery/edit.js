@@ -13,6 +13,8 @@ import {
 	SelectControl
 } from '@wordpress/components'
 
+import SelectUserAlbum from './components/SelectUserAlbum'
+
 import metadata from './block.json'
 import './editor.scss'
 
@@ -20,8 +22,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const blockProps = useBlockProps( {
 		className: 'flickr-gallery-block'
 	} )
-
-	const [albums, setAlbums] = useState([])
 
 	const {
 		blockId,
@@ -37,17 +37,15 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		setAttributes( { heading: newHeading } )
 	}
 
+	const onSelectUserAlbum = ( flickrAlbumId ) => {
+		setAttributes({ flickrByType: 'album', flickrAlbumId });
+	}
+
 	useEffect(() => {
 		if (!blockId) {
 			setAttributes( { blockId: clientId } )
 		}
 	})
-
-	useEffect(() => {
-		if (flickrAPIKey && flickrUserId && !albums) {
-			console.log('Need to fetch albums')
-		}
-	}, [albums, flickrAPIKey, flickrUserId, setAlbums])
 
 	return (
 		<>
@@ -110,7 +108,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					</PanelRow>
 
 					<PanelRow>
-						{ ( flickrByType == 'album' ) && (
+						{ ( flickrByType === 'album' ) && (
 							<TextControl
 								label={ __( 'Album ID', 'ninja' ) }
 								value={ flickrAlbumId }
@@ -120,7 +118,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							/>
 						) }
 
-						{ ( flickrByType == 'user' ) && (
+						{ ( flickrByType === 'user' ) && (
 							<TextControl
 								label={ __( 'User ID', 'ninja' ) }
 								value={ flickrUserId }
@@ -130,6 +128,16 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							/>
 						) }
 					</PanelRow>
+
+					{ ( flickrByType === 'user' && flickrAPIKey && flickrUserId ) ? (
+						<PanelRow>
+							<SelectUserAlbum
+								flickrAPIKey={ flickrAPIKey }
+								flickrUserId={ flickrUserId }
+								onChange={ onSelectUserAlbum }
+							/>
+						</PanelRow>
+					) : null }
 				</PanelBody>
 			</InspectorControls>
 

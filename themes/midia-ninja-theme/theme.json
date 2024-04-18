@@ -3,10 +3,11 @@
 	"version": 2,
 	"settings": {
 		"color": {
-			"custom": false,
+			"custom": true,
 			"customGradient": false,
 			"gradients": [],
 			"link": false,
+			"defaultPalette": false,
 			"palette": [
 				{
 					"name": "Primary pure",

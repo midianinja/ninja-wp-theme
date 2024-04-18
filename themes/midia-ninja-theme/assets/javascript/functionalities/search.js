@@ -15,3 +15,29 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.filters-search-form').forEach(form=>{
+
+        form.querySelectorAll('.search-field').forEach(input=>{
+            input.addEventListener('change', (e) => {
+                form.submit()
+            })
+        })
+
+        form.querySelectorAll('[name="tipo"]').forEach(select=>{
+            select.addEventListener('change', (e) => {
+                form.submit()
+            })
+        })
+
+        form.querySelectorAll('[name="ordem"]').forEach(select=>{
+            select.addEventListener('change', (e) => {
+                form.submit()
+            })
+        })
+        
+    })
+
+
+})

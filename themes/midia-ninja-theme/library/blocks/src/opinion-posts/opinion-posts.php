@@ -54,7 +54,7 @@ function opinion_posts_callback( $attributes ) {
     $block_classes = array_filter( $block_classes );
 
     // Start the block structure
-    echo '<div id="block__' . esc_attr( $attributes['blockId'] ) . '" class="' . implode( ' ', $block_classes ) . '" data-slider="vertical-posts">';
+    echo '<div id="block__' . esc_attr( $attributes['blockId'] ) . '" class="' . implode( ' ', $block_classes ) . '" data-slider="opinion-posts">';
 	echo '<div class="container">';
 
     $heading = $attributes['heading'] ?? __('Opinion', 'ninja');

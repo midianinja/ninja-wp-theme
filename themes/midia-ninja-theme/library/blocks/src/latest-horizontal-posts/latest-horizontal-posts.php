@@ -60,10 +60,10 @@ function latest_horizontal_posts_callback( $attributes ) {
 
     if ( $block_model == 'most-read' || $block_model == 'specials' ) {
         // Posts
-        global $latest_horizontal_posts_ids;
+        global $latest_blocks_posts_ids;
 
-        if ( ! is_array( $latest_horizontal_posts_ids ) ) {
-            $latest_horizontal_posts_ids = [];
+        if ( ! is_array( $latest_blocks_posts_ids ) ) {
+            $latest_blocks_posts_ids = [];
         }
 
         $cache_key = 'ninja_horizontal_' . $attributes_hash;
@@ -77,7 +77,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                 $attributes['postType'] = 'especial';
             }
 
-            $args = build_posts_query( $attributes, $latest_horizontal_posts_ids );
+            $args = build_posts_query( $attributes, $latest_blocks_posts_ids );
             $posts_query = new \WP_Query( $args );
 
             if ( false === $posts_query->have_posts() ) {
@@ -88,7 +88,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                 return;
             }
 
-            set_transient( $cache_key, $posts_query, 3600 );
+            // set_transient( $cache_key, $posts_query, 3600 );
         }
 
         $has_content = $posts_query;
@@ -174,12 +174,14 @@ function latest_horizontal_posts_callback( $attributes ) {
                         $has_content->the_post();
                         global $post;
 
-                        $latest_horizontal_posts_ids[] = $post->ID;
+                        $latest_blocks_posts_ids[] = $post->ID;
 
                         echo "<div class='slide'>";
                             get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['post' => $post, 'attributes' => $attributes] );
                         echo "</div>";
                     endwhile;
+
+                    wp_reset_postdata();
                 }
 
                 if ( $block_model == 'specials' ) {
@@ -188,12 +190,14 @@ function latest_horizontal_posts_callback( $attributes ) {
                         $has_content->the_post();
                         global $post;
 
-                        $latest_horizontal_posts_ids[] = $post->ID;
+                        $latest_blocks_posts_ids[] = $post->ID;
 
                         echo "<div class='slide'>";
                             get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['post' => $post, 'attributes' => $attributes] );
                         echo "</div>";
                     endwhile;
+
+                    wp_reset_postdata();
                 }
 
                 if ( $block_model == 'videos' ) {

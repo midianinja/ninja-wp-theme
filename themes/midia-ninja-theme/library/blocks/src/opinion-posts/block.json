@@ -16,9 +16,8 @@
 			"type": "string",
 			"default": ""
 		},
-		"contentPosition": {
-			"type": "string",
-			"default": "left"
+		"heading": {
+			"type": "string"
 		},
 		"linkText": {
 			"type": "string"
@@ -27,8 +26,9 @@
 			"type": "number",
 			"default": 6
 		},
-		"heading": {
-			"type": "string"
+		"slidesToShow": {
+			"type": "number",
+			"default": 3
 		},
 		"order": {
 			"type": "string",
@@ -38,9 +38,11 @@
 			"type": "string",
 			"default": "date"
 		},
-		"slidesToShow": {
-			"type": "number",
-			"default": 3
+		"taxonomy": {
+            "type": "string"
+        },
+		"queryTerms": {
+			"type": "array"
 		}
 	},
 	"textdomain": "ninja",

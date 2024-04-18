@@ -16,6 +16,8 @@ import {
 	SelectControl
 } from '@wordpress/components'
 
+import SelectTerms from "../../shared/components/SelectTerms"
+
 import metadata from './block.json'
 import './editor.scss'
 
@@ -26,17 +28,18 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 	const {
 		blockId,
-		contentPosition,
 		heading,
 		linkText,
 		order,
 		orderBy,
 		postsToShow,
+		queryTerms,
 		slidesToShow,
+		taxonomy,
 	} = attributes
 
-	const onChangeContentPosition = ( value ) => {
-		setAttributes( { contentPosition: value } )
+	const onChangeSelectTerm = ( value ) => {
+		setAttributes( { queryTerms: value.length > 0 ? value : undefined } )
 	}
 
 	const onChangeHeading = ( newHeading ) => {
@@ -91,6 +94,28 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						/>
 					</PanelRow>
 
+					<PanelRow>
+                        <SelectControl
+                            label={ __( 'Taxonomy to filter', 'ninja' ) }
+                            value={taxonomy}
+                            options={taxonomies.map(taxonomy => ({
+                                label: taxonomy.label,
+                                value: taxonomy.value
+                            }))}
+                            onChange={ ( value ) => setAttributes( { taxonomy: value } ) }
+                            help={ __(
+                                'Leave blank to not filter by taxonomy',
+                                'ninja'
+                            ) }
+                        />
+                    </PanelRow>
+
+                    { taxonomy && (
+                        <PanelRow>
+                            <SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ queryTerms } taxonomy={ taxonomy } />
+                        </PanelRow>
+                    ) }
+
 					<QueryControls
 						{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
 						numberOfItems={ parseInt(postsToShow) }
@@ -113,28 +138,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							onChange={ ( value ) => { setAttributes( { slidesToShow: parseInt(value) } ) } }
 							step={ 1 }
 							value={ slidesToShow }
-						/>
-					</PanelRow>
-
-					<PanelRow>
-						<SelectControl
-							label={ __( 'Content position', 'ninja' ) }
-							value={contentPosition}
-							options={[
-								{
-									label: __( 'Left', 'ninja' ),
-									value: "left"
-								},
-								{
-									label: __( 'Right', 'ninja' ),
-									value: "right"
-								},
-								{
-									label: __( 'Full width', 'ninja' ),
-									value: "full"
-								}
-							]}
-							onChange={ onChangeContentPosition }
 						/>
 					</PanelRow>
 				</PanelBody>

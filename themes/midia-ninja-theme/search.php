@@ -50,13 +50,11 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
 
                     <div class="no-result-buttons">
                         <button class="new-search"><a href="#">New Search</a></button>
-                        <button class="b-home"><a href="#">Back to home</a></button>
+                        <button class="b-home"><a href="<?php home_url() ?>">Back to home</a></button>
                     </div>
             </div>
 
             <main class="col-md-9">
-                    <div class="content">
-
                     <div class="filter-wrapper search-result-main">
                         <div class="search-component">
                             <?php get_search_form();?>
@@ -85,7 +83,7 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
                             </div>
                         </div>
                     </div>
-
+                    <div class="content">
                         <?php while (have_posts()) : the_post(); ?>
                             <?php get_template_part('template-parts/content/post-search-results'); ?>
                         <?php endwhile; ?>

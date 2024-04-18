@@ -97,7 +97,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
     #app{
         .index-wrapper{
             .container{
-                max-width: 1170px;
+                max-width: 1440px;
                 width: 100%;
                 margin-left: auto;
                 margin-right: auto;
@@ -109,12 +109,12 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                         display: flex;
                         align-items: center;
                         gap: 30px;
-                        max-width: 1170px;
+                        max-width: 1440px;
                         width: 100%;
                     }
 
                     .content{
-                        max-width: 1170px;
+                        max-width: 1440px;
                         margin-right: auto;
                         margin-left: auto;
                         width: 100%;
@@ -156,8 +156,9 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                 
        
                                 }
+
                             }
-                            
+
                             .filter-opinion{
 
                                 .custom-select-wrapper-opinion {
@@ -165,11 +166,11 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                                     display: inline-block;
                                 }
                                 
-                                .custom-select {
+                                #opinion {
                                     appearance: none;
                                     -webkit-appearance: none;
                                     -moz-appearance: none;
-                                    background-image: url($p_theme_assets + "/images/order.png");
+                                    background-image: url($p_theme_assets + "/images/Mail.png");
                                     background-repeat: no-repeat;
                                     background-position: center left 18px; 
                                     height: 46px;
@@ -180,36 +181,6 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                                     border: 1px solid #ccc; 
                                     border-radius: 5px; 
                                     font-size: 16px; 
-                                }
-                                                            
-                            }
-                            
-
-                            .filter{
-
-                                .custom-select-wrapper {
-                                    position: relative;
-                                    display: inline-block;
-                                }
-                                
-                                .custom-select {
-                                    appearance: none;
-                                    -webkit-appearance: none;
-                                    -moz-appearance: none;
-                                    background-image: url($p_theme_assets + "/images/order.png");
-                                    background-repeat: no-repeat;
-                                    background-position: center left 18px; 
-                                    height: 46px;
-                                    padding-left: 20px; 
-                                    padding-right: 20px; 
-                                    width: 239px; 
-                                    height: 46px; 
-                                    border: 1px solid #ccc; 
-                                    border-radius: 5px; 
-                                    font-size: 16px; 
-                                }
-                                                                
-                                #orderby{
                                     background-color: transparent;
                                     border-radius: 8px;
                                     border: 2px solid var(--SECONDARY, #CCC);
@@ -225,10 +196,56 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                                     font-style: normal;
                                     font-weight: 700;
                                     line-height: 145%;
-                                    width: 239px;
+                                    text-align: right;
+                                }
+                                                            
+                            }
+                            
+
+                            .filter{
+
+                                .custom-select-wrapper {
+                                    position: relative;
+                                    display: inline-block;
+                                }
+                                                                
+                                #orderby{
+                                    appearance: none;
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    background-image: url($p_theme_assets + "/images/order.png");
+                                    background-repeat: no-repeat;
+                                    background-position: center left 18px; 
+                                    height: 46px;
+                                    padding-left: 20px; 
+                                    padding-right: 20px; 
+                                    width: 239px; 
+                                    height: 46px; 
+                                    border: 1px solid #ccc; 
+                                    border-radius: 5px; 
+                                    font-size: 16px; 
+                                    background-color: transparent;
+                                    border-radius: 8px;
+                                    border: 2px solid var(--SECONDARY, #CCC);
+                                    display: inline-flex;
+                                    height: 46px;
+                                    padding: 0px 32px 0px 24px;
+                                    align-items: center;
+                                    gap: 8px;
+                                    flex-shrink: 0;
+                                    color: var(--Gray-1, #333);
+                                    font-family: var(--wp--preset--font-family--manrope);
+                                    font-size: 13px;
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    line-height: 145%;
                                     text-align: right;
                                 }
                             }
+                        }
+
+                        .search-result-main{
+                            display: none;
                         }
 
                         h4{

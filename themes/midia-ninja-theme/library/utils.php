@@ -539,3 +539,31 @@ function order_category_posts($query) {
     }
 }
 add_action('pre_get_posts', 'order_category_posts');
+
+function order_search_filters($query) {
+    if (is_search( ) && $query->is_main_query( )) {
+
+        $query->set('post_type', ['post', 'opiniao']);
+
+        if(!empty($_GET['ordem']) && $_GET['ordem'] === 'oldest'){
+            $query->set('order', 'ASC');
+            $query->set('orderby', 'date');
+        } else{
+            $query->set('order', 'DESC');
+            $query->set('orderby', 'date');
+        }
+
+        if(!empty($_GET['tipo'])){
+            if($_GET['tipo'] == 'opiniao'){
+                $query->set('post_type', 'opiniao');
+            } elseif($_GET['tipo'] == 'post'){
+                $query->set('post_type', 'post');
+            } else{
+                $query->set('post_type', ['post', 'opiniao']);
+            }
+        } else{
+            $query->set('post_type', ['post', 'opiniao']);
+        }
+    }
+}
+add_action('pre_get_posts', 'order_search_filters');

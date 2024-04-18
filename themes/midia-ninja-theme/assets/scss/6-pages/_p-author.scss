@@ -14,6 +14,13 @@
             border-radius: 8px 0px 0px 8px; 
             background: rgba(51, 51, 51, 0.70);
             backdrop-filter: blur(11px);
+            @include mixins.mobile{
+                max-width: 430px;
+                position: relative;
+                height: 233px;
+                top: 264px;
+
+            }
             & .container-info{
                 padding-top: 82px;
                 padding-left: 57px;
@@ -50,6 +57,7 @@
             }
         }
     }
+    
     .author-info{
         width: 271px;
         height: 497px;

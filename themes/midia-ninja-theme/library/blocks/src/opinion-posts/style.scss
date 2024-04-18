@@ -16,15 +16,16 @@
 		align-items: stretch;
 		display: flex;
 		flex-direction: row-reverse;
-		gap: 40px;
+		gap: 0 40px;
 		margin: auto;
-		padding: 50px 0 48px;
+		padding: 48px 0;
 
 		@media screen and (max-width: 991px) {
 			max-width: unset;
 		}
 
 		@include break-medium {
+			padding: 20px;
 			flex-direction: column;
 		}
 	}
@@ -77,6 +78,13 @@
 		.slide {
 			margin-bottom: 30px;
 			margin-top: 15px;
+
+			@include break-medium {
+
+				.post + .post {
+					border-top: 1px solid white;
+				}
+			}
 		}
 
 		.slick-slide {
@@ -119,6 +127,10 @@
 			padding: 1rem 1.5rem;
 			text-transform: uppercase;
 			white-space: nowrap;
+
+			@include break-medium {
+				display: none;
+			}
 		}
 	}
 
@@ -280,55 +292,8 @@
 		}
 	}
 
-// 	// Most read
-// 	&.model-most-read {
-// 		background-color: var(--wp--preset--color--dark-pure);
-
-// 		&.without-title-description {
-// 			.container {
-// 				flex-direction: column-reverse;
-// 			}
-// 		}
-
-// 		.opinion-posts-block {
-// 			&__content {
-// 				.opinion-posts-block__heading {
-// 					h2 {
-// 						font-family: "MidiaNinja", sans-serif;
-// 						font-size: 54px;
-// 						font-weight: 400;
-// 						margin-bottom: 0;
-// 						letter-spacing: normal;
-// 						@media (max-width: 782px) {
-// 							font-size: 38px;
-// 						}
-// 					}
-// 				}
-// 			}
-// 			&__slides {
-// 				&::before,
-// 				&::after {
-// 					display: none;
-// 				}
-// 				.slide {
-// 					@media (max-width: 782px) {
-// 						width: 280px !important;
-// 						display: flex !important;
-// 						margin-left: auto;
-// 						margin-right: auto;
-// 						padding-left: 1.7rem;
-// 					}
-// 					.post {
-// 						max-width: 280px;
-// 						width: 100%;
-// 					}
-// 				}
-// 			}
-// 		}
-
-		a {
-			color: var(--wp--preset--color--secondary-light);
-			text-decoration: none;
-		}
-// 	}
+	a {
+		color: var(--wp--preset--color--secondary-light);
+		text-decoration: none;
+	}
 }

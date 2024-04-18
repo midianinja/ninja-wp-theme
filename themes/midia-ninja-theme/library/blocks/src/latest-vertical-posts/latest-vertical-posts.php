@@ -35,10 +35,10 @@ function latest_vertical_posts_callback( $attributes ) {
 
     if ( $block_model == 'posts' || $block_model == 'numbered' ) {
         // Posts
-        global $latest_vertical_posts_ids;
+        global $latest_blocks_posts_ids;
 
-        if ( ! is_array( $latest_vertical_posts_ids ) ) {
-            $latest_vertical_posts_ids = [];
+        if ( ! is_array( $latest_blocks_posts_ids ) ) {
+            $latest_blocks_posts_ids = [];
         }
 
         $attributes_hash = md5( serialize( $attributes ) );
@@ -50,7 +50,7 @@ function latest_vertical_posts_callback( $attributes ) {
             $posts_query = $cached_posts;
         } else {
 
-            $args = build_posts_query( $attributes, $latest_vertical_posts_ids );
+            $args = build_posts_query( $attributes, $latest_blocks_posts_ids );
             $posts_query = new \WP_Query( $args );
 
             if ( false === $posts_query->have_posts() ) {
@@ -140,7 +140,7 @@ function latest_vertical_posts_callback( $attributes ) {
                 $has_content->the_post();
                 global $post;
 
-                $latest_vertical_posts_ids[] = $post->ID;
+                $latest_blocks_posts_ids[] = $post->ID;
                 $counter++;
 
                 if ( $counter == 1 ) {

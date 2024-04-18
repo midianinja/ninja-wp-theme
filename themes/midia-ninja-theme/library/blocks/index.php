@@ -34,7 +34,10 @@ function blocks_init() {
 		],
 		'latest-vertical-posts' => [
 			'render_callback' => 'Ninja\\latest_vertical_posts_callback'
-		]
+		],
+		'opinion-posts' => [
+			'render_callback' => 'Ninja\\opinion_posts_callback'
+		],
 	];
 
 	$active_blocks = apply_filters( 'ninja/active_blocks', $active_blocks );

@@ -23,7 +23,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
             .filter-wrapper{
                 display: flex;
                 gap: 24px;
-                margin-bottom: 24px;
+                margin-bottom: 50px;
     
                 .search-component{
                     max-width: 460px;
@@ -86,7 +86,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                         font-style: normal;
                         font-weight: 700;
                         line-height: 145%;
-                        text-align: right;
+                        text-align: center;
                     }
                                                 
                 }
@@ -142,6 +142,51 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
             .content{
                 display: grid;
                 grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                max-width: 770px;
+                width: 100%;
+
+                a{
+                    text-decoration: none !important;
+                }
+
+                .post-card-opiniao{
+                    flex-direction: row !important;
+
+                    .post-opiniao{
+                        max-width: 100px;
+                        width: 100%;
+
+                        img{
+                            width: 70px;
+                            height: 70px;
+                            border-radius: 70px;
+                        }
+                    }
+
+                    .post-card--content{
+
+                        a{
+                            text-decoration: none !important;
+                        }
+
+                        .entry-title{
+                            margin-top: 0;
+                            margin-bottom: 0;
+                            text-decoration: none !important;
+                        }
+
+                        .card-author{
+                            color: var(--PRIMARY-PURE, #848484);
+                            font-family: var(--wp--preset--font-familt--manrope);
+                            font-size: 13px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 145%; 
+                            text-transform: uppercase;
+                        }
+                    }
+                }
 
                 .post{
 
@@ -289,7 +334,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                         font-style: normal;
                         font-weight: 700;
                         line-height: 145%;
-                        text-align: right;
+                        text-align: center;
                     }
                                                 
                 }

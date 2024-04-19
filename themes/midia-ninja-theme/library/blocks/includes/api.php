@@ -131,6 +131,30 @@ function register_endpoints() {
 			},
 		]
 	);
+
+	register_rest_route(
+		'ninja/v1',
+		'/flickr_page',
+		[
+			'methods' => 'GET',
+			'callback' => 'Ninja\\flickr_page_rest_callback',
+			'args' => [
+				'api_key' => [
+					'required' => true,
+				],
+				'data_id' => [
+					'required' => true,
+				],
+				'page' => [
+					'required' => true,
+				],
+				'type' => [
+					'required' => true,
+				],
+			],
+			'permission_callback' => '__return_true',
+		]
+	);
 }
 
 add_action( 'rest_api_init', 'Ninja\\register_endpoints' );
@@ -315,6 +339,24 @@ function flickr_album_rest_callback( \WP_REST_Request $request ) {
 	require_once __DIR__ . '/../src/shared/includes/flickr.php';
 
 	return flickr_get_albums( $request['api_key'], $request['user_id'], 10, $request['page'] );
+}
+
+function flickr_page_rest_callback( \WP_REST_Request $request ) {
+	require_once __DIR__ . '/../src/shared/includes/flickr.php';
+
+	$api_key = flickr_decrypt_key( $request['api_key'] );
+
+	$data = flickr_get_photos( $api_key, $request['type'], $request['data_id'], 9, intval( $request['page'] ) );
+
+	ob_start();
+
+	foreach( $data['data'] as $photo ) {
+		get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, [ 'photo' => $photo ] );
+	}
+
+	$html = ob_get_clean();
+
+	return new \WP_REST_Response( [ 'html' => $html ], 200 );
 }
 
 add_action( 'rest_api_init', 'Ninja\\add_fields_to_post' );

@@ -2,6 +2,22 @@
 
 namespace Ninja;
 
+function flickr_decrypt_key( $cipher ) {
+	$algo = 'aes-128-gcm';
+	$parts = explode( '|', $cipher );
+
+	return openssl_decrypt( base64_decode( $parts[1] ), $algo, 'hacklab_ninja_flickr', 0, base64_decode( $parts[0] ), base64_decode( $parts[2] ) );
+}
+
+function flickr_encrypt_key( $api_key ) {
+	$algo = 'aes-128-gcm';
+	$iv = openssl_random_pseudo_bytes( openssl_cipher_iv_length( $algo ) );
+	$tag = '';
+
+	$cipher = openssl_encrypt( $api_key, $algo, 'hacklab_ninja_flickr', 0, $iv, $tag );
+	return base64_encode( $iv ) . '|' . base64_encode( $cipher ) . '|' . base64_encode( $tag );
+}
+
 function flickr_get_albums( $api_key, $user_id = '', $per_page = 10, $page = 1 ) {
 	$cache_key = 'ninja_flickr_albums_' . $user_id . '_' . $per_page . '_' . $page;
 	$cached_data = get_transient( $cache_key );

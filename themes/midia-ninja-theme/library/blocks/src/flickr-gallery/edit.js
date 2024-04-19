@@ -25,17 +25,11 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 	const {
 		blockId,
-		description,
 		flickrAPIKey,
 		flickrByType,
 		flickrUserId,
 		flickrAlbumId,
-		heading,
 	} = attributes
-
-	const onChangeHeading = ( newHeading ) => {
-		setAttributes( { heading: newHeading } )
-	}
 
 	const onSelectUserAlbum = ( flickrAlbumId ) => {
 		setAttributes({ flickrByType: 'album', flickrAlbumId });
@@ -55,30 +49,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					title={ __( 'Settings', 'ninja' ) }
 					initialOpen={ true }
 				>
-					<PanelRow>
-						<TextControl
-							label={ __( 'Heading', 'ninja' ) }
-							value={ heading }
-							onChange={ onChangeHeading }
-							help={ __(
-								'The block title. Leave blank to not display',
-								'ninja'
-							) }
-						/>
-					</PanelRow>
-
-					<PanelRow>
-						<TextControl
-							label={ __( 'Description', 'ninja' ) }
-							value={ description }
-							onChange={ ( value ) => { setAttributes( { description: value } ) } }
-							help={ __(
-								'The block description. Leave blank to not display',
-								'ninja'
-							) }
-						/>
-					</PanelRow>
-
 					<PanelRow>
 						<TextControl
 							label={ __( 'Flickr API Key', 'ninja' ) }

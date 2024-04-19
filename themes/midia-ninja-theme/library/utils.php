@@ -541,8 +541,7 @@ function order_category_posts($query) {
 add_action('pre_get_posts', 'order_category_posts');
 
 function order_search_filters($query) {
-    if (is_search( ) && $query->is_main_query( )) {
-
+    if (is_search( ) && ! is_admin() && $query->is_main_query( )) {
         $query->set('post_type', ['post', 'opiniao']);
 
         if(!empty($_GET['ordem']) && $_GET['ordem'] === 'oldest'){

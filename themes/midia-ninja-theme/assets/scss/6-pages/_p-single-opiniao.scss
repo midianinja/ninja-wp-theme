@@ -295,14 +295,13 @@
                         }  
                     }
                 }
-                section{
-                    .post-content{
-                        @media(max-width:992px){
-                            margin: 50px 0;
-
-                        }
+                
+                .post-content{
+                    @media(max-width:992px){
+                        margin: 50px 0;
 
                     }
+
                     p{
                         color: var(--PURE, #262626);
                         font-family: Manrope;
@@ -349,6 +348,10 @@
                         
                         
                     }
+
+                    .wp-block-table{
+                        margin-bottom: 1rem;
+                    }
                     .addtoany_share_save_container{
                         display: none;
                     }
@@ -376,7 +379,10 @@
                             display: none;
                         }
                     }
+
                 }
+                
+                
             }
 
             .post-footer{

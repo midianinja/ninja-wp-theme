@@ -58,6 +58,9 @@
 			"type": "string",
 			"default": "post"
 		},
+		"queryTerms": {
+			"type": "array"
+		},
 		"showAuthor": {
 			"type": "boolean",
 			"default": true
@@ -78,8 +81,8 @@
 			"type": "string",
 			"default": "category"
 		},
-		"taxQueryTerms": {
-			"type": "array"
+		"taxonomy": {
+			"type": "string"
 		},
 		"thumbnailFormat": {
 			"type": "boolean",

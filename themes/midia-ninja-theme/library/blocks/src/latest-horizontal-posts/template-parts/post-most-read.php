@@ -1,6 +1,6 @@
 <?php $show_taxonomy = ! empty( $args['attributes']['showTaxonomy'] ) ? esc_attr( $args['attributes']['showTaxonomy'] ) : ''; ?>
 
-<a href="<?php echo get_permalink();?>">
+<a href="<?php echo get_permalink(); ?>">
     <div class="post">
         <div class="post-content">
             <?php if ( $show_taxonomy ) : ?>

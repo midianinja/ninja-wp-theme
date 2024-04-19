@@ -26,30 +26,33 @@ if ( $flickr_by_type == 'album' ) {
 }
 
 if ( $thumb && $photo_id && $owner ) : ?>
-
-<div class='slide'>
     <a href="https://www.flickr.com/photos/<?php echo $owner; ?>/<?php echo $photo_id; ?>" target="_blank">
-        <div class="post specials">
+        <div class="post collection">
             <div class="post-thumbnail">
-                <div class="post-thumbnail__info">
-                    <?php if ( $title ) : ?>
-                        <h2><?php echo apply_filters( 'the_title', $title ); ?></h2>
+                <div class="post-thumbnail--image">
+                    <img src="<?php echo $thumb; ?>">
+                </div>
+            </div>
+
+            <div class="post-content">
+                <?php if ( $title ) : ?>
+                    <h2 class="post-title"><?php echo apply_filters( 'the_title', $title ); ?></h2>
+                <?php endif;?>
+                
+                <div class="post-meta">
+                    <?php if ( $tag ) : ?>
+                        <span class="post-meta--terms">
+                            <span class="tag"><?php echo esc_html( $tag ); ?></span>
+                        </span>
                     <?php endif;?>
 
-                    <div class="post-thumbnail__meta">
-                        <?php if ( $tag ) : ?>
-                            <span class="tag"><?php echo esc_html( $tag ); ?></span>
-                        <?php endif;?>
-
-                        <?php if ( $date ) : ?>
+                    <?php if ( $date ) : ?>
+                        <span class="post-meta--date">
                             <span class="date"><?php echo date_i18n( 'd/m/Y', esc_attr( $date ) ); ?></span>
-                        <?php endif; ?>
-                    </div>
+                        </span>
+                    <?php endif; ?>
                 </div>
-                <img src="<?php echo $thumb; ?>">
             </div>
         </div>
     </a>
-</div>
-
 <?php endif; ?>

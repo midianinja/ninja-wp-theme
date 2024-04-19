@@ -88,7 +88,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                 return;
             }
 
-            // set_transient( $cache_key, $posts_query, 3600 );
+            set_transient( $cache_key, $posts_query, 3600 );
         }
 
         $has_content = $posts_query;
@@ -123,7 +123,7 @@ function latest_horizontal_posts_callback( $attributes ) {
     ob_start();
 
     // Start the block structure
-    echo '<div id="block__' . esc_attr( $attributes['blockId'] ) . '" class="' . implode( ' ', $block_classes ) . '" data-slider="horizontal-posts" data-slides-to-show="'. $slides_to_show . '">';
+    echo '<div id="block__' . $block_id . '" class="' . implode( ' ', $block_classes ) . '" data-slider="horizontal-posts" data-slides-to-show="'. $slides_to_show . '">';
         echo '<div class="container">';
             echo '<div class="latest-horizontal-posts-block__content">';
 

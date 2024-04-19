@@ -9,29 +9,69 @@ function latest_vertical_posts_callback( $attributes ) {
     $block_classes[] = 'latest-vertical-posts-block';
 
     if ( $block_model == 'posts' || $block_model == 'numbered' ){
-        $show_author       = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
-        $show_date         = ( isset( $attributes['showDate'] ) && ! empty( $attributes['showDate'] ) ) ? true : false;
-        $show_excerpt      = ( isset( $attributes['showExcerpt '] ) && ! empty( $attributes['showExcerpt '] ) ) ? true : false;
-        $show_taxonomy     = ( isset( $attributes['showTaxonomy'] ) && ! empty( $attributes['showTaxonomy'] ) ) ? true : false;
+        $show_author     = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
+        $show_date       = ( isset( $attributes['showDate'] ) && ! empty( $attributes['showDate'] ) ) ? true : false;
+        $show_excerpt    = ( isset( $attributes['showExcerpt'] ) && ! empty( $attributes['showExcerpt'] ) ) ? true : false;
+        $show_taxonomy   = ( isset( $attributes['showTaxonomy'] ) && ! empty( $attributes['showTaxonomy'] ) ) ? true : false;
+        $block_classes[] = $show_author ? 'post--has-author' : '';
+        $block_classes[] = $show_excerpt ? 'post--has-excerpt' : '';
+        $block_classes[] = $show_taxonomy ? 'post--has-taxonomy' : '';
+    }
+
+    if ( $block_model !== 'numbered' ) {
         $show_thumbnail    = ( isset( $attributes['showThumbnail'] ) && ! empty( $attributes['showThumbnail'] ) ) ? true : false;
         $thumbnail_formtat = ( isset( $attributes['thumbnailFormat'] ) && ! empty( $attributes['thumbnailFormat'] ) ) ? true : '';
-        $custom_class      = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
-        $block_classes[]   = $custom_class;
-        $block_classes[]   = $show_author ? 'post--has-author' : '';
-        $block_classes[]   = $show_excerpt ? 'post--has-excerpt' : '';
-        $block_classes[]   = $show_taxonomy ? 'post--has-taxonomy' : '';
         $block_classes[]   = $show_thumbnail ? 'post--has-thumbnail' : '';
         $block_classes[]   = $thumbnail_formtat ? 'post--thumbnail-rounded' : '';
     }
 
+    if ( $block_model == 'collection' || $block_model == 'columnists' ) {
+        $block_classes[] = 'post--has-thumbnail';
+    }
+
+    $custom_class    = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
+    $block_classes[] = $custom_class;
     $block_classes[] = 'model-' . $block_model;
+
+    $block_classes = array_filter( $block_classes );
+
     $has_content = false;
 
     $counter = 0;
 
     // Determina quando posts serão exibidos em cada slide
     $posts_by_slide = $attributes['postsBySlide'] ?? 2;
-    $posts_to_show = $attributes['postsToShow'] ?? 8;
+    $posts_to_show  = $attributes['postsToShow'] ?? 8;
+
+    if ( $block_model == 'collection' ) {
+        // Flickr
+        require_once  __DIR__ . '/../shared/includes/flickr.php';
+
+        $api_key = ( isset( $attributes['flickrAPIKey'] ) && ! empty( $attributes['flickrAPIKey'] ) ) ? esc_attr( $attributes['flickrAPIKey'] ) : false;
+        $flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';
+
+        if ( $flickr_by_type == 'album' ) {
+            $data_id = ( isset( $attributes['flickrAlbumId'] ) && ! empty( $attributes['flickrAlbumId'] ) ) ? esc_attr( $attributes['flickrAlbumId'] ) : false;
+        } else {
+            $data_id = ( isset( $attributes['flickrUserId'] ) && ! empty( $attributes['flickrUserId'] ) ) ? esc_attr( $attributes['flickrUserId'] ) : false;
+        }
+
+        if ( ! $api_key || ! $data_id ) {
+            if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+                return '<h2>' . __( 'Check the API Key, user or album ID', 'ninja' ) . '</h2>';
+            }
+
+            return;
+        }
+
+        $has_content = flickr_get_photos( $api_key, $flickr_by_type, $data_id, 10, 1 );
+    }
+
+    if ( $block_model == 'columnists' ) {
+        // Co Authors
+        require_once  __DIR__ . '/../shared/includes/columnists.php';
+        $has_content = columnists_get_contents( $block_id );
+    }
 
     if ( $block_model == 'posts' || $block_model == 'numbered' ) {
         // Posts
@@ -95,19 +135,61 @@ function latest_vertical_posts_callback( $attributes ) {
 
     ob_start();
 
-    $block_classes = array_filter( $block_classes );
-
     // Start the block structure
-    echo '<div id="block__' . esc_attr( $attributes['blockId'] ) . '" class="' . implode( ' ', $block_classes ) . '" data-slider="vertical-posts">';
+    echo '<div id="block__' . $block_id . '" class="' . implode( ' ', $block_classes ) . '" data-slider="vertical-posts">';
 
     $heading = $attributes['heading'] ?? '';
 
     if ( ! empty( $heading ) ) {
-        echo '<div class="latest-vertical-posts-block__heading"><h2>'. $heading. '</h2></div>';
+        echo '<div class="latest-vertical-posts-block__heading"><h2>' . $heading . '</h2></div>';
     }
 
      // List of the posts to mount slider
      echo '<div class="latest-vertical-posts-block__slides">';
+
+     if ( $block_model == 'collection' ) {
+        // Flickr
+        foreach( $has_content['data'] as $photo ) :
+            $counter++;
+
+            if ( $counter == 1 ) {
+                echo "<div class='slide'>";
+            }
+
+            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', $block_model, ['photo' => $photo, 'attributes' => $attributes] );
+
+            if ( $counter == $posts_by_slide || $counter == count( $has_content['data'] ) ) {
+                echo "</div>";
+                $counter = 0;
+            }
+        endforeach;
+
+        if ( $counter != 0 ) {
+            echo "</div>";
+        }
+    }
+
+    if ( $block_model == 'columnists' ) {
+        // Co Authors
+        foreach ( $has_content as $author ) :
+            $counter++;
+
+            if ( $counter == 1 ) {
+                echo "<div class='slide'>";
+            }
+
+            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/co', 'author', ['author' => $author, 'attributes' => $attributes] );
+
+            if ( $counter == $posts_by_slide || $counter == count( $has_content ) ) {
+                echo "</div>";
+                $counter = 0;
+            }
+        endforeach;
+
+        if ( $counter != 0 ) {
+            echo "</div>";
+        }
+    }
 
     if ( $block_model == 'videos' ){
         // Youtube

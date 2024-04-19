@@ -41,7 +41,7 @@ function latest_grid_posts_callback( $attributes ) {
             echo '<div class="latest-grid-posts-block__content"
                 data-max-posts="' . $posts_to_show . '"
                 data-per-page="' . $posts_per_page . '"
-                data-post-not-in="' . implode( ',', $latest_blocks_posts_ids ) . '"
+                data-post-not-in="' . implode( ',', $post__not_in ) . '"
                 data-post-type="' . $post_type . '"
                 data-show-author="' . $show_author . '"
                 data-show-date="' . $show_date . '"

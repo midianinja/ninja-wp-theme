@@ -12,6 +12,7 @@ get_template_part( 'template-parts/header-especiais' );
 $category = get_the_terms($post->ID, 'category');
 $coauthors = get_coauthors();
 $get_coauthors = [];
+$date = get_the_date();
 
 $has_columnist = false;
 
@@ -58,8 +59,8 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
             <article class="post">
                 <header class="post-header">
                     <div class="post-info">
-                        <div class="date">
-						 <?php the_date(); ?></p>
+                        <div class="post-date">
+						 <?php echo $date; ?></p>
                             <?php the_post_thumbnail();?>
                         </div>
 
@@ -140,7 +141,7 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
 
                                     <time class="date" datetime="<?php echo get_the_date('c'); ?>">
                                         <span>
-                                            <?php the_date();?>
+                                            <?php echo $date;?>
                                         </span>
                                         <span class="clock"></span>
                                         <span>

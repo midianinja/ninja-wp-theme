@@ -90,10 +90,10 @@
 			&.image-aligntop {
 				article {
 					.post-thumbnail {
-						margin-bottom: 15px;
 						max-height: 500px;
 						overflow: hidden;
 						position: relative;
+						margin: 0;
 
 						@include mobile {
 							flex-basis: 100%;
@@ -577,7 +577,23 @@
 			}
 
 			.latest-horizontal-posts-block__slides {
-				padding-top: 2rem;
+				padding-top: 33px;
+
+				.slide {
+					margin: 15px 0 0;
+				}
+				.post-title {
+					margin: 14px 0 0;
+				}
+
+				.list-terms {
+					margin: 0;
+
+					li {
+						margin: 0;
+						padding: 0;
+					}
+				}
 			}
 			.slick-arrow {
 				background-color: white;
@@ -601,7 +617,7 @@
 				}
 			}
 			.latest-horizontal-posts-block__footer {
-				top: 285px !important;
+				top: 265px !important;
 				@media (max-width: 782px) {
 					top: 0 !important;
 					margin-top: -15px !important;
@@ -619,15 +635,26 @@
 			gap: 0;
 			margin-bottom: 0;
 		}
+
 		.grid-cards-opiniao {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			gap: 2rem;
+			gap: 30px;
+
 			@media (max-width: 992px) {
 				grid-template-columns: 1fr;
 			}
 			.wp-block-newspack-blocks-homepage-articles {
 				border: none;
+
+				article {
+					@include desktop {
+						width: 370px;
+						height: 482px;
+						display: grid;
+					}
+				}
+
 				&:nth-child(n + 2) {
 					@media (max-width: 992px) {
 						display: none;
@@ -656,7 +683,8 @@
 						}
 					}
 					.entry-title {
-						padding: 18px 0px 27px 0px;
+						padding: 40px 0 26px;
+						margin: 0;
 						border-bottom: 1px solid #ccc;
 						font-size: 20px;
 						line-height: 130%;
@@ -667,8 +695,8 @@
 						font-weight: 500;
 						line-height: 145%;
 						color: #333;
-						padding-top: 18px;
-						padding-bottom: 15px;
+						padding: 0;
+						margin: 27px 0;
 					}
 					.midia-conteudo_2 {
 						display: none;
@@ -702,10 +730,15 @@
 		}
 		.coluna-colunistas {
 			padding-top: 0;
+
+			.latest-vertical-posts-block .slick-slider h2 {
+				width: fit-content;
+			}
 		}
 		.wp-block-cover {
-			padding: 60px 35px 54px;
-			margin-bottom: -30px;
+			padding: 35px;
+			max-height: 350px;
+
 			@media (max-width: 1199px) {
 				max-width: 380px;
 				width: 100%;
@@ -795,7 +828,7 @@
 			margin-top: 20px !important;
 			h2 {
 				display: flex;
-				justify-content: center;
+				justify-content: left;
 			}
 
 			@media (max-width: 782px) {
@@ -803,6 +836,10 @@
 				margin: -10px 0 2rem !important;
 			}
 		}
+	}
+
+	#app .coluna-colunistas .latest-vertical-posts-block {
+		border-radius: 8px;
 	}
 
 	.who-finances-desktop {

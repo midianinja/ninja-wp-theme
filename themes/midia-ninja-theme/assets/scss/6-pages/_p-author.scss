@@ -1,6 +1,11 @@
 @use "./../1-settings/s-variables" as variables;
 @use "./../2-atoms/a-mixins" as mixins;
-.container{margin-top:30px};
+.container{
+    margin-top:30px;
+    @include mixins.mobile{
+        margin-top: 0px;
+    }
+};
 
 .author{
     .banner-principal{
@@ -8,6 +13,13 @@
         height: 497px;
         padding:0px;
         background-image: url(variables.$p_theme_assets+"/images/banner-background.png");
+        @include mixins.mobile{
+            width: auto;
+            height: 497px;
+            margin-bottom: 24px;
+            margin-left: 12px;
+            margin-right: 12px;
+        }
         .lado-esquerdo-banner{ 
             max-width: 377px;
             height: 497px;
@@ -15,16 +27,22 @@
             background: rgba(51, 51, 51, 0.70);
             backdrop-filter: blur(11px);
             @include mixins.mobile{
-                max-width: 430px;
                 position: relative;
-                height: 233px;
-                top: 264px;
-
+                top: 275px;
+                height: 222px;
+                max-width: 431px;
+                display: flex;
+                align-items: center;
+                border-radius: 8px 8px 0px 8px; 
             }
             & .container-info{
                 padding-top: 82px;
                 padding-left: 57px;
                 margin: auto;
+                @include mixins.mobile{
+                    padding-left: 0px;
+                    padding-top: 0px;
+                }
                 .tag{
                     color: #FFF;
                     font-family: "Archivo Expanded",sans-serif;
@@ -34,6 +52,10 @@
                     line-height: 155%; /* 21.7px */
                     letter-spacing: -0.42px;
                     text-transform: uppercase;
+                    @include mixins.mobile{
+                        margin-top: 32px;
+                        margin-bottom: 16px;
+                    }
                 }
                 .title{
                     color: #FFF;
@@ -53,6 +75,9 @@
                     font-style: normal;
                     font-weight: 500;
                     line-height: 130%; /* 18.2px */
+                    @include mixins.mobile{
+                        display: none;
+                    }
                 }
             }
         }
@@ -63,15 +88,29 @@
         height: 497px;
         border-radius: 8px;
         background: var(--Gray-1, #333);
+        @include mixins.mobile{
+            width: auto;
+            height: 242px;
+        }
         & .author-info-card{
             display: flex;
             flex-direction: column;
             align-items: center;
+            @include mixins.mobile{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                padding-top: 25px;
+            }
             img{
                 width: 175.648px;
                 height: 175px;
                 border-radius: 50%;
                 flex-shrink: 0;
+                @include mixins.mobile{
+                    width: 82px;
+                    height: 82px;
+                }
             }
             .author-name{
                 color: var(--White, #FFF);
@@ -86,6 +125,9 @@
                 margin-bottom: 17px;
                 border-bottom: #FFF solid 1px;
                 padding-bottom: 10px;
+                @include mixins.mobile{
+                    border-bottom: none;
+                }
             }
             .authbio{
                 color: var(--White, #FFF);
@@ -95,7 +137,32 @@
                 font-weight: 500;
                 line-height: 130%; /* 15.6px */
                 max-width: 201px;
+                @include mixins.mobile{
+                    display: none;
+                }
             }
+        }
+        .authbio-mobile{
+            display: none;
+            @include mixins.mobile{
+                color: var(--White, #FFF);
+                /* <h5> Manrope */
+                font-family: Manrope;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 145%; /* 18.85px */
+                display: flex;
+                /* width: 263px; */
+                /* height: 81.812px; */
+                flex-direction: column;
+                margin: auto;
+                margin: 0px 33px;
+                margin-top: 26px;
+                border-top: solid 1px white;
+                padding-top: 8px;
+            }
+            
         }
     }
     main{
@@ -137,7 +204,28 @@
             }
         }
         .header-and-footer-archive{
-            width: 130%;
+            .opinion-posts-block{
+                background-color: #000;
+                .container{
+                    @include mixins.mobile{
+                        padding-left: 0px;
+                    }
+                
+                    .slide{
+                        .post{
+                            @include mixins.mobile{
+                                display: flex;
+                                width: 328px;
+                                align-items: center;
+                                padding-left: 0px;
+                                gap: 20px;
+                                border: none;
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }

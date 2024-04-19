@@ -92,6 +92,11 @@ $coauthors = get_coauthors();
                             <?php endif; ?>
                         </div>
                     </div>
+                    <?php if($author_bio): ?>
+                        <div class="authbio-mobile">
+                            <?php echo $author_bio; ?>
+                        </div>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
             </aside>

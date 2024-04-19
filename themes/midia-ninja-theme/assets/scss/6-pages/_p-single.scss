@@ -7,6 +7,9 @@
 	#app {
 		background-color: #f5f5f5;
 		padding-top: 33px;
+		@media(max-width: 1199px){
+			padding-top: 1rem;
+		}
 
 		a {
 			transition: all 0.2s ease-in-out;
@@ -69,6 +72,9 @@
 				}
 
 				.excerpt {
+					@media(max-width: 1199px){
+						margin-top: 1rem;
+					}
 					p {
 						color: var(--PRIMARY-PURE, #848484);
 						/* <h5> Manrope */
@@ -93,6 +99,9 @@
 						max-width: 100%;
 						height: 506px;
 						border-radius: 8px;
+						@media(max-width: 992px){
+							height: auto;
+						}
 					}
 
 					.post-info{
@@ -107,6 +116,11 @@
 							img, h2, h5{
 								max-width: 770px;
 								width: 100%;
+							}
+							h2{
+								@media(max-width: 1199px){
+									margin: 1rem 0;
+								}
 							}
 						}
 					}

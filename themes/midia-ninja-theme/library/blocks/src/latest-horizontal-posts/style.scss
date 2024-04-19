@@ -66,11 +66,11 @@
 
 		&::before {
 			background: linear-gradient(
-				-270deg,
+				-90deg,
 				#262626 44.44%,
 				rgba(38, 38, 38, 0) 90%
 			);
-			left: -30px;
+			right: -30px;
 		}
 
 		&::after {

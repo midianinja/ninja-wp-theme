@@ -194,6 +194,10 @@
 				display: block;
 				position: relative;
 
+				@include desktop {
+					height: 506px;
+				}
+
 				@include mobile {
 					aspect-ratio: auto;
 					background-color: transparent;
@@ -313,11 +317,18 @@
 		}
 
 		&.posts-sidebar {
-			margin-top: 2rem;
 			@include mobile {
 				margin-bottom: -1.3rem;
 				margin-top: 0;
 			}
+
+			> div {
+				display: grid;
+				@include desktop {
+					gap: 55px;
+				}
+			}
+
 			div[data-posts] {
 				:nth-child(n + 3) {
 					@media (max-width: 768px) {
@@ -327,7 +338,7 @@
 			}
 			article {
 				align-items: center;
-				margin-bottom: 2.7rem;
+				margin: 0;
 				@include mobile {
 					margin-bottom: 1rem;
 				}
@@ -366,6 +377,16 @@
 	.grid-latest-posts {
 		margin-top: -1.7rem;
 		margin-bottom: 0.5rem;
+
+		.latest-vertical-posts-block
+			.slick-slider
+			.post-meta
+			.post-meta--terms
+			ul.list-terms
+			li {
+			background-color: transparent !important;
+			color: var(--background-color) !important;
+		}
 
 		@include mobile {
 			margin-top: 0;

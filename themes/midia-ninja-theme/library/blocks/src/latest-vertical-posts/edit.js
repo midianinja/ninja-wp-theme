@@ -5,8 +5,8 @@ const { useEffect, useState } = wp.element
 import ServerSideRender from '@wordpress/server-side-render'
 import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
-import SelectPostType from "./components/SelectPostType"
-import SelectTerms from "./components/SelectTerms"
+import SelectPostType from "../../shared/components/SelectPostType"
+import SelectTerms from "../../shared/components/SelectTerms"
 
 import {
 	__experimentalNumberControl as NumberControl,
@@ -41,37 +41,49 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		postsBySlide,
 		postsToShow,
 		postType,
+		queryTerms,
 		showAuthor,
 		showDate,
 		showExcerpt,
 		showTaxonomy,
 		showThumbnail,
-		taxQueryTerms,
+		taxonomy,
 		thumbnailFormat
 	} = attributes
-
-	const onChangeHeading = ( newHeading ) => {
-		setAttributes( { heading: newHeading } )
-	}
-
-	const onChangeTaxonomy = ( newTaxonomy ) => {
-		setAttributes( { showTaxonomy: newTaxonomy } )
-	}
-
-	const onChangePostType = ( value ) => {
-		setAttributes( { postType: value } )
-		setAttributes( { showTaxonomy: '' } )
-	}
-
-	const onChangeSelectTerm = (value) => {
-		setAttributes({ taxQueryTerms: value })
-	}
 
 	useEffect(() => {
 		if (!blockId) {
 			setAttributes( { blockId: clientId } )
 		}
 	})
+
+	const onChangeBlockModel = ( value ) => {
+		setAttributes( { blockModel: value } )
+		setAttributes( { showTaxonomy: '' } )
+		setAttributes( { taxonomy: '' } )
+		setAttributes( { queryTerms: [] } )
+	}
+
+	const onChangeHeading = ( newHeading ) => {
+		setAttributes( { heading: newHeading } )
+	}
+
+	const onChangePostType = ( value ) => {
+		setAttributes( { postType: value } )
+		setAttributes( { showTaxonomy: '' } )
+		setAttributes( { taxonomy: '' } )
+		setAttributes( { queryTerms: [] } )
+	}
+
+	const onChangeSelectTerm = ( value ) => {
+		setAttributes( { queryTerms: value.length > 0 ? value : undefined } )
+	}
+
+	const onChangeTaxonomy = ( value ) => {
+		setAttributes( { taxonomy: value } )
+		setAttributes( { showTaxonomy: '' } )
+		setAttributes( { queryTerms: [] } )
+	}
 
 	// Get taxonomies from the post type selected
 	const [taxonomies, setTaxonomies] = useState([])
@@ -85,22 +97,13 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		}
 	}, [postType])
 
-	// Init query args
-	const [ query ] = useState( {
-		maxItems: 10,
-		minItems: 1,
-		numberOfItems: 10
-	} )
-
-	const { maxItems, minItems, numberOfItems } = query
-
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody
 					className="latest-vertical-posts-block-inspector-controls"
-					title={ __( 'Settings', 'ninja' ) }
-					initialOpen={ true }
+					title={ __( 'Layout', 'ninja' ) }
+					initialOpen={ false }
 				>
 					<PanelRow>
 						<TextControl
@@ -117,8 +120,8 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					<PanelRow>
 						<SelectControl
 							label={ __( 'Block model', 'ninja' ) }
-							value={blockModel}
-							options={[
+							value={ blockModel }
+							options={ [
 								{
 									label: __( 'Collection', 'ninja' ),
 									value: "collection"
@@ -140,10 +143,75 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 									value: "videos"
 								}
 							]}
-							onChange={ ( value ) => { setAttributes( { blockModel: value } ) } }
+							onChange={ onChangeBlockModel }
 						/>
 					</PanelRow>
 
+					{ ( blockModel !== 'numbered' ) && (
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Show the post thumbnail?', 'ninja' ) }
+								checked={ showThumbnail }
+								onChange={ () => { setAttributes( { showThumbnail: ! showThumbnail } ) } }
+							/>
+						</PanelRow>
+					) }
+
+					{ ( showThumbnail && blockModel !== 'numbered' ) && (
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Use rounded thumbnail?', 'ninja' ) }
+								checked={ thumbnailFormat }
+								onChange={ () => { setAttributes( { thumbnailFormat: ! thumbnailFormat } ) } }
+							/>
+						</PanelRow>
+					) }
+
+					{ ( blockModel == 'posts' || blockModel == 'numbered' ) && (
+						<>
+							<PanelRow>
+								<ToggleControl
+									label={ __( 'Show the post excerpt?', 'ninja' ) }
+									checked={ showExcerpt }
+									onChange={ () => { setAttributes( { showExcerpt: ! showExcerpt } ) } }
+								/>
+							</PanelRow>
+
+							<PanelRow>
+								<ToggleControl
+									label={ __( 'Show the post author?', 'ninja' ) }
+									checked={ showAuthor }
+									onChange={ () => { setAttributes( { showAuthor: ! showAuthor } ) } }
+								/>
+							</PanelRow>
+
+							<PanelRow>
+								<ToggleControl
+									label={ __( 'Show the post date?', 'ninja' ) }
+									checked={ showDate }
+									onChange={ () => { setAttributes( { showDate: ! showDate } ) } }
+								/>
+							</PanelRow>
+						</>
+					) }
+
+					<PanelRow>
+						<NumberControl
+							label={ __( 'Posts by slide', 'ninja' ) }
+							max={ 5 }
+							min={ 1 }
+							onChange={ ( value ) => { setAttributes( { postsBySlide: value } ) } }
+							step={ 1 }
+							value={ postsBySlide }
+						/>
+					</PanelRow>
+				</PanelBody>
+
+				<PanelBody
+					className="latest-vertical-posts-block-inspector-controls"
+					title={ __( 'Query', 'ninja' ) }
+					initialOpen={ false }
+				>
 					{ ( blockModel == 'videos' ) && (
 						<PanelRow>
 							<TextControl
@@ -208,104 +276,57 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel == 'posts' || blockModel == 'columnists' || blockModel == 'numbered' ) && (
+					{ ( blockModel == 'posts' || blockModel == 'numbered' ) && (
 						<>
 							<PanelRow>
 								<SelectPostType postType={postType} onChangePostType={onChangePostType} />
 							</PanelRow>
 
-							<QueryControls
-								{ ...{ maxItems, minItems, numberOfItems, order, orderBy } }
-								numberOfItems={ parseInt(postsToShow) }
-								onOrderChange={ ( value ) =>
-									setAttributes( { order: value } )
-								}
-								onOrderByChange={ ( value ) =>
-									setAttributes( { orderBy: value } )
-								}
-								onNumberOfItemsChange={ ( value ) =>
-									setAttributes( { postsToShow: parseInt(value) } )
-								}
-							/>
+							<PanelRow>
+								<SelectControl
+									label={ __( 'Taxonomy to filter', 'ninja' ) }
+									value={ taxonomy }
+									options={ taxonomies.map( taxonomy => ( {
+										label: taxonomy.label,
+										value: taxonomy.value
+									}))}
+									onChange={ onChangeTaxonomy }
+									help={ __(
+										'Leave blank to not filter by taxonomy',
+										'ninja'
+									) }
+								/>
+							</PanelRow>
+
+							{ taxonomy && (
+								<PanelRow>
+									<SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ queryTerms } taxonomy={ taxonomy } />
+								</PanelRow>
+							) }
+
+							<PanelRow>
+								<SelectControl
+									label={ __( 'Show taxonomy, which?', 'ninja' ) }
+									value={ showTaxonomy }
+									options={ taxonomies.map( taxonomy => ( {
+										label: taxonomy.label,
+										value: taxonomy.value
+									} ) ) }
+									onChange={ ( value ) => setAttributes( { showTaxonomy: value } ) }
+									help={ __(
+										'Leave blank to not display any taxonomy',
+										'ninja'
+									) }
+								/>
+							</PanelRow>
 						</>
 					) }
 
-					{ ( blockModel == 'posts' && postType == 'post' ) && (
+					{ ( blockModel == 'columnists' ) && (
 						<PanelRow>
-							<SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ taxQueryTerms } />
+							<h2>{ __( 'With this configuration the block will display Co-Authors', 'ninja' ) }</h2>
 						</PanelRow>
 					) }
-
-					<PanelRow>
-						<NumberControl
-							label={ __( 'Posts by slide', 'ninja' ) }
-							max={ 5 }
-							min={ 1 }
-							onChange={ ( value ) => { setAttributes( { postsBySlide: value } ) } }
-							step={ 1 }
-							value={ postsBySlide }
-						/>
-					</PanelRow>
-
-					<PanelRow>
-						<SelectControl
-							label={ __( 'Show taxonomy', 'ninja' ) }
-							value={showTaxonomy}
-							options={taxonomies.map(taxonomy => ({
-								label: taxonomy.label,
-								value: taxonomy.value
-							}))}
-							onChange={ onChangeTaxonomy }
-							help={ __(
-								'Leave blank to not display any taxonomy',
-								'ninja'
-							) }
-						/>
-					</PanelRow>
-
-					{ ( blockModel !== 'numbered' ) && (
-						<PanelRow>
-							<ToggleControl
-								label={ __( 'Show the post thumbnail?', 'ninja' ) }
-								checked={ showThumbnail }
-								onChange={ () => { setAttributes( { showThumbnail: ! showThumbnail } ) } }
-							/>
-						</PanelRow>
-					) }
-
-					{ ( showThumbnail && blockModel !== 'numbered' ) && (
-						<PanelRow>
-							<ToggleControl
-								label={ __( 'Use rounded thumbnail?', 'ninja' ) }
-								checked={ thumbnailFormat }
-								onChange={ () => { setAttributes( { thumbnailFormat: ! thumbnailFormat } ) } }
-							/>
-						</PanelRow>
-					) }
-
-					<PanelRow>
-						<ToggleControl
-							label={ __( 'Show the post author?', 'ninja' ) }
-							checked={ showAuthor }
-							onChange={ () => { setAttributes( { showAuthor: ! showAuthor } ) } }
-						/>
-					</PanelRow>
-
-					<PanelRow>
-						<ToggleControl
-							label={ __( 'Show the post date?', 'ninja' ) }
-							checked={ showDate }
-							onChange={ () => { setAttributes( { showDate: ! showDate } ) } }
-						/>
-					</PanelRow>
-
-					<PanelRow>
-						<ToggleControl
-							label={ __( 'Show the post excerpt?', 'ninja' ) }
-							checked={ showExcerpt }
-							onChange={ () => { setAttributes( { showExcerpt: ! showExcerpt } ) } }
-						/>
-					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 

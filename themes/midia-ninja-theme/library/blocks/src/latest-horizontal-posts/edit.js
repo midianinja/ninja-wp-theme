@@ -259,7 +259,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel == 'most-read' ) && (
+					{ ( blockModel == 'most-read' || blockModel == 'specials' ) && (
 						<>
 							<PanelRow>
 								<SelectPostType postType={postType} onChangePostType={onChangePostType} />
@@ -314,12 +314,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 								/>
 							</PanelRow>
 						</>
-					) }
-
-					{ ( blockModel == 'specials' ) && (
-						<PanelRow>
-							<h2>{ __( 'With this configuration the block will display Special posts', 'ninja' ) }</h2>
-						</PanelRow>
 					) }
 
 					{ ( blockModel == 'columnists' ) && (

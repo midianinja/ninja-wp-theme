@@ -5,13 +5,7 @@ get_template_part( 'template-parts/header-especiais' );
 
 $category = get_the_terms($post->ID, 'category');
 $coauthors = get_coauthors();
-$latest_post = get_posts(array(
-    'numberposts' => 1,  
-    'post_type' => 'post', 
-    'post_status' => 'author',  
-    'orderby' => 'date',  
-    'order' => 'DESC' 
-));
+
 ?>
 
 <div class="index-wrapper">
@@ -22,43 +16,14 @@ $latest_post = get_posts(array(
                 <div class="lado-esquerdo-banner">
                     <div class="container-info">
                     <div class="tag">
-                    <?php 
-                        if ($latest_post) {
-                            $latest_post_id = $latest_post[0]->ID;
-                            $tags = get_the_tags($latest_post_id);
-
-                            if ($tags) {
-                                echo __('Tags:', 'your_text_domain') . ' ';
-                                foreach ($tags as $tag) {
-                                    echo '<a href="' . esc_url(get_tag_link($tag->term_id)) . '">' . esc_html($tag->name) . '</a>, ';
-                                }
-                            } else {
-                                echo esc_html__('No tags found for this post.', 'ninja');
-                            }
-                        } else {
-                            echo esc_html__('No posts found.', 'ninja');
-                        }
-                    ?>
+                    <div class="entry-meta"><?php echo get_html_terms( get_the_ID(), 'category', true, true, 1 ); ?></div>
                 </div>
-
                 <div class="title">
+                    <a href="<?php the_permalink(); ?>"><h5 class="entry-title"><?php the_title(); ?></h5></a>
 
-                    <?php 
-                        if ($latest_post) {
-                            echo '<a href="' . esc_url(get_permalink($latest_post[0]->ID)) . '">' . esc_html(get_the_title($latest_post[0])) . '</a>';
-                        } else {
-                            echo esc_html__('No posts found.', 'ninja');
-                        }
-                    ?>
                 </div>
                 <div class="resumo">
-                    <?php 
-                        if ($latest_post) {
-                            echo '<p>' . esc_html(get_the_excerpt($latest_post[0])) . '</p>';  // Obtém e exibe o resumo da publicação
-                        } else {
-                            echo esc_html__('No posts found.', 'ninja');
-                        }
-                    ?>
+                    <p><?php echo custom_excerpt( ( str_word_count( get_the_title() ) <= 10 ) ? 15 : 20 ); ?></p>
                 </div>
                     </div>
                 </div>
@@ -83,9 +48,9 @@ $latest_post = get_posts(array(
 
                             $author_id = $coauthor->ID;
                             $author_bio = $coauthor->description;
-                            $instagram = get_post_meta($author_id, 'instagram', true);
-                            $facebook = get_post_meta($author_id, 'facebook', true);
-                            $twitter = get_post_meta($author_id, 'twitter', true);
+                            $instagram = get_user_meta($author_id, 'instagram', true);
+                            $facebook = get_user_meta($author_id, 'facebook', true);
+                            $twitter = get_user_meta($author_id, 'twitter', true);
                         }
                     ?>
                     <div class="author-info-card">

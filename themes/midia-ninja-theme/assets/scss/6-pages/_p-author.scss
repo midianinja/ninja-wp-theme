@@ -57,8 +57,10 @@
                         margin-bottom: 16px;
                     }
                 }
-                .title{
-                    color: #FFF;
+                .title,
+                h2,
+                a{
+                    color: #FFF !important;
                     /* <h2> Manrope */
                     font-family: 'Manrope',sans-serif;
                     font-size: 32px;
@@ -67,17 +69,22 @@
                     line-height: 120%; /* 38.4px */
                     letter-spacing: -0.64px;
                     margin-bottom: 38px;
+                    text-decoration: none;
                 }
                 .resumo{
-                    color: #FFF;
-                    font-family: 'Manrope',sans-serif;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 130%; /* 18.2px */
-                    @include mixins.mobile{
-                        display: none;
+                    max-width: 266px;
+                    p{
+                        color: #FFF;
+                        font-family: 'Manrope',sans-serif;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 130%; /* 18.2px */
+                        @include mixins.mobile{
+                            display: none;
+                        }
                     }
+                    
                 }
             }
         }

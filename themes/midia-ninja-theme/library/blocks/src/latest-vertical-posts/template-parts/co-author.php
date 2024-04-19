@@ -1,4 +1,5 @@
 <?php
+$show_thumbnail = ! empty( $args['attributes']['showThumbnail'] );
 $coauthor = $args['author'];
 
 $link = get_author_posts_url( $args['author']->ID );
@@ -28,13 +29,19 @@ if ( count( $bio ) >= 15 ) {
 
 <a href="<?php echo esc_url( $link ); ?>">
     <div class="post co-author">
-        <div class="post-thumbnail">
-            <?php echo coauthors_get_avatar( $coauthor, 60 ); ?>
-        </div>
+        <?php if ( $show_thumbnail ) : ?>
+            <div class="post-thumbnail">
+                <div class="post-thumbnail--image">
+                    <?php echo coauthors_get_avatar( $coauthor, 60 ); ?>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="post-content">
-            <h2 class="post-title"><?php echo $coauthor->display_name; ?></h2>
+            <h2 class="post-title"><?php echo apply_filters( 'the_title', $coauthor->display_name ); ?></h2>
             <?php if ( ! empty( $bio ) ) : ?>
-                <?php echo apply_filters( 'the_content', $bio ); ?>
+                <div class="post-excerpt">
+                    <?php echo apply_filters( 'the_content', $bio ); ?>
+                </div>
             <?php endif; ?>
         </div>
     </div>

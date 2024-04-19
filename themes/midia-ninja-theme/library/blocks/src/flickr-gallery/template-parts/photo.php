@@ -1,31 +1,17 @@
 <?php
-$attributes = $args['attributes'];
 $photo = $args['photo'];
 
-$flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';
-$title = ( isset( $photo['title'] ) && ! empty( $photo['title'] ) ) ? esc_attr( $photo['title'] ) : false;
+$title = ( ! empty( $photo['title'] ) ) ? esc_attr( $photo['title'] ) : false;
+$date = ( ! empty( $photo['dateupload'] ) ) ? esc_attr( $photo['dateupload'] ) : false;
+$owner    = ( ! empty( $photo['owner'] ) ) ? esc_attr( $photo['owner'] ) : false;
+$photo_id = ( ! empty( $photo['id'] ) ) ? esc_attr( $photo['id'] ) : false;
+$thumb    = ( ! empty( $photo['url_z'] ) ) ? esc_url( $photo['url_z'] ) : false;
 
-// Tags
-$tags = ( isset( $photo['tags'] ) && ! empty( $photo['tags'] ) ) ? esc_attr( $photo['tags'] ) : false;
+$tags = ( ! empty( $photo['tags'] ) ) ? esc_attr( $photo['tags'] ) : false;
 $tag = '';
-
 if ( $tags ) {
     $tags = explode( ' ', $tags );
     $tag = $tags[0];
-}
-
-// Date
-$date = ( isset( $photo['dateupload'] ) && ! empty( $photo['dateupload'] ) ) ? esc_attr( $photo['dateupload'] ) : false;
-
-if ( $flickr_by_type == 'album' ) {
-    $data_id  = ( isset( $attributes['flickrAlbumId'] ) && ! empty( $attributes['flickrAlbumId'] ) ) ? esc_attr( $attributes['flickrAlbumId'] ) : false;
-    $owner    = ( isset( $photo['owner'] ) && ! empty( $photo['owner'] ) ) ? esc_attr( $photo['owner'] ) : false;
-    $photo_id = ( isset( $photo['id'] ) && ! empty( $photo['id'] ) ) ? esc_attr( $photo['id'] ) : false;
-    $thumb    = ( isset( $photo['url_z'] ) && ! empty( $photo['url_z'] ) ) ? esc_url( $photo['url_z'] ) : false;
-} else {
-    $owner    = ( isset( $photo['owner'] ) && ! empty( $photo['owner'] ) ) ? esc_attr( $photo['owner'] ) : false;
-    $photo_id = ( isset( $photo['id'] ) && ! empty( $photo['id'] ) ) ? esc_attr( $photo['id'] ) : false;
-    $thumb    = ( isset( $photo['url_z'] ) && ! empty( $photo['url_z'] ) ) ? esc_url( $photo['url_z'] ) : false;
 }
 
 if ( $thumb && $photo_id && $owner ) : ?>

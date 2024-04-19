@@ -62,7 +62,11 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
                     </div>
                     <div class="content">
                         <?php while (have_posts()) : the_post(); ?>
-                            <?php get_template_part('template-parts/content/post-search-results'); ?>
+                            <?php if (get_post_type() === 'opiniao') {
+                                get_template_part('template-parts/content/post-opiniao');
+                            } else {
+                                get_template_part('template-parts/content/post-search-results');
+                            } ?>
                         <?php endwhile; ?>
                     </div>
                 

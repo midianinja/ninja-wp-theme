@@ -15,9 +15,6 @@
 		"blockId": {
 			"type": "string"
 		},
-		"description": {
-			"type": "string"
-		},
 		"flickrAPIKey": {
 			"type": "string"
 		},
@@ -34,9 +31,6 @@
 		"postsToShow": {
 			"type": "number",
 			"default": 5
-		},
-		"heading": {
-			"type": "string"
 		}
 	},
 	"textdomain": "ninja",

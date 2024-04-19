@@ -5,6 +5,13 @@ get_template_part( 'template-parts/header-especiais' );
 
 $category = get_the_terms($post->ID, 'category');
 $coauthors = get_coauthors();
+$latest_post = get_posts(array(
+    'numberposts' => 1,  
+    'post_type' => 'post', 
+    'post_status' => 'author',  
+    'orderby' => 'date',  
+    'order' => 'DESC' 
+));
 ?>
 
 <div class="index-wrapper">
@@ -14,9 +21,45 @@ $coauthors = get_coauthors();
             <div class="banner-principal col-md-9"> 
                 <div class="lado-esquerdo-banner">
                     <div class="container-info">
-                        <div class="tag">Aqui vai a tag</div>
-                        <div class="title">aqui vai o titulo principal</div>
-                        <div class="resumo">aqui vai um breve resumo</div>
+                    <div class="tag">
+                    <?php 
+                        if ($latest_post) {
+                            $latest_post_id = $latest_post[0]->ID;
+                            $tags = get_the_tags($latest_post_id);
+
+                            if ($tags) {
+                                echo __('Tags:', 'your_text_domain') . ' ';
+                                foreach ($tags as $tag) {
+                                    echo '<a href="' . esc_url(get_tag_link($tag->term_id)) . '">' . esc_html($tag->name) . '</a>, ';
+                                }
+                            } else {
+                                echo esc_html__('No tags found for this post.', 'ninja');
+                            }
+                        } else {
+                            echo esc_html__('No posts found.', 'ninja');
+                        }
+                    ?>
+                </div>
+
+                <div class="title">
+
+                    <?php 
+                        if ($latest_post) {
+                            echo '<a href="' . esc_url(get_permalink($latest_post[0]->ID)) . '">' . esc_html(get_the_title($latest_post[0])) . '</a>';
+                        } else {
+                            echo esc_html__('No posts found.', 'ninja');
+                        }
+                    ?>
+                </div>
+                <div class="resumo">
+                    <?php 
+                        if ($latest_post) {
+                            echo '<p>' . esc_html(get_the_excerpt($latest_post[0])) . '</p>';  // Obtém e exibe o resumo da publicação
+                        } else {
+                            echo esc_html__('No posts found.', 'ninja');
+                        }
+                    ?>
+                </div>
                     </div>
                 </div>
                 <div class="divladodireiro-banner"></div>

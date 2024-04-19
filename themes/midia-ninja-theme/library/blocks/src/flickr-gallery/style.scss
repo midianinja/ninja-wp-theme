@@ -32,24 +32,6 @@
 		width: 100%;
 	}
 
-	&__heading {
-		@include break-medium {
-			text-align: center;
-		}
-
-		h2 {
-			color: #F5F5F5;
-			font-family: var(--f-ninja);
-			font-weight: 400;
-			margin-bottom: 15px;
-			margin-top: 0;
-		}
-
-		p {
-			color: #F5F5F5;
-		}
-	}
-
 	&__grid {
 		display: grid;
 		gap: 20px;
@@ -146,6 +128,6 @@
 	}
 
 	&__pagination {
-		margin: 20px auto;
+		margin: 30px auto 20px;
 	}
 }

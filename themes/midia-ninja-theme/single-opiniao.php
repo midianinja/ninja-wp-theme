@@ -34,7 +34,6 @@ foreach( $coauthors as $coauthor ):
         $coauthor_data['facebook'] = pods_field( 'user', $coauthor_data['author_id'], 'facebook', true);
         $coauthor_data['twitter'] = pods_field( 'user', $coauthor_data['author_id'], 'twitter', true);
     } else {
-        do_action( 'qm/debug', $coauthor );
         $coauthor_data['author_id'] = $coauthor->ID;
         $coauthor_data['author_bio'] = $coauthor->description;
         $coauthor_data['author_name'] = $coauthor->display_name;

@@ -130,11 +130,24 @@
                             margin-top: 0;
                             margin-bottom: 1.5rem;
                         }
+                        .author-info-card{
+                            display: block;
+                        }
+                        .info-container{
+                            display: flex;
+                        }
                         img{
                             display: inherit;
                         }
                         .author-name{
-                            color: #fff
+                            color: #fff;
+                            font-weight: 500;
+                            margin-left: 21px;
+                            margin-top: 10px;
+                        }
+                        .authbio{
+                            border-top: 1px solid #f2f2f2;
+                            margin-top: 20px;
                         }  
                     }
                 }
@@ -206,27 +219,43 @@
                     }
                     .page-share{
                         margin-top: 32px;
+                        @media(max-width:992px){
+                            margin-top: 0;
+                            margin-bottom: -10px;
+                        }
                         
+                        
+                    }
+                    .comments{
+                        padding: 0 0;
+                        @media(max-width:992px){
+                            display: none;
+                        }
                     }
                 }
             }
 
             .post-footer{
+                margin-top: 0;
                 @include mixins.mobile{
                     display: flex;
                     justify-content: center;
                 }
                 .related-posts{
                     width: auto;
-                    padding-top: 45px;
-                    padding-bottom: 64px;
+                    padding-top: 30px;
+                    padding-bottom: 20px;
                     @media(max-width:992px){
                         display: block;
+                        padding-top: 45px;
                     }
 
                     h2{
                         margin-top: 0px !important;
                         margin-bottom: 32px !important;
+                        @media(max-width:992px){
+                            margin-bottom: 10px !important;
+                        }
                     }
                     .related{
                         width: 100%;

@@ -29,7 +29,7 @@ foreach( $coauthors as $coauthor ):
         $coauthor_data['author_name'] = $coauthor->data->display_name;
         $coauthor_data['userdata'] = get_userdata( $coauthor_data['author_id'] );
         $coauthor_data['author_bio'] = isset( $userdata->user_description )? $userdata->user_description: '';
-        $coauthor_data['instagram'] = pods_field( 'user', $author_id, 'instagram', true);
+        $coauthor_data['instagram'] = pods_field( 'user', $coauthor_data['author_id'], 'instagram', true);
         $coauthor_data['facebook'] = pods_field( 'user', $coauthor_data['author_id'], 'facebook', true);
         $coauthor_data['twitter'] = pods_field( 'user', $coauthor_data['author_id'], 'twitter', true);
     } else {

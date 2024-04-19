@@ -95,6 +95,14 @@
 									font-weight: 500;
 									line-height: 140%;
 									margin-top: 20px;
+
+									@include mixins.small{
+										display: none;
+									}
+
+									@include mixins.mobile{
+										display: none;
+									}
 								}
 							}
 						}
@@ -104,14 +112,6 @@
 						width: calc(100% + 50px);
 						position: relative;
 						left: -4%;
-
-						@include mixins.small {
-							left: -10%;
-						}
-
-						@include mixins.mobile {
-							left: -10%;
-						}
 					}
 
 					.coluna-postss {
@@ -133,7 +133,6 @@
 							width: 100%;
 							margin-left: auto;
 							margin-right: auto;
-							left: -10%;
 						}
 
 						@include mixins.mobile {
@@ -141,7 +140,6 @@
 							width: 100%;
 							margin-left: auto;
 							margin-right: auto;
-							left: -10%;
 						}
 					}
 
@@ -154,11 +152,7 @@
 						}
 
 						div[data-posts] {
-							:nth-child(n + 3) {
-								@media (max-width: 768px) {
-									display: none;
-								}
-							}
+							height: auto;
 						}
 
 						article {
@@ -168,8 +162,14 @@
 							gap: 20px;
 							height: 80px;
 
+							@include mixins.small {
+								margin-bottom: 3rem;
+								align-items: inherit;
+							}
+
 							@include mixins.mobile {
-								margin-bottom: 1rem;
+								margin-bottom: 2rem;
+								align-items: inherit;
 							}
 
 							.post-thumbnail {
@@ -195,6 +195,16 @@
 										font-weight: 500;
 										line-height: 145%;
 										color: #333;
+
+										@include mixins.small{
+											line-height: 120%;
+											display: block;
+										}
+
+										@include mixins.mobile{
+											line-height: 120%;
+											display: block;
+										}
 									}
 								}
 							}
@@ -341,21 +351,34 @@
 						display: flex;
 						flex-direction: column;
 						right: 0;
+						width: 328px;
+						margin-right: auto;
+						margin-left: auto;
+						gap: 220px;
 					}
 
 					@include mixins.mobile {
 						display: flex;
 						flex-direction: column;
 						right: 0;
+						width: 328px;
+						margin-right: auto;
+						margin-left: auto;
 					}
 
 					.post {
+			
+
 						@include mixins.small {
-							height: 358px;
+							max-width: 328px;
+							width: 100%;
+							height: 184px;
 						}
 
 						@include mixins.mobile {
-							height: 358px;
+							max-width: 328px;
+							width: 100%;
+							height: 184px;
 						}
 
 						&:hover {
@@ -364,7 +387,7 @@
 
 						&-card {
 							flex-direction: column;
-							max-width: 370px;
+							max-width: 328px;
 							width: 100%;
 							height: auto;
 							border-bottom: none;

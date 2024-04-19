@@ -129,6 +129,7 @@
                 height: 175px;
                 border-radius: 50%;
                 flex-shrink: 0;
+                margin-top: 41px;
                 @include mixins.mobile{
                     width: 82px;
                     height: 82px;

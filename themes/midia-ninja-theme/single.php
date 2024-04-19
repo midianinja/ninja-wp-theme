@@ -68,8 +68,8 @@ get_template_part( 'template-parts/header-especiais' );
                                         <div class="auth-name-icons">    
                                         
                                         <div class="authname">
-                                            <?php the_author(); ?>
-                                        </div>
+                                            <?php echo $afluente_name; ?>
+                                         </div>
 
                                         <hr>
 
@@ -131,36 +131,36 @@ get_template_part( 'template-parts/header-especiais' );
 
                             <div class="content-author">
 
-                            <div>
-                                <?php echo get_avatar(get_the_author_meta('ID'), 70);?>
+                                <div>
+                                    <?php echo get_avatar(get_the_author_meta('ID'), 70);?>
 
-                                <div class="author">
-                                    <div class="byline">
-                                        <span><?php _e('By', 'ninja');?></span>
-                                        <?php the_author(); ?>
+                                    <div class="author">
+                                        <div class="byline">
+                                            <span><?php _e('By', 'ninja');?></span>
+                                            <?php the_author(); ?>
+                                        </div>
+
+                                        <time class="date" datetime="<?php echo get_the_date('c'); ?>">
+                                            <span>
+                                                <?php the_date();?>
+                                            </span>
+                                            <span class="clock"></span>
+                                            <span>
+                                                <?php the_time('G:i');?>
+                                            </span>
+                                        </time>
+                                    </div>
+                                </div>
+
+                                <div class="page-share">
+                                    <span><?php _e('Share:', 'ninja');?></span>
+                                    <div class="social-icons">
+                                        <?php the_social_networks_menu() ?>
+                                        <?php echo do_shortcode('[addtoany]'); ?>
                                     </div>
 
-                                    <time class="date" datetime="<?php echo get_the_date('c'); ?>">
-                                        <span>
-                                            <?php the_date();?>
-                                        </span>
-                                        <span class="clock"></span>
-                                        <span>
-                                            <?php the_time('G:i');?>
-                                        </span>
-                                    </time>
+
                                 </div>
-                            </div>
-
-                            <div class="page-share">
-                                <span><?php _e('Share:', 'ninja');?></span>
-                                <div class="social-icons">
-                                    <?php the_social_networks_menu() ?>
-                                    <?php echo do_shortcode('[addtoany]'); ?>
-                                </div>
-
-
-                            </div>
                             </div>
                         </div>
 

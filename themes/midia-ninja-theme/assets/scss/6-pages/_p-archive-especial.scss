@@ -14,8 +14,8 @@
 
 			.wp-block-column{
 
-				.wp-block-cover.alignwide{
-					max-width: 770px;
+				.wp-block-cover.alignwide{	
+					width: 100%;
 
 					@include mixins.small{
 						max-width: 328px;
@@ -60,7 +60,7 @@
 									letter-spacing: -0.42px;
 									margin: 0;
 									margin-right: auto;
-									margin-left: 73px;
+									margin-left: 143px;
 
 									@include mixins.small{
 										margin-left: 35px;

@@ -42,7 +42,7 @@ $latest_post = get_posts(array(
                 </div>
 
                 <div class="title">
-                    <h2>oi</h2>
+
                     <?php 
                         if ($latest_post) {
                             echo '<a href="' . esc_url(get_permalink($latest_post[0]->ID)) . '">' . esc_html(get_the_title($latest_post[0])) . '</a>';

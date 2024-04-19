@@ -204,6 +204,10 @@
             }
         }
         .header-and-footer-archive{
+            width: 130%;
+            @include mixins.mobile{
+                width: 100%;
+            }
             .opinion-posts-block{
                 background-color: #000;
                 .container{

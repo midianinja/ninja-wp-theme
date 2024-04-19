@@ -1,6 +1,6 @@
-<a class="post-card" href="<?php the_permalink(); ?>">
+<a class="post-card post-card-opiniao" href="<?php the_permalink(); ?>">
    
-    <div class="post-card--thumb post-opinao">
+    <div class="post-card--thumb post-opiniao">
         
         
         <?php if (has_post_thumbnail()) : ?>

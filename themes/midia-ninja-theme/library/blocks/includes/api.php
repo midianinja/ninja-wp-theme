@@ -350,8 +350,10 @@ function flickr_page_rest_callback( \WP_REST_Request $request ) {
 
 	ob_start();
 
-	foreach( $data['data'] as $photo ) {
-		get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, [ 'photo' => $photo ] );
+	if (!empty($data)) {
+		foreach( $data['data'] as $photo ) {
+			get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, [ 'photo' => $photo ] );
+		}
 	}
 
 	$html = ob_get_clean();

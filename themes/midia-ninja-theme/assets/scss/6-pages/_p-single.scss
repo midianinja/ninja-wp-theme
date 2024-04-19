@@ -91,7 +91,7 @@
 
 					img {
 						max-width: 100%;
-						height: auto;
+						height: 506px;
 						border-radius: 8px;
 					}
 
@@ -203,6 +203,8 @@
 
 						img {
 							border-radius: 100%;
+							width: 70px !important;
+							height: 70px !important;
 						}
 
 						.author {

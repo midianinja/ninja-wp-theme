@@ -77,6 +77,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"showChildren": {
+			"type": "boolean",
+			"default": false
+		},
 		"showDate": {
 			"type": "boolean",
 			"default": false

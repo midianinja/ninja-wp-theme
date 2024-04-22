@@ -44,6 +44,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		queryTerms,
 		showAsGrid,
 		showAuthor,
+		showChildren,
 		showDate,
 		showExcerpt,
 		showTaxonomy,
@@ -318,7 +319,15 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					{ ( blockModel == 'posts' || blockModel == 'numbered' ) && (
 						<>
 							<PanelRow>
-								<SelectPostType postType={postType} onChangePostType={onChangePostType} />
+								<SelectPostType postType={ postType } onChangePostType={ onChangePostType } />
+							</PanelRow>
+
+							<PanelRow>
+								<ToggleControl
+									label={ __( 'Show children items (if any)?', 'ninja' ) }
+									checked={ showChildren }
+									onChange={ () => { setAttributes( { showChildren: ! showChildren } ) } }
+								/>
 							</PanelRow>
 
 							<PanelRow>

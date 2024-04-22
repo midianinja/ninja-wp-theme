@@ -9,10 +9,16 @@ function latest_vertical_posts_callback( $attributes ) {
     $block_classes[] = 'latest-vertical-posts-block';
 
     if ( $block_model == 'posts' || $block_model == 'numbered' ){
+        $columns         = ! empty( $attributes['columns'] )? absint( $attributes['columns'] ) : 2;
+        $grid_format     = ! empty( $attributes['gridFormat'] ) ? esc_attr( $attributes['gridFormat'] ) : 'columns';
+        $show_as_grid    = ! empty( $attributes['showAsGrid'] );
         $show_author     = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
         $show_date       = ( isset( $attributes['showDate'] ) && ! empty( $attributes['showDate'] ) ) ? true : false;
         $show_excerpt    = ( isset( $attributes['showExcerpt'] ) && ! empty( $attributes['showExcerpt'] ) ) ? true : false;
         $show_taxonomy   = ( isset( $attributes['showTaxonomy'] ) && ! empty( $attributes['showTaxonomy'] ) ) ? true : false;
+        $block_classes[] = $show_as_grid ? 'post--has-grid' : '';
+        $block_classes[] = $columns > 1 ? 'post--columns-'. $columns : '';
+        $block_classes[] = $grid_format ? 'post--grid-' . $grid_format : 'post--grid-columns';
         $block_classes[] = $show_author ? 'post--has-author' : '';
         $block_classes[] = $show_excerpt ? 'post--has-excerpt' : '';
         $block_classes[] = $show_taxonomy ? 'post--has-taxonomy' : '';
@@ -39,7 +45,7 @@ function latest_vertical_posts_callback( $attributes ) {
 
     $counter = 0;
 
-    // Determina quando posts serão exibidos em cada slide
+    // Determina quantos posts serão exibidos em cada slide
     $posts_by_slide = $attributes['postsBySlide'] ?? 2;
     $posts_to_show  = $attributes['postsToShow'] ?? 8;
 
@@ -227,6 +233,10 @@ function latest_vertical_posts_callback( $attributes ) {
 
                 if ( $counter == 1 ) {
                     echo "<div class='slide'>";
+
+                    if ( $show_as_grid ) {
+                        echo '<div class="slide-grid">';
+                    }
                 }
 
                 $attributes['counter_posts']++;
@@ -234,6 +244,10 @@ function latest_vertical_posts_callback( $attributes ) {
                 get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', '', ['post' => $post, 'attributes' => $attributes] );
 
                 if ( $counter == $posts_by_slide || $counter == $has_content->post_count ) {
+                    if ( $show_as_grid ) {
+                        echo '</div><!-- .slide-grid -->';
+                    }
+
                     echo "</div>";
                     $counter = 0;
                 }
@@ -241,6 +255,10 @@ function latest_vertical_posts_callback( $attributes ) {
             endwhile;
 
             if ( $counter != 0 ) {
+                if ( $show_as_grid ) {
+                    echo '</div><!-- .slide-grid -->';
+                }
+
                 echo "</div>";
             }
 

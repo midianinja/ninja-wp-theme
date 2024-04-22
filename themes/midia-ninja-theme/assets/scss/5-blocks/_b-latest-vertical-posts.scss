@@ -21,10 +21,6 @@
 				color: var(--Gray-1, #333);
 				font-family: "Manrope", serif;
 
-				.post {
-					margin-bottom: 30px;
-				}
-
 				&:last-child {
 					.post {
 						margin-bottom: 0;
@@ -85,8 +81,10 @@
 			}
 		}
 
-		.slick-slide .slide {
-			display: none !important;
+		&:not(.post--has-grid) {
+			.slick-slide .slide {
+				display: none !important;
+			}
 		}
 
 		.slide {
@@ -96,8 +94,10 @@
 			}
 		}
 
-		.slick-slide.slick-active .slide {
-			display: block !important;
+		&:not(.post--has-grid) {
+			.slick-slide.slick-active .slide {
+				display: block !important;
+			}
 		}
 
 		.latest-vertical-posts-block__footer {

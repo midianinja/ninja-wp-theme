@@ -19,6 +19,10 @@
 			"type": "string",
 			"default": "posts"
 		},
+		"columns": {
+			"type": "number",
+			"default": 2
+		},
 		"flickrAlbumId": {
 			"type": "string"
 		},
@@ -31,6 +35,10 @@
 		},
 		"flickrUserId": {
 			"type": "string"
+		},
+		"gridFormat": {
+			"type": "string",
+			"default": "columns"
 		},
 		"heading": {
 			"type": "string"
@@ -60,6 +68,10 @@
 		},
 		"queryTerms": {
 			"type": "array"
+		},
+		"showAsGrid": {
+			"type": "boolean",
+			"default": false
 		},
 		"showAuthor": {
 			"type": "boolean",

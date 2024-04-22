@@ -1,7 +1,7 @@
 @import "../../node_modules/slick-carousel/slick/slick.scss";
+@import "../../shared/scss/mixins";
 
 .latest-vertical-posts-block {
-	background-color: gainsboro;
 	border-radius: 8px;
 	margin-bottom: 30px;
 	padding: 15px;
@@ -15,6 +15,8 @@
 	}
 
 	.post {
+		margin-bottom: 30px;
+
 		// .post-content
 		&-content {
 			.post-title {
@@ -110,6 +112,119 @@
 	&.post--has-excerpt {
 		.post {
 			align-items: flex-start;
+		}
+	}
+
+	&.post--has-grid {
+		.slick-slide {
+			.slide {
+				.slide-grid {
+					display: grid;
+					gap: 30px;
+					grid-template-columns: 1fr 1fr;
+
+					@include break-mobile {
+						gap: 15px;
+						grid-template-columns: 1fr;
+					}
+
+					.post {
+						margin-bottom: 0;
+
+						// .post-thumbnail
+						&-thumbnail {
+							// .post-thumbnail--image
+							&--image {
+								aspect-ratio: 136 / 97;
+								&::before,
+								&::after {
+									display: none;
+								}
+
+								img {
+									object-fit: cover;
+									top: inherit;
+									width: 100%;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&.post--grid-columns {
+			.slick-slide {
+				.slide {
+					.slide-grid {
+						.post {
+							align-items: flex-start;
+							flex-direction: column;
+
+							// .post-thumbnail
+							&-thumbnail {
+								flex-basis: 100%;
+
+								@include break-mobile {
+									width: 100%;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&.post--columns-1 {
+			.slick-slide {
+				.slide {
+					.slide-grid {
+						grid-template-columns: 1fr;
+					}
+				}
+			}
+		}
+
+		&.post--columns-2 {
+			.slick-slide {
+				.slide {
+					.slide-grid {
+						grid-template-columns: 1fr 1fr;
+
+						@include break-mobile {
+							grid-template-columns: 1fr;
+						}
+					}
+				}
+			}
+		}
+
+		&.post--columns-3 {
+			.slick-slide {
+				.slide {
+					.slide-grid {
+						grid-template-columns: 1fr 1fr 1fr;
+
+						@include break-mobile {
+							grid-template-columns: 1fr;
+						}
+					}
+				}
+			}
+		}
+
+		&.post--columns-4 {
+			.slick-slide {
+				.slide {
+					.slide-grid {
+						grid-template-columns: 1fr 1fr 1fr 1fr;
+
+						@include break-mobile {
+							grid-template-columns: 1fr;
+						}
+					}
+				}
+			}
 		}
 	}
 

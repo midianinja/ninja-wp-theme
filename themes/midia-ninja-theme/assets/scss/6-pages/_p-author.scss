@@ -28,7 +28,7 @@
             backdrop-filter: blur(11px);
             @include mixins.mobile{
                 position: relative;
-                top: 275px;
+                top: 275px; 
                 height: 222px;
                 max-width: 431px;
                 display: flex;
@@ -189,9 +189,22 @@
         }
     }
     main{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr 1fr;
+        }
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr;
+        }
         .post-card{
             width: 334px;
             margin-top:60px;
+            margin-bottom: 0px;
+            @include mixins.mobile{
+                border: none;
+            }
             .post-card--thumb{
                 display: none;
             }

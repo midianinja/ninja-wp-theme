@@ -346,13 +346,23 @@ function flickr_page_rest_callback( \WP_REST_Request $request ) {
 
 	$api_key = flickr_decrypt_key( $request['api_key'] );
 
-	$data = flickr_get_photos( $api_key, $request['type'], $request['data_id'], 9, intval( $request['page'] ) );
-
 	ob_start();
 
-	if (!empty($data)) {
-		foreach( $data['data'] as $photo ) {
-			get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, [ 'photo' => $photo ] );
+	if ( $request['type'] === 'albums' ) {
+		$data = flickr_get_albums( $api_key, $request['data_id'], 9, intval( $request['page'] ) );
+
+		if ( ! empty( $data ) ) {
+			foreach( $data['data'] as $album ) {
+				get_template_part( 'library/blocks/src/flickr-gallery/template-parts/album', null, [ 'album' => $album ] );
+			}
+		}
+	} else {
+		$data = flickr_get_photos( $api_key, $request['type'], $request['data_id'], 9, intval( $request['page'] ) );
+
+		if ( ! empty( $data ) ) {
+			foreach( $data['data'] as $photo ) {
+				get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, [ 'photo' => $photo ] );
+			}
 		}
 	}
 

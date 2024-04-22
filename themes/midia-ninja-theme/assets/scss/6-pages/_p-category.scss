@@ -9,6 +9,12 @@
 	#app {
 		.container {
 			.header-and-footer-archive {
+
+				.wp-block-cover.alignwide{
+					@media(max-width: 1366px){
+						left: 52% !important;
+					}
+				}
 				.cover-categoria-desktop {
 					padding: 0;
 					border-radius: 8px;
@@ -123,6 +129,10 @@
 						position: relative;
 						left: -4%;
 						padding: 16px;
+
+						@media (max-width: 1366px) {
+							left: -2%;
+						}
 
 						@media (max-width: 1200px) {
 							left: -4%;
@@ -340,6 +350,10 @@
 				margin-bottom: 100px;
 				width: 67%;
 
+				@include mixins.mobile{
+					width: 100%;
+				}
+
 				.posts {
 					display: grid;
 					grid-template-columns: 1fr 1fr;
@@ -351,17 +365,16 @@
 						display: flex;
 						flex-direction: column;
 						right: 0;
-						width: 328px;
+						width: 100%;
 						margin-right: auto;
 						margin-left: auto;
-						gap: 220px;
 					}
 
 					@include mixins.mobile {
 						display: flex;
 						flex-direction: column;
 						right: 0;
-						width: 328px;
+						width: 100%;
 						margin-right: auto;
 						margin-left: auto;
 					}
@@ -372,13 +385,13 @@
 						@include mixins.small {
 							max-width: 328px;
 							width: 100%;
-							height: 184px;
+							height: auto;
 						}
 
 						@include mixins.mobile {
 							max-width: 328px;
 							width: 100%;
-							height: 184px;
+							height: auto;
 						}
 
 						&:hover {
@@ -485,6 +498,31 @@
 
 					a {
 						text-decoration: none !important;
+					}
+
+					.latest-vertical-posts-block__footer{
+			
+						.latest-vertical-posts-block__arrows{
+							.slick-prev{
+								background-color: #848484;
+							}
+	
+							.slick-next {
+								background-color: #F5F5F5;
+							}
+						}
+
+						.latest-vertical-posts-block__dots{
+							.slick-dots{
+								li{
+									background-color: #4F4F4F;
+
+									&:active{
+										background-color: #848484;
+									}
+								}
+							}
+						}
 					}
 
 					.slick-list {

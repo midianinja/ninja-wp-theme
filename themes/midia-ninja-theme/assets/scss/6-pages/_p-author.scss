@@ -28,7 +28,7 @@
             backdrop-filter: blur(11px);
             @include mixins.mobile{
                 position: relative;
-                top: 275px;
+                top: 275px; 
                 height: 222px;
                 max-width: 431px;
                 display: flex;
@@ -185,44 +185,58 @@
                 border-top: solid 1px white;
                 padding-top: 8px;
             }
-            
         }
     }
     main{
-        .post-card{
-            width: 334px;
-            margin-top:60px;
-            .post-card--thumb{
-                display: none;
+        .container-posts{
+            display: grid;
+            grid-template-columns: 1fr,1fr,1fr;
+            width: 100%;
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr 1fr;
             }
-            & .post-card--content{
-                .entry-date{
-                    color: var(--Gray-3, #828282);
-                    /* <h5> Manrope */
-                    font-family: Manrope;
-                    font-size: 13px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 145%; /* 18.85px */
+            @media (max-width: 480px) {
+                grid-template-columns: 1fr;
+            }
+            .post-card{
+                width: 334px;
+                margin-top:60px;
+                margin-bottom: 0px;
+                @include mixins.mobile{
+                    border: none;
                 }
-                a,
-                h5{
-                    color: var(--Gray-1, #333);
-                    font-family: Manrope;
-                    font-size: 20px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 130%; /* 26px */
-                    margin-bottom: 16px;
+                .post-card--thumb{
+                    display: none;
                 }
-                .entry-excerpt{
-                    color: var(--Gray-3, #828282);
-                    /* <p> Manrope */
-                    font-family: Manrope;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 140%; /* 22.4px */
+                & .post-card--content{
+                    .entry-date{
+                        color: var(--Gray-3, #828282);
+                        /* <h5> Manrope */
+                        font-family: Manrope;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 145%; /* 18.85px */
+                    }
+                    a,
+                    h5{
+                        color: var(--Gray-1, #333);
+                        font-family: Manrope;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 130%; /* 26px */
+                        margin-bottom: 16px;
+                    }
+                    .entry-excerpt{
+                        color: var(--Gray-3, #828282);
+                        /* <p> Manrope */
+                        font-family: Manrope;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 140%; /* 22.4px */
+                    }
                 }
             }
         }
@@ -249,7 +263,11 @@
                                 gap: 20px;
                                 border: none;
                             }
+                            &:hover {
+                                color: black;  // Altera a cor do texto para branco ao passar o mouse
+                            }
                         }
+                        
                     }
                 }
             }

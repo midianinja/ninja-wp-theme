@@ -9,6 +9,12 @@
 	#app {
 		.container {
 			.header-and-footer-archive {
+
+				.wp-block-cover.alignwide{
+					@media(max-width: 1366px){
+						left: 52% !important;
+					}
+				}
 				.cover-categoria-desktop {
 					padding: 0;
 					border-radius: 8px;
@@ -123,6 +129,10 @@
 						position: relative;
 						left: -4%;
 						padding: 16px;
+
+						@media (max-width: 1366px) {
+							left: -2%;
+						}
 
 						@media (max-width: 1200px) {
 							left: -4%;
@@ -488,6 +498,31 @@
 
 					a {
 						text-decoration: none !important;
+					}
+
+					.latest-vertical-posts-block__footer{
+			
+						.latest-vertical-posts-block__arrows{
+							.slick-prev{
+								background-color: #848484;
+							}
+	
+							.slick-next {
+								background-color: #F5F5F5;
+							}
+						}
+
+						.latest-vertical-posts-block__dots{
+							.slick-dots{
+								li{
+									background-color: #4F4F4F;
+
+									&:active{
+										background-color: #848484;
+									}
+								}
+							}
+						}
 					}
 
 					.slick-list {

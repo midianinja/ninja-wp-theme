@@ -15,7 +15,7 @@ function flickr_gallery_callback( $attributes ) {
 	$api_key = ( isset( $attributes['flickrAPIKey'] ) && ! empty( $attributes['flickrAPIKey'] ) ) ? esc_attr( $attributes['flickrAPIKey'] ) : false;
 	$flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';
 
-	if ( $flickr_by_type == 'album' ) {
+	if ( $flickr_by_type === 'album' ) {
 		$data_id = ( isset( $attributes['flickrAlbumId'] ) && ! empty( $attributes['flickrAlbumId'] ) ) ? esc_attr( $attributes['flickrAlbumId'] ) : false;
 	} else {
 		$data_id = ( isset( $attributes['flickrUserId'] ) && ! empty( $attributes['flickrUserId'] ) ) ? esc_attr( $attributes['flickrUserId'] ) : false;
@@ -29,7 +29,11 @@ function flickr_gallery_callback( $attributes ) {
 		return;
 	}
 
-	$data = flickr_get_photos( $api_key, $flickr_by_type, $data_id, 9, 1 );
+	if ( $flickr_by_type === 'albums' ) {
+		$data = flickr_get_albums( $api_key, $data_id, 9, 1 );
+	} else {
+		$data = flickr_get_photos( $api_key, $flickr_by_type, $data_id, 9, 1 );
+	}
 
     if ( empty( $data ) ) {
         if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
@@ -48,9 +52,15 @@ function flickr_gallery_callback( $attributes ) {
 				<div class="flickr-gallery-block__before-grid"></div>
 
 				<div class="flickr-gallery-block__grid" data-key="<?= flickr_encrypt_key( $api_key ) ?>" data-type="<?= $flickr_by_type ?>" data-id="<?= $data_id ?>">
-				<?php foreach( $data['data'] as $photo ): ?>
-					<?php get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, [ 'photo' => $photo ] ); ?>
-				<?php endforeach; ?>
+				<?php if ( $flickr_by_type === 'albums' ):
+					foreach( $data['data'] as $album ):
+						get_template_part( 'library/blocks/src/flickr-gallery/template-parts/album', null, [ 'album' => $album ] );
+					endforeach;
+				else:
+					foreach( $data['data'] as $photo ):
+						get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, [ 'photo' => $photo ] );
+					endforeach;
+				endif; ?>
 				</div>
 
 				<div class="flickr-gallery-block__pagination" data-pages="<?= $data['pages'] ?>"></div>

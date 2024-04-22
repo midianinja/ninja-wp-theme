@@ -353,6 +353,31 @@
                         
                     }
 
+                    p{
+                        iframe{
+                            width: 560px;
+                            @media(max-width: 589px){
+                                width: 330px;
+                                height: 200px;
+                            }
+                            @media(max-width: 393px){
+                                width: 363px;
+                                height: 200px;
+                               
+                            }
+                            @media(max-width: 366px){
+                                width: 333px;
+                                height: 200px;
+                               
+                            }
+                            @media(max-width: 366px){
+                                width: 330px;
+                                height: 200px;
+                               
+                            }
+                        }
+                    }
+
                     .wp-block-table{
                         margin-bottom: 1rem;
                     }

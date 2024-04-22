@@ -2,14 +2,15 @@
 $album = $args['album'];
 
 $title = ( ! empty( $album['title']['_content'] ) ) ? esc_attr( $album['title']['_content'] ) : false;
+$date = ( ! empty( $album['date_create'] ) ) ? esc_attr( $album['date_create'] ) : false;
 $owner    = ( ! empty( $album['owner'] ) ) ? esc_attr( $album['owner'] ) : false;
 $album_id = ( ! empty( $album['id'] ) ) ? esc_attr( $album['id'] ) : false;
-$date = ( ! empty( $album['date_create'] ) ) ? esc_attr( $album['date_create'] ) : false;
 
 $thumb = 'https://live.staticflickr.com/' . $album['server'] . '/' . $album['primary'] . '_' . $album['secret'] . '_z.jpg';
 
 if ( $album_id && $owner ) : ?>
-<div class="slide">
+
+<div class="flickr-photo">
     <a href="https://www.flickr.com/photos/<?php echo $owner; ?>/albums/<?php echo $album_id; ?>" target="_blank">
         <div class="post specials">
             <div class="post-thumbnail">
@@ -29,4 +30,5 @@ if ( $album_id && $owner ) : ?>
         </div>
     </a>
 </div>
+
 <?php endif; ?>

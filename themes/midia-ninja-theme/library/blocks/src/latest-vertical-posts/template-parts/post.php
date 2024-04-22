@@ -20,7 +20,7 @@ $show_date      = isset( $args['attributes']['showDate'] ) ? $args['attributes']
                     <?php if ( has_post_thumbnail() ) : ?>
                         <?php echo get_the_post_thumbnail( $args['post']->ID, 'thumbnail' ); ?>
                     <?php else : ?>
-                        <img src="https://via.placeholder.com/100">
+                        <img src="https://via.placeholder.com/200">
                     <?php endif; ?>
                 </div>
             </div>

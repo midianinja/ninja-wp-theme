@@ -15,7 +15,7 @@ services:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DEBUG: 1
+      WORDPRESS_DEBUG: 0
     volumes:
       - ./wp-root:/var/www/html/
       - ./themes/midia-ninja-theme:/var/www/html/wp-content/themes/midia-ninja-theme
@@ -44,7 +44,7 @@ services:
       dockerfile: ./compose/local/watcher/Dockerfile
     volumes:
       - ./plugins/hacklab-blocks:/app
-      
+
   mariadb:
     image: mariadb:10.4
     volumes:

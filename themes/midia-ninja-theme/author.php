@@ -108,13 +108,15 @@ $coauthors = get_coauthors();
                     <?php endforeach; ?>
                 </div>
             </aside>
-            <main class="container-colunistas col-md-9">
-                <?php while ( have_posts() ) : the_post(); ?>
-                    <?php get_template_part( 'template-parts/content/post' ); ?>    
-                <?php endwhile; ?>
-                <?php echo get_layout_footer('author'); ?>
+            <main class="col-md-9">
+                    <?php while ( have_posts() ) : the_post(); ?>
+                        <?php get_template_part( 'template-parts/content/post' ); ?>    
+                    <?php endwhile; ?>
+                    <?php echo get_layout_footer('author'); ?>
                 <?php get_template_part( 'template-parts/content/pagination' ); ?>
             </main>
+            
+
         </div><!-- /.row --> 
     </div><!-- /.container -->
 </div><!-- /.index-wrapper -->

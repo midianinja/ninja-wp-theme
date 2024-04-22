@@ -11,10 +11,12 @@ function latest_horizontal_posts_callback( $attributes ) {
     $custom_class     = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
     $description      = ( ! empty( $attributes['description'] ) ) ? apply_filters( 'the_content', $attributes['description'] ) : false;
     $heading          = $attributes['heading'] ?? '';
+    $show_children   = ! empty( $attributes['showChildren'] );
 
     $block_classes[] = 'latest-horizontal-posts-block';
     $block_classes[] = $custom_class;
     $block_classes[] = 'model-' . $block_model;
+    $block_classes[] = $show_children ? 'post--has-children' : '';
     $block_classes[] = 'content-' . $content_position;
     $block_classes[] = 'show-slides-' . $slides_to_show;
 

@@ -12,6 +12,7 @@ import {
 	__experimentalNumberControl as NumberControl,
 	Disabled,
 	TextControl,
+	ToggleControl,
 	PanelBody,
 	PanelRow,
 	RangeControl,
@@ -40,6 +41,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		postsToShow,
 		postType,
 		queryTerms,
+		showChildren,
 		showTaxonomy,
 		slidesToShow,
 		taxonomy
@@ -267,6 +269,14 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						<>
 							<PanelRow>
 								<SelectPostType postType={postType} onChangePostType={onChangePostType} />
+							</PanelRow>
+
+							<PanelRow>
+								<ToggleControl
+									label={ __( 'Show children items (if any)?', 'ninja' ) }
+									checked={ showChildren }
+									onChange={ () => { setAttributes( { showChildren: ! showChildren } ) } }
+								/>
 							</PanelRow>
 
 							<PanelRow>

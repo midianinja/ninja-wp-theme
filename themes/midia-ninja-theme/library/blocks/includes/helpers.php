@@ -20,6 +20,7 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
     $taxonomy      = isset( $attributes['taxonomy'] ) ? $attributes['taxonomy'] : '';
     $query_terms   = isset( $attributes['queryTerms'] ) ? $attributes['queryTerms'] : [];
     $return_ids    = isset( $attributes['returnIds'] ) ? $attributes['returnIds'] : false;
+    $show_children = ! empty( $attributes['showChildren'] );
 
     $order    = isset( $attributes['order'] ) ? $attributes['order'] : 'desc';
     $order_by = isset( $attributes['orderBy'] ) ? $attributes['orderBy'] : 'date';
@@ -47,6 +48,10 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
 
     if ( $return_ids ) {
         $args['fields'] = 'ids';
+    }
+
+    if ( ! $show_children ) {
+        $args['post_parent'] = 0;
     }
 
     $args['post__not_in'] = array_merge(

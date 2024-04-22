@@ -15,7 +15,7 @@ import {
 	ToggleControl,
 	PanelBody,
 	PanelRow,
-	QueryControls,
+	RangeControl,
 	SelectControl
 } from '@wordpress/components'
 
@@ -44,6 +44,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		queryTerms,
 		showAsGrid,
 		showAuthor,
+		showChildren,
 		showDate,
 		showExcerpt,
 		showTaxonomy,
@@ -318,7 +319,15 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					{ ( blockModel == 'posts' || blockModel == 'numbered' ) && (
 						<>
 							<PanelRow>
-								<SelectPostType postType={postType} onChangePostType={onChangePostType} />
+								<SelectPostType postType={ postType } onChangePostType={ onChangePostType } />
+							</PanelRow>
+
+							<PanelRow>
+								<ToggleControl
+									label={ __( 'Show children items (if any)?', 'ninja' ) }
+									checked={ showChildren }
+									onChange={ () => { setAttributes( { showChildren: ! showChildren } ) } }
+								/>
 							</PanelRow>
 
 							<PanelRow>
@@ -342,6 +351,17 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 									<SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ queryTerms } taxonomy={ taxonomy } />
 								</PanelRow>
 							) }
+
+							<PanelRow>
+								<RangeControl
+									label={ __( 'Total number of posts to display', 'ninja' ) }
+									value={ postsToShow }
+									onChange={ ( value ) => setAttributes( { postsToShow: value } ) }
+									min={ 2 }
+									max={ 99 }
+									step={ 2 }
+								/>
+							</PanelRow>
 
 							<PanelRow>
 								<SelectControl

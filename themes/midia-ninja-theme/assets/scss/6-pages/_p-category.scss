@@ -340,6 +340,10 @@
 				margin-bottom: 100px;
 				width: 67%;
 
+				@include mixins.mobile{
+					width: 100%;
+				}
+
 				.posts {
 					display: grid;
 					grid-template-columns: 1fr 1fr;
@@ -351,17 +355,16 @@
 						display: flex;
 						flex-direction: column;
 						right: 0;
-						width: 328px;
+						width: 100%;
 						margin-right: auto;
 						margin-left: auto;
-						gap: 220px;
 					}
 
 					@include mixins.mobile {
 						display: flex;
 						flex-direction: column;
 						right: 0;
-						width: 328px;
+						width: 100%;
 						margin-right: auto;
 						margin-left: auto;
 					}
@@ -372,13 +375,13 @@
 						@include mixins.small {
 							max-width: 328px;
 							width: 100%;
-							height: 184px;
+							height: auto;
 						}
 
 						@include mixins.mobile {
 							max-width: 328px;
 							width: 100%;
-							height: 184px;
+							height: auto;
 						}
 
 						&:hover {

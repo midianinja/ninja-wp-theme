@@ -6,13 +6,17 @@
 		justify-content: center;
 		gap: 4px;
 
+		.page-numbers {
+			padding: 4px;
+		}
+
 		span,
 		a {
 			border-radius: 8px;
 			border: 2px solid transparent;
 			box-shadow: none;
 			height: 32px;
-			width: 32px;
+			min-width: 32px;
 			transition: all 0.2s;
 			text-decoration: none;
 

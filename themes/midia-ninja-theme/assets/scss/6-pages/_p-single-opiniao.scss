@@ -58,7 +58,7 @@
                                 font-family: Manrope;
                                 font-size: 20px;
                                 font-style: normal;
-                                font-weight: 400;
+                                font-weight: 700;
                                 line-height: 150%; /* 30px */
                                 margin-top: 24px;
                                 margin-bottom: 31px;
@@ -109,6 +109,7 @@
                                 }
 
                                 .byline{
+                                    width: auto;
                                     span{
                                         color: #000;
                                         font-family: Manrope;
@@ -125,16 +126,19 @@
                                     font-weight: 500;
                                     margin-top: 0.3rem;
                                     display: flex;
+                                    width: auto;
                                     :first-child{
-                                        width: 155px;
+                                        width: 180px;
+                                        color: var(--wp--preset--color--primary-light);
                                     }
                                     .clock::before {
                                         content: url($p_theme_assets + "/images/clock.svg");
                                         position: relative;
-                                        top: 1px;
+                                        top: 0;
                                     }
                                     :last-child{
                                         margin-left: 5px;
+                                        color: var(--wp--preset--color--primary-light);
                                     }
                                 }
                             }
@@ -295,14 +299,13 @@
                         }  
                     }
                 }
-                section{
-                    .post-content{
-                        @media(max-width:992px){
-                            margin: 50px 0;
-
-                        }
+                
+                .post-content{
+                    @media(max-width:992px){
+                        margin: 50px 0;
 
                     }
+
                     p{
                         color: var(--PURE, #262626);
                         font-family: Manrope;
@@ -349,6 +352,14 @@
                         
                         
                     }
+
+                    .wp-block-table{
+                        margin-bottom: 1rem;
+                    }
+
+                    .table{
+                        max-width: 570px;
+                    }
                     .addtoany_share_save_container{
                         display: none;
                     }
@@ -376,11 +387,17 @@
                             display: none;
                         }
                     }
+
                 }
+                
+                
             }
 
             .post-footer{
                 margin-top: 0;
+                max-width: 1170px;
+                margin-left: auto;
+                margin-right: auto;
                 @include mixins.mobile{
                     display: flex;
                     justify-content: center;
@@ -466,6 +483,12 @@
                 .post-info{
                     .post-date{
                         display: inherit;
+                        color: var(--Gray-3, #828282);
+                        font-family: 'Manrope', serif;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 145%;
                     }
                     .content-author{
                         display: none;

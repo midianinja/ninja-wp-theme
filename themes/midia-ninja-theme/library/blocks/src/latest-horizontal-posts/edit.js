@@ -26,7 +26,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		className: 'latest-horizontal-posts-block'
 	} )
 
-	const { 
+	const {
 		blockId,
 		blockModel,
 		contentPosition,
@@ -133,7 +133,11 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							value={ blockModel }
 							options={ [
 								{
-									label: __( 'Collection (Flickr)', 'ninja' ),
+									label: __( 'Albums (Flickr)', 'ninja' ),
+									value: "albums"
+								},
+								{
+									label: __( 'Photos (Flickr)', 'ninja' ),
 									value: "collection"
 								},
 								{
@@ -195,7 +199,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					title={ __( 'Query', 'ninja' ) }
 					initialOpen={ false }
 				>
-					{ ( blockModel == 'videos' ) && (
+					{ ( blockModel === 'videos' ) && (
 						<PanelRow>
 							<TextControl
 								label={ __( 'YouTube Playlist ID', 'ninja' ) }
@@ -205,7 +209,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</PanelRow>
 					) }
 
-					{ ( blockModel == 'collection' ) && (
+					{ ( blockModel === 'collection' || blockModel === 'albums' ) && (
 						<>
 							<PanelRow>
 								<TextControl
@@ -215,28 +219,30 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 								/>
 							</PanelRow>
 
-							<PanelRow>
-								<SelectControl
-									label={ __( 'Type of the content', 'ninja' ) }
-									value={ flickrByType }
-									options={[
-										{
-											label: __( 'Images by user', 'ninja' ),
-											value: "user"
-										},
-										{
-											label: __( 'Images by album', 'ninja' ),
-											value: "album"
-										}
-									]}
-									onChange={ ( value ) => {
-										setAttributes( { flickrByType: value } )
-									} }
-								/>
-							</PanelRow>
+							{ ( blockModel === 'collection' ) && (
+								<PanelRow>
+									<SelectControl
+										label={ __( 'Type of the content', 'ninja' ) }
+										value={ flickrByType }
+										options={[
+											{
+												label: __( 'Images by user', 'ninja' ),
+												value: "user"
+											},
+											{
+												label: __( 'Images by album', 'ninja' ),
+												value: "album"
+											}
+										]}
+										onChange={ ( value ) => {
+											setAttributes( { flickrByType: value } )
+										} }
+									/>
+								</PanelRow>
+							) }
 
 							<PanelRow>
-								{ ( flickrByType == 'album' ) && (
+								{ ( blockModel === 'collection' && flickrByType === 'album' ) ? (
 									<TextControl
 										label={ __( 'Album ID', 'ninja' ) }
 										value={ flickrAlbumId }
@@ -244,9 +250,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 											setAttributes( { flickrAlbumId: value } )
 										} }
 									/>
-								) }
-
-								{ ( flickrByType == 'user' ) && (
+								) : (
 									<TextControl
 										label={ __( 'User ID', 'ninja' ) }
 										value={ flickrUserId }
@@ -259,7 +263,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel == 'most-read' || blockModel == 'specials' ) && (
+					{ ( blockModel === 'most-read' || blockModel === 'specials' ) && (
 						<>
 							<PanelRow>
 								<SelectPostType postType={postType} onChangePostType={onChangePostType} />
@@ -316,7 +320,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel == 'columnists' ) && (
+					{ ( blockModel === 'columnists' ) && (
 						<PanelRow>
 							<h2>{ __( 'With this configuration the block will display Co-Authors', 'ninja' ) }</h2>
 						</PanelRow>

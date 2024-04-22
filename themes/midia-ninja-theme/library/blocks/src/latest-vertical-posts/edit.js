@@ -30,18 +30,19 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const { 
 		blockId,
 		blockModel,
+		columns,
 		flickrAlbumId,
 		flickrAPIKey,
 		flickrByType,
 		flickrUserId,
+		gridFormat,
 		heading,
-		order,
-		orderBy,
 		playlistId,
 		postsBySlide,
 		postsToShow,
 		postType,
 		queryTerms,
+		showAsGrid,
 		showAuthor,
 		showDate,
 		showExcerpt,
@@ -171,6 +172,44 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						<>
 							<PanelRow>
 								<ToggleControl
+									label={ __( 'Show as a Grid?', 'ninja' ) }
+									checked={ showAsGrid }
+									onChange={ () => { setAttributes( { showAsGrid: ! showAsGrid } ) } }
+								/>
+							</PanelRow>
+
+							<PanelRow>
+								<SelectControl
+									label={ __( 'Grid format', 'ninja' ) }
+									value={ gridFormat }
+									options={ [
+										{
+											label: __( 'Columns', 'ninja' ),
+											value: "columns"
+										},
+										{
+											label: __( 'Row', 'ninja' ),
+											value: "row"
+										}
+									]}
+									onChange={ ( value ) => { setAttributes( { gridFormat:  gridFormat === 'columns' ? 'row' : 'columns' } ) } }
+								/>
+							</PanelRow>
+
+							{ ( showAsGrid ) && (
+								<PanelRow>
+									<NumberControl
+										label={ __( 'Columns', 'ninja' ) }
+										value={ columns }
+										onChange={ ( value ) => { setAttributes( { columns: value } ) } }
+										min={ 1 }
+										max={ 4 }
+									/>
+								</PanelRow>
+							) }
+
+							<PanelRow>
+								<ToggleControl
 									label={ __( 'Show the post excerpt?', 'ninja' ) }
 									checked={ showExcerpt }
 									onChange={ () => { setAttributes( { showExcerpt: ! showExcerpt } ) } }
@@ -198,7 +237,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					<PanelRow>
 						<NumberControl
 							label={ __( 'Posts by slide', 'ninja' ) }
-							max={ 5 }
+							max={ showAsGrid? 16 : 5 }
 							min={ 1 }
 							onChange={ ( value ) => { setAttributes( { postsBySlide: value } ) } }
 							step={ 1 }

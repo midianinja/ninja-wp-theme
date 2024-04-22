@@ -5,11 +5,11 @@ namespace Ninja;
 function latest_horizontal_posts_callback( $attributes ) {
     $slides_to_show = $attributes['slidesToShow'] ?? 3;
 
-    $block_id         = esc_attr( $attributes['blockId'] );
-    $block_model      = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'specials';
-    $content_position = ( isset( $attributes['contentPosition'] ) && ! empty( $attributes['contentPosition'] ) ) ? esc_attr( $attributes['contentPosition'] ) : 'left';
+    $block_id         = ( ! empty( $attributes['blockId'] ) ) ? esc_attr( $attributes['blockId'] ) : '';
+    $block_model      = ( ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'specials';
+    $content_position = ( ! empty( $attributes['contentPosition'] ) ) ? esc_attr( $attributes['contentPosition'] ) : 'left';
     $custom_class     = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
-    $description      = ( isset( $attributes['description'] ) && ! empty( $attributes['description'] ) ) ? apply_filters( 'the_content', $attributes['description'] ) : false;
+    $description      = ( ! empty( $attributes['description'] ) ) ? apply_filters( 'the_content', $attributes['description'] ) : false;
     $heading          = $attributes['heading'] ?? '';
 
     $block_classes[] = 'latest-horizontal-posts-block';
@@ -28,14 +28,14 @@ function latest_horizontal_posts_callback( $attributes ) {
 
     $attributes_hash = md5( serialize( $attributes ) );
 
-    if ( $block_model == 'collection' ) {
+    if ( $block_model == 'collection'  || $block_model == 'albums' ) {
         // Flickr
         require_once  __DIR__ . '/../shared/includes/flickr.php';
 
         $api_key = ( isset( $attributes['flickrAPIKey'] ) && ! empty( $attributes['flickrAPIKey'] ) ) ? esc_attr( $attributes['flickrAPIKey'] ) : false;
         $flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';
 
-        if ( $flickr_by_type == 'album' ) {
+        if ( $block_model == 'collection' && $flickr_by_type == 'album' ) {
             $data_id = ( isset( $attributes['flickrAlbumId'] ) && ! empty( $attributes['flickrAlbumId'] ) ) ? esc_attr( $attributes['flickrAlbumId'] ) : false;
         } else {
             $data_id = ( isset( $attributes['flickrUserId'] ) && ! empty( $attributes['flickrUserId'] ) ) ? esc_attr( $attributes['flickrUserId'] ) : false;
@@ -49,7 +49,11 @@ function latest_horizontal_posts_callback( $attributes ) {
             return;
         }
 
-        $has_content = flickr_get_photos( $api_key, $flickr_by_type, $data_id, 10, 1 );
+		if ( $block_model == 'albums' ) {
+			$has_content = flickr_get_albums( $api_key, $data_id, 10, 1 );
+		} else {
+			$has_content = flickr_get_photos( $api_key, $flickr_by_type, $data_id, 10, 1 );
+		}
     }
 
     if ( $block_model == 'columnists' ) {
@@ -152,10 +156,17 @@ function latest_horizontal_posts_callback( $attributes ) {
             // List of the posts to mount slider
             echo '<div class="latest-horizontal-posts-block__slides">';
 
+				if ( $block_model == 'albums' ) {
+					// Flickr album
+					foreach( $has_content['data'] as $album ) :
+						get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, [ 'album' => $album ] );
+					endforeach;
+				}
+
                 if ( $block_model == 'collection' ) {
-                    // Flickr
+                    // Flickr photos
                     foreach( $has_content['data'] as $photo ) :
-                        get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['photo' => $photo, 'attributes' => $attributes] );
+                        get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, [ 'photo' => $photo, 'attributes' => $attributes ] );
                     endforeach;
                 }
 

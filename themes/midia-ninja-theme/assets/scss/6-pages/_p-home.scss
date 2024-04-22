@@ -194,6 +194,7 @@
 				background-color: var(--wp--preset--color--primary-pure);
 				display: block;
 				position: relative;
+				padding: 0;
 
 				@include desktop {
 					height: 506px;

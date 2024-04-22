@@ -108,7 +108,7 @@ $coauthors = get_coauthors();
                     <?php endforeach; ?>
                 </div>
             </aside>
-            <main class="col-md-9">
+            <main class="container-colunistas col-md-9">
                 <?php while ( have_posts() ) : the_post(); ?>
                     <?php get_template_part( 'template-parts/content/post' ); ?>    
                 <?php endwhile; ?>

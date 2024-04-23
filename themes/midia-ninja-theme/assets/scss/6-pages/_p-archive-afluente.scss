@@ -25,13 +25,15 @@ main.content.col-md-12 {
 				width: 50%;
 				margin-left: 0px !important;
 				margin-bottom: 0px;
-				fill: rgba(51, 51, 51, 0.70);
-				backdrop-filter: blur(10.699999809265137px);
+				-webkit-backdrop-filter: blur(10.6999998093px);
+				backdrop-filter: blur(10.6999998093px);
 				height: 506px !important;
+				background-color: #0000008a;
+			
 				@include mobile{
 					width: 100%;
 					position: relative;
-					top: 255px;
+					top: 249px;
 
 				}
 				.wp-block-column{
@@ -39,65 +41,76 @@ main.content.col-md-12 {
 					display: flex;
 					align-items: center;
 					justify-content: center; 
+					flex-direction: column;
+					
+				
 					@include mobile{
 						display: flex;
-						margin-left: 20px; 
+						margin-left: 20px;
 						justify-content: flex-start;
-						margin-top: 57px;
+						margin-top: 0px;
+						align-items: flex-start;
 					}
-					.wp-block-newspack-blocks-homepage-articles{
-						figure{
-							a{
-								img{
-									display: none;
-								}
-							}
+					h2{
+						color: #fff;
+						font-family: var(--wp--preset--font-family--manrope);
+						font-size: 48px;
+						font-style: normal;
+						font-weight: 800;
+						line-height: 115%;
+						letter-spacing: -1.44px;
+						max-width: 267px;
+						width: 100%;
+						margin-top: 8px;
+						margin-bottom: 8px;
+					}
+					h4{
+						color: var(--Secondary-light, #f5f5f5);
+						font-family: var(--wp--preset--font-family--archivo-expanded);
+						font-size: var(--wp--preset--font-size--small);
+						font-style: normal;
+						font-weight: 800;
+						line-height: 155%;
+						letter-spacing: -0.42px;
+						/* margin: 0 auto 0 143px; */
+						text-transform: uppercase;
+						width: 46%;
+						@include mobile{
+							color: var(--Secondary-light, #f5f5f5);
+							font-family: var(--wp--preset--font-family--archivo-expanded);
+							font-size: var(--wp--preset--font-size--small);
+							font-style: normal;
+							font-weight: 800;
+							line-height: 155%;
+							letter-spacing: -0.42px;
+							margin: 0 auto 0 143px;
+							text-transform: uppercase;
+							width: 49%;
+							margin: 0;
+							padding-top: 27px;
+						
 						}
-						article{
-							& .entry-wrapper{
-								h2{
-									color: #fff;
-									font-family: var(--wp--preset--font-family--manrope);
-									font-size: 48px;
-									font-style: normal;
-									font-weight: 800;
-									line-height: 115%;
-									letter-spacing: -1.44px;
-									max-width: 267px;
-									width: 100%;
-									margin-top: 8px;
-									margin-bottom: 8px;
-								h4{
-									color: var(--Secondary-light, #f5f5f5);
-									font-family: var(--wp--preset--font-family--archivo-expanded);
-									font-size: var(--wp--preset--font-size--small);
-									font-style: normal;
-									font-weight: 800;
-									line-height: 155%;
-									letter-spacing: -.42px;
-									margin: 0 auto 0 143px;
-									text-transform: uppercase;
-								}
-								}
-								p{
-									color: #fff;
-									font-family: var(--wp--preset--font-family--manrope);
-									font-size: 13px;
-									font-style: normal;
-									font-weight: 500;
-									line-height: 145%;
-									max-width: 257px;
-									@include mobile{
-										display: none;
-									}
-								}
-							}
-							& .entry-meta{
-								display: none;
-							}
+					
+
+					}
+					
+					p{
+						color: #fff;
+						font-family: var(--wp--preset--font-family--manrope);
+						font-size: 13px;
+						font-style: normal;
+						font-weight: 500;
+						line-height: 145%;
+						max-width: 257px;
+						@include mobile{
+							display: none;
+						}
+					}
 							
-						}
-					}
+							
+							
+						
+					
 				}
 			}
 			
@@ -134,6 +147,7 @@ main.content.col-md-12 {
 				letter-spacing: -0.64px;
 				@include mobile{
 					
+					font-size: 27px;
 				}
 
             }
@@ -182,6 +196,7 @@ main.content.col-md-12 {
 			grid-template-columns: 1fr 1fr 1fr;
 			gap: 10px;
 			margin-top: 48px;
+			
 			@media(max-width:1200px){
 				grid-template-columns: 1fr 1fr;
 			}

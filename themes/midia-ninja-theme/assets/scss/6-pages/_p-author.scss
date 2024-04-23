@@ -192,8 +192,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             margin-bottom: 86px;
-            width: 100%;
-            gap: 30px;
+            max-width: 100%;
+            gap: 60px;
             @media (max-width: 768px) {
                 grid-template-columns: 1fr 1fr;
             }

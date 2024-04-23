@@ -11,7 +11,7 @@ if ( $title ) {
 
 if ( $photo_id && $owner ) :
 
-$thumbnail = 'https://live.staticflickr.com/' . $photo['server'] . '/' . $photo_id . '_' . $photo['secret'] . '_n.jpg'; ?>
+$thumbnail = 'https://live.staticflickr.com/' . $photo['server'] . '/' . $photo_id . '_' . $photo['secret'] . '.jpg'; ?>
 
 <div class="slide">
     <a href="https://www.flickr.com/photos/<?php echo $owner; ?>/<?php echo $photo_id; ?>" target="_blank">

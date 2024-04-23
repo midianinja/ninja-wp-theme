@@ -241,11 +241,8 @@
 
 						img {
 							height: 100%;
-							left: 50%;
 							object-fit: cover;
 							position: absolute;
-							top: 50%;
-							transform: translate(-50%, -50%);
 							width: 100%;
 
 							@include mobile {
@@ -657,7 +654,7 @@
 					@include desktop {
 						width: 370px;
 						display: grid;
-						
+
 					}
 				}
 
@@ -679,7 +676,7 @@
 						position: absolute;
 						top: -9rem;
 						left: 0;
-						
+
 						@media (max-width: 992px) {
 							top: -195px;
 						}
@@ -754,7 +751,7 @@
 				max-width: 350px;
 				padding: 15px 35px 54px;
 			}
-			
+
 			.wp-block-cover__inner-container {
 				@media (max-width: 1199px) {
 					max-width: 302px;

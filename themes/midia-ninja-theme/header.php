@@ -27,7 +27,7 @@
 
                         <div class="logo">
                             <a href="<?= home_url() ?>">
-                                <img src="<?= get_template_directory_uri() ?>/assets/images/logo.png" width="200" alt="<?= get_bloginfo('name') ?>">
+                                <img src="<?= get_template_directory_uri() ?>/assets/images/logo.png" height="63" width="104" alt="<?= get_bloginfo('name') ?>">
                             </a>
                         </div>
 

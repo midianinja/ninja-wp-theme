@@ -396,7 +396,11 @@
 								padding-right: 0;
 
 								.aspect-ratio {
-									border-radius: 8px;
+									border-radius: 9px;
+
+									img{
+										height: 100%;
+									}
 								}
 							}
 

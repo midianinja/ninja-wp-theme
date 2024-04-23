@@ -67,7 +67,7 @@
 					font-size: var(--wp--preset--font-size--default);
 					font-weight: 700;
 					padding-bottom: 5px;
-					padding-top: 5px;
+					padding-top: 15px;
 				}
 
 				.entry-meta {
@@ -121,6 +121,7 @@
 							top: 50%;
 							transform: translate(-50%, -50%);
 							width: 100%;
+							object-fit: cover;
 
 							@include tablet {
 								min-width: 100%;
@@ -132,7 +133,8 @@
 						.cat-links {
 							margin-bottom: 15px;
 							margin-left: $s_small;
-							margin-top: size(-50);
+							margin-top: -2.3rem;
+							position: absolute;
 
 							a {
 								background-color: var(
@@ -655,7 +657,7 @@
 					@include desktop {
 						width: 370px;
 						display: grid;
-						height: 482px;
+						
 					}
 				}
 
@@ -671,11 +673,13 @@
 				.entry-wrapper {
 					padding-left: 32px;
 					padding-right: 32px;
+					position: relative;
 
 					.cat-links {
-						position: relative;
-						top: -150px;
-						left: -32px;
+						position: absolute;
+						top: -9rem;
+						left: 0;
+						
 						@media (max-width: 992px) {
 							top: -195px;
 						}
@@ -803,6 +807,7 @@
 						img {
 							width: 37px;
 							height: 37px;
+							object-fit: cover;
 						}
 					}
 					.byline {

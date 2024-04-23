@@ -13,8 +13,8 @@ $coauthors = get_coauthors();
 $category = get_the_terms($post->ID, 'category');
 $cat_id = $category[0]->term_id;
 
-$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true );
-$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
+$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true ) ?: '#FFFFFF';
+$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true ) ?: '#333333';
 
 get_template_part( 'template-parts/header-especiais' );
 ?>
@@ -45,7 +45,7 @@ get_template_part( 'template-parts/header-especiais' );
                             <h5 class="excerpt"><?php the_excerpt(); ?></h5>
 
                             <div class="author-info-mobile">
-                            <?php 
+                            <?php
                             $terms = get_the_terms(get_the_ID(), 'marcador_afluente');
 
                             if ($terms && !is_wp_error($terms)) {
@@ -58,15 +58,15 @@ get_template_part( 'template-parts/header-especiais' );
                                     $facebook = get_term_meta($term_id, 'facebook', true);
                                     $twitter = get_term_meta($term_id, 'twitter', true);
                                     $youtube = get_term_meta($term_id, 'youtube', true);
-                                    
+
                                     ?>
                                     <div class="author-info-card">
-                                        
+
                                         <?php if($avatar): ?>
                                             <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
-                                        <?php endif ?>                                       
-                                        <div class="auth-name-icons">    
-                                        
+                                        <?php endif ?>
+                                        <div class="auth-name-icons">
+
                                         <div class="authname">
                                             <?php echo $afluente_name; ?>
                                          </div>
@@ -116,16 +116,16 @@ get_template_part( 'template-parts/header-especiais' );
                                                     </a>
                                                 </span>
                                             <?php endif; ?>
-                                           
+
                                         </div>
 
                                     </div>
-                            
+
                                 </div>
-                                    <?php 
+                                    <?php
                                     break;
-                                } 
-                            } 
+                                }
+                            }
                         ?>
                         </div>
 
@@ -166,7 +166,7 @@ get_template_part( 'template-parts/header-especiais' );
 
                     </div>
                     <div class="author-info">
-                        <?php 
+                        <?php
                         $terms = get_the_terms(get_the_ID(), 'marcador_afluente');
 
                         if ($terms && !is_wp_error($terms)) {
@@ -184,7 +184,7 @@ get_template_part( 'template-parts/header-especiais' );
                                 <div class="author-info-card">
                                     <?php if($avatar): ?>
                                         <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
-                                    <?php endif ?>    
+                                    <?php endif ?>
                                     <div class="authname">
                                         <?php echo $afluente_name; ?>
                                     </div>
@@ -195,7 +195,7 @@ get_template_part( 'template-parts/header-especiais' );
                                         <?php echo $afluente_bio; ?>
                                     </div>
 
-                                    
+
                                     <div class="social-networks">
                                         <?php if($instagram): ?>
                                             <span class="instagram">
@@ -228,7 +228,7 @@ get_template_part( 'template-parts/header-especiais' );
                                                 </svg>
                                                 </a>
                                             </span>
-                                        <?php endif; ?>                                       
+                                        <?php endif; ?>
                                         <?php if($youtube): ?>
                                             <span class="youtube">
                                                 <a href="<?php echo $youtube; ?>">
@@ -241,10 +241,10 @@ get_template_part( 'template-parts/header-especiais' );
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <?php 
+                                <?php
                                 break;
-                            } 
-                        } 
+                            }
+                        }
                         ?>
                     </div>
                 </header>

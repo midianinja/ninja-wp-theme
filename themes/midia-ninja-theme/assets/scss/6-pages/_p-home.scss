@@ -121,6 +121,7 @@
 							top: 50%;
 							transform: translate(-50%, -50%);
 							width: 100%;
+							object-fit: cover;
 
 							@include tablet {
 								min-width: 100%;
@@ -803,6 +804,7 @@
 						img {
 							width: 37px;
 							height: 37px;
+							object-fit: cover;
 						}
 					}
 					.byline {

@@ -451,7 +451,8 @@
 					"slug": "really-large",
 					"size": "4rem"
 				}
-			]
+			],
+			"lineHeight": true
 		},
 		"layout": {
 			"contentSize": "1200px",

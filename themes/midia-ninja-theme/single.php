@@ -50,6 +50,8 @@ get_template_part( 'template-parts/header-especiais' );
 
                             if ($terms && !is_wp_error($terms)) {
                                 foreach ($terms as $term) {
+                                    do_action( 'qm/debug', $term );
+                                    if($term->parent == 0){
                                     $afluente_name = $term->name;
                                     $afluente_bio = $term->description;
                                     $term_id = $term->term_id;
@@ -58,18 +60,20 @@ get_template_part( 'template-parts/header-especiais' );
                                     $facebook = get_term_meta($term_id, 'facebook', true);
                                     $twitter = get_term_meta($term_id, 'twitter', true);
                                     $youtube = get_term_meta($term_id, 'youtube', true);
+                                    $url_afluente = get_term_meta($term_id, 'url_afluente', true);
 
                                     ?>
                                     <div class="author-info-card">
+                                        <a href="<?php echo $url_afluente ?>">
+                                            <?php if($avatar): ?>
+                                                <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
+                                            <?php endif ?>
+                                            <div class="auth-name-icons">
 
-                                        <?php if($avatar): ?>
-                                            <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
-                                        <?php endif ?>
-                                        <div class="auth-name-icons">
-
-                                        <div class="authname">
-                                            <?php echo $afluente_name; ?>
-                                         </div>
+                                            <div class="authname">
+                                                <?php echo $afluente_name; ?>
+                                            </div>
+                                        </a>
 
                                         <hr>
 
@@ -121,9 +125,11 @@ get_template_part( 'template-parts/header-especiais' );
 
                                     </div>
 
-                                </div>
+                                    </div>
+                                
                                     <?php
-                                    break;
+                                    }
+                                
                                 }
                             }
                         ?>
@@ -171,6 +177,7 @@ get_template_part( 'template-parts/header-especiais' );
 
                         if ($terms && !is_wp_error($terms)) {
                             foreach ($terms as $term) {
+                                if($term->parent == 0){
                                 $afluente_name = $term->name;
                                 $afluente_bio = $term->description;
                                 $term_id = $term->term_id;
@@ -179,21 +186,24 @@ get_template_part( 'template-parts/header-especiais' );
                                 $facebook = get_term_meta($term_id, 'facebook', true);
                                 $twitter = get_term_meta($term_id, 'twitter', true);
                                 $youtube = get_term_meta($term_id, 'youtube', true);
-
+                                $url_afluente = get_term_meta($term_id, 'url_afluente', true);
                                 ?>
                                 <div class="author-info-card">
-                                    <?php if($avatar): ?>
-                                        <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
-                                    <?php endif ?>
-                                    <div class="authname">
-                                        <?php echo $afluente_name; ?>
-                                    </div>
 
-                                    <hr>
+                                    <a href="<?php echo $url_afluente ?>">
+                                        <?php if($avatar): ?>
+                                            <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
+                                        <?php endif ?>
+                                        <div class="authname">
+                                            <?php echo $afluente_name; ?>
+                                        </div>
 
-                                    <div class="authbio">
-                                        <?php echo $afluente_bio; ?>
-                                    </div>
+                                        <hr>
+
+                                        <div class="authbio">
+                                            <?php echo $afluente_bio; ?>
+                                        </div>
+                                    </a>
 
 
                                     <div class="social-networks">
@@ -242,8 +252,9 @@ get_template_part( 'template-parts/header-especiais' );
                                     </div>
                                 </div>
                                 <?php
-                                break;
+                                
                             }
+                        }
                         }
                         ?>
                     </div>

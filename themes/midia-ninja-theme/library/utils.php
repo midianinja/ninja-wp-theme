@@ -566,3 +566,19 @@ function order_search_filters($query) {
     }
 }
 add_action('pre_get_posts', 'order_search_filters');
+
+function split_ninja_flickr_title( $title ) {
+	$separators = [ ' • ', ' · ', ' | ' ];
+	foreach ( $separators as $separator ) {
+		$parts = explode( $separator, $title );
+		$count = count( $parts );
+		if ( $count > 3 ) {
+			return [ implode( $separator, array_slice( $parts, 0, $count - 2 ) ), $parts[ $count - 2 ], $parts[ $count - 1 ] ];
+		} else if ( $count === 3 ) {
+			return $parts;
+		} else if ( $count === 2 ) {
+			return [ $parts[0], $parts[1], false ];
+		}
+	}
+	return [ $title, false, false ]; // Name couldn't be split
+}

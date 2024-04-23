@@ -2,11 +2,14 @@
 $album = $args['album'];
 
 $title = ( ! empty( $album['title']['_content'] ) ) ? esc_attr( $album['title']['_content'] ) : false;
-$date = ( ! empty( $album['date_create'] ) ) ? esc_attr( $album['date_create'] ) : false;
 $owner    = ( ! empty( $album['owner'] ) ) ? esc_attr( $album['owner'] ) : false;
 $album_id = ( ! empty( $album['id'] ) ) ? esc_attr( $album['id'] ) : false;
 
-$thumb = 'https://live.staticflickr.com/' . $album['server'] . '/' . $album['primary'] . '_' . $album['secret'] . '_z.jpg';
+if ( $title ) {
+	list( $title, $date, $location ) = split_ninja_flickr_title( $title );
+}
+
+$thumbnail = 'https://live.staticflickr.com/' . $album['server'] . '/' . $album['primary'] . '_' . $album['secret'] . '_z.jpg';
 
 if ( $album_id && $owner ) : ?>
 
@@ -20,12 +23,16 @@ if ( $album_id && $owner ) : ?>
                     <?php endif;?>
 
                     <div class="post-thumbnail__meta">
+						<?php if ( $location ) : ?>
+                            <span class="tag"><?php echo $location; ?></span>
+                        <?php endif;?>
+
                         <?php if ( $date ) : ?>
-                            <span class="date"><?php echo date_i18n( 'd/m/Y', esc_attr( $date ) ); ?></span>
+                            <span class="date"><?php echo $date; ?></span>
                         <?php endif; ?>
                     </div>
                 </div>
-                <img src="<?php echo $thumb; ?>">
+                <img src="<?php echo $thumbnail; ?>">
             </div>
         </div>
     </a>

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function renderPagination (currentPage, totalPages) {
-		if (totalPages < 1) {
+		if (totalPages < 2) {
 			return ''
 		}
 

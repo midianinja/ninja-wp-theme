@@ -164,7 +164,7 @@ function latest_vertical_posts_callback( $attributes ) {
                 echo "<div class='slide'>";
             }
 
-            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', $block_model, ['photo' => $photo, 'attributes' => $attributes] );
+            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', $block_model, [ 'photo' => $photo ] );
 
             if ( $counter == $posts_by_slide || $counter == count( $has_content['data'] ) ) {
                 echo "</div>";
@@ -209,7 +209,7 @@ function latest_vertical_posts_callback( $attributes ) {
             }
 
             get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['video' => $video, 'attributes' => $attributes] );
-            
+
             if ( $counter == $posts_by_slide || $counter == $has_content->post_count ) {
                 echo "</div>";
                 $counter = 0;

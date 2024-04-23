@@ -1,50 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
-    const menuIcons = document.querySelectorAll('button.toggle-menu');
-   
-    menuIcons.forEach(icon => {
-        icon.addEventListener('click', function() {
-            const width = window.matchMedia("(max-width: 768px)");
-            if (width.matches) {
-                document.getElementsByTagName("body").item(0).classList.toggle('menu-active');
-            }
-            
-            this.classList.toggle('active');
-            this.parentNode.classList.toggle('active');
-            this.closest('header').classList.toggle('active');
-            const menuContainerClass =this.getAttribute('menu-container-class')
-            document.querySelector('.'+ menuContainerClass).classList.toggle('active');
-            searchButton = document.querySelector('.search-toggle');
-            searchButton.disabled = ( searchButton.disabled ? false : true );
-
-        })
-    });
-
     const mainMenu = document.querySelector('.main-header #main-menu');
     const itensWithChild = mainMenu.querySelectorAll('#main-menu li.menu-item-has-children');
-    
-    itensWithChild.forEach(item => {
 
+    itensWithChild.forEach(item => {
         if (item.parentElement.classList.contains('sub-menu')){
             return;
         }
 
         item.querySelector('a').addEventListener('click', function(e) {
             e.preventDefault();
-
-            let allItens = mainMenu.querySelectorAll('.active');
-            
-            allItens.forEach ( function(item) {
-                item.classList.remove('active');
-            });
-
-            const arrowIcon = this.parentElement.getElementsByTagName("i").item(0);
-            arrowIcon.classList.toggle('up');
-
-            const subMenu = this.parentElement.querySelector('.sub-menu');
-            subMenu.classList.toggle('active');
-            subMenu.parentNode.classList.toggle('active');
-        });
+            item.classList.toggle('active')
+        })
     })
 
     //Hamburguer Menu Open/Close
@@ -116,20 +82,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
-    // window.addEventListener("wheel", throttle(function() {
-    //     const scroll = window.scrollY || document.documentElement.scrollTop;
-    //     const mainHeader = document.querySelector(".main-header");
-        
-    //     if (scroll > 0) {
-    //         if ( ! mainHeader.classList.contains("scrolado") ) {
-    //             mainHeader.classList.add("scrolado");
-    //         }
-            
-    //     } else if ( mainHeader.classList.contains("scrolado") ) {
-    //         mainHeader.classList.remove("scrolado");
-    //     }
-    // }, 50), { passive: true });
-
     function throttle(func, delay) {
         let lastFunc;
         let lastRan;
@@ -166,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
             header.classList.remove("scrolado")
             isScrolled = false
         }
+        closeSubmenus()
     }, 200)
 
     document.addEventListener('wheel', detectScroll, { passive: true });
@@ -180,5 +133,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 searchField.focus()
             }, 100)
         }
+    }
+
+    function closeSubmenus() {
+        const mainMenu = document.querySelector('.main-header #main-menu')
+        const itensWithChild = mainMenu.querySelectorAll('#main-menu li.menu-item-has-children')
+
+        itensWithChild.forEach(item => {
+            if (item.parentElement.classList.contains('sub-menu')) {
+                return
+            }
+
+            item.classList.remove('active')
+        })
     }
 })

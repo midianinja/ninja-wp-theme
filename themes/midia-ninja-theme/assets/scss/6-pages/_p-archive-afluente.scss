@@ -237,10 +237,11 @@
             }
             form{
 				width: 100%;
-				max-width: 566px;
+				/* max-width: 460px; */
 				display: flex;
 				margin: auto;
 				flex-direction: row;
+				justify-content: center;
 				@include mobile{
 					margin-left: 13px;
 				}
@@ -248,6 +249,7 @@
 					flex-grow: 1;
 					position: relative;
 					margin-left: 30px;
+					max-width: 460px;
 
                     input{
                          width: 100%; /* Ocupa toda a largura disponível dentro do contêiner pai */
@@ -309,6 +311,10 @@
 						@include mobile{
 							width: 328px;
 							height: 184px;
+						}
+
+						img {
+							object-fit: cover;
 						}
                     }
                     .post-card--content{

@@ -6,7 +6,7 @@
     .wp-block-columns:first-child{
         p{margin: 0px !important;}
         h2{margin:0px !important;}
-        
+
         gap:0px;
         border-radius: 10px 10px !important;
         margin-top: 32px;
@@ -33,7 +33,7 @@
                         backdrop-filter: blur(17.6999998093px);
                         & p:first-child{
                          color: #FFF;
-                         font-family: "Archivo Expanded";
+                         font-family: "Archivo Expanded", sans-serif;
                          font-size: 14px;
                          font-style: normal;
                          font-weight: 800;
@@ -61,9 +61,9 @@
                          line-height: 145%; /* 18.85px */
                          margin-top: 20px !important;
                          max-width: 257px;
-                        }               
+                        }
                     }
-                    .wp-block-column:last-child{ // coluna 2 do banner 
+                    .wp-block-column:last-child{ // coluna 2 do banner
                         & .wpcf7{
                             margin: auto;
                             display: flex;
@@ -82,7 +82,7 @@
                                     font-style: normal;
                                     font-weight: 700;
                                     line-height: 130%; /* 15.6px */
-    
+
                                 }
                                 label{
                                     input{
@@ -101,7 +101,7 @@
 
                                     }
                                     input::placeholder {
-                                       
+
                                         color: var(--Main-trunks, #595D62);
                                         /* <small> Manrope */
                                         font-family: 'Manrope',sans-serif;
@@ -110,9 +110,9 @@
                                         background-color: white;
 
                                     }
-            
+
                                 }
-                                
+
                                 select {
                                     width: 265px;
                                     padding: 10px;
@@ -128,12 +128,12 @@
                                     font-family: 'Manrope',sans-serif;
                                     font-weight: 500;
                                     line-height: 18.85px; /* 18.85px */
-                                    background-color: white; 
+                                    background-color: white;
 
-                                    
+
                                 }
-                                
-                                
+
+
                                 select option[disabled] {
                                     font-family: 'Manrope', sans-serif; /* Define a fonte como Manrope */
                                     font-size: 13px; /* Tamanho da fonte */
@@ -141,8 +141,8 @@
                                     line-height: 18.85px; /* Altura da linha */
                                     color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
                                 }
-                                
-                                
+
+
                                 .submit-button{
                                     input{
                                         display: flex;
@@ -175,18 +175,18 @@
                         }
                     }
                 }
-                
-                
+
+
             }
         }
-        & .wp-block-column:last-child{ // col-2 ASIDE 
+        & .wp-block-column:last-child{ // col-2 ASIDE
             max-width: 270px;
             margin: auto;
             @media(max-width:991px){
                 display: none;
             }
             .wp-block-cover{
-                margin: 0px; 
+                margin: 0px;
                 padding: 0px;
                 border-radius: 5px;
                 .wp-block-cover__inner-container{
@@ -197,7 +197,7 @@
                     }
                     .wp-block-columns{
                         margin: 0px;
-                        
+
                         .wp-block-column{ // container que envolve descrição e rede social
                             margin-left: 33px !important;
                             margin-right: 32px !important;
@@ -229,7 +229,7 @@
                                     }
                                 }
                             }
-                        }                      
+                        }
                     }
                     p{
                         color: var(--White, #FFF);
@@ -250,7 +250,7 @@
             display: block;
             margin-top: 32px;
         }
-        
+
         & .col-form{
             @media (min-width: 668px) and (max-width: 991px) {
                 display: flex;
@@ -271,7 +271,7 @@
                 @media(max-width:991px){
                     display: flex;
                     align-items: center;
-                    flex-direction: row;            
+                    flex-direction: row;
                 }
                 @media(max-width:667px){
                     margin: auto;
@@ -283,7 +283,7 @@
                     gap: 18px;
                     @media (max-width: 991px) {
                         gap: 0px !important;
-                        
+
                     }
                     h4{
                         margin: 0px;
@@ -315,17 +315,17 @@
                             text-align: start;
                             margin-top: 24px;
                         }
-                        
-                        
+
+
                     }
                     p{
                         @media(max-width:500px){
                             margin-bottom: 0px;
-                       
-                        
+
+
                         }
                     }
-                    
+
                     label{
                         input{
                             max-width: 265px;
@@ -384,7 +384,7 @@
                             line-height: 18.85px;
                             text-transform: uppercase;
                             @include mixins.mobile{
-                                font-weight: 800; 
+                                font-weight: 800;
                             }
                         }
                     }
@@ -413,7 +413,7 @@
                     }
                     h4{
                         margin: 0;
-                        
+
                     }
                     & .social-icons-inscricao{
                         gap: 0px;
@@ -437,8 +437,8 @@
                         }
                     }
                 }
-            } 
+            }
         }
 
-    }     
+    }
 }

@@ -8,9 +8,9 @@
                 </span>
             <?php endif; ?>
             <?php if ( has_post_thumbnail() ) : ?>
-                <?php echo get_the_post_thumbnail( $args['post']->ID, 'medium_large' ); ?>
+                <?php echo get_the_post_thumbnail( $args['post']->ID, 'medium' ); ?>
             <?php else : ?>
-                <img src="https://via.placeholder.com/100">
+                <img src="https://via.placeholder.com/100" height="100" width="100">
             <?php endif; ?>
         </div>
         <div class="post-content">

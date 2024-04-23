@@ -5,6 +5,7 @@ const { useEffect, useState } = wp.element
 import ServerSideRender from '@wordpress/server-side-render'
 import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
+import LinkSelector from '../../shared/components/LinkSelector'
 import SelectPostType from "../../shared/components/SelectPostType"
 import SelectTerms from "../../shared/components/SelectTerms"
 
@@ -38,6 +39,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		flickrByType,
 		flickrUserId,
 		heading,
+		linkUrl,
 		playlistId,
 		postsToShow,
 		postType,
@@ -117,6 +119,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 								'ninja'
 							) }
 						/>
+					</PanelRow>
+
+					<PanelRow className='high-spot-block-link-selector'>
+						<LinkSelector attributes={ attributes } setAttributes={ setAttributes } />
 					</PanelRow>
 
 					<PanelRow>

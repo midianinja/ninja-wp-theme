@@ -11,7 +11,8 @@ function latest_horizontal_posts_callback( $attributes ) {
     $custom_class     = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
     $description      = ( ! empty( $attributes['description'] ) ) ? apply_filters( 'the_content', $attributes['description'] ) : false;
     $heading          = $attributes['heading'] ?? '';
-    $show_children   = ! empty( $attributes['showChildren'] );
+    $link             = ( ! empty( $attributes['linkUrl'] ) ) ? esc_url( $attributes['linkUrl'] ) : false;
+    $show_children    = ! empty( $attributes['showChildren'] );
 
     $block_classes[] = 'latest-horizontal-posts-block';
     $block_classes[] = $custom_class;
@@ -137,7 +138,11 @@ function latest_horizontal_posts_callback( $attributes ) {
 
                 echo '<div class="latest-horizontal-posts-block__heading">';
                     if ( ! empty( $heading ) ) {
-                        echo '<h2>' . $heading . '</h2>';
+                        if ( ! empty( $link ) ) {
+                            echo '<h2><a href="' . esc_url( $link ) . '">' . $heading . '</a></h2>';
+                        } else {
+                            echo '<h2>' . $heading . '</h2>';
+                        }
                     } else {
                         echo '<div></div>';
                     }

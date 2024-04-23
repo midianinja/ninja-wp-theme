@@ -45,6 +45,9 @@
 		"heading": {
 			"type": "string"
 		},
+		"linkUrl": {
+			"type": "string"
+		},
 		"playlistId": {
 			"type": "string"
 		},

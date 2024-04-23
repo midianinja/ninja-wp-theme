@@ -87,8 +87,9 @@
                 p {
                     color: #FFFFFF; // @todo change to variable of the brand tokens
                     font-size: 13px;
+                    letter-spacing: initial;
                     line-height: 1.45;
-                    
+
                     @include break-mobile {
                         display: none;
                     }

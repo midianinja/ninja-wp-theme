@@ -31,7 +31,7 @@ if ( $thumbnail && $photo_id && $owner ) : ?>
                         <?php endif; ?>
                     </div>
                 </div>
-                <img src="<?php echo $thumbnail; ?>">
+                <img src="<?php echo $thumbnail; ?>" alt="<?php echo esc_attr( $title ); ?>">
             </div>
         </div>
     </a>

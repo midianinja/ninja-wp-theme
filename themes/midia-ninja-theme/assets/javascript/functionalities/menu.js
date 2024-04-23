@@ -45,6 +45,20 @@ document.addEventListener("DOMContentLoaded", function() {
             subMenu.classList.toggle('active');
             subMenu.parentNode.classList.toggle('active');
         });
+
+        item.querySelector('a').addEventListener('mouseenter', function(e) {
+            e.preventDefault();
+
+            let allItens = mainMenu.querySelectorAll('.active');
+            
+            allItens.forEach ( function(item) {
+                item.classList.remove('active');
+            });
+
+            const subMenu = this.parentElement.querySelector('.sub-menu');
+            subMenu.classList.toggle('active');
+            subMenu.parentNode.classList.toggle('active');
+        });
     })
 
     //Hamburguer Menu Open/Close

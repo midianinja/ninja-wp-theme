@@ -8,7 +8,9 @@
 
     li,
     span {
+		background-color: var(--background-color);
         border-radius: 4px;
+		color: var(--color);
         cursor: pointer;
         display: inline-block;
         flex-shrink: 0;

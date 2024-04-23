@@ -3,8 +3,9 @@ get_header();
 $category = get_the_terms($post->ID, 'category');
 
 $cat_id = $category[0]->term_id;
-$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true );
-$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true );
+$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true ) ?: '#FFFFFF';
+$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true ) ?: '#333333';
+var_dump($cor_fundo);
 ?>
 
 <div class="index-wrapper">

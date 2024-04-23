@@ -9,55 +9,28 @@
 	#app {
 		.container {
 			.header-and-footer-archive {
+				margin-top: 32px;
 
-				.wp-block-cover.alignwide{
-					@media(max-width: 1366px){
-						left: 52% !important;
-					}
+				.wp-block-spacer{
+					display: none;
 				}
-				.cover-categoria-desktop {
-					padding: 0;
-					border-radius: 8px;
-					max-width: 773px;
-					width: 100%;
-					height: 506px;
 
-					@include mixins.small {
-						max-width: 330px;
-						width: 100%;
-						margin-right: auto;
-						margin-left: auto;
-					}
-
-					@include mixins.mobile {
-						max-width: 330px;
-						width: 100%;
-						margin-right: auto;
-						margin-left: auto;
-					}
-
-					.wp-block-cover__inner-container {
-						.wp-block-columns {
-							margin-bottom: 0 !important;
-							margin-right: 0 !important;
-							margin-left: 0 !important;
-						}
-					}
+				.high-spot-block{
+					height: 508px;
 				}
 
 				.colunas-categoria {
+					margin-bottom: 0;
+
 					@include mixins.small {
 						max-width: 330px;
 						width: 100%;
-						margin-right: auto;
-						margin-left: auto;
+						
 					}
 
 					@include mixins.mobile {
 						max-width: 330px;
 						width: 100%;
-						margin-right: auto;
-						margin-left: auto;
 					}
 
 					.show-category {
@@ -164,7 +137,6 @@
 							height: auto;
 							display: flex;
 							flex-direction: column;
-   							gap: 50px;
 						}
 
 						article {
@@ -311,11 +283,15 @@
 					@include mixins.small {
 						max-width: 300px;
 						height: 55px;
+						margin-right: auto;
+    					margin-left: auto;
 					}
 
 					@include mixins.mobile {
 						max-width: 300px;
 						height: 55px;
+						margin-right: auto;
+    					margin-left: auto;
 					}
 
 					img {
@@ -333,6 +309,7 @@
 			.content {
 				margin-bottom: 100px;
 				width: 67%;
+				margin-top: 32px;
 
 				@include mixins.mobile{
 					width: 100%;
@@ -341,9 +318,8 @@
 				.posts {
 					display: grid;
 					grid-template-columns: 1fr 1fr;
-					gap: 30px;
 					position: relative;
-					right: 60px;
+					right: 80px;
 
 					@include mixins.small {
 						display: flex;
@@ -352,6 +328,7 @@
 						width: 100%;
 						margin-right: auto;
 						margin-left: auto;
+						align-items: center;
 					}
 
 					@include mixins.mobile {
@@ -361,6 +338,7 @@
 						width: 100%;
 						margin-right: auto;
 						margin-left: auto;
+						align-items: center;
 					}
 
 					.post {
@@ -388,6 +366,7 @@
 							width: 100%;
 							height: auto;
 							border-bottom: none;
+							margin-bottom: 0;
 
 							&--thumb {
 								width: 100%;
@@ -444,6 +423,7 @@
 			}
 
 			aside {
+				margin-top: 32px;
 				border-radius: 12px;
 				border: 2px solid #cccc;
 				background: #fff;

@@ -2,15 +2,28 @@
 
 namespace Ninja;
 
-function videos_get_contents( $youtube_key, $playlist_id, $max_results, $block_id ) {
-    $cache_key = 'ninja_youtube_'  . $block_id;
+function videos_get_contents( $youtube_key, $video_model, $channel_id, $playlist_id, $max_results, $block_id ) {
+    $cache_key = 'ninja_youtube_' . $block_id;
     $cached_data = get_transient( $cache_key );
 
     if ( false !== $cached_data ) {
         return $cached_data;
     }
 
-    $url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=$playlist_id&maxResults=$max_results&key=$youtube_key";
+    if ( $video_model == 'channel' ) {
+        $base_url = "https://www.googleapis.com/youtube/v3/search";
+        $params = array(
+            'part'       => 'snippet',
+            'channelId'  => $channel_id,
+            'maxResults' => $max_results,
+            'order'      => 'date',
+            'key'        => $youtube_key
+        );
+        $query_string = http_build_query( $params );
+        $url = $base_url . '?' . $query_string;
+    } else {
+        $url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=$playlist_id&maxResults=$max_results&key=$youtube_key";
+    }
 
     $curl = curl_init();
     curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
@@ -30,10 +43,23 @@ function videos_get_contents( $youtube_key, $playlist_id, $max_results, $block_i
     $data = [];
 
     foreach ( $videos->items as $item ) {
-        $video_id  = ( isset( $item->snippet->resourceId->videoId ) && ! empty( $item->snippet->resourceId->videoId ) ) ? esc_attr( $item->snippet->resourceId->videoId ) : false;
-        $video_url = ( isset( $video_id ) && ! empty( $video_id ) ) ? "https://www.youtube.com/watch?v=$video_id" : false;
-        $thumbnail = ( isset( $item->snippet->thumbnails->medium->url ) && ! empty( $item->snippet->thumbnails->medium->url ) ) ? esc_url( $item->snippet->thumbnails->medium->url ) : false;
-        $title     = ( isset( $item->snippet->title ) && ! empty( $item->snippet->title ) ) ? esc_attr( $item->snippet->title ) : false;
+
+        $video_id  = false;
+        $video_url = false;
+        $thumbnail = false;
+        $title     = false;
+
+        if ( isset( $item->snippet->resourceId->videoId ) ) {
+            $video_id  = ( isset( $item->snippet->resourceId->videoId ) && ! empty( $item->snippet->resourceId->videoId ) ) ? esc_attr( $item->snippet->resourceId->videoId ) : false;
+            $video_url = ( isset( $video_id ) && ! empty( $video_id ) ) ? "https://www.youtube.com/watch?v=$video_id" : false;
+            $thumbnail = ( isset( $item->snippet->thumbnails->medium->url ) && ! empty( $item->snippet->thumbnails->medium->url ) ) ? esc_url( $item->snippet->thumbnails->medium->url ) : false;
+            $title     = ( isset( $item->snippet->title ) && ! empty( $item->snippet->title ) ) ? esc_attr( $item->snippet->title ) : false;
+        } elseif( isset( $item->id->videoId ) ) {
+            $video_id  = ( isset( $item->id->videoId ) && ! empty( $item->id->videoId ) ) ? esc_attr( $item->id->videoId ) : false;
+            $video_url = ( isset( $video_id ) && ! empty( $video_id ) ) ? "https://www.youtube.com/watch?v=$video_id" : false;
+            $thumbnail = ( isset( $item->snippet->thumbnails->medium->url ) && ! empty( $item->snippet->thumbnails->medium->url ) ) ? esc_url( $item->snippet->thumbnails->medium->url ) : false;
+            $title     = ( isset( $item->snippet->title ) && ! empty( $item->snippet->title ) ) ? esc_attr( $item->snippet->title ) : false;
+        }
 
         if ( ! $video_id || ! $video_url || ! $thumbnail || ! $title ) {
             continue;

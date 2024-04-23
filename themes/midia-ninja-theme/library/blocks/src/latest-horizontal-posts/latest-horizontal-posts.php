@@ -104,8 +104,10 @@ function latest_horizontal_posts_callback( $attributes ) {
         // Vídeos
         require_once  __DIR__ . '/includes/videos.php';
 
-        $api_key = get_option( 'youtube_key', false );
-        $playlist_id = ( isset( $attributes['playlistId'] ) && ! empty( $attributes['playlistId'] ) ) ? esc_attr( $attributes['playlistId'] ) : false;
+        $api_key       = get_option( 'youtube_key', false );
+        $video_model   = ! empty( $attributes['videoModel'] ) ? esc_attr( $attributes['videoModel'] ) : 'playlist';
+        $channel_id    = ! empty( $attributes['channelId'] ) ? esc_attr( $attributes['channelId'] ) : false;
+        $playlist_id   = ! empty( $attributes['playlistId'] ) ? esc_attr( $attributes['playlistId'] ) : false;
         $posts_to_show = intval( $attributes['postsToShow'] );
 
         if ( ! $api_key || ! $playlist_id ) {
@@ -115,7 +117,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             return;
         }
 
-        $has_content = videos_get_contents( $api_key, $playlist_id, $posts_to_show, $block_id );
+        $has_content = videos_get_contents( $api_key, $video_model, $channel_id, $playlist_id, $posts_to_show, $block_id );
     }
 
     if ( ! $has_content ) {

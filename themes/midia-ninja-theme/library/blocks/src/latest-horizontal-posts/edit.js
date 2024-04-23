@@ -30,6 +30,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const {
 		blockId,
 		blockModel,
+		channelId,
 		contentPosition,
 		description,
 		flickrAlbumId,
@@ -44,7 +45,8 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		showChildren,
 		showTaxonomy,
 		slidesToShow,
-		taxonomy
+		taxonomy,
+		videoModel
 	} = attributes
 
 	useEffect(() => {
@@ -202,13 +204,47 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					initialOpen={ false }
 				>
 					{ ( blockModel === 'videos' ) && (
-						<PanelRow>
-							<TextControl
-								label={ __( 'YouTube Playlist ID', 'ninja' ) }
-								value={ playlistId }
-								onChange={ ( value ) => { setAttributes( { playlistId: value } ) } }
-							/>
-						</PanelRow>
+						<>
+							<PanelRow>
+								<SelectControl
+									label={ __( 'Type of the video', 'ninja' ) }
+									value={ videoModel }
+									options={[
+										{
+											label: __( 'By playlist', 'ninja' ),
+											value: "playlist"
+										},
+										{
+											label: __( 'By channel', 'ninja' ),
+											value: "channel"
+										}
+									]}
+									onChange={ ( value ) => {
+										setAttributes( { videoModel: value } )
+									} }
+								/>
+							</PanelRow>
+
+							{ ( videoModel === 'playlist' ) && (
+								<PanelRow>
+									<TextControl
+										label={ __( 'YouTube playlist ID', 'ninja' ) }
+										value={ playlistId }
+										onChange={ ( value ) => { setAttributes( { playlistId: value } ) } }
+									/>
+								</PanelRow>
+							) }
+
+							{ ( videoModel === 'channel' ) && (
+								<PanelRow>
+									<TextControl
+										label={ __( 'YouTube channel ID', 'ninja' ) }
+										value={ channelId }
+										onChange={ ( value ) => { setAttributes( { channelId: value } ) } }
+									/>
+								</PanelRow>
+							) }
+						</>
 					) }
 
 					{ ( blockModel === 'collection' || blockModel === 'albums' ) && (

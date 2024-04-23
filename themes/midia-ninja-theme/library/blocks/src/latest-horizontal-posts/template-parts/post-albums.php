@@ -9,7 +9,7 @@ if ( $title ) {
 	list( $title, $date, $location ) = split_ninja_flickr_title( $title );
 }
 
-$thumbnail = 'https://live.staticflickr.com/' . $album['server'] . '/' . $album['primary'] . '_' . $album['secret'] . '_z.jpg';
+$thumbnail = 'https://live.staticflickr.com/' . $album['server'] . '/' . $album['primary'] . '_' . $album['secret'] . '_n.jpg';
 
 if ( $album_id && $owner ) : ?>
 <div class="slide">

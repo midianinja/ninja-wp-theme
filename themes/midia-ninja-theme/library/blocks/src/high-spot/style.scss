@@ -17,6 +17,10 @@
                 aspect-ratio: inherit;
             }
 
+            @include break-mobile {
+                height: 400px;
+            }
+
             &::before {
                 content: "";
                 padding-top: 56.25%;

@@ -3,6 +3,7 @@
 // Header: if multiple headers are used or the main header contains a lot of complex stuff, a minifed version (without submenu, animations, etc), only with the basics to FCP should be used
 // Footer: same as header
 // Typo basics
+@import '1-settings/s-typography';
 @import '1-settings/s-variables';
 @import '1-settings/s-globals';
 

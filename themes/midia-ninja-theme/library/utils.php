@@ -604,3 +604,14 @@ function set_custom_post_type_archive_posts_per_page( $query ) {
     }
 }
 add_action( 'pre_get_posts', 'set_custom_post_type_archive_posts_per_page' );
+
+function change_search_especial( $query ) {
+
+    if (is_post_type_archive( 'especial' ) && $query->is_main_query() ) {
+       
+        if(!empty($_GET['pesquisar'])) {
+            $query->set('s', $_GET['pesquisar']);
+        }
+    }
+}
+add_action('pre_get_posts', 'change_search_especial');

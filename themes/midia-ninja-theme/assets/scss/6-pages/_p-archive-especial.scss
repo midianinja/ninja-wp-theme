@@ -3,6 +3,7 @@
 
 
 .post-type-archive-especial{
+	background-color: #F5F5F5;
 
 	.header-and-footer-archive{
 		margin-top: 17px;
@@ -11,14 +12,21 @@
 			margin-bottom: 0;
 			margin-left: 0 !important;
 			gap: 10px;
+			width: 1140px;
+
+			@include mixins.small{
+				width: inherit;
+			}
+
+			@include mixins.mobile{
+				width: inherit;
+			}
 
 			.wp-block-column{
 
-				position: relative;
-				left: 30px;
-
 				.wp-block-cover.alignwide{
 					width: 100%;
+					max-width: 100%;
 
 					@include mixins.small{
 						max-width: 328px;
@@ -319,17 +327,18 @@
 				font-weight: 800;
 				line-height: 120%;
 				letter-spacing: -0.64px;
+				width: 200px;
 			}
 
 			.advanced-search{
-				max-width: 460px;
-				width: 100%;
+				display: flex;
+				align-items: center;
 
 				.input-search{
 					width: 100%;
 
 					input[type="text"]{
-						width: 100%;
+						width: 470px;
 						height: 46px;
 						flex-shrink: 0;
 						border-radius: 8px;
@@ -350,6 +359,8 @@
 
 			}
 		}
+
+		
 
 		.posts{
 			display: grid;

@@ -21,8 +21,7 @@ get_header();
     <main class="content col-md-12">
         
         <div class="search">
-            <h2>Buscar por: </h2>
-            <?php get_template_part('template-parts/search-form'); ?>
+            <?php get_template_part('template-parts/search-especiais'); ?>
         </div>
         
         <div class="posts">

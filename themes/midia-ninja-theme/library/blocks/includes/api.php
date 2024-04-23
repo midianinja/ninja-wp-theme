@@ -275,7 +275,7 @@ function get_posts_by_taxonomy_term( $request ) {
             'date'      => date_i18n( 'd \d\e F \d\e Y', strtotime( $post->post_date ) ),
             'excerpt'   => $post->post_excerpt,
             'link'      => get_permalink( $post ),
-            'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : "https://via.placeholder.com/400",
+            'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png',
             'title'     => $post->post_title
         ];
     }

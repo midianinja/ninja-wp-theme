@@ -8,24 +8,65 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
         .col-md-3{
             display: none
         }
-        
+
         .title{
             display: flex;
             align-items: center;
             gap: 30px;
             max-width: 1440px;
             width: 100%;
-
+            position: relative;
+            right: -15px;
+    
+            @include small{
+                right: inherit;
+            }
+    
+            @include mobile{
+                right: inherit;
+            }
+    
             h1{
+                color: var(--PURE, #262626);
+                font-family: Manrope;
+                font-size: 48px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 115%; 
+                letter-spacing: -1.44px;
+    
                 @include small{
                     font-size: 32px;
+                    margin-right: auto;
+                    margin-left: auto;
                 }
     
                 @include mobile{
                     font-size: 32px;
+                    margin-right: auto;
+                    margin-left: auto;
                 }
             }
-
+    
+            p{
+                color: var(--PURE, #262626);
+                font-family: var(--wp--preset--font-familt--manrope);
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 130%; 
+    
+                @include small{
+                    font-size: 32px;
+                    display: none;
+                }
+    
+                @include mobile{
+                    font-size: 32px;
+                    display: none;
+                }
+            }
+    
         }
 
         .col-md-9{
@@ -33,7 +74,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
             .filter-wrapper{
                 display: flex;
-                gap: 24px;
+                gap: 30px;
                 margin-bottom: 50px;
     
                 .search-component{
@@ -108,6 +149,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                     .custom-select-wrapper {
                         position: relative;
                         display: inline-block;
+                        left: -15px;
                     }
                                                     
                     #ordem{
@@ -208,6 +250,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                     &-card{
                         display: flex;
                         flex-direction: column;
+                        gap: 10px;
 
                         &--thumb{
                             margin-right: 0;

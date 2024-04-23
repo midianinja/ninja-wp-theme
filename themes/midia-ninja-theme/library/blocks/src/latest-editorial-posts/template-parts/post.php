@@ -10,7 +10,7 @@
             <?php if ( has_post_thumbnail() ) : ?>
                 <?php echo get_the_post_thumbnail( $args['post']->ID, 'medium' ); ?>
             <?php else : ?>
-                <img src="https://via.placeholder.com/100" height="100" width="100">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/default-image.png" height="600" width="800">
             <?php endif; ?>
         </div>
         <div class="post-content">

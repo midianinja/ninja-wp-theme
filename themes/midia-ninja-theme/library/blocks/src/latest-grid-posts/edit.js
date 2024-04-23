@@ -32,6 +32,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
         postsPerPage,
         postsToShow,
         showAuthor,
+        showChildren,
         showDate,
         showExcerpt,
         taxonomy,
@@ -74,8 +75,16 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
                     initialOpen={ true }
                 >
                     <PanelRow>
-                        <SelectPostType postType={postType} onChangePostType={onChangePostType} />
+                        <SelectPostType postType={ postType } onChangePostType={ onChangePostType } />
                     </PanelRow>
+
+                    <PanelRow>
+                            <ToggleControl
+                                label={ __( 'Show children items (if any)?', 'ninja' ) }
+                                checked={ showChildren }
+                                onChange={ () => { setAttributes( { showChildren: ! showChildren } ) } }
+                            />
+                        </PanelRow>
 
                     <PanelRow>
                         <SelectControl

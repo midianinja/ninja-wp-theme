@@ -46,6 +46,13 @@ main.content.col-md-12 {
 						margin-top: 57px;
 					}
 					.wp-block-newspack-blocks-homepage-articles{
+						figure{
+							a{
+								img{
+									display: none;
+								}
+							}
+						}
 						article{
 							& .entry-wrapper{
 								h2{

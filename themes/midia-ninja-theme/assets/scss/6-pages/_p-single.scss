@@ -31,7 +31,7 @@
 			margin: auto;
 
 			.post {
-				font-family: Manrope;
+				font-family: 'Manrope', sans-serif;
 				font-style: normal;
 				max-width: 786px;
 				margin-left: auto;
@@ -169,7 +169,7 @@
 							}
 
 							.authname {
-								font-family: "Manrope", serif;
+								font-family: "Manrope", sans-serif;
 								font-size: 20px;
 								font-style: normal;
 								font-weight: 700;
@@ -340,7 +340,7 @@
 
 						.authname {
 							color: var(--White, #fff);
-							font-family: Manrope;
+							font-family: 'Manrope', sans-serif;
 							font-size: 20px;
 							font-style: normal;
 							font-weight: 800;
@@ -361,7 +361,7 @@
 							text-align: left;
 							padding-top: 1rem;
 							color: #fff;
-							font-family: "Manrope", serif;
+							font-family: "Manrope", sans-serif;
 							font-size: 13px;
 							font-style: normal;
 							font-weight: 500;
@@ -554,7 +554,7 @@
 							.info {
 								h5 {
 									color: var(--Gray-1, #333);
-									font-family: Manrope;
+									font-family: 'Manrope', sans-serif;
 									font-size: 20px;
 									font-style: normal;
 									font-weight: 700;

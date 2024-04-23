@@ -5,7 +5,7 @@ body{
     &.block-editor-page{
         .editor-styles-wrapper{
             background-color: var(--wp--preset--color--secondary-light);
-        } 
+        }
         .block-editor-block-list__layout{
             .wp-block-shortcode{
                 margin-top: 50px;
@@ -19,15 +19,15 @@ body{
                             &.destaque-pequeno-sem-imagem{
                                 margin-top: 50px;
                             }
-                           
+
                             article{
                                 .entry-wrapper{
-                                    font-family: 'Manrope', serif;
+                                    font-family: 'Manrope', sans-serif;
                                     .cat-links {
                                         margin-bottom: 15px;
                                         margin-left: 0;
-                                        
-            
+
+
                                         a {
                                             background-color: var(--wp--preset--color--laranja-dark); // @todo - make dynamic
                                             color: var(--wp--preset--color--secondary-light);
@@ -47,34 +47,34 @@ body{
                                         padding-bottom: 5px;
                                         padding-top: 5px;
                                     }
-                    
+
                                     .entry-meta {
-                                        font-family: 'Inter', serif;
+                                        font-family: 'Inter', sans-serif;
                                         color: var(--wp--preset--color--primary-light);
                                         font-size: mixins.size(13);
                                         font-weight: 700;
                                     }
-                                }    
+                                }
                             }
                             &.destaque-principal {
                                 border-radius: 8px;
                                 margin-bottom: mixins.size(30);
                                 overflow: hidden;
-                    
+
                                 @include mixins.mobile {
                                     margin-bottom: 0;
                                 }
-                    
+
                                 article {
                                     aspect-ratio: 16 / 9;
                                     background-color: var(--wp--preset--color--primary-pure);
                                     display: block;
                                     position: relative;
-                                    
+
                                     @include mixins.tablet {
                                         aspect-ratio: 1 / 1;
                                     }
-                    
+
                                     .post-thumbnail {
                                         height: 100%;
                                         left: 0;
@@ -82,24 +82,24 @@ body{
                                         top: 0;
                                         width: 100%;
                                         z-index: 1;
-                    
+
                                         a {
                                             display: block;
                                             // aspect-ratio: 16 / 9;
                                             overflow: hidden;
-                    
+
                                             &::before {
                                                 content: "";
                                                 padding-top: 56.25%;
                                                 float: left;
                                             }
-                    
+
                                             &::after {
                                                 clear: left;
                                                 content: " ";
                                                 display: table;
                                             }
-                    
+
                                             img {
                                                 height: 100%;
                                                 left: 50%;
@@ -108,14 +108,14 @@ body{
                                                 top:  50%;
                                                 transform: translate(-50%, -50%);
                                                 width: 100%;
-                    
+
                                                 @media(max-width: variables.$tablet-width){
                                                     min-width: 100%;
                                                 }
                                             }
                                         }
                                     }
-                    
+
                                     .entry-wrapper {
                                         backdrop-filter: blur(10px);
                                         background-color: rgba(51, 51, 51, 0.70);
@@ -131,23 +131,23 @@ body{
                                         position: relative;
                                         right: 0;
                                         z-index: 2;
-                    
+
                                         @include mixins.mobile {
                                             gap: mixins.size(15);
                                             justify-content: flex-end;
                                             padding: mixins.size(30) mixins.size(20);
                                         }
-                    
+
                                         p {
                                             color: var(--wp--preset--color--secondary-light);
                                             font-family: variables.$f_title;
                                             margin-top: 0;
-                    
+
                                             &:last-of-type {
                                                 margin-bottom: 0;
                                             }
                                         }
-                    
+
                                         h2 {
                                             color: var(--wp--preset--color--secondary-light);
                                             font-size: var(--wp--preset--font-size--medium);
@@ -164,11 +164,11 @@ body{
                                 margin-bottom: mixins.size(30);
                                 overflow: hidden;
                                 padding: variables.$s_medium;
-                    
+
                                 @include mixins.tablet {
                                     padding: variables.$s_small;
                                 }
-                    
+
                                 article {
                                     .entry-wrapper {
                                         .cat-links {
@@ -176,28 +176,28 @@ body{
                                             margin-top: 10px;
                                         }
                                     }
-                    
+
                                     .entry-title {
                                         color: var(--wp--preset--color--secondary-light);
                                         margin-bottom: 0;
                                     }
                                 }
                             }
-                    
+
                             &.posts-sidebar {
                                 article {
                                     align-items: center;
-                    
+
                                     .post-thumbnail {
                                         max-width: mixins.size(110);
                                         overflow: hidden;
                                     }
-                    
+
                                     .entry-wrapper {
                                         @include mixins.mobile {
                                             flex-basis: 100%;
                                         }
-                    
+
                                         .entry-title {
                                             a {
                                                 color: var(--wp--preset--color--primary-pure);
@@ -206,14 +206,14 @@ body{
                                         }
                                     }
                                 }
-                            }    
-                        }    
+                            }
+                        }
                     }
                     &.grid-cards-opiniao{
                         display: grid;
                         grid-template-columns: 1fr 1fr;
                         gap: 2rem;
-                    }        
+                    }
                 }
             }
             .mais-videos {
@@ -224,7 +224,7 @@ body{
                 width: 100%;
                 padding: 51px 33px 30px 33px;
                 border-radius: 12px;
-    
+
                 .container{
                     padding: 0;
                     .latest-horizontal-posts-block__slides{
@@ -251,7 +251,7 @@ body{
                                     margin-right: 0;
                                 }
                             }
-                        }    
+                        }
                     }
                 }
             }
@@ -265,10 +265,10 @@ body{
                     margin-bottom: 2rem;
                     margin-top: 2rem;
                     .wp-block-button{
-                        font-family: 'Manrope', serif;
+                        font-family: 'Manrope', sans-serif;
                         color: #fff;
                         background-color: #111;
-                            
+
                     }
                     .wp-block-button__link{
                         border-radius: 4px;
@@ -277,7 +277,7 @@ body{
                         font-weight: 700;
                         padding: 15px 30px;
                         color: #FFF !important;
-                    } 
+                    }
                 }
             }
             .wp-block-cover{
@@ -291,22 +291,22 @@ body{
                         background-color: #111;
                         .wp-block-column{
                             background-color: #111;
-                            
+
                         }
 
-                        
+
                     }
                     .wp-block-heading{
                         color: #FFF;
-                        font-family: "MidiaNinja", serif;
+                        font-family: "MidiaNinja", sans-serif;
                         font-size: 42px;
                         font-style: normal;
                         font-weight: 400;
-                        line-height: 100%; 
+                        line-height: 100%;
                         letter-spacing: normal;
                     }
                     p{
-                        font-family: 'Manrope', serif;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 13px;
                         font-style: normal;
                         font-weight: 500;
@@ -325,7 +325,7 @@ body{
                         .wp-block-columns, .wp-block-column{
                         background-color: #111;
                         }
-        
+
                         h2{
                             font-family: "MidiaNinja", sans-serif;
                             color: #FBF36E;
@@ -339,9 +339,9 @@ body{
                         .wp-block-buttons{
                             background-color: #111;
                             .wp-block-button{
-                                font-family: 'Manrope', serif;
+                                font-family: 'Manrope', sans-serif;
                                 color: #fff;
-                                    
+
                             }
                             .wp-block-button__link{
                                 border-radius: 4px;
@@ -350,10 +350,10 @@ body{
                                 font-weight: 700;
                                 padding: 15px 30px;
                                 color: #FFF !important;
-                            } 
+                            }
                         }
                     }
-                   
+
                 &.seleta{
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -364,7 +364,7 @@ body{
                         }
                     }
                 }
-            }    
+            }
         }
     }
 }

@@ -20,7 +20,7 @@
 				h2 {
 					font-size: 28px;
 					color: #fff;
-	
+
 					@media (min-width: 768px) {
 						font-size: 32px;
 					}
@@ -37,25 +37,21 @@
 							.post-thumbnail{
 								width: 136px;
 								height: 97px;
-								.post-thumbnail--image img{
-									bottom: -49px;
-								}
-								
 							}
 							.post-content{
 								.post-title{
 									color: #FFF;
-									font-family: 'Manrope', serif;
+									font-family: 'Manrope', sans-serif;
 									font-size: 14px;
 									font-style: normal;
 									font-weight: 500;
 									line-height: 130%; /* 18.2px */
 									margin-top: 0;
-								}	
-							}	
-						}	
-					}	
-				}	
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 
@@ -69,7 +65,7 @@
 			}
 			.wp-block-heading {
 				color: #fff;
-				font-family: "MidiaNinja", serif;
+				font-family: "MidiaNinja", sans-serif;
 				font-size: 42px;
 				font-style: normal;
 				font-weight: 400;
@@ -81,7 +77,7 @@
 				}
 			}
 			p {
-				font-family: "Manrope", serif;
+				font-family: "Manrope", sans-serif;
 				font-size: 13px;
 				font-style: normal;
 				font-weight: 500;
@@ -124,7 +120,7 @@
 						background-color: #fbf36e;
 						border: none;
 						color: #333;
-						font-family: "Manrope", serif;
+						font-family: "Manrope", sans-serif;
 						font-size: 14px;
 						font-weight: 800;
 						text-transform: uppercase;

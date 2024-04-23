@@ -6,7 +6,7 @@
     .wp-block-columns:first-child{
         p{margin: 0px !important;}
         h2{margin:0px !important;}
-        
+
         gap:0px;
         border-radius: 10px 10px !important;
         margin-top: 32px;
@@ -33,7 +33,7 @@
                         backdrop-filter: blur(17.6999998093px);
                         & p:first-child{
                          color: #FFF;
-                         font-family: "Archivo Expanded";
+                         font-family: "Archivo Expanded", sans-serif;
                          font-size: 14px;
                          font-style: normal;
                          font-weight: 800;
@@ -44,7 +44,7 @@
                         & p:nth-child(2){
                          color: #FFF;
                          /* <h1> Manrope */
-                         font-family: Manrope;
+                         font-family: 'Manrope', sans-serif;
                          font-size: 48px;
                          font-style: normal;
                          font-weight: 800;
@@ -54,16 +54,16 @@
                         }
                         &  p:nth-child(3){
                          color: #FFF;
-                         font-family: Manrope;
+                         font-family: 'Manrope', sans-serif;
                          font-size: 13px;
                          font-style: normal;
                          font-weight: 500;
                          line-height: 145%; /* 18.85px */
                          margin-top: 20px !important;
                          max-width: 257px;
-                        }               
+                        }
                     }
-                    .wp-block-column:last-child{ // coluna 2 do banner 
+                    .wp-block-column:last-child{ // coluna 2 do banner
                         & .wpcf7{
                             margin: auto;
                             display: flex;
@@ -77,12 +77,12 @@
                                 h4{
                                     margin: 0px;
                                     color: #FFF;
-                                    font-family: 'Manrope',sans-serif;
+                                    font-family: 'Manrope', sans-serif;
                                     font-size: 12px;
                                     font-style: normal;
                                     font-weight: 700;
                                     line-height: 130%; /* 15.6px */
-    
+
                                 }
                                 label{
                                     input{
@@ -94,25 +94,25 @@
                                         font-size: 13px;
                                         font-style: normal;
                                         color: var(--Main-trunks, #595D62);
-                                        font-family: 'Manrope',sans-serif;
+                                        font-family: 'Manrope', sans-serif;
                                         font-weight: 500;
                                         line-height: 18.85px; /* 18.85px */
 
 
                                     }
                                     input::placeholder {
-                                       
+
                                         color: var(--Main-trunks, #595D62);
                                         /* <small> Manrope */
-                                        font-family: 'Manrope',sans-serif;
+                                        font-family: 'Manrope', sans-serif;
                                         font-weight: 500;
                                         line-height: 18.85px; /* 18.85px */
                                         background-color: white;
 
                                     }
-            
+
                                 }
-                                
+
                                 select {
                                     width: 265px;
                                     padding: 10px;
@@ -125,15 +125,15 @@
                                     color: var(--Main-trunks, #595D62);
 
                                     /* <small> Manrope */
-                                    font-family: 'Manrope',sans-serif;
+                                    font-family: 'Manrope', sans-serif;
                                     font-weight: 500;
                                     line-height: 18.85px; /* 18.85px */
-                                    background-color: white; 
+                                    background-color: white;
 
-                                    
+
                                 }
-                                
-                                
+
+
                                 select option[disabled] {
                                     font-family: 'Manrope', sans-serif; /* Define a fonte como Manrope */
                                     font-size: 13px; /* Tamanho da fonte */
@@ -141,8 +141,8 @@
                                     line-height: 18.85px; /* Altura da linha */
                                     color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
                                 }
-                                
-                                
+
+
                                 .submit-button{
                                     input{
                                         display: flex;
@@ -157,7 +157,7 @@
                                         color: var(--Gray-1, #333);
                                         text-align: center;
                                         font-feature-settings: 'clig' off, 'liga' off;
-                                        font-family: Manrope;
+                                        font-family: 'Manrope', sans-serif;
                                         font-size: 13px;
                                         font-style: normal;
                                         font-weight: 700;
@@ -175,18 +175,18 @@
                         }
                     }
                 }
-                
-                
+
+
             }
         }
-        & .wp-block-column:last-child{ // col-2 ASIDE 
+        & .wp-block-column:last-child{ // col-2 ASIDE
             max-width: 270px;
             margin: auto;
             @media(max-width:991px){
                 display: none;
             }
             .wp-block-cover{
-                margin: 0px; 
+                margin: 0px;
                 padding: 0px;
                 border-radius: 5px;
                 .wp-block-cover__inner-container{
@@ -197,7 +197,7 @@
                     }
                     .wp-block-columns{
                         margin: 0px;
-                        
+
                         .wp-block-column{ // container que envolve descrição e rede social
                             margin-left: 33px !important;
                             margin-right: 32px !important;
@@ -205,7 +205,7 @@
                                 margin: 0px;
                                 margin-top: 22px;
                                 color: var(--White, #FFF);
-                                font-family: 'Manrope',sans-serif;
+                                font-family: 'Manrope', sans-serif;
                                 font-size: 20px;
                                 font-style: normal;
                                 font-weight: 700;
@@ -229,12 +229,12 @@
                                     }
                                 }
                             }
-                        }                      
+                        }
                     }
                     p{
                         color: var(--White, #FFF);
                         /* <small> Manrope */
-                        font-family: 'Manrope',sans-serif;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 13px;
                         font-style: normal;
                         font-weight: 500;
@@ -250,7 +250,7 @@
             display: block;
             margin-top: 32px;
         }
-        
+
         & .col-form{
             @media (min-width: 668px) and (max-width: 991px) {
                 display: flex;
@@ -271,7 +271,7 @@
                 @media(max-width:991px){
                     display: flex;
                     align-items: center;
-                    flex-direction: row;            
+                    flex-direction: row;
                 }
                 @media(max-width:667px){
                     margin: auto;
@@ -283,19 +283,19 @@
                     gap: 18px;
                     @media (max-width: 991px) {
                         gap: 0px !important;
-                        
+
                     }
                     h4{
                         margin: 0px;
                         color: #FFF;
-                        font-family: 'Manrope',sans-serif;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 12px;
                         font-style: normal;
                         font-weight: 700;
                         line-height: 130%; /* 15.6px */
                         @media (min-width: 668px) and (max-width: 991px) {
                             color: var(--DARK, #111);
-                            font-family: 'Manrope',sans-serif;
+                            font-family: 'Manrope', sans-serif;
                             font-size: 15px;
                             font-style: normal;
                             font-weight: 800;
@@ -305,7 +305,7 @@
                         @media(max-width:667px){
                             color: var(--DARK, #111);
                             /* <h3> Manrope */
-                            font-family: 'Manrope',sans-serif;
+                            font-family: 'Manrope', sans-serif;
                             font-size: 24px;
                             font-style: normal;
                             font-weight: 800;
@@ -315,17 +315,17 @@
                             text-align: start;
                             margin-top: 24px;
                         }
-                        
-                        
+
+
                     }
                     p{
                         @media(max-width:500px){
                             margin-bottom: 0px;
-                       
-                        
+
+
                         }
                     }
-                    
+
                     label{
                         input{
                             max-width: 265px;
@@ -377,14 +377,14 @@
                             color: var(--Gray-1, #333);
                             text-align: center;
                             font-feature-settings: 'clig' off, 'liga' off;
-                            font-family: 'Manrope',sans-serif;
+                            font-family: 'Manrope', sans-serif;
                             font-size: 13px;
                             font-style: normal;
                             font-weight: 500;
                             line-height: 18.85px;
                             text-transform: uppercase;
                             @include mixins.mobile{
-                                font-weight: 800; 
+                                font-weight: 800;
                             }
                         }
                     }
@@ -413,7 +413,7 @@
                     }
                     h4{
                         margin: 0;
-                        
+
                     }
                     & .social-icons-inscricao{
                         gap: 0px;
@@ -437,8 +437,8 @@
                         }
                     }
                 }
-            } 
+            }
         }
 
-    }     
+    }
 }

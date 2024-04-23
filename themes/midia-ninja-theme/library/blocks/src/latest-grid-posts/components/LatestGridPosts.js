@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
-function LatestGridPosts({ maxPosts, perPage, postNotIn, postType, taxonomy, terms, showAuthor, showDate, showExcerpt }) {
+function LatestGridPosts({ maxPosts, perPage, postNotIn, postType, taxonomy, terms, showAuthor, showChildren, showDate, showExcerpt }) {
     const [posts, setPosts] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
@@ -21,6 +21,10 @@ function LatestGridPosts({ maxPosts, perPage, postNotIn, postType, taxonomy, ter
             per_page: perPage,
             max_posts: maxPosts,
             post_not_in: postNotIn
+        }
+
+        if (showChildren) {
+            urlParams.post_parent = 1
         }
 
         const url = buildUrl(base, urlParams)

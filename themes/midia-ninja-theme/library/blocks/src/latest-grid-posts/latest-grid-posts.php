@@ -5,15 +5,18 @@ namespace Ninja;
 function latest_grid_posts_callback( $attributes ) {
 
     $block_id        = esc_attr( $attributes['blockId'] );
-    $block_classes[] = 'latest-grid-posts-block';
     $post_type       = ! empty( $attributes['postType'] ) ? esc_attr( $attributes['postType'] ) : 'post';
     $taxonomy        = ! empty( $attributes['taxonomy'] ) ? esc_attr( $attributes['taxonomy'] ) : '';
     $query_terms     = ! empty( $attributes['queryTerms'] ) ? $attributes['queryTerms'] : [];
     $posts_per_page  = ! empty( $attributes['postsPerPage'] ) ? esc_attr( $attributes['postsPerPage'] ) : 10;
     $posts_to_show   = ! empty( $attributes['postsToShow'] ) ? esc_attr( $attributes['postsToShow'] ) : 20;
     $show_author     = ! empty( $attributes['showAuthor'] );
+    $show_children   = ! empty( $attributes['showChildren'] );
     $show_date       = ! empty( $attributes['showDate'] );
     $show_excerpt    = ! empty( $attributes['showExcerpt'] );
+
+    $block_classes[] = 'latest-grid-posts-block';
+    $block_classes[] = $show_children ? 'post--has-children' : '';
 
     if ( ! $query_terms ) {
         $taxonomy = '';
@@ -44,6 +47,7 @@ function latest_grid_posts_callback( $attributes ) {
                 data-post-not-in="' . implode( ',', $post__not_in ) . '"
                 data-post-type="' . $post_type . '"
                 data-show-author="' . $show_author . '"
+                data-show-children="' . $show_children . '"
                 data-show-date="' . $show_date . '"
                 data-show-excerpt="' . $show_excerpt . '"
                 data-taxonomy="' . $taxonomy . '"

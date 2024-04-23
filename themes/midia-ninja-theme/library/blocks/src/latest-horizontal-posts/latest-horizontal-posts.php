@@ -11,10 +11,13 @@ function latest_horizontal_posts_callback( $attributes ) {
     $custom_class     = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
     $description      = ( ! empty( $attributes['description'] ) ) ? apply_filters( 'the_content', $attributes['description'] ) : false;
     $heading          = $attributes['heading'] ?? '';
+    $link             = ( ! empty( $attributes['linkUrl'] ) ) ? esc_url( $attributes['linkUrl'] ) : false;
+    $show_children    = ! empty( $attributes['showChildren'] );
 
     $block_classes[] = 'latest-horizontal-posts-block';
     $block_classes[] = $custom_class;
     $block_classes[] = 'model-' . $block_model;
+    $block_classes[] = $show_children ? 'post--has-children' : '';
     $block_classes[] = 'content-' . $content_position;
     $block_classes[] = 'show-slides-' . $slides_to_show;
 
@@ -102,8 +105,10 @@ function latest_horizontal_posts_callback( $attributes ) {
         // Vídeos
         require_once  __DIR__ . '/includes/videos.php';
 
-        $api_key = get_option( 'youtube_key', false );
-        $playlist_id = ( isset( $attributes['playlistId'] ) && ! empty( $attributes['playlistId'] ) ) ? esc_attr( $attributes['playlistId'] ) : false;
+        $api_key       = get_option( 'youtube_key', false );
+        $video_model   = ! empty( $attributes['videoModel'] ) ? esc_attr( $attributes['videoModel'] ) : 'playlist';
+        $channel_id    = ! empty( $attributes['channelId'] ) ? esc_attr( $attributes['channelId'] ) : false;
+        $playlist_id   = ! empty( $attributes['playlistId'] ) ? esc_attr( $attributes['playlistId'] ) : false;
         $posts_to_show = intval( $attributes['postsToShow'] );
 
         if ( ! $api_key || ! $playlist_id ) {
@@ -113,7 +118,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             return;
         }
 
-        $has_content = videos_get_contents( $api_key, $playlist_id, $posts_to_show, $block_id );
+        $has_content = videos_get_contents( $api_key, $video_model, $channel_id, $playlist_id, $posts_to_show, $block_id );
     }
 
     if ( ! $has_content ) {
@@ -133,7 +138,11 @@ function latest_horizontal_posts_callback( $attributes ) {
 
                 echo '<div class="latest-horizontal-posts-block__heading">';
                     if ( ! empty( $heading ) ) {
-                        echo '<h2>' . $heading . '</h2>';
+                        if ( ! empty( $link ) ) {
+                            echo '<h2><a href="' . esc_url( $link ) . '">' . $heading . '</a></h2>';
+                        } else {
+                            echo '<h2>' . $heading . '</h2>';
+                        }
                     } else {
                         echo '<div></div>';
                     }

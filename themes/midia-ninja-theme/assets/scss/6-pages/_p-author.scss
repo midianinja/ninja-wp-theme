@@ -190,8 +190,10 @@
     main{
         .container-posts{
             display: grid;
-            grid-template-columns: 1fr,1fr,1fr;
-            width: 100%;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin-bottom: 86px;
+            max-width: 100%;
+            gap: 60px;
             @media (max-width: 768px) {
                 grid-template-columns: 1fr 1fr;
             }

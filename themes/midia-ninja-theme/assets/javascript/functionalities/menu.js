@@ -54,27 +54,25 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchMenu = document.querySelector(".search-menu");
 
     menuButton.addEventListener ("click", function(ev) {
-            ev.preventDefault();
-    
-            if (menuButton.classList.contains("checked")) {
-                menuButton.classList.remove("checked");
-            } else {
-                menuButton.classList.add("checked");
-            }
+        ev.preventDefault();
 
-            document.getElementById("s").focus();
-        })
-    
+        if (menuButton.classList.contains("checked")) {
+            menuButton.classList.remove("checked");
+        } else {
+            menuButton.classList.add("checked")
+            searchFieldFocus('#searchform .search-field')
+        }
+    })
+
     searchMenu.addEventListener ("click", function(ev) {
         ev.preventDefault();
 
         if (menuButton.classList.contains("checked")) {
             menuButton.classList.remove("checked");
         } else {
-            menuButton.classList.add("checked");
+            menuButton.classList.add("checked")
+            searchFieldFocus('#searchform .search-field')
         }
-        document.getElementById("s").focus();
-        
     })
 
     buttonMais.addEventListener ("click", function(ev) {
@@ -83,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function() {
         if (menuButton.classList.contains("checked")) {
             menuButton.classList.remove("checked");
         } else {
-            menuButton.classList.add("checked");
+            menuButton.classList.add("checked")
+            searchFieldFocus('#searchform .search-field')
         }
-        document.getElementById("s").focus();
     })
 
     //Hamburger Menu Itens
@@ -150,24 +148,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const detectScroll = throttle(function() {
 
-        const scroll = window.scrollY || document.documentElement.scrollTop;
-        const mainHeader = document.querySelector(".main-header");
-        
-        if (scroll > 0) {
+        const scroll = window.scrollY || document.documentElement.scrollTop
+        const mainHeader = document.querySelector(".main-header")
+
+        if (scroll > 100) {
             if ( ! mainHeader.classList.contains("scrolado") ) {
-                mainHeader.classList.add("scrolado");
+                mainHeader.classList.add("scrolado")
             }
-            
         } else if ( mainHeader.classList.contains("scrolado") ) {
-            mainHeader.classList.remove("scrolado");
+            mainHeader.classList.remove("scrolado")
         }
-        
-    }, 50);
+
+    }, 50)
 
     document.addEventListener('wheel', detectScroll, { passive: true });
     document.addEventListener('touchmove', detectScroll, { passive: true });
-    //document.addEventListener('touchend', detectScroll, { passive: true });
-    
+    document.addEventListener('scroll', detectScroll, { passive: true });
+
+    // Helper functions
+    function searchFieldFocus(element) {
+        let searchField = document.querySelector(element)
+        if(searchField) {
+            setTimeout(function() {
+                searchField.focus()
+            }, 100)
+        }
+    }
 })
-
-

@@ -2,204 +2,104 @@
 @import "./../2-atoms/a-mixins";
 @import "../3-components/c-share";
 @import "../5-blocks/b-image";
+main.content.col-md-12 {
+    padding: 0px;
+}
 .post-type-archive-afluente{
 	.container{
 		padding: 0px;
 
 	}
 	.header-and-footer-archive {
-		margin-top: 32px;
-		@media (max-width:468px){
-			margin: 0px 12px;
-			margin-top: 12px;
-		}
-		.wp-block-columns:first-child{ // BANNER
-			@include mobile{
-				display: flex;
-				justify-content: center;
-				margin: 0px 20px;
-			}
-			.wp-block-column:first-child{  //col1
-				max-width: 770px;
+		margin: 40px 0px;
+		.wp-block-cover{
+			height: 506px !important;
+			padding: 0px;
+			border-radius: 1%;
+
+			.wp-block-columns {
+				width: 50%;
+				margin-left: 0px !important;
+				margin-bottom: 0px;
+				fill: rgba(51, 51, 51, 0.70);
+				backdrop-filter: blur(10.699999809265137px);
+				height: 506px !important;
 				@include mobile{
-					margin: 0px 20px;
+					width: 100%;
+					position: relative;
+					top: 255px;
+
 				}
-				@include small{
-					margin: 0px;
-				}
-				& .wp-block-cover{
-					margin: 0px;
-					padding: 0px;
-					border-radius: 5px;
-					width: 770px;
+				.wp-block-column{
 					margin: auto;
-					width: auto;
-
-					.wp-block-cover__inner-container{
-						.wp-block-columns{
-							margin: 0px;
-							height: 506px;
-							gap: 0px;
-							.wp-block-column:first-child{
-								max-width: 400px;
-								padding-top: 91px;
-								fill: rgba(51, 51, 51, 0.70);
-								backdrop-filter: blur(17.6999998093px);
-								@media(max-width:468px){
-									max-width: 430px;
-									padding-top: 91px;
-									fill: rgba(51, 51, 51, 0.7);
-									-webkit-backdrop-filter: blur(17.6999998093px);
-									backdrop-filter: blur(17.6999998093px);
-									height: 424px;
-									position: relative;
-									top: 55%;
-									transition: height 0.7s ease;
-									margin: 0px;
-								}
-
-								h1{
-									font-family: Manrope;
+					display: flex;
+					align-items: center;
+					justify-content: center; 
+					@include mobile{
+						display: flex;
+						margin-left: 20px; 
+						justify-content: flex-start;
+						margin-top: 57px;
+					}
+					.wp-block-newspack-blocks-homepage-articles{
+						article{
+							& .entry-wrapper{
+								h2{
+									color: #fff;
+									font-family: var(--wp--preset--font-family--manrope);
 									font-size: 48px;
 									font-style: normal;
 									font-weight: 800;
 									line-height: 115%;
 									letter-spacing: -1.44px;
-									align-items: center;
-									width: 266.596px;
-									margin: auto;
-									margin-top: 14px;
-									margin-bottom: 25px;
-									@include mobile{
-									font-family: Manrope;
-									font-size: 32px;
-									line-height: 120%; /* 38.4px */
-									letter-spacing: -0.64px;
-									}
-
-								}
-								& p:nth-child(1){ //afluentes
-									max-width: 260px;
-									margin: auto;
-									color: var(--Secondary-light, #F5F5F5);
-									font-family: "Archivo Expanded";
-									font-size: 14px;
+									max-width: 267px;
+									width: 100%;
+									margin-top: 8px;
+									margin-bottom: 8px;
+								h4{
+									color: var(--Secondary-light, #f5f5f5);
+									font-family: var(--wp--preset--font-family--archivo-expanded);
+									font-size: var(--wp--preset--font-size--small);
 									font-style: normal;
 									font-weight: 800;
-									line-height: 155%; /* 21.7px */
-									letter-spacing: -0.42px;
+									line-height: 155%;
+									letter-spacing: -.42px;
+									margin: 0 auto 0 143px;
 									text-transform: uppercase;
 								}
-								p:nth-of-type(2) {
-									font-family: Manrope;
+								}
+								p{
+									color: #fff;
+									font-family: var(--wp--preset--font-family--manrope);
 									font-size: 13px;
 									font-style: normal;
 									font-weight: 500;
-									line-height: 145%; /* 18.85px */
-									width: 257px;
-									margin: auto;
+									line-height: 145%;
+									max-width: 257px;
+									@include mobile{
+										display: none;
+									}
 								}
 							}
+							& .entry-meta{
+								display: none;
+							}
+							
 						}
 					}
 				}
 			}
-			.wp-block-column:last-child{ // col2
-				display: block;
-				max-width: 367px;
-				height: 506px;
-				flex-direction: column;
-				align-items: flex-start;
-				gap: 33px;
-				flex-shrink: 0;
-
-				.latest-vertical-posts-block {
-					border-radius: 12px;
-					background: #000;
-					padding: 51px 33px 30px 33px;
-					height: 506px;
-					.latest-vertical-posts-block__heading{
-						& h2{
-							color: #FFF;
-							/* <h2> Manrope */
-							font-family: Manrope;
-							font-size: 32px;
-							font-style: normal;
-							font-weight: 800;
-							line-height: 120%; /* 38.4px */
-							letter-spacing: -0.64px;
-							margin-bottom: 33px;
-							@include mobile{
-								margin-bottom: 63px;
-							}
-						}
-
-					}
-					.slick-slider{
-						.slide{
-							width: 100%;
-							display: flex !important;
-							gap: 64px;
-							flex-direction: column;
-							margin-bottom: 33px;
-							a{
-								& .post{
-									display: flex;
-									flex-direction: row;
-									align-items: flex-start;
-									.post-content{
-										.post-title{
-											color: var(--White, #FFF);
-											/* <p> Manrope */
-											font-family: Manrope;
-											font-size: 16px;
-											font-style: normal;
-											font-weight: 500;
-											line-height: 140%; /* 22.4px */
-											margin-top: 0px;
-											border-bottom:  1px solid #FFF !important;
-											width: 134px;
-											padding: 6px 0px;
-										}
-										.post-meta{
-											.post-meta--date{
-												& span{
-													display: none;
-												}
-											}
-										}
-									}
-									.post-thumbnail{
-										 .post-thumbnail--image{
-											object-fit: cover;
-											width: 135px;
-											height: 97px;
-											border-radius: 8px;
-
-
-										}
-
-									}
-								}
-							}
-						}
-					}
-					.latest-vertical-posts-block__footer{
-						width: 135px;
-						.latest-vertical-posts-block__arrows{
-							max-width: 171px;
-						}
-					}
-				}
-			}
-
+			
 		}
+		
+		
 	}
 	main{
 		@import "../6-pages/p-search";
 		@import "./../2-atoms/a-mixins";
 		@import "../3-components/c-share";
 		@import "../5-blocks/b-image";
+		
         .search{
 			display: flex;
 			flex-direction: column;
@@ -210,14 +110,6 @@
 			margin-left: 30px;
 			margin-right: 30px; 
 
-			@media(max-width:468px){
-				display: flex;
-				align-items: center;
-				max-width: 100%;
-				margin-top: 40px;
-				justify-content: center;
-		
-			}
             h2{
                 margin: 0px;
 				color: #000;
@@ -230,13 +122,9 @@
 				line-height: 120%; /* 38.4px */
 				letter-spacing: -0.64px;
 				@include mobile{
-					margin-left: 27px;
-					margin-bottom: 22px;
+					
 				}
-				@media(max-width:767px){
 
-					margin-left: 0px;
-				}
             }
             form{
 				width: 100%;
@@ -248,6 +136,7 @@
 				@include mobile{
 					display: block;
 				}
+				
                 & .input-search{ 
 					flex-grow: 1;
 					position: relative;
@@ -255,8 +144,9 @@
 					max-width: 460px;
 					@include mobile{
 						margin-left: 0px;
-						margin-right: 30px;
+						margin-top: 16px;
 					}
+
 
                     input{
                          width: 100%; /* Ocupa toda a largura disponível dentro do contêiner pai */
@@ -313,8 +203,9 @@
 
 					}
                     .post-card--thumb{
-                        width: 370px;
-                        height: 208px;
+						width: 100%;
+						padding: 0px;
+						padding-bottom: 16px;
 						@include mobile{
 							width: 328px;
 							height: 184px;

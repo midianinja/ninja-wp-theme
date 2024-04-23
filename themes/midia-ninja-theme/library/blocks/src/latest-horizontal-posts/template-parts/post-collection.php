@@ -4,15 +4,16 @@ $photo = $args['photo'];
 $title     = ( ! empty( $photo['title'] ) ) ? esc_attr( $photo['title'] ) : false;
 $owner     = ( ! empty( $photo['owner'] ) ) ? esc_attr( $photo['owner'] ) : false;
 $photo_id  = ( ! empty( $photo['id'] ) ) ? esc_attr( $photo['id'] ) : false;
-$thumbnail = ( ! empty( $photo['url_z'] ) ) ? esc_url( $photo['url_z'] ) : false;
 
 if ( $title ) {
 	list( $title, $date, $location ) = split_ninja_flickr_title( $title );
 }
 
-if ( $thumbnail && $photo_id && $owner ) : ?>
+if ( $photo_id && $owner ) :
 
-<div class='slide'>
+$thumbnail = 'https://live.staticflickr.com/' . $photo['server'] . '/' . $photo_id . '_' . $photo['secret'] . '.jpg'; ?>
+
+<div class="slide">
     <a href="https://www.flickr.com/photos/<?php echo $owner; ?>/<?php echo $photo_id; ?>" target="_blank">
         <div class="post specials">
             <div class="post-thumbnail">
@@ -31,7 +32,7 @@ if ( $thumbnail && $photo_id && $owner ) : ?>
                         <?php endif; ?>
                     </div>
                 </div>
-                <img src="<?php echo $thumbnail; ?>">
+                <img loading="lazy" src="<?php echo $thumbnail; ?>" alt="<?php echo esc_attr( $title ); ?>">
             </div>
         </div>
     </a>

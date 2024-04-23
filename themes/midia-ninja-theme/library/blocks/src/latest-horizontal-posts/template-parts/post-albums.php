@@ -9,7 +9,7 @@ if ( $title ) {
 	list( $title, $date, $location ) = split_ninja_flickr_title( $title );
 }
 
-$thumbnail = 'https://live.staticflickr.com/' . $album['server'] . '/' . $album['primary'] . '_' . $album['secret'] . '_z.jpg';
+$thumbnail = 'https://live.staticflickr.com/' . $album['server'] . '/' . $album['primary'] . '_' . $album['secret'] . '.jpg';
 
 if ( $album_id && $owner ) : ?>
 <div class="slide">
@@ -31,7 +31,7 @@ if ( $album_id && $owner ) : ?>
                         <?php endif; ?>
                     </div>
                 </div>
-                <img src="<?php echo $thumbnail; ?>">
+                <img loading="lazy" src="<?php echo $thumbnail; ?>" alt="<?php echo esc_attr( $title ); ?>">
             </div>
         </div>
     </a>

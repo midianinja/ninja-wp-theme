@@ -64,9 +64,6 @@
                     height: auto;
                     position: absolute;
 					object-fit: cover;
-					top:  50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
 
                     @media(max-width: variables.$tablet-width){
                         min-width: 100%;

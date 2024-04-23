@@ -38,7 +38,7 @@ $show_date      = isset( $args['attributes']['showDate'] ) ? $args['attributes']
             <div class="post-meta">
                 <div class="post-meta--date">
                     <?php if ( $show_date ) : ?>
-                        <span><?php echo get_the_time_ago(); ?></span>
+                        <span class="date"><?php echo get_the_time_ago( 'd \d\e F \d\e Y' ); ?></span>
                     <?php endif; ?>
 
                     <?php if ( $show_taxonomy ) : ?>

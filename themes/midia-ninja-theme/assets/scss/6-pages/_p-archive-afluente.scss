@@ -13,7 +13,7 @@ main.content.col-md-12 {
 		margin-left: auto;
 	}
 
-	
+
 	.header-and-footer-archive {
 		margin: 40px 0px;
 		.wp-block-cover{
@@ -38,10 +38,10 @@ main.content.col-md-12 {
 					margin: auto;
 					display: flex;
 					align-items: center;
-					justify-content: center; 
+					justify-content: center;
 					@include mobile{
 						display: flex;
-						margin-left: 20px; 
+						margin-left: 20px;
 						justify-content: flex-start;
 						margin-top: 57px;
 					}
@@ -95,22 +95,22 @@ main.content.col-md-12 {
 							& .entry-meta{
 								display: none;
 							}
-							
+
 						}
 					}
 				}
 			}
-			
+
 		}
-		
-		
+
+
 	}
 	main{
 		@import "../6-pages/p-search";
 		@import "./../2-atoms/a-mixins";
 		@import "../3-components/c-share";
 		@import "../5-blocks/b-image";
-		
+
         .search{
 			display: flex;
 			flex-direction: column;
@@ -119,21 +119,21 @@ main.content.col-md-12 {
 			margin-bottom: 24px;
 			/* margin: auto; */
 			margin-left: 30px;
-			margin-right: 30px; 
+			margin-right: 30px;
 
             h2{
                 margin: 0px;
 				color: #000;
 
 				/* <h2> Manrope */
-				font-family: Manrope;
+				font-family: 'Manrope', sans-serif;
 				font-size: 32px;
 				font-style: normal;
 				font-weight: 800;
 				line-height: 120%; /* 38.4px */
 				letter-spacing: -0.64px;
 				@include mobile{
-					
+
 				}
 
             }
@@ -147,8 +147,8 @@ main.content.col-md-12 {
 				@include mobile{
 					display: block;
 				}
-				
-                & .input-search{ 
+
+                & .input-search{
 					flex-grow: 1;
 					position: relative;
 					margin-left: 30px;
@@ -229,7 +229,7 @@ main.content.col-md-12 {
                     .post-card--content{
                         & .entry-title{
                             color: var(--PURE, #262626);
-                            font-family: Manrope;
+                            font-family: 'Manrope', sans-serif;
                             font-size: 24px;
                             font-style: normal;
                             font-weight: 800;

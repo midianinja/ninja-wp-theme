@@ -17,7 +17,7 @@ $thumbnail = 'https://live.staticflickr.com/' . $photo['server'] . '/' . $photo_
 		<div class="post collection">
 			<div class="post-thumbnail">
 				<div class="post-thumbnail--image">
-					<img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>">
+					<img loading="lazy" src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>">
 				</div>
 			</div>
 

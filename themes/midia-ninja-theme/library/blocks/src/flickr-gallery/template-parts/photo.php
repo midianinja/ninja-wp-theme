@@ -32,7 +32,7 @@ $thumbnail = 'https://live.staticflickr.com/' . $photo['server'] . '/' . $photo_
                         <?php endif; ?>
                     </div>
                 </div>
-                <img src="<?php echo $thumbnail; ?>" alt="<?php echo esc_attr( $title ); ?>">
+                <img loading="lazy" src="<?php echo $thumbnail; ?>" alt="<?php echo esc_attr( $title ); ?>">
             </div>
         </div>
     </a>

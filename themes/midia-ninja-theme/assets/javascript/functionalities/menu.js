@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchMenu = document.querySelector(".search-menu");
 
     menuButton.addEventListener ("click", function(ev) {
-        ev.preventDefault();
+        ev.preventDefault()
 
         if (menuButton.classList.contains("checked")) {
             menuButton.classList.remove("checked");
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     searchMenu.addEventListener ("click", function(ev) {
-        ev.preventDefault();
+        ev.preventDefault()
 
         if (menuButton.classList.contains("checked")) {
             menuButton.classList.remove("checked");
@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     document.addEventListener('click', function(e) {
-        
         if ( e.target.closest('.primary-menu') === null ) {
             let allItens = mainMenu.querySelectorAll('.active');
 
@@ -131,35 +130,43 @@ document.addEventListener("DOMContentLoaded", function() {
     //     }
     // }, 50), { passive: true });
 
-    function throttle(func, wait) {
-        let shouldWait = false;
-      
-        return function executedFunction(...args) {
-        
-            if (shouldWait) return;
-            
-            func(...args);
-            shouldWait = true;
-            setTimeout(() => {
-                shouldWait = false;
-            }, wait);
-        };
+    function throttle(func, delay) {
+        let lastFunc;
+        let lastRan;
+        return function() {
+            const context = this;
+            const args = arguments;
+            if (!lastRan) {
+                func.apply(context, args);
+                lastRan = Date.now();
+            } else {
+                clearTimeout(lastFunc);
+                lastFunc = setTimeout(function() {
+                    if ((Date.now() - lastRan) >= delay) {
+                        func.apply(context, args);
+                        lastRan = Date.now();
+                    }
+                }, delay - (Date.now() - lastRan));
+            }
+        }
     }
 
+    const header = document.querySelector(".main-header")
+    let isScrolled = false
+
     const detectScroll = throttle(function() {
+        const scroll = window.scrollY || document.documentElement.scrollTop;
+        const threshold = 100
+        const returnPoint = 50
 
-        const scroll = window.scrollY || document.documentElement.scrollTop
-        const mainHeader = document.querySelector(".main-header")
-
-        if (scroll > 100) {
-            if ( ! mainHeader.classList.contains("scrolado") ) {
-                mainHeader.classList.add("scrolado")
-            }
-        } else if ( mainHeader.classList.contains("scrolado") ) {
-            mainHeader.classList.remove("scrolado")
+        if (scroll > threshold && !isScrolled) {
+            header.classList.add("scrolado")
+            isScrolled = true
+        } else if (scroll < returnPoint && isScrolled) {
+            header.classList.remove("scrolado")
+            isScrolled = false
         }
-
-    }, 50)
+    }, 200)
 
     document.addEventListener('wheel', detectScroll, { passive: true });
     document.addEventListener('touchmove', detectScroll, { passive: true });

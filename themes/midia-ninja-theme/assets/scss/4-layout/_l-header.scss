@@ -105,7 +105,7 @@ header {
 					a {
 						color: #fff;
 						/* <h4> Manrope Extrabold 24 */
-						font-family: Manrope;
+						font-family: 'Manrope', sans-serif;
 						font-size: 24px;
 						font-style: normal;
 						font-weight: 800;
@@ -378,7 +378,7 @@ header {
 
 							input::placeholder {
 								color: var(--SECONDARY, #ccc);
-								font-family: Manrope;
+								font-family: 'Manrope', sans-serif;
 								font-size: 14px;
 								font-style: normal;
 								font-weight: 500;

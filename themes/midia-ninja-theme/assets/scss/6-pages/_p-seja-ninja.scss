@@ -44,7 +44,7 @@
                         & p:nth-child(2){
                          color: #FFF;
                          /* <h1> Manrope */
-                         font-family: Manrope;
+                         font-family: 'Manrope', sans-serif;
                          font-size: 48px;
                          font-style: normal;
                          font-weight: 800;
@@ -54,7 +54,7 @@
                         }
                         &  p:nth-child(3){
                          color: #FFF;
-                         font-family: Manrope;
+                         font-family: 'Manrope', sans-serif;
                          font-size: 13px;
                          font-style: normal;
                          font-weight: 500;
@@ -77,7 +77,7 @@
                                 h4{
                                     margin: 0px;
                                     color: #FFF;
-                                    font-family: 'Manrope',sans-serif;
+                                    font-family: 'Manrope', sans-serif;
                                     font-size: 12px;
                                     font-style: normal;
                                     font-weight: 700;
@@ -94,7 +94,7 @@
                                         font-size: 13px;
                                         font-style: normal;
                                         color: var(--Main-trunks, #595D62);
-                                        font-family: 'Manrope',sans-serif;
+                                        font-family: 'Manrope', sans-serif;
                                         font-weight: 500;
                                         line-height: 18.85px; /* 18.85px */
 
@@ -104,7 +104,7 @@
 
                                         color: var(--Main-trunks, #595D62);
                                         /* <small> Manrope */
-                                        font-family: 'Manrope',sans-serif;
+                                        font-family: 'Manrope', sans-serif;
                                         font-weight: 500;
                                         line-height: 18.85px; /* 18.85px */
                                         background-color: white;
@@ -125,7 +125,7 @@
                                     color: var(--Main-trunks, #595D62);
 
                                     /* <small> Manrope */
-                                    font-family: 'Manrope',sans-serif;
+                                    font-family: 'Manrope', sans-serif;
                                     font-weight: 500;
                                     line-height: 18.85px; /* 18.85px */
                                     background-color: white;
@@ -157,7 +157,7 @@
                                         color: var(--Gray-1, #333);
                                         text-align: center;
                                         font-feature-settings: 'clig' off, 'liga' off;
-                                        font-family: Manrope;
+                                        font-family: 'Manrope', sans-serif;
                                         font-size: 13px;
                                         font-style: normal;
                                         font-weight: 700;
@@ -205,7 +205,7 @@
                                 margin: 0px;
                                 margin-top: 22px;
                                 color: var(--White, #FFF);
-                                font-family: 'Manrope',sans-serif;
+                                font-family: 'Manrope', sans-serif;
                                 font-size: 20px;
                                 font-style: normal;
                                 font-weight: 700;
@@ -234,7 +234,7 @@
                     p{
                         color: var(--White, #FFF);
                         /* <small> Manrope */
-                        font-family: 'Manrope',sans-serif;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 13px;
                         font-style: normal;
                         font-weight: 500;
@@ -288,14 +288,14 @@
                     h4{
                         margin: 0px;
                         color: #FFF;
-                        font-family: 'Manrope',sans-serif;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 12px;
                         font-style: normal;
                         font-weight: 700;
                         line-height: 130%; /* 15.6px */
                         @media (min-width: 668px) and (max-width: 991px) {
                             color: var(--DARK, #111);
-                            font-family: 'Manrope',sans-serif;
+                            font-family: 'Manrope', sans-serif;
                             font-size: 15px;
                             font-style: normal;
                             font-weight: 800;
@@ -305,7 +305,7 @@
                         @media(max-width:667px){
                             color: var(--DARK, #111);
                             /* <h3> Manrope */
-                            font-family: 'Manrope',sans-serif;
+                            font-family: 'Manrope', sans-serif;
                             font-size: 24px;
                             font-style: normal;
                             font-weight: 800;
@@ -377,7 +377,7 @@
                             color: var(--Gray-1, #333);
                             text-align: center;
                             font-feature-settings: 'clig' off, 'liga' off;
-                            font-family: 'Manrope',sans-serif;
+                            font-family: 'Manrope', sans-serif;
                             font-size: 13px;
                             font-style: normal;
                             font-weight: 500;

@@ -743,19 +743,18 @@
 		.wp-block-cover {
 			padding: 35px;
 			max-height: 350px;
+			margin-bottom: 30px;
 
 			@media (max-width: 1199px) {
 				max-width: 380px;
 				width: 100%;
 			}
 
-			@media (max-width: 782px) {
-				margin-bottom: 0;
-			}
 			@media (max-width: 400px) {
 				max-width: 350px;
 				padding: 15px 35px 54px;
 			}
+			
 			.wp-block-cover__inner-container {
 				@media (max-width: 1199px) {
 					max-width: 302px;
@@ -881,6 +880,7 @@
 		}
 		h2 {
 			font-family: "MidiaNinja", sans-serif;
+			font-feature-settings: "calt" on;
 			color: #fbf36e;
 			font-size: 44px;
 			font-weight: 400;

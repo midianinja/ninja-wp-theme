@@ -395,6 +395,8 @@ header {
 	.header-content {
 		> div {
 			display: grid;
+			max-width: 1170px;
+			margin: auto;
 
 			.logo {
 				grid-area: 1/1;

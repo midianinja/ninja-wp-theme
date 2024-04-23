@@ -78,7 +78,7 @@
 										font-size: var(--wp--preset--font-size--small);
 										font-style: normal;
 										font-weight: 800;
-										line-height: 155%; 
+										line-height: 155%;
 										letter-spacing: -0.42px;
 										text-decoration: none;
 										text-transform: uppercase;
@@ -112,7 +112,7 @@
 									font-size: var(--wp--preset--font-size--default);
 									font-style: normal;
 									font-weight: 500;
-									line-height: 140%; 
+									line-height: 140%;
 									margin-top: 20px;
 
 									@include mixins.small{
@@ -144,7 +144,6 @@
 
 					.coluna-postss {
                         border-radius: 12px;
-                        border: 2px solid var(--Cores-de-categoria-Ciano---Poltica, #76C7E6);
                         max-width: 367px;
                         width: 100%;
                         height: 506px;
@@ -184,6 +183,9 @@
 
 						div[data-posts] {
 							height: auto;
+							display: flex;
+							flex-direction: column;
+   							gap: 50px;
 						}
 
 						article {
@@ -242,25 +244,8 @@
 						}
 
 						.article-section-title {
-							color: var(--DARK, #111);
-							font-family: var(--f-ninja);
-							font-feature-settings: "calt" on;
-							font-size: 36px;
-							font-style: normal;
-							font-weight: 400;
-							line-height: 145%;
-							font-feature-settings: var(--f-ninja-config);
-							font-family: var(--f-ninja);
-							font-size: 36px;
-							font-style: normal;
-							font-weight: 400;
-							line-height: 145%; 
-							margin-top: 0;
+							display: none;
 						}
-					}
-					
-					.meio-ambiente{
-						border: 2px solid var(--Cores-de-categoria-Verde---Meio-Ambiente, #99CE56) !important;
 					}
 
 					.coluna-categoria {
@@ -410,7 +395,7 @@
 							right: 0;
 							align-items: center;
 						}
-	
+
 						@include mixins.mobile{
 							display: flex;
 							flex-direction: column;
@@ -437,6 +422,7 @@
 									img{
 										height: 208px;
 										width: 100%;
+										object-fit: cover;
 										border-radius: 9px;
 									}
 								}
@@ -466,7 +452,7 @@
 											font-size: 24px;
 											font-style: normal;
 											font-weight: 800;
-											line-height: 125%; 
+											line-height: 125%;
 											letter-spacing: -0.24px;
 											max-width: 370px;
 											width: 100%;
@@ -542,12 +528,12 @@
 					}
 
 					.latest-vertical-posts-block__footer{
-			
+
 						.latest-vertical-posts-block__arrows{
 							.slick-prev{
 								background-color: #848484;
 							}
-	
+
 							.slick-next {
 								background-color: #F5F5F5;
 							}
@@ -569,7 +555,7 @@
 					.slick-list {
 						.slick-track {
 							.slide {
-							
+
 								a {
 									text-decoration: none !important;
 

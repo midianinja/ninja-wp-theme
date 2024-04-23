@@ -15,7 +15,7 @@ if ( $thumbnail && $photo_id && $owner ) : ?>
         <div class="post collection">
             <div class="post-thumbnail">
                 <div class="post-thumbnail--image">
-                    <img src="<?php echo $thumbnail; ?>">
+                	<img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>">
                 </div>
             </div>
 
@@ -33,7 +33,7 @@ if ( $thumbnail && $photo_id && $owner ) : ?>
 
                     <?php if ( $date ) : ?>
                         <span class="post-meta--date">
-                            <span class="date"><?php echo $date; ?></span>
+                            <span class="date"><?php echo esc_attr( $title ); ?></span>
                         </span>
                     <?php endif; ?>
                 </div>

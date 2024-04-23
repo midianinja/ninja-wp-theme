@@ -7,7 +7,7 @@ $show_taxonomy = isset( $args['attributes']['showTaxonomy'] ) ? $args['attribute
         <div class="post-thumbnail">
             <div class="post-thumbnail--image">
                 <?php if ( has_post_thumbnail() ) : ?>
-                    <?php echo get_the_post_thumbnail( $args['post']->ID, 'thumbnail' ); ?>
+                    <?php echo get_the_post_thumbnail( $args['post']->ID, 'medium' ); ?>
                 <?php else : ?>
                     <img src="https://via.placeholder.com/100">
                 <?php endif; ?>

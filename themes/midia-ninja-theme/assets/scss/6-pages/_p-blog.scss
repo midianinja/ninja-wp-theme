@@ -144,7 +144,6 @@
 
 					.coluna-postss {
                         border-radius: 12px;
-                        border: 2px solid var(--Cores-de-categoria-Ciano---Poltica, #76C7E6);
                         max-width: 367px;
                         width: 100%;
                         height: 506px;
@@ -184,6 +183,9 @@
 
 						div[data-posts] {
 							height: auto;
+							display: flex;
+							flex-direction: column;
+   							gap: 50px;
 						}
 
 						article {
@@ -242,25 +244,8 @@
 						}
 
 						.article-section-title {
-							color: var(--DARK, #111);
-							font-family: var(--f-ninja);
-							font-feature-settings: "calt" on;
-							font-size: 36px;
-							font-style: normal;
-							font-weight: 400;
-							line-height: 145%;
-							font-feature-settings: var(--f-ninja-config);
-							font-family: var(--f-ninja);
-							font-size: 36px;
-							font-style: normal;
-							font-weight: 400;
-							line-height: 145%;
-							margin-top: 0;
+							display: none;
 						}
-					}
-
-					.meio-ambiente{
-						border: 2px solid var(--Cores-de-categoria-Verde---Meio-Ambiente, #99CE56) !important;
 					}
 
 					.coluna-categoria {

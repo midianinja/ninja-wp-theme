@@ -113,7 +113,7 @@ function latest_horizontal_posts_callback( $attributes ) {
 
         if ( ! $api_key ) {
             if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
-                return '<h2>' . __( 'Check the API Key or playlist ID', 'ninja' ) . '</h2>';
+                return '<h2>' . __( 'Check the API Key', 'ninja' ) . '</h2>';
             }
             return;
         }

@@ -48,11 +48,6 @@ header {
 			top: 0 !important;
 			max-width: 100%;
 
-			.row {
-				max-width: 1170px;
-				margin: auto;
-			}
-
 			.logged-in & {
 				top: 32px;
 
@@ -400,6 +395,8 @@ header {
 	.header-content {
 		> div {
 			display: grid;
+			max-width: 1170px;
+			margin: auto;
 
 			.logo {
 				grid-area: 1/1;

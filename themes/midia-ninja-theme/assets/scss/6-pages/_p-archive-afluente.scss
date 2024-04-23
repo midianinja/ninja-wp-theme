@@ -310,6 +310,10 @@
 							width: 328px;
 							height: 184px;
 						}
+
+						img {
+							object-fit: cover;
+						}
                     }
                     .post-card--content{
                         & .entry-title{

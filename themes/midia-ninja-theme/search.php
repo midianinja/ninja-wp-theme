@@ -21,7 +21,7 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
                 <p><?php _e('You can perform a new search or return to the home page', 'ninja'); ?></p>
 
                 <div class="no-result-buttons">
-                    <button class="new-search"><a href="#">New Search</a></button>
+                    <button id="newSearchButton" class="new-search"><a href="#">New Search</a></button>
                     <button class="b-home"><a href="https://midia.ninja">Back to home</a></button>
                 </div>
             </div>
@@ -32,7 +32,7 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
                         <div class="search-component">
                             <label class="label-search">
                                 <span class="screen-reader-text"><?= _x( 'Search for:', 'label' ) ?></span>
-                                <input type="search" class="search-field" placeholder="<?= esc_attr_x( 'Search &hellip;', 'placeholder' ) ?>" value="<?= get_search_query() ?>" name="s" />
+                                <input type="search" class="search-field" placeholder="<?= esc_attr_x( 'Search &hellip;', 'placeholder' ) ?>" value="<?= get_search_query() ?>" name="s" id="searchField" />
                             </label>
                             <button type="submit" style="display: none">Enviar</button>
                         </div>
@@ -72,9 +72,18 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
                 
                 <?php get_template_part('template-parts/content/pagination'); ?>
             </div>
-
         </form><!-- /.form -->
     </div><!-- /.container -->
 </div><!-- /.index-wrapper -->
 
-<?php get_footer();
+<?php get_footer(); ?>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('newSearchButton').addEventListener('click', () => {
+            const searchInput = document.getElementById('searchField');
+            if (searchInput) {
+                searchInput.value = '';
+            }
+        });
+    });
+</script>

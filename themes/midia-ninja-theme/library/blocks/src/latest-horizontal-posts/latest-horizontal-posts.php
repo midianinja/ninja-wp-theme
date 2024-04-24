@@ -5,6 +5,9 @@ namespace Ninja;
 function latest_horizontal_posts_callback( $attributes ) {
     $slides_to_show = $attributes['slidesToShow'] ?? 3;
 
+    global $newspack_blocks_post_id;
+    global $latest_blocks_posts_ids;
+
     $block_id         = ( ! empty( $attributes['blockId'] ) ) ? esc_attr( $attributes['blockId'] ) : '';
     $block_model      = ( ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'specials';
     $content_position = ( ! empty( $attributes['contentPosition'] ) ) ? esc_attr( $attributes['contentPosition'] ) : 'left';
@@ -29,7 +32,7 @@ function latest_horizontal_posts_callback( $attributes ) {
 
     $has_content = false;
 
-    $attributes_hash = md5( serialize( $attributes ) );
+    $attributes_hash = md5( $block_id );
 
     if ( $block_model == 'collection'  || $block_model == 'albums' ) {
         // Flickr
@@ -67,24 +70,24 @@ function latest_horizontal_posts_callback( $attributes ) {
 
     if ( $block_model == 'most-read' || $block_model == 'specials' ) {
         // Posts
-        global $latest_blocks_posts_ids;
-
-        if ( ! is_array( $latest_blocks_posts_ids ) ) {
-            $latest_blocks_posts_ids = [];
-        }
 
         $cache_key = 'ninja_horizontal_' . $attributes_hash;
-        $cached_posts = get_transient( $cache_key );
 
-        if ( false !== $cached_posts ) {
-            $posts_query = $cached_posts;
-        } else {
+        $cached_posts = false;
 
+        if ( ! is_admin() && ( ! defined( 'REST_REQUEST' ) || ! REST_REQUEST ) ) {
+            $cached_posts = get_transient( $cache_key );
+        }
+
+        if ( false === $cached_posts ) {
             if ( $block_model == 'specials' ) {
                 $attributes['postType'] = 'especial';
             }
 
-            $args = build_posts_query( $attributes, $latest_blocks_posts_ids );
+            $post__not_in = array_merge( $latest_blocks_posts_ids, array_keys( $newspack_blocks_post_id ) );
+            $post__not_in = array_unique( $post__not_in, SORT_STRING );
+
+            $args = build_posts_query( $attributes, $post__not_in );
             $posts_query = new \WP_Query( $args );
 
             if ( false === $posts_query->have_posts() ) {
@@ -96,6 +99,8 @@ function latest_horizontal_posts_callback( $attributes ) {
             }
 
             set_transient( $cache_key, $posts_query, 3600 );
+        } else {
+            $posts_query = $cached_posts;
         }
 
         $has_content = $posts_query;
@@ -195,6 +200,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                         global $post;
 
                         $latest_blocks_posts_ids[] = $post->ID;
+                        $newspack_blocks_post_id[$post->ID] = true;
 
                         echo "<div class='slide'>";
                             get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['post' => $post, 'attributes' => $attributes] );
@@ -211,6 +217,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                         global $post;
 
                         $latest_blocks_posts_ids[] = $post->ID;
+                        $newspack_blocks_post_id[$post->ID] = true;
 
                         echo "<div class='slide'>";
                             get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['post' => $post, 'attributes' => $attributes] );

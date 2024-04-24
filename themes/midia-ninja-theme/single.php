@@ -39,6 +39,8 @@ get_template_part( 'template-parts/header-especiais' );
                             </div>
 
                             <?php the_post_thumbnail();?>
+                            <figcaption><?php the_post_thumbnail_caption();?></figcaption>
+                            
 
                             <h2 class="title"><?php the_title(); ?></h2>
 

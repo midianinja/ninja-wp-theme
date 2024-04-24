@@ -542,6 +542,8 @@ function alterar_consulta_pesquisa_afluente($query) {
         if(!empty($_GET['pesquisar'])) {
             $query->set('s', $_GET['pesquisar']);
         }
+		$query->set('orderby', 'title');
+		$query->set('order', 'ASC');
     }
 }
 add_action('pre_get_posts', 'alterar_consulta_pesquisa_afluente');
@@ -608,7 +610,7 @@ add_action( 'pre_get_posts', 'set_custom_post_type_archive_posts_per_page' );
 function change_search_especial( $query ) {
 
     if (is_post_type_archive( 'especial' ) && $query->is_main_query() ) {
-       
+
         if(!empty($_GET['pesquisar'])) {
             $query->set('s', $_GET['pesquisar']);
         }

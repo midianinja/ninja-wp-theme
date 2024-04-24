@@ -3,13 +3,13 @@
 
 .category {
 
-	background-color: #F5F5F5;
-
 	a {
 		text-decoration: none !important;
 	}
 
 	#app {
+		background-color: #F5F5F5;
+
 		.container {
 			.header-and-footer-archive {
 				margin-top: 32px;
@@ -19,14 +19,13 @@
 				}
 
 				.high-spot-block{
-					height: 508px;
-					max-width: 773px;
    					width: 100%;
 				}
 
 				.colunas-categoria {
 					margin-bottom: 0;
 					gap: 0;
+					margin-top: 10rem;
 
 					@include mixins.small {
 						max-width: 330px;

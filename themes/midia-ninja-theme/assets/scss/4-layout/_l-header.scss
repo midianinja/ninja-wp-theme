@@ -2,12 +2,12 @@
 @import "./../2-atoms/a-mixins";
 
 #wpadminbar ~ header {
-	padding-top: 20px;
+	top: 32px;
 }
 
 header {
 	&.main-header {
-		position: sticky;
+		position: fixed;
 		left: 0%;
 		top: 0;
 		z-index: 999;

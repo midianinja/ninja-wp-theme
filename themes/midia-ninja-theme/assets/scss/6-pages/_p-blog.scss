@@ -442,7 +442,7 @@
 										order: 1;
 									}
 
-									a{
+									& > a{
 										text-decoration: none;
 										color: var(--Primary-dark, var(--DARK, #111));
 										height: auto;

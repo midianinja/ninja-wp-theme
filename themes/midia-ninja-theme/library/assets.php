@@ -349,7 +349,7 @@ class Assets
             'archive' => [
                 'file' => '_p-archive.css',
                 'preload_callback' => function () {
-                    return is_archive();
+                    return is_archive() || is_home();
                 },
             ],
 
@@ -405,6 +405,13 @@ class Assets
                 'file' => '_p-category.css',
                 'preload_callback' => function () {
                     return is_category();
+                },
+            ],
+
+            'generic-archive' => [
+                'file' => '_p-generic-archive.css',
+                'preload_callback' => function () {
+                    return is_category() || is_home();
                 },
             ],
 

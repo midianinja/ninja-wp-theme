@@ -21,6 +21,18 @@
 				opacity: 0.7;
 			}
 		}
+
+		figcaption {
+			color: var(--Secondary-dark, var(--SECONDARY, #ccc));
+			/* <h6>  Manrope Medium 10 */
+			font-family: Manrope;
+			font-size: 10px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 21px; /* 210% */
+			letter-spacing: 1px;
+			text-transform: uppercase;
+		}
 	}
 
 	.container {
@@ -39,7 +51,6 @@
 
 				.addtoany_list {
 					display: flex;
-					margin-right: 5px;
 
 					a.a2a_button_copy_link {
 						span {
@@ -130,6 +141,7 @@
 						letter-spacing: -0.6px;
 						position: absolute;
 						margin: 20px;
+						text-transform: uppercase;
 
 						span {
 							a {
@@ -299,7 +311,7 @@
 							}
 
 							.addtoany_list {
-								//display: flex;
+								margin-right: -8px;
 
 								a.a2a_button_facebook {
 									span {
@@ -400,13 +412,6 @@
 						left: 50%;
 						transform: translateX(-50%);
 						object-fit: contain;
-					}
-
-					figcaption {
-						margin: 8px auto;
-						font-size: small;
-						font-weight: 500;
-						line-height: 18.85px;
 					}
 
 					.page-share {

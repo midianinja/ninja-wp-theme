@@ -66,7 +66,7 @@ get_template_part( 'template-parts/header-especiais' );
                                         <div class="author-info-card">
                                             <a href="<?php echo $url_afluente ?>">
                                                 <?php if($avatar): ?>
-                                                    <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
+                                                    <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar" height="64" width="64">
                                                 <?php endif ?>
                                                 <div class="auth-name-icons">
 
@@ -126,10 +126,10 @@ get_template_part( 'template-parts/header-especiais' );
                                         </div>
 
                                         </div>
-                                    
+
                                         <?php
                                     }
-                                
+
                                 }
                             }
                         ?>
@@ -192,7 +192,7 @@ get_template_part( 'template-parts/header-especiais' );
 
                                     <a href="<?php echo $url_afluente ?>">
                                         <?php if($avatar): ?>
-                                            <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar">
+                                            <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar" height="64" width="64">
                                         <?php endif ?>
                                         <div class="authname">
                                             <?php echo $afluente_name; ?>
@@ -252,7 +252,7 @@ get_template_part( 'template-parts/header-especiais' );
                                     </div>
                                 </div>
                                 <?php
-                                
+
                             }
                         }
                         }

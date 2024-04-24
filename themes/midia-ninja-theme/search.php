@@ -22,7 +22,7 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
 
                 <div class="no-result-buttons">
                     <button class="new-search"><a href="#">New Search</a></button>
-                    <button class="b-home"><a href="<?php home_url() ?>">Back to home</a></button>
+                    <button class="b-home"><a href="<?php esc_url( home_url( '/' ) ) ?>">Back to home</a></button>
                 </div>
             </div>
 

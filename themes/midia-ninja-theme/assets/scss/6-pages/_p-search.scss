@@ -17,24 +17,24 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
             width: 100%;
             position: relative;
             right: -15px;
-    
+
             @include small{
                 right: inherit;
             }
-    
+
             @include mobile{
                 right: inherit;
             }
-    
+
             h1{
                 color: var(--PURE, #262626);
-                font-family: Manrope;
+                font-family: 'Manrope', sans-serif;
                 font-size: 48px;
                 font-style: normal;
                 font-weight: 800;
-                line-height: 115%; 
+                line-height: 115%;
                 letter-spacing: -1.44px;
-    
+
                 @include small{
                     font-size: 32px;
                     margin-right: auto;
@@ -47,26 +47,26 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                     margin-left: auto;
                 }
             }
-    
+
             p{
                 color: var(--PURE, #262626);
                 font-family: var(--wp--preset--font-family--manrope);
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 700;
-                line-height: 130%; 
-    
+                line-height: 130%;
+
                 @include small{
                     font-size: 32px;
                     display: none;
                 }
-    
+
                 @include mobile{
                     font-size: 32px;
                     display: none;
                 }
             }
-    
+
         }
 
         .col-md-9{
@@ -92,7 +92,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                     width: 100%;
                     right: inherit;
                 }
-    
+
                 .search-component{
                     max-width: 460px;
                     width: 100%;
@@ -144,13 +144,13 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                         background-repeat: no-repeat;
                         background-position: center left 18px;
                         height: 46px;
-                        padding-left: 20px; 
-                        padding-right: 20px; 
-                        max-width: 239px; 
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        max-width: 239px;
                         width: 100%;
-                        border: 1px solid #ccc; 
-                        border-radius: 5px; 
-                        font-size: 16px; 
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
                         background-color: transparent;
                         border-radius: 8px;
                         border: 2px solid var(--SECONDARY, #CCC);
@@ -208,13 +208,13 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                         background-repeat: no-repeat;
                         background-position: center left 18px;
                         height: 46px;
-                        padding-left: 20px; 
-                        padding-right: 20px; 
-                        max-width: 239px; 
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        max-width: 239px;
                         width: 100%;
-                        border: 1px solid #ccc; 
-                        border-radius: 5px; 
-                        font-size: 16px; 
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
                         background-color: transparent;
                         border-radius: 8px;
                         border: 2px solid var(--SECONDARY, #CCC);
@@ -327,7 +327,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                             padding-right: 0;
                             max-width: 370px;
                             width: 100%;
-                            
+
                             a{
                                 text-decoration: none;
                             }
@@ -409,7 +409,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
         h1{
             color: var(--PURE, #262626);
-            font-family: Manrope;
+            font-family: 'Manrope', sans-serif;
             font-size: 48px;
             font-style: normal;
             font-weight: 800;

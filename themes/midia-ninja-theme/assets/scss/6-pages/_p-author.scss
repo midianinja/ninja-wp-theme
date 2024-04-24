@@ -20,20 +20,20 @@
             margin-left: 12px;
             margin-right: 12px;
         }
-        .lado-esquerdo-banner{ 
+        .lado-esquerdo-banner{
             max-width: 377px;
             height: 497px;
-            border-radius: 8px 0px 0px 8px; 
+            border-radius: 8px 0px 0px 8px;
             background: rgba(51, 51, 51, 0.70);
             backdrop-filter: blur(11px);
             @include mixins.mobile{
                 position: relative;
-                top: 275px; 
+                top: 275px;
                 height: 222px;
                 max-width: 431px;
                 display: flex;
                 align-items: center;
-                border-radius: 8px 8px 0px 8px; 
+                border-radius: 8px 8px 0px 8px;
             }
             & .container-info{
                 display: flex;
@@ -43,7 +43,7 @@
                 /* padding-right: 53px; */
                 padding: 48px;
                 height: 100%;
-            
+
                 @include mixins.mobile{
                     width: 100%;
                     padding: 0;
@@ -51,12 +51,12 @@
                 }
                 .tag{
                     .entry-meta{
-                        
+
                         ul >li{
                             background-color: initial !important;
                             a{
                                 color: #FFF;
-                                font-family: "Archivo Expanded",sans-serif;
+                                font-family: "Archivo Expanded", sans-serif;
                                 font-size: 14px;
                                 font-style: normal;
                                 font-weight: 800;
@@ -71,13 +71,13 @@
                         }
                     }
                 }
-               
+
                 .title,
                 h5,
                 a{
                     color: #FFF !important;
                     /* <h2> Manrope */
-                    font-family: 'Manrope',sans-serif;
+                    font-family: 'Manrope', sans-serif;
                     font-size: 32px;
                     font-style: normal;
                     font-weight: 800;
@@ -90,7 +90,7 @@
                     max-width: 266px;
                     p{
                         color: #FFF;
-                        font-family: 'Manrope',sans-serif;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 14px;
                         font-style: normal;
                         font-weight: 500;
@@ -99,12 +99,12 @@
                             display: none;
                         }
                     }
-                    
+
                 }
             }
         }
     }
-    
+
     .author-info{
         width: 271px;
         height: 497px;
@@ -137,7 +137,7 @@
             }
             .author-name{
                 color: var(--White, #FFF);
-                font-family: 'Manrope',sans-serif;
+                font-family: 'Manrope', sans-serif;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 800;
@@ -154,7 +154,7 @@
             }
             .authbio{
                 color: var(--White, #FFF);
-                font-family: 'Manrope',sans-serif;
+                font-family: 'Manrope', sans-serif;
                 font-size: 12px;
                 font-style: normal;
                 font-weight: 500;
@@ -170,7 +170,7 @@
             @include mixins.mobile{
                 color: var(--White, #FFF);
                 /* <h5> Manrope */
-                font-family: Manrope;
+                font-family: 'Manrope', sans-serif;
                 font-size: 13px;
                 font-style: normal;
                 font-weight: 500;
@@ -214,7 +214,7 @@
                     .entry-date{
                         color: var(--Gray-3, #828282);
                         /* <h5> Manrope */
-                        font-family: Manrope;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 13px;
                         font-style: normal;
                         font-weight: 500;
@@ -223,7 +223,7 @@
                     a,
                     h5{
                         color: var(--Gray-1, #333);
-                        font-family: Manrope;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 20px;
                         font-style: normal;
                         font-weight: 700;
@@ -233,7 +233,7 @@
                     .entry-excerpt{
                         color: var(--Gray-3, #828282);
                         /* <p> Manrope */
-                        font-family: Manrope;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 16px;
                         font-style: normal;
                         font-weight: 500;
@@ -254,7 +254,7 @@
                     @include mixins.mobile{
                         padding-left: 0px;
                     }
-                
+
                     .slide{
                         .post{
                             @include mixins.mobile{
@@ -269,7 +269,7 @@
                                 color: black;  // Altera a cor do texto para branco ao passar o mouse
                             }
                         }
-                        
+
                     }
                 }
             }
@@ -284,15 +284,15 @@
                     background-color: #000 !important;
                 }
                 h2 {
-                    font-family: "Manrope", serif;
+                    font-family: "Manrope", sans-serif;
                     font-size: 32px;
                     font-style: normal;
                     font-weight: 800;
                     line-height: 120%;
-                    letter-spacing: -0.96px; 
+                    letter-spacing: -0.96px;
                     color: #111;
                     @media (max-width: 992px) {
-                        font-size: 24px; 
+                        font-size: 24px;
                     }
                 }
                 .container {
@@ -335,8 +335,8 @@
                     @media (max-width: 782px) {
                         margin-bottom: 0;
                     }
-                    
-                    
+
+
                     a {
                         text-decoration: none;
                         .post {
@@ -362,7 +362,7 @@
                                 }
                             }
                             .post-content {
-                                font-family: "Manrope", serif;
+                                font-family: "Manrope", sans-serif;
                                 max-width: 170px;
                                 width: 100%;
                                 .post-title {
@@ -381,13 +381,13 @@
                             }
                         }
                     }
-                    
+
                 }
-        
+
                 .slick-arrow {
                     transition: none !important;
                 }
-        
+
                 .slick-arrow.slick-prev {
                     background-color: #ccc !important;
                     &:hover {
@@ -398,7 +398,7 @@
                         transform: rotate(180deg);
                     }
                 }
-        
+
                 .slick-arrow.slick-next {
                     background-color: #ccc !important;
                     &:hover {
@@ -408,7 +408,7 @@
                         background-repeat: no-repeat !important;
                     }
                 }
-        
+
                 .slick-arrow.slick-disabled {
                     background-color: #ccc !important;
                 }
@@ -423,16 +423,16 @@
                 margin-top: 5rem;
                 position: relative;
                 bottom: 13px;
-        
+
                 @media (max-width: 992px) {
                     display: none;
                 }
                 .wp-block-button {
                     background-color: #111;
                     border-radius: 8px;
-        
+
                     a {
-                        font-family: "Manrope", serif;
+                        font-family: "Manrope", sans-serif;
                         color: #fff;
                         font-size: 13px;
                         font-weight: 700;
@@ -442,13 +442,13 @@
                     }
                 }
             }
-        
+
             .btn-latest-posts,
             .btn-colunistas-mobile {
                 display: none;
                 justify-content: flex-start;
                 margin-bottom: 2rem;
-                
+
                 @include mixins.mobile{
                     margin-bottom: 0px;
                     padding-bottom: 40px;
@@ -462,7 +462,7 @@
                     border-radius: 8px;
 
                     a {
-                        font-family: "Manrope", serif;
+                        font-family: "Manrope", sans-serif;
                         color: #fff;
                         font-size: 13px;
                         font-weight: 700;
@@ -475,4 +475,3 @@
         }
     }
 }
- 

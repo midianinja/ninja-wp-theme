@@ -344,7 +344,7 @@ function get_posts_by_month($args = [])
                 $close_ul = true;
             endif;
 
-            $thumbnail = (has_post_thumbnail(get_the_ID())) ? get_the_post_thumbnail(get_the_ID()) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
+            $thumbnail = (has_post_thumbnail(get_the_ID())) ? get_the_post_thumbnail(get_the_ID()) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png" alt="" height="600" width="800">';
 
             $content_slider .= sprintf(
                 '<li id="item-%1$s" class="item item-month-%2$s"><a href="%3$s"><div class="thumb">%4$s</div><div class="title"><h3>%5$s</h3></div></a></li>',
@@ -424,7 +424,7 @@ function get_term_by_slug($term_slug)
 
 /**
  * Retorna a data formatada como "x tempo atrás" ou no formato especificado
- * 
+ *
  * @param string $date_format Formato da data, padrão 'd M Y'
  * @return string A data formatada
 */
@@ -598,9 +598,20 @@ function split_ninja_flickr_title( $title ) {
 }
 
 function set_custom_post_type_archive_posts_per_page( $query ) {
-    
+
     if ( $query->is_main_query() && ! is_admin() && is_post_type_archive( 'especial' ) ) {
         $query->set( 'posts_per_page', 12 );
     }
 }
 add_action( 'pre_get_posts', 'set_custom_post_type_archive_posts_per_page' );
+
+function change_search_especial( $query ) {
+
+    if (is_post_type_archive( 'especial' ) && $query->is_main_query() ) {
+       
+        if(!empty($_GET['pesquisar'])) {
+            $query->set('s', $_GET['pesquisar']);
+        }
+    }
+}
+add_action('pre_get_posts', 'change_search_especial');

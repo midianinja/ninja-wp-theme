@@ -20,7 +20,7 @@ function high_spot_callback( $attributes ) {
             $heading          = isset( $get_post->post_title ) ? apply_filters( 'the_title', $get_post->post_title ) : '';
             $link_url         = esc_url( get_permalink( $post_id ) );
             $image_id         = has_post_thumbnail( $post_id ) ? get_post_thumbnail_id( $post_id ) : '';
-            $image_url        = has_post_thumbnail( $post_id ) ? get_the_post_thumbnail_url( $post_id, 'large' ) : 'https://via.placeholder.com/800';
+            $image_url        = has_post_thumbnail( $post_id ) ? get_the_post_thumbnail_url( $post_id, 'large' ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png';
             $image_alt        = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
             $primary_category = get_post_meta( $post_id, '_yoast_wpseo_primary_category', true );
 
@@ -45,7 +45,7 @@ function high_spot_callback( $attributes ) {
         $heading     = ( isset( $attributes['heading'] ) && ! empty( $attributes['heading'] ) ) ? esc_attr( $attributes['heading'] ) : '';
         $image_id    = ( isset( $attributes['imageId'] ) && ! empty( $attributes['imageId'] ) ) ? esc_attr( $attributes['imageId'] ) : false;
         $image_alt   = ( isset( $attributes['imageAlt'] ) && ! empty( $attributes['imageAlt'] ) ) ? esc_attr( $attributes['imageAlt'] ) : '';
-        $image_url   = ( isset( $attributes['imageUrl'] ) && ! empty( $attributes['imageUrl'] ) ) ? esc_attr( $attributes['imageUrl'] ) : 'https://via.placeholder.com/800';
+        $image_url   = ( isset( $attributes['imageUrl'] ) && ! empty( $attributes['imageUrl'] ) ) ? esc_attr( $attributes['imageUrl'] ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png';
         $link_url    = ( isset( $attributes['linkUrl'] ) && ! empty( $attributes['linkUrl'] ) ) ? esc_url( $attributes['linkUrl'] ) : '';
         $tag         = ( isset( $attributes['tag'] ) && ! empty( $attributes['tag'] ) ) ? esc_attr( $attributes['tag'] ) : '';
     }

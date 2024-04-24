@@ -615,3 +615,18 @@ function change_search_especial( $query ) {
     }
 }
 add_action('pre_get_posts', 'change_search_especial');
+
+function add_category_class_to_blog( $classes ){
+    if( !is_admin() && (is_category() || is_home())){
+        $classes[] = 'generic-archive';
+    }
+
+    if(!is_admin() || is_home()){
+        $classes[] = 'archive';
+    }
+
+    return $classes;
+
+}
+
+add_filter('body_class', 'add_category_class_to_blog');

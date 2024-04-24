@@ -742,10 +742,15 @@
 			.latest-vertical-posts-block .slick-slider h2 {
 				width: fit-content;
 			}
+
+			a {
+				text-decoration: none;
+			}
 		}
 		.wp-block-cover {
 			padding: 35px;
-			max-height: 350px;
+			height: 370px;
+			min-height: unset !important;
 
 			@media (max-width: 1199px) {
 				max-width: 380px;
@@ -784,12 +789,13 @@
 
 			.wp-block-newspack-blocks-homepage-articles {
 				.article-section-title {
+					line-height: 1;
 					margin-bottom: 1rem;
 					span {
 						font-size: 13px;
 						font-style: normal;
 						font-weight: 500;
-						line-height: 145%;
+						line-height: 1;
 						color: #535353;
 						text-transform: uppercase;
 					}
@@ -822,8 +828,8 @@
 						}
 						.vcard {
 							margin-left: 1rem;
-							border-bottom: 1px solid #000;
-							padding-bottom: 0.7rem;
+							border-bottom: 2px solid #000;
+							padding-bottom: 0.5rem;
 
 							a {
 								color: #000;

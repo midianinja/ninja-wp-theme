@@ -192,9 +192,9 @@ main.content.col-md-12 {
         }
 
         .posts{
-            display: grid;
+			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
-			gap: 10px;
+			gap: 30px;
 			margin-top: 48px;
 			
 			@media(max-width:1200px){
@@ -236,10 +236,13 @@ main.content.col-md-12 {
 							width: 328px;
 							height: 184px;
 						}
-
-						img {
-							object-fit: cover;
+						.aspect-ratio{
+							border-radius: 12px;
+							img {
+								object-fit: cover;
+							}
 						}
+						
                     }
                     .post-card--content{
                         & .entry-title{

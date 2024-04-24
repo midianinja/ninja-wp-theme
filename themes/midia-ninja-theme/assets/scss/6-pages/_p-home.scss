@@ -650,7 +650,6 @@
 					@include desktop {
 						width: 370px;
 						display: grid;
-
 					}
 				}
 
@@ -726,8 +725,13 @@
 				}
 			}
 		}
+
 		.coluna-colunistas {
 			padding-top: 0;
+
+			.latest-vertical-posts-block.colunas {
+				margin: 15px 0 30px !important;
+			}
 
 			.latest-vertical-posts-block .slick-slider h2 {
 				width: fit-content;
@@ -736,7 +740,6 @@
 		.wp-block-cover {
 			padding: 35px;
 			max-height: 350px;
-			margin-bottom: 30px;
 
 			@media (max-width: 1199px) {
 				max-width: 380px;
@@ -746,6 +749,11 @@
 			@media (max-width: 400px) {
 				max-width: 350px;
 				padding: 15px 35px 54px;
+			}
+
+			img {
+				object-fit: fill;
+				margin-bottom: 2rem;
 			}
 
 			.wp-block-cover__inner-container {
@@ -823,7 +831,6 @@
 		}
 
 		.colunas {
-			margin-top: 20px !important;
 			h2 {
 				display: flex;
 				justify-content: left;

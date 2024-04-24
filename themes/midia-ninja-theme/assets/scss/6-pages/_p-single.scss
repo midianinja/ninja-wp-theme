@@ -39,7 +39,6 @@
 
 				.addtoany_list {
 					display: flex;
-					margin-right: 5px;
 
 					a.a2a_button_copy_link {
 						span {
@@ -130,6 +129,7 @@
 						letter-spacing: -0.6px;
 						position: absolute;
 						margin: 20px;
+						text-transform: uppercase;
 
 						span {
 							a {
@@ -299,7 +299,7 @@
 							}
 
 							.addtoany_list {
-								//display: flex;
+								margin-right: -8px;
 
 								a.a2a_button_facebook {
 									span {

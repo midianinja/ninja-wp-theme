@@ -1,16 +1,19 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const mainMenu = document.querySelector('.main-header #main-menu');
-    const itensWithChild = mainMenu.querySelectorAll('#main-menu li.menu-item-has-children');
+    const mainMenu = document.querySelector('.main-header #main-menu')
+    const itensWithChild = mainMenu.querySelectorAll('li.menu-item-has-children')
 
     itensWithChild.forEach(item => {
-        if (item.parentElement.classList.contains('sub-menu')){
-            return;
-        }
+        const mq = window.matchMedia("(min-width: 768px)")
 
-        item.querySelector('a').addEventListener('click', function(e) {
-            e.preventDefault();
-            item.classList.toggle('active')
-        })
+        if (mq.matches) {
+            item.addEventListener('mouseover', function() {
+                this.classList.add('active')
+            })
+
+            item.addEventListener('mouseout', function() {
+                this.classList.remove('active')
+            })
+        }
     })
 
     //Hamburguer Menu Open/Close

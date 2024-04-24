@@ -1,32 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
-    const menuIcons = document.querySelectorAll('button.toggle-menu');
-   
-    menuIcons.forEach(icon => {
-        icon.addEventListener('click', function() {
-            const width = window.matchMedia("(max-width: 768px)");
-            if (width.matches) {
-                document.getElementsByTagName("body").item(0).classList.toggle('menu-active');
-            }
-            
-            this.classList.toggle('active');
-            this.parentNode.classList.toggle('active');
-            this.closest('header').classList.toggle('active');
-            const menuContainerClass =this.getAttribute('menu-container-class')
-            document.querySelector('.'+ menuContainerClass).classList.toggle('active');
-            searchButton = document.querySelector('.search-toggle');
-            searchButton.disabled = ( searchButton.disabled ? false : true );
+    const mainMenu = document.querySelector('.main-header #main-menu')
+    const itensWithChild = mainMenu.querySelectorAll('li.menu-item-has-children')
 
-        })
-    });
-
-    const mainMenu = document.querySelector('.main-header #main-menu');
-    const itensWithChild = mainMenu.querySelectorAll('#main-menu li.menu-item-has-children');
-    
     itensWithChild.forEach(item => {
+        const mq = window.matchMedia("(min-width: 768px)")
 
-        if (item.parentElement.classList.contains('sub-menu')){
-            return;
+        if (mq.matches) {
+            item.addEventListener('mouseover', function() {
+                this.classList.add('active')
+            })
+
+            item.addEventListener('mouseout', function() {
+                this.classList.remove('active')
+            })
         }
 
         item.querySelector('a').addEventListener('click', function(e) {
@@ -68,27 +54,25 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchMenu = document.querySelector(".search-menu");
 
     menuButton.addEventListener ("click", function(ev) {
-            ev.preventDefault();
-    
-            if (menuButton.classList.contains("checked")) {
-                menuButton.classList.remove("checked");
-            } else {
-                menuButton.classList.add("checked");
-            }
-
-            document.getElementById("s").focus();
-        })
-    
-    searchMenu.addEventListener ("click", function(ev) {
-        ev.preventDefault();
+        ev.preventDefault()
 
         if (menuButton.classList.contains("checked")) {
             menuButton.classList.remove("checked");
         } else {
-            menuButton.classList.add("checked");
+            menuButton.classList.add("checked")
+            searchFieldFocus('#searchform .search-field')
         }
-        document.getElementById("s").focus();
-        
+    })
+
+    searchMenu.addEventListener ("click", function(ev) {
+        ev.preventDefault()
+
+        if (menuButton.classList.contains("checked")) {
+            menuButton.classList.remove("checked");
+        } else {
+            menuButton.classList.add("checked")
+            searchFieldFocus('#searchform .search-field')
+        }
     })
 
     buttonMais.addEventListener ("click", function(ev) {
@@ -97,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function() {
         if (menuButton.classList.contains("checked")) {
             menuButton.classList.remove("checked");
         } else {
-            menuButton.classList.add("checked");
+            menuButton.classList.add("checked")
+            searchFieldFocus('#searchform .search-field')
         }
-        document.getElementById("s").focus();
     })
 
     //Hamburger Menu Itens
@@ -123,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     document.addEventListener('click', function(e) {
-        
         if ( e.target.closest('.primary-menu') === null ) {
             let allItens = mainMenu.querySelectorAll('.active');
 
@@ -133,55 +116,69 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
-    // window.addEventListener("wheel", throttle(function() {
-    //     const scroll = window.scrollY || document.documentElement.scrollTop;
-    //     const mainHeader = document.querySelector(".main-header");
-        
-    //     if (scroll > 0) {
-    //         if ( ! mainHeader.classList.contains("scrolado") ) {
-    //             mainHeader.classList.add("scrolado");
-    //         }
-            
-    //     } else if ( mainHeader.classList.contains("scrolado") ) {
-    //         mainHeader.classList.remove("scrolado");
-    //     }
-    // }, 50), { passive: true });
-
-    function throttle(func, wait) {
-        let shouldWait = false;
-      
-        return function executedFunction(...args) {
-        
-            if (shouldWait) return;
-            
-            func(...args);
-            shouldWait = true;
-            setTimeout(() => {
-                shouldWait = false;
-            }, wait);
-        };
+    function throttle(func, delay) {
+        let lastFunc;
+        let lastRan;
+        return function() {
+            const context = this;
+            const args = arguments;
+            if (!lastRan) {
+                func.apply(context, args);
+                lastRan = Date.now();
+            } else {
+                clearTimeout(lastFunc);
+                lastFunc = setTimeout(function() {
+                    if ((Date.now() - lastRan) >= delay) {
+                        func.apply(context, args);
+                        lastRan = Date.now();
+                    }
+                }, delay - (Date.now() - lastRan));
+            }
+        }
     }
 
-    const detectScroll = throttle(function() {
+    const header = document.querySelector(".main-header")
+    let isScrolled = false
 
+    const detectScroll = throttle(function() {
         const scroll = window.scrollY || document.documentElement.scrollTop;
-        const mainHeader = document.querySelector(".main-header");
-        
-        if (scroll > 0) {
-            if ( ! mainHeader.classList.contains("scrolado") ) {
-                mainHeader.classList.add("scrolado");
-            }
-            
-        } else if ( mainHeader.classList.contains("scrolado") ) {
-            mainHeader.classList.remove("scrolado");
+        const threshold = 100
+        const returnPoint = 50
+
+        if (scroll > threshold && !isScrolled) {
+            header.classList.add("scrolado")
+            isScrolled = true
+        } else if (scroll < returnPoint && isScrolled) {
+            header.classList.remove("scrolado")
+            isScrolled = false
         }
-        
-    }, 50);
+        closeSubmenus()
+    }, 200)
 
     document.addEventListener('wheel', detectScroll, { passive: true });
     document.addEventListener('touchmove', detectScroll, { passive: true });
-    //document.addEventListener('touchend', detectScroll, { passive: true });
-    
+    document.addEventListener('scroll', detectScroll, { passive: true });
+
+    // Helper functions
+    function searchFieldFocus(element) {
+        let searchField = document.querySelector(element)
+        if(searchField) {
+            setTimeout(function() {
+                searchField.focus()
+            }, 100)
+        }
+    }
+
+    function closeSubmenus() {
+        const mainMenu = document.querySelector('.main-header #main-menu')
+        const itensWithChild = mainMenu.querySelectorAll('#main-menu li.menu-item-has-children')
+
+        itensWithChild.forEach(item => {
+            if (item.parentElement.classList.contains('sub-menu')) {
+                return
+            }
+
+            item.classList.remove('active')
+        })
+    }
 })
-
-

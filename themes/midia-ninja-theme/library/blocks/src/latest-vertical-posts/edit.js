@@ -2,6 +2,8 @@ import { __ } from '@wordpress/i18n'
 
 const { useEffect, useState } = wp.element
 
+import { useInstanceId } from "@wordpress/compose"
+
 import ServerSideRender from '@wordpress/server-side-render'
 import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
@@ -23,6 +25,8 @@ import metadata from './block.json'
 import './editor.scss'
 
 export default function Edit( { attributes, clientId, setAttributes } ) {
+	const instanceId = useInstanceId(Edit, 'latest-vertical-posts')
+
 	const blockProps = useBlockProps( {
 		className: 'latest-vertical-posts-block'
 	} )
@@ -54,8 +58,8 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	} = attributes
 
 	useEffect(() => {
-		if (!blockId) {
-			setAttributes( { blockId: clientId } )
+		if (!blockId || blockId !== instanceId) {
+			setAttributes({ blockId: instanceId })
 		}
 	})
 

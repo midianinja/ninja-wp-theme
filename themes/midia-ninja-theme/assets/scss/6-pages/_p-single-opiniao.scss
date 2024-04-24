@@ -240,7 +240,11 @@
                                 font-weight: 800;
                                 line-height: 24px; /* 120% */
                                 letter-spacing: -0.6px;
-                                margin: 0 0 7px -95px;
+                                margin-bottom: 7px;
+                                max-width: 207px;
+                                width: 100%;
+                                display: flex;
+                                justify-content: flex-start;
                             }
                             .authbio{
                                 color: var(--White, #FFF);
@@ -254,10 +258,13 @@
                             }
                             .social-networks{
                                 display: flex;
-                                margin: 0px 32px;
+                                margin: 0px;
                                 margin-top: 34px;
                                 flex-direction: row;
-                                margin-right: 115px;
+                                max-width: 204px;
+                                width: 100%;
+                                margin-left: -23px;
+                                
                                 span{
                                     a{
                                         margin-left: 8px;
@@ -296,6 +303,9 @@
                         .authbio{
                             border-top: 1px solid #f2f2f2;
                             margin-top: 20px;
+                        }
+                        .social-networks{
+                            
                         }
                     }
                 }

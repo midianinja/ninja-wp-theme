@@ -518,8 +518,8 @@ add_filter('newspack_managed_plugins', 'filter_newspack_sugestions');
  */
 
 function add_guest_author_fields( $fields_to_return, $groups ) {
-    if ( in_array( 'contact-info', $groups ) ) {
-        $_fields_from_user = ['avatar', 'description', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube' ];
+    // if ( in_array( 'contact-info', $groups ) ) {
+        $_fields_from_user = ['avatar', 'description', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube', 'tik-tok' ];
 
         foreach ( $_fields_from_user as $_field ) {
             $fields_to_return[] = [
@@ -528,7 +528,7 @@ function add_guest_author_fields( $fields_to_return, $groups ) {
                 'group' => 'contact-info'
             ];
         }
-    }
+    // }
 
     return $fields_to_return;
 }

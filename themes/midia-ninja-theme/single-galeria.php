@@ -18,9 +18,9 @@ get_template_part( 'template-parts/header-especiais' );
                     <div class="post-thumb">
                         <?php the_post_thumbnail();?>
 
-                        <span class="thumb-caption">
+                        <figcaption class="thumb-caption">
                             <?php the_post_thumbnail_caption();?>
-                        </span>
+                        </figcaption>
                     </div>
 
 

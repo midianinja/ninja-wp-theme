@@ -281,6 +281,12 @@ function gt_posts_custom_column_views($column)
 add_filter('manage_posts_columns', 'gt_posts_column_views');
 add_action('manage_posts_custom_column', 'gt_posts_custom_column_views');
 
+function allow_svg_uploads($file_types){
+	$file_types['svg'] = 'image/svg+xml';
+	return $file_types;
+}
+add_filter('upload_mimes', 'allow_svg_uploads');
+
 //Page Slug Body Class
 function add_slug_body_class($classes)
 {
@@ -518,7 +524,7 @@ add_filter('newspack_managed_plugins', 'filter_newspack_sugestions');
  */
 
 function add_guest_author_fields( $fields_to_return, $groups ) {
-    
+
     if ( in_array( 'about', $groups ) || in_array( 'all', $groups ) ) {
         $_fields_from_user = ['avatar', 'description', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube', 'tik-tok' ];
 

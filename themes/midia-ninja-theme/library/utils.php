@@ -641,3 +641,27 @@ function hide_especial_parent( $query ) {
     }
 }
 add_action('pre_get_posts', 'hide_especial_parent');
+
+function remove_secondary_category_classes( $classes ) {
+	$primary_cat_id = get_post_meta( get_the_ID(), '_yoast_wpseo_primary_category', true );
+
+	if ( ! empty( $primary_cat_id ) ) {
+		$primary_cat = get_term( $primary_cat_id, 'category' );
+
+		if ( ! empty( $primary_cat ) ) {
+			$cat_class = 'category-' . $primary_cat->slug;
+
+			$filtered_classes = [];
+			foreach( $classes as $class ) {
+				if ( ! str_starts_with( $class, 'category-' ) || $class === $cat_class ) {
+					$filtered_classes[] = $class;
+				}
+			}
+
+			return $filtered_classes;
+		}
+	}
+
+	return $classes;
+}
+add_filter( 'newspack_blocks_term_classes', 'remove_secondary_category_classes' );

@@ -4,7 +4,11 @@
             <a href="<?php the_permalink(); ?>">
                 <div class="aspect-ratio">
                     <?php if ( has_post_thumbnail() ) : ?>
-                        <?php the_post_thumbnail( 'medium' ); ?>
+						<?php if ( get_post_type() === 'especial' ): ?>
+                        	<?php the_post_thumbnail( 'medium_large' ); ?>
+						<?php else: ?>
+							<?php the_post_thumbnail( 'medium' ); ?>
+						<?php endif; ?>
                     <?php else : ?>
                         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/default-image.png" alt="<?php the_title(); ?>">
                     <?php endif; ?>

@@ -14,6 +14,37 @@ document.addEventListener("DOMContentLoaded", function() {
                 this.classList.remove('active')
             })
         }
+
+        item.querySelector('a').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let allItens = mainMenu.querySelectorAll('.active');
+            
+            allItens.forEach ( function(item) {
+                item.classList.remove('active');
+            });
+
+            const arrowIcon = this.parentElement.getElementsByTagName("i").item(0);
+            arrowIcon.classList.toggle('up');
+
+            const subMenu = this.parentElement.querySelector('.sub-menu');
+            subMenu.classList.toggle('active');
+            subMenu.parentNode.classList.toggle('active');
+        });
+
+        item.querySelector('a').addEventListener('mouseenter', function(e) {
+            e.preventDefault();
+
+            let allItens = mainMenu.querySelectorAll('.active');
+            
+            allItens.forEach ( function(item) {
+                item.classList.remove('active');
+            });
+
+            const subMenu = this.parentElement.querySelector('.sub-menu');
+            subMenu.classList.toggle('active');
+            subMenu.parentNode.classList.toggle('active');
+        });
     })
 
     //Hamburguer Menu Open/Close

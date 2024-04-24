@@ -40,11 +40,9 @@
 			.entry-wrapper {
 				.cat-links {
 					a {
-						background-color: var(
-							--wp--preset--color--highlight-pure
-						); // @todo - make dynamic
+						background-color: var(--cat-background-color);
 						border-radius: size(4);
-						color: var(--wp--preset--color--primary-pure);
+						color: var(--cat-color);
 						font-family: "Archivo Expanded", sans-serif;
 						font-size: 13px;
 						letter-spacing: -0.39px;
@@ -137,10 +135,8 @@
 							position: absolute;
 
 							a {
-								background-color: var(
-									--wp--preset--color--laranja-dark
-								); // @todo - make dynamic
-								color: var(--wp--preset--color--secondary-light);
+								background-color: var(--cat-background-color);
+								color: var(--cat-color);
 								font-family: "Archivo Expanded", sans-serif;
 								font-size: 13px;
 								font-weight: 800;

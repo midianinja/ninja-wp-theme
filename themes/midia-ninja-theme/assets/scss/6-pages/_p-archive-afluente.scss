@@ -196,6 +196,8 @@ main.content.col-md-12 {
 			grid-template-columns: 1fr 1fr 1fr;
 			gap: 30px;
 			margin-top: 48px;
+			margin-bottom: 48px;
+
 			
 			@media(max-width:1200px){
 				grid-template-columns: 1fr 1fr;

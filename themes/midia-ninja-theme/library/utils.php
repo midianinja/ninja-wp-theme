@@ -632,7 +632,6 @@ function add_category_class_to_blog( $classes ){
 }
 
 add_filter('body_class', 'add_category_class_to_blog');
-<<<<<<< HEAD
 
 
 function hide_especial_parent( $query ) {
@@ -642,5 +641,3 @@ function hide_especial_parent( $query ) {
     }
 }
 add_action('pre_get_posts', 'hide_especial_parent');
-=======
->>>>>>> 0afd93762dfe44153aec276f954f9216b575ef44

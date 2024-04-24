@@ -28,12 +28,13 @@
             backdrop-filter: blur(11px);
             @include mixins.mobile{
                 position: relative;
-                top: 275px;
-                height: 222px;
+                top: 225px;
+                height: 272px;
                 max-width: 431px;
                 display: flex;
                 align-items: center;
                 border-radius: 8px 8px 0px 8px;
+            
             }
             & .container-info{
                 display: flex;
@@ -47,7 +48,7 @@
                 @include mixins.mobile{
                     width: 100%;
                     padding: 0;
-                    margin-left: 48px;
+                    margin-left: 20px;
                 }
                 .tag{
                     .entry-meta{
@@ -123,6 +124,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
+                margin-left: 30px;
             }
             img{
                 width: 175.648px;
@@ -150,7 +152,7 @@
                 padding-bottom: 10px;
                 @include mixins.mobile{
                     border-bottom: none;
-                    margin-left: 25px;
+                    position: relative;
                 }
             }
             .authbio{
@@ -175,6 +177,7 @@
                     gap: 8px;
                     margin-top: 83px;
                     position: absolute;
+                    margin-left: 7px;
                 }
                 span{
                     a
@@ -227,9 +230,24 @@
                 width: 334px;
                 margin-top:60px;
                 margin-bottom: 0px;
+                
                 @include mixins.mobile{
                     border: none;
+                    width: 100%;
+                    margin: auto;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 0;
+                
                 }
+                & :first-child{
+                    @include mixins.mobile{
+                        margin-top: 64px;
+                    }
+                }
+
                 .post{
                     margin-right: 66px;
                     height: 243px;
@@ -250,6 +268,10 @@
                         font-style: normal;
                         font-weight: 500;
                         line-height: 145%; /* 18.85px */
+                        @include mixins.mobile{
+                            margin-top:24px;
+                            
+                        }
                     }
                     .entry-meta{
                         display: none;
@@ -263,6 +285,10 @@
                         font-weight: 700;
                         line-height: 130%; /* 26px */
                         margin-bottom: 16px;
+                        @include mixins.mobile{
+                            margin-top: 8px;
+                            margin-bottom: 16px;
+                        }
                     }
                     .entry-excerpt{
                         color: var(--Gray-3, #828282);
@@ -272,6 +298,7 @@
                         font-style: normal;
                         font-weight: 500;
                         line-height: 140%; /* 22.4px */
+                        
                     }
                 }
             }

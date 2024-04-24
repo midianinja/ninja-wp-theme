@@ -53,7 +53,7 @@ $coauthors = get_coauthors();
                             $instagram = get_post_meta($author_id, 'cap-instagram', true);
                             $facebook = get_post_meta($author_id, 'cap-facebook', true);
                             $twitter = get_post_meta($author_id, 'cap-twitter', true);
-                            $tiktok = get_post_meta ($author_id, 'cap-tiktok', true);
+                            $tiktok = get_post_meta ($author_id, 'cap-tik-tok', true);
 
                         }
                     ?>
@@ -112,7 +112,6 @@ $coauthors = get_coauthors();
                                     </a>
                                 </span>
                             <?php endif; ?>
-                            
                         </div>
                     </div>
                     <?php if($author_bio): ?>
@@ -131,7 +130,6 @@ $coauthors = get_coauthors();
                 </div>
                    
                     <?php echo get_layout_footer('author'); ?>
-                <?php get_template_part( 'template-parts/content/pagination' ); ?>
             </main>
             
 

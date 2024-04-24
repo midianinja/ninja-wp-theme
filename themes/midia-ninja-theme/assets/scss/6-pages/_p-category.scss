@@ -2,6 +2,9 @@
 @use "./../2-atoms/a-mixins" as mixins;
 
 .category {
+
+	background-color: #F5F5F5;
+
 	a {
 		text-decoration: none !important;
 	}
@@ -17,10 +20,13 @@
 
 				.high-spot-block{
 					height: 508px;
+					max-width: 773px;
+   					width: 100%;
 				}
 
 				.colunas-categoria {
 					margin-bottom: 0;
+					gap: 0;
 
 					@include mixins.small {
 						max-width: 330px;
@@ -88,9 +94,8 @@
 					}
 
 					.coluna-imagem {
-						width: calc(100% + 50px);
 						position: relative;
-						left: -4%;
+						left: -3%;
 					}
 
 					.coluna-postss {
@@ -100,7 +105,7 @@
 						height: 506px;
 						position: relative;
 						left: -4%;
-						padding: 16px;
+						padding-top: 16px;
 
 						@media (max-width: 1366px) {
 							left: -2%;
@@ -308,7 +313,7 @@
 
 			.content {
 				margin-bottom: 100px;
-				width: 67%;
+				width: 65%;
 				margin-top: 32px;
 
 				@include mixins.mobile{
@@ -319,7 +324,8 @@
 					display: grid;
 					grid-template-columns: 1fr 1fr;
 					position: relative;
-					right: 80px;
+					right: 65px;
+					width: 802px;
 
 					@include mixins.small {
 						display: flex;
@@ -342,7 +348,7 @@
 					}
 
 					.post {
-			
+						width: 370px;
 
 						@include mixins.small {
 							max-width: 328px;
@@ -362,8 +368,6 @@
 
 						&-card {
 							flex-direction: column;
-							max-width: 328px;
-							width: 100%;
 							height: auto;
 							border-bottom: none;
 							margin-bottom: 0;
@@ -428,7 +432,6 @@
 				border: 2px solid #cccc;
 				background: #fff;
 				position: relative;
-				right: 40px;
 				max-width: 367px;
 				width: 100%;
 
@@ -450,24 +453,35 @@
 
 				.latest-vertical-posts-block {
 					background-color: #fff;
+					margin-bottom: 0;
+					height: auto;
+
+					.post{
+						margin-bottom: 0;
+					}
 
 					h2 {
 						color: var(--Gray-1, #333);
 						font-family: var(--wp--preset--font-family--manrope);
-						font-size: var(--wp--preset--font-size--medium);
+						font-size: 32px;
 						font-style: normal;
 						font-weight: 800;
 						line-height: 120%;
 						letter-spacing: -0.64px;
 						text-transform: uppercase;
-						padding-top: 30px;
 					}
 
 					a {
 						text-decoration: none !important;
 					}
 
+					.latest-vertical-posts-block__heading{
+						margin-top: 20px;
+						margin-bottom: 30px;
+					}
+
 					.latest-vertical-posts-block__footer{
+						padding-bottom: 30px;
 			
 						.latest-vertical-posts-block__arrows{
 							.slick-prev{
@@ -490,6 +504,10 @@
 								}
 							}
 						}
+					}
+
+					.latest-vertical-posts-block__slides{
+						height: 450px;
 					}
 
 					.slick-list {

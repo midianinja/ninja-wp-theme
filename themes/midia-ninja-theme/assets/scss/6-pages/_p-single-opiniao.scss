@@ -294,10 +294,15 @@
                         img{
                             display: inherit;
                         }
+                        .info-card-informations{
+                            padding-left: 25px;
+                            @media(max-width: 500px){
+                                padding-left: 1rem;
+                            }
+                        }
                         .author-name{
                             color: #fff;
                             font-weight: 500;
-                            margin-left: 21px;
                             margin-top: 10px;
                         }
                         .authbio{
@@ -305,7 +310,8 @@
                             margin-top: 20px;
                         }
                         .social-networks{
-                            
+                            display: flex;
+                            gap: .5rem;
                         }
                     }
                 }

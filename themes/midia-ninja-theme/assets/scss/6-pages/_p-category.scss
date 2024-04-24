@@ -2,62 +2,41 @@
 @use "./../2-atoms/a-mixins" as mixins;
 
 .category {
+
 	a {
 		text-decoration: none !important;
 	}
 
 	#app {
+		background-color: #F5F5F5;
+
 		.container {
 			.header-and-footer-archive {
+				margin-top: 32px;
 
-				.wp-block-cover.alignwide{
-					@media(max-width: 1366px){
-						left: 52% !important;
-					}
+				.wp-block-spacer{
+					display: none;
 				}
-				.cover-categoria-desktop {
-					padding: 0;
-					border-radius: 8px;
-					max-width: 773px;
-					width: 100%;
-					height: 506px;
 
-					@include mixins.small {
-						max-width: 330px;
-						width: 100%;
-						margin-right: auto;
-						margin-left: auto;
-					}
-
-					@include mixins.mobile {
-						max-width: 330px;
-						width: 100%;
-						margin-right: auto;
-						margin-left: auto;
-					}
-
-					.wp-block-cover__inner-container {
-						.wp-block-columns {
-							margin-bottom: 0 !important;
-							margin-right: 0 !important;
-							margin-left: 0 !important;
-						}
-					}
+				.high-spot-block{
+   					width: 100%;
+					max-width: 775px;
 				}
 
 				.colunas-categoria {
+					margin-bottom: 0;
+					gap: 0;
+					margin-top: 10rem;
+
 					@include mixins.small {
 						max-width: 330px;
 						width: 100%;
-						margin-right: auto;
-						margin-left: auto;
+						
 					}
 
 					@include mixins.mobile {
 						max-width: 330px;
 						width: 100%;
-						margin-right: auto;
-						margin-left: auto;
 					}
 
 					.show-category {
@@ -115,9 +94,8 @@
 					}
 
 					.coluna-imagem {
-						width: calc(100% + 50px);
 						position: relative;
-						left: -4%;
+						left: -3%;
 					}
 
 					.coluna-postss {
@@ -127,7 +105,7 @@
 						height: 506px;
 						position: relative;
 						left: -4%;
-						padding: 16px;
+						padding-top: 16px;
 
 						@media (max-width: 1366px) {
 							left: -2%;
@@ -164,7 +142,7 @@
 							height: auto;
 							display: flex;
 							flex-direction: column;
-   							gap: 50px;
+							margin-top: 4rem;
 						}
 
 						article {
@@ -311,11 +289,15 @@
 					@include mixins.small {
 						max-width: 300px;
 						height: 55px;
+						margin-right: auto;
+    					margin-left: auto;
 					}
 
 					@include mixins.mobile {
 						max-width: 300px;
 						height: 55px;
+						margin-right: auto;
+    					margin-left: auto;
 					}
 
 					img {
@@ -332,7 +314,8 @@
 
 			.content {
 				margin-bottom: 100px;
-				width: 67%;
+				width: 65%;
+				margin-top: 32px;
 
 				@include mixins.mobile{
 					width: 100%;
@@ -341,9 +324,9 @@
 				.posts {
 					display: grid;
 					grid-template-columns: 1fr 1fr;
-					gap: 30px;
 					position: relative;
-					right: 60px;
+					right: 65px;
+					width: 802px;
 
 					@include mixins.small {
 						display: flex;
@@ -352,6 +335,7 @@
 						width: 100%;
 						margin-right: auto;
 						margin-left: auto;
+						align-items: center;
 					}
 
 					@include mixins.mobile {
@@ -361,10 +345,11 @@
 						width: 100%;
 						margin-right: auto;
 						margin-left: auto;
+						align-items: center;
 					}
 
 					.post {
-			
+						width: 370px;
 
 						@include mixins.small {
 							max-width: 328px;
@@ -384,13 +369,11 @@
 
 						&-card {
 							flex-direction: column;
-							max-width: 328px;
-							width: 100%;
 							height: auto;
 							border-bottom: none;
+							margin-bottom: 0;
 
 							&--thumb {
-								max-width: 371px;
 								width: 100%;
 								height: auto;
 								padding-right: 0;
@@ -445,11 +428,11 @@
 			}
 
 			aside {
+				margin-top: 32px;
 				border-radius: 12px;
 				border: 2px solid #cccc;
 				background: #fff;
 				position: relative;
-				right: 40px;
 				max-width: 367px;
 				width: 100%;
 
@@ -471,24 +454,36 @@
 
 				.latest-vertical-posts-block {
 					background-color: #fff;
+					margin-bottom: 0;
+					height: auto;
+
+					.post{
+						margin-bottom: 0;
+					}
 
 					h2 {
 						color: var(--Gray-1, #333);
 						font-family: var(--wp--preset--font-family--manrope);
-						font-size: var(--wp--preset--font-size--medium);
+						font-size: 32px;
 						font-style: normal;
 						font-weight: 800;
 						line-height: 120%;
 						letter-spacing: -0.64px;
 						text-transform: uppercase;
-						padding-top: 30px;
 					}
 
 					a {
 						text-decoration: none !important;
 					}
 
+					.latest-vertical-posts-block__heading{
+						margin-top: 20px;
+						margin-bottom: 30px;
+					}
+
 					.latest-vertical-posts-block__footer{
+						padding-bottom: 30px;
+						margin-top: 55px;
 			
 						.latest-vertical-posts-block__arrows{
 							.slick-prev{
@@ -511,6 +506,10 @@
 								}
 							}
 						}
+					}
+
+					.latest-vertical-posts-block__slides{
+						height: 450px;
 					}
 
 					.slick-list {

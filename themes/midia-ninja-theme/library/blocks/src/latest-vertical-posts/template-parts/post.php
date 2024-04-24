@@ -18,9 +18,9 @@ $show_date      = isset( $args['attributes']['showDate'] ) ? $args['attributes']
             <div class="post-thumbnail">
                 <div class="post-thumbnail--image">
                     <?php if ( has_post_thumbnail() ) : ?>
-                        <?php echo get_the_post_thumbnail( $args['post']->ID, 'thumbnail' ); ?>
+                        <?php echo get_the_post_thumbnail( $args['post']->ID, 'medium' ); ?>
                     <?php else : ?>
-                        <img src="https://via.placeholder.com/200">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/default-image.png" alt="" height="600" width="800">
                     <?php endif; ?>
                 </div>
             </div>
@@ -38,7 +38,7 @@ $show_date      = isset( $args['attributes']['showDate'] ) ? $args['attributes']
             <div class="post-meta">
                 <div class="post-meta--date">
                     <?php if ( $show_date ) : ?>
-                        <span><?php echo get_the_time_ago(); ?></span>
+                        <span class="date"><?php echo get_the_time_ago( 'd \d\e F \d\e Y' ); ?></span>
                     <?php endif; ?>
 
                     <?php if ( $show_taxonomy ) : ?>

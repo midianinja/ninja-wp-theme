@@ -13,7 +13,7 @@
 
         h2 {
             flex-shrink: 0;
-            font-family: 'Manrope', serif;
+            font-family: 'Manrope', sans-serif;
             font-size: 14px;
             font-style: normal;
             font-weight: 800;
@@ -106,7 +106,7 @@
                     content: " ";
                     display: table;
                 }
-                
+
                 .post--terms {
                     bottom: 10px;
                     left: 15px;
@@ -117,11 +117,8 @@
                 img {
                     border-radius: 8px;
                     height: 100%;
-                    left: 50%;
                     object-fit: cover;
                     position: absolute;
-                    top:  50%;
-                    transform: translate(-50%, -50%);
                     transition: all 0.3s ease-in-out;
                     width: 100%;
                 }
@@ -140,7 +137,7 @@
 
             // .post-content
             &-content {
-                
+
             }
 
             // .post-meta
@@ -205,7 +202,7 @@
                     100% {
                         transform: rotate(360deg);
                     }
-                } 
+                }
             }
         }
     }

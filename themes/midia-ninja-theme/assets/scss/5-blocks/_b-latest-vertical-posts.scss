@@ -8,7 +8,7 @@
 
 		h2 {
 			color: var(--Gray-1, #333);
-			font-family: "Manrope", serif;
+			font-family: "Manrope", sans-serif;
 			font-size: 32px;
 			font-style: normal;
 			font-weight: 800;
@@ -19,7 +19,7 @@
 		.slick-slider {
 			a {
 				color: var(--Gray-1, #333);
-				font-family: "Manrope", serif;
+				font-family: "Manrope", sans-serif;
 
 				&:last-child {
 					.post {
@@ -39,10 +39,19 @@
 
 			.post-meta {
 				font-size: 10px;
-				font-style: normal;
 				font-weight: 400;
-				letter-spacing: 1px;
 				text-transform: uppercase;
+
+				// .post-meta--date
+				&--date {
+					.date {
+						color: var(--wp--preset--color--primary-light);
+						font-size: 0.8125rem;
+						font-weight: 700;
+						line-height: 1.45;
+						text-transform: lowercase;
+					}
+				}
 
 				.post-meta--terms {
 					color: var(--Green-1, #219653);
@@ -61,7 +70,7 @@
 						}
 
 						li {
-							font-family: Manrope;
+							font-family: 'Manrope', sans-serif;
 							font-size: 10px;
 							font-style: normal;
 							font-weight: 700;

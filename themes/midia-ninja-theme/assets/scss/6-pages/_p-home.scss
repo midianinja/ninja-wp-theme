@@ -45,7 +45,7 @@
 						); // @todo - make dynamic
 						border-radius: size(4);
 						color: var(--wp--preset--color--primary-pure);
-						font-family: "Archivo Expanded", serif;
+						font-family: "Archivo Expanded", sans-serif;
 						font-size: 13px;
 						letter-spacing: -0.39px;
 						text-transform: uppercase;
@@ -67,7 +67,7 @@
 					font-size: var(--wp--preset--font-size--default);
 					font-weight: 700;
 					padding-bottom: 5px;
-					padding-top: 5px;
+					padding-top: 15px;
 				}
 
 				.entry-meta {
@@ -121,6 +121,7 @@
 							top: 50%;
 							transform: translate(-50%, -50%);
 							width: 100%;
+							object-fit: cover;
 
 							@include tablet {
 								min-width: 100%;
@@ -132,14 +133,15 @@
 						.cat-links {
 							margin-bottom: 15px;
 							margin-left: $s_small;
-							margin-top: size(-50);
+							margin-top: -2.3rem;
+							position: absolute;
 
 							a {
 								background-color: var(
 									--wp--preset--color--laranja-dark
 								); // @todo - make dynamic
 								color: var(--wp--preset--color--secondary-light);
-								font-family: "Archivo Expanded", serif;
+								font-family: "Archivo Expanded", sans-serif;
 								font-size: 13px;
 								font-weight: 800;
 								letter-spacing: -0.39px;
@@ -194,6 +196,7 @@
 				background-color: var(--wp--preset--color--primary-pure);
 				display: block;
 				position: relative;
+				padding: 0;
 
 				@include desktop {
 					height: 506px;
@@ -238,11 +241,8 @@
 
 						img {
 							height: 100%;
-							left: 50%;
 							object-fit: cover;
 							position: absolute;
-							top: 50%;
-							transform: translate(-50%, -50%);
 							width: 100%;
 
 							@include mobile {
@@ -458,7 +458,7 @@
 			border-radius: 8px;
 
 			a {
-				font-family: "Manrope", serif;
+				font-family: "Manrope", sans-serif;
 				color: #fff;
 				font-size: 13px;
 				font-weight: 700;
@@ -483,7 +483,7 @@
 			border-radius: 8px;
 
 			a {
-				font-family: "Manrope", serif;
+				font-family: "Manrope", sans-serif;
 				color: #fff;
 				font-size: 13px;
 				font-weight: 700;
@@ -592,7 +592,6 @@
 
 					li {
 						margin: 0;
-						padding: 0;
 					}
 				}
 			}
@@ -628,7 +627,7 @@
 	}
 
 	.sessao-opiniao {
-		font-family: "Manrope", serif;
+		font-family: "Manrope", sans-serif;
 		@media (max-width: 1199px) {
 			display: block;
 		}
@@ -655,7 +654,7 @@
 					@include desktop {
 						width: 370px;
 						display: grid;
-						height: 482px;
+
 					}
 				}
 
@@ -671,11 +670,13 @@
 				.entry-wrapper {
 					padding-left: 32px;
 					padding-right: 32px;
+					position: relative;
 
 					.cat-links {
-						position: relative;
-						top: -150px;
-						left: -32px;
+						position: absolute;
+						top: -9rem;
+						left: 0;
+
 						@media (max-width: 992px) {
 							top: -195px;
 						}
@@ -719,7 +720,7 @@
 				border-radius: 8px;
 
 				a {
-					font-family: "Manrope", serif;
+					font-family: "Manrope", sans-serif;
 					color: #fff;
 					font-size: 13px;
 					font-weight: 700;
@@ -739,19 +740,18 @@
 		.wp-block-cover {
 			padding: 35px;
 			max-height: 350px;
+			margin-bottom: 30px;
 
 			@media (max-width: 1199px) {
 				max-width: 380px;
 				width: 100%;
 			}
 
-			@media (max-width: 782px) {
-				margin-bottom: 0;
-			}
 			@media (max-width: 400px) {
 				max-width: 350px;
 				padding: 15px 35px 54px;
 			}
+
 			.wp-block-cover__inner-container {
 				@media (max-width: 1199px) {
 					max-width: 302px;
@@ -803,6 +803,7 @@
 						img {
 							width: 37px;
 							height: 37px;
+							object-fit: cover;
 						}
 					}
 					.byline {
@@ -817,7 +818,7 @@
 							a {
 								color: #000;
 								text-transform: uppercase;
-								font-family: "Manrope", serif;
+								font-family: "Manrope", sans-serif;
 							}
 						}
 					}
@@ -876,6 +877,7 @@
 		}
 		h2 {
 			font-family: "MidiaNinja", sans-serif;
+			font-feature-settings: "calt" on;
 			color: #fbf36e;
 			font-size: 44px;
 			font-weight: 400;
@@ -915,7 +917,7 @@
 				border-radius: 8px;
 			}
 			a {
-				font-family: "Manrope", serif;
+				font-family: "Manrope", sans-serif;
 				color: #fff;
 				border-radius: 4px;
 				border: 2px solid #fff;
@@ -1034,7 +1036,7 @@
 		.latest-horizontal-posts-block__heading {
 			flex-basis: 20% !important;
 			h2 {
-				font-family: "Manrope", serif;
+				font-family: "Manrope", sans-serif;
 				font-size: 32px;
 				font-style: normal;
 				font-weight: 800;
@@ -1046,7 +1048,7 @@
 				margin-top: 10px !important;
 			}
 			p {
-				font-family: "Manrope", serif;
+				font-family: "Manrope", sans-serif;
 				font-size: 16px;
 				font-style: normal;
 				font-weight: 500;
@@ -1202,7 +1204,7 @@
 		}
 
 		p {
-			font-family: "Manrope", serif;
+			font-family: "Manrope", sans-serif;
 			font-size: 13px;
 			font-style: normal;
 			font-weight: 500;
@@ -1254,7 +1256,7 @@
 					background-color: #fbf36e;
 					border: none;
 					color: #333;
-					font-family: "Manrope", serif;
+					font-family: "Manrope", sans-serif;
 					font-size: 14px;
 					font-weight: 800;
 					text-transform: uppercase;
@@ -1276,7 +1278,7 @@
 			margin-top: 1.4rem;
 		}
 		h2 {
-			font-family: "Manrope", serif;
+			font-family: "Manrope", sans-serif;
 			font-size: 32px;
 			font-style: normal;
 			font-weight: 800;
@@ -1342,7 +1344,7 @@
 						}
 					}
 					.post-content {
-						font-family: "Manrope", serif;
+						font-family: "Manrope", sans-serif;
 						max-width: 170px;
 						width: 100%;
 						.post-title {
@@ -1416,7 +1418,7 @@
 			text-align: center;
 			margin-top: -185px;
 			margin-bottom: 155px;
-			font-family: "Manrope", serif;
+			font-family: "Manrope", sans-serif;
 			font-size: 24px;
 			font-style: normal;
 			font-weight: 800;

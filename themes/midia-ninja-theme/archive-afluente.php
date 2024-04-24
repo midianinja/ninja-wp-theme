@@ -17,11 +17,9 @@ get_header();
 
 <div class="container">
     <?php echo get_layout_header('afluentes'); ?>
-    
     <main class="content col-md-12">
         
         <div class="search">
-            <h2>Buscar por: </h2>
             <?php get_template_part('template-parts/search-afluente'); ?>
         </div>
         
@@ -29,10 +27,7 @@ get_header();
             <?php while (have_posts()) : the_post(); ?>
                 <?php get_template_part('template-parts/content/post'); ?>
             <?php endwhile; ?>
-        </div>
-
-        <?php get_template_part('template-parts/content/pagination'); ?>
-        
+        </div>        
     </main>
 
     <?php echo get_layout_footer('afluentes'); ?>

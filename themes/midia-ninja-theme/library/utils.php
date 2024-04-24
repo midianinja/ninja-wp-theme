@@ -344,7 +344,7 @@ function get_posts_by_month($args = [])
                 $close_ul = true;
             endif;
 
-            $thumbnail = (has_post_thumbnail(get_the_ID())) ? get_the_post_thumbnail(get_the_ID()) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
+            $thumbnail = (has_post_thumbnail(get_the_ID())) ? get_the_post_thumbnail(get_the_ID()) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png" alt="" height="600" width="800">';
 
             $content_slider .= sprintf(
                 '<li id="item-%1$s" class="item item-month-%2$s"><a href="%3$s"><div class="thumb">%4$s</div><div class="title"><h3>%5$s</h3></div></a></li>',
@@ -422,9 +422,23 @@ function get_term_by_slug($term_slug)
     return $term_object;
 }
 
-function get_the_time_ago()
-{
-    return (get_the_time('U') >= strtotime('-1 week')) ? sprintf(esc_html__('%s ago', 'ninja'), human_time_diff(get_the_time('U'), current_time('timestamp'))) : get_the_date('d M Y');
+/**
+ * Retorna a data formatada como "x tempo atrás" ou no formato especificado
+ *
+ * @param string $date_format Formato da data, padrão 'd M Y'
+ * @return string A data formatada
+*/
+function get_the_time_ago( $date_format = 'd M Y' ) {
+
+    if ( get_the_time( 'U' ) >= strtotime( '-1 week' ) ) {
+        return sprintf(
+            esc_html__( '%s ago', 'ninja' ),
+            human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
+        );
+    } else {
+        return get_the_date( $date_format );
+    }
+
 }
 
 if (function_exists('get_coauthors') && ! function_exists('get_list_coauthors')) {
@@ -566,3 +580,38 @@ function order_search_filters($query) {
     }
 }
 add_action('pre_get_posts', 'order_search_filters');
+
+function split_ninja_flickr_title( $title ) {
+	$separators = [ ' • ', ' · ', ' | ' ];
+	foreach ( $separators as $separator ) {
+		$parts = explode( $separator, $title );
+		$count = count( $parts );
+		if ( $count > 3 ) {
+			return [ implode( $separator, array_slice( $parts, 0, $count - 2 ) ), $parts[ $count - 2 ], $parts[ $count - 1 ] ];
+		} else if ( $count === 3 ) {
+			return $parts;
+		} else if ( $count === 2 ) {
+			return [ $parts[0], $parts[1], false ];
+		}
+	}
+	return [ $title, false, false ]; // Name couldn't be split
+}
+
+function set_custom_post_type_archive_posts_per_page( $query ) {
+
+    if ( $query->is_main_query() && ! is_admin() && is_post_type_archive( 'especial' ) ) {
+        $query->set( 'posts_per_page', 12 );
+    }
+}
+add_action( 'pre_get_posts', 'set_custom_post_type_archive_posts_per_page' );
+
+function change_search_especial( $query ) {
+
+    if (is_post_type_archive( 'especial' ) && $query->is_main_query() ) {
+       
+        if(!empty($_GET['pesquisar'])) {
+            $query->set('s', $_GET['pesquisar']);
+        }
+    }
+}
+add_action('pre_get_posts', 'change_search_especial');

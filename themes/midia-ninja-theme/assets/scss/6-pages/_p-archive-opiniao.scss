@@ -83,7 +83,7 @@
 					}
 
 					.article-section-title {
-						font-family: "Archivo Expanded";
+						font-family: "Archivo Expanded", sans-serif;
 						font-size: 14px;
 						font-style: normal;
 						font-weight: 800;
@@ -100,6 +100,7 @@
 						letter-spacing: -0.64px;
 						line-height: 130%;
 						margin-bottom: 20px;
+						color: #fff;
 
 						@media (min-width: 992px) {
 							font-size: 32px;
@@ -113,6 +114,7 @@
 						font-size: 14px;
 						line-height: 130%; /* 22.4px */
 						margin-bottom: 35px;
+						color: #fff;
 
 						@media (min-width: 992px) {
 							font-size: 16px;
@@ -192,7 +194,7 @@
 
 							.card-author {
 								color: var(--PRIMARY-PURE, #848484);
-								font-family: Manrope;
+								font-family: 'Manrope', sans-serif;
 								font-size: 13px;
 								font-style: normal;
 								font-weight: 700;
@@ -211,7 +213,7 @@
 					border: none;
 					color: var(--White, #fff);
 					text-align: center;
-					font-family: Manrope;
+					font-family: 'Manrope', sans-serif;
 					font-size: 13px;
 					font-style: normal;
 					font-weight: 700;
@@ -327,7 +329,7 @@
 						}
 
 						h2 {
-							font-family: "Manrope", serif;
+							font-family: "Manrope", sans-serif;
 							font-size: 32px;
 							font-style: normal;
 							font-weight: 800;
@@ -398,7 +400,7 @@
 										}
 									}
 									.post-content {
-										font-family: "Manrope", serif;
+										font-family: "Manrope", sans-serif;
 										max-width: 170px;
 										width: 100%;
 										.post-title {
@@ -503,7 +505,7 @@
 				letter-spacing: normal;
 				@media (max-width: 992px) {
 					color: #000;
-					font-family: "Manrope", serif;
+					font-family: "Manrope", sans-serif;
 					font-size: 24px;
 					font-weight: 800;
 					text-align: center;
@@ -539,7 +541,7 @@
 					border-radius: 8px;
 				}
 				a {
-					font-family: "Manrope", serif;
+					font-family: "Manrope", sans-serif;
 					color: #fff;
 					border-radius: 4px;
 					border: 2px solid #fff;
@@ -564,7 +566,7 @@
 			}
 			.wp-block-heading {
 				color: #fff;
-				font-family: "MidiaNinja", serif;
+				font-family: "MidiaNinja", sans-serif;
 				font-size: 42px;
 				font-style: normal;
 				font-weight: 400;
@@ -576,7 +578,7 @@
 				}
 			}
 			p {
-				font-family: "Manrope", serif;
+				font-family: "Manrope", sans-serif;
 				font-size: 13px;
 				font-style: normal;
 				font-weight: 500;
@@ -619,7 +621,7 @@
 						background-color: #fbf36e;
 						border: none;
 						color: #333;
-						font-family: "Manrope", serif;
+						font-family: "Manrope", sans-serif;
 						font-size: 14px;
 						font-weight: 800;
 						text-transform: uppercase;

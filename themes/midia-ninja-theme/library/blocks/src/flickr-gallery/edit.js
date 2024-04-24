@@ -63,6 +63,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							value={ flickrByType }
 							options={[
 								{
+									label: __( 'Albums per user', 'ninja' ),
+									value: "albums",
+								},
+								{
 									label: __( 'Images by user', 'ninja' ),
 									value: "user"
 								},
@@ -88,7 +92,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							/>
 						) }
 
-						{ ( flickrByType === 'user' ) && (
+						{ ( flickrByType !== 'album' ) && (
 							<TextControl
 								label={ __( 'User ID', 'ninja' ) }
 								value={ flickrUserId }

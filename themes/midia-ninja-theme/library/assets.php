@@ -5,7 +5,6 @@ namespace jaci;
 class Assets
 {
     private static $instances = [];
-    protected $google_fonts;
     protected $js_files;
     protected $css_files;
 
@@ -29,15 +28,12 @@ class Assets
      */
     public function initialize()
     {
-        add_action('wp_enqueue_scripts', [ $this, 'enqueue_local_fonts' ]);
-        add_action('admin_enqueue_scripts', [ $this, 'enqueue_local_fonts' ]);
         $this->enqueue_styles();
         add_action('wp_enqueue_scripts', [ $this, 'enqueue_javascripts' ]);
         add_action('enqueue_block_assets', [ $this, 'gutenberg_block_enqueues' ]);
         add_action('admin_enqueue_scripts', [ $this, 'enqueue_admin_style' ]);
         add_action('enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ]);
         add_action('after_setup_theme', [ $this, 'action_add_editor_styles' ]);
-        add_filter('wp_resource_hints', [ $this, 'filter_resource_hints' ], 10, 2);
         add_filter('style_loader_tag', [ $this, 'add_rel_preload' ], 10, 4);
 
         // add_action( 'wp_head', [ $this, 'action_preload_styles' ] );
@@ -51,16 +47,6 @@ class Assets
     public function enqueue_styles() {
         add_action( 'wp_head', [ $this, 'enqueue_inline_styles' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_generic_styles' ] );
-    }
-
-    /**
-     * Enqueues a local font stylesheet in the theme.
-     *
-     * @see wp_enqueue_style() for more information on enqueuing stylesheets in WordPress.
-     */
-    public function enqueue_local_fonts()
-    {
-        wp_enqueue_style('ninja-fonts', get_template_directory_uri() . '/assets/fonts/fonts.css', [], null);
     }
 
     public function add_rel_preload($html, $handle, $href, $media)
@@ -91,12 +77,6 @@ class Assets
 
     public function enqueue_generic_styles()
     {
-        // Enqueue Google Fonts.
-        $google_fonts_url = $this->get_google_fonts_url();
-        if (! empty($google_fonts_url)) {
-            wp_enqueue_style('jaci-fonts', $google_fonts_url, [], null);
-        }
-
         $css_uri = get_theme_file_uri('/dist/css/');
         $css_dir = get_theme_file_path('/dist/css/');
 
@@ -240,34 +220,8 @@ class Assets
      */
     public function action_add_editor_styles()
     {
-
-        // Enqueue Google Fonts.
-        $google_fonts_url = $this->get_google_fonts_url();
-        if (! empty($google_fonts_url)) {
-            add_editor_style($this->get_google_fonts_url());
-        }
-
         // Enqueue block editor stylesheet.
         add_editor_style('assets/css/editor/editor-styles.min.css');
-    }
-
-    /**
-     * Adds preconnect resource hint for Google Fonts.
-     *
-     * @param array  $urls          URLs to print for resource hints.
-     * @param string $relation_type The relation type the URLs are printed.
-     * @return array URLs to print for resource hints.
-     */
-    public function filter_resource_hints(array $urls, string $relation_type): array
-    {
-        if ('preconnect' === $relation_type && wp_style_is('buddyx-fonts', 'queue')) {
-            $urls[] = [
-                'href' => 'https://fonts.gstatic.com',
-                'crossorigin',
-            ];
-        }
-
-        return $urls;
     }
 
     /**
@@ -563,7 +517,7 @@ class Assets
                     return is_page_template('page-anchor.php');
                 }
             ],
-            
+
 
             'archive-opiniao' => [
                 'file'   => 'archive-opiniao.js',
@@ -603,70 +557,6 @@ class Assets
         }
 
         return $this->js_files;
-    }
-
-    /**
-     * Returns Google Fonts used in theme.
-     *
-     * @return array Associative array of $font_name => $font_variants pairs.
-     */
-    protected function get_google_fonts(): array
-    {
-        if (is_array($this->google_fonts)) {
-            return $this->google_fonts;
-        }
-
-        $google_fonts = [
-            'Archivo' => [ '400', '500', '600', '700', '800' ],
-            'Manrope' => [ '400', '500', '600', '700', '800' ]
-        ];
-
-        /**
-         * Filters default Google Fonts.
-         *
-         * @param array $google_fonts Associative array of $font_name => $font_variants pairs.
-         */
-        $this->google_fonts = (array) apply_filters('buddyx_google_fonts', $google_fonts);
-
-        return $this->google_fonts;
-    }
-
-    /**
-     * Returns the Google Fonts URL to use for enqueuing Google Fonts CSS.
-     *
-     * Uses `latin` subset by default. To use other subsets, add a `subset` key to $query_args and the desired value.
-     *
-     * @return string Google Fonts URL, or empty string if no Google Fonts should be used.
-     */
-    protected function get_google_fonts_url(): string
-    {
-        $google_fonts = $this->get_google_fonts();
-
-        if (empty($google_fonts)) {
-            return '';
-        }
-
-        $font_families = [];
-
-        foreach ($google_fonts as $font_name => $font_variants) {
-            if (! empty($font_variants)) {
-                if (! is_array($font_variants)) {
-                    $font_variants = explode(';', str_replace(' ', '', $font_variants));
-                }
-
-                $font_families[] = $font_name . ':wght@' . implode(';', $font_variants);
-                continue;
-            }
-
-            $font_families[] = $font_name;
-        }
-
-        $query_args = [
-            'family'  => implode('&family=', $font_families),
-            'display' => 'swap',
-        ];
-
-        return add_query_arg($query_args, 'https://fonts.googleapis.com/css2');
     }
 
     public function gutenberg_block_enqueues()

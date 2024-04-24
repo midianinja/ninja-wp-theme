@@ -1,20 +1,20 @@
 <?php
-$photo = $args['photo'];
+$album = $args['album'];
 
-$title     = ( ! empty( $photo['title'] ) ) ? esc_attr( $photo['title'] ) : false;
-$owner     = ( ! empty( $photo['owner'] ) ) ? esc_attr( $photo['owner'] ) : false;
-$photo_id  = ( ! empty( $photo['id'] ) ) ? esc_attr( $photo['id'] ) : false;
+$title = ( ! empty( $album['title']['_content'] ) ) ? esc_attr( $album['title']['_content'] ) : false;
+$owner    = ( ! empty( $album['owner'] ) ) ? esc_attr( $album['owner'] ) : false;
+$album_id = ( ! empty( $album['id'] ) ) ? esc_attr( $album['id'] ) : false;
 
 if ( $title ) {
 	list( $title, $date, $location ) = split_ninja_flickr_title( $title );
 }
 
-if ( $photo_id && $owner ) :
+$thumbnail = 'https://live.staticflickr.com/' . $album['server'] . '/' . $album['primary'] . '_' . $album['secret'] . '.jpg';
 
-$thumbnail = 'https://live.staticflickr.com/' . $photo['server'] . '/' . $photo_id . '_' . $photo['secret'] . '.jpg'; ?>
+if ( $album_id && $owner ) : ?>
 
 <div class="flickr-photo">
-    <a href="https://www.flickr.com/photos/<?php echo $owner; ?>/<?php echo $photo_id; ?>" target="_blank">
+    <a href="https://www.flickr.com/photos/<?php echo $owner; ?>/albums/<?php echo $album_id; ?>" target="_blank">
         <div class="post specials">
             <div class="post-thumbnail">
                 <div class="post-thumbnail__info">

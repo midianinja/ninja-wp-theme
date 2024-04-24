@@ -2,7 +2,7 @@
 	display: none;
 	grid-area: 1 / 1;
 	align-items: center;
-	margin-left: 8%;
+	//margin-left: 8%;
 	gap: 10px;
 
 	@media (max-width: $tablet-width) {
@@ -61,7 +61,7 @@
 
 			svg {
 				width: 24px;
-				height: auto;
+				height: 24px;
 
 				path,
 				circle {

@@ -2,12 +2,12 @@
 @import "./../2-atoms/a-mixins";
 
 #wpadminbar ~ header {
-	padding-top: 20px;
+	top: 32px;
 }
 
 header {
 	&.main-header {
-		position: sticky;
+		position: fixed;
 		left: 0%;
 		top: 0;
 		z-index: 999;
@@ -105,7 +105,7 @@ header {
 					a {
 						color: #fff;
 						/* <h4> Manrope Extrabold 24 */
-						font-family: Manrope;
+						font-family: 'Manrope', sans-serif;
 						font-size: 24px;
 						font-style: normal;
 						font-weight: 800;
@@ -219,6 +219,7 @@ header {
 								content: url($p_theme_assets + "/images/menu-plus-white.svg");
 								float: right;
 							}
+
 
 							&.menu-item-has-children.active {
 								.sub-menu {
@@ -378,7 +379,7 @@ header {
 
 							input::placeholder {
 								color: var(--SECONDARY, #ccc);
-								font-family: Manrope;
+								font-family: 'Manrope', sans-serif;
 								font-size: 14px;
 								font-style: normal;
 								font-weight: 500;
@@ -395,6 +396,8 @@ header {
 	.header-content {
 		> div {
 			display: grid;
+			max-width: 1170px;
+			margin: auto;
 
 			.logo {
 				grid-area: 1/1;
@@ -470,32 +473,6 @@ header {
 				color: #111;
 				text-decoration: none;
 			}
-
-			// i.fa-angle-down,
-			// i.fa-angle-up {
-			// 	font-size: 15px;
-			// 	margin-left: 10px;
-
-			// 	&:not(.up) {
-			// 		&::before {
-			// 			content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
-			// 			transition: opacity 0.2s ease;
-
-			// 			@include tablet {
-			// 				opacity: 1;
-			// 			}
-			// 		}
-			// 	}
-
-			// 	&.up {
-			// 		&::before {
-			// 			content: url($p_theme_assets + "/images/wpml-arrow.png") !important;
-			// 			opacity: 1;
-			// 			transition: opacity 0.2s ease;
-			// 			transform: rotate(180deg);
-			// 		}
-			// 	}
-			// }
 
 			.primary-menu {
 				margin: auto;
@@ -587,6 +564,8 @@ header {
 					}
 
 					li.wpml-ls-item {
+						display: none;
+						
 						a {
 							line-height: 140%;
 						}

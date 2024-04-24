@@ -104,6 +104,12 @@ function register_endpoints() {
                         return true;
                     }
                 ],
+                'post_parent' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return is_numeric( $param );
+                    }
+                ]
             ],
             'permission_callback' => '__return_true'
         ]
@@ -217,13 +223,14 @@ function get_taxonomies_by_post_type( $request ) {
 
 function get_posts_by_taxonomy_term( $request ) {
 
-    $post_type    = sanitize_text_field( $request['post_type'] );
-    $taxonomy     = sanitize_text_field( $request['taxonomy'] );
-    $terms        = explode( ',', sanitize_text_field( $request['terms'] ) );
-    $max_posts    = ! empty( $request['max_posts']) ? intval( $request['max_posts'] ) : 10;
-    $per_page     = ! empty( $request['per_page'] ) ? intval( $request['per_page'] ) : 10;
-    $page         = ! empty( $request['page'] ) ? intval( $request['page'] ) : 1;
-    $post__not_in = explode( ',', sanitize_text_field( $request['post_not_in'] ) );
+    $post_type     = sanitize_text_field( $request['post_type'] );
+    $taxonomy      = sanitize_text_field( $request['taxonomy'] );
+    $terms         = explode( ',', sanitize_text_field( $request['terms'] ) );
+    $max_posts     = ! empty( $request['max_posts']) ? intval( $request['max_posts'] ) : 10;
+    $per_page      = ! empty( $request['per_page'] ) ? intval( $request['per_page'] ) : 10;
+    $page          = ! empty( $request['page'] ) ? intval( $request['page'] ) : 1;
+    $post__not_in  = explode( ',', sanitize_text_field( $request['post_not_in'] ) );
+    $show_children = ! empty( intval( $request['post_parent'] ) );
 
     $no_found_rows = $page === 1 ? false : true;
 
@@ -235,6 +242,10 @@ function get_posts_by_taxonomy_term( $request ) {
         'ignore_sticky_posts' => true,
         'post__not_in'        => $post__not_in
     ];
+
+    if ( ! $show_children ) {
+        $args['post_parent'] = 0;
+    }
 
     $terms_filter = array_filter( $terms, function( $item ) {
         return trim( $item ) !== "";
@@ -264,7 +275,7 @@ function get_posts_by_taxonomy_term( $request ) {
             'date'      => date_i18n( 'd \d\e F \d\e Y', strtotime( $post->post_date ) ),
             'excerpt'   => $post->post_excerpt,
             'link'      => get_permalink( $post ),
-            'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : "https://via.placeholder.com/400",
+            'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png',
             'title'     => $post->post_title
         ];
     }
@@ -346,13 +357,23 @@ function flickr_page_rest_callback( \WP_REST_Request $request ) {
 
 	$api_key = flickr_decrypt_key( $request['api_key'] );
 
-	$data = flickr_get_photos( $api_key, $request['type'], $request['data_id'], 9, intval( $request['page'] ) );
-
 	ob_start();
 
-	if (!empty($data)) {
-		foreach( $data['data'] as $photo ) {
-			get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, [ 'photo' => $photo ] );
+	if ( $request['type'] === 'albums' ) {
+		$data = flickr_get_albums( $api_key, $request['data_id'], 9, intval( $request['page'] ) );
+
+		if ( ! empty( $data ) ) {
+			foreach( $data['data'] as $album ) {
+				get_template_part( 'library/blocks/src/flickr-gallery/template-parts/album', null, [ 'album' => $album ] );
+			}
+		}
+	} else {
+		$data = flickr_get_photos( $api_key, $request['type'], $request['data_id'], 9, intval( $request['page'] ) );
+
+		if ( ! empty( $data ) ) {
+			foreach( $data['data'] as $photo ) {
+				get_template_part( 'library/blocks/src/flickr-gallery/template-parts/photo', null, [ 'photo' => $photo ] );
+			}
 		}
 	}
 

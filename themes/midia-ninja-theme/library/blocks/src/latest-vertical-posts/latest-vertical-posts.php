@@ -12,6 +12,7 @@ function latest_vertical_posts_callback( $attributes ) {
         $columns         = ! empty( $attributes['columns'] )? absint( $attributes['columns'] ) : 2;
         $grid_format     = ! empty( $attributes['gridFormat'] ) ? esc_attr( $attributes['gridFormat'] ) : 'columns';
         $show_as_grid    = ! empty( $attributes['showAsGrid'] );
+        $show_children   = ! empty( $attributes['showChildren'] );
         $show_author     = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
         $show_date       = ( isset( $attributes['showDate'] ) && ! empty( $attributes['showDate'] ) ) ? true : false;
         $show_excerpt    = ( isset( $attributes['showExcerpt'] ) && ! empty( $attributes['showExcerpt'] ) ) ? true : false;
@@ -19,6 +20,7 @@ function latest_vertical_posts_callback( $attributes ) {
         $block_classes[] = $show_as_grid ? 'post--has-grid' : '';
         $block_classes[] = $columns > 1 ? 'post--columns-'. $columns : '';
         $block_classes[] = $grid_format ? 'post--grid-' . $grid_format : 'post--grid-columns';
+        $block_classes[] = $show_children ? 'post--has-children' : '';
         $block_classes[] = $show_author ? 'post--has-author' : '';
         $block_classes[] = $show_excerpt ? 'post--has-excerpt' : '';
         $block_classes[] = $show_taxonomy ? 'post--has-taxonomy' : '';
@@ -162,7 +164,7 @@ function latest_vertical_posts_callback( $attributes ) {
                 echo "<div class='slide'>";
             }
 
-            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', $block_model, ['photo' => $photo, 'attributes' => $attributes] );
+            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', $block_model, [ 'photo' => $photo ] );
 
             if ( $counter == $posts_by_slide || $counter == count( $has_content['data'] ) ) {
                 echo "</div>";
@@ -207,7 +209,7 @@ function latest_vertical_posts_callback( $attributes ) {
             }
 
             get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['video' => $video, 'attributes' => $attributes] );
-            
+
             if ( $counter == $posts_by_slide || $counter == $has_content->post_count ) {
                 echo "</div>";
                 $counter = 0;

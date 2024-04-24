@@ -55,7 +55,7 @@ function flickr_get_photos( $api_key, $flickr_by_type = 'user', $data_id = '', $
 
     $response = [ 'data' => [], 'pages' => 1 ];
     if ( $flickr_by_type == 'user' ) {
-        $request_api = 'https://www.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=' . $api_key . '&user_id=' . $data_id . '&extras=url_l,url_z,tags,machine_tags,media,date_upload&per_page=' . $per_page . '&page=' . $page . '&format=json&nojsoncallback=1';
+        $request_api = 'https://www.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=' . $api_key . '&user_id=' . $data_id . '&extras=media,date_upload&per_page=' . $per_page . '&page=' . $page . '&format=json&nojsoncallback=1';
         $contents = json_decode( file_get_contents( $request_api ), true );
 
         if ( isset( $contents['photos']['photo'] ) ) {
@@ -63,7 +63,7 @@ function flickr_get_photos( $api_key, $flickr_by_type = 'user', $data_id = '', $
 			$response['pages'] = $contents['photos']['pages'];
         }
     } elseif ( $data_id ) {
-        $request_api = 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' . $api_key . '&photoset_id=' . $data_id . '&extras=url_l,url_z,tags,machine_tags,media,date_upload&per_page=' . $per_page . '&page=' . $page . '&format=json&nojsoncallback=1';
+        $request_api = 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' . $api_key . '&photoset_id=' . $data_id . '&extras=media,date_upload&per_page=' . $per_page . '&page=' . $page . '&format=json&nojsoncallback=1';
         $contents = json_decode( file_get_contents( $request_api ), true );
 
         if ( isset( $contents['photoset']['owner'] ) && isset( $contents['photoset']['photo'] ) ) {

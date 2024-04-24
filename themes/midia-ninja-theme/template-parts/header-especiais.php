@@ -40,7 +40,7 @@ if ( ! empty( $especial_terms ) ):
 				<?= wp_get_attachment_image( $especial_menu['logo_desktop'], 'medium', true ) ?>
 			</a>
 			<a class="menu-especial__logo-mobile" href="<?= get_permalink( $especial_page->ID ) ?>">
-				<?= wp_get_attachment_image( $especial_menu['logo_mobile'], 'medium_large', true ) ?>
+				<?= wp_get_attachment_image( $especial_menu['logo_mobile'], 'medium', true ) ?>
 			</a>
 			<nav class="menu-especial__links">
 				<?php wp_nav_menu( [ 'menu' => intval( $especial_menu['id'] ) ] ) ?>

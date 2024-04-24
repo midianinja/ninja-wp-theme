@@ -3,7 +3,8 @@
 
 
 .post-type-archive-especial{
-	
+	background-color: #F5F5F5;
+
 	.header-and-footer-archive{
 		margin-top: 17px;
 
@@ -11,11 +12,21 @@
 			margin-bottom: 0;
 			margin-left: 0 !important;
 			gap: 10px;
+			width: 1140px;
+
+			@include mixins.small{
+				width: inherit;
+			}
+
+			@include mixins.mobile{
+				width: inherit;
+			}
 
 			.wp-block-column{
 
-				.wp-block-cover.alignwide{	
+				.wp-block-cover.alignwide{
 					width: 100%;
+					max-width: 100%;
 
 					@include mixins.small{
 						max-width: 328px;
@@ -30,13 +41,15 @@
 					border-radius: 8px;
 
 					.wp-block-cover__inner-container {
-						.wp-block-columns{			
+						.wp-block-columns{
 
 							.wp-block-column:first-child{
 								background: rgba(51, 51, 51, 0.70);
 								backdrop-filter: blur(10.699999809265137px);
 								width: 100%;
 								height: 483px;
+								position: relative;
+								left: 0px;
 
 								@include mixins.small{
 									height: 230px;
@@ -61,6 +74,7 @@
 									margin: 0;
 									margin-right: auto;
 									margin-left: 143px;
+									text-transform: uppercase;
 
 									@include mixins.small{
 										margin-left: 35px;
@@ -71,7 +85,7 @@
 										margin-left: 35px;
 									}
 								}
-				
+
 								>h2{
 									color: #FFF;
 									font-family: var(--wp--preset--font-family--manrope);
@@ -93,7 +107,7 @@
 										font-size: 32px;
 									}
 								}
-				
+
 								>p{
 									color: #FFF;
 									font-family: var(--wp--preset--font-family--manrope);
@@ -113,7 +127,7 @@
 									}
 								}
 							}
-							
+
 							.wp-block-column{
 								display: flex;
 								flex-direction: column;
@@ -126,7 +140,7 @@
 			}
 
 			.wp-block-column:last-child{
-				
+
 				.latest-vertical-posts-block{
 					background-color: #000;
 					max-width: 367px;
@@ -147,7 +161,7 @@
 						margin-right: auto;
 						margin-left: auto;
 					}
-					
+
 					.latest-vertical-posts-block__heading{
 						>h2{
 							color: #FFF;
@@ -157,12 +171,12 @@
 							font-weight: 800;
 							line-height: 120%;
 							letter-spacing: -0.64px;
-							text-transform: uppercase;						
+							text-transform: uppercase;
 						}
 					}
 
-					.latest-vertical-posts-block__slides{	
-			
+					.latest-vertical-posts-block__slides{
+
 						.slick-list{
 							.slick-track{
 								.slick-slide{
@@ -197,7 +211,7 @@
 													flex-direction: column;
 													justify-content: center;
 													flex-shrink: 0;
-												
+
 												}
 
 												&-meta{
@@ -213,12 +227,12 @@
 						}
 					}
 					.latest-vertical-posts-block__footer{
-			
+
 						.latest-vertical-posts-block__arrows{
 							.slick-prev{
 								background-color: #848484;
 							}
-	
+
 							.slick-next {
 								background-color: #F5F5F5;
 							}
@@ -275,7 +289,7 @@
 					width: 100%;
 					object-fit: contain !important;
 				}
-	
+
 				@include mixins.mobile{
 					max-width: 370px;
 					width: 100%;
@@ -290,7 +304,7 @@
 		padding-right: 0;
 
 		.search{
-			display: flex;	
+			display: flex;
 			align-items: center;
 			justify-content: center;
 			gap: 16px;
@@ -311,19 +325,20 @@
 				font-size: var(--wp--preset--font-size--medium);
 				font-style: normal;
 				font-weight: 800;
-				line-height: 120%; 
+				line-height: 120%;
 				letter-spacing: -0.64px;
+				width: 200px;
 			}
 
 			.advanced-search{
-				max-width: 460px;
-				width: 100%;
+				display: flex;
+				align-items: center;
 
 				.input-search{
 					width: 100%;
 
 					input[type="text"]{
-						width: 100%;
+						width: 470px;
 						height: 46px;
 						flex-shrink: 0;
 						border-radius: 8px;
@@ -344,6 +359,8 @@
 
 			}
 		}
+
+		
 
 		.posts{
 			display: grid;
@@ -370,7 +387,7 @@
 				margin-right: auto;
 				margin-left: auto;
 			}
-			
+
 			.post{
 
 				&:hover{
@@ -415,7 +432,7 @@
 								@include mixins.small{
 									height: 197px;
 								}
-		
+
 								@include mixins.mobile{
 									height: 197px;
 								}
@@ -423,11 +440,12 @@
 								img{
 									width: 100%;
 									height: 337px;
+									object-fit: cover;
 
 									@include mixins.small{
 										height: 197px;
 									}
-			
+
 									@include mixins.mobile{
 										height: 197px;
 									}
@@ -466,10 +484,10 @@
 				}
 			}
 		}
-	
+
 		.pagination{
 			margin-bottom: 100px;
 		}
 	}
-    
+
 }

@@ -19,7 +19,7 @@
                     @media(max-width: 1199px){
                         margin-right: 0;
                     }
-                    .post-info{ 
+                    .post-info{
                         flex-direction: column;
                         max-width: 768px;
                         margin-top: 40px;
@@ -35,7 +35,7 @@
                         h2{
                             margin-top: -30px;
                             color: var(--PURE, #262626);
-                            font-family: 'Manrope',sans-serif;
+                            font-family: 'Manrope', sans-serif;
                             font-size: 48px;
                             font-style: normal;
                             font-weight: 700;
@@ -44,7 +44,7 @@
                             margin-bottom: -3rem;
                             @media(max-width:992px){
                                 margin-bottom: 0rem;
-                                margin-top: 0;                            
+                                margin-top: 0;
                             }
                         }
                         .excerpt{
@@ -55,16 +55,16 @@
                             }
                             p{
                                 color: var(--PRIMARY-PURE, #848484);
-                                font-family: Manrope;
+                                font-family: 'Manrope', sans-serif;
                                 font-size: 20px;
                                 font-style: normal;
-                                font-weight: 400;
+                                font-weight: 700;
                                 line-height: 150%; /* 30px */
                                 margin-top: 24px;
                                 margin-bottom: 31px;
-    
+
                             }
-                           
+
                         }
 
                         .content-author {
@@ -76,23 +76,23 @@
                             margin: 0px 0 18px;
                             color: #000;
                             max-width: 768px;
-    
+
                             @media (min-width: 768px) {
                                 flex-direction: row;
                             }
-    
+
                             > div {
                                 display: flex;
                                 width: 100%;
                             }
-    
+
                             img {
                                 border-radius: 100%;
                                 width: 70px !important;
                                 height: 70px !important;
                                 display: inherit;
                             }
-    
+
                             .author {
                                 display: flex;
                                 flex-direction: column;
@@ -103,15 +103,16 @@
                                 font-weight: 500;
                                 line-height: 150%; /* 24px */
                                 letter-spacing: -0.48px;
-    
+
                                 @media (min-width: 768px) {
                                     font-weight: 800;
                                 }
 
                                 .byline{
+                                    width: auto;
                                     span{
                                         color: #000;
-                                        font-family: Manrope;
+                                        font-family: 'Manrope', sans-serif;
                                         font-size: 16px;
                                         font-style: normal;
                                         font-weight: 600;
@@ -119,39 +120,42 @@
                                         letter-spacing: -0.48px;
                                     }
                                 }
-    
+
                                 time {
                                     color: var(--Primary-light, var(--PRIMARY-PURE, #848484));
                                     font-weight: 500;
                                     margin-top: 0.3rem;
                                     display: flex;
+                                    width: auto;
                                     :first-child{
-                                        width: 155px;
+                                        width: 180px;
+                                        color: var(--wp--preset--color--primary-light);
                                     }
                                     .clock::before {
                                         content: url($p_theme_assets + "/images/clock.svg");
                                         position: relative;
-                                        top: 1px;
+                                        top: 0;
                                     }
                                     :last-child{
                                         margin-left: 5px;
+                                        color: var(--wp--preset--color--primary-light);
                                     }
                                 }
                             }
-    
+
                             .page-share {
                                 width: 100%;
                                 margin-top: 24px;
-    
+
                                 @media (min-width: 768px) {
                                     justify-content: end;
                                     margin-top: 10px;
-    
+
                                     > span {
                                         display: none;
                                     }
                                 }
-    
+
                                 span {
                                     color: #000;
                                     font-size: 16px;
@@ -161,39 +165,39 @@
                                     letter-spacing: -0.48px;
                                     align-self: center;
                                 }
-    
+
                                 .social-icons {
                                     display: flex;
                                     margin-left: 16px;
                                 }
-    
+
                                 .social-menu {
                                     position: initial;
                                     padding: 3px;
                                     display: block;
-    
+
                                     .social-icon {
                                         display: none;
-    
+
                                         &.icon-instagram {
                                             display: block;
                                             padding: 0 8px;
                                             margin: 0 -8px;
-    
+
                                             svg {
                                                 width: 19px;
                                             }
                                         }
                                     }
                                 }
-    
+
                                 svg path {
                                     fill: #000;
                                 }
-    
+
                                 .addtoany_list {
                                     //display: flex;
-    
+
                                     a.a2a_button_facebook {
                                         span {
                                             background-image: url($p_theme_assets + "/images/social-networks/facebook-black.svg");
@@ -201,7 +205,7 @@
                                             display: block;
                                             height: 24px;
                                             padding: 3px;
-    
+
                                             svg {
                                                 display: none;
                                             }
@@ -210,7 +214,7 @@
                                 }
                             }
                         }
-                        
+
                     }
 
                     .author-info{
@@ -230,17 +234,17 @@
                             }
                             .author-name{
                                 color: var(--White, #FFF);
-                                font-family: Manrope;
+                                font-family: 'Manrope', sans-serif;
                                 font-size: 20px;
                                 font-style: normal;
                                 font-weight: 800;
                                 line-height: 24px; /* 120% */
                                 letter-spacing: -0.6px;
-                                margin: 0 95px 7px 0;
+                                margin: 0 0 7px -95px;
                             }
                             .authbio{
                                 color: var(--White, #FFF);
-                                font-family: Manrope;
+                                font-family: 'Manrope', sans-serif;
                                 font-size: 12px;
                                 font-style: normal;
                                 font-weight: 500;
@@ -292,20 +296,19 @@
                         .authbio{
                             border-top: 1px solid #f2f2f2;
                             margin-top: 20px;
-                        }  
+                        }
                     }
                 }
-                section{
-                    .post-content{
-                        @media(max-width:992px){
-                            margin: 50px 0;
 
-                        }
+                .post-content{
+                    @media(max-width:992px){
+                        margin: 50px 0;
 
                     }
+
                     p{
                         color: var(--PURE, #262626);
-                        font-family: Manrope;
+                        font-family: 'Manrope', sans-serif;
                         font-size: 16px;
                         font-style: normal;
                         font-weight: 500;
@@ -319,14 +322,14 @@
                         }
                         h2{
                             color: var(--PURE, #262626);
-                            font-family: 'Manrope',sans-serif;
+                            font-family: 'Manrope', sans-serif;
                             font-size: 48px;
                             font-style: normal;
                             font-weight: 700;
                             line-height: 120%; /* 57.6px */
                             letter-spacing: -1.44px;
                         }
-                        
+
                     }
                     h2{
                         margin-top: 12px !important;
@@ -341,13 +344,46 @@
                     }
                     strong{
                         color: var(--PURE, #262626);
-                        font-family: 'Manrope',sans-serif;
+                        font-family: 'Manrope', sans-serif;
                         font-style: normal;
                         font-weight: 700;
                         line-height: 120%; /* 57.6px */
                         letter-spacing: -1.44px;
-                        
-                        
+
+
+                    }
+
+                    p{
+                        iframe{
+                            width: 560px;
+                            @media(max-width: 589px){
+                                width: 330px;
+                                height: 200px;
+                            }
+                            @media(max-width: 393px){
+                                width: 363px;
+                                height: 200px;
+
+                            }
+                            @media(max-width: 366px){
+                                width: 333px;
+                                height: 200px;
+
+                            }
+                            @media(max-width: 366px){
+                                width: 330px;
+                                height: 200px;
+
+                            }
+                        }
+                    }
+
+                    .wp-block-table{
+                        margin-bottom: 1rem;
+                    }
+
+                    .table{
+                        max-width: 570px;
                     }
                     .addtoany_share_save_container{
                         display: none;
@@ -367,8 +403,8 @@
                             margin-top: 0;
                             margin-bottom: -10px;
                         }
-                        
-                        
+
+
                     }
                     .comments{
                         padding: 0 0;
@@ -376,11 +412,17 @@
                             display: none;
                         }
                     }
+
                 }
+
+
             }
 
             .post-footer{
                 margin-top: 0;
+                max-width: 1170px;
+                margin-left: auto;
+                margin-right: auto;
                 @include mixins.mobile{
                     display: flex;
                     justify-content: center;
@@ -422,7 +464,7 @@
                                     object-fit: cover;
                                     margin-right: 30px;
                                 }
-            
+
                             }
                         }
                         .related-post-content{
@@ -432,7 +474,7 @@
                             .info{
                                 h4{
                                     color: var(--Primary-dark, var(--DARK, #111));
-                                    font-family: Manrope;
+                                    font-family: 'Manrope', sans-serif;
                                     font-size: 20px;
                                     font-style: normal;
                                     font-weight: 700;
@@ -440,7 +482,7 @@
                                 }
                                 h5{
                                     color: var(--PRIMARY-PURE, #848484);
-                                    font-family: Manrope;
+                                    font-family: 'Manrope', sans-serif;
                                     font-size: 13px;
                                     font-style: normal;
                                     font-weight: 700;
@@ -451,7 +493,7 @@
                             }
                         }
                     }
-                } 
+                }
             }
         }
 
@@ -466,13 +508,19 @@
                 .post-info{
                     .post-date{
                         display: inherit;
+                        color: var(--Gray-3, #828282);
+                        font-family: 'Manrope', sans-serif;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 145%;
                     }
                     .content-author{
                         display: none;
                     }
                 }
-                
-            } 
+
+            }
 
         }
     }

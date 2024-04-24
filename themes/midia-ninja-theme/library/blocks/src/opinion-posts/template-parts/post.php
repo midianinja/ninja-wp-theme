@@ -1,15 +1,19 @@
-<a class="post" href="<?php echo get_permalink();?>">
-
+<?php
+$opinion = $args['post'];
+$authors = get_coauthors( $opinion->ID );
+$author = $authors[0];
+?>
+<a class="post" href="<?= get_permalink() ?>">
 	<div class="post-thumbnail">
-		<?= get_avatar( get_the_author_meta( 'ID' ), 76 ); ?>
+		<?= get_avatar( $author->ID, 76 ) ?>
 	</div>
 
 	<div class="post-content">
-		<h3 class="post-title"><?php echo apply_filters('the_title', $args['post']->post_title); ?></h3>
+		<h3 class="post-title"><?= apply_filters( 'the_title', $opinion->post_title ) ?></h3>
 
 		<div class="post-meta">
 			<div class="post-author">
-				<?php echo get_the_author(); ?>
+				<?= $author->display_name ?>
 			</div>
 		</div>
 	</div>

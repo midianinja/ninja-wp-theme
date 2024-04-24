@@ -4,6 +4,9 @@ namespace Ninja;
 
 function latest_grid_posts_callback( $attributes ) {
 
+    global $newspack_blocks_post_id;
+    global $latest_blocks_posts_ids;
+
     $block_id        = esc_attr( $attributes['blockId'] );
     $post_type       = ! empty( $attributes['postType'] ) ? esc_attr( $attributes['postType'] ) : 'post';
     $taxonomy        = ! empty( $attributes['taxonomy'] ) ? esc_attr( $attributes['taxonomy'] ) : '';
@@ -22,16 +25,12 @@ function latest_grid_posts_callback( $attributes ) {
         $taxonomy = '';
     }
 
-    global $latest_blocks_posts_ids;
-
-    if ( ! is_array( $latest_blocks_posts_ids ) ) {
-        $latest_blocks_posts_ids = [];
-    }
-
     $attributes['returnIds'] = true;
-    $post__not_in = $latest_blocks_posts_ids;
 
-    $args = build_posts_query( $attributes, $latest_blocks_posts_ids );
+    $post__not_in = array_merge( $latest_blocks_posts_ids, array_keys( $newspack_blocks_post_id ) );
+    $post__not_in = array_unique( $post__not_in, SORT_STRING );
+
+    $args = build_posts_query( $attributes, $post__not_in );
     $posts_query = get_posts( $args );
 
     $latest_blocks_posts_ids = array_merge( $post__not_in, $posts_query );

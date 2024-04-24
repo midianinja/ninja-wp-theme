@@ -40,11 +40,9 @@
 			.entry-wrapper {
 				.cat-links {
 					a {
-						background-color: var(
-							--wp--preset--color--highlight-pure
-						); // @todo - make dynamic
+						background-color: var(--cat-background-color);
 						border-radius: size(4);
-						color: var(--wp--preset--color--primary-pure);
+						color: var(--cat-color);
 						font-family: "Archivo Expanded", sans-serif;
 						font-size: 13px;
 						letter-spacing: -0.39px;
@@ -137,10 +135,8 @@
 							position: absolute;
 
 							a {
-								background-color: var(
-									--wp--preset--color--laranja-dark
-								); // @todo - make dynamic
-								color: var(--wp--preset--color--secondary-light);
+								background-color: var(--cat-background-color);
+								color: var(--cat-color);
 								font-family: "Archivo Expanded", sans-serif;
 								font-size: 13px;
 								font-weight: 800;
@@ -626,6 +622,12 @@
 		}
 	}
 
+	.sesao-mais-lidas {
+		h2 {
+			color: #fff;
+		}
+	}
+
 	.sessao-opiniao {
 		font-family: "Manrope", sans-serif;
 		@media (max-width: 1199px) {
@@ -654,7 +656,6 @@
 					@include desktop {
 						width: 370px;
 						display: grid;
-
 					}
 				}
 
@@ -730,8 +731,13 @@
 				}
 			}
 		}
+
 		.coluna-colunistas {
 			padding-top: 0;
+
+			.latest-vertical-posts-block.colunas {
+				margin: 15px 0 30px !important;
+			}
 
 			.latest-vertical-posts-block .slick-slider h2 {
 				width: fit-content;
@@ -740,7 +746,6 @@
 		.wp-block-cover {
 			padding: 35px;
 			max-height: 350px;
-			margin-bottom: 30px;
 
 			@media (max-width: 1199px) {
 				max-width: 380px;
@@ -750,6 +755,11 @@
 			@media (max-width: 400px) {
 				max-width: 350px;
 				padding: 15px 35px 54px;
+			}
+
+			img {
+				object-fit: fill;
+				margin-bottom: 2rem;
 			}
 
 			.wp-block-cover__inner-container {
@@ -827,7 +837,6 @@
 		}
 
 		.colunas {
-			margin-top: 20px !important;
 			h2 {
 				display: flex;
 				justify-content: left;
@@ -981,6 +990,14 @@
 		.video-title {
 			display: none;
 		}
+		.container {
+			.slick-arrow {
+				background-color: white;
+			}
+		}
+	}
+
+	.acervo {
 		.container {
 			.slick-arrow {
 				background-color: white;

@@ -5,14 +5,7 @@
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  */
 get_header();
-/* if (isset($attributes) && is_array($attributes)) {
-    $coluna_direita = Ninja\latest_vertical_posts_callback($attributes);
-    foreach ($attributes as $coluna) {
-        echo $coluna;
-    }
-} else {
-     echo "A variável \$attributes não está definida ou não é um array.";
-} */
+
 ?>
 
 <div class="container">
@@ -27,10 +20,7 @@ get_header();
             <?php while (have_posts()) : the_post(); ?>
                 <?php get_template_part('template-parts/content/post'); ?>
             <?php endwhile; ?>
-        </div>
-
-        <?php get_template_part('template-parts/content/pagination'); ?>
-        
+        </div>        
     </main>
 
     <?php echo get_layout_footer('afluentes'); ?>

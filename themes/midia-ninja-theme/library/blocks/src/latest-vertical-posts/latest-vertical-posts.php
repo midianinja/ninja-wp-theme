@@ -4,6 +4,9 @@ namespace Ninja;
 
 function latest_vertical_posts_callback( $attributes ) {
 
+    global $newspack_blocks_post_id;
+    global $latest_blocks_posts_ids;
+
     $block_id        = esc_attr( $attributes['blockId'] );
     $block_model     = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'posts';
     $block_classes[] = 'latest-vertical-posts-block';
@@ -83,22 +86,21 @@ function latest_vertical_posts_callback( $attributes ) {
 
     if ( $block_model == 'posts' || $block_model == 'numbered' ) {
         // Posts
-        global $latest_blocks_posts_ids;
 
-        if ( ! is_array( $latest_blocks_posts_ids ) ) {
-            $latest_blocks_posts_ids = [];
-        }
-
-        $attributes_hash = md5( serialize( $attributes ) );
+        $attributes_hash = md5( $block_id );
 
         $cache_key = 'ninja_vertical_' . $attributes_hash;
-        $cached_posts = get_transient( $cache_key );
+        $cached_posts = false;
 
-        if ( false !== $cached_posts ) {
-            $posts_query = $cached_posts;
-        } else {
+        if ( ! is_admin() && ( ! defined( 'REST_REQUEST' ) || ! REST_REQUEST ) ) {
+            $cached_posts = get_transient( $cache_key );
+        }
 
-            $args = build_posts_query( $attributes, $latest_blocks_posts_ids );
+        if ( false === $cached_posts ) {
+            $post__not_in = array_merge( $latest_blocks_posts_ids, array_keys( $newspack_blocks_post_id ) );
+            $post__not_in = array_unique( $post__not_in, SORT_STRING );
+
+            $args = build_posts_query( $attributes, $post__not_in );
             $posts_query = new \WP_Query( $args );
 
             if ( false === $posts_query->have_posts() ) {
@@ -110,6 +112,8 @@ function latest_vertical_posts_callback( $attributes ) {
             }
 
             set_transient( $cache_key, $posts_query, 3600 );
+        } else {
+            $posts_query = $cached_posts;
         }
 
         $has_content = $posts_query;
@@ -231,6 +235,7 @@ function latest_vertical_posts_callback( $attributes ) {
                 global $post;
 
                 $latest_blocks_posts_ids[] = $post->ID;
+                $newspack_blocks_post_id[$post->ID] = true;
                 $counter++;
 
                 if ( $counter == 1 ) {

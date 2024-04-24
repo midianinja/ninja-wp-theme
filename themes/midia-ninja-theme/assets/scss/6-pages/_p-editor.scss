@@ -29,8 +29,8 @@ body{
 
 
                                         a {
-                                            background-color: var(--wp--preset--color--laranja-dark); // @todo - make dynamic
-                                            color: var(--wp--preset--color--secondary-light);
+                                            background-color: var(--cat-background-color);
+                                            color: var(--cat-color);
                                             font-family: variables.$f_title;
                                             font-size: var(--wp--preset--font-size--small);
                                             font-weight: 800;

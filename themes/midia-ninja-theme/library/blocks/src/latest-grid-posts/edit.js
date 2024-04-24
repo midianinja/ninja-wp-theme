@@ -2,6 +2,8 @@ import { __ } from '@wordpress/i18n'
 
 import { useEffect, useState } from 'react'
 
+import { useInstanceId } from "@wordpress/compose"
+
 import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
 import SelectPostType from "../../shared/components/SelectPostType"
@@ -20,7 +22,8 @@ import {
 import metadata from './block.json'
 import './editor.scss'
 
-export default function Edit( { attributes, clientId, setAttributes } ) {
+export default function Edit( { attributes, setAttributes } ) {
+    const instanceId = useInstanceId(Edit, 'latest-grid-posts')
 
     const blockProps = useBlockProps( {
         className: 'latest-grid-posts-block'
@@ -40,8 +43,8 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
     } = attributes
 
     useEffect(() => {
-        if (!blockId) {
-            setAttributes( { blockId: clientId } )
+        if (!blockId || blockId !== instanceId) {
+            setAttributes({ blockId: instanceId })
         }
     })
 

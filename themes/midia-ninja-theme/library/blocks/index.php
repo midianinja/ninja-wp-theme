@@ -11,6 +11,19 @@ function blocks_init() {
 		return;
 	}
 
+	// Add compatibility for Newspack blocks.
+	global $newspack_blocks_post_id;
+
+	if ( ! $newspack_blocks_post_id ) {
+		$newspack_blocks_post_id = [];
+	}
+
+	global $latest_blocks_posts_ids;
+
+	if ( ! $latest_blocks_posts_ids ) {
+		$latest_blocks_posts_ids = [];
+	}
+
 	$active_blocks = [
 		'sample-block' => null,
 		'dynamic' => [

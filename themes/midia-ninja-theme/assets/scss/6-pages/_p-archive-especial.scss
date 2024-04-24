@@ -360,12 +360,10 @@
 			}
 		}
 
-		
-
 		.posts{
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr 1fr;
-			gap: 30px;
+			gap: 20px;
 			justify-items: center;
 
 			@include mixins.small{
@@ -389,6 +387,7 @@
 			}
 
 			.post{
+				max-width: 158px;
 
 				&:hover{
 					background-color: transparent;
@@ -487,6 +486,10 @@
 
 		.pagination{
 			margin-bottom: 100px;
+
+			.nav-links{
+				gap: 10px;
+			}
 		}
 	}
 

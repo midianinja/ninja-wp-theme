@@ -542,6 +542,8 @@ function alterar_consulta_pesquisa_afluente($query) {
         if(!empty($_GET['pesquisar'])) {
             $query->set('s', $_GET['pesquisar']);
         }
+		$query->set('orderby', 'title');
+		$query->set('order', 'ASC');
     }
 }
 add_action('pre_get_posts', 'alterar_consulta_pesquisa_afluente');
@@ -608,10 +610,33 @@ add_action( 'pre_get_posts', 'set_custom_post_type_archive_posts_per_page' );
 function change_search_especial( $query ) {
 
     if (is_post_type_archive( 'especial' ) && $query->is_main_query() ) {
-       
+
         if(!empty($_GET['pesquisar'])) {
             $query->set('s', $_GET['pesquisar']);
         }
     }
 }
 add_action('pre_get_posts', 'change_search_especial');
+
+function add_category_class_to_blog( $classes ){
+    if( !is_admin() && (is_category() || is_home())){
+        $classes[] = 'generic-archive';
+    }
+
+    if(!is_admin() || is_home()){
+        $classes[] = 'archive';
+    }
+
+    return $classes;
+
+}
+
+add_filter('body_class', 'add_category_class_to_blog');
+
+function hide_especial_parent( $query ) {
+
+    if ( !is_admin() && $query->is_post_type_archive( 'especial' ) ) {
+        $query->set('post_parent', 0);
+    }
+}
+add_action('pre_get_posts', 'hide_especial_parent');

@@ -240,8 +240,9 @@ main.content.col-md-12 {
 							border-radius: 12px;
 							img {
 								object-fit: cover;
+								height: 208px !important; 
 							}
-						}
+						} 
 						
                     }
                     .post-card--content{

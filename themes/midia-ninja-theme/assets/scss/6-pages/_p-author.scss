@@ -117,12 +117,12 @@
         & .author-info-card{
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
+            margin: 0px 34px;
             @include mixins.mobile{
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
-                padding-top: 25px;
             }
             img{
                 width: 175.648px;
@@ -150,6 +150,7 @@
                 padding-bottom: 10px;
                 @include mixins.mobile{
                     border-bottom: none;
+                    margin-left: 25px;
                 }
             }
             .authbio{
@@ -162,6 +163,27 @@
                 max-width: 201px;
                 @include mixins.mobile{
                     display: none;
+                }
+            }
+            .social-networks{
+                margin-top: 70px;
+                display: flex;
+                gap: 8px;
+                margin-top: 70px;
+                @include mixins.mobile{
+                    display: flex;
+                    gap: 8px;
+                    margin-top: 83px;
+                    position: absolute;
+                }
+                span{
+                    a
+                        svg{
+                            path{
+                                fill: #FFFFFF;
+                            }
+                        }
+                    
                 }
             }
         }
@@ -188,12 +210,13 @@
         }
     }
     main{
+        width: 100%;
         .container-posts{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             margin-bottom: 86px;
-            max-width: 100%;
-            gap: 60px;
+            width: 100%;
+            justify-items: center;
             @media (max-width: 768px) {
                 grid-template-columns: 1fr 1fr;
             }
@@ -207,6 +230,14 @@
                 @include mixins.mobile{
                     border: none;
                 }
+                .post{
+                    margin-right: 66px;
+                    height: 243px;
+
+                    & :last-child{
+                        margin-right: 0px;
+                    }
+                }
                 .post-card--thumb{
                     display: none;
                 }
@@ -219,6 +250,9 @@
                         font-style: normal;
                         font-weight: 500;
                         line-height: 145%; /* 18.85px */
+                    }
+                    .entry-meta{
+                        display: none;
                     }
                     a,
                     h5{
@@ -243,7 +277,7 @@
             }
         }
         .header-and-footer-archive{
-            width: 130%;
+            width: 100%;
             @include mixins.mobile{
                 width: 100%;
             }

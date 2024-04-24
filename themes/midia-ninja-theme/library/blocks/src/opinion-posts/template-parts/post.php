@@ -5,7 +5,7 @@ $author = $authors[0];
 ?>
 <a class="post" href="<?= get_permalink() ?>">
 	<div class="post-thumbnail">
-		<?= get_avatar( $author->ID, 76 ) ?>
+		<?= coauthors_get_avatar( $author, 76 ) ?>
 	</div>
 
 	<div class="post-content">

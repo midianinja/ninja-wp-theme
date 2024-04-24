@@ -2,6 +2,8 @@ import { __ } from '@wordpress/i18n'
 
 const { useEffect, useState } = wp.element
 
+import { useInstanceId } from "@wordpress/compose"
+
 import ServerSideRender from '@wordpress/server-side-render'
 import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
@@ -23,7 +25,9 @@ import {
 import metadata from './block.json'
 import './editor.scss'
 
-export default function Edit( { attributes, clientId, setAttributes } ) {
+export default function Edit( { attributes, setAttributes } ) {
+	const instanceId = useInstanceId(Edit, 'latest-horizontal-posts')
+
 	const blockProps = useBlockProps( {
 		className: 'latest-horizontal-posts-block'
 	} )
@@ -39,7 +43,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		flickrByType,
 		flickrUserId,
 		heading,
-		linkUrl,
 		playlistId,
 		postsToShow,
 		postType,
@@ -52,9 +55,9 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	} = attributes
 
 	useEffect(() => {
-		if (!blockId) {
-			setAttributes( { blockId: clientId } )
-		}
+		if (!blockId || blockId !== instanceId) {
+			setAttributes({ blockId: instanceId })
+		  }
 	})
 
 	const onChangeBlockModel = ( value ) => {

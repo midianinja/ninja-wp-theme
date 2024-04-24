@@ -1,22 +1,26 @@
-@import '../2-atoms/a-mixins';
+@import "../2-atoms/a-mixins";
 
 html {
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 
-    body {
-        overflow-x:  hidden;
-        width: 100vw;
+	body {
+		overflow-x: hidden;
+		width: 100vw;
 
-        @include mobile {
-            margin-top: 0;
-        }
+		@include mobile {
+			margin-top: 0;
+		}
 
-        .logged-in & {
-            top: 110px;
+		.logged-in & {
+			top: 110px;
 
-            &.scrolled {
-                top: 32px;
-            }
-        }
-    }
+			&.scrolled {
+				top: 32px;
+			}
+		}
+
+		#app {
+			margin-top: 141px;
+		}
+	}
 }

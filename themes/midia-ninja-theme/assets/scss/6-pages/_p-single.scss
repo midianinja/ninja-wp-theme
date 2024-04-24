@@ -22,6 +22,11 @@
 			}
 		}
 
+		.wp-block-gallery.has-nested-images
+			figure.wp-block-image:not(#individual-image) {
+			margin-bottom: 1rem;
+		}
+
 		figcaption {
 			color: var(--Secondary-dark, var(--SECONDARY, #ccc));
 			/* <h6>  Manrope Medium 10 */
@@ -32,6 +37,8 @@
 			line-height: 21px; /* 210% */
 			letter-spacing: 1px;
 			text-transform: uppercase;
+			bottom: -30px;
+			background: transparent;
 		}
 	}
 
@@ -131,6 +138,12 @@
 									margin: 1rem 0;
 								}
 							}
+						}
+
+						.title {
+							font-size: 48px;
+							line-height: 115%;
+							letter-spacing: -1.44px;
 						}
 					}
 					.info {

@@ -52,25 +52,46 @@ document.addEventListener("DOMContentLoaded", function() {
     const menuButton = document.querySelector("#burguer-checkbox");
     const buttonMais = document.querySelector(".mais");
     const searchMenu = document.querySelector(".search-menu");
+    const hamburgerLines = document.querySelector(".hamburger-lines")
+    const hamburgerLinesMobile = document.querySelector(".hamburger-lines--mobile")
+    const closeMenu = document.querySelector(".close-menu")
 
-    menuButton.addEventListener ("click", function(ev) {
+    hamburgerLines.addEventListener('click', function(ev) {
         ev.preventDefault()
 
-        if (menuButton.classList.contains("checked")) {
-            menuButton.classList.remove("checked");
+        if (menuItens.classList.contains('open')) {
+            menuItens.classList.remove('open')
         } else {
-            menuButton.classList.add("checked")
+            menuItens.classList.add('open')
             searchFieldFocus('#searchform .search-field')
         }
     })
 
-    searchMenu.addEventListener ("click", function(ev) {
+    hamburgerLinesMobile.addEventListener('click', function(ev) {
         ev.preventDefault()
 
-        if (menuButton.classList.contains("checked")) {
-            menuButton.classList.remove("checked");
+        if (menuItens.classList.contains('open')) {
+            menuItens.classList.remove('open')
         } else {
-            menuButton.classList.add("checked")
+            menuItens.classList.add('open')
+            searchFieldFocus('#searchform .search-field')
+        }
+    })
+
+    closeMenu.addEventListener('click', function(ev) {
+        ev.preventDefault()
+        menuItens.classList.remove('open')
+    })
+
+    searchMenu.addEventListener("click", function(ev) {
+        console.log(searchMenu);
+        console.log('clicquei');
+
+
+        if (menuItens.classList.contains("open")) {
+            menuItens.classList.remove("open");
+        } else {
+            menuItens.classList.add("open")
             searchFieldFocus('#searchform .search-field')
         }
     })

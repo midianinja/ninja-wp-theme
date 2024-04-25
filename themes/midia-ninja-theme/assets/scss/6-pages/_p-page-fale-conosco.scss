@@ -321,7 +321,12 @@
                             align-items: center;
 
                             form{
-
+                                max-width: 265px;
+                                width: 100%;
+                                margin-right: 2rem;
+                                @media(max-width: 1199px){
+                                    margin-right: 0;
+                                }
                                 h4{
                                     color: #FFF;
                                     font-family: 'Manrope', sans-serif;
@@ -382,6 +387,37 @@
                                     resize: none;
                                 }
 
+                                div.acept{
+                                    display: flex;
+                                   
+                                    p{
+                                        display: flex;
+                                        color: #FFF;
+                                        font-family: 'Manrope', serif;
+                                        font-size: 13px;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        line-height: 145%;
+                                        margin-top: 0;
+                                        margin-bottom: 0;
+                                    }
+                                    span.wpcf7-acceptance{
+                                        .wpcf7-list-item{
+                                            margin: 2px 8px 0 0;
+                                        }
+                                    }
+                                    a{
+                                        color: var(--Highlight-Pure, #FDF250);
+                                        font-family: 'Manrope', serif;
+                                        font-size: 13px;
+                                        font-style: normal;
+                                        font-weight: 800;
+                                        line-height: 145%;
+                                        text-decoration: none; 
+                                    }
+
+                                }
+
                                 .submit-button{
                                     input[type="submit"]{
                                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
@@ -426,7 +462,7 @@
                                 line-height: 115%;
                                 letter-spacing: -1.44px;
                                 margin-top: 16px;
-                                margin-bottom: 16px;
+                                margin-bottom: 30px;
                             }
 
                             h3{

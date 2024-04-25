@@ -25,6 +25,14 @@
                     <div>
                         <?php the_social_networks_menu() ?>
 
+                        <div class="hamburger-wrapper--mobile">
+                            <div class="hamburger-lines--mobile">
+                                <span class="line line1"></span>
+                                <span class="line line2"></span>
+                                <span class="line line3"></span>
+                            </div>
+                        </div>
+
                         <div class="logo">
                             <a href="<?= home_url() ?>">
                                 <img src="<?= get_template_directory_uri() ?>/assets/images/logo.png" height="63" width="104" alt="<?= get_bloginfo('name') ?>">
@@ -33,17 +41,21 @@
 
                         <section class="hamburguer">
                             <div class="container nav-container">
-                                <input class="checkbox" type="checkbox" aria-label="<?php echo esc_attr__('Open menu'); ?>" id="burguer-checkbox"/>
 
-                                <button class="search-menu" aria-label="<?php echo esc_attr__('Search') ?>"></button>
+                                <div class="nav-container--buttons">
+                                    <span class="search-menu" aria-label="<?php echo esc_attr__('Search') ?>"></span>
 
-                                <div class="hamburger-lines">
-                                    <span class="line line1"></span>
-                                    <span class="line line2"></span>
-                                    <span class="line line3"></span>
+                                    <div class="hamburger-lines">
+                                        <span class="line line1"></span>
+                                        <span class="line line2"></span>
+                                        <span class="line line3"></span>
+                                    </div>
                                 </div>
 
                                 <div class="menu-items">
+                                    <div class="menu-buttons">
+                                        <span class="close-menu" aria-label="<?php echo esc_attr__('Close') ?>"></span>
+                                    </div>
                                     <div class="search-component">
                                         <?php get_search_form(array('placeholder' => esc_attr_x('Search …', 'placeholder'))); ?>
                                     </div>

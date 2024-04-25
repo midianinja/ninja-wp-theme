@@ -2,6 +2,8 @@
 
 namespace Ninja;
 
+use phpDocumentor\Reflection\Types\Null_;
+
 /**
  * Registers REST API endpoints.
  *
@@ -294,56 +296,21 @@ function get_posts_by_taxonomy_term( $request ) {
  * Adds custom fields to a response post.
  */
 function add_fields_to_post() {
-    register_rest_field( 'post', 'rendered_categories', [
-        'get_callback' => function( $attr ) {
+	register_rest_field( 'post', 'main_category', [
+		'get_callback' => function( $attr ) {
+			$main_category = get_primary_term( $attr['id'], 'category' );
 
-            $terms = [];
-
-            if ( \is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
-                // Get primary term using Yoast SEO plugin
-                $primary_term_id = get_post_meta( $attr['id'], '_yoast_wpseo_primary_category', true );
-                $get_term = get_term( $primary_term_id, 'category' );
-
-                if ( $get_term && ! is_wp_error( $get_term ) ) {
-                    $terms[] = $get_term;
-                }
-            } else {
-                $terms = get_the_terms( $attr['id'], 'category' );
-            }
-
-            if ( isset( $terms[0] ) && $terms[0] === NULL ) {
-                return [];
-            }
-
-            if ( $terms && ! is_wp_error( $terms ) ) {
-                return array_map( function( $term ) {
-
-                    $background_term_color = get_term_meta( $term->term_id, 'ninja_background_term_color', true );
-                    $font_term_color = get_term_meta( $term->term_id, 'ninja_font_term_color', true );
-
-                    if ( ! $background_term_color ) {
-                        $background_term_color = '#333333';
-                    }
-
-                    if ( ! $font_term_color ) {
-                        $font_term_color = '#FFFFFF';
-                    }
-
-                    return [
-                        'id'               => $term->term_id,
-                        'background_color' => $background_term_color,
-                        'color'            => $font_term_color,
-                        'link'             => get_term_link( $term->term_id ),
-                        'name'             => $term->name,
-                        'slug'             => $term->slug
-                    ];
-
-                }, $terms );
-            }
-
-            return [];
-        }
-    ]);
+			if ( ! empty( $main_category ) ) {
+				return [
+					'link'             => get_term_link( $main_category->term_id, 'category' ),
+					'name'             => $main_category->name,
+					'slug'             => $main_category->slug
+				];
+			} else {
+				return null;
+			}
+		}
+	] );
 }
 
 function flickr_album_rest_callback( \WP_REST_Request $request ) {

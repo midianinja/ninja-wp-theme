@@ -1,11 +1,13 @@
 <a href="<?php echo get_permalink();?>">
     <div class="post">
         <div class="post-thumbnail">
-            <?php $get_html_terms = get_html_terms( $args['post']->ID, 'category', false, true, 1 ); ?>
-            <?php if ( $get_html_terms ) : ?>
-                <span class="post--terms">
-                    <?php echo $get_html_terms; ?>
-                </span>
+            <?php $main_category = get_primary_term( $args['post']->ID, 'category' ); ?>
+			<?php if( ! empty( $main_category ) ): ?>
+				<div class="post--terms">
+					<ul class="list-terms tax-category">
+						<li class="category-<?php echo $main_category->slug; ?>"><?php echo $main_category->name; ?></li>
+					</ul>
+				</div>
             <?php endif; ?>
             <?php if ( has_post_thumbnail() ) : ?>
                 <?php echo get_the_post_thumbnail( $args['post']->ID, 'medium' ); ?>

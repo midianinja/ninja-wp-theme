@@ -3,7 +3,7 @@ get_header();
 
 global $wp_query;
 $total_results = $wp_query->found_posts;
-$singular = $wp_query->found_posts > 1 ? 'results' : 'result';
+$singular = $wp_query->found_posts > 1 ? __('results', 'ninja') : __('result', 'ninja');
 
 ?>
 
@@ -21,8 +21,8 @@ $singular = $wp_query->found_posts > 1 ? 'results' : 'result';
                 <p><?php _e('You can perform a new search or return to the home page', 'ninja'); ?></p>
 
                 <div class="no-result-buttons">
-                    <button id="newSearchButton" class="new-search"><a href="#">New Search</a></button>
-                    <button class="b-home"><a href="https://midia.ninja">Back to home</a></button>
+                    <button id="newSearchButton" class="new-search"><a href="#"><?php _e('New Search', 'ninja'); ?></a></button>
+                    <button class="b-home"><a href="https://midia.ninja"><?php _e('Back to home', 'ninja'); ?></a></button>
                 </div>
             </div>
 

@@ -1,56 +1,37 @@
 <?php
-
-$post_id = get_the_ID();
-$projects = get_the_terms($post_id, 'category');
-$cat = $projects[0]->term_id;
-
-if ($projects && ! is_wp_error($projects)) {
-    $projects = wp_list_pluck($projects, 'term_id');
-}
-
 $args = [
-    'post_type'      => 'guest-author',
-    'posts_per_page' => 30,
-    'post__not_in'   => [ $post_id ],
-    'order'          => 'DESC',
-    
+	'echo'                    => false,
+	'number'                  => 999,
+	'authors_with_posts_only' => true,
+	'orderby'                 => 'name'
 ];
 
-$related_posts = new WP_Query($args);
+$authors = coauthors_get_users( $args );
 
-if ($related_posts->have_posts()) : ?>
+if ( ! empty( $authors ) ): ?>
 
     <h2>Mais colunistas NINJA</h2>
-    
-    <div class="related">
-        <?php while($related_posts->have_posts()) :
-            $related_posts->the_post();
 
-            // Thumbnail
-            $thumbnail = (has_post_thumbnail()) ? get_the_post_thumbnail() : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">'; ?>
-            
+    <div class="related">
+        <?php foreach( $authors as $author ) :
+			$name = $author->display_name;
+			$permalink = '/author/' . $author->user_nicename . '/';
+			$thumbnail = coauthors_get_avatar( $author, 170 );
+
+			if ( ! empty( $name ) ): ?>
             <div class="related-post">
-                <a class="related-post-image" href="<?php the_permalink();?>"><?php echo $thumbnail;?></a>
-                
+                <a class="related-post-image" href="<?php echo $permalink; ?>"><?php echo $thumbnail; ?></a>
+
                 <div class="related-post-content">
-                  
-                    
-                    <span class="category term-<?= $term ?>">
-                        <?= $category[0]->cat_name;  ?>
-                    </span> 
-            
                     <div class="info">
-                        <a href="<?php the_permalink();?>">
-                            <h5><?php the_title(); ?></h5>
+                        <a href="<?php echo $permalink; ?>">
+                            <h5><?php echo esc_html( $name ); ?></h5>
                         </a>
-                        
-                        <time><?php echo get_the_date(); ?></time> 
                     </div>
                 </div>
-                <?php get_template_part('template-parts/content/pagination'); ?>
-
             </div>
-        <?php endwhile; ?>
+			<?php endif; ?>
+        <?php endforeach; ?>
     </div>
 
 <?php endif;

@@ -142,7 +142,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
                     .custom-select-wrapper-opinion {
                         position: relative;
-                        display: inline-block;
+                        display: inline-flex;
                         width: 100%;
                     }
 
@@ -213,7 +213,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
                     .custom-select-wrapper {
                         position: relative;
-                        display: inline-block;
+                        display: inline-flex;
                         left: -86px;
                         width: 100%;
 
@@ -278,12 +278,13 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                 margin-top: 80px;
             }
 
-
-
             .content{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 30px;
+                // display: grid;
+                // grid-template-columns: 1fr 1fr;
+                // align-items: center;
+                // gap: 30px;
+                columns: 250px;
+                column-gap: 30px; 
                 max-width: 770px;
                 width: 100%;
 
@@ -307,6 +308,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                     .post-opiniao{
                         max-width: 100px;
                         width: 100%;
+                        margin-bottom: 2rem;
 
                         img{
                             width: 70px;
@@ -340,6 +342,8 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                 }
 
                 .post{
+                    break-inside: avoid-column;
+                    margin-bottom: 1rem; 
 
                     &:hover{
                         background-color: transparent;
@@ -350,6 +354,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                         flex-direction: column;
                         gap: 10px;
                         border-bottom: none;
+                        margin-bottom: 0;
 
                         &--thumb{
                             margin-right: 0;
@@ -387,7 +392,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                             .entry-title{
                                 color: var(--Gray-1, #333);
                                 font-family: var(--wp--preset--font-family--manrope);
-                                font-size: 21.926px;
+                                font-size: 20px;
                                 font-style: normal;
                                 font-weight: 700;
                                 line-height: 140%;
@@ -563,7 +568,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
                     .custom-select-wrapper-opinion {
                         position: relative;
-                        display: inline-block;
+                        display: inline-flex;
                     }
 
                     #tipo {
@@ -613,7 +618,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
                     .custom-select-wrapper {
                         position: relative;
-                        display: inline-block;
+                        display: inline-flex;
                     }
 
                     #ordem{

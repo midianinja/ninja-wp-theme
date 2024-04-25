@@ -26,6 +26,9 @@ function blocks_init() {
 
 	$active_blocks = [
 		'sample-block' => null,
+		'authors-list' => [
+			'render_callback' => 'Ninja\\authors_list_block_callback',
+		],
 		'dynamic' => [
 			'render_callback' => 'Ninja\\dynamic_block_recent_posts',
 		],

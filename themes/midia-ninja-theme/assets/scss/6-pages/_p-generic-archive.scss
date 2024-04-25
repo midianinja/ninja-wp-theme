@@ -466,9 +466,8 @@
 						font-size: 32px;
 						font-style: normal;
 						font-weight: 800;
-						line-height: 120%;
-						letter-spacing: -0.64px;
-						text-transform: uppercase;
+						line-height: 1.2;
+						margin-bottom: 0;
 					}
 
 					a {
@@ -477,23 +476,16 @@
 
 					.latest-vertical-posts-block__heading{
 						margin-top: 20px;
-						margin-bottom: 30px;
+						margin-bottom: 25px;
+						
+						h2 {
+							text-transform: uppercase;
+						}
 					}
 
 					.latest-vertical-posts-block__footer{
-						padding-bottom: 30px;
-						margin-top: 55px;
+						padding-bottom: 15px;
 			
-						.latest-vertical-posts-block__arrows{
-							.slick-prev{
-								background-color: #848484;
-							}
-	
-							.slick-next {
-								background-color: #F5F5F5;
-							}
-						}
-
 						.latest-vertical-posts-block__dots{
 							.slick-dots{
 								li{
@@ -518,6 +510,8 @@
 									text-decoration: none !important;
 
 									.post {
+										margin-bottom: 15px;
+
 										&-title {
 											color: var(--Gray-1, #333);
 											font-family: var(--wp--preset--font-family--manrope);
@@ -534,19 +528,24 @@
 										}
 
 										&-meta {
+											margin-top: 3px;
+
 											&--date {
-												color: var(--Gray-1, #333);
+												color: var(--wp--preset--color--low-pure);
 												font-family: var(--wp--preset--font-family--manrope);
 												font-size: 10px;
-												font-style: normal;
 												font-weight: 400;
-												line-height: 21px;
+												line-height: 2.1;
 												letter-spacing: 1px;
 												text-transform: uppercase;
 											}
 
 											&--terms {
+												gap: 0;
+
 												.tax-category {
+													margin-top: 0;
+
 													li {
 														color: var(--Gray-1, #333) !important;
 														font-family: var(
@@ -559,7 +558,7 @@
 														letter-spacing: 1px;
 														text-transform: uppercase;
 														background-color: transparent !important;
-														margin-bottom: 11px;
+														margin-bottom: 0;
 													}
 												}
 											}

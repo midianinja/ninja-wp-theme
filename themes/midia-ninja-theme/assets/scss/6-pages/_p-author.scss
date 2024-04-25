@@ -9,31 +9,46 @@
 
 .author{
     .banner-principal{
-        width:870px;
-        height: 497px;
-        padding:0px;
-        background-image: url(variables.$p_theme_assets+"/images/banner-background.png");
-        @include mixins.mobile{
-            width: auto;
-            height: 497px;
-            margin-bottom: 24px;
-            margin-left: 12px;
-            margin-right: 12px;
+        a{
+            position: relative;
+            img{
+                width:870px;
+                height: 497px;
+                padding:0px;
+                border-radius: 8px 8px 8px 8px;
+                object-fit: cover;
+
+                
+                @include mixins.mobile{
+                    width: 99%;
+                    height: 497px;
+                    margin-bottom: 24px;
+                    display: flex;
+                    object-fit: cover;
+                    
+                }
+            }
+            
         }
+        
         .lado-esquerdo-banner{
             max-width: 377px;
             height: 497px;
-            border-radius: 8px 0px 0px 8px;
+            border-radius: 8px 8px 8px 8px;
             background: rgba(51, 51, 51, 0.70);
             backdrop-filter: blur(11px);
+            position: absolute;
+            top: 0;
             @include mixins.mobile{
-                position: relative;
+                position: absolute;
+                margin-right: 18px;
                 top: 225px;
                 height: 272px;
                 max-width: 431px;
                 display: flex;
                 align-items: center;
-                border-radius: 8px 8px 0px 8px;
+                border-radius: 8px 8px 8px 8px;
+            
             
             }
             & .container-info{
@@ -48,7 +63,7 @@
                 @include mixins.mobile{
                     width: 100%;
                     padding: 0;
-                    margin-left: 20px;
+                    padding: 0 12px;
                 }
                 .tag{
                     .entry-meta{
@@ -228,8 +243,8 @@
             }
             .post-card{
                 width: 334px;
-                margin-top:60px;
-                margin-bottom: 0px;
+                margin-top: 24px;
+                margin-bottom: 16px;
                 
                 @include mixins.mobile{
                     border: none;

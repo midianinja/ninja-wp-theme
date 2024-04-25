@@ -10,37 +10,43 @@ get_header();
 
 $coauthors = get_coauthors();
 
-$category = get_the_terms($post->ID, 'category');
-$cat_id = $category[0]->term_id;
+$post_id       = get_the_ID();
+$get_terms     = get_html_terms( $post_id, 'category', true, true, 1 );
+$has_thumbnail = ( has_post_thumbnail() ) ? true : false;
+$get_afluentes = get_the_terms( $post_id, 'marcador_afluente' );
 
-$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true ) ?: '#FFFFFF';
-$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true ) ?: '#333333';
+$container_classes[] = 'container';
+$container_classes[] = $has_thumbnail ? 'post--has-thumbnail' : '';
+$container_classes[] = $get_terms ? 'post--has-terms' : '';
+$container_classes[] = $get_afluentes ? 'post--has-afluentes' : '';
+
+$container_classes = array_filter( $container_classes );
 
 get_template_part( 'template-parts/header-especiais' );
 ?>
 
-<div class="container">
+<div class="<?php echo implode( ' ', $container_classes ); ?>">
     <main class="content">
         <?php while (have_posts()) : the_post(); ?>
             <article class="post">
                 <header class="post-header">
                     <div class="post-info">
                         <div>
-                            <div class="info">
-                                <span class="term-<?= $category[0]->slug; ?>">
-                                    <?php
-                                    $categories = get_the_category();
+                            <?php if ( $get_terms ) : ?>
+                                <div class="info">
+                                    <?php echo $get_terms; ?>
+                                </div>
+                            <?php endif; ?>
 
-                                    foreach ($categories as $category){
-                                    echo '<a style="color:' .  $cor_font . '; background-color:' .  $cor_fundo . ';" href="' . get_category_link($category->term_id) . '">' . $category->cat_name . '</a>';
+                            <?php if ( $has_thumbnail ) : ?>
+                                <div class="post-thumbnail">
+                                    <?php the_post_thumbnail();?>
 
-                                    }; ?>
-                                </span>
-                            </div>
-
-                            <?php the_post_thumbnail();?>
-                            <figcaption><?php the_post_thumbnail_caption();?></figcaption>
-                            
+                                    <?php if ( $caption = get_the_post_thumbnail_caption() ) : ?>
+                                        <figcaption><?php echo esc_attr( $caption ); ?></figcaption>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
 
                             <h2 class="title"><?php the_title(); ?></h2>
 
@@ -176,8 +182,6 @@ get_template_part( 'template-parts/header-especiais' );
                                         <?php //the_social_networks_menu() ?>
                                         <?php echo do_shortcode('[addtoany]'); ?>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>

@@ -1,55 +1,59 @@
 <?php
 
 $post_id = get_the_ID();
-$projects = get_the_terms($post_id, 'category');
-$cat = $projects[0]->term_id;
 
-$cor_font = get_term_meta ( $cat, 'ninja_font_term_color', true ) ?: '#FFFFFF';
-$cor_fundo = get_term_meta ( $cat, 'ninja_background_term_color', true ) ?: '#333333';
+$category = 'category';
+$primary_term_id = get_post_meta( $post_id, '_yoast_wpseo_primary_' . $category, true);
+$term = false;
 
-if ($projects && ! is_wp_error($projects)) {
-    $projects = wp_list_pluck($projects, 'term_id');
+if ( $primary_term_id ) {
+    $term = get_term( $primary_term_id, $category );
+} else {
+    $terms = get_the_terms( $post_id, $category );
+    $term = isset( $terms[0] ) ? $terms[0] : false;
 }
+
+$has_term = isset( $term->term_id ) ? true : false;
 
 $args = [
     'post_type'      => 'post',
     'posts_per_page' => 4,
     'post__not_in'   => [ $post_id ],
-    'order'          => 'DESC',
-    'cat'            => $cat
-    // 'tax_query'      => [
-    //     [
-    //         'taxonomy' => 'category',
-    //         'terms'    => $projects
-    //     ]
-    // ],
+    'order'          => 'DESC'
 ];
 
-$related_posts = new WP_Query($args);
+if ( $has_term ) {
+    $cor_font = get_term_meta ( $term->term_id, 'ninja_font_term_color', true ) ?: '#FFFFFF';
+    $cor_fundo = get_term_meta ( $term->term_id, 'ninja_background_term_color', true ) ?: '#333333';
 
-if ($related_posts->have_posts()) : ?>
+    $args['cat'] = $term->term_id;
+}
 
-    <h2><?php _e('Read too', 'ninja');?></h2>
+$related_posts = new WP_Query( $args );
+
+if ( $related_posts->have_posts() ) : ?>
+
+    <h2><?php _e( 'Read too', 'ninja' ); ?></h2>
 
     <div class="related">
-        <?php while($related_posts->have_posts()) :
+        <?php while( $related_posts->have_posts() ) :
             $related_posts->the_post();
 
             // Thumbnail
-            $thumbnail = (has_post_thumbnail()) ? get_the_post_thumbnail() : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">'; ?>
+            $thumbnail = ( has_post_thumbnail() ) ? get_the_post_thumbnail() : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">'; ?>
 
             <div class="related-post">
-                <a class="related-post-image" href="<?php the_permalink();?>"><?php echo $thumbnail;?></a>
+                <a class="related-post-image" href="<?php the_permalink(); ?>"><?php echo $thumbnail; ?></a>
 
                 <div class="related-post-content">
-                    <?php $term = get_the_category_by_ID($cat); ?>
-
-                    <span class="category term-<?= $term ?>" style="color: <?= $cor_font;?>; background-color: <?= $cor_fundo;?>;">
-                        <?= $term;  ?>
-                    </span>
+                    <?php if ( $has_term ) : ?>
+                        <span class="category term-<?= $term->name ?>" style="color: <?= $cor_font;?>; background-color: <?= $cor_fundo;?>;">
+                            <?= $term->name; ?>
+                        </span>
+                    <?php endif; ?>
 
                     <div class="info">
-                        <a href="<?php the_permalink();?>">
+                        <a href="<?php the_permalink(); ?>">
                             <h5><?php the_title(); ?></h5>
                         </a>
 

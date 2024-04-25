@@ -20,10 +20,14 @@ html {
 		}
 
 		#app {
-			padding-top: 100px;
+			padding-top: 170px;
+
+			@include tablet {
+				padding-top: 190px;
+			}
 
 			@include mobile {
-				padding-top: 125px;
+				padding-top: 160px;
 			}
 		}
 	}

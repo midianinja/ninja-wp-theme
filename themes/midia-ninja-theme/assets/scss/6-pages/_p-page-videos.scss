@@ -422,7 +422,8 @@
                 .yottie-widget-header-channel-title{
                     max-height: 60px;
                     color: #FFF;
-                    font-family: "MidiaNinja", sans-serif;
+                    font-feature-settings: 'calt' on;
+                    font-family: "MidiaNinja";
                     font-size: 48px;
                     font-style: normal;
                     font-weight: 400;

@@ -822,6 +822,12 @@
 							object-fit: cover;
 						}
 					}
+					.cat-links {
+						a {
+							background-color: var(--cat-background-color);
+							color: var(--cat-color);
+						}
+					}
 					.byline {
 						.author-prefix {
 							display: none;

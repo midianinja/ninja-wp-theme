@@ -303,6 +303,11 @@
                 }
             }
         }
+
+        .pagination {
+            margin-bottom: 60px;
+        }
+
         .header-and-footer-archive{
             width: 100%;
             @include mixins.mobile{

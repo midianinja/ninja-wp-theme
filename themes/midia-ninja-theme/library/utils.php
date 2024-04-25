@@ -666,6 +666,7 @@ add_action('pre_get_posts', 'hide_especial_parent');
 function change_archive_author( $query ) {
     if ( ! is_admin() && is_author() && $query->is_main_query() ) {
         $query->set( 'post_type', ['post', 'opiniao'] );
+        $query->set( 'posts_per_page', 12 );
     }
 }
 

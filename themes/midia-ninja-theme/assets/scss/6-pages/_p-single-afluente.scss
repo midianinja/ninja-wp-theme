@@ -19,6 +19,7 @@ body.single-afluente {
                         left: initial;
                         transform: initial;
                         object-fit: inherit;
+                        border-radius: 9px;
 
                         @include mixins.mobile {
                             width: auto;
@@ -235,17 +236,40 @@ footer.main-footer{
 body{
     &.afluente-xepa-ativismo{    
 
-      .qs{
-        color: var(--Gray-1, #333);
-        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        font-feature-settings: var(--f-ninja-config);
-        font-family: var(--f-ninja);
-        font-size: 54px !important;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 100%; 
-        letter-spacing: -2.7px;
-      }
+        .latest-grid-posts-block{
+
+                .container{
+                    .latest-grid-posts-block__content{
+                        .latest-grid-posts-block__posts{
+                            .post{
+
+                                @include mixins.small{
+                                    max-width: 370px;
+                                    width: 100%;
+                                }
+                                
+                                @include mixins.mobile{
+                                    max-width: 370px;
+                                    width: 100%;
+                                }
+
+                                &-thumbnail{
+
+                                    &--image{
+
+                                        img{
+                                            width: 100%;
+                                            position: inherit;
+                                        }
+                                    }
+                                }
+                              
+                            }
+                        }
+                    }
+                }       
+        
+        }
 
         nav.wp-block-navigation {
 

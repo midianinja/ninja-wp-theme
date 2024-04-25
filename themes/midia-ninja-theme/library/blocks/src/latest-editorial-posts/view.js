@@ -64,12 +64,12 @@ document.addEventListener("DOMContentLoaded", function () {
 				: "https://via.placeholder.com/400";
 
 			let termsHtml = "";
-			if (post.rendered_categories[0] !== undefined) {
+			if (post.main_category) {
 				termsHtml = `
                 <div class="post-thumbnail">
                     <span class="post--terms">
                         <ul class="list-terms tax-category">
-                            <li class="term-${post.rendered_categories[0].slug}" style="background-color:${post.rendered_categories[0].background_color}; color:${post.rendered_categories[0].color}">${post.rendered_categories[0].name}</li>
+                            <li class="category-${post.main_category.slug}">${post.main_category.name}</li>
                         </ul>
                     </span>
                     <img src="${imageUrl}" alt="${post.title.rendered}">
@@ -89,9 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="post-content">
                         <h2 class="post-title">${post.title.rendered}</h2>
                         <div class="post-meta">
-                            <span class="post-meta--date">${new Date(
-															post.date,
-														).toLocaleDateString()}</span>
+                            <span class="post-meta--date">${new Date(post.date).toLocaleDateString()}</span>
                         </div>
                     </div>
                 </div>

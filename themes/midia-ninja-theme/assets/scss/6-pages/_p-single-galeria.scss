@@ -5,6 +5,7 @@
 
 .single-galeria {
 	#app {
+		padding-top: 140px;
 		.content {
 			.post {
 				.post-header {
@@ -32,6 +33,7 @@
 						img {
 							max-width: 1170px;
 							width: 100%;
+							object-fit: cover;
 						}
 					}
 
@@ -186,8 +188,9 @@
 						}
 
 						img {
-							max-width: 100%;
+							width: 100%;
 							height: auto;
+							aspect-ratio: 16 / 9;	
 						}
 
 						.info {

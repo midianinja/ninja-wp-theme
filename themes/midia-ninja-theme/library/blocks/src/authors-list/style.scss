@@ -1,0 +1,123 @@
+@import "../../shared/scss/mixins";
+
+.authors-list-block {
+
+	a {
+		text-decoration: none;
+	}
+
+	&__featured-authors {
+		margin-block: 30px;
+	}
+
+	&__featured-author {
+		display: grid;
+		gap: 30px;
+		grid-template-columns: repeat(4, 1fr);
+		margin-top: 30px;
+		padding-top: 30px;
+
+		& + & {
+			border-top: 1px solid var(--wp--preset--color--primary-light);
+		}
+
+		@include break-medium {
+			grid-gap: 20px;
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__featured-avatar {
+		text-align: center;
+
+		img {
+			border-radius: 50%;
+			height: 170px;
+			object-fit: cover;
+			width: 170px;
+		}
+
+		p {
+			font-size: 1.25rem;
+			font-weight: bold;
+			text-align: center;
+		}
+	}
+
+	&__featured-posts {
+		display: contents;
+	}
+
+	&__featured-post {
+
+		h3 {
+			font-size: 1.25rem;
+			margin: 0.5rem 0 1rem;
+			text-wrap: balance;
+		}
+
+		time {
+			color: var(--wp--preset--color--primary-light);
+			font-size: 0.8rem;
+		}
+
+		p {
+			text-wrap: pretty;
+		}
+
+		@include break-medium {
+
+			& + & {
+				display: none;
+			}
+		}
+	}
+
+	&__featured-link {
+		font-size: 1.25rem;
+		font-weight: bold;
+		grid-column: 1 / span 4;
+		text-align: end;
+
+		@include break-medium {
+			grid-column: 1;
+		}
+
+		a {
+			color: inherit;
+		}
+	}
+
+	&__authors {
+		display: grid;
+		grid-gap: 30px;
+		grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+		@include break-medium {
+			grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+			grid-gap: 10px;
+		}
+	}
+
+	&__author {
+		text-align: center;
+
+		img {
+			border-radius: 50%;
+			height: 170px;
+			object-fit: cover;
+			width: 170px;
+
+			@include break-medium {
+				height: 150px;
+				width: 150px;
+			}
+		}
+
+		p {
+			font-size: 1.25rem;
+			font-weight: bold;
+			text-align: center;
+		}
+	}
+}

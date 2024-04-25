@@ -658,6 +658,19 @@ function hide_especial_parent( $query ) {
 }
 add_action('pre_get_posts', 'hide_especial_parent');
 
+/**
+ * Modifies the main query on author archive pages to only include posts of the 'opiniao' post type.
+ *
+ * @param WP_Query $query The main query object.
+ */
+function change_archive_author( $query ) {
+    if ( ! is_admin() && is_author() && $query->is_main_query() ) {
+        $query->set( 'post_type', 'opiniao' );
+    }
+}
+
+add_action( 'pre_get_posts', 'change_archive_author' );
+
 function remove_secondary_category_classes( $classes ) {
 	$primary_cat_id = get_post_meta( get_the_ID(), '_yoast_wpseo_primary_category', true );
 

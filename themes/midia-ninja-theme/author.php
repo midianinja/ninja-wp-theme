@@ -13,18 +13,28 @@ $coauthors = get_coauthors();
         <div class="row">
             
             <div class="banner-principal col-md-9"> 
+            <?php if ( has_post_thumbnail() ) : ?>
+                <a href="<?php the_permalink(); ?>">
+                    <?php the_post_thumbnail( 'large', array( 'class' => 'featured-image' ) ); ?>
+                </a>
+                <?php else : ?>
+                <a href="<?php the_permalink(); ?>">
+                    <img src="<?php echo get_template_directory_uri() . "/images/banner-background.png"; ?>" class="placeholder-image" alt="Placeholder Image">
+                </a>
+            
+            <?php endif; ?>
                 <div class="lado-esquerdo-banner">
                     <div class="container-info">
-                    <div class="tag">
-                    <div class="entry-meta"><?php echo get_html_terms( get_the_ID(), 'category', true, true, 1 ); ?></div>
-                </div>
-                <div class="title">
-                    <a href="<?php the_permalink(); ?>"><h5 class="entry-title"><?php the_title(); ?></h5></a>
+                        <div class="tag">
+                            <div class="entry-meta"><?php echo get_html_terms( get_the_ID(), 'category', true, true, 1 ); ?></div>
+                        </div>
+                        <div class="title">
+                            <a href="<?php the_permalink(); ?>"><h5 class="entry-title"><?php the_title(); ?></h5></a>
 
-                </div>
-                <div class="resumo">
-                    <p><?php echo custom_excerpt( ( str_word_count( get_the_title() ) <= 10 ) ? 0 : 100 ); ?></p>
-                </div>
+                        </div>
+                        <div class="resumo">
+                            <p><?php echo custom_excerpt( ( str_word_count( get_the_title() ) <= 10 ) ? 0 : 100 ); ?></p>
+                        </div>
                     </div>
                 </div>
                 <div class="divladodireiro-banner"></div>

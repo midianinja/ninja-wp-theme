@@ -134,6 +134,8 @@
 							flex-direction: column;
 							margin-bottom: 33px;
 							a{
+								text-decoration: none;
+
 								& .post{
 									display: flex;
 									flex-direction: row;
@@ -148,8 +150,6 @@
 											font-weight: 500;
 											line-height: 140%; /* 22.4px */
 											margin-top: 0px;
-											border-bottom:  1px solid #FFF !important;
-											width: 134px;
 											padding: 6px 0px;
 										}
 										.post-meta{
@@ -162,11 +162,10 @@
 									}
 									.post-thumbnail{
 										 .post-thumbnail--image{
-											width: 135px;
-											height: 97px;
-											border-radius: 8px;
-
-
+											border-radius: 50%;
+											object-fit: cover;
+											height: 80px;
+											width: 80px;
 										}
 
 									}

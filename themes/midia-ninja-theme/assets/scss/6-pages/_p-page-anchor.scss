@@ -82,6 +82,9 @@
                                         letter-spacing: -0.64px;
                                         margin-top: 16px;
                                         margin-bottom: 16px;
+                                        @media(max-width: 992px){
+                                            margin-top: 8px;
+                                        }
                                     }
 
                                     h3{
@@ -553,10 +556,11 @@
                 }
             }
             p{
-                font-family: "Manrope", sans-serif;
+                font-feature-settings: 'calt' on;
+                font-family: "MidiaNinja";
                 color: #FFF;
                 font-size: 32px;
-                font-weight: 800;
+                font-weight: 400;
                 margin-bottom: 0;
                 margin-top: 0;
                 line-height: 100%;
@@ -576,7 +580,8 @@
                 }
                 .finances-title-mobile{
                     color: #fff;
-                    font-family: "MidiaNinja", sans-serif;
+                    font-feature-settings: 'calt' on;
+                    font-family: "MidiaNinja";
                     font-weight: 400;
                     text-align: center;
                     font-size: 32px;

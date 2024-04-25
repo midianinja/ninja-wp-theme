@@ -36,6 +36,8 @@ get_header();
                 echo get_layout_header( 'tecnologia' );
             } elseif ( $category === 'economia' ){
                 echo get_layout_header( 'economia' );
+            } elseif ( $category == 'saude'){
+                echo get_layout_header( 'saude' );
             }
         }
     ?>

@@ -3,7 +3,7 @@ get_header();
 
 global $wp_query;
 $total_results = $wp_query->found_posts;
-$singular = $wp_query->found_posts > 1 ? 'results' : 'result';
+$singular = $wp_query->found_posts > 1 ? __('results', 'ninja') : __('result', 'ninja');
 
 ?>
 

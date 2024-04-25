@@ -103,7 +103,7 @@ function get_html_terms(int $post_id, string $tax, bool $use_link = false, bool 
             $font_term_color = '#FFFFFF';
         }
 
-        $html .= '<li class="term-' . sanitize_title($term->slug) . '" style="--background-color:'. $background_term_color. '; --color:'. $font_term_color. '">';
+        $html .= '<li class="term-' . sanitize_title($term->slug) . '" style="--cat-background-color:'. $background_term_color. '; --cat-color:'. $font_term_color. '">';
 
         if ($use_link) {
             $html .= '<a href="' . esc_url(get_term_link($term->term_id, $tax)) . '">';

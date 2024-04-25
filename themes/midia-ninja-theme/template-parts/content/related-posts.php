@@ -1,39 +1,46 @@
 <?php
 
 $post_id = get_the_ID();
-$main_category = get_primary_term( $post_id, 'category' );
+
+$category = 'category';
+$term = get_primary_term( $post_id, $category );
 
 $args = [
     'post_type'      => 'post',
     'posts_per_page' => 4,
     'post__not_in'   => [ $post_id ],
-    'order'          => 'DESC',
-    'cat'            => $main_category->term_id
+    'order'          => 'DESC'
 ];
 
-$related_posts = new WP_Query($args);
+if ( $term ) {
+    $args['cat'] = $term->term_id;
+}
 
-if ($related_posts->have_posts()) : ?>
+$related_posts = new WP_Query( $args );
 
-    <h2><?php _e('Read too', 'ninja');?></h2>
+if ( $related_posts->have_posts() ) : ?>
+
+    <h2><?php _e( 'Read too', 'ninja' ); ?></h2>
 
     <div class="related">
-        <?php while($related_posts->have_posts()) :
+        <?php while( $related_posts->have_posts() ) :
             $related_posts->the_post();
 
             // Thumbnail
-            $thumbnail = (has_post_thumbnail()) ? get_the_post_thumbnail() : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">'; ?>
+            $thumbnail = ( has_post_thumbnail() ) ? get_the_post_thumbnail() : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">'; ?>
 
             <div class="related-post">
-                <a class="related-post-image" href="<?php the_permalink();?>"><?php echo $thumbnail;?></a>
+                <a class="related-post-image" href="<?php the_permalink(); ?>"><?php echo $thumbnail; ?></a>
 
                 <div class="related-post-content">
-                    <span class="category category-<?= $main_category->slug ?>">
-                        <?= $main_category->name  ?>
-                    </span>
+                    <?php if ( $term ) : ?>
+                        <span class="category category-<?= $term->slug ?>">
+                            <?= $term->name; ?>
+                        </span>
+                    <?php endif; ?>
 
                     <div class="info">
-                        <a href="<?php the_permalink();?>">
+                        <a href="<?php the_permalink(); ?>">
                             <h5><?php the_title(); ?></h5>
                         </a>
 

@@ -382,7 +382,7 @@
 			ul.list-terms
 			li {
 			background-color: transparent !important;
-			color: var(--background-color) !important;
+			color: var(--cat-background-color) !important;
 		}
 
 		@include mobile {
@@ -820,6 +820,12 @@
 							width: 37px;
 							height: 37px;
 							object-fit: cover;
+						}
+					}
+					.cat-links {
+						a {
+							background-color: var(--cat-background-color);
+							color: var(--cat-color);
 						}
 					}
 					.byline {

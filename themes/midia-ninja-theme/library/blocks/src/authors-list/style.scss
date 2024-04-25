@@ -10,11 +10,11 @@
 		display: grid;
 		gap: 30px;
 		grid-template-columns: repeat(4, 1fr);
-		margin-top: 30px;
-		padding-top: 30px;
 
-		& + & {
+		&:nth-child(n + 2) {
 			border-top: 1px solid var(--wp--preset--color--primary-light);
+			margin-top: 30px;
+			padding-top: 30px;
 		}
 
 		@include break-medium {

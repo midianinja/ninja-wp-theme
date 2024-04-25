@@ -579,9 +579,19 @@ function order_search_filters($query) {
         } else{
             $query->set('post_type', ['post', 'opiniao']);
         }
+
+
     }
 }
 add_action('pre_get_posts', 'order_search_filters');
+
+function change_results_quantity( $query ){
+    if ( $query->is_main_query( ) && $query->is_search() ) {
+        $query->set( 'posts_per_page', 12 );
+    }
+}
+
+add_action('pre_get_posts', 'change_results_quantity');
 
 function split_ninja_flickr_title( $title ) {
 	$separators = [ ' • ', ' · ', ' | ' ];

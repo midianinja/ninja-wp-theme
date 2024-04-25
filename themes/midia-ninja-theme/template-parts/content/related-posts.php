@@ -1,28 +1,14 @@
 <?php
 
 $post_id = get_the_ID();
-$projects = get_the_terms($post_id, 'category');
-$cat = $projects[0]->term_id;
-
-$cor_font = get_term_meta ( $cat, 'ninja_font_term_color', true ) ?: '#FFFFFF';
-$cor_fundo = get_term_meta ( $cat, 'ninja_background_term_color', true ) ?: '#333333';
-
-if ($projects && ! is_wp_error($projects)) {
-    $projects = wp_list_pluck($projects, 'term_id');
-}
+$main_category = get_primary_term( $post_id, 'category' );
 
 $args = [
     'post_type'      => 'post',
     'posts_per_page' => 4,
     'post__not_in'   => [ $post_id ],
     'order'          => 'DESC',
-    'cat'            => $cat
-    // 'tax_query'      => [
-    //     [
-    //         'taxonomy' => 'category',
-    //         'terms'    => $projects
-    //     ]
-    // ],
+    'cat'            => $main_category->term_id
 ];
 
 $related_posts = new WP_Query($args);
@@ -42,10 +28,8 @@ if ($related_posts->have_posts()) : ?>
                 <a class="related-post-image" href="<?php the_permalink();?>"><?php echo $thumbnail;?></a>
 
                 <div class="related-post-content">
-                    <?php $term = get_the_category_by_ID($cat); ?>
-
-                    <span class="category term-<?= $term ?>" style="color: <?= $cor_font;?>; background-color: <?= $cor_fundo;?>;">
-                        <?= $term;  ?>
+                    <span class="category category-<?= $main_category->slug ?>">
+                        <?= $main_category->name  ?>
                     </span>
 
                     <div class="info">

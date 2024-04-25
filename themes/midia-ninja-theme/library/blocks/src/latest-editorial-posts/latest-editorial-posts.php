@@ -44,18 +44,7 @@ function latest_editorial_posts_callback( $attributes ) {
                         echo '<div class="latest-editorial-posts-block__filter list-terms">';
                             foreach ( $terms_to_filter as $term ) :
                                 if ( isset( $term['name'] ) && isset( $term['id'] ) ) {
-                                    $background_term_color = get_term_meta( $term['id'], 'ninja_background_term_color', true );
-                                    $font_term_color = get_term_meta( $term['id'], 'ninja_font_term_color', true );
-
-                                    if ( ! $background_term_color ) {
-                                        $background_term_color = '#333333';
-                                    }
-
-                                    if ( ! $font_term_color ) {
-                                        $font_term_color = '#FFFFFF';
-                                    }
-
-                                    echo '<span class="term term-' . sanitize_title( $term['name'] ) . '" data-term-id="' . $term['id'] . '" style="background-color:'. $background_term_color. '; color:'. $font_term_color. '">'. $term['name'] . '</span>';
+                                    echo '<span class="term category-' . sanitize_title( $term['name'] ) . '" data-term-id="' . $term['id'] . '">'. $term['name'] . '</span>';
                                 }
                             endforeach;
                             echo '<span class="term clear-filter">' . __( 'Clear filters', 'ninja' ) . '</span>';

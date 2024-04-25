@@ -23,7 +23,7 @@ $coauthors = get_coauthors();
 
                 </div>
                 <div class="resumo">
-                    <p><?php echo custom_excerpt( ( str_word_count( get_the_title() ) <= 10 ) ? 15 : 20 ); ?></p>
+                    <p><?php echo custom_excerpt( ( str_word_count( get_the_title() ) <= 10 ) ? 0 : 100 ); ?></p>
                 </div>
                     </div>
                 </div>

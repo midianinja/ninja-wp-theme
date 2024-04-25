@@ -9,6 +9,38 @@ add_action('init', function () {
 }, 150);
 
 /**
+ * Get the primary term of a given taxonomy
+ * @param int $post_id Post ID
+ * @param string $taxonomy Taxonomy slug
+ * @param bool $force_primary If should avoid returning fallback if the primary term is not set
+ * @return \WP_Term|false The primary term, or `false` on failure
+ */
+function get_primary_term( $post_id, $taxonomy, $force_primary = false ) {
+	$primary_term_id = get_post_meta( $post_id, '_yoast_wpseo_primary_' . $taxonomy, true );
+
+	// Returns the primary term, if it exists
+	if ( ! empty( $primary_term_id ) ) {
+		$primary_term = get_term( $primary_term_id, $taxonomy );
+
+		if ( ! empty( $primary_term ) ) {
+			return $primary_term;
+		}
+	}
+
+	// Returns an assorted term, if primary term does not exists
+	if ( ! $force_primary ) {
+		$terms = get_the_terms( $post_id, $taxonomy );
+
+		if ( ! empty( $terms ) ) {
+			return $terms[0];
+		}
+	}
+
+	// On failure, returns false
+	return false;
+}
+
+/**
  *
  * Create list of the terms by taxonomy
  *
@@ -71,7 +103,7 @@ function get_html_terms(int $post_id, string $tax, bool $use_link = false, bool 
             $font_term_color = '#FFFFFF';
         }
 
-        $html .= '<li class="term-' . sanitize_title($term->slug) . '" style="--background-color:'. $background_term_color. '; --color:'. $font_term_color. '">';
+        $html .= '<li class="term-' . sanitize_title($term->slug) . '" style="--cat-background-color:'. $background_term_color. '; --cat-color:'. $font_term_color. '">';
 
         if ($use_link) {
             $html .= '<a href="' . esc_url(get_term_link($term->term_id, $tax)) . '">';
@@ -673,23 +705,19 @@ function change_archive_author( $query ) {
 add_action( 'pre_get_posts', 'change_archive_author' );
 
 function remove_secondary_category_classes( $classes ) {
-	$primary_cat_id = get_post_meta( get_the_ID(), '_yoast_wpseo_primary_category', true );
+	$primary_cat = get_primary_term( get_the_ID(), 'category', true );
 
-	if ( ! empty( $primary_cat_id ) ) {
-		$primary_cat = get_term( $primary_cat_id, 'category' );
+	if ( ! empty( $primary_cat ) ) {
+		$cat_class = 'category-' . $primary_cat->slug;
 
-		if ( ! empty( $primary_cat ) ) {
-			$cat_class = 'category-' . $primary_cat->slug;
-
-			$filtered_classes = [];
-			foreach( $classes as $class ) {
-				if ( ! str_starts_with( $class, 'category-' ) || $class === $cat_class ) {
-					$filtered_classes[] = $class;
-				}
+		$filtered_classes = [];
+		foreach( $classes as $class ) {
+			if ( ! str_starts_with( $class, 'category-' ) || $class === $cat_class ) {
+				$filtered_classes[] = $class;
 			}
-
-			return $filtered_classes;
 		}
+
+		return $filtered_classes;
 	}
 
 	return $classes;

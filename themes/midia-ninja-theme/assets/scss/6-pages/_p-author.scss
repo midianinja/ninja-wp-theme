@@ -234,12 +234,13 @@
             grid-template-columns: 1fr 1fr 1fr;
             margin-bottom: 86px;
             width: 100%;
-            justify-items: center;
             @media (max-width: 768px) {
                 grid-template-columns: 1fr 1fr;
             }
             @media (max-width: 480px) {
                 grid-template-columns: 1fr;
+                justify-items: center;
+
             }
             .post-card{
                 width: 334px;
@@ -352,7 +353,13 @@
                         }
 
                     }
+                    .opinion-posts-block__heading{
+                        a{
+                            text-align: center;
+                        }
+                    }
                 }
+
             }
             .model-columnists {
                 background-color: #fff;

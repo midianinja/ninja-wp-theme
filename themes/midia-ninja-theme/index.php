@@ -1,10 +1,7 @@
 <?php
 get_header();
-$category = get_the_terms($post->ID, 'category');
-
-$cat_id = $category[0]->term_id;
-$cor_font = get_term_meta ( $cat_id, 'ninja_font_term_color', true ) ?: '#FFFFFF';
-$cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true ) ?: '#333333';
+$categories = get_the_terms( $post->ID, 'category' );
+$main_category = get_primary_term( $post->ID, 'category' );
 ?>
 
 <div class="index-wrapper">
@@ -19,16 +16,19 @@ $cor_fundo = get_term_meta ( $cat_id, 'ninja_background_term_color', true ) ?: '
                 <div class="infos">
                     <?php get_template_part( 'template-parts/filter', 'posts', ['taxonomy' => 'category'] ); ?>
                     <div class="info">
-                                <span class="term-<?= $category[0]->slug; ?>">
-                                    <?php
-                                    $categories = get_the_category();
-
-                                    foreach ($categories as $category){
-                                    echo '<a style="color:' .  $cor_font . '; background-color:' .  $cor_fundo . ';" href="' . get_category_link($category->term_id) . '">' . $category->cat_name . '</a>';
-
-                                    }; ?>
-                                </span>
-                            </div>
+						<?php if ( $main_category ): ?>
+							<span class="category-<?= $main_category->slug ?>">
+								<a href="<?= get_category_link( $main_category->term_id ) ?>"><?= $main_category->name ?></a>
+							</span>
+						<?php endif; ?>
+						<?php foreach ( $categories as $category ): ?>
+							<?php if ( $category->term_id !== $main_category->term_id ): ?>
+								<span class="category-<?= $category->slug ?>">
+									<a href="<?= get_category_link( $category->term_id ) ?>"><?= $category->name ?></a>
+								</span>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</div>
                 </div><!-- .infos -->
 
                 <main class="content col-md-9">

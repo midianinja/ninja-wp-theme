@@ -86,6 +86,14 @@
 						}
 					}
 
+					.wp-block-gallery.alignfull{
+						figure{
+							img{
+								border-radius: 0;
+							}
+						}
+					}
+
 					.wp-block-gallery.has-nested-images figure.wp-block-image:not(#individual-image) {
 						margin-bottom: 0;
 					}

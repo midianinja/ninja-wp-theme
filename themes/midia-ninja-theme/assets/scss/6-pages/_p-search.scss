@@ -304,11 +304,12 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
                 .post-card-opiniao{
                     flex-direction: row !important;
+                    margin-bottom: 1rem !important;
+                    
 
                     .post-opiniao{
                         max-width: 100px;
                         width: 100%;
-                        margin-bottom: 2rem;
 
                         img{
                             width: 70px;

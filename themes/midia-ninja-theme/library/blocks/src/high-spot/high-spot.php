@@ -32,7 +32,7 @@ function high_spot_callback( $attributes ) {
             } else {
                 $get_terms = get_the_terms( $post_id, 'category' );
                 if ( $get_terms ) {
-                    $tag = $get_term[0]->name;
+                    $tag = ( ! empty( $get_term[0] ) && ! empty( $get_term[0]->name ) ) ? $get_term[0]->name : '';
                 }
             }
         } else {

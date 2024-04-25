@@ -303,8 +303,8 @@
 		width: 220px;
 
 		.slick-arrow {
-			background-color: #848484;
-			background-image: url("./images/slider-arrow.svg");
+			background-color: #CCCCCC;
+			background-image: url("./images/slider-arrow-dark.svg");
 			background-position: center;
 			background-repeat: no-repeat;
 			border-radius: 30px;
@@ -317,15 +317,27 @@
 
 			&.slick-next {
 				transform: rotate(180deg);
+
+				&:hover {
+					background-color: #111111;
+					background-image: url("./images/slider-arrow.svg");
+				}
+			}
+
+			&.slick-prev {
+				&:hover {
+					background-color: #111111;
+					background-image: url("./images/slider-arrow.svg");
+				}
 			}
 
 			&.slick-disabled {
-				background-color: #FFFFFF;
+				background-color: #DDDDDD;
 				pointer-events: none;
 			}
 
 			&:hover {
-				background-color: #84848470;
+				background-color: #111111;
 			}
 		}
 	}

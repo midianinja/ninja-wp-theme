@@ -20,8 +20,15 @@ html {
 		}
 
 		#app {
-			margin-top: 141px;
-			padding-top: 32px;
+			padding-top: 170px;
+
+			@include tablet {
+				padding-top: 190px;
+			}
+
+			@include mobile {
+				padding-top: 160px;
+			}
 		}
 	}
 }

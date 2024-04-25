@@ -634,11 +634,25 @@
 		}
 	}
 
+	&-especial{
+		
+		#app{
+			.container{
+				.post-content{
+					.wp-block-heading{
+						font-feature-settings: var(--f-ninja-config);
+						font-family: var(--f-ninja);
+					}
+				}
+			}
+		}
+	}
+
 	.menu-especial {
 		display: flex;
 		margin: auto;
 		margin-bottom: 33px;
-		max-width: 1170px;
+		max-width: 1140px;
 		width: 100%;
 
 		&__links {

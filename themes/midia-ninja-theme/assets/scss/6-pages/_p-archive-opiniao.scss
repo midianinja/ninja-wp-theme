@@ -6,6 +6,10 @@
 	#app {
 		background-color: #f5f5f5;
 
+		a {
+			text-decoration: none;
+		}
+
 		.container {
 			padding: 15px;
 
@@ -238,7 +242,7 @@
 						}
 
 						@media (min-width: 1200px) {
-							top: -36rem;
+							top: -44rem;
 						}
 
 						.slick-slide .slide .post {

@@ -1,7 +1,6 @@
 @use "./../1-settings/s-variables" as variables;
 @use "./../2-atoms/a-mixins" as mixins;
 .container{
-    margin-top:30px;
     @include mixins.mobile{
         margin-top: 0px;
     }

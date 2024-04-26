@@ -694,7 +694,7 @@ function change_archive_author( $query ) {
 add_action( 'pre_get_posts', 'change_archive_author' );
 
 function remove_secondary_category_classes( $classes ) {
-	$primary_cat = get_primary_term( get_the_ID(), 'category', true );
+	$primary_cat = get_primary_term( get_the_ID(), 'category' );
 
 	if ( ! empty( $primary_cat ) ) {
 		$cat_class = 'category-' . $primary_cat->slug;

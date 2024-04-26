@@ -28,7 +28,7 @@ function high_spot_callback( $attributes ) {
 
             if ( $primary_category ) {
                 $get_term = get_term( $primary_category, 'category' );
-                $tag = $get_term->name;
+                $tag = ! empty( $get_term->name ) ? $get_term->name : '';
             } else {
                 $get_terms = get_the_terms( $post_id, 'category' );
                 if ( $get_terms ) {

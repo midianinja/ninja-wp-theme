@@ -398,9 +398,11 @@ header {
 			.social-menu {
 				flex-basis: 30%;
 			}
-			
+
 			.hamburger-wrapper--mobile {
-				flex-basis: 30%;
+				@include mobile {
+					flex-basis: 30%;
+				}
 
 				.hamburger-lines--mobile {
 					background-image: url($p_theme_assets + "/images/hamburguer-menu.svg");

@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ninja/authors-list",
+	"version": "0.1.10",
+	"title": "Lista de autores",
+	"category": "theme",
+	"icon": "groups",
+	"description": "Lista de autores, com autores destacados e paginação.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"featuredAuthorsToShow": {
+			"type": "number",
+			"default": 5
+		},
+		"subheading": {
+			"type": "string"
+		}
+	},
+	"textdomain": "ninja",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

@@ -13,7 +13,7 @@ wp_reset_query();
 
 <div class="authors-list-block__featured-author">
 	<div class="authors-list-block__featured-avatar">
-		<a href="/author/<?= $author->user_nicename ?>">
+		<a href="<?= get_author_posts_url( $author->ID, $author->user_nicename ) ?>">
 			<?= coauthors_get_avatar( $author, 170 ) ?>
 			<p><?= $author->display_name ?></p>
 		</a>
@@ -30,6 +30,6 @@ wp_reset_query();
 	<?php endforeach; ?>
 	</div>
 	<div class="authors-list-block__featured-link">
-		<a href="/author/<?= $author->user_nicename ?>"><?= __( 'See all columns', 'ninja' ) ?></a>
+		<a href="<?= get_author_posts_url( $author->ID, $author->user_nicename ) ?>"><?= __( 'See all columns', 'ninja' ) ?></a>
 	</div>
 </div>

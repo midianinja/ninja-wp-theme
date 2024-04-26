@@ -1,8 +1,7 @@
 <?php
 $coauthor = $args['author'];
 
-$link = get_author_posts_url( $args['author']->ID );
-$link = '/author/' . $coauthor->user_nicename;
+$link = get_author_posts_url( $args['author']->ID, $args['author']->user_nicename );
 
 $bio = '';
 

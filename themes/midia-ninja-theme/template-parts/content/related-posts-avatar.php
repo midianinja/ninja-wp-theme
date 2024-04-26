@@ -15,7 +15,7 @@ if ( ! empty( $authors ) ): ?>
     <div class="related">
         <?php foreach( $authors as $author ) :
 			$name = $author->display_name;
-			$permalink = '/author/' . $author->user_nicename . '/';
+			$permalink = get_author_posts_url( $author->ID, $author->user_nicename );
 			$thumbnail = coauthors_get_avatar( $author, 170 );
 
 			if ( ! empty( $name ) ): ?>

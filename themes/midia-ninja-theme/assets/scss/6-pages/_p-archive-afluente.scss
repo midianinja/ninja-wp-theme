@@ -16,6 +16,7 @@ main.content.col-md-12 {
 
 	.header-and-footer-archive {
 		margin: 40px 0px;
+		margin-top: 0;
 		.wp-block-cover{
 			height: 506px !important;
 			padding: 0px;
@@ -256,9 +257,6 @@ main.content.col-md-12 {
                             font-weight: 800;
                             line-height: 120%; /* 28.8px */
                             letter-spacing: -0.72px;
-                        }
-                        & .entry-meta{
-
                         }
                         & .entry-date{
                             display: none;

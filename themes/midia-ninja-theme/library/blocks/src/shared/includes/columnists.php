@@ -14,7 +14,8 @@ function columnists_get_contents( $block_id ) {
 
     $args = [
         'post_type'      => 'guest-author',
-        'posts_per_page' => 8,
+        'posts_per_page' => 999,
+        'orderby'        => 'rand',
         'meta_query'     => [
             [
                 'key'     => 'colunista',
@@ -26,10 +27,22 @@ function columnists_get_contents( $block_id ) {
     ];
 
     $authors = get_posts( $args );
+    $limit = 10;
 
-    if ( ! empty( $authors ) ) {
-        set_transient( $cache_key, $authors, 3600 );
+    if ( $authors ) {
+        foreach ( $authors as $author_id ) {
+            if ( count_user_posts( $author_id, 'post' ) > 0 ) {
+                $data[] = $author_id;
+                if ( count( $data ) >= $limit ) {
+                    break;
+                }
+            }
+        }
+    
+        if ( ! empty( $data ) ) {
+            set_transient( $cache_key, $data, 3600 );
+        }
     }
 
-    return $authors;
+    return $data;
 }

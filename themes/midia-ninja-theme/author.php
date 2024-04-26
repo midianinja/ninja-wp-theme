@@ -3,7 +3,6 @@ get_header();
 gt_set_post_view();
 get_template_part( 'template-parts/header-especiais' );
 
-$category = get_the_terms($post->ID, 'category');
 $coauthors = get_coauthors();
 
 ?>

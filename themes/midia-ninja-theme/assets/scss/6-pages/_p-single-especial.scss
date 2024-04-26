@@ -35,10 +35,11 @@
 
                                 max-width: 200px;
                                 width: 100%;
-                                gap: 0;
+                                gap: 8px;
                                
                                 @media(max-width: 992px){
                                     display: flex;
+                                    gap: 0;
                                 }
                                 
                                 .wp-block-column{

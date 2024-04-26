@@ -12,6 +12,7 @@
 
 		.container {
 			padding: 15px;
+			position: relative;
 
 			@media (min-width: 992px) {
 				padding: 0;
@@ -227,7 +228,6 @@
 			}
 
 			.header-and-footer-archive.position-footer {
-				position: relative;
 
 				.latest-vertical-posts-block {
 					margin: 0;
@@ -238,11 +238,10 @@
 							max-width: 30%;
 							position: absolute;
 							right: 0;
-							top: -39.5rem;
 						}
 
 						@media (min-width: 1200px) {
-							top: -44rem;
+							top: 500px;
 						}
 
 						.slick-slide .slide .post {

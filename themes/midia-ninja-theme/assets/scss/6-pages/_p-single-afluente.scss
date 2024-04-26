@@ -441,4 +441,39 @@ body{
             }
         }
     }
+
+    &.afluente-design-ativista{
+        .latest-grid-posts-block {
+
+            .latest-grid-posts-block__posts{
+                a{
+                    display: flex;
+                    gap: 30px;
+
+                    .post-thumbnail{
+                        .post-thumbnail--image{
+                            width: 70px;
+                            height: 70px;
+
+                            img{
+                                border-radius: 70px;
+                            }
+                        }
+                    }
+                }
+
+                .post-content{
+                    >h2{
+                        color: var(--Primary-dark, var(--DARK, #111));
+                        font-family: var(--wp--preset--font-family--manrope);
+                        font-size: 20px !important;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 130%; 
+                    }
+                }
+            }
+ 
+        }
+    }
 }

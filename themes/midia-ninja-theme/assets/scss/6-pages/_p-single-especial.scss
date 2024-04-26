@@ -2,15 +2,89 @@
 @use "./../2-atoms/a-mixins" as mixins;
 
 .single-especial{
+
     #app{
         .container{
             .post-content{
+                .wp-block-columns{
+                    @media(max-width: 992px){
+                        display: block;
+                    }
+                }
+                .wp-block-columns:nth-of-type(1){
+                    :first-child{
+                        img{
+                            border-radius: 8px;
+                        }
+                    }
+                    :last-child{
+                        .wp-block-cover {
+                            border-radius: 8px;
+                            @media(max-width: 992px){
+                                margin-top: 32px;
+                            }
+
+                            p{
+                                @media(max-width: 992px){
+                                    max-width: 200px;
+                                    width: 100%;
+                                    margin-bottom: 1rem;
+                                }
+                            }
+                            .wp-block-columns{
+
+                                max-width: 200px;
+                                width: 100%;
+                                gap: 0;
+                               
+                                @media(max-width: 992px){
+                                    display: flex;
+                                }
+                                
+                                .wp-block-column{
+                                    @media(max-width: 992px){
+                                        flex-basis: 20% !important;
+                                    }
+
+                                    .wp-block-image.aligncenter{
+                                        text-align: left;
+                                    }
+
+                                    img{
+                                        @media(max-width: 992px){
+                                            width: 27px;
+                                            height: 27px;
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .wp-block-columns:nth-of-type(2){
+                    :first-child{
+                        h2{
+                            margin-top: 0px;
+                            margin-bottom: 21px;
+                        }
+                    }
+                    .latest-grid-posts-block{
+                        h2{
+                            margin-top: 12px;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
                 .latest-horizontal-posts-block{
         
                     .latest-horizontal-posts-block__heading{
                         font-feature-settings: var(--f-ninja-config);
                         font-family: var(--f-ninja);
                     }
+                }
+                #sobre{
+                    
                 }
             }
         }

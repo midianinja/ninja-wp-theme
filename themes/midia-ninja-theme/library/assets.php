@@ -332,6 +332,13 @@ class Assets
                 },
             ],
 
+            'single-especial' => [
+                'file'             => '_p-single-especial.css',
+                'preload_callback' => function() {
+                    return is_singular( 'especial' );
+                },
+            ],
+
             'seja-ninja' => [
                 'file'             => '_p-seja-ninja.css',
                 'preload_callback' => function() {

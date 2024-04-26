@@ -740,7 +740,7 @@
 			}
 		}
 		.wp-block-cover {
-			padding: 35px;
+			padding: 20px 35px 54px;
 			height: 370px;
 			min-height: unset !important;
 
@@ -760,9 +760,18 @@
 			}
 
 			.wp-block-cover__inner-container {
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+				justify-content: center;
+
 				@media (max-width: 1199px) {
 					max-width: 302px;
 					width: 100%;
+				}
+
+				.entry-meta, .wpnbha {
+					margin-bottom: 0 !important;
 				}
 			}
 
@@ -807,11 +816,11 @@
 					margin-bottom: 2rem;
 					color: #828282;
 					a {
-						margin-top: 15px;
 						img {
-							width: 37px;
 							height: 37px;
+							margin: 0;
 							object-fit: cover;
+							width: 37px;
 						}
 					}
 					.cat-links {

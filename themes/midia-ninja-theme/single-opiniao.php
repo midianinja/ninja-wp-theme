@@ -155,8 +155,15 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                         <div class="content-author">
 
                             <div>
-                                <?php echo get_avatar(get_the_author_meta('ID'), 70);?>
+                                <?php foreach( $get_coauthors as $coauthor ): ?>
 
+                                    <?php if ($coauthor): ?>
+
+                                        <?php echo get_avatar($coauthor['author_id'], 70);?>
+
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                
                                 <div class="author">
                                     <div class="byline">
                                         <span><?php _e('By', 'ninja');?></span>

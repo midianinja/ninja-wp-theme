@@ -13,6 +13,13 @@ document.addEventListener("DOMContentLoaded", function() {
         const arrowsMobile = slider.querySelector('.medium-only .latest-horizontal-posts-block__arrows')
         const dotsMobile = slider.querySelector('.medium-only .latest-horizontal-posts-block__dots')
 
+		let slidesToShowMobile = 1
+		if (slider.classList.contains('model-specials')) {
+			slidesToShowMobile = 2
+		} else if (slider.classList.contains('model-collection') || slider.classList.contains('model-albums')) {
+			slidesToShowMobile = 1.5
+		}
+
         jQuery(slides).slick({
             appendArrows: arrows,
             appendDots: dots,
@@ -25,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     settings: {
                         appendArrows: arrowsMobile,
                         appendDots: dotsMobile,
-                        slidesToShow: 1
+                        slidesToShow: slidesToShowMobile,
                     }
                 }
             ]

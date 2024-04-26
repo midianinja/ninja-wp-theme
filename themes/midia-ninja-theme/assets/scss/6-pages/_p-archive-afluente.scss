@@ -179,14 +179,21 @@ main.content.col-md-12 {
 						height: 46px;
 						border-radius: 8px;
 						border: 2px solid var(--PRIMARY-PURE, #848484);
+						padding-left: 8px;
+						
                     }
-                    i{
+					input::placeholder{
+						margin-left: 8px;
+					}
+                    button{
                         position: absolute;
 						right: 7px;
 						top: 13%;
 						height: 32px;
 						width: 32px;
-                        background-image: url($p_theme_assets + "/images/generic.png");
+						background-color: white;
+						border: none;
+                        
                     }
                 }
             }

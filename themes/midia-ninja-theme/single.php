@@ -8,12 +8,32 @@
 gt_set_post_view();
 get_header();
 
-$coauthors = get_coauthors();
-
 $post_id       = get_the_ID();
 $get_terms     = get_html_terms( $post_id, 'category', true, true, 1 );
 $has_thumbnail = ( has_post_thumbnail() ) ? true : false;
 $get_afluentes = get_the_terms( $post_id, 'marcador_afluente' );
+
+$coauthors = get_coauthors();
+$get_coauthors = [];
+
+foreach( $coauthors as $coauthor ):
+    $coauthor_data = array();
+
+    $coauthor_data['author_id'] = '';
+    if (is_a($coauthor, 'WP_User')) {
+        $coauthor_data['author_id'] = $coauthor->data->ID;
+        $coauthor_data['author_name'] = $coauthor->data->display_name;
+        $coauthor_data['userdata'] = get_userdata( $coauthor_data['author_id'] );
+        $coauthor_data['author_bio'] = isset( $userdata->user_description )? $userdata->user_description: '';
+        $coauthor_data['instagram'] = pods_field( 'user', $coauthor_data['author_id'], 'instagram', true);
+        $coauthor_data['facebook'] = pods_field( 'user', $coauthor_data['author_id'], 'facebook', true);
+        $coauthor_data['twitter'] = pods_field( 'user', $coauthor_data['author_id'], 'twitter', true);
+    } else {
+        $coauthor_data['author_id'] = $coauthor->ID;
+        $coauthor_data['author_name'] = $coauthor->display_name;
+    }
+    $get_coauthors[] = $coauthor_data;
+endforeach;   
 
 $container_classes[] = 'container';
 $container_classes[] = $has_thumbnail ? 'post--has-thumbnail' : '';
@@ -155,26 +175,33 @@ get_template_part( 'template-parts/header-especiais' );
 
                             <div class="content-author">
 
-                                <div>
-                                    <?php echo get_avatar(get_the_author_meta('ID'), 70);?>
+                                <div class="author-data">
+                                    <?php foreach( $get_coauthors as $coauthor ): ?>
 
-                                    <div class="author">
+                                    <?php if ($coauthor): ?>
+
+                                        <?php echo get_avatar($coauthor['author_id'], 70);?>
+
+                                        <div class="author">
                                         <div class="byline">
                                             <span><?php _e('By', 'ninja');?></span>
-                                            <?php the_author(); ?>
-                                        </div>
-
-                                        <time class="date" datetime="<?php echo get_the_date('c'); ?>">
-                                            <span>
-                                                <?php the_date();?>
-                                            </span>
-                                            <span class="clock"></span>
-                                            <span>
-                                                <?php the_time('G:i');?>
-                                            </span>
-                                        </time>
+                                            <?php echo $coauthor['author_name']; ?>
+                                        </div>   
                                     </div>
+
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
                                 </div>
+                                <div class="date-networks">        
+                                <div class="date" datetime="<?php echo get_the_date('c'); ?>">
+                                        <span>
+                                            <?php the_date();?>
+                                        </span>
+                                        <span class="clock"></span>
+                                        <span>
+                                            <?php the_time('G:i');?>
+                                        </span>
+                                    </div>
 
                                 <div class="page-share">
                                     <span><?php _e('Share:', 'ninja');?></span>
@@ -182,6 +209,7 @@ get_template_part( 'template-parts/header-especiais' );
                                         <?php //the_social_networks_menu() ?>
                                         <?php echo do_shortcode('[addtoany]'); ?>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>

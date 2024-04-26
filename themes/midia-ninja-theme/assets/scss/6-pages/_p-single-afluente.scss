@@ -136,6 +136,14 @@ body.single-afluente {
                             font-style: normal;
                             line-height: 100%; 
                             letter-spacing: -2.7px;
+
+                            @include mixins.small{
+                                font-size: 48px !important;
+                            }
+
+                            @include mixins.mobile{
+                                font-size: 48px !important;
+                            }
                         }
                     }
 
@@ -490,6 +498,42 @@ body{
         }
     }
     &.afluente-design-ativista{
+
+        .wp-block-cover:nth-child(1){
+
+            @include mixins.small{
+                max-width: 329px;
+                width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            @include mixins.mobile{
+                max-width: 329px;
+                width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            @media(min-width: 600px) and (max-width: 1000px){
+                max-width: 329px;
+                width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .wp-block-columns{
+
+                @include mixins.small{
+                    flex-direction: row;
+                }
+
+                @include mixins.mobile{
+                    flex-direction: row;
+                }
+            }
+        }
+
         .latest-grid-posts-block {
 
             .latest-grid-posts-block__posts{
@@ -517,10 +561,48 @@ body{
                         font-style: normal;
                         font-weight: 700;
                         line-height: 130%; 
+
+                        @media (min-width: 600px ) and (max-width: 1000px){
+                            font-size: 14px !important;
+                        }
                     }
                 }
             }
  
+        }
+
+        .high-spot-block{
+            @include mixins.small{
+                max-width: 329px;
+                width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+    
+            }
+
+            @include mixins.mobile{
+                max-width: 329px;
+                width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .high-spot-block__link{
+                @media (min-width: 600px) and (max-width: 1000px){
+                        display: flex;
+                        height: 527px;
+                }
+            }
+
+            .high-spot-block__content{
+                .high-spot-block__info{
+                    h3{
+                        @media (min-width: 600px) and (max-width: 1000px){
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
         }
     }
     &.afluente-cine-ninja{

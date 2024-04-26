@@ -64,7 +64,7 @@ function latest_horizontal_posts_callback( $attributes ) {
 
     if ( $block_model == 'columnists' ) {
         // Co Authors
-        require_once  __DIR__ . '/includes/columnists.php';
+        require_once  __DIR__ . '../../shared/includes/columnists.php';
         $has_content = columnists_get_contents( $block_id );
     }
 

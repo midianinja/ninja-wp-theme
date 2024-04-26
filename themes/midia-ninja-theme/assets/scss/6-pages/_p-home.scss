@@ -419,7 +419,7 @@
 				}
 			}
 		}
-		:first-child {
+		& > :first-child {
 			.entry-wrapper {
 				h2.entry-title {
 					line-height: 140%;

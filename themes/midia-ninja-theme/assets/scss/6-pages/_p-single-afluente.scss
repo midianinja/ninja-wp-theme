@@ -30,6 +30,11 @@ body.single-afluente {
                     .latest-horizontal-posts-block {
                         margin-bottom: 0;
 
+                        .latest-horizontal-posts-block__heading{
+							font-feature-settings: var(--f-ninja-config);
+							font-family: var(--f-ninja);
+						}
+
                         .post {
                             .post-thumbnail {
                                 img {
@@ -119,6 +124,18 @@ body.single-afluente {
                             }
             
                         }
+                    }
+
+                    #quemsomos{
+                        color: var(--Gray-1, #333);
+                        font-feature-settings: 'calt' off;
+                        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        font-family: "Tipo Ninja";
+                        font-size: 54px !important;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 100%; 
+                        letter-spacing: -2.7px;
                     }
 
                     // Block image card

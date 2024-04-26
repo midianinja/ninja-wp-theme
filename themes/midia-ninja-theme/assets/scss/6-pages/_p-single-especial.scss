@@ -1,0 +1,18 @@
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
+
+.single-especial{
+    #app{
+        .container{
+            .post-content{
+                .latest-horizontal-posts-block{
+        
+                    .latest-horizontal-posts-block__heading{
+                        font-feature-settings: var(--f-ninja-config);
+                        font-family: var(--f-ninja);
+                    }
+                }
+            }
+        }
+    }
+}

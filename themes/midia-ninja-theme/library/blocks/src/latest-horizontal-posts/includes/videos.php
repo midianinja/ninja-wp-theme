@@ -74,7 +74,7 @@ function videos_get_contents( $youtube_key, $video_model, $channel_id, $playlist
     }
 
     if ( is_array( $data ) && count( $data ) > 0 ) {
-        set_transient( $cache_key, $data, 3600 );
+        set_transient( $cache_key, $data, get_option('youtube_api_cache_ttl', 3600) );
         return $data;
     }
 

@@ -648,9 +648,12 @@
 		#app{
 			.container{
 				.post-content{
-					.wp-block-heading{
-						font-feature-settings: var(--f-ninja-config);
-						font-family: var(--f-ninja);
+					.latest-horizontal-posts-block{
+			
+						.latest-horizontal-posts-block__heading{
+							font-feature-settings: var(--f-ninja-config);
+							font-family: var(--f-ninja);
+						}
 					}
 				}
 			}

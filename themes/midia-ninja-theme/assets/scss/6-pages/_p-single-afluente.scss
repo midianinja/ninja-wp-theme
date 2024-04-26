@@ -98,13 +98,26 @@ body.single-afluente {
                     // Block latest grid posts
                     .latest-grid-posts-block {
                         .post {
-                            .post-thumbnail {
-                                img {
-                                    object-fit: cover;
-                                    position: absolute;
-                                    transition: all 0.3s ease-in-out;
+                            .post{
+                                max-width: 370px;
+                                width: 100%;
+
+                                &-thumbnail{
+
+                                    &--image{
+
+                                        img{
+                                            width: 100%;
+                                            position: inherit;
+                                            object-fit: cover;
+                                            transition: all 0.3s ease-in-out;
+                                            max-height: 208px;
+                                        }
+                                    }
                                 }
+                              
                             }
+            
                         }
                     }
 
@@ -235,41 +248,6 @@ footer.main-footer{
 
 body{
     &.afluente-xepa-ativismo{    
-
-        .latest-grid-posts-block{
-
-                .container{
-                    .latest-grid-posts-block__content{
-                        .latest-grid-posts-block__posts{
-                            .post{
-
-                                @include mixins.small{
-                                    max-width: 370px;
-                                    width: 100%;
-                                }
-                                
-                                @include mixins.mobile{
-                                    max-width: 370px;
-                                    width: 100%;
-                                }
-
-                                &-thumbnail{
-
-                                    &--image{
-
-                                        img{
-                                            width: 100%;
-                                            position: inherit;
-                                        }
-                                    }
-                                }
-                              
-                            }
-                        }
-                    }
-                }       
-        
-        }
 
         nav.wp-block-navigation {
 

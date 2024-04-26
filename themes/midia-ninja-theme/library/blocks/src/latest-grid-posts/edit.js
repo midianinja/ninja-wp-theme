@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n'
 
 import { useEffect, useState } from 'react'
 
+import { useSelect } from '@wordpress/data'
 import { useInstanceId } from "@wordpress/compose"
 
 import apiFetch from '@wordpress/api-fetch'
@@ -23,7 +24,11 @@ import metadata from './block.json'
 import './editor.scss'
 
 export default function Edit( { attributes, setAttributes } ) {
-    const instanceId = useInstanceId(Edit, 'latest-grid-posts')
+    const currentPostId = useSelect((select) => {
+        return select('core/editor').getCurrentPostId()
+    }, [])
+
+    const instanceId = useInstanceId(Edit, 'latest-grid-posts-' + currentPostId)
 
     const blockProps = useBlockProps( {
         className: 'latest-grid-posts-block'

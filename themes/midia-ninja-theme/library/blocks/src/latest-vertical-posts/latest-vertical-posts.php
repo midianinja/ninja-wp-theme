@@ -133,7 +133,7 @@ function latest_vertical_posts_callback( $attributes ) {
             return;
         }
 
-        $has_content = vertical_videos_get_contents( $api_key, $playlist_id, $posts_to_show, $block_id );
+        $has_content = vertical_videos_get_contents( $api_key, $playlist_id, $posts_to_show );
 
     }
 

@@ -6,8 +6,13 @@
 	#app {
 		background-color: #f5f5f5;
 
+		a {
+			text-decoration: none;
+		}
+
 		.container {
 			padding: 15px;
+			position: relative;
 
 			@media (min-width: 992px) {
 				padding: 0;
@@ -83,6 +88,7 @@
 					}
 
 					.article-section-title {
+						color: white;
 						font-family: "Archivo Expanded", sans-serif;
 						font-size: 14px;
 						font-style: normal;
@@ -223,7 +229,6 @@
 			}
 
 			.header-and-footer-archive.position-footer {
-				position: relative;
 
 				.latest-vertical-posts-block {
 					margin: 0;
@@ -234,11 +239,10 @@
 							max-width: 30%;
 							position: absolute;
 							right: 0;
-							top: -39.5rem;
 						}
 
 						@media (min-width: 1200px) {
-							top: -36rem;
+							top: 525px;
 						}
 
 						.slick-slide .slide .post {

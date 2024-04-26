@@ -1,11 +1,7 @@
 <?php
 $coauthor = $args['author'];
 
-$link = get_author_posts_url( $args['author']->ID );
-
-if ( strcmp( substr( $link, -strlen( 'author/' ) ), 'author/' ) === 0 ) {
-    $link = '/colunistas';
-}
+$link = get_author_posts_url( $args['author']->ID, $args['author']->user_nicename );
 
 $bio = '';
 

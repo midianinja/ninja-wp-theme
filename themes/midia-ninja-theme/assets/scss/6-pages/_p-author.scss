@@ -1,7 +1,6 @@
 @use "./../1-settings/s-variables" as variables;
 @use "./../2-atoms/a-mixins" as mixins;
 .container{
-    margin-top:30px;
     @include mixins.mobile{
         margin-top: 0px;
     }
@@ -150,6 +149,7 @@
                 @include mixins.mobile{
                     width: 82px;
                     height: 82px;
+                    margin-top: 24px;
                 }
             }
             .author-name{
@@ -186,11 +186,11 @@
                 margin-top: 70px;
                 display: flex;
                 gap: 8px;
-                margin-top: 70px;
+                margin-top: 30px;
                 @include mixins.mobile{
                     display: flex;
                     gap: 8px;
-                    margin-top: 83px;
+                    margin-top: 64px;
                     position: absolute;
                     margin-left: 7px;
                 }
@@ -234,12 +234,15 @@
             grid-template-columns: 1fr 1fr 1fr;
             margin-bottom: 86px;
             width: 100%;
-            justify-items: center;
             @media (max-width: 768px) {
                 grid-template-columns: 1fr 1fr;
             }
             @media (max-width: 480px) {
                 grid-template-columns: 1fr;
+                justify-items: center;
+                margin-bottom: 24px;
+
+
             }
             .post-card{
                 width: 334px;
@@ -321,6 +324,9 @@
 
         .pagination {
             margin-bottom: 60px;
+            @include mixins.mobile{
+                margin-bottom: 24px;
+            }
         }
 
         .header-and-footer-archive{
@@ -352,7 +358,13 @@
                         }
 
                     }
+                    .opinion-posts-block__heading{
+                        a{
+                            text-align: center;
+                        }
+                    }
                 }
+
             }
             .model-columnists {
                 background-color: #fff;
@@ -503,7 +515,7 @@
                 margin-bottom: -8rem;
                 margin-top: 5rem;
                 position: relative;
-                bottom: 13px;
+                bottom: 46px;
 
                 @media (max-width: 992px) {
                     display: none;

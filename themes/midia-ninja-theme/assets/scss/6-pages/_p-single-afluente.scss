@@ -19,6 +19,7 @@ body.single-afluente {
                         left: initial;
                         transform: initial;
                         object-fit: inherit;
+                        border-radius: 9px;
 
                         @include mixins.mobile {
                             width: auto;
@@ -97,13 +98,26 @@ body.single-afluente {
                     // Block latest grid posts
                     .latest-grid-posts-block {
                         .post {
-                            .post-thumbnail {
-                                img {
-                                    object-fit: cover;
-                                    position: absolute;
-                                    transition: all 0.3s ease-in-out;
+                            .post{
+                                max-width: 370px;
+                                width: 100%;
+
+                                &-thumbnail{
+
+                                    &--image{
+
+                                        img{
+                                            width: 100%;
+                                            position: inherit;
+                                            object-fit: cover;
+                                            transition: all 0.3s ease-in-out;
+                                            max-height: 208px;
+                                        }
+                                    }
                                 }
+                              
                             }
+            
                         }
                     }
 
@@ -233,7 +247,7 @@ footer.main-footer{
 }
 
 body{
-    &.afluente-xepa{
+    &.afluente-xepa-ativismo{    
 
         nav.wp-block-navigation {
 

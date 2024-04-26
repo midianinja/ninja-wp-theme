@@ -11,6 +11,13 @@
             }
         }
 
+		.wp-block-image {
+
+			img {
+				border-radius: 8px;
+			}
+		}
+
         .tv-ninja{
             background-color: var(--wp--preset--color--primary-pure);
             border-radius: 8px;
@@ -24,7 +31,6 @@
             @media(max-width: 782px){
                 padding: 20px 15px 32px 15px;
             }
-
 
             h4{
                 color: #FFF;
@@ -379,6 +385,7 @@
                 }
             }
         }
+
         .wp-block-cover{
             background-color: #262626;
             padding-top: 80;

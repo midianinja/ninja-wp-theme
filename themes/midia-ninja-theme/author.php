@@ -11,17 +11,17 @@ $coauthors = get_coauthors();
 <div class="index-wrapper">
     <div class="container">
         <div class="row">
-            
-            <div class="banner-principal col-md-9"> 
+
+            <div class="banner-principal col-md-9">
             <?php if ( has_post_thumbnail() ) : ?>
                 <a href="<?php the_permalink(); ?>">
                     <?php the_post_thumbnail( 'large', array( 'class' => 'featured-image' ) ); ?>
                 </a>
                 <?php else : ?>
                 <a href="<?php the_permalink(); ?>">
-                    <img src="<?php echo get_template_directory_uri() . "/images/banner-background.png"; ?>" class="placeholder-image" alt="Placeholder Image">
+                    <img src="<?php echo get_template_directory_uri() . "/assets/images/banner-background.png"; ?>" class="placeholder-image" alt="Placeholder Image">
                 </a>
-            
+
             <?php endif; ?>
                 <div class="lado-esquerdo-banner">
                     <div class="container-info">
@@ -49,7 +49,7 @@ $coauthors = get_coauthors();
                         $tiktok = '';
                         if (is_a($coauthor, 'WP_User')) {
                             $author_id = $coauthor->data->ID;
-                            $author_name = $coauthor->data->display_name;
+                            $author_name = $coauthor->display_name;
                             $userdata = get_userdata( $author_id );
                             $author_bio = isset( $userdata->user_description )? $userdata->user_description: '';
                             $instagram = pods_field( 'user', $author_id, 'instagram', true);
@@ -60,6 +60,7 @@ $coauthors = get_coauthors();
 
                             $author_id = $coauthor->ID;
                             $author_bio = $coauthor->description;
+                            $author_name = $coauthor->display_name;
                             $instagram = get_post_meta($author_id, 'cap-instagram', true);
                             $facebook = get_post_meta($author_id, 'cap-facebook', true);
                             $twitter = get_post_meta($author_id, 'cap-twitter', true);
@@ -104,7 +105,7 @@ $coauthors = get_coauthors();
                             <?php endif; ?>
                             <?php if($twitter): ?>
                             <span class="twitter">
-                                <a href="<?php echo $twitter; ?>"> 
+                                <a href="<?php echo $twitter; ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="invert(1)">
                                         <path d="M28.6031 10.0878C31.0956 17.7498 26.9043 25.9793 19.2422 28.4718C11.5802 30.9643 3.35069 26.773 0.858168 19.111C-1.63435 11.4489 2.55697 3.21941 10.219 0.726891C11.6776 0.253452 13.2024 0.00976562 14.7341 0.00976562C21.0524 0.0132468 26.6502 4.07926 28.6031 10.0878ZM14.7376 1.32565C7.40625 1.33609 1.47085 7.28541 1.48129 14.6202C1.49173 21.9551 7.44106 27.887 14.7759 27.8765C22.1072 27.8661 28.0426 21.9168 28.0322 14.5819C28.0287 13.193 27.8094 11.8144 27.3812 10.4951C25.5988 5.01917 20.492 1.3152 14.7376 1.32565Z" fill="#111111"/>
                                         <path d="M6.73092 7.07715L12.9378 15.3763L6.69263 22.1263H8.09902L13.5679 16.2187L17.9856 22.1263H22.7687L16.2102 13.3607L22.0237 7.08063H20.6173L15.587 12.5182L11.5175 7.07715H6.73092ZM8.79874 8.11106H10.9954L20.7009 21.0889H18.5042L8.79874 8.11106Z" fill="#111111"/>
@@ -143,7 +144,7 @@ $coauthors = get_coauthors();
                 <?php echo get_layout_footer( 'author' ); ?>
             </main>
 
-        </div><!-- /.row --> 
+        </div><!-- /.row -->
     </div><!-- /.container -->
 </div><!-- /.index-wrapper -->
 

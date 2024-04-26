@@ -6,11 +6,19 @@ function high_spot_callback( $attributes ) {
     $block_id    = esc_attr( $attributes['blockId'] );
     $block_model = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'manual';
 
+    global $newspack_blocks_post_id;
+    global $latest_blocks_posts_ids;
+
     $block_classes[] = 'high-spot-block';
     $block_classes[] = 'model-' . $block_model;
 
     if ( $block_model === 'post' ) {
         $post_id = ( isset( $attributes['postId'] ) && ! empty( $attributes['postId'] ) ) ? esc_attr( $attributes['postId'] ) : false;
+
+        if ( $post_id ) {
+            $latest_blocks_posts_ids[] = $post_id;
+            $newspack_blocks_post_id[$post_id] = true;
+        }
 
         $get_post = get_post( $post_id );
 

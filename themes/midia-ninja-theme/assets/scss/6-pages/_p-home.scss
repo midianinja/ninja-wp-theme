@@ -533,7 +533,7 @@
 				width: 231px !important;
 				margin: 0 18px 0 15px;
 				@media (max-width: 582px) {
-					width: 150px !important;
+					width: calc(50vw - 16.5px) !important;
 				}
 			}
 		}
@@ -598,7 +598,7 @@
 			.slide,
 			.post-content {
 				@media (max-width: 782px) {
-					width: 200px !important;
+					width: calc(100vw - 30px) !important;
 				}
 			}
 			.slide {
@@ -616,7 +616,6 @@
 				top: 265px !important;
 				@media (max-width: 782px) {
 					top: 0 !important;
-					margin-top: -15px !important;
 				}
 			}
 		}
@@ -641,7 +640,7 @@
 		.grid-cards-opiniao {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			gap: 30px;
+			gap: 15px 30px;
 
 			@media (max-width: 992px) {
 				grid-template-columns: 1fr;
@@ -659,7 +658,7 @@
 					}
 				}
 
-				&:nth-child(n + 2) {
+				&:nth-child(n + 4) {
 					@media (max-width: 992px) {
 						display: none;
 					}
@@ -677,13 +676,6 @@
 						position: absolute;
 						top: -9rem;
 						left: 0;
-
-						@media (max-width: 992px) {
-							top: -195px;
-						}
-						@media (max-width: 370px) {
-							top: -133px;
-						}
 					}
 					.entry-title {
 						padding: 40px 0 26px;
@@ -748,7 +740,7 @@
 			}
 		}
 		.wp-block-cover {
-			padding: 35px;
+			padding: 20px 35px 54px;
 			height: 370px;
 			min-height: unset !important;
 
@@ -768,9 +760,18 @@
 			}
 
 			.wp-block-cover__inner-container {
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+				justify-content: center;
+
 				@media (max-width: 1199px) {
 					max-width: 302px;
 					width: 100%;
+				}
+
+				.entry-meta, .wpnbha {
+					margin-bottom: 0 !important;
 				}
 			}
 
@@ -815,11 +816,11 @@
 					margin-bottom: 2rem;
 					color: #828282;
 					a {
-						margin-top: 15px;
 						img {
-							width: 37px;
 							height: 37px;
+							margin: 0;
 							object-fit: cover;
+							width: 37px;
 						}
 					}
 					.cat-links {
@@ -1390,6 +1391,16 @@
 							color: #848484;
 						}
 					}
+				}
+			}
+		}
+
+		.slick-slide {
+
+			@media (max-width: 782px) {
+
+				&:nth-child(n + 5) {
+					display: none;
 				}
 			}
 		}

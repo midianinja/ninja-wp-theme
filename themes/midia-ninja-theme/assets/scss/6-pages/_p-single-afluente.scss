@@ -30,6 +30,11 @@ body.single-afluente {
                     .latest-horizontal-posts-block {
                         margin-bottom: 0;
 
+                        .latest-horizontal-posts-block__heading{
+							font-feature-settings: var(--f-ninja-config);
+							font-family: var(--f-ninja);
+						}
+
                         .post {
                             .post-thumbnail {
                                 img {
@@ -121,6 +126,19 @@ body.single-afluente {
                         }
                     }
 
+                    #quemsomos{
+
+                        h2{
+                            color: var(--Gray-1, #333);
+                            font-feature-settings: 'calt' off;
+                            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                            font-size: 54px !important;
+                            font-style: normal;
+                            line-height: 100%; 
+                            letter-spacing: -2.7px;
+                        }
+                    }
+
                     // Block image card
                     .wp-block-ninja-image-card {
                         .wrapper-image {
@@ -167,6 +185,7 @@ body.single-afluente {
         nav.wp-block-navigation {
             li {
                 flex-shrink: 0;
+                flex-grow: 1;
 
                 a {
                     font-weight: 700;
@@ -466,7 +485,6 @@ body{
             }
         }
     }
-
     &.afluente-design-ativista{
         .latest-grid-posts-block {
 
@@ -499,6 +517,42 @@ body{
                 }
             }
  
+        }
+    }
+    &.afluente-cine-ninja{
+
+        .high-spot-block {
+            @include mixins.small{
+                max-width: 329px;
+                width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+    
+            }
+
+            @include mixins.mobile{
+                max-width: 329px;
+                width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+
+        .wp-block-cover:nth-child(1){
+
+            @include mixins.small{
+                max-width: 329px;
+                width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            @include mixins.mobile{
+                max-width: 329px;
+                width: 100%;
+                margin-right: auto;
+                margin-left: auto;
+            }
         }
     }
 }

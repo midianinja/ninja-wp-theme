@@ -184,6 +184,7 @@ body.single-afluente {
         nav.wp-block-navigation {
             li {
                 flex-shrink: 0;
+                flex-grow: 1;
 
                 a {
                     font-weight: 700;

@@ -123,7 +123,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             return;
         }
 
-        $has_content = videos_get_contents( $api_key, $video_model, $channel_id, $playlist_id, $posts_to_show, $block_id );
+        $has_content = videos_get_contents( $api_key, $video_model, $channel_id, $playlist_id, $posts_to_show );
     }
 
     if ( ! $has_content ) {

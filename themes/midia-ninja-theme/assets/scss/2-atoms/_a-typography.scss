@@ -53,10 +53,12 @@ h4 {
 }
 
 h5 {
-	font-family: $f_title;
-	font-size: var(--s-h5);
+	color: var(--DARK, #111);
+	font-family: var(--wp--preset--font-family--manrope);
+	font-size: 13px;
+	font-style: normal;
 	font-weight: 500;
-	line-height: calc(var(--s-h5) * 1.5);
+	line-height: 145%; 
 }
 
 h6 {

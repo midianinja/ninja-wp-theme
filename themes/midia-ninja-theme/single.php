@@ -193,7 +193,7 @@ get_template_part( 'template-parts/header-especiais' );
                                     <?php endforeach; ?>
                                 </div>
                                 <div class="date-networks">        
-                                <div class="date" datetime="<?php echo get_the_date('c'); ?>">
+                                    <div class="date" datetime="<?php echo get_the_date('c'); ?>">
                                         <span>
                                             <?php the_date();?>
                                         </span>
@@ -203,13 +203,13 @@ get_template_part( 'template-parts/header-especiais' );
                                         </span>
                                     </div>
 
-                                <div class="page-share">
-                                    <span><?php _e('Share:', 'ninja');?></span>
-                                    <div class="social-icons">
-                                        <?php //the_social_networks_menu() ?>
-                                        <?php echo do_shortcode('[addtoany]'); ?>
+                                    <div class="page-share">
+                                        <span><?php _e('Share:', 'ninja');?></span>
+                                        <div class="social-icons">
+                                            <?php //the_social_networks_menu() ?>
+                                            <?php echo do_shortcode('[addtoany]'); ?>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </div>

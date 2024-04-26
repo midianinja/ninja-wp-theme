@@ -598,7 +598,7 @@
 			.slide,
 			.post-content {
 				@media (max-width: 782px) {
-					width: 200px !important;
+					width: calc(100vw - 30px) !important;
 				}
 			}
 			.slide {
@@ -616,7 +616,6 @@
 				top: 265px !important;
 				@media (max-width: 782px) {
 					top: 0 !important;
-					margin-top: -15px !important;
 				}
 			}
 		}
@@ -641,7 +640,7 @@
 		.grid-cards-opiniao {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			gap: 30px;
+			gap: 15px 30px;
 
 			@media (max-width: 992px) {
 				grid-template-columns: 1fr;
@@ -659,7 +658,7 @@
 					}
 				}
 
-				&:nth-child(n + 2) {
+				&:nth-child(n + 4) {
 					@media (max-width: 992px) {
 						display: none;
 					}
@@ -1383,6 +1382,16 @@
 							color: #848484;
 						}
 					}
+				}
+			}
+		}
+
+		.slick-slide {
+
+			@media (max-width: 782px) {
+
+				&:nth-child(n + 5) {
+					display: none;
 				}
 			}
 		}

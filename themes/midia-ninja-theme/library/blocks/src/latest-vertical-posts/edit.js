@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n'
 
 const { useEffect, useState } = wp.element
 
+import { useSelect } from '@wordpress/data'
 import { useInstanceId } from "@wordpress/compose"
 
 import ServerSideRender from '@wordpress/server-side-render'
@@ -25,7 +26,12 @@ import metadata from './block.json'
 import './editor.scss'
 
 export default function Edit( { attributes, clientId, setAttributes } ) {
-	const instanceId = useInstanceId(Edit, 'latest-vertical-posts')
+
+	const currentPostId = useSelect((select) => {
+		return select('core/editor').getCurrentPostId()
+	}, [])
+
+	const instanceId = useInstanceId(Edit, 'latest-vertical-posts-' + currentPostId)
 
 	const blockProps = useBlockProps( {
 		className: 'latest-vertical-posts-block'

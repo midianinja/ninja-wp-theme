@@ -49,7 +49,7 @@ $coauthors = get_coauthors();
                         $tiktok = '';
                         if (is_a($coauthor, 'WP_User')) {
                             $author_id = $coauthor->data->ID;
-                            $author_name = $coauthor->data->display_name;
+                            $author_name = $coauthor->display_name;
                             $userdata = get_userdata( $author_id );
                             $author_bio = isset( $userdata->user_description )? $userdata->user_description: '';
                             $instagram = pods_field( 'user', $author_id, 'instagram', true);
@@ -60,6 +60,7 @@ $coauthors = get_coauthors();
 
                             $author_id = $coauthor->ID;
                             $author_bio = $coauthor->description;
+                            $author_name = $coauthor->display_name;
                             $instagram = get_post_meta($author_id, 'cap-instagram', true);
                             $facebook = get_post_meta($author_id, 'cap-facebook', true);
                             $twitter = get_post_meta($author_id, 'cap-twitter', true);

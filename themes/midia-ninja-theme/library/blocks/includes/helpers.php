@@ -70,6 +70,7 @@ function filter_save_post( $post_id, $post ) {
 
     clear_block_transients( $post, 'ninja/latest-horizontal-posts', 'ninja_horizontal_' );
     clear_block_transients( $post, 'ninja/latest-horizontal-posts', 'ninja_youtube_' );
+    clear_block_transients( $post, 'ninja/latest-horizontal-posts', 'ninja_columnists_' );
     clear_block_transients( $post, 'ninja/latest-vertical-posts', 'ninja_vertical_' );
 }
 

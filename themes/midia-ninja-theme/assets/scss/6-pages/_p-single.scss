@@ -643,23 +643,6 @@
 		}
 	}
 
-	&-especial{
-		
-		#app{
-			.container{
-				.post-content{
-					.latest-horizontal-posts-block{
-			
-						.latest-horizontal-posts-block__heading{
-							font-feature-settings: var(--f-ninja-config);
-							font-family: var(--f-ninja);
-						}
-					}
-				}
-			}
-		}
-	}
-
 	.menu-especial {
 		display: flex;
 		margin: auto;

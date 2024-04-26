@@ -1,6 +1,20 @@
 .page-a-midia-ninja {
 	#app {
-		padding-top: 140px;
+		padding-top: 133px;
+
+		@media (min-width: 768px) {
+			padding-top: 140px;
+		}
+
+		.page-content {
+			.wp-block-group {
+				margin: 32px 0;
+
+				@media (min-width: 768px) {
+					margin: 100px 0;
+				}
+			}
+		}
 	}
 
 	footer {

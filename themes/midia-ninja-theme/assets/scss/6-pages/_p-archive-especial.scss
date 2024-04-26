@@ -364,7 +364,6 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 			gap: 20px;
-			justify-items: center;
 
 			@include mixins.small{
 				grid-template-columns: 1fr 1fr;

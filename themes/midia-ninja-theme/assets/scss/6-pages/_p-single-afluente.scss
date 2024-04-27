@@ -78,8 +78,18 @@ body.single-afluente {
                     // Block latest vertical posts
                     .latest-vertical-posts-block {
                         .post {
+                            align-items: inherit;
+                            margin-bottom: 0;
+
                             &-author {
                                 color: #2D9CDB;
+                            }
+
+                            &-thumbnail{
+                                max-width: 124px;
+                                width: 100%;
+                                height: auto;
+                                flex-basis: inherit;
                             }
                         }
                     }
@@ -130,20 +140,18 @@ body.single-afluente {
 
                         h2{
                             color: var(--Gray-1, #333);
-                            font-feature-settings: 'calt' off;
+                            font-feature-settings: var(--f-ninja-config);
+                            font-family: var(--f-ninja);
                             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            font-size: 54px !important;
+                            font-size: 32px !important;
                             font-style: normal;
                             line-height: 100%; 
                             letter-spacing: -2.7px;
+                        }
 
-                            @include mixins.small{
-                                font-size: 48px !important;
-                            }
-
-                            @include mixins.mobile{
-                                font-size: 48px !important;
-                            }
+                        @media(min-width: 600px) and (max-width: 1024px){
+                            display: flex;
+                            flex-direction: column;
                         }
                     }
 
@@ -453,24 +461,61 @@ body{
                 }
             }
         }
-        .post-content{
-            .container{
-                .high-spot-block__content{ //define altura do banner
-                    height: 505px !important;
+
+        .wp-block-cover:nth-child(1){
+
+            .wp-block-columns{
+
+                @include mixins.small{
+                    flex-direction: row;
+                }
+
+                @include mixins.mobile{
+                    flex-direction: row;
                 }
             }
-            .wp-block-columns{ //aside
-                & .wp-block-column:nth-child(2){
-                    .wp-block-cover{
-                        .wp-block-cover__background {
-                            height: 505px !important;
-                            border-radius: 9px;
+        }
+
+        .high-spot-block{            
+
+            .high-spot-block__link{
+                height: 510px;
+                display: flex;
+
+                @include mixins.small{
+                    height: inherit;
+                }
+
+                @include mixins.mobile{
+                    height: inherit;
+                }
+                
+                @media(min-width: 600px) and (max-width: 1024px){
+                   display: flex;
+                   height: 510px;
+                }
+
+                .high-spot-block__content{
+                    .high-spot-block__info{
+                        h3{
+                            @media(min-width: 600px) and (max-width: 1024px){
+                                font-size: 18px;
+                            }
+                        }
+
+                        .tag{
+                            @media(min-width: 600px) and (max-width: 1024px){
+                                font-size: 10px;
+                            }
                         }
                     }
                 }
             }
+        }
+        .post-content{
             .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
                 gap: 17px;
+
                 @include mixins.mobile{ //deixa inline os icones de rede social no mobile
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -484,6 +529,21 @@ body{
         
     }
     &.afluente-estudantes-ninja{
+        .wp-block-cover:nth-child(1){
+   
+            .wp-block-columns:nth-last-of-type(1){
+                gap: 17px;
+
+                @include mixins.mobile{ 
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    gap: 0;
+                    max-width: 150px;
+                    margin-left: 0px !important;
+                }
+                
+            }
+        }
         nav.wp-block-navigation {
 
             &:not(.alignfull) {
@@ -496,41 +556,73 @@ body{
                 }
             }
         }
+
+        .high-spot-block{            
+
+            .high-spot-block__link{
+                height: 510px;
+                display: flex;
+
+                @include mixins.small{
+                    height: inherit;
+                }
+
+                @include mixins.mobile{
+                    height: inherit;
+                }
+                
+                @media(min-width: 600px) and (max-width: 1024px){
+                   display: flex;
+                   height: 510px;
+                }
+
+                .high-spot-block__content{
+                    .high-spot-block__info{
+                        h3{
+                            @media(min-width: 600px) and (max-width: 1024px){
+                                font-size: 18px;
+                            }
+                        }
+
+                        .tag{
+                            @media(min-width: 600px) and (max-width: 1024px){
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .post-content{  
+            .wp-block-columns:nth-last-of-type(1){
+                gap: 17px;
+
+                @include mixins.mobile{ 
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    gap: 0;
+                    max-width: 150px;
+                    margin-left: 0px !important;
+                }
+                
+            }
+        }
     }
     &.afluente-design-ativista{
 
         .wp-block-cover:nth-child(1){
+   
+            .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
+                gap: 17px;
 
-            @include mixins.small{
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-            }
-
-            @include mixins.mobile{
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-            }
-
-            @media(min-width: 600px) and (max-width: 1000px){
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-            }
-
-            .wp-block-columns{
-
-                @include mixins.small{
-                    flex-direction: row;
+                @include mixins.mobile{ //deixa inline os icones de rede social no mobile
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    gap: 0;
+                    max-width: 150px;
+                    margin-left: 0px !important;
                 }
-
-                @include mixins.mobile{
-                    flex-direction: row;
-                }
+                
             }
         }
 
@@ -562,7 +654,7 @@ body{
                         font-weight: 700;
                         line-height: 130%; 
 
-                        @media (min-width: 600px ) and (max-width: 1000px){
+                        @media (min-width: 600px ) and (max-width: 1024px){
                             font-size: 14px !important;
                         }
                     }
@@ -572,32 +664,26 @@ body{
         }
 
         .high-spot-block{
-            @include mixins.small{
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-    
-            }
-
-            @include mixins.mobile{
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-            }
 
             .high-spot-block__link{
-                @media (min-width: 600px) and (max-width: 1000px){
+                @media (min-width: 600px) and (max-width: 1024px){
                         display: flex;
                         height: 527px;
+                }
+
+                @include mixins.small{
+                    height: inherit;
+                }
+
+                @include mixins.mobile{
+                    height: inherit;
                 }
             }
 
             .high-spot-block__content{
                 .high-spot-block__info{
                     h3{
-                        @media (min-width: 600px) and (max-width: 1000px){
+                        @media (min-width: 600px) and (max-width: 1024px){
                             font-size: 18px;
                         }
                     }
@@ -608,26 +694,20 @@ body{
     &.afluente-cine-ninja{
 
         .high-spot-block {
-            @include mixins.small{
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-    
-            }
-
-            @include mixins.mobile{
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-            }
 
             .high-spot-block__link{
                 height: 521px;
                 display: flex;
+
+                @include mixins.small{
+                    height: inherit;
+                }
+
+                @include mixins.mobile{
+                    height: inherit;
+                }
                 
-                @media(min-width: 600px) and (max-width: 1000px){
+                @media(min-width: 600px) and (max-width: 1024px){
                    display: flex;
                    height: 525px;
                 }
@@ -635,13 +715,13 @@ body{
                 .high-spot-block__content{
                     .high-spot-block__info{
                         h3{
-                            @media(min-width: 600px) and (max-width: 1000px){
+                            @media(min-width: 600px) and (max-width: 1024px){
                                 font-size: 18px;
                             }
                         }
 
                         .tag{
-                            @media(min-width: 600px) and (max-width: 1000px){
+                            @media(min-width: 600px) and (max-width: 1024px){
                                 font-size: 10px;
                             }
                         }
@@ -650,35 +730,11 @@ body{
             }
         }
 
-        .wp-block-cover:nth-child(1){
-
-            @include mixins.small{
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-            }
-
-            @include mixins.mobile{
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-            }
-
-            @media(min-width: 600px) and (max-width: 1000px){
-                max-width: 329px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-            }
-        }
-
         .latest-vertical-posts-block{
 
             .latest-vertical-posts-block__heading{
                 h2{
-                    @media(min-width: 600px) and (max-width: 1000px){
+                    @media(min-width: 600px) and (max-width: 1024px){
                         font-size: 24px !important;
                     }
                 }
@@ -686,12 +742,46 @@ body{
 
             .slick-list{
                 .post{
-                    @media(min-width: 600px) and (max-width: 1000px){
+                    @media(min-width: 600px) and (max-width: 1024px){
                         flex-direction: column;
                         gap: 0;
                     }
                 }
             }
+        }
+    }
+    &.afluente-casa-ninja-amazonia{
+
+        .high-spot-block{
+            .container{
+
+                .high-spot-block__link{
+
+                    @media (min-width: 600px) and (max-width: 1024px){
+                        display: flex;
+                        height: 510px;
+                    }
+    
+                    @include mixins.small{
+                        height: inherit;
+                    }
+    
+                    @include mixins.mobile{
+                        height: inherit;
+                    }
+                }
+    
+                .high-spot-block__content{
+                    .high-spot-block__info{
+                        h3{
+                            @media (min-width: 600px) and (max-width: 1024px){
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        
         }
     }
 }

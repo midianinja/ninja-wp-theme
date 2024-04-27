@@ -11,9 +11,35 @@ function high_spot_callback( $attributes ) {
 
     $block_classes[] = 'high-spot-block';
     $block_classes[] = 'model-' . $block_model;
-
     if ( $block_model === 'post' ) {
-        $post_id = ( isset( $attributes['postId'] ) && ! empty( $attributes['postId'] ) ) ? esc_attr( $attributes['postId'] ) : false;
+
+        if(is_archive()){
+            $queried_object = get_queried_object();
+            $taxonomy = $queried_object->taxonomy;
+            $term_id = $queried_object->term_id;
+
+            $args = [
+                'posts_per_page' => 1,
+                'fields'         => 'ids',
+                'tax_query'      => [
+                    [
+                        'taxonomy' => $taxonomy,
+                        'field'    => 'term_id',
+                        'terms'    => $term_id,
+                    ],
+                ],
+            ];
+            
+            $post_ids = get_posts( $args );
+
+            if ( $post_ids && is_array( $post_ids ) ) {
+                $post_id = $post_ids[0];
+            }  
+        }
+
+        if(!$post_id){
+            $post_id = ( isset( $attributes['postId'] ) && ! empty( $attributes['postId'] ) ) ? esc_attr( $attributes['postId'] ) : false;
+        }
 
         if ( $post_id ) {
             $latest_blocks_posts_ids[] = $post_id;

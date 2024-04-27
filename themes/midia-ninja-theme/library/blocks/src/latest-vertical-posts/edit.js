@@ -54,6 +54,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		queryTerms,
 		showAsGrid,
 		showAuthor,
+		showAvatar,
 		showChildren,
 		showDate,
 		showExcerpt,
@@ -175,6 +176,16 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 								label={ __( 'Use rounded thumbnail?', 'ninja' ) }
 								checked={ thumbnailFormat }
 								onChange={ () => { setAttributes( { thumbnailFormat: ! thumbnailFormat } ) } }
+							/>
+						</PanelRow>
+					) }
+
+					{ ( showThumbnail && blockModel == 'posts' ) && (
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Use avatar as thumbnail?', 'ninja' ) }
+								checked={ showAvatar }
+								onChange={ () => { setAttributes( { showAvatar: ! showAvatar } ) } }
 							/>
 						</PanelRow>
 					) }

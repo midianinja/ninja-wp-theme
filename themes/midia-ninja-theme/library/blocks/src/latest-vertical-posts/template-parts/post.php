@@ -2,6 +2,7 @@
 $show_author    = ! empty( $args['attributes']['showAuthor'] );
 $show_excerpt   = ! empty( $args['attributes']['showExcerpt'] );
 $show_taxonomy  = ! empty( $args['attributes']['showTaxonomy'] ) ? $args['attributes']['showTaxonomy'] : false;
+$show_avatar    = ! empty( $args['attributes']['showAvatar'] );
 $show_thumbnail = ! empty( $args['attributes']['showThumbnail'] );
 $block_model    = ! empty( $args['attributes']['blockModel'] ) ? $args['attributes']['blockModel'] : 'posts';
 $counter_posts  = ! empty( $args['attributes']['counter_posts'] ) ? $args['attributes']['counter_posts'] : 1;
@@ -19,7 +20,16 @@ $coauthor = get_coauthors( $args['post']->ID );
         <?php elseif ( $show_thumbnail ) : ?>
             <div class="post-thumbnail">
                 <div class="post-thumbnail--image">
-					<?php echo coauthors_get_avatar( $coauthor[0], 80 ); ?>
+                    <?php if ( $show_avatar ) {
+                        $coauthor = get_coauthors( $args['post']->ID );
+                        $thumbnail = get_the_post_thumbnail_url( $coauthor[0], 'medium' );
+                    } else {
+                        $thumbnail = get_the_post_thumbnail_url( $args['post']->ID, 'medium' );
+                    }
+
+                    $thumbnail = $thumbnail ? $thumbnail : get_stylesheet_directory_uri() . "/assets/images/default-image.png"; ?>
+
+                    <img src="<?php echo $thumbnail; ?>">
                 </div>
             </div>
         <?php endif; ?>

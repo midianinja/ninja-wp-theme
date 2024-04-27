@@ -726,3 +726,25 @@ function count_guest_author_posts( $guest_author_slug ) {
 
     return 0;
 }
+
+function prevent_repeat_posts_archive( $query ) {
+    if ( $query->is_main_query() && ! is_admin() ) {
+        if ( is_archive() ) {
+
+            $queried_object = get_queried_object();
+            $taxonomy = $queried_object->taxonomy;
+
+            $taxonomies = ['category'];
+            if ( in_array( $taxonomy, $taxonomies ) ) {
+                $paged = $query->get('paged') ? $query->get('paged') : 1;
+                if ($paged ==1) {
+                    $offset = 4;
+                    $query->set('offset', $offset);
+
+                }
+            }
+        }
+    }
+}
+
+add_action( 'pre_get_posts', 'prevent_repeat_posts_archive' );

@@ -96,9 +96,13 @@ function latest_vertical_posts_callback( $attributes ) {
             $cached_posts = get_transient( $cache_key );
         }
 
-        if ( false === $cached_posts ) {
-            $post__not_in = array_merge( $latest_blocks_posts_ids, array_keys( $newspack_blocks_post_id ) );
-            $post__not_in = array_unique( $post__not_in, SORT_STRING );
+        if ( is_archive() || false === $cached_posts ) {
+            $post__not_in = [];
+
+            if ( ! is_archive() ) {
+                $post__not_in = array_merge( $latest_blocks_posts_ids, array_keys( $newspack_blocks_post_id ) );
+                $post__not_in = array_unique( $post__not_in, SORT_STRING );
+            }
 
             $args = build_posts_query( $attributes, $post__not_in );
 

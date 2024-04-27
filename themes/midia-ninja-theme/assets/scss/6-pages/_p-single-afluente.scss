@@ -447,6 +447,59 @@ body{
                 }
             }
         }
+
+        .high-spot-block{            
+
+            .high-spot-block__link{
+                height: 510px;
+                display: flex;
+
+                @include mixins.small{
+                    height: inherit;
+                }
+
+                @include mixins.mobile{
+                    height: inherit;
+                }
+                
+                @media(min-width: 600px) and (max-width: 1024px){
+                   display: flex;
+                   height: 510px;
+                }
+
+                .high-spot-block__content{
+                    .high-spot-block__info{
+                        h3{
+                            @media(min-width: 600px) and (max-width: 1024px){
+                                font-size: 18px;
+                            }
+                        }
+
+                        .tag{
+                            @media(min-width: 600px) and (max-width: 1024px){
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .post-content{
+
+            .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
+                gap: 17px;
+
+                @include mixins.mobile{ //deixa inline os icones de rede social no mobile
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    gap: 0;
+                    max-width: 150px;
+                    margin-left: 0px !important;
+                }
+                
+            }
+        }
     }
     &.afluente-nec{
         nav.wp-block-navigation {
@@ -458,20 +511,6 @@ body{
                     &::after {
                         background-color: var(--wp--preset--color--environment);
                     }
-                }
-            }
-        }
-
-        .wp-block-cover:nth-child(1){
-
-            .wp-block-columns{
-
-                @include mixins.small{
-                    flex-direction: row;
-                }
-
-                @include mixins.mobile{
-                    flex-direction: row;
                 }
             }
         }
@@ -646,6 +685,21 @@ body{
                 }
 
                 .post-content{
+                    .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
+                        gap: 17px;
+        
+                        @include mixins.mobile{ //deixa inline os icones de rede social no mobile
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr 1fr;
+                            gap: 0;
+                            max-width: 150px;
+                            margin-left: 0px !important;
+                        }
+                        
+                    }
+                }
+
+                .post-content{
                     >h2{
                         color: var(--Primary-dark, var(--DARK, #111));
                         font-family: var(--wp--preset--font-family--manrope);
@@ -730,6 +784,21 @@ body{
             }
         }
 
+        .post-content{
+            .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
+                gap: 17px;
+
+                @include mixins.mobile{ //deixa inline os icones de rede social no mobile
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    gap: 0;
+                    max-width: 150px;
+                    margin-left: 0px !important;
+                }
+                
+            }
+        }
+
         .latest-vertical-posts-block{
 
             .latest-vertical-posts-block__heading{
@@ -782,6 +851,21 @@ body{
                 }
             }
         
+        }
+
+        .post-content{
+            .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
+                gap: 17px;
+
+                @include mixins.mobile{ //deixa inline os icones de rede social no mobile
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    gap: 0;
+                    max-width: 150px;
+                    margin-left: 0px !important;
+                }
+                
+            }
         }
     }
 }

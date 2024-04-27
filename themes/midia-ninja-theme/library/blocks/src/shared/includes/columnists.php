@@ -22,23 +22,22 @@ function columnists_get_contents( $block_id ) {
                 'value'   => 1,
                 'compare' => '='
             ],
-        ],
-        'fields' => 'ids'
+        ]
     ];
 
     $authors = get_posts( $args );
     $limit = 10;
 
     if ( $authors ) {
-        foreach ( $authors as $author_id ) {
-            if ( count_user_posts( $author_id, 'post' ) > 0 ) {
-                $data[] = $author_id;
+        foreach ( $authors as $author ) {
+            if ( count_guest_author_posts( $author->post_name, 'post' ) > 0 ) {
+                $data[] = $author->ID;
                 if ( count( $data ) >= $limit ) {
                     break;
                 }
             }
         }
-    
+
         if ( ! empty( $data ) ) {
             set_transient( $cache_key, $data, 3600 );
         }

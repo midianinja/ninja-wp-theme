@@ -26,11 +26,13 @@ function authors_list_block_callback( $attributes ) {
 		$coauthors = get_coauthors( $post->ID );
 		foreach ( $coauthors as $coauthor ) {
 			if ( ! in_array( $coauthor->ID, $latest_authors ) ) {
-				$latest_authors[] = $coauthor->ID;
-				$latest_authors_map[ $coauthor->ID ] = $coauthor;
+				if ( get_post_meta( $coauthor->ID, 'colunista', true ) ) {
+					$latest_authors[] = $coauthor->ID;
+					$latest_authors_map[ $coauthor->ID ] = $coauthor;
 
-				if ( count( $latest_authors ) == $featured_authors_count ) {
-					break 2;
+					if ( count( $latest_authors ) == $featured_authors_count ) {
+						break 2;
+					}
 				}
 			}
 		}

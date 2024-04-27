@@ -712,3 +712,17 @@ function remove_secondary_category_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'newspack_blocks_term_classes', 'remove_secondary_category_classes' );
+
+function count_guest_author_posts( $guest_author_slug ) {
+    if ( strpos( $guest_author_slug, 'cap-') !== 0 ) {
+        $guest_author_slug = 'cap-' . $guest_author_slug;
+    }
+
+    $term = get_term_by( 'slug', $guest_author_slug, 'author' );
+
+    if ( $term ) {
+        return $term->count;
+    }
+
+    return 0;
+}

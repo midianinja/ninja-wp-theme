@@ -632,6 +632,7 @@
 			main.content {
 				.post {
 					header.post-header {
+						max-width: 960px;
 						width: max-content;
 
 						@include mixins.tablet {

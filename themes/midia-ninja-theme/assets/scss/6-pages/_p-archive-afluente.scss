@@ -12,7 +12,9 @@ main.content.col-md-12 {
 		margin-right: auto;
 		margin-left: auto;
 	}
-
+	#app{
+		background-color: #F5F5F5;
+	}
 
 	.header-and-footer-archive {
 		margin: 40px 0px;
@@ -21,6 +23,9 @@ main.content.col-md-12 {
 			height: 506px !important;
 			padding: 0px;
 			border-radius: 1%;
+			@include mobile{
+				border-radius: 8px;
+			}
 
 			.wp-block-columns {
 				width: 50%;
@@ -34,7 +39,7 @@ main.content.col-md-12 {
 				@include mobile{
 					width: 100%;
 					position: relative;
-					top: 249px;
+					top: 261px;
 
 				}
 				.wp-block-column{
@@ -49,7 +54,7 @@ main.content.col-md-12 {
 						display: flex;
 						margin-left: 20px;
 						justify-content: flex-start;
-						margin-top: 0px;
+						margin-top: 40px;
 						align-items: flex-start;
 					}
 					h2{
@@ -180,6 +185,7 @@ main.content.col-md-12 {
 						border-radius: 8px;
 						border: 2px solid var(--PRIMARY-PURE, #848484);
 						padding-left: 8px;
+						background-color: #F5F5F5;
 						
                     }
 					input::placeholder{
@@ -193,6 +199,9 @@ main.content.col-md-12 {
 						width: 32px;
 						background-color: white;
 						border: none;
+						@include mobile{
+							right: 23px;
+						}
                         
                     }
                 }

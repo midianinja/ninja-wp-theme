@@ -2,7 +2,9 @@
 @use "./../2-atoms/a-mixins" as mixins;
 
 .page-seja-ninja{
-
+#app{
+    background-color:  #f5f5f5;
+}
     .wp-block-columns:first-child{
         p{margin: 0px !important;}
         h2{margin:0px !important;}
@@ -69,7 +71,7 @@
                             display: flex;
                             align-items: center;
                             flex-direction: column;
-                            margin-top: 84px;
+                            margin-top: 44px;
                             form{
                                 display: flex;
                                 flex-direction: column;
@@ -86,17 +88,22 @@
                                 }
                                 label{
                                     input{
-                                        width: 265px;
+                                         width: 265px;
+                                        height: 39px;
                                         padding: 10px;
                                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                                         border: 1px solid var(--Main-beerus, #E2E2E2);
-                                        padding-left: 10px;
+                                        padding-left: 7px;
                                         font-size: 13px;
                                         font-style: normal;
+                                        line-height: 24px;
                                         color: var(--Main-trunks, #595D62);
+
+                                        /* <small> Manrope */
                                         font-family: 'Manrope', sans-serif;
                                         font-weight: 500;
                                         line-height: 18.85px; /* 18.85px */
+                                        background-color: white;
 
 
                                     }
@@ -115,6 +122,7 @@
 
                                 select {
                                     width: 265px;
+                                    height: 39px;
                                     padding: 10px;
                                     border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                                     border: 1px solid var(--Main-beerus, #E2E2E2);
@@ -141,6 +149,36 @@
                                     line-height: 18.85px; /* Altura da linha */
                                     color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
                                 }
+                                .acept{
+                                    
+                                    p {
+                                        display: flex;
+                                        gap: 8px;
+                        
+                                        .wpcf7-list-item {
+                                            margin: 0;
+                                        }
+                        
+                                        span {
+                                            color: FFF;
+                                            font-size: 13px;
+                                            font-style: normal;
+                                            font-weight: 500;
+                                            line-height: 145%; /* 18.85px */
+                                        }
+                        
+                                        a {
+                                            color: #FDF250;
+                                            font-size: 13px;
+                                            font-style: normal;
+                                            font-weight: 800;
+                                            line-height: 145%;
+                                            text-decoration-line: underline;
+                                        }
+                                    }
+
+                                }
+                                 
 
 
                                 .submit-button{
@@ -267,7 +305,7 @@
                 display: flex;
                 align-items: center;
                 flex-direction: column;
-                margin-top: 84px;
+                margin-top:84px;
                 @media(max-width:991px){
                     display: flex;
                     align-items: center;
@@ -281,6 +319,7 @@
                     display: flex;
                     flex-direction: column;
                     gap: 18px;
+                    align-items: center;
                     @media (max-width: 991px) {
                         gap: 0px !important;
 
@@ -329,7 +368,8 @@
                     label{
                         input{
                             max-width: 265px;
-                            padding: 7px 3px;
+                            padding: 8px 3px;
+                            height: 39px !important;
                             border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                             border: 1px solid var(--Main-beerus, #E2E2E2);
                             background: var(--Main-gohan, #FFF);
@@ -346,7 +386,7 @@
                     }
                     select{
                         width: 265px;
-                        padding: 7px 3px;
+                        padding: 8px 3px;
                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                         border: 1px solid var(--Main-beerus, #E2E2E2);
                         background: var(--Main-gohan, #FFF);
@@ -360,6 +400,42 @@
                         line-height:18.85px;
                         padding: 10px;
                     }
+                   
+                    .acept {
+                        @include mixins.mobile{
+                            max-width: 259px;
+                        }
+                        p {
+                            display: flex;
+                            gap: 8px;
+            
+                            .wpcf7-list-item {
+                                margin: 0;
+                            }
+            
+                            span {
+                                color: FFF;
+                                font-size: 13px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: 145%; /* 18.85px */
+                            }
+            
+                            a {
+                                color: #FDF250;
+                                font-size: 13px;
+                                font-style: normal;
+                                font-weight: 800;
+                                line-height: 145%;
+                                text-decoration-line: underline;
+                                @include mixins.mobile{
+                                    color:#3F24E5;
+
+                                }
+                            }
+                        }
+                    }
+                    
                     .submit-button{
                         @media(max-width:667px){
                             margin: auto;
@@ -367,6 +443,7 @@
                         input{
                             display: flex;
                             width: 265px;
+                            height: 39px;
                             padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
                             justify-content: center;
                             align-items: center;
@@ -413,8 +490,12 @@
                     }
                     h4{
                         margin: 0;
+                        @include mixins.mobile{
+                            margin-bottom: -10px;
+                        }
 
                     }
+                    
                     & .social-icons-inscricao{
                         gap: 0px;
                         @include mixins.mobile{
@@ -434,6 +515,15 @@
                         & .wp-block-column{
                             flex-basis: initial !important;
 
+                            p{
+                                @include mixins.mobile{
+                                    font-family: Manrope;
+                                    font-size: 13px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    line-height: 145%; /* 18.85px */
+                                }
+                            }
                         }
                     }
                 }

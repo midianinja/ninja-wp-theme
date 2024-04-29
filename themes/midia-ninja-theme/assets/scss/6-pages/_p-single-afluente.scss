@@ -172,6 +172,22 @@ body.single-afluente {
                         }
                     }
 
+                    //Bloco de opinião
+                    .opinion-posts-block{
+                        .container{
+                            .opinion-posts-block__posts{
+            
+                                .opinion-posts-block__slides{
+                                    .slide{
+                                        .post{
+                                            width: 100%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     //Bloco quem somos afluentes                   
                     #quemsomos{
 
@@ -687,23 +703,6 @@ body{
                     @media(min-width: 600px) and (max-width: 1366px){
                         flex-direction: column;
                         gap: 0;
-                    }
-                }
-            }
-        }
-    }
-    &.afluente-minas{
-
-        .opinion-posts-block{
-            .container{
-                .opinion-posts-block__posts{
-
-                    .opinion-posts-block__slides{
-                        .slide{
-                            .post{
-                                width: 100%;
-                            }
-                        }
                     }
                 }
             }

@@ -78,7 +78,7 @@ body.single-afluente {
                     // Block latest vertical posts
                     .latest-vertical-posts-block {
                         .post {
-                            align-items: inherit;
+                            align-items: center;
                             margin-bottom: 0;
 
                             &-author {
@@ -136,6 +136,7 @@ body.single-afluente {
                         }
                     }
 
+                    //Bloco quem somos afluentes                   
                     #quemsomos{
 
                         h2{
@@ -149,7 +150,7 @@ body.single-afluente {
                             letter-spacing: -2.7px;
                         }
 
-                        @media(min-width: 600px) and (max-width: 1024px){
+                        @media(min-width: 600px) and (max-width: 1366px){
                             display: flex;
                             flex-direction: column;
                         }
@@ -189,6 +190,42 @@ body.single-afluente {
             }
         }
 
+        .high-spot-block{            
+            .high-spot-block__link{
+                height: 510px;
+                display: flex;
+
+                @include mixins.small{
+                    height: inherit;
+                }
+
+                @include mixins.mobile{
+                    height: inherit;
+                }
+                
+                @media(min-width: 600px) and (max-width: 1366px){
+                   display: flex;
+                   height: 510px;
+                }
+
+                .high-spot-block__content{
+                    .high-spot-block__info{
+                        h3{
+                            @media(min-width: 600px) and (max-width: 1366px){
+                                font-size: 18px;
+                            }
+                        }
+
+                        .tag{
+                            @media(min-width: 600px) and (max-width: 1366px){
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         // Block columns
         .wp-block-columns {
             margin-bottom: 0;
@@ -196,6 +233,27 @@ body.single-afluente {
             &:where(.is-layout-flex) {
                 gap: 30px;
             }
+        }
+
+        .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
+            gap: 17px;
+
+            @include mixins.small{ 
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 0;
+                max-width: 150px;
+                margin-left: 0px !important;
+            }
+
+            @include mixins.mobile{ 
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 0;
+                max-width: 150px;
+                margin-left: 0px !important;
+            }
+            
         }
 
         nav.wp-block-navigation {
@@ -283,6 +341,41 @@ footer.main-footer{
 
 body{
     &.afluente-xepa-ativismo{    
+
+        .wp-block-cover{
+            padding: 6em;
+        }
+
+        #especiais{
+
+            @include mixins.small{
+                min-height: 675px !important;
+            }
+
+            @include mixins.mobile{
+                min-height: 675px !important;
+            }
+
+            h2{
+                font-feature-settings: var(--f-ninja-config);
+                font-family: var(--f-ninja);
+            }
+
+            .wp-block-columns{
+    
+                @include mixins.small{
+                    display: flex;
+                    flex-direction: column-reverse;
+                    max-width: 100%;
+                }
+    
+                @include mixins.mobile{
+                    display: flex;
+                    flex-direction: column-reverse;
+                    max-width: 100%;
+                }
+            }
+        }
 
         nav.wp-block-navigation {
 
@@ -447,59 +540,6 @@ body{
                 }
             }
         }
-
-        .high-spot-block{            
-
-            .high-spot-block__link{
-                height: 510px;
-                display: flex;
-
-                @include mixins.small{
-                    height: inherit;
-                }
-
-                @include mixins.mobile{
-                    height: inherit;
-                }
-                
-                @media(min-width: 600px) and (max-width: 1024px){
-                   display: flex;
-                   height: 510px;
-                }
-
-                .high-spot-block__content{
-                    .high-spot-block__info{
-                        h3{
-                            @media(min-width: 600px) and (max-width: 1024px){
-                                font-size: 18px;
-                            }
-                        }
-
-                        .tag{
-                            @media(min-width: 600px) and (max-width: 1024px){
-                                font-size: 10px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .post-content{
-
-            .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
-                gap: 17px;
-
-                @include mixins.mobile{ //deixa inline os icones de rede social no mobile
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                    gap: 0;
-                    max-width: 150px;
-                    margin-left: 0px !important;
-                }
-                
-            }
-        }
     }
     &.afluente-nec{
         nav.wp-block-navigation {
@@ -514,75 +554,10 @@ body{
                 }
             }
         }
-
-        .high-spot-block{            
-
-            .high-spot-block__link{
-                height: 510px;
-                display: flex;
-
-                @include mixins.small{
-                    height: inherit;
-                }
-
-                @include mixins.mobile{
-                    height: inherit;
-                }
-                
-                @media(min-width: 600px) and (max-width: 1024px){
-                   display: flex;
-                   height: 510px;
-                }
-
-                .high-spot-block__content{
-                    .high-spot-block__info{
-                        h3{
-                            @media(min-width: 600px) and (max-width: 1024px){
-                                font-size: 18px;
-                            }
-                        }
-
-                        .tag{
-                            @media(min-width: 600px) and (max-width: 1024px){
-                                font-size: 10px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .post-content{
-            .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
-                gap: 17px;
-
-                @include mixins.mobile{ //deixa inline os icones de rede social no mobile
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                    gap: 0;
-                    max-width: 150px;
-                    margin-left: 0px !important;
-                }
-                
-            }
-        }
         
     }
     &.afluente-estudantes-ninja{
-        .wp-block-cover:nth-child(1){
-   
-            .wp-block-columns:nth-last-of-type(1){
-                gap: 17px;
 
-                @include mixins.mobile{ 
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                    gap: 0;
-                    max-width: 150px;
-                    margin-left: 0px !important;
-                }
-                
-            }
-        }
         nav.wp-block-navigation {
 
             &:not(.alignfull) {
@@ -595,76 +570,8 @@ body{
                 }
             }
         }
-
-        .high-spot-block{            
-
-            .high-spot-block__link{
-                height: 510px;
-                display: flex;
-
-                @include mixins.small{
-                    height: inherit;
-                }
-
-                @include mixins.mobile{
-                    height: inherit;
-                }
-                
-                @media(min-width: 600px) and (max-width: 1024px){
-                   display: flex;
-                   height: 510px;
-                }
-
-                .high-spot-block__content{
-                    .high-spot-block__info{
-                        h3{
-                            @media(min-width: 600px) and (max-width: 1024px){
-                                font-size: 18px;
-                            }
-                        }
-
-                        .tag{
-                            @media(min-width: 600px) and (max-width: 1024px){
-                                font-size: 10px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .post-content{  
-            .wp-block-columns:nth-last-of-type(1){
-                gap: 17px;
-
-                @include mixins.mobile{ 
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                    gap: 0;
-                    max-width: 150px;
-                    margin-left: 0px !important;
-                }
-                
-            }
-        }
     }
-    &.afluente-design-ativista{
-
-        .wp-block-cover:nth-child(1){
-   
-            .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
-                gap: 17px;
-
-                @include mixins.mobile{ //deixa inline os icones de rede social no mobile
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                    gap: 0;
-                    max-width: 150px;
-                    margin-left: 0px !important;
-                }
-                
-            }
-        }
-
+    &.afluente-design-ativista{  
         .latest-grid-posts-block {
 
             .latest-grid-posts-block__posts{
@@ -708,7 +615,7 @@ body{
                         font-weight: 700;
                         line-height: 130%; 
 
-                        @media (min-width: 600px ) and (max-width: 1024px){
+                        @media (min-width: 600px ) and (max-width: 1366px){
                             font-size: 14px !important;
                         }
                     }
@@ -717,93 +624,23 @@ body{
  
         }
 
-        .high-spot-block{
-
+        .high-spot-block{           
             .high-spot-block__link{
-                @media (min-width: 600px) and (max-width: 1024px){
-                        display: flex;
-                        height: 527px;
-                }
-
-                @include mixins.small{
-                    height: inherit;
-                }
-
-                @include mixins.mobile{
-                    height: inherit;
-                }
-            }
-
-            .high-spot-block__content{
-                .high-spot-block__info{
-                    h3{
-                        @media (min-width: 600px) and (max-width: 1024px){
-                            font-size: 18px;
-                        }
-                    }
+                height: 527px !important;
+                
+                @media(min-width: 600px) and (max-width: 1366px){
+                   display: flex;
+                   height: 527px !important;
                 }
             }
         }
     }
     &.afluente-cine-ninja{
-
-        .high-spot-block {
-
-            .high-spot-block__link{
-                height: 521px;
-                display: flex;
-
-                @include mixins.small{
-                    height: inherit;
-                }
-
-                @include mixins.mobile{
-                    height: inherit;
-                }
-                
-                @media(min-width: 600px) and (max-width: 1024px){
-                   display: flex;
-                   height: 525px;
-                }
-
-                .high-spot-block__content{
-                    .high-spot-block__info{
-                        h3{
-                            @media(min-width: 600px) and (max-width: 1024px){
-                                font-size: 18px;
-                            }
-                        }
-
-                        .tag{
-                            @media(min-width: 600px) and (max-width: 1024px){
-                                font-size: 10px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .post-content{
-            .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
-                gap: 17px;
-
-                @include mixins.mobile{ //deixa inline os icones de rede social no mobile
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                    gap: 0;
-                    max-width: 150px;
-                    margin-left: 0px !important;
-                }
-                
-            }
-        }
-
         .latest-vertical-posts-block{
 
             .latest-vertical-posts-block__heading{
                 h2{
-                    @media(min-width: 600px) and (max-width: 1024px){
+                    @media(min-width: 600px) and (max-width: 1366px){
                         font-size: 24px !important;
                     }
                 }
@@ -811,7 +648,7 @@ body{
 
             .slick-list{
                 .post{
-                    @media(min-width: 600px) and (max-width: 1024px){
+                    @media(min-width: 600px) and (max-width: 1366px){
                         flex-direction: column;
                         gap: 0;
                     }
@@ -819,52 +656,125 @@ body{
             }
         }
     }
-    &.afluente-casa-ninja-amazonia{
+    &.afluente-minas{
 
-        .high-spot-block{
+        .opinion-posts-block{
             .container{
+                .opinion-posts-block__posts{
 
-                .high-spot-block__link{
-
-                    @media (min-width: 600px) and (max-width: 1024px){
-                        display: flex;
-                        height: 510px;
-                    }
-    
-                    @include mixins.small{
-                        height: inherit;
-                    }
-    
-                    @include mixins.mobile{
-                        height: inherit;
-                    }
-                }
-    
-                .high-spot-block__content{
-                    .high-spot-block__info{
-                        h3{
-                            @media (min-width: 600px) and (max-width: 1024px){
-                                font-size: 18px;
+                    .opinion-posts-block__slides{
+                        .slide{
+                            .post{
+                                width: 100%;
                             }
                         }
                     }
                 }
             }
-        
+        }
+    }
+    &.afluente-ella{
+        .latest-vertical-posts-block {
+
+            .latest-vertical-posts-block__slides{
+                .slick-list{
+                    .slick-track{
+                        .slick-slide {
+                            .slide{
+                                a{
+                                    .post{
+                                        @media(min-width: 600px) and (max-width: 1366px){
+                                            flex-direction: column!important;
+                                        }
+
+                                        .post-thumbnail{
+                                            @media(min-width: 600px) and (max-width: 1366px){
+                                                height: 100px;
+                                            }
+
+                                            &--image{
+                                                @media(min-width: 600px) and (max-width: 1366px){
+                                                    height: 100px;
+                                                }
+                                            }
+                                        }
+                                        &-meta{
+                                            .post-author{
+                                                @media(min-width: 600px) and (max-width: 1366px){
+                                                    margin-bottom: 10px;
+                                                }
+                                            }
+                                        }
+                                    }   
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+    }
+    &.afluente-poderes{
+
+        .high-spot-block{           
+            .high-spot-block__link{
+                height: 527px !important;
+                
+                @media(min-width: 600px) and (max-width: 1366px){
+                   display: flex;
+                   height: 527px !important;
+                }
+            }
         }
 
-        .post-content{
-            .wp-block-columns:nth-last-of-type(1){ //redes sociais do aside
-                gap: 17px;
+        #especiais{
 
-                @include mixins.mobile{ //deixa inline os icones de rede social no mobile
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                    gap: 0;
-                    max-width: 150px;
-                    margin-left: 0px !important;
+            @include mixins.small{
+                min-height: 675px !important;
+            }
+
+            @include mixins.mobile{
+                min-height: 675px !important;
+            }
+
+            .wp-block-spacer {
+                @include mixins.small{
+                    display: none;
                 }
-                
+
+                @include mixins.mobile{
+                    display: none;
+                }
+            }
+
+            .wp-block-columns{
+    
+                @include mixins.small{
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 100%;
+                }
+    
+                @include mixins.mobile{
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 100%;
+                }
+
+                h2{
+                    font-feature-settings: var(--f-ninja-config);
+                    font-family: var(--f-ninja);
+
+                    @include mixins.small{
+                        margin-bottom: 20px;
+                    }
+
+                    @include mixins.mobile{
+                        margin-bottom: 20px;
+                    }
+                }
             }
         }
     }

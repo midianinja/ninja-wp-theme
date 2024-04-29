@@ -4,15 +4,15 @@ namespace Ninja;
 
 function latest_editorial_posts_callback( $attributes ) {
 
-    global $latest_editorial_posts_ids;
-
-    if ( ! is_array( $latest_editorial_posts_ids ) ) {
-        $latest_editorial_posts_ids = [];
-    }
+    global $newspack_blocks_post_id;
+    global $latest_blocks_posts_ids;
 
     $attributes['postsToShow'] = 9;
 
-    $args = build_posts_query( $attributes, $latest_editorial_posts_ids );
+    $post__not_in = array_merge( $latest_blocks_posts_ids, array_keys( $newspack_blocks_post_id ) );
+    $post__not_in = array_unique( $post__not_in, SORT_STRING );
+
+    $args = build_posts_query( $attributes, $post__not_in );
 
     $posts_query = new \WP_Query( $args );
     $posts = [];
@@ -74,7 +74,9 @@ function latest_editorial_posts_callback( $attributes ) {
                         while ( $posts_query->have_posts() ) :
                             $posts_query->the_post();
                             global $post;
-                            $latest_editorial_posts_ids[] = $post->ID;
+
+                            $latest_blocks_posts_ids[] = $post->ID;
+                            $newspack_blocks_post_id[$post->ID] = true;
 
                             get_template_part( 'library/blocks/src/latest-editorial-posts/template-parts/post', '', ['post' => $post, 'attributes' => $attributes] );
                         endwhile;

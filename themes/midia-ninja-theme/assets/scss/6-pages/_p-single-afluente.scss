@@ -124,8 +124,13 @@ body.single-afluente {
                             &-thumbnail{
                                 max-width: 124px;
                                 width: 100%;
-                                height: auto;
+                                max-height: 88px;
                                 flex-basis: inherit;
+
+                                &--image{
+                                    max-height: 88px;
+                                    margin-bottom: 10px;
+                                }
                             }
                         }
                     }

@@ -73,18 +73,10 @@
 
                     <div class="menus">
                         <?= wp_nav_menu(['theme_location' => 'main-menu', 'container' => 'nav', 'menu_id' => 'main-menu', 'menu_class' => 'menu', 'container_class' => 'primary-menu']) ?>
-
-                        <?php if (is_plugin_active('tutor/tutor.php')) : ?>
-                            <div class="tutor-header-profile-menu-items">
-                                <?php tutor_multi_column_dropdown(); ?>
-                            </div><!-- .tutor-header-profile-menu -->
-                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-
         </div>
-
 
 	</header>
 	<div id="app">

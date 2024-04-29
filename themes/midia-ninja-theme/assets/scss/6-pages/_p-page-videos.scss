@@ -5,11 +5,11 @@
     #app{
         background-color:var(--wp--preset--color--secondary-light);
 
-        .wp-block-columns{
+        .wp-block-columns:nth-last-of-type(1){
             @media(max-width: 992px){
                 display: block;
             }
-            :first-child{
+            .wp-block-column:nth-of-type(1){
                 background: var(--PURE, #262626);
                 padding: 40px 70px 60px 75px;
                 border-radius: 8px;
@@ -20,16 +20,51 @@
                     color: #fff;
                     margin-top: 0.3rem;
 				}
+
+                .wp-block-automatic-youtube-gallery-block{
+                    .ayg{
+                        .ayg-playlist-row{
+                            .ayg-player{
+                                .ayg-player-wrapper{
+                                    iframe{
+                                        border-radius: 8px;
+                                    }
+                                }
+                            }
+                            .ayg-gallery{
+                                background: var(--PURE, #262626);
+                                .ayg-thumbnail{
+                                    display: flex;
+                                    flex-direction: column-reverse;
+                                    .ayg-thumbnail-image-wrapper{
+                                        img{
+                                            width: 136px;
+                                            height: 75.052px;
+                                            border-radius: 8px;
+                                        }
+                                    }
+                                    .ayg-thumbnail-caption{
+                                        margin-left: 0;
+                                    }
+                                }
+                            }    
+                        }
+                        .ayg-player-caption{
+                            display: none;    
+                        }
+                    }
+                }
 			}
+            .wp-block-column:nth-of-type(2){
+                .wp-block-image {
+
+                    img {
+                        border-radius: 8px;
+                        margin-top: 30px;
+                    }
+                }
+            }
         }
-
-		.wp-block-image {
-
-			img {
-				border-radius: 8px;
-				margin-top: 30px;
-			}
-		}
 
         .model-videos{
             background-color: var(--wp--preset--color--secondary-pure);

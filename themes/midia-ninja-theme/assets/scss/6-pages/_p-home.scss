@@ -65,7 +65,7 @@
 					font-size: var(--wp--preset--font-size--default);
 					font-weight: 700;
 					padding-bottom: 5px;
-					padding-top: 15px;
+					padding-top: 0px;
 				}
 
 				.entry-meta {
@@ -314,6 +314,7 @@
 		}
 
 		&.posts-sidebar {
+			margin-top: -20px;
 			@include mobile {
 				margin-bottom: -1.3rem;
 				margin-top: 0;
@@ -322,7 +323,7 @@
 			> div {
 				display: grid;
 				@include desktop {
-					gap: 55px;
+					gap: 40px;
 				}
 			}
 

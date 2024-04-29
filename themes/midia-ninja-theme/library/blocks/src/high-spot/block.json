@@ -2,11 +2,11 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 2,
     "name": "ninja/high-spot",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "title": "Destaque principal",
     "category": "widgets",
     "icon": "format-image",
-    "description": "Exibe uma imagem de destaque com texto sobreposto.",
+    "description": "Exibe uma imagem de destaque com texto sobreposto, a partir de um post específico ou o último de um termo.",
     "attributes": {
         "blockId": {
             "type": "string"
@@ -42,7 +42,17 @@
         "postId": {
             "type": "number",
             "default": 0
-        }
+        },
+        "postType": {
+            "type": "string",
+            "default": "post"
+        },
+        "queryTerms": {
+            "type": "array"
+        },
+        "taxonomy": {
+			"type": "string"
+		}
     },
     "supports": {
         "html": false,

@@ -402,9 +402,8 @@
                     }
                    
                     .acept {
-                        @include mixins.mobile{
-                            max-width: 259px;
-                        }
+                        max-width: 259px;
+                        
                         p {
                             display: flex;
                             gap: 8px;

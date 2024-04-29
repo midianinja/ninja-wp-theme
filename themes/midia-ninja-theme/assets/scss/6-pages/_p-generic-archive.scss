@@ -104,10 +104,23 @@
 						}
 
 						.high-spot-block{
-							@media (min-width: 600px) and (max-width: 1200px){
+							@media (min-width: 769px) and (max-width: 1200px){
 								max-width: 660px;
-								left: 6%;
+								left: 8%;
 								position: relative;
+							}
+
+							.high-spot-block__link{
+								@media (min-width: 600px) and (max-width: 1200px){
+									display: flex;
+									height: 510px;
+								}
+							}
+
+							.high-spot-block__info{
+								@media (min-width: 600px) and (max-width: 1200px){
+									position: relative;
+								}
 							}
 						}
 					}
@@ -144,6 +157,11 @@
 
 					.posts-sidebar {
 						margin-top: 4rem;
+
+						@media (min-width: 600px) and (max-width: 1025px){
+							max-width: 210px;
+							width: 100%;
+						}
 						
 						@include mixins.mobile {
 							margin-bottom: -1.3rem;
@@ -221,6 +239,10 @@
 										font-weight: 500;
 										line-height: 145%;
 										color: #333;
+
+										@media (min-width: 600px) and (max-width: 1000px){
+											font-size: 10px;
+										}
 
 										@include mixins.small{
 											line-height: 120%;
@@ -367,7 +389,15 @@
 					grid-template-columns: 1fr 1fr;
 					position: relative;
 					right: 65px;
-					width: 805px;					
+					width: 805px;	
+					
+					@media (max-width: 1023px){
+						right: 60px;
+					}
+					
+					@media (min-width: 1024px){
+						right: 35px;
+					}
 
 					@include mixins.small {
 						display: flex;
@@ -536,18 +566,6 @@
 
 					.latest-vertical-posts-block__footer{
 						padding-bottom: 15px;
-			
-						.latest-vertical-posts-block__dots{
-							.slick-dots{
-								li{
-									background-color: #4F4F4F;
-
-									&:active{
-										background-color: #848484;
-									}
-								}
-							}
-						}
 					}
 
 					.latest-vertical-posts-block__slides{

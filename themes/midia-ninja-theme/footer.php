@@ -20,13 +20,6 @@
             'menu_class' => 'footer-menu'
             ]); ?>
 
-        <?php if (is_plugin_active('tutor/tutor.php')) : ?>
-            <div class="tutor-header-profile-menu-items">
-                <?php tutor_multi_column_dropdown(); ?>
-            </div><!-- .tutor-header-profile-menu -->
-        <?php endif; ?>
-
-
         <div class="footer-credit">
             <div class="content">
                 <img loading="lazy" src="<?= get_template_directory_uri() ?>/assets/images/site-por-hacklab.png" alt="site por hacklab" height="15" width="103">

@@ -87,4 +87,17 @@
             }
         }
     }
+
+    &.especial-paris-2024{
+        #news-olimpica{
+                .wp-block-cover__inner-container{
+                    h2{
+                        font-feature-settings: 'calt' on;
+                        font-family: "MidiaNinja";
+                        font-size: 3.2rem;
+
+                    }
+                }
+        }
+    }
 }

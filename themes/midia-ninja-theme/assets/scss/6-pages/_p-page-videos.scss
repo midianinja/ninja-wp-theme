@@ -9,6 +9,13 @@
             @media(max-width: 992px){
                 display: block;
             }
+            :first-child{
+				h2{
+					font-feature-settings: 'calt' on;
+                        font-family: "MidiaNinja";
+                        font-size: 3.2rem;
+				}
+			}
         }
 
 		.wp-block-image {

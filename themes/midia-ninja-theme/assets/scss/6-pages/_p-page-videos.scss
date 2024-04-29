@@ -11,14 +11,19 @@
             }
             .wp-block-column:nth-of-type(1){
                 background: var(--PURE, #262626);
-                padding: 40px 70px 60px 75px;
+                padding: 16px 35px 60px 75px;
                 border-radius: 8px;
+                @media(max-width: 767px){
+                    padding: 32px 15px 32px 15px;
+                }
 				h2{
 					font-feature-settings: 'calt' on;
                     font-family: "MidiaNinja";
                     font-size: 3rem;
                     color: #fff;
-                    margin-top: 0.3rem;
+                    @media(max-width: 767px){
+                        margin-bottom: 1.7rem;
+                    }
 				}
 
                 .wp-block-automatic-youtube-gallery-block{
@@ -36,6 +41,11 @@
                                 .ayg-thumbnail{
                                     display: flex;
                                     flex-direction: column-reverse;
+                                    padding: 10px 10px 10px 33px;
+                                    @media(max-width: 767px){
+                                        flex-direction: row;
+                                        padding: 10px 0;
+                                    }                                    
                                     .ayg-thumbnail-image-wrapper{
                                         img{
                                             width: 136px;
@@ -45,6 +55,14 @@
                                     }
                                     .ayg-thumbnail-caption{
                                         margin-left: 0;
+                                        @media(max-width: 767px){
+                                            margin-left: 45px;
+                                            
+                                        }
+                                        .ayg-thumbnail-title{
+                                            font-weight: 500;
+                                            font-size: 10px;
+                                        }
                                     }
                                 }
                             }    
@@ -60,7 +78,6 @@
 
                     img {
                         border-radius: 8px;
-                        margin-top: 30px;
                     }
                 }
             }

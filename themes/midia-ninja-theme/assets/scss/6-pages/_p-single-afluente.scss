@@ -77,6 +77,42 @@ body.single-afluente {
 
                     // Block latest vertical posts
                     .latest-vertical-posts-block {
+                        .latest-vertical-posts-block__slides{
+                            .slick-list{
+                                .slick-track{
+                                    .slick-slide {
+                                        .slide{
+                                            a{
+                                                .post{
+                                                    @media(min-width: 600px) and (max-width: 1366px){
+                                                        flex-direction: column!important;
+                                                    }
+            
+                                                    .post-thumbnail{
+                                                        @media(min-width: 600px) and (max-width: 1366px){
+                                                            height: 100px;
+                                                        }
+            
+                                                        &--image{
+                                                            @media(min-width: 600px) and (max-width: 1366px){
+                                                                height: 100px;
+                                                            }
+                                                        }
+                                                    }
+                                                    &-meta{
+                                                        .post-author{
+                                                            @media(min-width: 600px) and (max-width: 1366px){
+                                                                margin-bottom: 10px;
+                                                            }
+                                                        }
+                                                    }
+                                                }   
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         .post {
                             align-items: center;
                             margin-bottom: 0;
@@ -675,7 +711,6 @@ body{
     }
     &.afluente-ella{
         .latest-vertical-posts-block {
-
             .latest-vertical-posts-block__slides{
                 .slick-list{
                     .slick-track{

@@ -4,14 +4,14 @@
 .page-tv-ninja{
     #app{
         background-color:var(--wp--preset--color--secondary-light);
-
+        
         .wp-block-columns:nth-last-of-type(1){
             @media(max-width: 992px){
                 display: block;
             }
             .wp-block-column:nth-of-type(1){
                 background: var(--PURE, #262626);
-                padding: 16px 35px 60px 75px;
+                padding: 16px 20px 40px 25px;
                 border-radius: 8px;
                 @media(max-width: 767px){
                     padding: 32px 15px 32px 15px;
@@ -37,7 +37,17 @@
                                 }
                             }
                             .ayg-gallery{
-                                background: var(--PURE, #262626);
+                                .ayg-item{
+                                    background: var(--PURE, #262626);
+                                    :hover{
+                                        background: var(--PURE, #262626);
+                                    }
+                                }
+
+                                .ayg-item:nth-child(2n){
+                                    background-color: #262626;
+                                }
+                                
                                 .ayg-thumbnail{
                                     display: flex;
                                     flex-direction: column-reverse;
@@ -52,6 +62,9 @@
                                             height: 75.052px;
                                             border-radius: 8px;
                                         }
+                                        svg{
+                                            display: none;
+                                        }
                                     }
                                     .ayg-thumbnail-caption{
                                         margin-left: 0;
@@ -61,6 +74,7 @@
                                         }
                                         .ayg-thumbnail-title{
                                             font-weight: 500;
+                                            color: #fff;
                                             @media(max-width: 767px){
                                                 font-size: 10px;
                                             }

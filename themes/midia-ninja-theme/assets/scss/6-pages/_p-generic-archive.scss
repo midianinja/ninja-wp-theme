@@ -12,7 +12,6 @@
 
 		.container {
 			.header-and-footer-archive {
-				margin-top: 32px;
 
 				.wp-block-spacer{
 					display: none;
@@ -95,23 +94,35 @@
 					.coluna-imagem {
 						position: relative;
 						left: -3%;
+
+						@include mixins.small{
+							left: 0;
+						}
+
+						@include mixins.mobile{
+							left: 0;
+						}
+
+						.high-spot-block{
+							@media (min-width: 600px) and (max-width: 1200px){
+								max-width: 660px;
+								left: 6%;
+								position: relative;
+							}
+						}
 					}
 
 					.coluna-postss {
 						border-radius: 12px;
 						max-width: 367px;
 						width: 100%;
-						height: 506px;
 						position: relative;
 						left: -4%;
 						padding-top: 16px;
 
-						@media (max-width: 1366px) {
-							left: -2%;
-						}
-
-						@media (max-width: 1200px) {
-							left: -4%;
+						@media (min-width: 600px) and (max-width: 1200px){
+							left: -3%;
+							flex-basis: 300px !important;
 						}
 
 						@include mixins.small {
@@ -119,6 +130,7 @@
 							width: 100%;
 							margin-left: auto;
 							margin-right: auto;
+							height: 275px;
 						}
 
 						@include mixins.mobile {
@@ -126,6 +138,7 @@
 							width: 100%;
 							margin-left: auto;
 							margin-right: auto;
+							height: 275px;
 						}
 					}
 
@@ -135,6 +148,15 @@
 						@include mixins.mobile {
 							margin-bottom: -1.3rem;
 							margin-top: 0;
+							position: relative;
+							left: 3%;
+						}
+
+						@include mixins.small {
+							margin-bottom: -1.3rem;
+							margin-top: 0;
+							position: relative;
+							left: 3%;
 						}
 
 						div[data-posts] {
@@ -142,6 +164,17 @@
 							display: flex;
 							flex-direction: column;
 							margin-top: 1rem;
+						}
+
+						article:nth-child(2){
+
+							@include mixins.small{
+								display: none;
+							}
+
+							@include mixins.mobile{
+								display: none;
+							}
 						}
 
 						article {
@@ -173,8 +206,12 @@
 							}
 
 							.entry-wrapper {
+								@include mixins.small {
+									flex-basis: 58%;
+								}
+
 								@include mixins.mobile {
-									flex-basis: 60%;
+									flex-basis: 58%;
 								}
 
 								.entry-title {
@@ -320,6 +357,11 @@
 					width: 100%;
 				}
 
+				.pagination{
+					position: relative;
+					top: 35px;
+				}
+
 				.posts {
 					display: grid;
 					grid-template-columns: 1fr 1fr;
@@ -371,6 +413,15 @@
 							height: auto;
 							border-bottom: none;
 							margin-bottom: 0;
+							
+							@include mixins.small{
+								padding-bottom: 0;
+							}
+
+							@include mixins.mobile{
+								padding-bottom: 0;
+							}
+							
 
 							&--thumb {
 								width: 100%;

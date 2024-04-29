@@ -11,6 +11,40 @@ function high_spot_callback( $attributes ) {
 
     $block_classes[] = 'high-spot-block';
     $block_classes[] = 'model-' . $block_model;
+    
+    if ( $block_model === 'latest' ) {
+        $attributes['postsToShow'] = 1;
+        $args = build_posts_query( $attributes );
+
+        $get_posts = get_posts( $args );
+
+        if ( isset( $get_posts[0] ) ) {
+            $get_post         = $get_posts[0];
+            $post_id          = $get_post->ID;
+            $description      = isset( $get_post->post_excerpt ) ? $get_post->post_excerpt : '';
+            $heading          = isset( $get_post->post_title ) ? apply_filters( 'the_title', $get_post->post_title ) : '';
+            $link_url         = esc_url( get_permalink( $post_id ) );
+            $image_id         = has_post_thumbnail( $post_id ) ? get_post_thumbnail_id( $post_id ) : '';
+            $image_url        = has_post_thumbnail( $post_id ) ? get_the_post_thumbnail_url( $post_id, 'large' ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png';
+            $image_alt        = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+            $primary_category = get_post_meta( $post_id, '_yoast_wpseo_primary_category', true );
+
+            $get_term = '';
+
+            if ( $primary_category ) {
+                $get_term = get_term( $primary_category, 'category' );
+                $tag = ! empty( $get_term->name ) ? $get_term->name : '';
+            } else {
+                $get_terms = get_the_terms( $post_id, 'category' );
+                if ( $get_terms ) {
+                    $tag = ( ! empty( $get_term[0] ) && ! empty( $get_term[0]->name ) ) ? $get_term[0]->name : '';
+                }
+            }
+        } else {
+            return;
+        }
+    }
+
     if ( $block_model === 'post' ) {
 
         if(is_archive()){
@@ -34,7 +68,7 @@ function high_spot_callback( $attributes ) {
 
             if ( $post_ids && is_array( $post_ids ) ) {
                 $post_id = $post_ids[0];
-            }  
+            }
         }
 
         if(!$post_id){

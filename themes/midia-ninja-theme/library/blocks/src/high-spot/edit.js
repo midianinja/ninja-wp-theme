@@ -3,9 +3,12 @@ import { __ } from '@wordpress/i18n'
 const { useEffect, useState } = wp.element
 
 import ServerSideRender from '@wordpress/server-side-render'
+import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
 import ImageSelector from './components/ImageSelector'
 import LinkSelector from './components/LinkSelector'
+import SelectPostType from "../../shared/components/SelectPostType"
+import SelectTerms from "../../shared/components/SelectTerms"
 import SelectPost from './components/SelectPost'
 
 import {
@@ -36,9 +39,11 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		imageAlt,
 		imageId,
 		imageUrl,
-		linkUrl,
 		postId,
-		tag
+		postType,
+		queryTerms,
+		tag,
+		taxonomy
 	} = attributes
 
 	useEffect(() => {
@@ -50,6 +55,33 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const setPostId = (value) => {
 		setAttributes({ postId: value })
 	}
+
+	const onChangePostType = ( value ) => {
+		setAttributes( { postType: value } )
+		setAttributes( { taxonomy: '' } )
+		setAttributes( { queryTerms: [] } )
+	}
+
+	const onChangeSelectTerm = ( value ) => {
+		setAttributes( { queryTerms: value.length > 0 ? value : undefined } )
+	}
+
+	const onChangeTaxonomy = ( value ) => {
+		setAttributes( { taxonomy: value } )
+		setAttributes( { queryTerms: [] } )
+	}
+
+	// Get taxonomies from the post type selected
+	const [taxonomies, setTaxonomies] = useState([])
+
+	useEffect(() => {
+		if (postType) {
+		  apiFetch({ path: `/ninja/v1/taxonomias/${postType}` })
+			.then(taxonomies => {
+				setTaxonomies(taxonomies)
+			})
+		}
+	}, [postType])
 
 	return (
 		<>
@@ -65,8 +97,12 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							value={blockModel}
 							options={[
 								{
-									label: __( 'Post', 'ninja' ),
+									label: __( 'Specific post', 'ninja' ),
 									value: "post"
+								},
+								{
+									label: __( 'Latest post', 'ninja' ),
+									value: "latest"
 								},
 								{
 									label: __( 'Manual', 'ninja' ),
@@ -82,6 +118,36 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							<PanelRow className='high-spot-block-post-selector'>
 								<SelectPost postId={ postId } setPostId={ setPostId } />
 							</PanelRow>
+						</>
+					) }
+
+					{ ( blockModel === 'latest' )  && (
+						<>
+							<PanelRow>
+								<SelectPostType postType={postType} onChangePostType={onChangePostType} />
+							</PanelRow>
+
+							<PanelRow>
+								<SelectControl
+									label={ __( 'Taxonomy to filter', 'ninja' ) }
+									value={ taxonomy }
+									options={ taxonomies.map( taxonomy => ( {
+										label: taxonomy.label,
+										value: taxonomy.value
+									}))}
+									onChange={ onChangeTaxonomy }
+									help={ __(
+										'Leave blank to not filter by taxonomy',
+										'ninja'
+									) }
+								/>
+							</PanelRow>
+
+							{ taxonomy && (
+								<PanelRow>
+									<SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ queryTerms } taxonomy={ taxonomy } />
+								</PanelRow>
+							) }
 						</>
 					) }
 

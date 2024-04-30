@@ -110,10 +110,8 @@
                                             width: 100%;
                                             max-width: 100%;
                                         }
-
                                     }
                                     input::placeholder {
-
                                         color: var(--Main-trunks, #595D62);
                                         /* <small> Manrope */
                                         font-family: 'Manrope', sans-serif;
@@ -583,14 +581,14 @@
                     & .social-icons-inscricao{
                         gap: 0px;
                         @include mixins.mobile{
-                            width: 100%;
-                        }
-                        @include mixins.tablet{
                             display: flex;
                             flex-direction: row;
                             align-items: center;
-                            justify-content: center;
+                            justify-content: space-between;
+                            width: 100%;
+                            max-width: 100%;
                         }
+                      
                     }
                     .container-a-midia-ninja{
                         @include mixins.mobile{

@@ -72,10 +72,12 @@
                             align-items: center;
                             flex-direction: column;
                             margin-top: 44px;
+                            margin-top: 0px;
                             form{
                                 display: flex;
                                 flex-direction: column;
                                 gap: 18px;
+                                align-items: center;
                                 h4{
                                     margin: 0px;
                                     color: #FFF;
@@ -160,11 +162,11 @@
                                         }
                         
                                         span {
-                                            color: FFF;
                                             font-size: 13px;
                                             font-style: normal;
                                             font-weight: 500;
                                             line-height: 145%; /* 18.85px */
+                                            max-width: 224px;
                                         }
                         
                                         a {
@@ -201,6 +203,12 @@
                                         font-weight: 700;
                                         line-height: 24px;
                                         text-transform: uppercase;
+                                    }
+                                    p{
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                    
                                     }
                                 }
                             }
@@ -322,6 +330,9 @@
                     align-items: center;
                     @media (max-width: 991px) {
                         gap: 0px !important;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
 
                     }
                     h4{
@@ -363,6 +374,7 @@
 
 
                         }
+                       
                     }
 
                     label{
@@ -461,6 +473,16 @@
                             text-transform: uppercase;
                             @include mixins.mobile{
                                 font-weight: 800;
+                            }
+                        }
+                        p{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            @include mixins.mobile{
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
                             }
                         }
                     }

@@ -41,3 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+    let newSearchButton = document.getElementById('newSearchButton')
+
+    if (newSearchButton) {
+        newSearchButton.addEventListener('click', (e) => {
+            e.preventDefault()
+            let searchField = document.getElementById('searchField')
+
+            if (searchField) {
+                searchField.value = ''
+                searchField.focus()
+            }
+        })
+    }
+})

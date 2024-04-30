@@ -58,6 +58,11 @@
 
 		.wp-block-columns {
 			margin-bottom: 0;
+			width: 100% !important;
+			max-width: 100% !important;
+			display: flex;
+			justify-content: space-between;
+		
 		}
 
 		.coluna-contato-mobile {

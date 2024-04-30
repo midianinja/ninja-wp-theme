@@ -55,6 +55,10 @@
 								position: relative;
 								left: 0px;
 
+								@media (min-width: 600px) and (max-width: 1074px){
+									flex-basis: 300px !important; 
+								}
+
 								@include mixins.small{
 									height: 230px;
 									position: relative;
@@ -80,6 +84,10 @@
 									margin-left: 143px;
 									text-transform: uppercase;
 
+									@media (min-width: 600px) and (max-width: 1074px){
+										margin-left: 20px; 
+									}
+
 									@include mixins.small{
 										margin-left: 35px;
 									}
@@ -102,6 +110,10 @@
 									width: 100%;
 									margin-top: 8px;
 									margin-bottom: 8px;
+
+									@media (min-width: 600px) and (max-width: 1074px){
+										font-size: 32px;
+									}
 
 									@include mixins.small{
 										font-size: 32px;
@@ -358,6 +370,11 @@
 						position: absolute;
 						top: 54px;
 						right: 290px;
+
+						@media (min-width: 600px) and (max-width: 1074px){
+							top: 24px;
+							right: 76px;
+						}
 					}
 				}
 
@@ -370,7 +387,7 @@
 			gap: 20px;
 
 			@media (min-width: 600px) and (max-width: 1074px){
-				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-columns: 1fr 1fr ;
 				gap: 0;
 				justify-items: center;
 			}

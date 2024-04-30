@@ -11,18 +11,47 @@ function videos_get_contents( $youtube_key, $video_model, $channel_id, $playlist
     }
 
     if ( $video_model == 'channel' ) {
-        $base_url = "https://www.googleapis.com/youtube/v3/search";
-        $params = array(
-            'part'       => 'snippet',
-            'channelId'  => $channel_id,
-            'maxResults' => $max_results,
-            'order'      => 'date',
-            'key'        => $youtube_key
-        );
-        $query_string = http_build_query( $params );
-        $url = $base_url . '?' . $query_string;
+        $base_url = "https://www.googleapis.com/youtube/v3/channels";
+        $params = [
+            'part' => 'contentDetails',
+            'id'   => $channel_id,
+            'key'  => $youtube_key
+        ];
+
+        $query_string     = http_build_query( $params );
+        $url              = $base_url . '?' . $query_string;
+        $context          = stream_context_create( ['http' => ['ignore_errors' => true] ] );
+        $channel_response = file_get_contents( $url, false, $context );
+
+        if ( $channel_response === false ) {
+            error_log( "Erro to access URL: $url" );
+            $url = '';
+        } else {
+            $channel_data = json_decode( $channel_response, true );
+            if ( isset( $channel_data['items'][0]['contentDetails']['relatedPlaylists']['uploads'] ) ) {
+                $uploads_playlist_id = $channel_data['items'][0]['contentDetails']['relatedPlaylists']['uploads'];
+
+                $url = "https://www.googleapis.com/youtube/v3/playlistItems";
+                $params = [
+                    'part'       => 'snippet',
+                    'playlistId' => $uploads_playlist_id,
+                    'maxResults' => $max_results,
+                    'key'        => $youtube_key
+                ];
+
+                $query_string = http_build_query( $params );
+                $url = $url . '?' . $query_string;
+            } else {
+                error_log( "Not fount playlist uploads on channel: $channel_id" );
+                $url = '';
+            }
+        }
     } else {
         $url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=$playlist_id&maxResults=$max_results&key=$youtube_key";
+    }
+
+    if ( empty( $url ) ) {
+        return;
     }
 
     $curl = curl_init();

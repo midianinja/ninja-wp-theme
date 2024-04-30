@@ -748,3 +748,9 @@ function prevent_repeat_posts_archive( $query ) {
 }
 
 add_action( 'pre_get_posts', 'prevent_repeat_posts_archive' );
+function alterar_numero_de_posts_por_pagina( $query ) {
+    if ( $query->is_main_query() && $query->is_post_type_archive( 'afluente' ) ) {
+        $query->set( 'posts_per_page', -1 );
+    }
+}
+add_action( 'pre_get_posts', 'alterar_numero_de_posts_por_pagina' );

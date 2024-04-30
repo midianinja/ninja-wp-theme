@@ -58,10 +58,7 @@
 
 		.wp-block-columns {
 			margin-bottom: 0;
-			width: 100% !important;
-			max-width: 100% !important;
-			display: flex;
-			justify-content: space-between;
+			
 		
 		}
 
@@ -272,6 +269,10 @@
 			flex-wrap: inherit !important;
 			gap: 0;
 			margin-bottom: 0;
+			width: 100% !important;
+			max-width: 100% !important;
+			display: flex;
+			justify-content: space-between;
 
 			.wp-block-column {
 				flex-grow: 0;

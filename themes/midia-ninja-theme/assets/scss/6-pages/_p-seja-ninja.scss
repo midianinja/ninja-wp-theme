@@ -90,7 +90,7 @@
                                 }
                                 label{
                                     input{
-                                        width: 270px;
+                                        width: 303px;
                                         height: 39px;
                                         padding: 10px;
                                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
@@ -126,7 +126,7 @@
                                 }
 
                                 select {
-                                    width: 270px;
+                                    width: 303px;
                                     height: 39px;
                                     padding: 10px;
                                     border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
@@ -189,7 +189,7 @@
                                 .submit-button{
                                     input{
                                         display: flex;
-                                        width: 270px;
+                                        width: 303px;
                                         padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
                                         justify-content: center;
                                         align-items: center;
@@ -214,7 +214,7 @@
                                     p{
                                         display: flex;
                                         flex-direction: column;
-                                        align-items: center;
+                                        
                                         .recaptcha{
                                             width: 270px;
                                         }
@@ -416,7 +416,7 @@
 
                     label{
                         input{
-                            max-width: 270px;
+                            max-width: 303px;
                             padding: 8px 3px;
                             height: 39px !important;
                             border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
@@ -438,7 +438,7 @@
 
                     }
                     select{
-                        width: 270px;
+                        width: 303px;
                         padding: 8px 3px;
                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                         border: 1px solid var(--Main-beerus, #E2E2E2);
@@ -503,7 +503,7 @@
                         }
                         input{
                             display: flex;
-                            width: 270px;
+                            width: 303px;
                             height: 39px;
                             padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
                             justify-content: center;

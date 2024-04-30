@@ -678,6 +678,12 @@ body{
         }
     }
     &.afluente-cine-ninja{
+        #premiacoes{
+            h2{
+                font-feature-settings: var(--f-ninja-config);
+                font-family: var(--f-ninja);
+            }
+        }
         .high-spot-block{           
             .high-spot-block__link{
                 height: 525px !important;

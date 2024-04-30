@@ -135,6 +135,7 @@ header {
 
 					.hamburger-lines {
 						background-image: url($p_theme_assets + "/images/hamburguer-menu.svg");
+						cursor: pointer;
 						display: block;
 						height: 20px;
 						margin-bottom: 5px;
@@ -155,6 +156,7 @@ header {
 					background-color: transparent;
 					border: none;
 					top: 24px;
+					cursor: pointer;
 				}
 
 				.menu-items::-webkit-scrollbar {

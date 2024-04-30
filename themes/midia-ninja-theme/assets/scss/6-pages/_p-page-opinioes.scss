@@ -58,10 +58,6 @@
                 }
             }
 
-            &:last-child{
-                
-            }
-
             .article-section-title {
                 color: white;
                 font-family: "Archivo Expanded", sans-serif;
@@ -396,12 +392,6 @@
 			align-items: center;
 			margin-bottom: 2rem;
 			border-radius: 8px;
-
-			@media (max-width: 1320px) {
-				padding-left: 15px;
-				padding-right: 15px;
-			}
-
 			@media (max-width: 992px) {
 				background: #fdf250 !important;
 				border-radius: 16px;
@@ -456,6 +446,7 @@
 				@media (max-width: 992px) {
 					display: flex;
 					justify-content: center;
+                    margin-top: 40px;
 				}
 			}
 			.wp-block-button {

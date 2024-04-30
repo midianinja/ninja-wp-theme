@@ -179,6 +179,7 @@ function get_public_post_types( $request ) {
     unset( $post_types_objects['header-footer'] );
 
     $post_types = [];
+    $post_types[] = __( 'Select an option', 'ninja' );
 
     foreach ( $post_types_objects as $post_type ) {
         $post_types[$post_type->name] = $post_type->label;

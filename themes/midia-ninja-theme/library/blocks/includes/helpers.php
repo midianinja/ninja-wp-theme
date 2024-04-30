@@ -22,6 +22,35 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
     $return_ids    = isset( $attributes['returnIds'] ) ? $attributes['returnIds'] : false;
     $show_children = ! empty( $attributes['showChildren'] );
 
+    // Exclude posts
+    $no_post_type   = ! empty( $attributes['noPostType'] ) ? $attributes['postType'] : '';
+    $no_taxonomy    = isset( $attributes['noTaxonomy'] ) ? $attributes['noTaxonomy'] : '';
+    $no_query_terms = isset( $attributes['noQueryTerms'] ) ? $attributes['noQueryTerms'] : [];
+
+    $no_post__not_in = [];
+
+    if ( $no_post_type ) {
+        $no_args = [
+            'post_type'      => $no_post_type,
+            'posts_per_page' => -1,
+            'fields'         => 'ids'
+        ];
+
+        if ( $no_taxonomy && $no_query_terms ) {
+            $no_args['tax_query'] = ['relation' => 'AND'];
+
+            foreach ( $no_query_terms as $no_term ) {
+                $no_args['tax_query'][] = [
+                    'taxonomy' => $no_taxonomy,
+                    'field'    => 'term_id',
+                    'terms'    => [$no_term['id']]
+                ];
+            }
+
+            $no_post__not_in = get_posts( $no_args );
+        }
+    }
+
     $order    = isset( $attributes['order'] ) ? $attributes['order'] : 'desc';
     $order_by = isset( $attributes['orderBy'] ) ? $attributes['orderBy'] : 'date';
 
@@ -34,7 +63,6 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
     ];
 
     if ( $taxonomy && $query_terms ) {
-
         $args['tax_query'] = ['relation' => 'AND'];
 
         foreach ( $query_terms as $term ) {
@@ -55,6 +83,7 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
     }
 
     $args['post__not_in'] = array_merge(
+        $no_post__not_in,
         $post__not_in,
         get_the_ID() ? [ get_the_ID() ] : []
     );
@@ -69,7 +98,7 @@ function filter_save_post( $post_id, $post ) {
     }
 
     clear_block_transients( $post, 'ninja/latest-horizontal-posts', 'ninja_horizontal_' );
-    clear_block_transients( $post, 'ninja/latest-horizontal-posts', 'ninja_youtube_' );
+    // clear_block_transients( $post, 'ninja/latest-horizontal-posts', 'ninja_youtube_' );
     clear_block_transients( $post, 'ninja/latest-horizontal-posts', 'ninja_columnists_' );
     clear_block_transients( $post, 'ninja/latest-vertical-posts', 'ninja_vertical_' );
 }

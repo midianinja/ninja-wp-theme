@@ -4,7 +4,6 @@ get_header();
 global $wp_query;
 $total_results = $wp_query->found_posts;
 $singular = $wp_query->found_posts > 1 ? __('results', 'ninja') : __('result', 'ninja');
-
 ?>
 
 <div class="index-wrapper">
@@ -16,14 +15,16 @@ $singular = $wp_query->found_posts > 1 ? __('results', 'ninja') : __('result', '
             </div>
 
             <div class="content col-md-3">
-             
-                <h4><?php _e('Results', 'ninja'); ?></h4>
-                <p><?php _e('You can perform a new search or return to the home page', 'ninja'); ?></p>
 
-                <div class="no-result-buttons">
-                    <button id="newSearchButton" class="new-search"><a href="#"><?php _e('New Search', 'ninja'); ?></a></button>
-                    <button class="b-home"><a href="https://midia.ninja"><?php _e('Back to home', 'ninja'); ?></a></button>
-                </div>
+                <h4><?php _e('Results', 'ninja'); ?></h4>
+                <?php if ( ! $wp_query->found_posts ) : ?>
+                    <p><?php _e('You can perform a new search or return to the home page', 'ninja'); ?></p>
+
+                    <div class="no-result-buttons">
+                        <button id="newSearchButton" class="new-search"><a href="#"><?php _e('New Search', 'ninja'); ?></a></button>
+                        <button class="b-home"><a href="<?php echo esc_url( home_url() ); ?>"><?php _e('Back to home', 'ninja'); ?></a></button>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="col-md-9">
@@ -77,13 +78,3 @@ $singular = $wp_query->found_posts > 1 ? __('results', 'ninja') : __('result', '
 </div><!-- /.index-wrapper -->
 
 <?php get_footer(); ?>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('newSearchButton').addEventListener('click', () => {
-            const searchInput = document.getElementById('searchField');
-            if (searchInput) {
-                searchInput.value = '';
-            }
-        });
-    });
-</script>

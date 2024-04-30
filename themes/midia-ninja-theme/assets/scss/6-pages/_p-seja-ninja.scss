@@ -10,7 +10,7 @@
         h2{margin:0px !important;}
 
         gap:0px;
-        border-radius: 10px 10px !important;
+        border-radius: 8px 8px !important;
         margin-top: 32px;
         gap: 30px;
         @media(max-width:991px){
@@ -22,7 +22,7 @@
             .wp-block-cover{
                 margin: 0px;
                 padding: 0px;
-                border-radius: 10px;
+                border-radius: 8px;
                 .wp-block-columns {
                     margin: 0px;
                     height: 532px;
@@ -90,7 +90,7 @@
                                 }
                                 label{
                                     input{
-                                         width: 265px;
+                                        width: 270px;
                                         height: 39px;
                                         padding: 10px;
                                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
@@ -106,7 +106,10 @@
                                         font-weight: 500;
                                         line-height: 18.85px; /* 18.85px */
                                         background-color: white;
-
+                                        @include mixins.mobile{
+                                            width: 100%;
+                                            max-width: 100%;
+                                        }
 
                                     }
                                     input::placeholder {
@@ -123,7 +126,7 @@
                                 }
 
                                 select {
-                                    width: 265px;
+                                    width: 270px;
                                     height: 39px;
                                     padding: 10px;
                                     border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
@@ -186,7 +189,7 @@
                                 .submit-button{
                                     input{
                                         display: flex;
-                                        width: 265px;
+                                        width: 270px;
                                         padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
                                         justify-content: center;
                                         align-items: center;
@@ -203,12 +206,21 @@
                                         font-weight: 700;
                                         line-height: 24px;
                                         text-transform: uppercase;
+                                        @include mixins.mobile{
+                                            width: 100%;
+                                            max-width: 100%;
+                                        }
                                     }
                                     p{
                                         display: flex;
                                         flex-direction: column;
                                         align-items: center;
-                                    
+                                        .recaptcha{
+                                            width: 270px;
+                                        }
+                                        .wpcf7-spinner{
+                                            display: none;
+                                        }
                                     }
                                 }
                             }
@@ -234,9 +246,9 @@
             .wp-block-cover{
                 margin: 0px;
                 padding: 0px;
-                border-radius: 5px;
+                border-radius: 8px;
                 .wp-block-cover__inner-container{
-                    height: 450px;
+                    height: 532px;
                     figure{
                         margin-top: 30px;
                         margin-left: 8px;
@@ -308,7 +320,19 @@
                 flex-direction: column;
                 align-items: center;
             }
-            & .wpcf7{
+            figure{
+                @include mixins.mobile{
+                    width: 100%;
+                }
+                img{
+                    @include mixins.mobile{
+                        width: 100%;
+                        max-width: 100%;
+                        border-radius: 8px
+                    }
+                }
+            }
+            .wpcf7{
                 margin: auto;
                 display: flex;
                 align-items: center;
@@ -365,21 +389,34 @@
                             text-align: start;
                             margin-top: 24px;
                         }
+                        @include mixins.mobile{
+                            width: 100%;
+                        }
 
 
                     }
-                    p{
-                        @media(max-width:500px){
-                            margin-bottom: 0px;
-
-
+                    .estados{
+                        @include mixins.mobile{
+                            width: 100%;
                         }
                        
+                    }
+                    
+                    p{
+                        @include mixins.mobile{
+                            width: 100%;
+                        }
+                        select{
+                            @include mixins.mobile{
+                                width: 100%;
+                                max-width: 100%;
+                            }
+                        }
                     }
 
                     label{
                         input{
-                            max-width: 265px;
+                            max-width: 270px;
                             padding: 8px 3px;
                             height: 39px !important;
                             border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
@@ -392,12 +429,16 @@
                             font-size: 13px;
                             font-style: normal;
                             font-weight: 500;
-                            line-height: 18.85px
+                            line-height: 18.85px;
+                            @include mixins.mobile{
+                                width: 100%;
+                                max-width: 100%;
+                            }
                         }
 
                     }
                     select{
-                        width: 265px;
+                        width: 270px;
                         padding: 8px 3px;
                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                         border: 1px solid var(--Main-beerus, #E2E2E2);
@@ -415,6 +456,11 @@
                    
                     .acept {
                         max-width: 259px;
+                        @include mixins.mobile{
+                            width: 100%;
+                            max-width: 100%;
+                        
+                        }
                         
                         p {
                             display: flex;
@@ -451,9 +497,13 @@
                         @media(max-width:667px){
                             margin: auto;
                         }
+                        @include mixins.mobile{
+                            width: 100%;
+                            max-width: 100%;
+                        }
                         input{
                             display: flex;
-                            width: 265px;
+                            width: 270px;
                             height: 39px;
                             padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
                             justify-content: center;
@@ -473,6 +523,8 @@
                             text-transform: uppercase;
                             @include mixins.mobile{
                                 font-weight: 800;
+                                width: 100%;
+                                max-width: 100%;
                             }
                         }
                         p{
@@ -483,6 +535,12 @@
                                 display: flex;
                                 flex-direction: column;
                                 align-items: flex-start;
+                            }
+                            .recaptcha{
+                                width: 270px;
+                            }
+                            .wpcf7-spinner{
+                                display: none;
                             }
                         }
                     }
@@ -504,6 +562,9 @@
                     border-radius: 8px;
                     background: var(--DARK, #111);
                 }
+                @include mixins.mobile{
+                    width: 100%;
+                }
                 .wp-block-cover__inner-container{
                     text-align: center;
                     @include mixins.mobile{
@@ -513,6 +574,7 @@
                         margin: 0;
                         @include mixins.mobile{
                             margin-bottom: -10px;
+                            width: 100%;
                         }
 
                     }
@@ -520,7 +582,7 @@
                     & .social-icons-inscricao{
                         gap: 0px;
                         @include mixins.mobile{
-                            width: 128px;
+                            width: 100%;
                         }
                         @include mixins.tablet{
                             display: flex;

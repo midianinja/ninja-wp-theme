@@ -37,6 +37,8 @@
                                 }
                             }
                             .ayg-gallery{
+                                scrollbar-color: #666 #333;
+                                scrollbar-width: thin;
                                 .ayg-item{
                                     background: var(--PURE, #262626);
                                     :hover{

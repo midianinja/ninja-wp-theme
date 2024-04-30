@@ -422,6 +422,13 @@ class Assets
                 },
             ],
 
+            'tag' => [
+                'file' => '_p-tag.css',
+                'preload_callback' => function () {
+                    return is_tag();
+                },
+            ],
+
             'generic-archive' => [
                 'file' => '_p-generic-archive.css',
                 'preload_callback' => function () {

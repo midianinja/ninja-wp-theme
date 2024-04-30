@@ -1,0 +1,86 @@
+@use "./../1-settings/s-variables" as variables;
+@use "./../2-atoms/a-mixins" as mixins;
+
+.tag{
+    .content{
+        width: 100%;
+
+        .posts{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+
+            .post{
+                display: flex;
+                flex-direction: column;
+                max-width: 370px;
+                
+                &-card{
+                    display: flex;
+                    flex-direction: column;
+
+                    &--thumb{
+                        padding-right: 0;
+                        width: 100%;
+                        height: auto;
+                        border-radius: 9px;
+
+                        a{
+                            .aspect-ratio{
+                                img{
+                                    border-radius: 9px;
+                                }
+                            }
+                        }
+                    }
+
+                    &--content{
+                        .entry-date{
+                            display: none;
+                        }
+
+                        .entry-excerpt{
+                            display: none;
+                        }
+
+                        .entry-meta{
+                            .tax-category{
+                                li{
+                                    a{
+                                        background-color: var(--cat-background-color);
+                                    }
+                                }
+                            }
+                        }
+
+                        a{
+                            text-decoration: none;
+
+                            .entry-title{
+                                margin: 0;
+                                color: var(--wp--preset--color--low-pure);
+                                font-family: var(--wp--preset--font-family--manrope);
+                                font-size: 22px;
+                                font-style: normal;
+                                font-weight: 700;
+                                line-height: 140%; 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .pagination{
+            margin-bottom: 80px;
+        }
+    }
+
+    aside{
+        display: none;
+    }
+}
+
+main {
+    @import "./../7-parts/p-content-post";
+}

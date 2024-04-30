@@ -29,6 +29,7 @@
 			max-width: 1170px;
 			margin: auto;
 
+			.wp-block-gallery.has-nested-images figure.wp-block-image figcaption,
 			figcaption {
 				color: var(--wp--preset--color--secondary-dark);
 				font-size: 10px;

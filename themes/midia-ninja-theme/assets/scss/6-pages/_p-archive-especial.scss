@@ -14,6 +14,10 @@
 			gap: 10px;
 			width: 1140px;
 
+			@media (min-width: 600px) and (max-width: 1074px){
+				width: inherit;
+			}
+
 			@include mixins.small{
 				width: inherit;
 			}
@@ -365,6 +369,13 @@
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 			gap: 20px;
 
+			@media (min-width: 600px) and (max-width: 1074px){
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: 0;
+				justify-items: center;
+			}
+			
+
 			@include mixins.small{
 				grid-template-columns: 1fr 1fr;
 				gap: 8px;
@@ -386,7 +397,16 @@
 			}
 
 			.post{
-				max-width: 158px;
+				max-width: 270px;
+				width: 100%;
+
+				@include mixins.small{
+					max-width: 158px;
+				}
+
+				@include mixins.mobile{
+					max-width: 158px;
+				}
 
 				&:hover{
 					background-color: transparent;

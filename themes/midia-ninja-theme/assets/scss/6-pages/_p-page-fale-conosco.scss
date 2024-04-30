@@ -58,6 +58,7 @@
 
 		.wp-block-columns {
 			margin-bottom: 0;
+			height: 546px;
 			
 		
 		}
@@ -277,6 +278,7 @@
 			.wp-block-column {
 				flex-grow: 0;
 				flex-basis: inherit !important;
+				
 
 				.wp-block-image {
 					margin-right: 4px;
@@ -314,6 +316,7 @@
 				left: 35%;
 				transform: translateX(-50%);
 				border-radius: 8px;
+				height: 546px;
 
 				@media (max-width: 1344px) {
 					left: 40%;
@@ -502,7 +505,7 @@
 							border-radius: 8px 0px 0px 8px;
 							background: rgba(51, 51, 51, 0.7);
 							backdrop-filter: blur(11px);
-							height: auto;
+							height: 546px;
 							padding: 60px 51px 59px 69px;
 
 							h2 {

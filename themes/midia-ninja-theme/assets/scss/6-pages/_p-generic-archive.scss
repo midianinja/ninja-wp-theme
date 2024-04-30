@@ -566,6 +566,17 @@
 
 					.latest-vertical-posts-block__footer{
 						padding-bottom: 15px;
+
+						.latest-vertical-posts-block__dots{
+							.slick-dots{
+								.slick-active{
+									background-color: #848484;
+								}
+								li{
+									background-color: #ccc;
+								}
+							}
+						}
 					}
 
 					.latest-vertical-posts-block__slides{

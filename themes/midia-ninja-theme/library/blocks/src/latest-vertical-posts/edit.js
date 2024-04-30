@@ -48,6 +48,9 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		flickrUserId,
 		gridFormat,
 		heading,
+		noPostType,
+		noQueryTerms,
+		noTaxonomy,
 		playlistId,
 		postsBySlide,
 		postsToShow,
@@ -99,6 +102,19 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		setAttributes( { queryTerms: [] } )
 	}
 
+	// No
+	const onChangeNoPostType = ( value ) => {
+		setAttributes( { noPostType: value } )
+	}
+
+	const onChangeNoTaxonomy = ( value ) => {
+		setAttributes( { noTaxonomy: value } )
+	}
+
+	const onChangeNoSelectTerm = ( value ) => {
+		setAttributes( { noQueryTerms: value.length > 0 ? value : undefined } )
+	}
+
 	// Get taxonomies from the post type selected
 	const [taxonomies, setTaxonomies] = useState([])
 
@@ -110,6 +126,18 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 				})
 		}
 	}, [postType])
+	
+	// Get taxonomies from the post type selected
+	const [noTaxonomies, setNoTaxonomies] = useState([])
+
+	useEffect(() => {
+		if(noPostType) {
+			apiFetch({ path: `/ninja/v1/taxonomias/${postType}` })
+				.then((noTaxonomies) => {
+					setNoTaxonomies(noTaxonomies)
+				})
+		}
+	}, [noPostType])
 
 	return (
 		<>
@@ -414,6 +442,38 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 									) }
 								/>
 							</PanelRow>
+
+							<PanelRow>
+								<h2>{ __( 'Filter posts to not display', 'ninja' ) }</h2>
+							</PanelRow>
+
+							<PanelRow>
+								<SelectPostType postType={ noPostType } onChangePostType={ onChangeNoPostType } />
+							</PanelRow>
+
+							{ noPostType && (
+								<PanelRow>
+									<SelectControl
+										label={ __( 'Taxonomy to filter', 'ninja' ) }
+										value={ noTaxonomy }
+										options={ noTaxonomies.map( noTaxonomy => ( {
+											label: noTaxonomy.label,
+											value: noTaxonomy.value
+										}))}
+										onChange={ onChangeNoTaxonomy }
+										help={ __(
+											'Leave blank to not filter by taxonomy',
+											'ninja'
+										) }
+									/>
+								</PanelRow>
+							) }
+
+							{ noTaxonomy && (
+								<PanelRow>
+									<SelectTerms onChangeSelectTerm={ onChangeNoSelectTerm } selectedTerms={ noQueryTerms } taxonomy={ noTaxonomy } />
+								</PanelRow>
+							) }
 						</>
 					) }
 

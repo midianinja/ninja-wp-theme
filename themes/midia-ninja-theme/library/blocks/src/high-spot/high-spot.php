@@ -11,7 +11,9 @@ function high_spot_callback( $attributes ) {
 
     $block_classes[] = 'high-spot-block';
     $block_classes[] = 'model-' . $block_model;
-    
+
+    $post_id = '';
+
     if ( $block_model === 'latest' ) {
         $attributes['postsToShow'] = 1;
         $args = build_posts_query( $attributes );
@@ -116,6 +118,11 @@ function high_spot_callback( $attributes ) {
         $image_url   = ( isset( $attributes['imageUrl'] ) && ! empty( $attributes['imageUrl'] ) ) ? esc_attr( $attributes['imageUrl'] ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png';
         $link_url    = ( isset( $attributes['linkUrl'] ) && ! empty( $attributes['linkUrl'] ) ) ? esc_url( $attributes['linkUrl'] ) : '';
         $tag         = ( isset( $attributes['tag'] ) && ! empty( $attributes['tag'] ) ) ? esc_attr( $attributes['tag'] ) : '';
+    }
+
+    if ( $post_id ) {
+        $latest_blocks_posts_ids[] = $post_id;
+        $newspack_blocks_post_id[$post_id] = true;
     }
 
     ob_start();

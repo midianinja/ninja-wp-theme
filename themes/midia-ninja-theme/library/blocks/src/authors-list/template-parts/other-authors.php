@@ -23,7 +23,7 @@ $authors = get_posts( $args );
 
 <?php foreach ( $authors as $author ) :
 	$user_login = get_post_meta( $author, 'cap-user_login', true );
-	if ( ! in_array( $author, $last_authors ) && count_guest_author_posts( $user_login ) ) :
+	if ( ! in_array( $author, $last_authors ) ) :
 		$display_name = get_post_meta( $author, 'cap-display_name', true );
 		$thumbnail    = ( has_post_thumbnail( $author ) ) ? get_the_post_thumbnail( $author ) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
 		$user_login   = get_post_meta( $author, 'cap-user_login', true ); ?>

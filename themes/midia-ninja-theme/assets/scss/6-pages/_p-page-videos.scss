@@ -143,6 +143,12 @@
                     height: 235px;
                 }
             }
+
+            .post-thumbnail{
+                .play{
+                    display: none;   
+                }
+            }
            
             .slick-arrow {
                 transition: none !important;

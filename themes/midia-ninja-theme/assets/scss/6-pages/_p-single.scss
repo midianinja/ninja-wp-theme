@@ -29,6 +29,19 @@
 			max-width: 1170px;
 			margin: auto;
 
+			.wp-block-gallery.has-nested-images figure.wp-block-image figcaption,
+			figcaption {
+				color: var(--wp--preset--color--secondary-dark);
+				font-size: 10px;
+				font-weight: 700;
+				line-height: 1.9;
+				letter-spacing: 1px;
+				margin: 8px 0;
+				text-transform: uppercase;
+				background: transparent;
+				text-align: left;
+			}
+
 			.post {
 				font-family: "Manrope", sans-serif;
 				font-style: normal;
@@ -141,16 +154,6 @@
 								width: 100%;
 							}
 
-							figcaption {
-								color: var(--wp--preset--color--secondary-dark);
-								font-size: 10px;
-								font-weight: 700;
-								line-height: 1.9;
-								letter-spacing: 1px;
-								margin-top: 5px;
-								text-transform: uppercase;
-								background: transparent;
-							}
 						}
 
 						.title {

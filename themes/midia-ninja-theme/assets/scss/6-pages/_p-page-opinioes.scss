@@ -124,8 +124,12 @@
                 background-color: #000;
                 border: none;
                 padding-top: 0;
+                @media(max-width: 992px){
+                    padding: 0px 5px 32px !important;
+                    margin-bottom: -20px;
+                }
                 a, h2, p{
-                    color:#fff;
+                    color:#fff; 
                 }
                 .slide{
                     a{
@@ -156,6 +160,10 @@
                 }
                 .latest-vertical-posts-block__footer{
                     display: none;
+                    @media(max-width: 992px){
+                        margin-top: 1.6rem;
+                        display: inherit;
+                    }
                 }
             }
         }
@@ -193,8 +201,16 @@
                         
                     }
                 }
+                .latest-grid-posts-block__pagination{
+                    @media(max-width: 767px){
+                        margin-left: -45px;
+                    }
+                }
             }
             .latest-vertical-posts-block{
+                @media(max-width: 767px){
+                    margin-top: -30px;
+                }
                 .post{
                     font-family: 'Manrope', serif;
                     color: var(--wp--preset--color--low-pure);
@@ -228,7 +244,6 @@
                 flex-direction: column;
             }
 
-
             .btn-colunistas {
                 display: flex;
                 margin-bottom: 86px;
@@ -236,6 +251,10 @@
                 @media (min-width: 992px) {
                     position: absolute;
                     right: 0;
+                }
+                @media(max-width: 782px){
+                    margin-bottom: 2rem;
+                    margin-top: -3rem;
                 }
             }
 
@@ -258,7 +277,8 @@
                     color: #111;
                     @media (max-width: 992px) {
                         font-size: 24px;
-                        margin-top: 35px;
+                        margin-top: 0px;
+                        margin-bottom: 0;
                     }
                 }
 
@@ -294,6 +314,7 @@
                     display: flex;
                     @media (max-width: 782px) {
                         margin-bottom: 0;
+                        margin-left: -25px;
                     }
                     a {
                         .post {
@@ -392,10 +413,17 @@
 			align-items: center;
 			margin-bottom: 2rem;
 			border-radius: 8px;
+            margin-left: auto;
+            margin-right: auto;
 			@media (max-width: 992px) {
 				background: #fdf250 !important;
-				border-radius: 16px;
+				border-radius: 4px;
 				padding: 25px 42px 25px 45px;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+                
 			}
 			.wp-block-columns {
 				margin-top: 1.8rem;
@@ -407,7 +435,8 @@
 			}
 
 			p {
-				font-family: "MidiaNinja", sans-serif;
+				font-feature-settings: 'calt' on;
+                font-family: "MidiaNinja";          
 				color: #fff;
 				font-size: 32px;
 				font-weight: 400;
@@ -416,6 +445,7 @@
 				letter-spacing: normal;
 				padding-top: 1rem;
     			padding-left: 2rem;
+                
 				@media (max-width: 992px) {
 					color: #000;
 					font-family: "Manrope", sans-serif;
@@ -424,6 +454,12 @@
 					text-align: center;
 					margin-bottom: -15px;
 					line-height: 130%;
+                    padding-left: 0;
+                    width: 254px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-top: 0;
+                   
 				}
 				img {
 					margin-left: 4.5rem;
@@ -432,14 +468,22 @@
 					}
 				}
 			}
-			.finances-title-mobile {
+			span.finances-title-mobile {
 				@media (max-width: 992px) {
 					color: #000;
-					font-family: "MidiaNinja", sans-serif;
+					font-feature-settings: 'calt' on;
+                    font-family: "MidiaNinja";
 					font-weight: 400;
 					text-align: center;
 					font-size: 24px;
 					line-height: 130%;
+                   
+                    @media(max-width: 400px){
+                        max-width: 380px !important;
+                    }
+                    
+                
+                   
 				}
 			}
 			.wp-block-buttons {

@@ -95,7 +95,6 @@
                                         padding: 10px;
                                         border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
                                         border: 1px solid var(--Main-beerus, #E2E2E2);
-                                        padding-left: 7px;
                                         font-size: 13px;
                                         font-style: normal;
                                         line-height: 24px;
@@ -106,20 +105,20 @@
                                         font-weight: 500;
                                         line-height: 18.85px; /* 18.85px */
                                         background-color: white;
+                                        padding-left: 5px;
                                         @include mixins.mobile{
                                             width: 100%;
                                             max-width: 100%;
                                         }
-
                                     }
                                     input::placeholder {
-
                                         color: var(--Main-trunks, #595D62);
                                         /* <small> Manrope */
                                         font-family: 'Manrope', sans-serif;
                                         font-weight: 500;
                                         line-height: 18.85px; /* 18.85px */
                                         background-color: white;
+                                        padding-left: 7px;
 
                                     }
 
@@ -278,7 +277,7 @@
                                 gap: 0px;
                                 margin: 0px;
                                 max-width: 106px;
-                                margin-top: 16px;
+                                margin: 53px 0 0;
 
                                 .wp-block-column{
                                     margin: 0px !important;
@@ -582,14 +581,14 @@
                     & .social-icons-inscricao{
                         gap: 0px;
                         @include mixins.mobile{
-                            width: 100%;
-                        }
-                        @include mixins.tablet{
                             display: flex;
                             flex-direction: row;
                             align-items: center;
-                            justify-content: center;
+                            justify-content: space-between;
+                            width: 100%;
+                            max-width: 100%;
                         }
+                      
                     }
                     .container-a-midia-ninja{
                         @include mixins.mobile{

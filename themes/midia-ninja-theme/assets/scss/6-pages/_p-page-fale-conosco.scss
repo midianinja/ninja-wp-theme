@@ -58,6 +58,8 @@
 
 		.wp-block-columns {
 			margin-bottom: 0;
+			
+		
 		}
 
 		.coluna-contato-mobile {
@@ -76,7 +78,6 @@
 		}
 
 		form {
-			max-width: 265px;
 			width: 100%;
 			margin-left: auto;
 			margin-right: auto;
@@ -96,8 +97,8 @@
 				border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
 				border: 1px solid #e2e2e2;
 				display: flex;
-				max-width: 265px;
 				width: 100%;
+				max-width: 100% !important;
 				padding: 8px 14px;
 				align-items: center;
 				gap: 10px;
@@ -115,8 +116,8 @@
 				border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
 				border: 1px solid #e2e2e2;
 				display: flex;
-				max-width: 265px;
 				width: 100%;
+				max-width: 100% !important;
 				height: 104px;
 				padding: 8px 14px;
 				align-items: flex-start;
@@ -167,7 +168,7 @@
 					border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
 					background: var(--OURO, #fbf36e);
 					display: flex;
-					max-width: 265px;
+					max-width: 100% !important;
 					width: 100%;
 					padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
 					justify-content: center;
@@ -193,8 +194,8 @@
 				font-style: normal;
 				font-weight: 700;
 				line-height: 130%;
-				max-width: 272px;
 				width: 100%;
+				max-width: 100%;
 				margin-left: auto;
 				margin-right: auto;
 				margin-bottom: 0;
@@ -204,7 +205,7 @@
 			input[type="email"] {
 				border-radius: var(--interactive-border-radius---radius-i-sm, 8px);
 				display: flex;
-				max-width: 265px;
+				max-width: 303px;
 				width: 100%;
 				flex-direction: column;
 				align-items: flex-start;
@@ -218,6 +219,7 @@
 				resize: none;
 				border: 1px solid #e2e2e2;
 				background-color: #fff;
+				max-width: 303px;
 			}
 		}
 	}
@@ -228,7 +230,7 @@
 		@include mixins.small {
 			display: flex;
 			border-radius: 8px;
-			max-width: 272px !important;
+			max-width: 100% !important;
 			width: 100% !important;
 			margin-bottom: 40px !important;
 			margin-bottom: 0;
@@ -244,6 +246,8 @@
 			line-height: 130%;
 			padding-bottom: 12px;
 			border-bottom: 1px solid #f2f2f2;
+			max-width: 100%;
+
 		}
 
 		p {
@@ -257,12 +261,18 @@
 			width: 100%;
 			height: 119px;
 			margin-left: 0 !important;
+			max-width: 100%;
+
 		}
 
 		.wp-block-columns {
 			flex-wrap: inherit !important;
 			gap: 0;
 			margin-bottom: 0;
+			width: 100% !important;
+			max-width: 100% !important;
+			display: flex;
+			justify-content: space-between;
 
 			.wp-block-column {
 				flex-grow: 0;
@@ -355,7 +365,7 @@
 							align-items: center;
 
 							form {
-								max-width: 265px;
+								max-width: 303px;
 								width: 100%;
 								margin-right: 2rem;
 								@media (max-width: 1199px) {
@@ -388,7 +398,7 @@
 									);
 									border: 1px solid #e2e2e2;
 									display: flex;
-									max-width: 265px;
+									max-width: 303px;
 									width: 100%;
 									padding: 8px 14px;
 									align-items: center;
@@ -409,7 +419,7 @@
 										8px
 									);
 									display: flex;
-									max-width: 265px;
+									max-width: 303px;
 									width: 100%;
 									height: 104px;
 									padding: 8px 14px;
@@ -465,7 +475,7 @@
 										);
 										background: var(--OURO, #fbf36e);
 										display: flex;
-										max-width: 265px;
+										max-width: 303px;
 										width: 100%;
 										padding: var(--paddings-gaps-p-2, 8px)
 											var(--paddings-gaps-p-4, 16px);
@@ -491,7 +501,7 @@
 							border-radius: 8px 0px 0px 8px;
 							background: rgba(51, 51, 51, 0.7);
 							backdrop-filter: blur(11px);
-							height: 450px;
+							height: 532px;
 							padding: 60px 51px 59px 69px;
 
 							h2 {
@@ -556,7 +566,7 @@
 		transform: translateX(-50%);
 		border-radius: 8px;
 		max-width: 271px;
-		height: 450px;
+		height: 532px;
 		margin-bottom: 0;
 		padding-bottom: 0;
 
@@ -595,6 +605,7 @@
 
 			.wp-block-columns {
 				gap: 0;
+				margin-top: 40px;
 
 				.wp-block-column {
 					flex-basis: inherit;

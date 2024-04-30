@@ -378,6 +378,7 @@
 									font-style: normal;
 									font-weight: 800;
 									line-height: 130%;
+									text-align: center;
 								}
 
 								label {
@@ -501,7 +502,7 @@
 							border-radius: 8px 0px 0px 8px;
 							background: rgba(51, 51, 51, 0.7);
 							backdrop-filter: blur(11px);
-							height: 532px;
+							height: auto;
 							padding: 60px 51px 59px 69px;
 
 							h2 {
@@ -566,7 +567,7 @@
 		transform: translateX(-50%);
 		border-radius: 8px;
 		max-width: 271px;
-		height: 532px;
+		height: 546px;
 		margin-bottom: 0;
 		padding-bottom: 0;
 

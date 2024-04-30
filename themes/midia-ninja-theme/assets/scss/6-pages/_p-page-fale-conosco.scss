@@ -491,7 +491,7 @@
 							border-radius: 8px 0px 0px 8px;
 							background: rgba(51, 51, 51, 0.7);
 							backdrop-filter: blur(11px);
-							height: 450px;
+							height: 532px;
 							padding: 60px 51px 59px 69px;
 
 							h2 {
@@ -556,7 +556,7 @@
 		transform: translateX(-50%);
 		border-radius: 8px;
 		max-width: 271px;
-		height: 450px;
+		height: 532px;
 		margin-bottom: 0;
 		padding-bottom: 0;
 
@@ -595,6 +595,7 @@
 
 			.wp-block-columns {
 				gap: 0;
+				margin-top: 40px;
 
 				.wp-block-column {
 					flex-basis: inherit;

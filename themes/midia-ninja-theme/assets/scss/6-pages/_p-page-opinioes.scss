@@ -1,7 +1,7 @@
 @import "./../1-settings/s-variables";
 @import "./../2-atoms/a-mixins";
 
-.page-template-page-opiniao{
+.page-opinioes{
     #app{
         background-color: var(--wp--preset--color--secondary-light);
 
@@ -9,11 +9,8 @@
             text-decoration: none;
         }
 
-        .wp-block-columns:nth-of-type(2){
-            margin-bottom: 0;
-        }
 
-        .opiniao-header {
+        .opiniao-header{
             margin-top: 36px;
             color: #fff;
             gap: 16px;
@@ -44,35 +41,6 @@
                     article .avatar {
                         width: 46px;
                         height: 46px;
-                    }
-                }
-            }
-
-            .wp-block-column:nth-child(2) {
-                .entry-title {
-                    font-size: 14px;
-                    line-height: 20px; /* 142.857% */
-                    letter-spacing: -0.42px;
-                    margin-bottom: 0;
-                }
-
-                .entry-meta {
-                    > a {
-                        display: none;
-                    }
-
-                    .byline {
-                        margin: 0;
-                    }
-                }
-
-                .latest-vertical-posts-block.colunas {
-                    padding: 0;
-                    margin: 0;
-
-                    .post {
-                        border-bottom: 1px solid #fff;
-                        padding-bottom: 30px;
                     }
                 }
             }
@@ -136,8 +104,48 @@
                 .author-prefix {
                     display: none;
                 }
+
+                
+            }
+            .latest-vertical-posts-block{
+                background-color: #000;
+                border: none;
+                a, h2, p{
+                    color:#fff;
+                }
+                .slide{
+                    a{
+                        border-bottom: 1px solid #fff;
+                        padding-bottom: 2rem;
+                    }
+                  
+                }
+                .post{
+                    .post-author{
+                        color: #FFF;
+                        font-family: 'Manrope', serif;
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 21px;
+                        letter-spacing: 1.2px;
+                        text-transform: uppercase;
+                        :first-child{
+                            display: none;
+                        }
+                    }
+
+                   
+                }
+                .latest-vertical-posts-block__footer{
+                    display: none;
+                }
             }
         }
+        
+        .wp-block-columns:nth-of-type(2){
+            margin-bottom: 0;
+        }
+        
         .latest-grid-posts-block{
             .post{
                 display: flex;

@@ -12,6 +12,23 @@
 			@media (max-width: 1199px) {
 				display: block;
 			}
+
+			.wp-block-column:last-child{
+				.latest-vertical-posts-block{
+					.latest-vertical-posts-block__footer{
+						.latest-vertical-posts-block__dots{
+							.slick-dots{
+								.slick-active{
+									background-color: #ccc;
+								}
+								li{
+									background-color: #848484;
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		.high-spot-block {
@@ -89,18 +106,6 @@
 									margin-top: 0;
 								}
 							}
-						}
-					}
-				}
-			}
-			.latest-vertical-posts-block__footer{
-				.latest-vertical-posts-block__dots{
-					.slick-dots{
-						.slick-active{
-							background-color: #000;
-						}
-						.presentation{
-							background-color: #848484;
 						}
 					}
 				}

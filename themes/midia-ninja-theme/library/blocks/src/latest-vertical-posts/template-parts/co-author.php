@@ -1,6 +1,7 @@
 <?php
 $show_thumbnail = ! empty( $args['attributes']['showThumbnail'] );
-$coauthor = $args['author'];
+$show_excerpt   = ! empty( $args['attributes']['showExcerpt'] );
+$coauthor       = $args['author'];
 
 $user_login = get_post_meta( $coauthor, 'cap-user_login', true );
 $display_name = get_post_meta( $coauthor, 'cap-display_name', true );
@@ -32,8 +33,8 @@ $thumbnail = ( has_post_thumbnail( $coauthor ) ) ? get_the_post_thumbnail( $coau
             </div>
         <?php endif; ?>
         <div class="post-content">
-            <h2 class="post-title"><?php echo apply_filters( 'the_title', $display_name ); ?></h2>
-            <?php if ( ! empty( $bio ) ) : ?>
+            <h3 class="post-title"><?php echo apply_filters( 'the_title', $display_name ); ?></h3>
+            <?php if ( $show_excerpt && ! empty( $bio ) ) : ?>
                 <div class="post-excerpt">
                     <?php echo apply_filters( 'the_content', $bio ); ?>
                 </div>

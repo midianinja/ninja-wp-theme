@@ -41,6 +41,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		blockId,
 		blockModel,
 		columns,
+		contentBelow,
 		flickrAlbumId,
 		flickrAPIKey,
 		flickrByType,
@@ -190,7 +191,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						</PanelRow>
 					) }
 
-					{ ( blockModel == 'posts' || blockModel == 'numbered' ) && (
+					{ ( blockModel == 'posts' || blockModel == 'numbered' || blockModel == 'columnists' ) && (
 						<>
 							<PanelRow>
 								<ToggleControl
@@ -200,44 +201,50 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 								/>
 							</PanelRow>
 
-							<PanelRow>
-								<SelectControl
-									label={ __( 'Grid format', 'ninja' ) }
-									value={ gridFormat }
-									options={ [
-										{
-											label: __( 'Columns', 'ninja' ),
-											value: "columns"
-										},
-										{
-											label: __( 'Row', 'ninja' ),
-											value: "row"
-										}
-									]}
-									onChange={ ( value ) => { setAttributes( { gridFormat:  gridFormat === 'columns' ? 'row' : 'columns' } ) } }
-								/>
-							</PanelRow>
-
 							{ ( showAsGrid ) && (
-								<PanelRow>
-									<NumberControl
-										label={ __( 'Columns', 'ninja' ) }
-										value={ columns }
-										onChange={ ( value ) => { setAttributes( { columns: value } ) } }
-										min={ 1 }
-										max={ 4 }
-									/>
-								</PanelRow>
-							) }
+								<>
+									<PanelRow>
+										<SelectControl
+											label={ __( 'Grid format', 'ninja' ) }
+											value={ gridFormat }
+											options={ [
+												{
+													label: __( 'Columns', 'ninja' ),
+													value: "columns"
+												},
+												{
+													label: __( 'Row', 'ninja' ),
+													value: "row"
+												}
+											]}
+											onChange={ ( value ) => { setAttributes( { gridFormat:  gridFormat === 'columns' ? 'row' : 'columns' } ) } }
+										/>
+									</PanelRow>
 
+									<PanelRow>
+										<NumberControl
+											label={ __( 'Columns', 'ninja' ) }
+											value={ columns }
+											onChange={ ( value ) => { setAttributes( { columns: value } ) } }
+											min={ 1 }
+											max={ 4 }
+										/>
+									</PanelRow>
+								</>
+							) }
+							
 							<PanelRow>
 								<ToggleControl
-									label={ __( 'Show the post excerpt?', 'ninja' ) }
+									label={ __( 'Show the excerpt?', 'ninja' ) }
 									checked={ showExcerpt }
 									onChange={ () => { setAttributes( { showExcerpt: ! showExcerpt } ) } }
 								/>
 							</PanelRow>
+						</>
+					) }
 
+					{ ( blockModel == 'posts' || blockModel == 'numbered' ) && (
+						<>
 							<PanelRow>
 								<ToggleControl
 									label={ __( 'Show the post author?', 'ninja' ) }
@@ -255,6 +262,14 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							</PanelRow>
 						</>
 					) }
+
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Show content below?', 'ninja' ) }
+							checked={ contentBelow }
+							onChange={ () => { setAttributes( { contentBelow: ! contentBelow } ) } }
+						/>
+					</PanelRow>
 
 					<PanelRow>
 						<NumberControl

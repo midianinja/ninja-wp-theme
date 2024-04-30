@@ -14,7 +14,7 @@
                 padding: 16px 20px 40px 25px;
                 border-radius: 8px;
                 @media(max-width: 767px){
-                    padding: 32px 15px 32px 15px;
+                    padding: 1px 15px 22px 15px;
                 }
 				h2{
 					font-feature-settings: 'calt' on;
@@ -37,10 +37,19 @@
                                 }
                             }
                             .ayg-gallery{
+                                scrollbar-color: #666 #333;
+                                scrollbar-width: thin;
+                                background-color: #262626;
                                 .ayg-item{
                                     background: var(--PURE, #262626);
+                                    @media(max-width: 767px){
+                                        padding-right: 8px;
+                                    }
                                     :hover{
                                         background: var(--PURE, #262626);
+                                        @media(max-width: 767px){
+                                            padding-right: 8px;
+                                        }
                                     }
                                 }
 
@@ -117,11 +126,28 @@
                 }
             }
 
+            .slick-list{
+                height: 332px;
+                @media(max-width: 767px){
+                    height: 265px;
+                }
+            }
+
                 
-            .slick-slide, .post-videos, .post-thumbnail, img{
+            .slick-slide, .videos, .post-thumbnail, img{
                 width: 170px;
                 height: 302px;
                 border-radius: 12px;
+                @media(max-width: 767px){
+                    width: 132px;
+                    height: 235px;
+                }
+            }
+
+            .post-thumbnail{
+                .play{
+                    display: none;   
+                }
             }
            
             .slick-arrow {

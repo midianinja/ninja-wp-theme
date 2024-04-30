@@ -126,11 +126,22 @@
                 }
             }
 
+            .slick-list{
+                height: 332px;
+                @media(max-width: 767px){
+                    height: 265px;
+                }
+            }
+
                 
-            .slick-slide, .post-videos, .post-thumbnail, img{
+            .slick-slide, .videos, .post-thumbnail, img{
                 width: 170px;
                 height: 302px;
                 border-radius: 12px;
+                @media(max-width: 767px){
+                    width: 132px;
+                    height: 235px;
+                }
             }
            
             .slick-arrow {

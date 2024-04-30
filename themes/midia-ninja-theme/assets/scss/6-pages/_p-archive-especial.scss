@@ -14,6 +14,10 @@
 			gap: 10px;
 			width: 1140px;
 
+			@media (min-width: 600px) and (max-width: 1074px){
+				width: inherit;
+			}
+
 			@include mixins.small{
 				width: inherit;
 			}
@@ -51,6 +55,10 @@
 								position: relative;
 								left: 0px;
 
+								@media (min-width: 600px) and (max-width: 1074px){
+									flex-basis: 300px !important; 
+								}
+
 								@include mixins.small{
 									height: 230px;
 									position: relative;
@@ -76,6 +84,10 @@
 									margin-left: 143px;
 									text-transform: uppercase;
 
+									@media (min-width: 600px) and (max-width: 1074px){
+										margin-left: 20px; 
+									}
+
 									@include mixins.small{
 										margin-left: 35px;
 									}
@@ -98,6 +110,10 @@
 									width: 100%;
 									margin-top: 8px;
 									margin-bottom: 8px;
+
+									@media (min-width: 600px) and (max-width: 1074px){
+										font-size: 32px;
+									}
 
 									@include mixins.small{
 										font-size: 32px;
@@ -320,7 +336,7 @@
 			}
 
 			h2{
-				color: var(--Gray-1, #333);
+				color: var(--wp--preset--color--low-pure);
 				font-family: var(--wp--preset--font-family--manrope);
 				font-size: var(--wp--preset--font-size--medium);
 				font-style: normal;
@@ -354,6 +370,11 @@
 						position: absolute;
 						top: 54px;
 						right: 290px;
+
+						@media (min-width: 600px) and (max-width: 1074px){
+							top: 24px;
+							right: 76px;
+						}
 					}
 				}
 
@@ -364,6 +385,13 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 			gap: 20px;
+
+			@media (min-width: 600px) and (max-width: 1074px){
+				grid-template-columns: 1fr 1fr ;
+				gap: 0;
+				justify-items: center;
+			}
+			
 
 			@include mixins.small{
 				grid-template-columns: 1fr 1fr;
@@ -386,7 +414,16 @@
 			}
 
 			.post{
-				max-width: 158px;
+				max-width: 270px;
+				width: 100%;
+
+				@include mixins.small{
+					max-width: 158px;
+				}
+
+				@include mixins.mobile{
+					max-width: 158px;
+				}
 
 				&:hover{
 					background-color: transparent;
@@ -475,7 +512,7 @@
 								font-weight: 800;
 								line-height: 125%;
 								letter-spacing: -0.24px;
-								margin-top: 3px;
+								margin-top: 8px;
 							}
 						}
 					}

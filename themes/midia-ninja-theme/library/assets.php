@@ -304,6 +304,13 @@ class Assets
                 },
             ],
 
+            'page-opinioes' => [
+                'file' => '_p-page-opinioes.css',
+                'preload_callback' => function () {
+                    return ! is_front_page() && is_page();
+                },
+            ],
+
             'single' => [
                 'file' => '_p-single.css',
                 'preload_callback' => function () {

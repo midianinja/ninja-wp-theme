@@ -109,6 +109,11 @@
 					background: #000;
 					padding: 51px 33px 30px 33px;
 					height: 506px;
+
+					@include mobile{
+						height: auto;
+					}
+
 					.latest-vertical-posts-block__heading{
 						& h2{
 							color: #FFF;
@@ -120,9 +125,6 @@
 							line-height: 120%; /* 38.4px */
 							letter-spacing: -0.64px;
 							margin-bottom: 33px;
-							@include mobile{
-								margin-bottom: 63px;
-							}
 						}
 
 					}
@@ -130,27 +132,16 @@
 						.slide{
 							width: 100%;
 							display: flex !important;
-							gap: 64px;
 							flex-direction: column;
-							margin-bottom: 33px;
 							a{
 								text-decoration: none;
 
 								& .post{
 									display: flex;
-									flex-direction: row;
 									align-items: flex-start;
 									.post-content{
 										.post-title{
 											color: var(--White, #FFF);
-											/* <p> Manrope */
-											font-family: 'Manrope', sans-serif;
-											font-size: 16px;
-											font-style: normal;
-											font-weight: 500;
-											line-height: 140%; /* 22.4px */
-											margin-top: 0px;
-											padding: 6px 0px;
 										}
 										.post-meta{
 											.post-meta--date{

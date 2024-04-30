@@ -43,11 +43,19 @@
 			}
 
 			.post {
-				font-family: "Manrope", sans-serif;
+				font-family: var(--wp--preset--font-size--manrope);
 				font-style: normal;
 				max-width: 786px;
 				margin-left: auto;
 				margin-right: auto;
+
+				&-content{
+					.wp-block-embed-twitter{
+						max-width: 500px;
+						margin-right: auto;
+						margin-left: auto;
+					}
+				}
 
 				.addtoany_list {
 					display: flex;

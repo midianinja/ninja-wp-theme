@@ -19,6 +19,11 @@
             margin-top: 36px;
             color: #fff;
             gap: 16px;
+            .wp-block-column:nth-of-type(1){
+                @media(max-width: 992px){
+                    margin-bottom: 1rem;
+                }
+            }
 
             @media (min-width: 768px) {
                 background-color: #000;
@@ -28,6 +33,9 @@
             @media (min-width: 992px) {
                 padding: 40px 60px 0 80px;
                 gap: 100px;
+            }
+            @media(max-width: 992px){
+                    margin-bottom: 1rem;
             }
 
             > div {
@@ -48,6 +56,10 @@
                         height: 46px;
                     }
                 }
+            }
+
+            &:last-child{
+                
             }
 
             .article-section-title {

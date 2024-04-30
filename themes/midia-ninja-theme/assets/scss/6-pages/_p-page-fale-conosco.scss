@@ -40,6 +40,7 @@
 				letter-spacing: -0.42px;
 				text-transform: uppercase;
 				position: relative;
+				
 			}
 		}
 
@@ -58,7 +59,10 @@
 
 		.wp-block-columns {
 			margin-bottom: 0;
-			height: 546px;
+			height: 631px;
+			@include mixins.mobile{
+				height: inherit;
+			}
 			
 		
 		}
@@ -316,7 +320,7 @@
 				left: 35%;
 				transform: translateX(-50%);
 				border-radius: 8px;
-				height: 546px;
+				height: 631px;
 
 				@media (max-width: 1344px) {
 					left: 40%;
@@ -505,7 +509,7 @@
 							border-radius: 8px 0px 0px 8px;
 							background: rgba(51, 51, 51, 0.7);
 							backdrop-filter: blur(11px);
-							height: 546px;
+							height: 631px;
 							padding: 60px 51px 59px 69px;
 
 							h2 {
@@ -570,7 +574,7 @@
 		transform: translateX(-50%);
 		border-radius: 8px;
 		max-width: 271px;
-		height: 546px;
+		height: 631px;
 		margin-bottom: 0;
 		padding-bottom: 0;
 

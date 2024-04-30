@@ -14,7 +14,7 @@
                 padding: 16px 20px 40px 25px;
                 border-radius: 8px;
                 @media(max-width: 767px){
-                    padding: 32px 15px 32px 15px;
+                    padding: 1px 15px 22px 15px;
                 }
 				h2{
 					font-feature-settings: 'calt' on;
@@ -39,10 +39,17 @@
                             .ayg-gallery{
                                 scrollbar-color: #666 #333;
                                 scrollbar-width: thin;
+                                background-color: #262626;
                                 .ayg-item{
                                     background: var(--PURE, #262626);
+                                    @media(max-width: 767px){
+                                        padding-right: 8px;
+                                    }
                                     :hover{
                                         background: var(--PURE, #262626);
+                                        @media(max-width: 767px){
+                                            padding-right: 8px;
+                                        }
                                     }
                                 }
 

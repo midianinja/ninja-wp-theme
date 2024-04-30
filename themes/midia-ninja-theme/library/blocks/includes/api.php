@@ -111,7 +111,36 @@ function register_endpoints() {
                     'validate_callback' => function( $param, $request, $key ) {
                         return is_numeric( $param );
                     }
-                ]
+                ],
+                'no_taxonomy' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return taxonomy_exists( sanitize_text_field( $param ) );
+                    }
+                ],
+                'no_post_type' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return post_type_exists( sanitize_text_field( $param ) );
+                    }
+                ],
+                'no_query_terms' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        $terms = explode( ',', sanitize_text_field( $request['no_query_terms'] ) );
+                        foreach ( $terms as $term ) {
+
+                            if ( is_numeric( $term ) ) {
+                                $term = intval( $term );
+                            }
+
+                            if ( ! term_exists( $term, $request['no_taxonomy'] ) ) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                ],
             ],
             'permission_callback' => '__return_true'
         ]
@@ -235,6 +264,35 @@ function get_posts_by_taxonomy_term( $request ) {
     $post__not_in  = explode( ',', sanitize_text_field( $request['post_not_in'] ) );
     $show_children = ! empty( intval( $request['post_parent'] ) );
 
+    // Exclude posts
+    $no_post_type   = ! empty( $request['no_post_type'] ) ? $request['no_post_type'] : '';
+    $no_taxonomy    = ! empty( $request['no_taxonomy'] ) ? $request['no_taxonomy'] : '';
+    $no_query_terms = explode( ',', sanitize_text_field( $request['no_query_terms'] ) );
+
+    $no_post__not_in = [];
+
+    if ( $no_post_type ) {
+        $no_args = [
+            'post_type'      => $no_post_type,
+            'posts_per_page' => -1,
+            'fields'         => 'ids'
+        ];
+
+        if ( $no_taxonomy && $no_query_terms ) {
+            $no_args['tax_query'] = ['relation' => 'AND'];
+
+            foreach ( $no_query_terms as $no_term ) {
+                $no_args['tax_query'][] = [
+                    'taxonomy' => $no_taxonomy,
+                    'field'    => 'term_id',
+                    'terms'    => [$no_term]
+                ];
+            }
+
+            $no_post__not_in = get_posts( $no_args );
+        }
+    }
+
     $no_found_rows = $page === 1 ? false : true;
 
     $args = [
@@ -242,9 +300,13 @@ function get_posts_by_taxonomy_term( $request ) {
         'posts_per_page'      => $per_page,
         'paged'               => $page,
         'no_found_rows'       => $no_found_rows,
-        'ignore_sticky_posts' => true,
-        'post__not_in'        => $post__not_in
+        'ignore_sticky_posts' => true
     ];
+
+    $args['post__not_in'] = array_merge(
+        $no_post__not_in,
+        $post__not_in
+    );
 
     if ( ! $show_children ) {
         $args['post_parent'] = 0;
@@ -267,7 +329,7 @@ function get_posts_by_taxonomy_term( $request ) {
             ];
         }
     }
-
+    
     $query = new \WP_Query( $args );
     $data = [];
 

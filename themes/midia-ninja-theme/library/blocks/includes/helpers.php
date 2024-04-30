@@ -24,8 +24,8 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
 
     // Exclude posts
     $no_post_type   = ! empty( $attributes['noPostType'] ) ? $attributes['postType'] : '';
-    $no_taxonomy    = isset( $attributes['noTaxonomy'] ) ? $attributes['noTaxonomy'] : '';
-    $no_query_terms = isset( $attributes['noQueryTerms'] ) ? $attributes['noQueryTerms'] : [];
+    $no_taxonomy    = ! empty( $attributes['noTaxonomy'] ) ? $attributes['noTaxonomy'] : '';
+    $no_query_terms = ! empty( $attributes['noQueryTerms'] ) ? $attributes['noQueryTerms'] : [];
 
     $no_post__not_in = [];
 

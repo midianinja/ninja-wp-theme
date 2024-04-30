@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
-function LatestGridPosts({ maxPosts, perPage, postNotIn, postType, taxonomy, terms, showAuthor, showChildren, showDate, showExcerpt }) {
+function LatestGridPosts({ maxPosts, noPostType, noQueryTerms, noTaxonomy, perPage, postNotIn, postType, taxonomy, terms, showAuthor, showChildren, showDate, showExcerpt }) {
     const [posts, setPosts] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
@@ -12,7 +12,6 @@ function LatestGridPosts({ maxPosts, perPage, postNotIn, postType, taxonomy, ter
 
     const fetchPosts = useCallback(async (page) => {
         setError(null)
-
         const base = `/wp-json/ninja/v1/posts/${postType}`
         const urlParams = {
             taxonomy: taxonomy,
@@ -20,7 +19,10 @@ function LatestGridPosts({ maxPosts, perPage, postNotIn, postType, taxonomy, ter
             page: page.toString(),
             per_page: perPage,
             max_posts: maxPosts,
-            post_not_in: postNotIn
+            post_not_in: postNotIn,
+            no_post_type: noPostType,
+            no_query_terms: noQueryTerms,
+            no_taxonomy: noTaxonomy
         }
 
         if (showChildren) {
@@ -48,7 +50,7 @@ function LatestGridPosts({ maxPosts, perPage, postNotIn, postType, taxonomy, ter
             console.error('Error fetching posts:', error)
             setError('Failed to load posts.')
         }
-    }, [postType, perPage, showAuthor, showDate, showExcerpt, taxonomy, terms, currentPage])
+    }, [noPostType, noQueryTerms, noTaxonomy, postType, perPage, showAuthor, showDate, showExcerpt, taxonomy, terms, currentPage])
 
     const buildUrl = (base, params) => {
         const query = Object.entries(params)

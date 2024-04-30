@@ -7,6 +7,9 @@ const containers = document.querySelectorAll(".latest-grid-posts-block__content"
 
 containers.forEach((container) => {
     const maxPosts     = container.getAttribute('data-max-posts')
+    const noPostType   = container.getAttribute('data-no-post-type')
+    const noTaxonomy   = container.getAttribute('data-no-taxonomy')
+    const noQueryTerms = container.getAttribute('data-no-query-terms')
     const perPage      = container.getAttribute('data-per-page')
     const postNotIn    = container.getAttribute('data-post-not-in')
     const postType     = container.getAttribute('data-post-type')
@@ -20,6 +23,9 @@ containers.forEach((container) => {
     ReactDOM.render(
         <LatestGridPosts
             maxPosts={maxPosts}
+            noPostType={noPostType}
+            noQueryTerms={noQueryTerms}
+            noTaxonomy={noTaxonomy}
             perPage={perPage}
             postNotIn={postNotIn}
             postType={postType}

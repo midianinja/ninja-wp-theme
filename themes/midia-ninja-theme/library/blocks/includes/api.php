@@ -111,7 +111,36 @@ function register_endpoints() {
                     'validate_callback' => function( $param, $request, $key ) {
                         return is_numeric( $param );
                     }
-                ]
+                ],
+                'no_taxonomy' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return taxonomy_exists( sanitize_text_field( $param ) );
+                    }
+                ],
+                'no_post_type' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return post_type_exists( sanitize_text_field( $param ) );
+                    }
+                ],
+                'no_query_terms' => [
+                    'required' => false,
+                    'validate_callback' => function( $param, $request, $key ) {
+                        $terms = explode( ',', sanitize_text_field( $request['no_query_terms'] ) );
+                        foreach ( $terms as $term ) {
+
+                            if ( is_numeric( $term ) ) {
+                                $term = intval( $term );
+                            }
+
+                            if ( ! term_exists( $term, $request['no_taxonomy'] ) ) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                ],
             ],
             'permission_callback' => '__return_true'
         ]
@@ -179,6 +208,7 @@ function get_public_post_types( $request ) {
     unset( $post_types_objects['header-footer'] );
 
     $post_types = [];
+    $post_types[] = __( 'Select an option', 'ninja' );
 
     foreach ( $post_types_objects as $post_type ) {
         $post_types[$post_type->name] = $post_type->label;
@@ -234,6 +264,35 @@ function get_posts_by_taxonomy_term( $request ) {
     $post__not_in  = explode( ',', sanitize_text_field( $request['post_not_in'] ) );
     $show_children = ! empty( intval( $request['post_parent'] ) );
 
+    // Exclude posts
+    $no_post_type   = ! empty( $request['no_post_type'] ) ? $request['no_post_type'] : '';
+    $no_taxonomy    = ! empty( $request['no_taxonomy'] ) ? $request['no_taxonomy'] : '';
+    $no_query_terms = explode( ',', sanitize_text_field( $request['no_query_terms'] ) );
+
+    $no_post__not_in = [];
+
+    if ( $no_post_type ) {
+        $no_args = [
+            'post_type'      => $no_post_type,
+            'posts_per_page' => -1,
+            'fields'         => 'ids'
+        ];
+
+        if ( $no_taxonomy && $no_query_terms ) {
+            $no_args['tax_query'] = ['relation' => 'AND'];
+
+            foreach ( $no_query_terms as $no_term ) {
+                $no_args['tax_query'][] = [
+                    'taxonomy' => $no_taxonomy,
+                    'field'    => 'term_id',
+                    'terms'    => [$no_term]
+                ];
+            }
+
+            $no_post__not_in = get_posts( $no_args );
+        }
+    }
+
     $no_found_rows = $page === 1 ? false : true;
 
     $args = [
@@ -241,9 +300,13 @@ function get_posts_by_taxonomy_term( $request ) {
         'posts_per_page'      => $per_page,
         'paged'               => $page,
         'no_found_rows'       => $no_found_rows,
-        'ignore_sticky_posts' => true,
-        'post__not_in'        => $post__not_in
+        'ignore_sticky_posts' => true
     ];
+
+    $args['post__not_in'] = array_merge(
+        $no_post__not_in,
+        $post__not_in
+    );
 
     if ( ! $show_children ) {
         $args['post_parent'] = 0;
@@ -271,13 +334,39 @@ function get_posts_by_taxonomy_term( $request ) {
     $data = [];
 
     foreach ( $query->posts as $post ) {
+        $thumbnail = '';
+
+        if ( $post_type === 'opiniao' ) {
+            $get_coauthors = get_coauthors( $post->ID );
+
+            foreach ( $get_coauthors as $coauthor ) {
+                if ( get_post_meta( $coauthor->ID, 'colunista', true ) ) {
+                    $thumbnail = get_the_post_thumbnail_url( $coauthor->ID );
+
+                    if ( $thumbnail ) {
+                        break;
+                    }
+                }
+
+                if ( has_post_thumbnail( $coauthor->ID ) ) {
+                    $thumbnail = get_the_post_thumbnail_url( $coauthor->ID );
+                }
+            }
+        } else {
+            $thumbnail = has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png';
+        }
+
+        if ( ! $thumbnail ) {
+            $thumbnail = get_stylesheet_directory_uri() . '/assets/images/default-image.png';
+        }
+
         $data[] = [
             'ID'        => $post->ID,
             'author'    => get_list_coauthors( $post->ID ),
             'date'      => date_i18n( 'd \d\e F \d\e Y', strtotime( $post->post_date ) ),
             'excerpt'   => $post->post_excerpt,
             'link'      => get_permalink( $post ),
-            'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png',
+            'thumbnail' => $thumbnail,
             'title'     => $post->post_title
         ];
     }

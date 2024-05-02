@@ -36,6 +36,9 @@ export default function Edit( { attributes, setAttributes } ) {
 
     const { 
         blockId,
+        noPostType,
+        noQueryTerms,
+        noTaxonomy,
         postType,
         postsPerPage,
         postsToShow,
@@ -74,48 +77,36 @@ export default function Edit( { attributes, setAttributes } ) {
         }
     }, [postType])
 
+    	// No
+    const onChangeNoPostType = ( value ) => {
+        setAttributes( { noPostType: value } )
+        setAttributes({ noQueryTerms: [] })
+    }
+
+    const onChangeNoSelectTerm = ( value ) => {
+        setAttributes( { noQueryTerms: value.length > 0 ? value : undefined } )
+    }
+
+    // Get taxonomies from the post type selected
+    const [noTaxonomies, setNoTaxonomies] = useState([])
+
+    useEffect(() => {
+        if(noPostType) {
+            apiFetch({ path: `/ninja/v1/taxonomias/${noPostType}` })
+                .then((noTaxonomies) => {
+                    setNoTaxonomies(noTaxonomies)
+                })
+        }
+    }, [noPostType])
+
     return (
         <>
             <InspectorControls>
                 <PanelBody
-                    className="latest-grid-posts-block-inspector-controls"
-                    title={ __( 'Settings', 'ninja' ) }
-                    initialOpen={ true }
+                    className="latest-vertical-posts-block-inspector-controls"
+                    title={ __( 'Layout', 'ninja' ) }
+                    initialOpen={ false }
                 >
-                    <PanelRow>
-                        <SelectPostType postType={ postType } onChangePostType={ onChangePostType } />
-                    </PanelRow>
-
-                    <PanelRow>
-                            <ToggleControl
-                                label={ __( 'Show children items (if any)?', 'ninja' ) }
-                                checked={ showChildren }
-                                onChange={ () => { setAttributes( { showChildren: ! showChildren } ) } }
-                            />
-                        </PanelRow>
-
-                    <PanelRow>
-                        <SelectControl
-                            label={ __( 'Taxonomy to filter', 'ninja' ) }
-                            value={taxonomy}
-                            options={taxonomies.map(taxonomy => ({
-                                label: taxonomy.label,
-                                value: taxonomy.value
-                            }))}
-                            onChange={ ( value ) => setAttributes( { taxonomy: value } ) }
-                            help={ __(
-                                'Leave blank to not filter by taxonomy',
-                                'ninja'
-                            ) }
-                        />
-                    </PanelRow>
-
-                    { taxonomy && (
-                        <PanelRow>
-                            <SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ queryTerms } taxonomy={ taxonomy } />
-                        </PanelRow>
-                    ) }
-
                     <PanelRow>
                         <RangeControl
                             label={ __( 'Qtd. total de posts para exibir', 'ninja' ) }
@@ -161,6 +152,78 @@ export default function Edit( { attributes, setAttributes } ) {
                             onChange={ () => { setAttributes( { showExcerpt: ! showExcerpt } ) } }
                         />
                     </PanelRow>
+                </PanelBody>
+
+                <PanelBody
+                    className="latest-grid-posts-block-inspector-controls"
+                    title={ __( 'Query', 'ninja' ) }
+                    initialOpen={ false }
+                >
+                    <PanelRow>
+                        <SelectPostType postType={ postType } onChangePostType={ onChangePostType } />
+                    </PanelRow>
+
+                    <PanelRow>
+                            <ToggleControl
+                                label={ __( 'Show children items (if any)?', 'ninja' ) }
+                                checked={ showChildren }
+                                onChange={ () => { setAttributes( { showChildren: ! showChildren } ) } }
+                            />
+                        </PanelRow>
+
+                    <PanelRow>
+                        <SelectControl
+                            label={ __( 'Taxonomy to filter', 'ninja' ) }
+                            value={taxonomy}
+                            options={taxonomies.map(taxonomy => ({
+                                label: taxonomy.label,
+                                value: taxonomy.value
+                            }))}
+                            onChange={ ( value ) => setAttributes( { taxonomy: value } ) }
+                            help={ __(
+                                'Leave blank to not filter by taxonomy',
+                                'ninja'
+                            ) }
+                        />
+                    </PanelRow>
+
+                    { taxonomy && (
+                        <PanelRow>
+                            <SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ queryTerms } taxonomy={ taxonomy } />
+                        </PanelRow>
+                    ) }
+
+                    <PanelRow>
+                        <h2>{ __( 'Filter posts to not display', 'ninja' ) }</h2>
+                    </PanelRow>
+
+                    <PanelRow>
+                        <SelectPostType postType={ noPostType } onChangePostType={ onChangeNoPostType } />
+                    </PanelRow>
+
+                    { noPostType && (
+                        <PanelRow>
+                            <SelectControl
+                                label={ __( 'Taxonomy to filter', 'ninja' ) }
+                                value={ noTaxonomy }
+                                options={ noTaxonomies.map( noTaxonomy => ( {
+                                    label: noTaxonomy.label,
+                                    value: noTaxonomy.value
+                                }))}
+                                onChange={ ( value ) => setAttributes( { noTaxonomy: value } ) }
+                                help={ __(
+                                    'Leave blank to not filter by taxonomy',
+                                    'ninja'
+                                ) }
+                            />
+                        </PanelRow>
+                    ) }
+
+                    { noTaxonomy && (
+                        <PanelRow>
+                            <SelectTerms onChangeSelectTerm={ onChangeNoSelectTerm } selectedTerms={ noQueryTerms } taxonomy={ noTaxonomy } />
+                        </PanelRow>
+                    ) }
                 </PanelBody>
             </InspectorControls>
 

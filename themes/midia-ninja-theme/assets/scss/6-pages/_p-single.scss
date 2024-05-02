@@ -40,14 +40,23 @@
 				text-transform: uppercase;
 				background: transparent;
 				text-align: left;
+				width: 570px;
 			}
 
 			.post {
-				font-family: "Manrope", sans-serif;
+				font-family: var(--wp--preset--font-size--manrope);
 				font-style: normal;
 				max-width: 786px;
 				margin-left: auto;
 				margin-right: auto;
+
+				&-content{
+					.wp-block-embed-twitter{
+						max-width: 500px;
+						margin-right: auto;
+						margin-left: auto;
+					}
+				}
 
 				.addtoany_list {
 					display: flex;
@@ -301,6 +310,16 @@
 								margin-left: -17px;
 							}
 
+							@include mixins.small{
+								display: flex;
+								margin-left: 35px;
+							}
+
+							@include mixins.mobile{
+								display: flex;
+								margin-left: 35px;
+							}
+
 							span {
 								color: #000;
 								font-size: 16px;
@@ -314,7 +333,16 @@
 							.social-icons {
 								display: flex;
 								justify-content: end;
-								
+								position: relative;
+								top: -35px;
+
+								@include mixins.small{
+									top: inherit;
+								}
+
+								@include mixins.mobile{
+									top: inherit;
+								}
 							}
 
 							.social-menu {
@@ -323,7 +351,7 @@
 								display: block;
 
 								.social-icon {
-									display: none;
+									// display: none;
 
 									&.icon-instagram {
 										display: block;
@@ -457,11 +485,10 @@
 							display: block;
 
 							.social-icon {
-								display: none;
 
 								&.icon-instagram {
 									display: block;
-									padding: 0 8px;
+									padding: 0 18px;
 									margin: 0 -10px;
 
 									svg {
@@ -498,6 +525,14 @@
 							svg path {
 								fill: #000;
 							}
+						}
+
+						.a2a_s_telegram{
+							background-color: #0088cc !important;
+							width: 20px !important;
+							height: 20px !important;
+							margin-top: 2px;
+							border-radius: 9px !important;
 						}
 					}
 				}

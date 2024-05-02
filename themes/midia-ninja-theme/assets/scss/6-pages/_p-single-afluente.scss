@@ -76,6 +76,24 @@ body.single-afluente {
                     }
 
                     // Block latest vertical posts
+
+                    .model-videos{        
+                        background-color: #000 !important;
+                        
+                        .latest-vertical-posts-block__heading{
+                            h2{
+                                color: #FFF !important;
+                            }
+                        }
+
+                        .slick-slide{
+                            width: initial !important;
+                        }
+                        .post{
+                            margin-bottom: 10px !important;
+                        }
+                    }
+
                     .latest-vertical-posts-block {
                         .latest-vertical-posts-block__slides{
                             .slick-list{
@@ -614,7 +632,7 @@ body{
         
     }
     &.afluente-estudantes-ninja{
-
+        
         nav.wp-block-navigation {
 
             &:not(.alignfull) {

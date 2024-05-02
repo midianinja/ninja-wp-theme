@@ -281,7 +281,6 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
 
                     <div class="page-share">
                         <?php echo do_shortcode('[addtoany]'); ?>
-                        <?php the_social_networks_menu() ?>
                     </div>
 
                     <div class="comments">

@@ -18,8 +18,14 @@ function latest_grid_posts_callback( $attributes ) {
     $show_date       = ! empty( $attributes['showDate'] );
     $show_excerpt    = ! empty( $attributes['showExcerpt'] );
 
+    // Exclude posts
+    $no_post_type   = ! empty( $attributes['noPostType'] ) ? $attributes['postType'] : '';
+    $no_taxonomy    = ! empty( $attributes['noTaxonomy'] ) ? $attributes['noTaxonomy'] : '';
+    $no_query_terms = ! empty( $attributes['noQueryTerms'] ) ? $attributes['noQueryTerms'] : [];
+
     $block_classes[] = 'latest-grid-posts-block';
     $block_classes[] = $show_children ? 'post--has-children' : '';
+    $block_classes[] = 'post--type-' . sanitize_title( $post_type );
 
     if ( ! $query_terms ) {
         $taxonomy = '';
@@ -31,6 +37,7 @@ function latest_grid_posts_callback( $attributes ) {
     $post__not_in = array_unique( $post__not_in, SORT_STRING );
 
     $args = build_posts_query( $attributes, $post__not_in );
+
     $posts_query = get_posts( $args );
 
     $latest_blocks_posts_ids = array_merge( $post__not_in, $posts_query );
@@ -45,6 +52,9 @@ function latest_grid_posts_callback( $attributes ) {
                 data-per-page="' . $posts_per_page . '"
                 data-post-not-in="' . implode( ',', $post__not_in ) . '"
                 data-post-type="' . $post_type . '"
+                data-no-post-type="' . $no_post_type . '"
+                data-no-taxonomy="' . $no_taxonomy . '"
+                data-no-query-terms="' . implode( ',', array_column( $no_query_terms, 'id' ) ) . '"
                 data-show-author="' . $show_author . '"
                 data-show-children="' . $show_children . '"
                 data-show-date="' . $show_date . '"

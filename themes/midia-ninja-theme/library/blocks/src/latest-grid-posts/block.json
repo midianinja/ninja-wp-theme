@@ -2,13 +2,22 @@
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 2,
     "name": "ninja/latest-grid-posts",
-    "version": "0.1.6",
+    "version": "0.1.8",
     "title": "Últimos posts (Grid)",
     "category": "widgets",
     "icon": "format-image",
     "description": "Exibe os últimos posts em formato de grid com paginação",
     "attributes": {
         "blockId": {
+            "type": "string"
+        },
+        "noPostType": {
+            "type": "string"
+        },
+        "noQueryTerms": {
+            "type": "array"
+        },
+        "noTaxonomy": {
             "type": "string"
         },
         "postType": {
@@ -24,8 +33,8 @@
             "default": 20
         },
         "queryTerms": {
-			"type": "array"
-		},
+            "type": "array"
+        },
         "showAuthor": {
             "type": "boolean",
             "default": false

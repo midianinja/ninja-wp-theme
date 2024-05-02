@@ -307,7 +307,7 @@ class Assets
             'page-opinioes' => [
                 'file' => '_p-page-opinioes.css',
                 'preload_callback' => function () {
-                    return ! is_front_page() && is_page();
+                    return ! is_front_page() && is_page( 'opiniao' );
                 },
             ],
 

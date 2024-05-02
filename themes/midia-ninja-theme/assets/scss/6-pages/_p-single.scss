@@ -322,7 +322,11 @@
 								display: flex;
 								justify-content: end;
 								position: relative;
-								top: -35px;			
+								top: -35px;	
+								
+								@include mixins.small{
+									top: inherit;
+								}
 							}
 
 							.social-menu {

@@ -334,15 +334,26 @@ function get_posts_by_taxonomy_term( $request ) {
     $data = [];
 
     foreach ( $query->posts as $post ) {
-        $data[] = [
-            'ID'        => $post->ID,
-            'author'    => get_list_coauthors( $post->ID ),
-            'date'      => date_i18n( 'd \d\e F \d\e Y', strtotime( $post->post_date ) ),
-            'excerpt'   => $post->post_excerpt,
-            'link'      => get_permalink( $post ),
-            'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png',
-            'title'     => $post->post_title
-        ];
+       
+
+        if($post_type == 'guest-author'){
+            $data[] = [
+                'ID'        => $post->ID,
+                'link'      => get_author_posts_url( $post->id, str_ireplace('cap-', '', $post->post_name) ),
+                'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-avatar.png',
+                'title'     => $post->post_title,
+            ];
+        } else{
+            $data[] = [
+                'ID'        => $post->ID,
+                'author'    => get_list_coauthors( $post->ID ),
+                'date'      => date_i18n( 'd \d\e F \d\e Y', strtotime( $post->post_date ) ),
+                'excerpt'   => $post->post_excerpt,
+                'link'      => get_the_permalink( $post ),
+                'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png',
+                'title'     => $post->post_title, 
+            ];
+        }
     }
 
     if ( empty( $data ) ) {

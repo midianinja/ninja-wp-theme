@@ -50,9 +50,10 @@ function authors_list_block_callback( $attributes ) {
 			</div>
 
 			<h2><?= $attributes['subheading'] ?></h2>
-			<div class="authors-list-block__authors">
-				<?php get_template_part( 'library/blocks/src/authors-list/template-parts/other-authors', null, [ 'latest' => $latest_authors ] ); ?>
-			</div>
+				<?php 
+				echo '<div class="authors-list-block__authors">';
+				echo '</div><!-- .authors-list-block__authors -->';
+				?>
 		</div>
 	</div>
 

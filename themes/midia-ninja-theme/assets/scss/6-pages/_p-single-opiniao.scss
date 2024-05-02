@@ -169,6 +169,8 @@
                                 .social-icons {
                                     display: flex;
                                     margin-left: 16px;
+                                    flex-direction: row;
+                                    align-items: baseline;
                                 }
 
                                 .social-menu {
@@ -185,7 +187,7 @@
                                             margin: 0 -8px;
 
                                             svg {
-                                                width: 19px;
+                                                width: 35px;
                                             }
                                         }
                                     }
@@ -193,6 +195,8 @@
 
                                 svg path {
                                     fill: #000;
+                                    width: 26px;
+                                    height: 26px;
                                 }
 
                                 .addtoany_list {
@@ -419,7 +423,11 @@
                             margin-top: 0;
                             margin-bottom: -10px;
                         }
-
+                      
+                        .social-menu{
+                            height: 35px;
+                            width: 35px;
+                        }
 
                     }
                     .comments{

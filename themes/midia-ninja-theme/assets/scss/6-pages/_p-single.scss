@@ -465,11 +465,16 @@
 									margin: 0 -10px;
 
 									svg {
-										width: 19px;
+										width: 22px;
 										color: #e1306c;
+										margin-bottom: 10px;
 									}
 								}
 							}
+						}
+						.social-menu > div {
+							display: flex;
+							justify-content: space-around;
 						}
 
 						.a2a_button_facebook {
@@ -483,7 +488,11 @@
 								fill: #128c7e;
 							}
 						}
-
+						.a2a_button_telegram{
+							svg path{
+								fill: #3b5998;
+							}
+						}
 						.a2a_button_x,
 						.a2a_button_copy_link {
 							svg path {

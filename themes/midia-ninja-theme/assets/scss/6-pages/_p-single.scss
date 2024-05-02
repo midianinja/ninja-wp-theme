@@ -327,6 +327,10 @@
 								@include mixins.small{
 									top: inherit;
 								}
+
+								@include mixins.mobile{
+									top: inherit;
+								}
 							}
 
 							.social-menu {

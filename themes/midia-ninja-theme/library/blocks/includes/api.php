@@ -329,18 +329,44 @@ function get_posts_by_taxonomy_term( $request ) {
             ];
         }
     }
-    
+
     $query = new \WP_Query( $args );
     $data = [];
 
     foreach ( $query->posts as $post ) {
+        $thumbnail = '';
+
+        if ( $post_type === 'opiniao' ) {
+            $get_coauthors = get_coauthors( $post->ID );
+
+            foreach ( $get_coauthors as $coauthor ) {
+                if ( get_post_meta( $coauthor->ID, 'colunista', true ) ) {
+                    $thumbnail = get_the_post_thumbnail_url( $coauthor->ID );
+
+                    if ( $thumbnail ) {
+                        break;
+                    }
+                }
+
+                if ( has_post_thumbnail( $coauthor->ID ) ) {
+                    $thumbnail = get_the_post_thumbnail_url( $coauthor->ID );
+                }
+            }
+        } else {
+            $thumbnail = has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png';
+        }
+
+        if ( ! $thumbnail ) {
+            $thumbnail = get_stylesheet_directory_uri() . '/assets/images/default-image.png';
+        }
+
         $data[] = [
             'ID'        => $post->ID,
             'author'    => get_list_coauthors( $post->ID ),
             'date'      => date_i18n( 'd \d\e F \d\e Y', strtotime( $post->post_date ) ),
             'excerpt'   => $post->post_excerpt,
             'link'      => get_permalink( $post ),
-            'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png',
+            'thumbnail' => $thumbnail,
             'title'     => $post->post_title
         ];
     }

@@ -312,12 +312,12 @@
 
 							@include mixins.small{
 								display: flex;
-								margin-left: 0;
+								margin-left: 35px;
 							}
 
 							@include mixins.mobile{
 								display: flex;
-								margin-left: 0;
+								margin-left: 35px;
 							}
 
 							span {
@@ -351,7 +351,7 @@
 								display: block;
 
 								.social-icon {
-									display: none;
+									// display: none;
 
 									&.icon-instagram {
 										display: block;
@@ -519,7 +519,11 @@
 						}
 
 						.a2a_s_telegram{
-							display: none;
+							background-color: #0088cc !important;
+							width: 20px !important;
+							height: 20px !important;
+							margin-top: 2px;
+							border-radius: 9px !important;
 						}
 					}
 				}

@@ -357,7 +357,7 @@ function get_posts_by_taxonomy_term( $request ) {
         }
 
         if ( ! $thumbnail ) {
-            $thumbnail = get_stylesheet_directory_uri() . '/assets/images/default-image.png';
+            $thumbnail = get_stylesheet_directory_uri() . '/assets/images/default-avatar.png';
         }
 
         $data[] = [

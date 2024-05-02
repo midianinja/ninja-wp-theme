@@ -101,6 +101,8 @@ get_template_part( 'template-parts/header-especiais' );
                                                 <div class="authname">
                                                     <?php echo $afluente_name; ?>
                                                 </div>
+
+                                                <h5 class="excerpt"><?php the_excerpt(); ?></h5>
                                             </a>
 
                                             <hr>

@@ -356,6 +356,10 @@ function get_posts_by_taxonomy_term( $request ) {
             $thumbnail = has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-image.png';
         }
 
+        if ( ! $thumbnail ) {
+            $thumbnail = get_stylesheet_directory_uri() . '/assets/images/default-image.png';
+        }
+
         $data[] = [
             'ID'        => $post->ID,
             'author'    => get_list_coauthors( $post->ID ),

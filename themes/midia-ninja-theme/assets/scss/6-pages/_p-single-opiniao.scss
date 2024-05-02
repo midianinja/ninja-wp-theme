@@ -323,6 +323,8 @@
                 .post-content{
                     @media(max-width:992px){
                         margin: 50px 0;
+                        width: 100%;
+                        max-width: 100%;
 
                     }
 
@@ -352,8 +354,12 @@
 
                     }
                     h2{
-                        margin-top: 12px !important;
-                        margin-bottom: 8px !important;
+                   
+                        @include mixins.mobile{
+                            margin-top: inherit !important;
+                            margin-bottom: inherit !important;
+                        }
+                        
                     }
                     h1{
                         margin-top: 12px !important;

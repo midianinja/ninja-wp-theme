@@ -710,6 +710,14 @@ body{
                    display: flex;
                    height: 525px !important;
                 }
+
+                @include mixins.small{
+                    height: 430px !important;
+                }
+
+                @include mixins.mobile{
+                    height: 430px !important;
+                }
             }
         }
         .latest-vertical-posts-block{

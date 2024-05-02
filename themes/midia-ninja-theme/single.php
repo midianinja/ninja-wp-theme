@@ -101,6 +101,11 @@ get_template_part( 'template-parts/header-especiais' );
                                                 <div class="authname">
                                                     <?php echo $afluente_name; ?>
                                                 </div>
+
+                                                
+                                                <div class="authbio">
+                                                    <?php echo $afluente_bio; ?>
+                                                </div>
                                             </a>
 
                                             <hr>

@@ -162,4 +162,24 @@
             }
         }
     }
+
+    &.post--type-opiniao {
+        .container {
+            .latest-grid-posts-block__content {
+                .post {
+                    // .post-thumbnail
+                    &-thumbnail {
+                        // .post-thumbnail--image
+                        &--image {
+                            border-radius: 100%;
+
+                            &::before {
+                                padding-top: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

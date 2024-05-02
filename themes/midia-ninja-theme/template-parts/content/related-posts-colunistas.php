@@ -49,7 +49,7 @@ if ( $related_posts ) : ?>
             $thumbnail = has_post_thumbnail( $related_post->ID ) ? get_the_post_thumbnail( $related_post->ID ) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">'; ?>
 
             <div class="related-post-card">
-                <a class="related-post-image" href="<?php the_permalink();?>"><?php echo $thumbnail;?></a>
+                <a class="related-post-image" href="<?php the_permalink();?>"><?php echo $thumbnail; ?></a>
 
                 <div class="related-post-content">
                     <div class="info">

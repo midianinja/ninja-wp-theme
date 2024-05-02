@@ -43,19 +43,11 @@
 			}
 
 			.post {
-				font-family: var(--wp--preset--font-size--manrope);
+				font-family: "Manrope", sans-serif;
 				font-style: normal;
 				max-width: 786px;
 				margin-left: auto;
 				margin-right: auto;
-
-				&-content{
-					.wp-block-embed-twitter{
-						max-width: 500px;
-						margin-right: auto;
-						margin-left: auto;
-					}
-				}
 
 				.addtoany_list {
 					display: flex;
@@ -306,7 +298,7 @@
 
 							@media(max-width: 782px){
 								display: flex;
-								margin-left: -17px;
+								margin-left: 50px;
 							}
 
 							span {
@@ -497,6 +489,15 @@
 							svg path {
 								fill: #000;
 							}
+						}
+
+						.a2a_s_telegram{
+							background-color: #0088cc !important;
+							width: 20px !important;
+							height: 20px !important;
+							margin-top: 2px;
+							//background-image: url($p_theme_assets + "/images/social-networks/telegram.svg");
+
 						}
 					}
 				}

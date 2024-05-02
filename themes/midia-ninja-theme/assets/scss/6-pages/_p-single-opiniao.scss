@@ -169,6 +169,8 @@
                                 .social-icons {
                                     display: flex;
                                     margin-left: 16px;
+                                    flex-direction: row;
+                                    align-items: baseline;
                                 }
 
                                 .social-menu {
@@ -185,7 +187,7 @@
                                             margin: 0 -8px;
 
                                             svg {
-                                                width: 19px;
+                                                width: 35px;
                                             }
                                         }
                                     }
@@ -193,6 +195,8 @@
 
                                 svg path {
                                     fill: #000;
+                                    width: 26px;
+                                    height: 26px;
                                 }
 
                                 .addtoany_list {
@@ -319,6 +323,8 @@
                 .post-content{
                     @media(max-width:992px){
                         margin: 50px 0;
+                        width: 100%;
+                        max-width: 100%;
 
                     }
 
@@ -348,8 +354,12 @@
 
                     }
                     h2{
-                        margin-top: 12px !important;
-                        margin-bottom: 8px !important;
+                   
+                        @include mixins.mobile{
+                            margin-top: inherit !important;
+                            margin-bottom: inherit !important;
+                        }
+                        
                     }
                     h1{
                         margin-top: 12px !important;
@@ -419,7 +429,11 @@
                             margin-top: 0;
                             margin-bottom: -10px;
                         }
-
+                      
+                        .social-menu{
+                            height: 35px;
+                            width: 35px;
+                        }
 
                     }
                     .comments{

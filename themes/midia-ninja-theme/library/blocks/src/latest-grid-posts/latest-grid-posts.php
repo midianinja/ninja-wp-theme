@@ -25,6 +25,7 @@ function latest_grid_posts_callback( $attributes ) {
 
     $block_classes[] = 'latest-grid-posts-block';
     $block_classes[] = $show_children ? 'post--has-children' : '';
+    $block_classes[] = 'post--type-' . sanitize_title( $post_type );
 
     if ( ! $query_terms ) {
         $taxonomy = '';

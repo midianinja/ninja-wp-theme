@@ -126,6 +126,16 @@
                 }
             }
 
+            .latest-horizontal-posts-block__slides {
+                &::after {
+                    display: none;
+                   
+                }
+                &::before {
+                   display: none;
+                }
+            }
+
             .slick-list{
                 height: 332px;
                 @media(max-width: 767px){

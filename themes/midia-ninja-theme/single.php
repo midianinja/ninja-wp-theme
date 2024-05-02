@@ -102,7 +102,10 @@ get_template_part( 'template-parts/header-especiais' );
                                                     <?php echo $afluente_name; ?>
                                                 </div>
 
-                                                <h5 class="excerpt"><?php the_excerpt(); ?></h5>
+                                                
+                                                <div class="authbio">
+                                                    <?php echo $afluente_bio; ?>
+                                                </div>
                                             </a>
 
                                             <hr>

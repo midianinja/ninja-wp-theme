@@ -311,7 +311,7 @@ body.single-afluente {
         }
 
         .wp-block-columns:nth-last-of-type(1){ //redes sociais 
-            gap: 17px;
+            gap: 17px !important;
 
             @include mixins.small{ 
                 display: grid;
@@ -719,6 +719,26 @@ body{
                     height: 430px !important;
                 }
             }
+        }
+        .wp-block-columns:nth-last-of-type(1){ //redes sociais 
+            gap: 17px !important;
+
+            @include mixins.small{ 
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 0;
+                max-width: 150px;
+                margin-left: 0px !important;
+            }
+
+            @include mixins.mobile{ 
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 0;
+                max-width: 150px;
+                margin-left: 0px !important;
+            }
+            
         }
         .latest-vertical-posts-block{
 

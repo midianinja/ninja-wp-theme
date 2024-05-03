@@ -8,6 +8,7 @@ import { useInstanceId } from "@wordpress/compose"
 import ServerSideRender from '@wordpress/server-side-render'
 import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
+import LinkSelector from '../../shared/components/LinkSelector'
 import SelectPostType from "../../shared/components/SelectPostType"
 import SelectTerms from "../../shared/components/SelectTerms"
 
@@ -157,6 +158,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 								'ninja'
 							) }
 						/>
+					</PanelRow>
+
+					<PanelRow className='latest-vertical-posts-block-link-selector'>
+						<LinkSelector attributes={ attributes } setAttributes={ setAttributes } />
 					</PanelRow>
 
 					<PanelRow>

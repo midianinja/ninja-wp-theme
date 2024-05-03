@@ -11,10 +11,11 @@ function latest_vertical_posts_callback( $attributes ) {
     $block_model     = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'posts';
     $block_classes[] = 'latest-vertical-posts-block';
 
-    $columns         = ! empty( $attributes['columns'] )? absint( $attributes['columns'] ) : 2;
-    $content_below   = ! empty( $attributes['contentBelow'] );
-    $grid_format     = ! empty( $attributes['gridFormat'] ) ? esc_attr( $attributes['gridFormat'] ) : 'columns';
-    $show_as_grid    = ! empty( $attributes['showAsGrid'] );
+    $columns       = ! empty( $attributes['columns'] )? absint( $attributes['columns'] ) : 2;
+    $content_below = ! empty( $attributes['contentBelow'] );
+    $grid_format   = ! empty( $attributes['gridFormat'] ) ? esc_attr( $attributes['gridFormat'] ) : 'columns';
+    $show_as_grid  = ! empty( $attributes['showAsGrid'] );
+    $link          = ( ! empty( $attributes['linkUrl'] ) ) ? esc_url( $attributes['linkUrl'] ) : false;
 
     $block_classes[] = $show_as_grid ? 'post--has-grid' : '';
     $block_classes[] = $columns > 1 ? 'post--columns-'. $columns : '';
@@ -179,7 +180,13 @@ function latest_vertical_posts_callback( $attributes ) {
     $heading = $attributes['heading'] ?? '';
 
     if ( ! empty( $heading ) ) {
-        echo '<div class="latest-vertical-posts-block__heading"><h2>' . $heading . '</h2></div>';
+        echo '<div class="latest-vertical-posts-block__heading">';
+            if ( ! empty( $link ) ) {
+                echo '<h2><a href="' . esc_url( $link ) . '">' . $heading . '</a></h2>';
+            } else {
+                echo '<h2>' . $heading . '</h2>';
+            }
+        echo '</div>';
     }
 
      // List of the posts to mount slider

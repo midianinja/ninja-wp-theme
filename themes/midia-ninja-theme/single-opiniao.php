@@ -39,14 +39,13 @@ foreach( $coauthors as $coauthor ):
         $coauthor_data['author_id'] = $coauthor->ID;
         $coauthor_data['author_bio'] = $coauthor->description;
         $coauthor_data['author_name'] = $coauthor->display_name;
-        $coauthor_data['cap-instagram'] = get_post_meta($coauthor_data['author_id'], 'cap-instagram', true); 
-        $coauthor_data['cap-facebook'] = get_post_meta($coauthor_data['author_id'], 'cap-facebook', true); 
+        $coauthor_data['cap-instagram'] = get_post_meta($coauthor_data['author_id'], 'cap-instagram', true);
+        $coauthor_data['cap-facebook'] = get_post_meta($coauthor_data['author_id'], 'cap-facebook', true);
         $coauthor_data['cap-twitter'] = get_post_meta($coauthor_data['author_id'], 'cap-twitter', true);
         $coauthor_data['cap-youtube'] = get_post_meta($coauthor_data['author_id'], 'cap-youtube', true);
-        $coauthor_data['cap-tik-tok'] = get_post_meta($coauthor_data['author_id'], 'cap-tik-tok', true); 
+        $coauthor_data['cap-tik-tok'] = get_post_meta($coauthor_data['author_id'], 'cap-tik-tok', true);
         $coauthor_data['colunista'] = get_post_meta($coauthor_data['author_id'], 'colunista', true);
-        $author_name_sanitize = sanitize_title($coauthor_data['author_name']);
-        $author_name_sem_hifen = str_replace("-", "", $author_name_sanitize);
+        $coauthor_data['cap-user_login'] = get_post_meta($coauthor_data['author_id'], 'cap-user_login', true);
         $coauthor_data['author_url'] = get_author_posts_url($coauthor_data['author_id']);
 
         if( !$has_columnist && $coauthor_data['colunista'] == '1' ){
@@ -54,7 +53,7 @@ foreach( $coauthors as $coauthor ):
         }
     }
     $get_coauthors[] = $coauthor_data;
-endforeach;    
+endforeach;
 
 $container_class = $has_columnist ? 'container has-columnist' : 'container';
 ?>
@@ -80,13 +79,13 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                             <?php if ($coauthor['colunista'] == '1'): ?>
                                 <div class="author-info-card">
                                     <div class="info-container">
-                                        <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+										<a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']);?>">
 
                                         <?php echo get_avatar($coauthor['author_id'], 128);?>
                                         </a>
 
                                         <div class="info-card-informations">
-                                            <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+											<a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']);?>">
 
                                             <div class="author-name">
                                                 <?php echo $coauthor['author_name']; ?>
@@ -125,7 +124,7 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                                                 </a>
                                             </span>
                                             <?php endif; ?>
-                                           
+
                                             <?php if($coauthor['cap-youtube']): ?>
                                             <span class="youtube">
                                                 <a href="<?php echo  $coauthor['cap-youtube']; ?>">
@@ -172,7 +171,7 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
 
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                
+
                                 <div class="author">
                                     <div class="byline">
                                         <span><?php _e('By', 'ninja');?></span>
@@ -210,12 +209,12 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                             <?php if ($coauthor['colunista'] == '1'): ?>
 
                                 <div class="author-info-card">
-                                    <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+                                    <a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']);?>">
 
                                         <?php echo get_avatar($coauthor['author_id'], 128);?>
                                     </a>
                                     <?php if($coauthor['author_name']): ?>
-                                        <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+										<a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']);?>">
                                             <div class="author-name">
                                                 <?php echo $coauthor['author_name']; ?>
                                             </div>
@@ -223,14 +222,14 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                                     <?php endif; ?>
 
                                     <?php if($coauthor['author_bio']): ?>
-                                        <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+										<a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']);?>">
                                             <div class="authbio">
                                                 <?php echo $coauthor['author_bio']; ?>
                                             </div>
                                         </a>
                                     <?php endif; ?>
                                     <div class="social-networks">
-                                       
+
                                         <?php if($coauthor['cap-instagram']): ?>
                                         <span class="instagram">
                                             <a href="<?php echo $coauthor['cap-instagram']; ?>">
@@ -243,7 +242,7 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                                             </a>
                                         </span>
                                         <?php endif; ?>
-                                        
+
                                         <?php if($coauthor['cap-twitter']): ?>
                                         <span class="twitter">
                                             <a href="<?php echo $coauthor['cap-twitter']; ?>">

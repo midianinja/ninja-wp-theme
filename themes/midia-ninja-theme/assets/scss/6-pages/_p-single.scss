@@ -322,7 +322,15 @@
 								display: flex;
 								justify-content: end;
 								position: relative;
-								top: -35px;			
+								top: -35px;	
+								
+								@include mixins.small{
+									top: inherit;
+								}
+
+								@include mixins.mobile{
+									top: inherit;
+								}
 							}
 
 							.social-menu {
@@ -504,6 +512,7 @@
 							width: 20px !important;
 							height: 20px !important;
 							margin-top: 2px;
+							border-radius: 15px !important;
 							//background-image: url($p_theme_assets + "/images/social-networks/telegram.svg");
 
 						}

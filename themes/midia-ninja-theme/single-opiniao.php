@@ -45,6 +45,9 @@ foreach( $coauthors as $coauthor ):
         $coauthor_data['cap-youtube'] = get_post_meta($coauthor_data['author_id'], 'cap-youtube', true);
         $coauthor_data['cap-tik-tok'] = get_post_meta($coauthor_data['author_id'], 'cap-tik-tok', true); 
         $coauthor_data['colunista'] = get_post_meta($coauthor_data['author_id'], 'colunista', true);
+        $author_name_sanitize = sanitize_title($coauthor_data['author_name']);
+        $author_name_sem_hifen = str_replace("-", "", $author_name_sanitize);
+        $coauthor_data['author_url'] = get_author_posts_url($coauthor_data['author_id']);
 
         if( !$has_columnist && $coauthor_data['colunista'] == '1' ){
             $has_columnist = true;
@@ -77,12 +80,18 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                             <?php if ($coauthor['colunista'] == '1'): ?>
                                 <div class="author-info-card">
                                     <div class="info-container">
+                                        <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+
                                         <?php echo get_avatar($coauthor['author_id'], 128);?>
+                                        </a>
 
                                         <div class="info-card-informations">
+                                            <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+
                                             <div class="author-name">
                                                 <?php echo $coauthor['author_name']; ?>
                                             </div>
+                                            </a>
                                             <div class="social-networks">
                                             <?php if($coauthor['cap-instagram']): ?>
                                             <span class="cap-instagram">
@@ -201,18 +210,24 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                             <?php if ($coauthor['colunista'] == '1'): ?>
 
                                 <div class="author-info-card">
-                                    
-                                    <?php echo get_avatar($coauthor['author_id'], 128);?>
+                                    <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+
+                                        <?php echo get_avatar($coauthor['author_id'], 128);?>
+                                    </a>
                                     <?php if($coauthor['author_name']): ?>
-                                        <div class="author-name">
-                                            <?php echo $coauthor['author_name']; ?>
-                                        </div>
+                                        <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+                                            <div class="author-name">
+                                                <?php echo $coauthor['author_name']; ?>
+                                            </div>
+                                        </a>
                                     <?php endif; ?>
 
                                     <?php if($coauthor['author_bio']): ?>
-                                        <div class="authbio">
-                                            <?php echo $coauthor['author_bio']; ?>
-                                        </div>
+                                        <a href="<?php echo get_author_posts_url($coauthor['author_id']) .  $author_name_sem_hifen;?>">
+                                            <div class="authbio">
+                                                <?php echo $coauthor['author_bio']; ?>
+                                            </div>
+                                        </a>
                                     <?php endif; ?>
                                     <div class="social-networks">
                                        

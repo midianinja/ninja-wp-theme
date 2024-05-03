@@ -401,6 +401,7 @@
 				width: 100%;
 				margin-right: auto;
 				margin-left: auto;
+				justify-items: center;
 			}
 
 			@include mixins.mobile{
@@ -411,6 +412,7 @@
 				width: 100%;
 				margin-right: auto;
 				margin-left: auto;
+				justify-items: center;
 			}
 
 			.post{

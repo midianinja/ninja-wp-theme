@@ -27,6 +27,12 @@
                 @media(max-width: 992px){
                     flex-basis: 490px !important;
                 }
+
+                .wp-block-column:first-child{
+                    @media (width: 820px) {
+                        flex-basis: 500px !important;
+                    }
+                }
                 &:first-child{
                     .wp-block-cover{
                         padding: 0;

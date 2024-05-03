@@ -103,6 +103,9 @@
 				align-items: flex-start;
 				gap: 33px;
 				flex-shrink: 0;
+				@media(max-width: 781px){
+					height: auto;
+				}
 
 				.latest-vertical-posts-block {
 					border-radius: 12px;

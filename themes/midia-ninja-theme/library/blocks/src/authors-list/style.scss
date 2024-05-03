@@ -85,15 +85,69 @@
 	}
 
 	&__authors {
-		display: grid;
-		grid-gap: 30px;
-		grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-		margin-bottom: 30px;
+		.other-authors-card{
+			display: grid;
+			grid-gap: 30px;
+			grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+			margin-bottom: 30px;
 
-		@include break-medium {
-			grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-			grid-gap: 10px;
+			@include break-medium {
+				grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+				grid-gap: 10px;
+			}
 		}
+
+		.latest-grid-posts-block__pagination {
+            align-items: center;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 4rem;
+            list-style: none;
+			margin-top: 4rem;
+
+            li {
+                align-items: center;
+                border-radius: 8px;
+                border: 1px solid transparent;
+                color: var(--wp--preset--color--primary-light);
+                cursor: pointer;
+                display: flex;
+                font-size: 14px;
+                height: 32px;
+                justify-content: center;
+                width: 32px;
+
+                &.active {
+                    background-color: var(--wp--preset--color--gold);
+                    color: var(--wp--preset--color--low-pure);
+                    cursor: default;
+                    font-weight: 700;
+                }
+
+                &.next,
+                &.prev {
+                    border: 1px solid #595D62;
+                    text-indent: -999999px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+
+                    &.disabled {
+                        opacity: .5;
+                    }
+                }
+
+                &.next {
+                    background-image: url("../../shared/images/arrow.svg");
+                }
+
+                &.prev {
+                    background-image: url("../../shared/images/arrow.svg");
+                    transform: rotate(180deg);
+                }
+            }
+        }
 	}
 
 	&__author {

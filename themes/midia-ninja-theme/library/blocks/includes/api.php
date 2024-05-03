@@ -141,6 +141,10 @@ function register_endpoints() {
                         return true;
                     }
                 ],
+				'only_columnist' => [
+                    'required' => false,
+                    'validate_callback' => '__return_true'
+                ]
             ],
             'permission_callback' => '__return_true'
         ]
@@ -263,6 +267,7 @@ function get_posts_by_taxonomy_term( $request ) {
     $page          = ! empty( $request['page'] ) ? intval( $request['page'] ) : 1;
     $post__not_in  = explode( ',', sanitize_text_field( $request['post_not_in'] ) );
     $show_children = ! empty( intval( $request['post_parent'] ) );
+	$only_columnist = ! empty( $request['only_columnist'] ) ? true : false;
 
     // Exclude posts
     $no_post_type   = ! empty( $request['no_post_type'] ) ? $request['no_post_type'] : '';
@@ -330,10 +335,21 @@ function get_posts_by_taxonomy_term( $request ) {
         }
     }
 
+	if( $only_columnist ) {
+		$args['meta_query'] = [
+			[
+				'key' => 'colunista',
+				'value' => '1',
+				'compare' => '='
+			]
+		];
+	}
+
     $query = new \WP_Query( $args );
     $data = [];
 
     foreach ( $query->posts as $post ) {
+
         $thumbnail = '';
 
         if ( $post_type === 'opiniao' ) {
@@ -360,15 +376,25 @@ function get_posts_by_taxonomy_term( $request ) {
             $thumbnail = get_stylesheet_directory_uri() . '/assets/images/default-avatar.png';
         }
 
-        $data[] = [
-            'ID'        => $post->ID,
-            'author'    => get_list_coauthors( $post->ID ),
-            'date'      => date_i18n( 'd \d\e F \d\e Y', strtotime( $post->post_date ) ),
-            'excerpt'   => $post->post_excerpt,
-            'link'      => get_permalink( $post ),
-            'thumbnail' => $thumbnail,
-            'title'     => $post->post_title
-        ];
+
+        if($post_type == 'guest-author'){
+            $data[] = [
+                'ID'        => $post->ID,
+                'link'      => get_author_posts_url( $post->id, str_ireplace('cap-', '', $post->post_name) ),
+                'thumbnail' => has_post_thumbnail( $post ) ? get_the_post_thumbnail_url( $post ) : get_stylesheet_directory_uri() . '/assets/images/default-avatar.png',
+                'title'     => $post->post_title,
+            ];
+        } else{
+            $data[] = [
+                'ID'        => $post->ID,
+                'author'    => get_list_coauthors( $post->ID ),
+                'date'      => date_i18n( 'd \d\e F \d\e Y', strtotime( $post->post_date ) ),
+                'excerpt'   => $post->post_excerpt,
+                'link'      => get_the_permalink( $post ),
+                'thumbnail' => $thumbnail,
+                'title'     => $post->post_title,
+            ];
+        }
     }
 
     if ( empty( $data ) ) {

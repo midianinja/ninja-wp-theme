@@ -90,21 +90,21 @@
 			grid-gap: 30px;
 			grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 			margin-bottom: 30px;
-	
+
 			@include break-medium {
 				grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 				grid-gap: 10px;
 			}
 		}
-	
+
 		.latest-grid-posts-block__pagination {
             align-items: center;
             display: flex;
             gap: 10px;
             justify-content: center;
-            margin-bottom: 30px;
-            margin-top: 30px;
+            margin-bottom: 4rem;
             list-style: none;
+			margin-top: 4rem;
 
             li {
                 align-items: center;

@@ -16,7 +16,8 @@ function AuthorsList() {
         const urlParams = {
             page: page.toString(),
             per_page: 30,
-            max_posts: 200
+            max_posts: 300,
+			only_columnist: 1,
         }
 
         const url = buildUrl(base, urlParams)
@@ -73,7 +74,7 @@ function AuthorsList() {
                     <Post key={post.id} post={post} />
                 ))}
                 {error && <p>Erro ao carregar posts: {error}</p>}
-            </div>    
+            </div>
             <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

@@ -100,4 +100,25 @@
                 }
         }
     }
+    
+    
+}
+body{
+    &.especial-circuito-de-formacao{
+        .post-content{
+            .wp-block-columns{
+                @include mixins.mobile{
+                    max-width: 100%;
+                }
+            }
+            .wp-block-columns:nth-of-type(1){
+                img{
+                    object-fit: contain;
+                }
+            }
+            p{
+                text-align: start;
+            }
+        }
+    }
 }

@@ -132,6 +132,9 @@
         .model-videos{
             background-color: var(--wp--preset--color--secondary-pure);
             margin-bottom: 0;
+			@media(max-width: 782px){
+				background-color: var(--wp--preset--color--secondary-light);
+			}
 
             .latest-horizontal-posts-block__content{
                 padding-left: 6rem;

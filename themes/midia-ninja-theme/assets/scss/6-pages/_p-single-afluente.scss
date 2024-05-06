@@ -77,9 +77,10 @@ body.single-afluente {
 
                     // Block latest vertical posts
 
-                    .model-videos{        
+                    .model-videos{
                         background-color: #000 !important;
-                        
+                        padding-bottom: 20px !important;
+
                         .latest-vertical-posts-block__heading{
                             h2{
                                 color: #FFF !important;
@@ -88,9 +89,25 @@ body.single-afluente {
 
                         .slick-slide{
                             width: initial !important;
-                        }
-                        .post{
-                            margin-bottom: 10px !important;
+
+                            a {
+                                color: #FFF;
+
+                                .post {
+                                    align-items: flex-start;
+                                    gap: 15px;
+                                    margin-bottom: 15px;
+
+                                    .post-content {
+                                        .video-title {
+                                            color: #FFF;
+                                            font-size: 0.85rem;
+                                            font-weight: 600;
+                                            line-height: 1.40;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
 

@@ -28,7 +28,7 @@ function latest_vertical_posts_callback( $attributes ) {
         $show_date       = ( isset( $attributes['showDate'] ) && ! empty( $attributes['showDate'] ) ) ? true : false;
         $show_excerpt    = ( isset( $attributes['showExcerpt'] ) && ! empty( $attributes['showExcerpt'] ) ) ? true : false;
         $show_taxonomy   = ( isset( $attributes['showTaxonomy'] ) && ! empty( $attributes['showTaxonomy'] ) ) ? true : false;
-        
+
         $block_classes[] = $show_children ? 'post--has-children' : '';
         $block_classes[] = $show_author ? 'post--has-author' : '';
         $block_classes[] = $show_excerpt ? 'post--has-excerpt' : '';
@@ -166,7 +166,7 @@ function latest_vertical_posts_callback( $attributes ) {
 
     if ( ! $has_content ) {
         if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
-            return '<h2>'. __( 'No content found', 'ninja' ). '</h2>';
+            return '<h2>' . __( 'No content found', 'ninja' ) . '</h2>';
         }
 
         return;
@@ -257,9 +257,9 @@ function latest_vertical_posts_callback( $attributes ) {
                 echo "<div class='slide'>";
             }
 
-            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['video' => $video, 'attributes' => $attributes] );
+            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', $block_model, ['video' => $video, 'attributes' => $attributes] );
 
-            if ( $counter == $posts_by_slide || $counter == $has_content->post_count ) {
+            if ( $counter == $posts_by_slide || $counter == count( $has_content ) ) {
                 echo "</div>";
                 $counter = 0;
             }

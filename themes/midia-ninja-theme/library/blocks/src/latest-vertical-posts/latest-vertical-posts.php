@@ -257,7 +257,7 @@ function latest_vertical_posts_callback( $attributes ) {
                 echo "<div class='slide'>";
             }
 
-            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, ['video' => $video, 'attributes' => $attributes] );
+            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/post', $block_model, ['video' => $video, 'attributes' => $attributes] );
 
             if ( $counter == $posts_by_slide || $counter == count( $has_content ) ) {
                 echo "</div>";

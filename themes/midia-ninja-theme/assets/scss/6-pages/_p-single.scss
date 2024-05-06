@@ -182,6 +182,9 @@
 						@media (min-width: 1200px) {
 							display: none;
 						}
+						>:nth-child(n + 2) {
+							display: none;
+						}
 						.author-info-card {
 							max-width: 690px;
 							width: 100%;

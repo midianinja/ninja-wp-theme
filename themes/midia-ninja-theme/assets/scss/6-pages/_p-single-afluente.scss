@@ -87,9 +87,17 @@ body.single-afluente {
                             }
                         }
 
-                        .slick-slide{
-                            width: initial !important;
+                        .latest-vertical-posts-block__dots {
+                            margin-top: 15px;
 
+                            .slick-dots {
+                                li {
+                                    background-color: var(--wp--preset--color--secondary-light);
+                                }
+                            }
+                        }
+
+                        .slick-slide{
                             a {
                                 color: #FFF;
 

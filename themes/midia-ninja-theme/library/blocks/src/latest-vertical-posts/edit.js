@@ -314,6 +314,17 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							value={ postsBySlide }
 						/>
 					</PanelRow>
+
+					<PanelRow>
+						<RangeControl
+							label={ __( 'Total number of posts to display', 'ninja' ) }
+							value={ postsToShow }
+							onChange={ ( value ) => setAttributes( { postsToShow: value } ) }
+							min={ 2 }
+							max={ 99 }
+							step={ 2 }
+						/>
+					</PanelRow>
 				</PanelBody>
 
 				<PanelBody

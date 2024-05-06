@@ -31,6 +31,31 @@
                                 .ayg-player-wrapper{
                                     iframe{
                                         border-radius: 8px;
+										#player{
+											.ytp-gradient-top, .ytp-show-cards-title{
+												display: none;
+											}
+											.ytp-cued-thumbnail-overlay{
+												.ytp-large-play-button{
+													svg{
+														border-radius: 50px;
+														path{
+															fill: #4f4f4f;
+														}
+													}
+												}
+												&:hover{
+													.ytp-large-play-button{
+														svg{
+															border-radius: 50px;
+															path{
+																fill: #4f4f4f;
+															}
+														}
+													}
+												}
+											}
+										}
                                     }
                                 }
                             }
@@ -109,8 +134,10 @@
             margin-bottom: 0;
             .latest-horizontal-posts-block__content{
                 padding-left: 6rem;
+				padding-bottom: 1rem;
                 @media(max-width: 992px){
                     padding-left: 15px;
+					padding-bottom: 0;
                 }
                 h2{
                     color: var(--wp--preset--color--primary-dark);

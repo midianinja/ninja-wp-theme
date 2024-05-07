@@ -2,6 +2,34 @@ document.addEventListener("DOMContentLoaded", function() {
     const mainMenu = document.querySelector('.main-header #main-menu')
     const itensWithChild = mainMenu.querySelectorAll('li.menu-item-has-children')
 
+	const mq = window.matchMedia("(max-width: 767px)");
+
+    if (mq.matches) {
+        const itensWithChild = mainMenu.querySelectorAll('li.menu-item-has-children');
+
+        itensWithChild.forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.add('active');
+            });
+
+            item.addEventListener('click', function() {
+                this.classList.remove('active');
+            });
+        });
+    }
+
+    const menuItems = document.querySelectorAll('.menu-item-has-children');
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            if (mq.matches) {
+                e.preventDefault();
+                const link = this.querySelector('a').getAttribute('href');
+                window.location.href = link;
+            }
+        });
+    });
+
     itensWithChild.forEach(item => {
         const mq = window.matchMedia("(min-width: 768px)")
 

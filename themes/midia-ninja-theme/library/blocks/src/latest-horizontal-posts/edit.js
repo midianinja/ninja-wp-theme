@@ -9,6 +9,7 @@ import ServerSideRender from '@wordpress/server-side-render'
 import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
 import LinkSelector from '../../shared/components/LinkSelector'
+import SelectGuestAuthor from '../../shared/components/SelectGuestAuthor'
 import SelectPostType from "../../shared/components/SelectPostType"
 import SelectTerms from "../../shared/components/SelectTerms"
 
@@ -48,6 +49,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		flickrAPIKey,
 		flickrByType,
 		flickrUserId,
+		coAuthor,
 		heading,
 		playlistId,
 		postsToShow,
@@ -71,6 +73,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { showTaxonomy: '' } )
 		setAttributes( { taxonomy: '' } )
 		setAttributes( { queryTerms: [] } )
+		setAttributes( { coAuthor: '' } )
 	}
 
 	const onChangeContentPosition = ( value ) => {
@@ -109,6 +112,10 @@ export default function Edit( { attributes, setAttributes } ) {
 			})
 		}
 	}, [postType])
+
+	const onChangeCoAuthor = (value) => {
+		setAttributes({ coAuthor: value })
+	}
 
 	return (
 		<>
@@ -350,6 +357,12 @@ export default function Edit( { attributes, setAttributes } ) {
 								<PanelRow>
 									<SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ queryTerms } taxonomy={ taxonomy } />
 								</PanelRow>
+							) }
+
+							{ blockModel === 'most-read' && (
+								<PanelRow>
+									<SelectGuestAuthor coAuthor={ coAuthor } onChangeCoAuthor={ onChangeCoAuthor } />
+								</PanelRow> 
 							) }
 
 							<PanelRow>

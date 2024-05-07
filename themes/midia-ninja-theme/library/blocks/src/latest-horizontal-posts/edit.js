@@ -371,7 +371,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									value={ postsToShow }
 									onChange={ ( value ) => setAttributes( { postsToShow: value } ) }
 									min={ 2 }
-									max={ 99 }
+									max={ 20 }
 									step={ 2 }
 								/>
 							</PanelRow>

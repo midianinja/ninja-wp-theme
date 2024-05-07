@@ -976,6 +976,10 @@
 				display: flex;
 				flex-wrap: nowrap;
 				margin-left: 90px;
+				@media (max-width: 1199px){
+					margin-top: 2rem;
+					margin-left: 0;
+				}
 				@media (max-width: 782px) {
 					margin-left: 15px;
 				}
@@ -988,6 +992,27 @@
 
 				@media (max-width: 7282px) {
 					margin: 32px 15px;
+				}
+
+				&:nth-child(2){
+					@media(max-width: 576px) {
+						margin: 32px 15px 32px 46px;
+					}
+				}
+				&:nth-child(3){
+					@media(max-width: 576px) {
+						margin: 32px 33px 16px 52px;
+					}
+				}
+				&:nth-child(4){
+					@media(max-width: 576px) {
+						margin: 32px 43px 32px 22px;
+					}
+				}
+				&:nth-child(5){
+					@media(max-width: 576px) {
+						margin: 32px 53px 32px 16px;
+					}
 				}
 			}
 		}

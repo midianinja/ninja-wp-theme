@@ -961,6 +961,10 @@
 			margin-bottom: 2rem;
 		}
 
+		@media (max-width: 768px){
+			margin-top: 2rem;
+		}
+
 		.container {
 			padding: 55px 0 25px 30px !important;
 
@@ -1014,8 +1018,12 @@
 						margin: 32px 15px 32px 23px;
 					}
 
-					@media(max-width: 366px) {
+					@media(max-width: 375px) {
 						margin: 32px 15px 32px 16px;
+					}
+
+					@media(max-width: 366px) {
+						margin: 32px 15px 32px 10px;
 					}
 				}
 
@@ -1030,8 +1038,11 @@
 					@media(max-width: 393px) {
 						margin: 32px 15px 32px 66px;
 					}
+					@media(max-width: 375px) {
+						margin: 32px 15px 32px 47px;
+					}
 					@media(max-width: 366px) {
-						margin: 32px 15px 32px 46px;
+						margin: 32px 15px 32px 42px;
 					}
 				}
 				&:nth-child(3){
@@ -1045,8 +1056,11 @@
 					@media(max-width: 393px) {
 						margin: 32px 15px 32px 66px;
 					}
+					@media(max-width: 375px) {
+						margin: 32px 15px 32px 48px;
+					}
 					@media(max-width: 366px) {
-						margin: 32px 33px 16px 52px;
+						margin: 32px 33px 16px 43px;
 					}
 				}
 				&:nth-child(4){
@@ -1059,6 +1073,9 @@
 
 					@media(max-width: 393px) {
 						margin: 32px 15px 32px 66px;
+					}
+					@media(max-width: 375px) {
+						margin: 32px 15px 32px 51px;
 					}
 					@media(max-width: 366px) {
 						margin: 32px 43px 32px 22px;
@@ -1074,6 +1091,9 @@
 
 					@media(max-width: 393px) {
 						margin: 32px 15px 32px 76px;
+					}
+					@media(max-width: 375px) {
+						margin: 32px 15px 32px 51px;
 					}
 					@media(max-width: 366px) {
 						margin: 32px 53px 32px 16px;

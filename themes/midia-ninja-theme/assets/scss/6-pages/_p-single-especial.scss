@@ -144,4 +144,73 @@ body{
         }
         
     }
+    &.especial-copa-femininja-2023 {
+        .wp-block-column{
+            h2{
+                font-family: 'Manrope', sans-serif !important;
+            }
+        }
+    }
+    &.especial-paralimpiadas-tokyo-2020{
+        .post-content{
+            .wp-block-columns:nth-of-type(1){
+                img{
+                    object-fit: contain;
+                }
+            }
+            
+        }
+    }
+    &.especial-grammy2022{
+        .menu-especial__logo-mobile{
+            .menu-especial__logo-mobile{
+                object-fit: contain !important;
+            }
+        }
+    }
+    &.especial-cop-26 {
+        #videos{
+            .wp-block-cover__inner-container{
+                .wp-block-columns:nth-of-type(3) {
+                    @include mobile{
+                        display: flex;
+                    }
+                    .wp-block-column{
+                        figure{
+                            min-width: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

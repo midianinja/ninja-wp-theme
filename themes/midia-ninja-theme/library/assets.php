@@ -447,14 +447,6 @@ class Assets
                 'preload_callback' => function () {
                     return is_page_template('template-colunistas.php');
                 },
-            ],
-
-            // Tutor
-            'tutorstarter' => [
-                'file' => '_p-tutorstarter.css',
-                'preload_callback' => function () {
-                    return is_plugin_active('tutor/tutor.php');
-                },
             ]
         ];
 

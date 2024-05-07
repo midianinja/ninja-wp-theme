@@ -963,10 +963,13 @@
 
 		.container {
 			padding: 55px 0 25px 30px !important;
+
 			@media (max-width: 782px) {
 				padding: 55px 0 25px 15px !important;
 			}
 		}
+
+
 		.latest-horizontal-posts-block__slides {
 			flex-basis: 100% !important;
 			&::before {
@@ -980,7 +983,11 @@
 					margin-top: 2rem;
 					margin-left: 0;
 				}
+				@media (max-width: 992px){
+					margin-top: 4rem;
+				}
 				@media (max-width: 782px) {
+					margin-top: 2rem;
 					margin-left: 15px;
 				}
 			}
@@ -994,23 +1001,81 @@
 					margin: 32px 15px;
 				}
 
+				&:nth-child(1){
+					@media(max-width: 450px) {
+						margin: 32px 15px 32px 56px;
+					}
+
+					@media(max-width: 414px) {
+						margin: 32px 15px 32px 26px;
+					}
+
+					@media(max-width: 393px) {
+						margin: 32px 15px 32px 23px;
+					}
+
+					@media(max-width: 366px) {
+						margin: 32px 15px 32px 16px;
+					}
+				}
+
 				&:nth-child(2){
-					@media(max-width: 576px) {
+					@media(max-width: 450px) {
+						margin: 32px 15px 32px 121px;
+					}
+					@media(max-width: 414px) {
+						margin: 32px 15px 32px 96px;
+					}
+
+					@media(max-width: 393px) {
+						margin: 32px 15px 32px 66px;
+					}
+					@media(max-width: 366px) {
 						margin: 32px 15px 32px 46px;
 					}
 				}
 				&:nth-child(3){
-					@media(max-width: 576px) {
+					@media(max-width: 450px) {
+						margin: 32px 33px 16px 121px;
+					}
+					@media(max-width: 414px) {
+						margin: 32px 15px 32px 86px;
+					}
+
+					@media(max-width: 393px) {
+						margin: 32px 15px 32px 66px;
+					}
+					@media(max-width: 366px) {
 						margin: 32px 33px 16px 52px;
 					}
 				}
 				&:nth-child(4){
-					@media(max-width: 576px) {
+					@media(max-width: 450px) {
+						margin: 32px 43px 32px 101px;
+					}
+					@media(max-width: 414px) {
+						margin: 32px 15px 32px 86px;
+					}
+
+					@media(max-width: 393px) {
+						margin: 32px 15px 32px 66px;
+					}
+					@media(max-width: 366px) {
 						margin: 32px 43px 32px 22px;
 					}
 				}
 				&:nth-child(5){
-					@media(max-width: 576px) {
+					@media(max-width: 450px) {
+						margin: 32px 53px 32px 111px;
+					}
+					@media(max-width: 414px) {
+						margin: 32px 15px 32px 96px;
+					}
+
+					@media(max-width: 393px) {
+						margin: 32px 15px 32px 76px;
+					}
+					@media(max-width: 366px) {
 						margin: 32px 53px 32px 16px;
 					}
 				}

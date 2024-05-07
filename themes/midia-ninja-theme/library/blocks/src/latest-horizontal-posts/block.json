@@ -22,6 +22,9 @@
 		"channelId": {
 			"type": "string"
 		},
+		"coAuthor": {
+			"type": "string"
+		},
 		"contentPosition": {
 			"type": "string",
 			"default": "left"

@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
 
             let allItens = mainMenu.querySelectorAll('.active');
-            
+
             allItens.forEach ( function(item) {
                 item.classList.remove('active');
             });
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
 
             let allItens = mainMenu.querySelectorAll('.active');
-            
+
             allItens.forEach ( function(item) {
                 item.classList.remove('active');
             });
@@ -99,10 +99,10 @@ document.addEventListener("DOMContentLoaded", function() {
     buttonMais.addEventListener ("click", function(ev) {
         ev.preventDefault();
 
-        if (menuButton.classList.contains("checked")) {
-            menuButton.classList.remove("checked");
+        if (menuItens.classList.contains('open')) {
+            menuItens.classList.remove('open')
         } else {
-            menuButton.classList.add("checked")
+            menuItens.classList.add('open')
             searchFieldFocus('#searchform .search-field')
         }
     })
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //Hamburger Menu Itens
     const burguerMenu = document.querySelector('.hamburguer #menu-hamburguer');
     const burguerWithChild = burguerMenu.querySelectorAll('#menu-hamburguer li.menu-item-has-children');
-    
+
     burguerWithChild.forEach(item => {
 
         if (item.parentElement.classList.contains('sub-menu')){
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         });
 
-        
+
     })
 
     document.addEventListener('click', function(e) {

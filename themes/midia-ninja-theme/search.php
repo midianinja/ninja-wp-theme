@@ -4,10 +4,20 @@ get_header();
 global $wp_query;
 $total_results = $wp_query->found_posts;
 $singular = $wp_query->found_posts > 1 ? __('results', 'ninja') : __('result', 'ninja');
+
+$is_content_opiniao = false;
+
+
+if( isset( $wp_query->query_vars['post_type'] ) && $wp_query->query_vars['post_type'] == 'opiniao' ){
+    $is_content_opiniao = true;
+}
+
+$container_class = $is_content_opiniao ? 'container is-content-opiniao' : 'container';
+
 ?>
 
 <div class="index-wrapper">
-    <div class="container">
+	<div class="<?php echo $container_class ?>">
         <form role="search" method="get" class="row filters-search-form" action="<?= esc_url( home_url( '/' ) ) ?>">
             <div class="title">
                 <h1><?php _e('Search Results', 'ninja'); ?></h1>
@@ -29,7 +39,7 @@ $singular = $wp_query->found_posts > 1 ? __('results', 'ninja') : __('result', '
 
             <div class="col-md-9">
                     <div class="filter-wrapper search-result-main">
-                        
+
                         <div class="search-component">
                             <label class="label-search">
                                 <span class="screen-reader-text"><?= _x( 'Search for:', 'label' ) ?></span>
@@ -70,7 +80,7 @@ $singular = $wp_query->found_posts > 1 ? __('results', 'ninja') : __('result', '
                             } ?>
                         <?php endwhile; ?>
                     </div>
-                
+
                 <?php get_template_part('template-parts/content/pagination'); ?>
             </div>
         </form><!-- /.form -->

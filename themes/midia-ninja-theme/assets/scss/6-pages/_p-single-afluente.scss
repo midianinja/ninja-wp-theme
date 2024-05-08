@@ -880,4 +880,17 @@ body{
             }
         }
     }
+    &.afluente-cine-ninja{
+        #premiacoes{
+            .wp-block-cover__inner-container{
+                .wp-block-columns{
+                    @include mixins.mobile{
+                        display: grid;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                    }
+                }
+            }
+        }
+    }
 }

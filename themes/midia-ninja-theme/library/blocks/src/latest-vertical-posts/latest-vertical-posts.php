@@ -22,7 +22,7 @@ function latest_vertical_posts_callback( $attributes ) {
     $block_classes[] = 'post--grid-' . $grid_format;
     $block_classes[] = $content_below ? 'post--content-below' : '';
 
-    if ( $block_model == 'posts' || $block_model == 'numbered' ){
+    if ( $block_model == 'posts' || $block_model == 'numbered' || $block_model == 'most-read' ){
         $show_children   = ! empty( $attributes['showChildren'] );
         $show_author     = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
         $show_date       = ( isset( $attributes['showDate'] ) && ! empty( $attributes['showDate'] ) ) ? true : false;
@@ -90,7 +90,7 @@ function latest_vertical_posts_callback( $attributes ) {
         $has_content = columnists_get_contents( $block_id );
     }
 
-    if ( $block_model == 'posts' || $block_model == 'numbered' ) {
+    if ( $block_model == 'posts' || $block_model == 'numbered' || $block_model == 'most-read' ) {
         // Posts
 
         $attributes_hash = md5( $block_id );
@@ -110,7 +110,44 @@ function latest_vertical_posts_callback( $attributes ) {
                 $post__not_in = array_unique( $post__not_in, SORT_STRING );
             }
 
-            $args = build_posts_query( $attributes, $post__not_in );
+            if ( class_exists( 'AjaxPageviews' ) ) {
+
+                $apv_args = [
+                    'post_type' => ! empty( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : null,
+                    'taxonomy'  => ! empty( $attributes['taxonomy'] ) ? $attributes['taxonomy'] : null,
+                    'terms'     => ! empty( $attributes['queryTerms'] ) ? array_map( function( $t ) { return $t['id']; }, $attributes['queryTerms'] ) : null
+                ];
+
+                if ( is_plugin_active( 'co-authors-plus/co-authors-plus.php' ) ) {
+                    $apv_args['co_author'] = ! empty( $attributes['coAuthor'] ) ? sanitize_text_field( $attributes['coAuthor'] ) : null;
+                }
+
+                $limit = ! empty( $attributes['postsToShow'] ) ? $attributes['postsToShow'] : 10;
+
+                $top_viewed_posts = \AjaxPageviews::get_top_viewed_by_terms( $limit , $apv_args );
+
+                if ( $top_viewed_posts ) {
+                    $top_viewed_posts = array_map( function( $item ) {
+                        return $item->post_id;
+                    }, $top_viewed_posts );
+
+                    $args = [
+                        'ignore_sticky_posts' => 1,
+                        'no_found_rows'       => true,
+                        'orderby'             => 'post__in',
+                        'post__in'            => $top_viewed_posts,
+                        'post_status'         => 'publish',
+                        'post_type'           => $attributes['postType'],
+                        'posts_per_page'      => $limit
+                    ];
+
+                    if ( ! $show_children ) {
+                        $args['post_parent'] = 0;
+                    }
+                }
+            } else {
+                $args = build_posts_query( $attributes, $post__not_in );
+            }
 
             if ( is_archive() ) {
                 $queried_object = get_queried_object();
@@ -270,7 +307,7 @@ function latest_vertical_posts_callback( $attributes ) {
         }
     }
 
-    if ( $block_model == 'posts' || $block_model == 'numbered' ) {
+    if ( $block_model == 'posts' || $block_model == 'numbered' || $block_model = 'most-read' ) {
         if ( $has_content->have_posts() ) :
 
             $attributes['counter_posts'] = 0;

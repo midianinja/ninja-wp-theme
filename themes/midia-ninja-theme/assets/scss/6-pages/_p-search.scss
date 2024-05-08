@@ -6,6 +6,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 .search-results {
     #app{
         background-color: #f5f5f5;
+		padding-bottom: 2rem;
     }
     .index-wrapper {
         .col-md-3{
@@ -197,7 +198,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                             font-size: 14px;
                             font-style: normal;
                             font-weight: 400;
-                            line-height: 24px; 
+                            line-height: 24px;
 
                             &:hover{
                                 border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
@@ -284,7 +285,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                 // align-items: center;
                 // gap: 30px;
                 columns: 250px;
-                column-gap: 30px; 
+                column-gap: 30px;
                 max-width: 770px;
                 width: 100%;
 
@@ -305,7 +306,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                 .post-card-opiniao{
                     flex-direction: row !important;
                     margin-bottom: 1rem !important;
-                    
+
 
                     .post-opiniao{
                         max-width: 100px;
@@ -344,7 +345,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
                 .post{
                     break-inside: avoid-column;
-                    margin-bottom: 1rem; 
+                    margin-bottom: 1rem;
 
                     &:hover{
                         background-color: transparent;

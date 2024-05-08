@@ -435,6 +435,14 @@ function get_coauthors_callback( $request ) {
             ];
         }
 
+        array_unshift( $data, [
+            'id'    => 0,
+            'display_name' => __( 'Select an option', 'ninja' ),
+            'user_nicename' => ''
+        ] );
+
+        $data = apply_filters( 'ninja/helpers/coauthors', $data );
+
         if ( ! empty( $data ) ) {
             return new \WP_REST_Response( $data, 200 );
         }

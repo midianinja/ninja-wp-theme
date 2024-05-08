@@ -115,7 +115,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                         'post__in'            => $top_viewed_posts,
                         'post_status'         => 'publish',
                         'post_type'           => $attributes['postType'],
-                        'posts_per_page'      => $limit,
+                        'posts_per_page'      => $limit
                     ];
 
                     if ( ! $show_children ) {

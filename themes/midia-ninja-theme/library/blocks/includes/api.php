@@ -150,6 +150,16 @@ function register_endpoints() {
         ]
     );
 
+    register_rest_route(
+        'ninja/v1',
+        '/coauthors',
+        [
+            'methods'  => 'GET',
+            'callback' => 'Ninja\\get_coauthors_callback',
+            'permission_callback' => '__return_true'
+        ]
+    );
+
 	register_rest_route(
 		'ninja/v1',
 		'/flickr_albums',
@@ -405,6 +415,41 @@ function get_posts_by_taxonomy_term( $request ) {
         'posts'      => $data,
         'totalPages' => ( $max_posts > $query->max_num_pages ) ? $query->max_num_pages : ceil( $max_posts / $per_page )
     ], 200 );
+}
+
+function get_coauthors_callback( $request ) {
+
+    if ( is_plugin_active( 'co-authors-plus/co-authors-plus.php' ) ) {
+        global $coauthors_plus;
+        $author_terms = get_terms( ['taxonomy' => $coauthors_plus->coauthor_taxonomy] );
+
+        $data = [];
+
+        foreach ( $author_terms as $author_term ) {
+            $author_object = $coauthors_plus->get_coauthor_by( 'user_nicename', $author_term->slug );
+
+            $data[] = [
+                'id'   => $author_object->ID,
+                'display_name' => $author_object->display_name,
+                'user_nicename' => $author_object->user_nicename
+            ];
+        }
+
+        array_unshift( $data, [
+            'id'    => 0,
+            'display_name' => __( 'Select an option', 'ninja' ),
+            'user_nicename' => ''
+        ] );
+
+        $data = apply_filters( 'ninja/helpers/coauthors', $data );
+
+        if ( ! empty( $data ) ) {
+            return new \WP_REST_Response( $data, 200 );
+        }
+
+    }
+
+    return new \WP_Error( 'no_posts', 'Nenhum coauthor encontrado', ['status' => 404] );
 }
 
 /**

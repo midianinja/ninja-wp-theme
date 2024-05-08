@@ -85,6 +85,10 @@
 		.slide {
 			margin-bottom: 30px;
 			margin-top: 15px;
+
+			@include break-medium {
+				margin-bottom: 15px;
+			}
 		}
 
 		.slick-slide {
@@ -283,13 +287,14 @@
 			}
 
 			.slick-arrow {
-				background-color: #414141;
+				background-color: var(--wp--preset--color--secondary-light);
 				background-image: url("./images/slider-arrow.svg");
 				background-position: center;
 				background-repeat: no-repeat;
 				border-radius: 30px;
 				border-style: unset;
 				height: 30px;
+				opacity: .7;
 				padding: 0;
 				text-indent: -9999px;
 				transition: all 0.2s ease-in-out;
@@ -300,12 +305,12 @@
 				}
 
 				&.slick-disabled {
-					background-color: #414141;
+					opacity: .2;
 					pointer-events: none;
 				}
 
 				&:hover {
-					background-color: #f5f5f5;
+					opacity: 1;
 				}
 			}
 		}
@@ -374,7 +379,7 @@
 
 	// Most read
 	&.model-most-read {
-		background-color: var(--wp--preset--color--dark-pure);
+		background-color: var(--wp--preset--color--primary-dark);
 
 		&.without-title-description {
 			.container {
@@ -403,23 +408,25 @@
 					display: none;
 				}
 				.slide {
-					@media (max-width: 782px) {
-						width: 280px !important;
-						display: flex !important;
-						margin-left: auto;
-						margin-right: auto;
-						padding-left: 1.7rem;
-					}
 					.post {
-						max-width: 280px;
 						width: 100%;
+
+						@include break-medium {
+							padding-right: 15px;
+						}
+
 						&-content {
 							.post-title {
+								color: var(--wp--preset--color--secondary-light);
 								font-family: "Manrope", sans-serif;
 								font-size: 20px;
 								font-style: normal;
 								font-weight: 700;
 								line-height: 130%;
+
+								@include break-medium {
+									font-size: 1rem;
+								}
 							}
 						}
 					}

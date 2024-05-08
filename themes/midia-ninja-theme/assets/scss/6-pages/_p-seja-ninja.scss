@@ -577,6 +577,11 @@
                         }
 
                     }
+                    figure:first-child{
+                        @include mixins.mobile{
+                            text-align: center;
+                        }
+                    }
                     
                     & .social-icons-inscricao{
                         gap: 0px;

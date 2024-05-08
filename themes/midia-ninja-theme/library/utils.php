@@ -754,3 +754,11 @@ function alterar_numero_de_posts_por_pagina( $query ) {
     }
 }
 add_action( 'pre_get_posts', 'alterar_numero_de_posts_por_pagina' );
+
+/**
+ * Add post types on ajax_pv/supported_post_types filter
+ */
+function add_supported_post_types( $post_types ) {
+    return array_merge( $post_types, ['afluente', 'especial', 'opiniao', 'galeria'] );
+}
+add_filter( 'ajax_pv/supported_post_types', 'add_supported_post_types' );

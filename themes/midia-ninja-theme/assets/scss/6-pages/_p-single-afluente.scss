@@ -239,16 +239,6 @@ body.single-afluente {
                     //Bloco quem somos afluentes                   
                     #quemsomos{
 
-                        h2{
-                            color: var(--Gray-1, #333);
-                            font-feature-settings: var(--f-ninja-config);
-                            font-family: var(--f-ninja);
-                            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            font-size: 32px !important;
-                            font-style: normal;
-                            line-height: 100%; 
-                            letter-spacing: -2.7px;
-                        }
 
                         @media(min-width: 600px) and (max-width: 1200px){
                             display: flex;
@@ -888,6 +878,67 @@ body{
                         display: grid;
                         width: 100% !important;
                         max-width: 100% !important;
+                    }
+                    .wp-block-column{
+                        figure{
+                            img{
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #quemsomos{
+            h2{
+                color: var(--Gray-1, #333);
+                font-feature-settings: "calt" off;
+                font-family: "Tipo Ninja",sans-serif !important;
+                font-size: 54px !important;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 100%;
+                letter-spacing: -2.7px;
+                text-align: start;
+            }
+        }
+        #donate{
+            @include mixins.mobile{
+                h2{
+                    color: #000 !important;
+                    text-align: center;
+                    font-family: Manrope;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 130%; /* 31.2px */
+                }
+                
+                
+            }
+            .wp-block-cover__background {
+                @include mixins.mobile{
+                    background-color: #FDF250 !important;
+                    border: none;
+                }
+            }
+            .wp-block-buttons{
+                @include mixins.mobile{
+                    display: flex;
+                    justify-content: center;
+                    
+                
+                }
+                .wp-block-button{
+                    @include mixins.mobile{
+                        border-radius: 8px;
+                        background: var(--DARK, #111)
+                    }
+                    .wp-block-button__link{
+                        @include mixins.mobile{
+                            padding: 14px 20px;
+                            border:none;
+                        }
                     }
                 }
             }

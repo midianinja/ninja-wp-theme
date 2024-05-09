@@ -307,7 +307,8 @@ function latest_vertical_posts_callback( $attributes ) {
         }
     }
 
-    if ( $block_model == 'posts' || $block_model == 'numbered' || $block_model = 'most-read' ) {
+    if ( $block_model == 'posts' || $block_model == 'numbered' || $block_model == 'most-read' ) {
+
         if ( $has_content->have_posts() ) :
 
             $attributes['counter_posts'] = 0;

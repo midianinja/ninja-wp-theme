@@ -301,6 +301,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
                 a{
                     text-decoration: none !important;
+					overflow: hidden;
                 }
 
                 .post-card-opiniao{
@@ -420,32 +421,6 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
             }
         }
-
-		.is-content-opiniao{
-			.filters-search-form{
-				.col-md-9{
-					.content{
-						display: grid;
-						grid-template-columns: 1fr 1fr;
-						align-items: start;
-						grid-column-gap: 2rem;
-						grid-row-gap: 0.5rem;
-						max-width: 770px;
-						width: 100%;
-
-						@include small{
-							display: flex;
-							flex-direction: column;
-						}
-
-						@include mobile{
-							display: flex;
-							flex-direction: column;
-						}
-					}
-				}
-			}
-		}
 
         @import "./../7-parts/p-content-post";
     }

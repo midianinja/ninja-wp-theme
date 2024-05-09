@@ -168,6 +168,8 @@
                 @include mixins.mobile{
                     border-bottom: none;
                     position: relative;
+                    margin-left: 10px;
+                
                 }
             }
             .authbio{
@@ -283,12 +285,13 @@
                         color: var(--Gray-3, #828282);
                         /* <h5> Manrope */
                         font-family: 'Manrope', sans-serif;
-                        font-size: 13px;
+                        font-size: 13px !important;
                         font-style: normal;
                         font-weight: 500;
-                        line-height: 145%; /* 18.85px */
+                        line-height: 18.85px; /* 18.85px */
                         @include mixins.mobile{
                             margin-top:24px;
+                            margin-bottom: 10px;
                             
                         }
                     }

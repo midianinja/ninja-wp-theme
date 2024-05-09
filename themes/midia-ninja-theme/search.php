@@ -79,9 +79,9 @@ $container_class = $is_content_opiniao ? 'container is-content-opiniao' : 'conta
                                 get_template_part('template-parts/content/post-search-results');
                             } ?>
                         <?php endwhile; ?>
-                    </div>
 
-                <?php get_template_part('template-parts/content/pagination'); ?>
+                    </div>
+					<?php get_template_part('template-parts/content/pagination'); ?>
             </div>
         </form><!-- /.form -->
     </div><!-- /.container -->

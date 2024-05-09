@@ -35,11 +35,18 @@
 }
 
 .block-editor-block-list__block{
-	&.latest-horizontal-posts-block{
+	.latest-horizontal-posts-block{
 		margin-top: 2rem;
 		margin-top: 2rem;
 		max-width: 100%;
-		padding-left: 15rem;
+		padding-left: 10rem;
+
+		.model-specials,
+		.model-videos,
+		.model-most-read,
+		.model-acervo{
+			background-color: #262626 !important;
+		}
 
 		.latest-horizontal-posts-block__slides{
 			display: flex;

@@ -121,79 +121,72 @@ function get_html_terms(int $post_id, string $tax, bool $use_link = false, bool 
 /**
  * Rename the defaults taxonomies
  */
-function rename_taxonomies()
-{
+function rename_taxonomies() {
 
-    // Tags -> Temas
-    $post_tag_args = get_taxonomy('post_tag');
+    // Category -> Editorias
+    $category_args = get_taxonomy( 'category' );
 
-    $post_tag_args->label = 'Temas';
-    $post_tag_args->labels->name = 'Temas';
-    $post_tag_args->labels->singular_name = 'Tema';
-    $post_tag_args->labels->search_items = 'Pesquisar tema';
-    $post_tag_args->labels->popular_items = 'Temas populares';
-    $post_tag_args->labels->all_items = 'Todos temas';
-    $post_tag_args->labels->parent_item = 'Tema superior';
-    $post_tag_args->labels->edit_item = 'Editar tema';
-    $post_tag_args->labels->view_item = 'Ver tema';
-    $post_tag_args->labels->update_item = 'Atualizar tema';
-    $post_tag_args->labels->add_new_item = 'Adicionar novo tema';
-    $post_tag_args->labels->new_item_name = 'Nome do novo tema';
-    $post_tag_args->labels->separate_items_with_commas = 'Separe os temas com vírgulas';
-    $post_tag_args->labels->add_or_remove_items = 'Adicionar ou remover temas';
-    $post_tag_args->labels->choose_from_most_used = 'Escolha entre os temas mais usados';
-    $post_tag_args->labels->not_found = 'Nenhum tema encontrado';
-    $post_tag_args->labels->no_terms = 'Nenhum tema';
-    $post_tag_args->labels->items_list_navigation = 'Navegação da lista de temas';
-    $post_tag_args->labels->items_list = 'Lista de temas';
-    $post_tag_args->labels->most_used = 'Temas mais utilizados';
-    $post_tag_args->labels->back_to_items = '&larr; Ir para os temas';
-    $post_tag_args->labels->item_link = 'Link do tema';
-    $post_tag_args->labels->item_link_description = 'Um link para o tema';
-    $post_tag_args->labels->menu_name = 'Temas';
-    $post_tag_args->hierarchical = true;
+	$category_args->label                              = __( 'Editorials', 'ninja' );
+	$category_args->labels->name                       = __( 'Editorials', 'ninja' );
+	$category_args->labels->singular_name              = __( 'Editorial', 'ninja' );
+	$category_args->labels->search_items               = __( 'Search editorial', 'ninja' );
+	$category_args->labels->popular_items              = __( 'Popular editorials', 'ninja' );
+	$category_args->labels->all_items                  = __( 'All editorials', 'ninja' );
+	$category_args->labels->parent_item                = __( 'Parent editorial', 'ninja' );
+	$category_args->labels->edit_item                  = __( 'Edit editorial', 'ninja' );
+	$category_args->labels->view_item                  = __( 'View editorial', 'ninja' );
+	$category_args->labels->update_item                = __( 'Update editorial', 'ninja' );
+	$category_args->labels->add_new_item               = __( 'Add new editorial', 'ninja' );
+	$category_args->labels->new_item_name              = __( 'New editorial name', 'ninja' );
+	$category_args->labels->separate_items_with_commas = __( 'Separate editorials with commas', 'ninja' );
+	$category_args->labels->add_or_remove_items        = __( 'Add or remove editorials', 'ninja' );
+	$category_args->labels->choose_from_most_used      = __( 'Choose from the most used editorials', 'ninja' );
+	$category_args->labels->not_found                  = __( 'No editorials found', 'ninja' );
+	$category_args->labels->no_terms                   = __( 'No editorials', 'ninja' );
+	$category_args->labels->items_list_navigation      = __( 'Editorial list navigation', 'ninja' );
+	$category_args->labels->items_list                 = __( 'Editorial list', 'ninja' );
+	$category_args->labels->most_used                  = __( 'Most used editorials', 'ninja' );
+	$category_args->labels->back_to_items              = __( '&larr; Go to editorials', 'ninja' );
+	$category_args->labels->item_link                  = __( 'Editorial link', 'ninja' );
+	$category_args->labels->item_link_description      = __( 'A link to the editorial' );
+	$category_args->labels->menu_name                  = __( 'Editorials', 'ninja' );
+	$category_args->hierarchical                       = true;
 
-    $object_type = array_merge($post_tag_args->object_type, ['page']);
-    $object_type = array_unique($object_type);
-
-    register_taxonomy('post_tag', $object_type, (array) $post_tag_args);
-
-    // Category -> Projetos
-    $category_args = get_taxonomy('category');
-
-    $category_args->label = 'Projetos';
-    $category_args->labels->name = 'Projetos';
-    $category_args->labels->singular_name = 'Projeto';
-    $category_args->labels->search_items = 'Pesquisar Projeto';
-    $category_args->labels->popular_items = 'Projetos populares';
-    $category_args->labels->all_items = 'Todos Projetos';
-    $category_args->labels->parent_item = 'Projeto superior';
-    $category_args->labels->edit_item = 'Editar Projeto';
-    $category_args->labels->view_item = 'Ver Projeto';
-    $category_args->labels->update_item = 'Atualizar Projeto';
-    $category_args->labels->add_new_item = 'Adicionar novo Projeto';
-    $category_args->labels->new_item_name = 'Nome do novo Projeto';
-    $category_args->labels->separate_items_with_commas = 'Separe os Projetos com vírgulas';
-    $category_args->labels->add_or_remove_items = 'Adicionar ou remover Projetos';
-    $category_args->labels->choose_from_most_used = 'Escolha entre os Projetos mais usados';
-    $category_args->labels->not_found = 'Nenhum Projeto encontrado';
-    $category_args->labels->no_terms = 'Nenhum Projeto';
-    $category_args->labels->items_list_navigation = 'Navegação da lista de Projetos';
-    $category_args->labels->items_list = 'Lista de Projetos';
-    $category_args->labels->most_used = 'Projetos mais utilizados';
-    $category_args->labels->back_to_items = '&larr; Ir para os Projetos';
-    $category_args->labels->item_link = 'Link do Projeto';
-    $category_args->labels->item_link_description = 'Um link para o Projeto';
-    $category_args->labels->menu_name = 'Projetos';
-
-    $object_type = array_merge($category_args->object_type, ['page', 'perguntas_frequentes']);
-    $object_type = array_unique($object_type);
-
-    register_taxonomy('category', $object_type, (array) $category_args);
+	register_taxonomy( 'category',  $category_args->object_type, (array) $category_args );
 
 }
-// Descomentar para renomear as taxonomias padrão do WP
-// add_action( 'init', 'rename_taxonomies', 11 );
+add_action( 'init', 'rename_taxonomies', 11 );
+
+function rename_post_menu() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = __( 'News', 'ninja' );
+    $submenu['edit.php'][5][0]  = __( 'News', 'ninja' );
+    $submenu['edit.php'][10][0] = __( 'Add news', 'ninja' );
+    $submenu['edit.php'][16][0] = __( 'News tags', 'ninja' );
+    echo '';
+}
+
+function rename_post_object() {
+    global $wp_post_types;
+    $labels                     = &$wp_post_types['post']->labels;
+    $labels->name               = __( 'News', 'ninja' );
+    $labels->singular_name      = __( 'News', 'ninja' );
+    $labels->add_new            = __( 'Add news', 'ninja' );
+    $labels->add_new_item       = __( 'Add news', 'ninja' );
+    $labels->edit_item          = __( 'Edit news', 'ninja' );
+    $labels->new_item           = __( 'News', 'ninja' );
+    $labels->view_item          = __( 'View news', 'ninja' );
+    $labels->search_items       = __( 'Search news', 'ninja' );
+    $labels->not_found          = __( 'No news found', 'ninja' );
+    $labels->not_found_in_trash = __( 'No news found in Trash', 'ninja' );
+    $labels->all_items          = __( 'All news', 'ninja' );
+    $labels->menu_name          = __( 'News', 'ninja' );
+    $labels->name_admin_bar     = __( 'News', 'ninja' );
+}
+
+add_action( 'admin_menu', 'rename_post_menu' );
+add_action( 'init', 'rename_post_object' );
 
 /**
  * Return string of the terms to use on html class

@@ -110,7 +110,7 @@ function latest_vertical_posts_callback( $attributes ) {
                 $post__not_in = array_unique( $post__not_in, SORT_STRING );
             }
 
-            if ( class_exists( 'AjaxPageviews' ) ) {
+            if ( class_exists( 'AjaxPageviews' ) && $block_model == 'most-read' ) {
 
                 $apv_args = [
                     'post_type' => ! empty( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : null,

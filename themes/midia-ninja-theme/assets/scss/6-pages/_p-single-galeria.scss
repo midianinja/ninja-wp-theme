@@ -79,7 +79,7 @@
 
 					.wp-block-gallery{
 						--wp--style--gallery-gap-default: 30px;
-						
+
 						.wp-block-image{
 							img{
 								width: 100%;
@@ -99,11 +99,11 @@
 					.wp-block-gallery.has-nested-images figure.wp-block-image:not(#individual-image) {
 						margin-bottom: 0;
 					}
-					
-					
+
+
 
 					.wp-block-image {
-						
+
 						padding: 0 15px;
 						margin-bottom: 32px;
 						margin-top: 32px;
@@ -126,7 +126,14 @@
 						//margin: 12px auto;
 						bottom: -30px;
 						padding: 0;
-					
+						margin-left: -9px;
+						@media(max-width: 1215px){
+							margin-left: 1px;
+						}
+						@media(max-width: 767px){
+							margin-left: 14px;
+						}
+
 					}
 				}
 			}
@@ -190,7 +197,7 @@
 						img {
 							width: 100%;
 							height: auto;
-							aspect-ratio: 16 / 9;	
+							aspect-ratio: 16 / 9;
 						}
 
 						.info {

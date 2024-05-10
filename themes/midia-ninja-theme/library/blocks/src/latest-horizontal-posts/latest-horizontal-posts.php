@@ -68,9 +68,8 @@ function latest_horizontal_posts_callback( $attributes ) {
         $has_content = columnists_get_contents( $block_id );
     }
 
-    if ( $block_model == 'most-read' || $block_model == 'specials' ) {
+    if ( $block_model == 'most-read' || $block_model == 'specials' || $block_model == 'posts') {
         // Posts
-
         $cache_key = 'ninja_horizontal_' . $attributes_hash;
 
         $cached_posts = false;
@@ -80,14 +79,10 @@ function latest_horizontal_posts_callback( $attributes ) {
         }
 
         if ( false === $cached_posts ) {
-            if ( $block_model == 'specials' ) {
-                $attributes['postType'] = 'especial';
-            }
-
             $post__not_in = array_merge( $latest_blocks_posts_ids, array_keys( $newspack_blocks_post_id ) );
             $post__not_in = array_unique( $post__not_in, SORT_STRING );
 
-            if ( class_exists( 'AjaxPageviews' ) ) {
+            if ( class_exists( 'AjaxPageviews' ) && $block_model == 'most-read'  ) {
 
                 $apv_args = [
                     'post_type' => ! empty( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : null,
@@ -248,7 +243,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                     wp_reset_postdata();
                 }
 
-                if ( $block_model == 'specials' ) {
+                if ( $block_model == 'specials' || $block_model == 'posts' ) {
                     // Posts
                     while ( $has_content->have_posts() ) :
                         $has_content->the_post();

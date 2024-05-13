@@ -65,7 +65,7 @@ function latest_horizontal_posts_callback( $attributes ) {
     if ( $block_model == 'columnists' ) {
         // Co Authors
         require_once  __DIR__ . '../../shared/includes/columnists.php';
-        $has_content = columnists_get_contents( $block_id );
+        $has_content = columnists_get_contents( $attributes );
     }
 
     if ( $block_model == 'most-read' || $block_model == 'specials' || $block_model == 'posts') {
@@ -221,7 +221,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                     // Co Authors
                     foreach ( $has_content as $author ) {
                         echo "<div class='slide'>";
-                            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/co', 'author', ['author' => $author] );
+                            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/columnist', '', ['author' => $author] );
                         echo "</div>";
                     }
                 }

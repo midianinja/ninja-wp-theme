@@ -402,6 +402,8 @@
 										font-style: normal;
 										font-weight: 800;
 										line-height: 18px ;
+										font-family: 'Manrope', sans-serif;
+
 									}
 								}
 
@@ -508,18 +510,20 @@
 										line-height: 24px;
 										text-transform: uppercase;
 									}
-									.wpcf7-response-output{
-										border-radius: 8px;
-										background: #0b0b0b;
-										box-shadow: 0px 8px 24px -6px rgba(0, 0, 0, 0.16), 0px 0px 1px 0px rgba(0, 0, 0, 0.40);
-										border: none;
-										padding: 10px 16px;
-										font-size: 12px;
-										width: 303px;
-										position: absolute;
-										top: 227px;
-										border: 2px solid #f7ef6c;
-									}
+
+								}
+
+								.wpcf7-response-output{
+									border-radius: 8px;
+									background: #0b0b0b;
+									box-shadow: 0px 8px 24px -6px rgba(0, 0, 0, 0.16), 0px 0px 1px 0px rgba(0, 0, 0, 0.40);
+									border: none;
+									padding: 10px 16px;
+									font-size: 12px;
+									width: 303px;
+									position: absolute;
+									top: 227px;
+									border: 2px solid #f7ef6c;
 								}
 							}
 						}

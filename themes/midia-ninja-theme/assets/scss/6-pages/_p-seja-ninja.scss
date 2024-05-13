@@ -122,6 +122,13 @@
                                         padding-left: 7px;
 
                                     }
+									.wpcf7-not-valid-tip{
+										color: #fdf250;
+										font-size: 12px;
+										font-style: normal;
+										font-weight: 800;
+										line-height: 18px ;
+									}
 
                                 }
 
@@ -240,7 +247,7 @@
 									font-size: 12px;
 									width: 303px;
 									position: absolute;
-									top: 262px;
+									top: 226px;
 								}
                             }
                             .wpcf7-form{
@@ -455,6 +462,13 @@
                                 max-width: 100%;
                             }
                         }
+						.wpcf7-not-valid-tip{
+							color: #111;
+							font-size: 12px;
+							font-style: normal;
+							font-weight: 800;
+							line-height: 18px ;
+						}
 
                     }
                     select{

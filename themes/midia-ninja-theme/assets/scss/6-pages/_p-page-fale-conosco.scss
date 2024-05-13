@@ -86,6 +86,7 @@
 			width: 100%;
 			margin-left: auto;
 			margin-right: auto;
+			position: relative;
 
 			label {
 				color: #000;
@@ -95,6 +96,15 @@
 				font-weight: 400;
 				line-height: 150%;
 				letter-spacing: -0.48px;
+				.wpcf7-not-valid-tip{
+					color: #111;
+					font-size: 12px;
+					font-style: normal;
+					font-weight: 800;
+					line-height: 18px ;
+					font-family: 'Manrope', sans-serif;
+
+				}
 			}
 
 			input[type="text"],
@@ -190,6 +200,15 @@
 					line-height: 24px;
 					text-transform: uppercase;
 				}
+				.recaptcha{
+					.wpcf7-not-valid-tip{
+						color: #111;
+						font-size: 12px;
+						font-style: normal;
+						font-weight: 800;
+						line-height: 18px ;
+					}
+				}
 			}
 
 			h4 {
@@ -225,6 +244,20 @@
 				border: 1px solid #e2e2e2;
 				background-color: #fff;
 				max-width: 303px;
+			}
+
+			.wpcf7-response-output{
+				border-radius: 8px;
+				background: #0b0b0b;
+				box-shadow: 0 8px 24px -6px rgba(0,0,0,.16), 0 0 1px 0 rgba(0,0,0,.4);
+				padding: 10px 16px;
+				font-size: 12px;
+				width: 100%;
+				position: absolute;
+				top: 272px;
+				border: none;
+				margin-left: 0;
+				color: #FFF;
 			}
 		}
 	}
@@ -531,7 +564,7 @@
 									font-size: 12px;
 									width: 303px;
 									position: absolute;
-									top: 247px;
+									top: 230px;
 									border: 2px solid #f7ef6c;
 									margin-left: 0;
 								}

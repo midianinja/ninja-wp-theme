@@ -154,15 +154,15 @@
                                     color: var(--Main-trunks, #595D62); /* Cor do texto do placeholder */
                                 }
                                 .acept{
-                                    
+
                                     p {
                                         display: flex;
                                         gap: 8px;
-                        
+
                                         .wpcf7-list-item {
                                             margin: 0;
                                         }
-                        
+
                                         span {
                                             font-size: 13px;
                                             font-style: normal;
@@ -170,7 +170,7 @@
                                             line-height: 145%; /* 18.85px */
                                             max-width: 224px;
                                         }
-                        
+
                                         a {
                                             color: #FDF250;
                                             font-size: 13px;
@@ -182,7 +182,7 @@
                                     }
 
                                 }
-                                 
+
 
 
                                 .submit-button{
@@ -213,7 +213,7 @@
                                     p{
                                         display: flex;
                                         flex-direction: column;
-                                        
+
                                         .recaptcha{
                                             width: 270px;
                                         }
@@ -222,6 +222,15 @@
                                         }
                                     }
                                 }
+								.wpcf7-response-output{
+									border-radius: 40px;
+									background: #0b0b0b;
+									box-shadow: 0px 8px 24px -6px rgba(0, 0, 0, 0.16), 0px 0px 1px 0px rgba(0, 0, 0, 0.40);
+									border: none;
+									padding: 14px 16px;
+									margin-top: -13px;
+									font-size: 12px;
+								}
                             }
                             .wpcf7-form{
                                 gap: 18px;
@@ -398,9 +407,9 @@
                         @include mixins.mobile{
                             width: 100%;
                         }
-                       
+
                     }
-                    
+
                     p{
                         @include mixins.mobile{
                             width: 100%;
@@ -452,23 +461,23 @@
                         line-height:18.85px;
                         padding: 10px;
                     }
-                   
+
                     .acept {
                         max-width: 259px;
                         @include mixins.mobile{
                             width: 100%;
                             max-width: 100%;
-                        
+
                         }
-                        
+
                         p {
                             display: flex;
                             gap: 8px;
-            
+
                             .wpcf7-list-item {
                                 margin: 0;
                             }
-            
+
                             span {
                                 color: FFF;
                                 font-size: 13px;
@@ -476,7 +485,7 @@
                                 font-weight: 500;
                                 line-height: 145%; /* 18.85px */
                             }
-            
+
                             a {
                                 color: #FDF250;
                                 font-size: 13px;
@@ -491,7 +500,7 @@
                             }
                         }
                     }
-                    
+
                     .submit-button{
                         @media(max-width:667px){
                             margin: auto;
@@ -582,7 +591,7 @@
                             text-align: center;
                         }
                     }
-                    
+
                     & .social-icons-inscricao{
                         gap: 0px;
                         @include mixins.mobile{
@@ -593,7 +602,7 @@
                             width: 100%;
                             max-width: 100%;
                         }
-                      
+
                     }
                     .container-a-midia-ninja{
                         @include mixins.mobile{

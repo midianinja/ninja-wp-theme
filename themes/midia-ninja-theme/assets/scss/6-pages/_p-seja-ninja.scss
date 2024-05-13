@@ -237,7 +237,6 @@
 									box-shadow: 0px 8px 24px -6px rgba(0, 0, 0, 0.16), 0px 0px 1px 0px rgba(0, 0, 0, 0.40);
 									border: none;
 									padding: 14px 16px;
-									margin-top: -13px;
 									font-size: 12px;
 									width: 303px;
 									position: absolute;
@@ -560,11 +559,12 @@
                             .recaptcha{
                                 width: 270px;
 								.wpcf7-not-valid-tip{
-									color: #fdf250;
+									color: #111;
 									font-size: 12px;
 									font-style: normal;
 									font-weight: 800;
 									line-height: 18px ;
+									text-align: start;
 								}
                             }
                             .wpcf7-spinner{
@@ -580,10 +580,10 @@
 						border: none;
 						padding: 14px 16px;
 						font-size: 12px;
-						width: 303px;
+						width: 100%;
 						position: absolute;
-						top: 226px;
-
+						top: 347px;
+						color: #FFF;
 					}
                 }
                 .wpcf7-form{

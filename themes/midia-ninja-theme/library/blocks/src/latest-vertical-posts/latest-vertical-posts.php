@@ -87,7 +87,7 @@ function latest_vertical_posts_callback( $attributes ) {
     if ( $block_model == 'columnists' ) {
         // Co Authors
         require_once  __DIR__ . '/../shared/includes/columnists.php';
-        $has_content = columnists_get_contents( $block_id );
+        $has_content = columnists_get_contents( $attributes );
     }
 
     if ( $block_model == 'posts' || $block_model == 'numbered' || $block_model == 'most-read' ) {
@@ -264,7 +264,7 @@ function latest_vertical_posts_callback( $attributes ) {
                 }
             }
 
-            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/co', 'author', ['author' => $author, 'attributes' => $attributes] );
+            get_template_part( 'library/blocks/src/latest-vertical-posts/template-parts/columnist', '', ['author' => $author, 'attributes' => $attributes] );
 
             if ( $counter == $posts_by_slide || $counter == count( $has_content ) ) {
                 if ( $show_as_grid ) {

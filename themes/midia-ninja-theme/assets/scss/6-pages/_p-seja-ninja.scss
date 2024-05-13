@@ -78,6 +78,7 @@
                                 flex-direction: column;
                                 gap: 18px;
                                 align-items: center;
+								position: relative;
                                 h4{
                                     margin: 0px;
                                     color: #FFF;
@@ -239,6 +240,8 @@
 									margin-top: -13px;
 									font-size: 12px;
 									width: 303px;
+									position: absolute;
+									top: 226px;
 								}
                             }
                             .wpcf7-form{
@@ -369,6 +372,7 @@
                     flex-direction: column;
                     gap: 18px;
                     align-items: center;
+					position: relative;
                     @media (max-width: 991px) {
                         gap: 0px !important;
                         display: flex;
@@ -575,9 +579,11 @@
 						box-shadow: 0px 8px 24px -6px rgba(0, 0, 0, 0.16), 0px 0px 1px 0px rgba(0, 0, 0, 0.40);
 						border: none;
 						padding: 14px 16px;
-						margin-top: -13px;
 						font-size: 12px;
 						width: 303px;
+						position: absolute;
+						top: 226px;
+
 					}
                 }
                 .wpcf7-form{

@@ -90,9 +90,6 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
         get_the_ID() ? [ get_the_ID() ] : []
     );
 
-	do_action( 'qm/debug', $attributes );
-    do_action( 'qm/debug', $no_args );
-
     return $args;
 
 }

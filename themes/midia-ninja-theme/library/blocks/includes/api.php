@@ -269,17 +269,19 @@ function get_taxonomies_by_post_type( $request ) {
 
 function get_posts_by_taxonomy_term( $request ) {
 
-    $post_type     = sanitize_text_field( $request['post_type'] );
-    $taxonomy      = sanitize_text_field( $request['taxonomy'] );
-    $terms         = explode( ',', sanitize_text_field( $request['terms'] ) );
-    $max_posts     = ! empty( $request['max_posts']) ? intval( $request['max_posts'] ) : 10;
-    $per_page      = ! empty( $request['per_page'] ) ? intval( $request['per_page'] ) : 10;
-    $page          = ! empty( $request['page'] ) ? intval( $request['page'] ) : 1;
-    $post__not_in  = explode( ',', sanitize_text_field( $request['post_not_in'] ) );
-    $show_children = ! empty( intval( $request['post_parent'] ) );
-	$only_columnist = ! empty( $request['only_columnist'] ) ? true : false;
+    $compare        = ! empty( $request['compare'] ) ? sanitize_text_field( $request['compare'] ) : 'OR';
+    $post_type      = sanitize_text_field( $request['post_type'] );
+    $taxonomy       = sanitize_text_field( $request['taxonomy'] );
+    $terms          = explode( ',', sanitize_text_field( $request['terms'] ) );
+    $max_posts      = ! empty( $request['max_posts']) ? intval( $request['max_posts'] ) : 10;
+    $per_page       = ! empty( $request['per_page'] ) ? intval( $request['per_page'] ) : 10;
+    $page           = ! empty( $request['page'] ) ? intval( $request['page'] ) : 1;
+    $post__not_in   = explode( ',', sanitize_text_field( $request['post_not_in'] ) );
+    $show_children  = ! empty( intval( $request['post_parent'] ) );
+    $only_columnist = ! empty( $request['only_columnist'] ) ? true : false;
 
     // Exclude posts
+    $no_compare     = ! empty( $request['no_compare'] ) ? sanitize_text_field( $request['no_compare'] ) : 'OR';
     $no_post_type   = ! empty( $request['no_post_type'] ) ? $request['no_post_type'] : '';
     $no_taxonomy    = ! empty( $request['no_taxonomy'] ) ? $request['no_taxonomy'] : '';
     $no_query_terms = explode( ',', sanitize_text_field( $request['no_query_terms'] ) );
@@ -294,7 +296,7 @@ function get_posts_by_taxonomy_term( $request ) {
         ];
 
         if ( $no_taxonomy && $no_query_terms ) {
-            $no_args['tax_query'] = ['relation' => 'AND'];
+            $no_args['tax_query'] = ['relation' => $no_compare];
 
             foreach ( $no_query_terms as $no_term ) {
                 $no_args['tax_query'][] = [
@@ -332,7 +334,7 @@ function get_posts_by_taxonomy_term( $request ) {
     } );
 
     if ( $taxonomy && $terms_filter ) {
-        $args['tax_query'] = ['relation' => 'AND'];
+        $args['tax_query'] = ['relation' => $compare];
 
         foreach ( $terms_filter as $term ) {
             $field = is_numeric( $term ) ? 'term_id' : 'slug';

@@ -15,6 +15,7 @@ namespace Ninja;
  */
 function build_posts_query( $attributes, $post__not_in = [] ) {
 
+    $compare       = ! empty( $attributes['compare'] ) ? $attributes['compare'] : 'OR';
     $post_type     = isset( $attributes['postType'] ) ? $attributes['postType'] : 'post';
     $posts_to_show = isset( $attributes['postsToShow'] ) ? intval( $attributes['postsToShow'] ) : 3;
     $taxonomy      = isset( $attributes['taxonomy'] ) ? $attributes['taxonomy'] : '';
@@ -23,6 +24,7 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
     $show_children = ! empty( $attributes['showChildren'] );
 
     // Exclude posts
+    $no_compare     = ! empty( $attributes['noCompare'] ) ? $attributes['noCompare'] : 'OR';
     $no_post_type   = ! empty( $attributes['noPostType'] ) ? $attributes['postType'] : '';
     $no_taxonomy    = ! empty( $attributes['noTaxonomy'] ) ? $attributes['noTaxonomy'] : '';
     $no_query_terms = ! empty( $attributes['noQueryTerms'] ) ? $attributes['noQueryTerms'] : [];
@@ -37,7 +39,7 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
         ];
 
         if ( $no_taxonomy && $no_query_terms ) {
-            $no_args['tax_query'] = ['relation' => 'AND'];
+            $no_args['tax_query'] = ['relation' => $no_compare];
 
             foreach ( $no_query_terms as $no_term ) {
                 $no_args['tax_query'][] = [
@@ -63,7 +65,7 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
     ];
 
     if ( $taxonomy && $query_terms ) {
-        $args['tax_query'] = ['relation' => 'AND'];
+        $args['tax_query'] = ['relation' => $compare];
 
         foreach ( $query_terms as $term ) {
             $args['tax_query'][] = [
@@ -87,6 +89,9 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
         $post__not_in,
         get_the_ID() ? [ get_the_ID() ] : []
     );
+
+	do_action( 'qm/debug', $attributes );
+    do_action( 'qm/debug', $no_args );
 
     return $args;
 

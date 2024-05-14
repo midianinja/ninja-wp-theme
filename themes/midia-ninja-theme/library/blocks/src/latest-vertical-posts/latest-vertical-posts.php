@@ -101,8 +101,6 @@ function latest_vertical_posts_callback( $attributes ) {
             $cached_posts = get_transient( $cache_key );
         }
 
-		$cached_posts = false; // not commit
-
         if ( is_archive() || false === $cached_posts ) {
             $post__not_in = [];
 

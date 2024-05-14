@@ -6,7 +6,9 @@ import LatestGridPosts from './components/LatestGridPosts'
 const containers = document.querySelectorAll(".latest-grid-posts-block__content");
 
 containers.forEach((container) => {
+    const compare      = container.getAttribute('data-compare')
     const maxPosts     = container.getAttribute('data-max-posts')
+    const noCompare    = container.getAttribute('data-no-compare')
     const noPostType   = container.getAttribute('data-no-post-type')
     const noTaxonomy   = container.getAttribute('data-no-taxonomy')
     const noQueryTerms = container.getAttribute('data-no-query-terms')
@@ -22,7 +24,9 @@ containers.forEach((container) => {
 
     ReactDOM.render(
         <LatestGridPosts
+            compare={compare}
             maxPosts={maxPosts}
+            noCompare={noCompare}
             noPostType={noPostType}
             noQueryTerms={noQueryTerms}
             noTaxonomy={noTaxonomy}

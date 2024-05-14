@@ -25,7 +25,6 @@ function latest_vertical_posts_callback( $attributes ) {
     if ( $block_model == 'posts' || $block_model == 'numbered' || $block_model == 'most-read' ){
         $show_children   = ! empty( $attributes['showChildren'] );
         $show_author     = ( isset( $attributes['showAuthor'] ) && ! empty( $attributes['showAuthor'] ) ) ? true : false;
-        $show_date       = ( isset( $attributes['showDate'] ) && ! empty( $attributes['showDate'] ) ) ? true : false;
         $show_excerpt    = ( isset( $attributes['showExcerpt'] ) && ! empty( $attributes['showExcerpt'] ) ) ? true : false;
         $show_taxonomy   = ( isset( $attributes['showTaxonomy'] ) && ! empty( $attributes['showTaxonomy'] ) ) ? true : false;
 

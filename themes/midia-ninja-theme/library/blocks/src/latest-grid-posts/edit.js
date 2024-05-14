@@ -34,8 +34,10 @@ export default function Edit( { attributes, setAttributes } ) {
         className: 'latest-grid-posts-block'
     } )
 
-    const { 
+    const {
         blockId,
+        compare,
+        noCompare,
         noPostType,
         noQueryTerms,
         noTaxonomy,
@@ -77,7 +79,11 @@ export default function Edit( { attributes, setAttributes } ) {
         }
     }, [postType])
 
-    	// No
+    const onChangeCompare = ( value ) => {
+        setAttributes( { compare: value == 'OR' ? 'OR' : 'AND' } )
+    }
+
+    // No
     const onChangeNoPostType = ( value ) => {
         setAttributes( { noPostType: value } )
         setAttributes({ noQueryTerms: [] })
@@ -85,6 +91,10 @@ export default function Edit( { attributes, setAttributes } ) {
 
     const onChangeNoSelectTerm = ( value ) => {
         setAttributes( { noQueryTerms: value.length > 0 ? value : undefined } )
+    }
+
+    const onChangeNoCompare = ( value ) => {
+        setAttributes( { noCompare: value == 'OR' ? 'OR' : 'AND' } )
     }
 
     // Get taxonomies from the post type selected
@@ -193,6 +203,26 @@ export default function Edit( { attributes, setAttributes } ) {
                         </PanelRow>
                     ) }
 
+                    { queryTerms?.length > 1 && (
+                        <PanelRow>
+                            <SelectControl
+                                label={ __( 'Compare terms', 'ninja' ) }
+                                value={ compare }
+                                options={ [
+                                    {
+                                        label: __( 'OR', 'ninja' ),
+                                        value: "or"
+                                    },
+                                    {
+                                        label: __( 'AND', 'ninja' ),
+                                        value: "and"
+                                    }
+                                ]}
+                                onChange={ onChangeCompare }
+                            />
+                        </PanelRow>
+                    ) }
+
                     <PanelRow>
                         <h2>{ __( 'Filter posts to not display', 'ninja' ) }</h2>
                     </PanelRow>
@@ -222,6 +252,27 @@ export default function Edit( { attributes, setAttributes } ) {
                     { noTaxonomy && (
                         <PanelRow>
                             <SelectTerms onChangeSelectTerm={ onChangeNoSelectTerm } selectedTerms={ noQueryTerms } taxonomy={ noTaxonomy } />
+                        </PanelRow>
+                    ) }
+
+                    { noQueryTerms?.length > 1 && (
+                        <PanelRow>
+                            <SelectControl
+                                label={ __( 'Compare terms', 'ninja' ) }
+                                value={ noCompare }
+                                options={ [
+                                    {
+                                        label: __( 'OR', 'ninja' ),
+                                        value: "or"
+                                    },
+                                    {
+                                        label: __( 'AND', 'ninja' ),
+                                        value: "and"
+                                    }
+
+                                ]}
+                                onChange={ onChangeNoCompare }
+                            />
                         </PanelRow>
                     ) }
                 </PanelBody>

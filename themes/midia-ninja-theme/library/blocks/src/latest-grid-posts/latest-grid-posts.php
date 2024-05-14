@@ -7,18 +7,20 @@ function latest_grid_posts_callback( $attributes ) {
     global $newspack_blocks_post_id;
     global $latest_blocks_posts_ids;
 
-    $block_id        = esc_attr( $attributes['blockId'] );
-    $post_type       = ! empty( $attributes['postType'] ) ? esc_attr( $attributes['postType'] ) : 'post';
-    $taxonomy        = ! empty( $attributes['taxonomy'] ) ? esc_attr( $attributes['taxonomy'] ) : '';
-    $query_terms     = ! empty( $attributes['queryTerms'] ) ? $attributes['queryTerms'] : [];
-    $posts_per_page  = ! empty( $attributes['postsPerPage'] ) ? esc_attr( $attributes['postsPerPage'] ) : 10;
-    $posts_to_show   = ! empty( $attributes['postsToShow'] ) ? esc_attr( $attributes['postsToShow'] ) : 20;
-    $show_author     = ! empty( $attributes['showAuthor'] );
-    $show_children   = ! empty( $attributes['showChildren'] );
-    $show_date       = ! empty( $attributes['showDate'] );
-    $show_excerpt    = ! empty( $attributes['showExcerpt'] );
+    $block_id       = esc_attr( $attributes['blockId'] );
+    $compare        = ! empty( $attributes['compare'] ) ? $attributes['compare'] : 'OR';
+    $post_type      = ! empty( $attributes['postType'] ) ? esc_attr( $attributes['postType'] ) : 'post';
+    $taxonomy       = ! empty( $attributes['taxonomy'] ) ? esc_attr( $attributes['taxonomy'] ) : '';
+    $query_terms    = ! empty( $attributes['queryTerms'] ) ? $attributes['queryTerms'] : [];
+    $posts_per_page = ! empty( $attributes['postsPerPage'] ) ? esc_attr( $attributes['postsPerPage'] ) : 10;
+    $posts_to_show  = ! empty( $attributes['postsToShow'] ) ? esc_attr( $attributes['postsToShow'] ) : 20;
+    $show_author    = ! empty( $attributes['showAuthor'] );
+    $show_children  = ! empty( $attributes['showChildren'] );
+    $show_date      = ! empty( $attributes['showDate'] );
+    $show_excerpt   = ! empty( $attributes['showExcerpt'] );
 
     // Exclude posts
+    $no_compare     = ! empty( $attributes['noCompare'] ) ? $attributes['noCompare'] : 'OR';
     $no_post_type   = ! empty( $attributes['noPostType'] ) ? $attributes['postType'] : '';
     $no_taxonomy    = ! empty( $attributes['noTaxonomy'] ) ? $attributes['noTaxonomy'] : '';
     $no_query_terms = ! empty( $attributes['noQueryTerms'] ) ? $attributes['noQueryTerms'] : [];
@@ -48,10 +50,12 @@ function latest_grid_posts_callback( $attributes ) {
     echo '<div id="block__' . $block_id . '" class="' . implode( ' ', $block_classes ) . '">';
         echo '<div class="container">';
             echo '<div class="latest-grid-posts-block__content"
+                data-compare="' . $compare . '"
                 data-max-posts="' . $posts_to_show . '"
                 data-per-page="' . $posts_per_page . '"
                 data-post-not-in="' . implode( ',', $post__not_in ) . '"
                 data-post-type="' . $post_type . '"
+                data-no-compare="' . $no_compare . '"
                 data-no-post-type="' . $no_post_type . '"
                 data-no-taxonomy="' . $no_taxonomy . '"
                 data-no-query-terms="' . implode( ',', array_column( $no_query_terms, 'id' ) ) . '"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
-function LatestGridPosts({ maxPosts, noPostType, noQueryTerms, noTaxonomy, perPage, postNotIn, postType, taxonomy, terms, showAuthor, showChildren, showDate, showExcerpt }) {
+function LatestGridPosts({ compare, maxPosts, noCompare, noPostType, noQueryTerms, noTaxonomy, perPage, postNotIn, postType, taxonomy, terms, showAuthor, showChildren, showDate, showExcerpt }) {
     const [posts, setPosts] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
@@ -14,12 +14,14 @@ function LatestGridPosts({ maxPosts, noPostType, noQueryTerms, noTaxonomy, perPa
         setError(null)
         const base = `/wp-json/ninja/v1/posts/${postType}`
         const urlParams = {
+            compare: compare,
             taxonomy: taxonomy,
             terms: terms,
             page: page.toString(),
             per_page: perPage,
             max_posts: maxPosts,
             post_not_in: postNotIn,
+            no_compare: noCompare,
             no_post_type: noPostType,
             no_query_terms: noQueryTerms,
             no_taxonomy: noTaxonomy
@@ -104,7 +106,7 @@ function Post({ post, showAuthor, showDate, showExcerpt }) {
             <div className="post-content">
                 <h2 class="post-title">{post.title}</h2>
                 { showExcerpt && <div className="post-content--excerpt">{post.excerpt}</div> }
-                
+
                 <div class="post-meta">
                     { showAuthor && <span class="post-meta--author" dangerouslySetInnerHTML={{__html: post.author}}></span> }
                     { showDate && <span class="post-meta--date">{post.date}</span> }

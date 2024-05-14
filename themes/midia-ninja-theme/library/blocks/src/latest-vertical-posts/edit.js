@@ -39,11 +39,12 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		className: 'latest-vertical-posts-block'
 	} )
 
-	const { 
+	const {
 		blockId,
 		blockModel,
 		coAuthor,
 		columns,
+		compare,
 		contentBelow,
 		flickrAlbumId,
 		flickrAPIKey,
@@ -51,6 +52,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		flickrUserId,
 		gridFormat,
 		heading,
+		noCompare,
 		noPostType,
 		noQueryTerms,
 		noTaxonomy,
@@ -106,6 +108,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		setAttributes( { queryTerms: [] } )
 	}
 
+	const onChangeCompare = ( value ) => {
+		setAttributes( { compare: value == 'OR' ? 'OR' : 'AND' } )
+	}
+
 	// No
 	const onChangeNoPostType = ( value ) => {
 		setAttributes( { noPostType: value } )
@@ -119,6 +125,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 		setAttributes( { noQueryTerms: value.length > 0 ? value : undefined } )
 	}
 
+	const onChangeNoCompare = ( value ) => {
+		setAttributes( { noCompare: value == 'OR' ? 'OR' : 'AND' } )
+	}
+
 	// Get taxonomies from the post type selected
 	const [taxonomies, setTaxonomies] = useState([])
 
@@ -130,7 +140,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 				})
 		}
 	}, [postType])
-	
+
 	// Get taxonomies from the post type selected
 	const [noTaxonomies, setNoTaxonomies] = useState([])
 
@@ -443,10 +453,31 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 								</PanelRow>
 							) }
 
+							{ queryTerms?.length > 1 && (
+								<PanelRow>
+									<SelectControl
+										label={ __( 'Compare terms', 'ninja' ) }
+										value={ compare }
+										options={ [
+											{
+												label: __( 'OR', 'ninja' ),
+												value: "or"
+											},
+											{
+												label: __( 'AND', 'ninja' ),
+												value: "and"
+											}
+
+										]}
+										onChange={ onChangeCompare }
+									/>
+								</PanelRow>
+							) }
+
 							{ blockModel === 'most-read' && (
 								<PanelRow>
 									<SelectGuestAuthor coAuthor={ coAuthor } onChangeCoAuthor={ onChangeCoAuthor } />
-								</PanelRow> 
+								</PanelRow>
 							) }
 
 							<PanelRow>
@@ -505,6 +536,27 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							{ noTaxonomy && (
 								<PanelRow>
 									<SelectTerms onChangeSelectTerm={ onChangeNoSelectTerm } selectedTerms={ noQueryTerms } taxonomy={ noTaxonomy } />
+								</PanelRow>
+							) }
+
+							{ noQueryTerms?.length > 1 && (
+								<PanelRow>
+									<SelectControl
+										label={ __( 'Compare terms', 'ninja' ) }
+										value={ noCompare }
+										options={ [
+											{
+												label: __( 'OR', 'ninja' ),
+												value: "or"
+											},
+											{
+												label: __( 'AND', 'ninja' ),
+												value: "and"
+											}
+
+										]}
+										onChange={ onChangeNoCompare }
+									/>
 								</PanelRow>
 							) }
 						</>

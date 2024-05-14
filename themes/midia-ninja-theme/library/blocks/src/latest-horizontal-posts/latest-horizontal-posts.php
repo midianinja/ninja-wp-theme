@@ -221,7 +221,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                     // Co Authors
                     foreach ( $has_content as $author ) {
                         echo "<div class='slide'>";
-                            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/columnist', '', ['author' => $author] );
+                            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/co', 'author', ['author' => $author] );
                         echo "</div>";
                     }
                 }

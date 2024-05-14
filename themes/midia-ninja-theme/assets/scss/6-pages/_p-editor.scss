@@ -242,11 +242,10 @@ body{
 
             .wp-block-buttons{
                 &.btn-latest-posts,
-                &.btn-colunistas-mobile
+                &.btn-colunistas-mobile,
                 &.btn-colunistas-desktop{
                     display: flex;
                     justify-content: center;
-                    margin-bottom: 2rem;
                     margin-top: 2rem;
                     .wp-block-button{
                         font-family: 'Manrope', sans-serif;
@@ -306,6 +305,7 @@ body{
                     min-height: 108px;
                     display: flex;
                     align-items: center;
+					margin-bottom: 2rem;
                         .wp-block-columns, .wp-block-column{
                         background-color: #111;
                         }
@@ -342,6 +342,7 @@ body{
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr 1fr;
                     gap: 0;
+					margin-top: 2rem;
                     figure{
                         img{
                             width: 100%;
@@ -349,6 +350,126 @@ body{
                     }
                 }
             }
+			.colunas{
+				background-color: #000;
+				.model-posts{
+					background-color: #000;
+					.latest-vertical-posts-block__heading{
+						h2{
+							color: #fff;
+						}
+					}
+					.latest-vertical-posts-block__slides{
+						.slide{
+							a{
+								.post{
+									.post-content{
+										.post-title, .post-meta{
+											color: #FFF;
+										}
+
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			.model-videos{
+				.container{
+					.latest-horizontal-posts-block__slides{
+						height: 200px;
+						max-width: 900px;
+						a{
+							height: 100px;
+							width: 200px;
+							margin-right: 32px;
+						}
+					}
+				}
+			}
+
+			.model-most-read{
+				background-color: #262626;
+			}
+			.colunistas-ninja{
+				background-color: var(--wp--preset--color--secondary-light);
+
+				.model-columnists{
+					background-color: var(--wp--preset--color--secondary-light);
+
+				}
+
+				h2 {
+					font-family: "Manrope", sans-serif;
+					font-size: 32px;
+					font-style: normal;
+					font-weight: 800;
+					line-height: 120%;
+					letter-spacing: -0.96px;
+					color: #111;
+
+				}
+				.container {
+					max-width: 1170px !important;
+					width: 100%;
+					padding: 97px 0 26px !important;
+
+				}
+				.latest-horizontal-posts-block__slides {
+					&::after {
+						display: none;
+					}
+					&::before {
+						display: none;
+					}
+
+				}
+
+				.slide {
+					display: flex;
+
+					a {
+						text-decoration: none;
+						.post {
+							display: flex;
+							gap: 13px;
+
+							.post-thumbnail {
+								margin-top: 15px;
+								width: 80px;
+								height: 80px;
+								border-radius: 50px;
+								box-shadow: none;
+
+								img {
+									max-width: 80px;
+									height: 80px;
+									border-radius: 50px;
+								}
+							}
+							.post-content {
+								font-family: "Manrope", sans-serif;
+								max-width: 170px;
+								width: 100%;
+								.post-title {
+									font-size: 16px;
+									font-style: normal;
+									font-weight: 700;
+									line-height: 140%;
+								}
+								p {
+									font-size: 13px;
+									font-style: normal;
+									font-weight: 500;
+									line-height: 145%;
+									color: #848484;
+								}
+							}
+						}
+					}
+				}
+			}
         }
     }
 }

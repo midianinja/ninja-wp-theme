@@ -68,9 +68,9 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                         <?php echo $date; ?>
                         <?php
                         // Verificar se o post possui uma imagem destacada
-                        iif (has_post_thumbnail()) {
+                        if (has_post_thumbnail()) {
                             // Exibe a imagem destacada
-                            the_post_thumbnail('full', ['class' => 'post-thumbnail']);
+                            the_post_thumbnail('full', ['class' => 'post-thumbnail']); 
                         } else {
                             // Caso não haja imagem destacada, exibir uma imagem placeholder
                             ?>

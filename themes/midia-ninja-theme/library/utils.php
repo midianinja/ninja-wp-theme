@@ -157,16 +157,6 @@ function rename_taxonomies() {
 }
 add_action( 'init', 'rename_taxonomies', 11 );
 
-function rename_post_menu() {
-    global $menu;
-    global $submenu;
-    $menu[5][0] = __( 'News', 'ninja' );
-    $submenu['edit.php'][5][0]  = __( 'News', 'ninja' );
-    $submenu['edit.php'][10][0] = __( 'Add news', 'ninja' );
-    $submenu['edit.php'][16][0] = __( 'News tags', 'ninja' );
-    echo '';
-}
-
 function rename_post_object() {
     global $wp_post_types;
     $labels                     = &$wp_post_types['post']->labels;
@@ -185,7 +175,6 @@ function rename_post_object() {
     $labels->name_admin_bar     = __( 'News', 'ninja' );
 }
 
-add_action( 'admin_menu', 'rename_post_menu' );
 add_action( 'init', 'rename_post_object' );
 
 /**

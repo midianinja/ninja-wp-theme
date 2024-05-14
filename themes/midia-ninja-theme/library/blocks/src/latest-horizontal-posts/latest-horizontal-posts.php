@@ -82,7 +82,7 @@ function latest_horizontal_posts_callback( $attributes ) {
             $post__not_in = array_merge( $latest_blocks_posts_ids, array_keys( $newspack_blocks_post_id ) );
             $post__not_in = array_unique( $post__not_in, SORT_STRING );
 
-            if ( class_exists( 'AjaxPageviews' ) && $block_model == 'most-read'  ) {
+            if ( method_exists( 'AjaxPageviews', 'get_top_viewed_by_terms' ) && $block_model == 'most-read' ) {
 
                 $apv_args = [
                     'post_type' => ! empty( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : null,
@@ -221,7 +221,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                     // Co Authors
                     foreach ( $has_content as $author ) {
                         echo "<div class='slide'>";
-                            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/columnist', '', ['author' => $author] );
+                            get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/co', 'author', ['author' => $author] );
                         echo "</div>";
                     }
                 }

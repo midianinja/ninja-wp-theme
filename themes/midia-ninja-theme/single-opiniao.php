@@ -74,7 +74,7 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                         } else {
                             // Caso não haja imagem destacada, exibir uma imagem placeholder
                             ?>
-                            <img src="<?php echo get_template_directory_uri() . '/assets/images/banner-background.png'; ?>" class="placeholder-image" alt="Placeholder Image">
+                            <img src="<?php echo get_template_directory_uri() . '/assets/images/background-green.png'; ?>" class="placeholder-image" alt="Placeholder Image"> 
                             <?php
                         }
                         

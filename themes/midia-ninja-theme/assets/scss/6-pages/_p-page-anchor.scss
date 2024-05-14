@@ -722,4 +722,74 @@
     }
 }
 
+.page-documentacao{
+	#app {
+        background-color: #F5F5F5 !important;
+        @media(max-width: 768px){
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .container{
+            padding-left: 0px;
+            padding-right: 0px;
+
+        }
+
+		.sidebar-page {
+            padding-left: 0;
+            @include mixins.desktop{
+                position: -webkit-sticky; /* Safari */
+                position: sticky;
+                top: 100px;
+
+                .admin-bar & {
+                    top: 132px;
+                }
+            }
+        }
+
+        p.anchor-title {
+            border-left: 4px solid #111;
+            font-family: 'Manrope', sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 30px;
+            letter-spacing: -0.24px;
+            padding-left: 8px;
+            color: #111;
+            @media(max-width: 992px){
+                margin-top: 0;
+            }
+        }
+
+        #anchors {
+            list-style: none;
+            padding-left: 12px;
+
+            li{
+                margin-bottom: 1rem;
+            }
+
+            li a {
+                font-family: 'Manrope', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 30px;
+                letter-spacing: -0.24px;
+                color: #848484;
+				text-decoration: none;
+
+            }
+        }
+        .content{
+            .wp-block-heading{
+                margin-bottom: 0;
+            }
+        }
+	}
+}
+
 

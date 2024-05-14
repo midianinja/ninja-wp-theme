@@ -22,7 +22,13 @@ $titulo_tag = get_post_meta($post_id, 'titulo_tag', true);
 		?>
         <div class="row">
             <div class="col-md-3 sidebar-page">
-                <p class="anchor-title"><?= __('What is Mídia Ninja', 'ninja') ?></p>
+
+
+			<?php if ( is_page('perguntas-frequentes') ) :?>
+					<p class="anchor-title"><?= __('What is Mídia Ninja', 'ninja') ?></p>
+				<?php elseif( is_page('documentacao') ) : ?>
+					<p class="anchor-title"><?= __('Topics', 'ninja') ?></p>
+			<?php endif;?>
                 <ul id="anchors"></ul>
             </div>
             <div class="col-md-9 content">

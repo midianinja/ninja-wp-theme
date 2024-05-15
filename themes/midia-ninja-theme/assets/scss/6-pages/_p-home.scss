@@ -189,19 +189,12 @@
 
 			article {
 				aspect-ratio: 16 / 9;
-				background-color: var(--wp--preset--color--primary-pure);
 				display: block;
 				position: relative;
 				padding: 0;
 
 				@include desktop {
 					height: 506px;
-				}
-
-				@include mobile {
-					aspect-ratio: auto;
-					background-color: transparent;
-					height: auto;
 				}
 
 				.post-thumbnail {
@@ -211,12 +204,6 @@
 					top: 0;
 					width: 100%;
 					z-index: 1;
-
-					@include mobile {
-						height: auto;
-						margin-bottom: 15px;
-						position: relative;
-					}
 
 					a {
 						display: block;
@@ -269,7 +256,6 @@
 					top: 56%;
 
 					@include mobile {
-						background-color: var(--wp--preset--color--primary-pure);
 						border-radius: 8px;
 						gap: size(15);
 						justify-content: center;

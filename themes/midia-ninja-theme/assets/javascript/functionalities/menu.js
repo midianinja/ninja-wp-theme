@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         item.querySelector('a').addEventListener('click', function(e) {
-            e.preventDefault();
+            // e.preventDefault();
 
             let allItens = mainMenu.querySelectorAll('.active');
 

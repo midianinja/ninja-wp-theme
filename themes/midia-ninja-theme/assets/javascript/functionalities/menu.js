@@ -1,46 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     const mainMenu = document.querySelector('.main-header #main-menu');
     const itensWithChild = mainMenu.querySelectorAll('li.menu-item-has-children');
-    const mq = window.matchMedia("(max-width: 767px)");
 
-    // Verifica se é iPhone com tela de retina
-    const isIPhone = /iPhone/.test(navigator.userAgent);
-    const isRetina = window.devicePixelRatio > 1;
-    const isIPhoneWithRetina = isIPhone && isRetina;
-
-    if (mq.matches || isIPhoneWithRetina) {
-        itensWithChild.forEach(item => {
-            item.addEventListener('click', function() {
-                this.classList.toggle('active');
-            });
-        });
-
-        const menuItems = document.querySelectorAll('.menu-item-has-children');
-
-        menuItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                if (mq.matches || isIPhoneWithRetina) {
-                    e.preventDefault();
-                    const link = this.querySelector('a').getAttribute('href');
-                    window.location.href = link;
-                }
-            });
-        });
-    }
-
-    const menuItems = document.querySelectorAll('.menu-item-has-children');
-
-    menuItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            if (mq.matches) {
-                e.preventDefault();
-                const link = this.querySelector('a').getAttribute('href');
-                window.location.href = link;
-            }
-        });
-    });
-
-    itensWithChild.forEach(item => {
+	itensWithChild.forEach(item => {
         const mq = window.matchMedia("(min-width: 768px)")
 
         if (mq.matches) {
@@ -65,9 +27,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const arrowIcon = this.parentElement.getElementsByTagName("i").item(0);
             arrowIcon.classList.toggle('up');
 
-            const subMenu = this.parentElement.querySelector('.sub-menu');
-            subMenu.classList.toggle('active');
-            subMenu.parentNode.classList.toggle('active');
+            // const subMenu = this.parentElement.querySelector('.sub-menu');
+            // subMenu.classList.toggle('active');
+            // subMenu.parentNode.classList.toggle('active');
+
         });
 
         item.querySelector('a').addEventListener('mouseenter', function(e) {
@@ -84,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function() {
             subMenu.parentNode.classList.toggle('active');
         });
     })
-
 
     //Hamburguer Menu Open/Close
     const menuItens = document.querySelector(".menu-items");

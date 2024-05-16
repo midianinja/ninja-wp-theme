@@ -188,13 +188,17 @@
 			}
 
 			article {
-				aspect-ratio: 16 / 9;
+				aspect-ratio: 17 / 9;
 				display: block;
 				position: relative;
 				padding: 0;
 
 				@include desktop {
 					height: 506px;
+				}
+
+				@include mobile {
+					aspect-ratio: 16 / 10;
 				}
 
 				.post-thumbnail {
@@ -257,7 +261,7 @@
 
 					@include mobile {
 						border-radius: 8px;
-						gap: size(15);
+						gap: .2rem;
 						justify-content: center;
 						padding: size(20) size(20);
 						max-width: 100%;
@@ -324,6 +328,7 @@
 				margin-bottom: 1.7em;
 				@include mobile {
 					aspect-ratio: 16 / 9;
+					margin-bottom: 1rem;
 				}
 
 
@@ -389,6 +394,11 @@
 					z-index: 2;
 					top: 50%;
 					border-radius: 8px;
+					@include mobile {
+						background: linear-gradient(180deg, rgba(51, 51, 51, 0.00) 0%, #333 50.5%);
+						height: 100%;
+						top: 0;
+					}
 
 					h2 {
 						color: var(--wp--preset--font-secondary--light);;

@@ -19,19 +19,8 @@
 		}
 	}
 
-	.anuncio-desktop {
-		display: flex;
-		justify-content: center;
-		@media (max-width: 992px) {
-			display: none;
-		}
-	}
-	.anuncio-mobile {
-		display: flex;
-		justify-content: center;
-		@media (min-width: 993px) {
-			display: none;
-		}
+	.wp-block-columns{
+		gap: 30px;
 	}
 
 	.wp-block-newspack-blocks-homepage-articles {
@@ -253,7 +242,7 @@
 					justify-content: space-between;
 					left: 0;
 					max-width: 100%;
-					padding: 45px 250px 58px 60px;
+					padding: 15px 250px 58px 60px;
 					position: relative;
 					right: 0;
 					z-index: 2;
@@ -267,6 +256,14 @@
 						height: 100%;
 						top: 0;
 
+					}
+
+					.cat-links {
+						margin: 0 0 0.8rem;
+						@include mobile{
+							margin: 0 0 0.2rem;
+
+						}
 					}
 
 					p {
@@ -293,6 +290,7 @@
 						font-weight: 800;
 						line-height: 120%;
 						letter-spacing: -0.64px;
+						margin-bottom: 0.5rem;
 
 						@include mobile {
 							font-size: 1rem !important;
@@ -305,7 +303,7 @@
 		}
 
 		&.posts-sidebar {
-			margin-top: -3px;
+			margin-top: -11px;
 			@include mobile {
 				margin-bottom: -1.3rem;
 				margin-top: 0;
@@ -320,12 +318,13 @@
 			}
 
 			article {
-				aspect-ratio: 15 / 13;
+				aspect-ratio: 15 / 13.3;
 				display: block;
 				position: relative;
 				padding: 0;
 				border-radius: 8px;
-				margin-bottom: 1.7em;
+				margin-bottom: 1rem;
+
 				@include mobile {
 					aspect-ratio: 16 / 9;
 					margin-bottom: 1rem;
@@ -388,7 +387,7 @@
 					justify-content: flex-end;
 					left: 0;
 					max-width: 100%;
-					padding: 16px 16px 12px;
+					padding: 16px 16px 9px;
 					position: relative;
 					right: 0;
 					z-index: 2;
@@ -398,6 +397,7 @@
 						background: linear-gradient(180deg, rgba(51, 51, 51, 0.00) 0%, #333 50.5%);
 						height: 100%;
 						top: 0;
+						padding: 16px 16px 12px;
 					}
 
 					h2 {

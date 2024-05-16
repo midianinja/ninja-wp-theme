@@ -247,6 +247,17 @@ export default function Edit( { attributes, setAttributes } ) {
 								/>
 							</PanelRow>
 
+							<PanelRow>
+								<RangeControl
+									label={ __( 'Total number of posts to display', 'ninja' ) }
+									value={ postsToShow }
+									onChange={ ( value ) => setAttributes( { postsToShow: value } ) }
+									min={ 2 }
+									max={ 10 }
+									step={ 2 }
+								/>
+							</PanelRow>
+
 							{ ( videoModel === 'playlist' ) && (
 								<PanelRow>
 									<TextControl
@@ -362,7 +373,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ blockModel === 'most-read' && (
 								<PanelRow>
 									<SelectGuestAuthor coAuthor={ coAuthor } onChangeCoAuthor={ onChangeCoAuthor } />
-								</PanelRow> 
+								</PanelRow>
 							) }
 
 							<PanelRow>

@@ -191,6 +191,7 @@
 				aspect-ratio: 17 / 9;
 				display: block;
 				position: relative;
+				-webkit-position: relative;
 				padding: 0;
 
 				@include desktop {
@@ -205,6 +206,7 @@
 					height: 100%;
 					left: 0;
 					position: absolute;
+					-webkit-position: absolute;
 					top: 0;
 					width: 100%;
 					z-index: 1;
@@ -258,6 +260,9 @@
 					right: 0;
 					z-index: 2;
 					top: 56%;
+					-webkit-height: 45% ;
+    				-webkit-top: 56%;
+					-webkit-position: relative;
 
 					@include mobile {
 						border-radius: 8px;

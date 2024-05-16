@@ -22,7 +22,7 @@
 			.post-card{
 				&--content{
 					.entry-meta{
-						display: block !important;
+						display: none !important;
 						order: 1;
 						position: relative;
 						top: -60px;
@@ -31,14 +31,14 @@
 
 					.entry-title{
 						position: relative;
-    					top: -50px;
+    					
 					}
 
 					.entry-date{
 						position: relative;
-						top: -60px;
+						
 					}
-				}
+				} 
 			}
 		}
 	}

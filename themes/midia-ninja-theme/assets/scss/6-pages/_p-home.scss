@@ -191,7 +191,6 @@
 				aspect-ratio: 17 / 9;
 				display: block;
 				position: relative;
-				--webkit-position: relative;
 				padding: 0;
 
 				@include desktop {
@@ -200,14 +199,12 @@
 
 				@include mobile {
 					aspect-ratio: 16 / 10;
-					--webkit-aspect-ratio: 16 / 10;
 				}
 
 				.post-thumbnail {
 					height: 100%;
 					left: 0;
 					position: absolute;
-					--webkit-position: absolute;
 					top: 0;
 					width: 100%;
 					z-index: 1;
@@ -233,7 +230,6 @@
 							height: 100%;
 							object-fit: cover;
 							position: absolute;
-							--webkit-position: absolute;
 							width: 100%;
 
 							@include mobile {
@@ -262,19 +258,14 @@
 					right: 0;
 					z-index: 2;
 					top: 56%;
-					--webkit-height: 45% ;
-    				--webkit-top: 56%;
-					--webkit-position: relative;
-					--webkit-z-index: 2;
 
 					@include mobile {
 						border-radius: 8px;
 						gap: .2rem;
-						justify-content: center;
 						padding: size(20) size(20);
-						--webkit-padding: size(20) size(20);
-						max-width: 100%;
 						justify-content: flex-end;
+						height: 100%;
+						top: 0;
 
 					}
 

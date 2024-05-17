@@ -448,6 +448,43 @@
             .post-title {
                 font-weight: 500;
             }
+            .vertical-post-mobile{
+                display: none !important;
+                @include mixins.mobile{
+                    display: block !important; 
+                    width: 100%;
+                    max-width: 100%;
+                    background-color: #f5f5f5;
+                    border: none;
+                    .slide{
+                        .slide-grid{
+                            .post-thumbnail{
+                                .post-thumbnail--image{
+                                aspect-ratio: 145 / 145;
+                                border-radius: 50%;
+                                }
+
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            h4{
+                display: none !important;
+                @include mixins.mobile{
+                    display: block !important;
+                    order: 1;
+                    color: var(--Primary-dark, var(--DARK, #111));
+                    font-family: Manrope;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 28.8px;
+                    letter-spacing: -0.72px;
+                    margin-bottom: 0px;
+                }
+            }
         }
         .wp-block-group.alignwide {
 			background: #111 !important;

@@ -130,12 +130,12 @@ body.single-afluente {
                                                     @media(min-width: 600px) and (max-width: 1100px){
                                                         flex-direction: column!important;
                                                     }
-            
+
                                                     .post-thumbnail{
                                                         @media(min-width: 600px) and (max-width: 1110px){
                                                             height: 100px;
                                                         }
-            
+
                                                         &--image{
                                                             @media(min-width: 600px) and (max-width: 1100px){
                                                                 height: 100px;
@@ -149,7 +149,7 @@ body.single-afluente {
                                                             }
                                                         }
                                                     }
-                                                }   
+                                                }
                                             }
                                         }
                                     }
@@ -167,11 +167,11 @@ body.single-afluente {
                             &-thumbnail{
                                 max-width: 124px;
                                 width: 100%;
-                                max-height: 88px;
+                                height: 88px;
                                 flex-basis: inherit;
 
                                 &--image{
-                                    max-height: 88px;
+                                    height: 88px;
                                     margin-bottom: 10px;
                                 }
                             }
@@ -214,9 +214,9 @@ body.single-afluente {
                                         }
                                     }
                                 }
-                              
+
                             }
-            
+
                         }
                     }
 
@@ -224,7 +224,7 @@ body.single-afluente {
                     .opinion-posts-block{
                         .container{
                             .opinion-posts-block__posts{
-            
+
                                 .opinion-posts-block__slides{
                                     .slide{
                                         .post{
@@ -236,7 +236,7 @@ body.single-afluente {
                         }
                     }
 
-                    //Bloco quem somos afluentes                   
+                    //Bloco quem somos afluentes
                     #quemsomos{
 
 
@@ -280,7 +280,7 @@ body.single-afluente {
             }
         }
 
-        .high-spot-block{            
+        .high-spot-block{
             .high-spot-block__link{
                 height: 510px;
                 display: flex;
@@ -292,7 +292,7 @@ body.single-afluente {
                 @include mixins.mobile{
                     height: inherit;
                 }
-                
+
                 @media(min-width: 600px) and (max-width: 1366px){
                    display: flex;
                    height: 510px;
@@ -325,10 +325,10 @@ body.single-afluente {
             }
         }
 
-        .wp-block-columns:nth-last-of-type(1){ //redes sociais 
+        .wp-block-columns:nth-last-of-type(1){ //redes sociais
             gap: 17px !important;
 
-            @include mixins.small{ 
+            @include mixins.small{
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr;
                 gap: 0;
@@ -336,14 +336,14 @@ body.single-afluente {
                 margin-left: 0px !important;
             }
 
-            @include mixins.mobile{ 
+            @include mixins.mobile{
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr;
                 gap: 0;
                 max-width: 150px;
                 margin-left: 0px !important;
             }
-            
+
         }
 
         nav.wp-block-navigation {
@@ -430,7 +430,7 @@ footer.main-footer{
 }
 
 body{
-    &.afluente-xepa-ativismo{    
+    &.afluente-xepa-ativismo{
 
         .wp-block-cover{
             padding: 6em;
@@ -452,13 +452,13 @@ body{
             }
 
             .wp-block-columns{
-    
+
                 @include mixins.small{
                     display: flex;
                     flex-direction: column-reverse;
                     max-width: 100%;
                 }
-    
+
                 @include mixins.mobile{
                     display: flex;
                     flex-direction: column-reverse;
@@ -644,10 +644,10 @@ body{
                 }
             }
         }
-        
+
     }
     &.afluente-estudantes-ninja{
-        
+
         nav.wp-block-navigation {
 
             &:not(.alignfull) {
@@ -661,7 +661,7 @@ body{
             }
         }
     }
-    &.afluente-design-ativista{  
+    &.afluente-design-ativista{
         .latest-grid-posts-block {
 
             .latest-grid-posts-block__posts{
@@ -688,7 +688,7 @@ body{
                         font-size: 20px !important;
                         font-style: normal;
                         font-weight: 700;
-                        line-height: 130%; 
+                        line-height: 130%;
 
                         @media (min-width: 600px ) and (max-width: 1366px){
                             font-size: 14px !important;
@@ -696,13 +696,13 @@ body{
                     }
                 }
             }
- 
+
         }
 
-        .high-spot-block{           
+        .high-spot-block{
             .high-spot-block__link{
                 height: 527px !important;
-                
+
                 @media(min-width: 600px) and (max-width: 1366px){
                    display: flex;
                    height: 527px !important;
@@ -717,10 +717,10 @@ body{
                 font-family: var(--f-ninja);
             }
         }
-        .high-spot-block{           
+        .high-spot-block{
             .high-spot-block__link{
                 height: 525px !important;
-                
+
                 @media(min-width: 600px) and (max-width: 1366px){
                    display: flex;
                    height: 525px !important;
@@ -735,10 +735,10 @@ body{
                 }
             }
         }
-        .wp-block-columns:nth-last-of-type(1){ //redes sociais 
+        .wp-block-columns:nth-last-of-type(1){ //redes sociais
             gap: 17px !important;
 
-            @include mixins.small{ 
+            @include mixins.small{
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr;
                 gap: 0;
@@ -746,14 +746,14 @@ body{
                 margin-left: 0px !important;
             }
 
-            @include mixins.mobile{ 
+            @include mixins.mobile{
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr;
                 gap: 0;
                 max-width: 150px;
                 margin-left: 0px !important;
             }
-            
+
         }
         .latest-vertical-posts-block{
 
@@ -797,7 +797,7 @@ body{
                                                 }
                                             }
                                         }
-                                    }   
+                                    }
                                 }
                             }
                         }
@@ -810,10 +810,10 @@ body{
     }
     &.afluente-poderes{
 
-        .high-spot-block{           
+        .high-spot-block{
             .high-spot-block__link{
                 height: 527px !important;
-                
+
                 @media(min-width: 600px) and (max-width: 1366px){
                    display: flex;
                    height: 527px !important;
@@ -842,13 +842,13 @@ body{
             }
 
             .wp-block-columns{
-    
+
                 @include mixins.small{
                     display: flex;
                     flex-direction: column;
                     max-width: 100%;
                 }
-    
+
                 @include mixins.mobile{
                     display: flex;
                     flex-direction: column;
@@ -913,8 +913,8 @@ body{
                     font-weight: 800;
                     line-height: 130%; /* 31.2px */
                 }
-                
-                
+
+
             }
             .wp-block-cover__background {
                 @include mixins.mobile{
@@ -926,8 +926,8 @@ body{
                 @include mixins.mobile{
                     display: flex;
                     justify-content: center;
-                    
-                
+
+
                 }
                 .wp-block-button{
                     @include mixins.mobile{

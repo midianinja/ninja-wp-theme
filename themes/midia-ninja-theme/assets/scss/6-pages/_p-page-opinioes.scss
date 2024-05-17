@@ -450,7 +450,7 @@
             }
             .vertical-post-mobile{
                 display: none !important;
-                @include mixins.mobile{
+                @include mobile{
                     display: block !important; 
                     width: 100%;
                     max-width: 100%;
@@ -472,7 +472,7 @@
             }
             h4{
                 display: none !important;
-                @include mixins.mobile{
+                @include mobile{ 
                     display: block !important;
                     order: 1;
                     color: var(--Primary-dark, var(--DARK, #111));

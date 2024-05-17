@@ -254,7 +254,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									onChange={ ( value ) => setAttributes( { postsToShow: value } ) }
 									min={ 2 }
 									max={ 10 }
-									step={ 2 }
+									step={ 1 }
 								/>
 							</PanelRow>
 

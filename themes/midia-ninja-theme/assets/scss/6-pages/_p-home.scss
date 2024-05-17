@@ -1031,7 +1031,7 @@
 				}
 				@media (max-width: 782px) {
 					margin-top: 2rem;
-					margin-left: 15px;
+					margin-left: -8px;
 				}
 			}
 
@@ -1040,104 +1040,16 @@
 				height: 182px;
 				margin: 0 18px 0 15px;
 
-				@media (max-width: 7282px) {
-					margin: 32px 15px;
+				@media(max-width: 782px) {
+					margin-left: auto;
+					margin-right: auto;
 				}
+			}
+		}
 
-				&:nth-child(1){
-					@media(max-width: 450px) {
-						margin: 32px 15px 32px 56px;
-					}
-
-					@media(max-width: 414px) {
-						margin: 32px 15px 32px 26px;
-					}
-
-					@media(max-width: 393px) {
-						margin: 32px 15px 32px 23px;
-					}
-
-					@media(max-width: 375px) {
-						margin: 32px 15px 32px 16px;
-					}
-
-					@media(max-width: 366px) {
-						margin: 32px 15px 32px 10px;
-					}
-				}
-
-				&:nth-child(2){
-					@media(max-width: 450px) {
-						margin: 32px 15px 32px 121px;
-					}
-					@media(max-width: 414px) {
-						margin: 32px 15px 32px 96px;
-					}
-
-					@media(max-width: 393px) {
-						margin: 32px 15px 32px 66px;
-					}
-					@media(max-width: 375px) {
-						margin: 32px 15px 32px 47px;
-					}
-					@media(max-width: 366px) {
-						margin: 32px 15px 32px 42px;
-					}
-				}
-				&:nth-child(3){
-					@media(max-width: 450px) {
-						margin: 32px 33px 16px 121px;
-					}
-					@media(max-width: 414px) {
-						margin: 32px 15px 32px 86px;
-					}
-
-					@media(max-width: 393px) {
-						margin: 32px 15px 32px 66px;
-					}
-					@media(max-width: 375px) {
-						margin: 32px 15px 32px 48px;
-					}
-					@media(max-width: 366px) {
-						margin: 32px 33px 16px 43px;
-					}
-				}
-				&:nth-child(4){
-					@media(max-width: 450px) {
-						margin: 32px 43px 32px 101px;
-					}
-					@media(max-width: 414px) {
-						margin: 32px 15px 32px 86px;
-					}
-
-					@media(max-width: 393px) {
-						margin: 32px 15px 32px 66px;
-					}
-					@media(max-width: 375px) {
-						margin: 32px 15px 32px 51px;
-					}
-					@media(max-width: 366px) {
-						margin: 32px 43px 32px 22px;
-					}
-				}
-				&:nth-child(5){
-					@media(max-width: 450px) {
-						margin: 32px 53px 32px 111px;
-					}
-					@media(max-width: 414px) {
-						margin: 32px 15px 32px 96px;
-					}
-
-					@media(max-width: 393px) {
-						margin: 32px 15px 32px 76px;
-					}
-					@media(max-width: 375px) {
-						margin: 32px 15px 32px 51px;
-					}
-					@media(max-width: 366px) {
-						margin: 32px 53px 32px 16px;
-					}
-				}
+		.latest-horizontal-posts-block__arrows{
+			@media(max-width: 782px){
+				width: 240px;
 			}
 		}
 		h2 {

@@ -9,15 +9,25 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 30px;
+			@include mixins.tablet{
+				grid-template-columns: 1fr 1fr;
+			}
+			@include mixins.small{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 0;
+			}
 
             .post{
                 display: flex;
                 flex-direction: column;
                 max-width: 370px;
-                
+
                 &-card{
                     display: flex;
                     flex-direction: column;
+					padding-bottom: 1.7rem;
 
                     &--thumb{
                         padding-right: 0;
@@ -45,6 +55,10 @@
 
                         .entry-meta{
                             .tax-category{
+								@include mixins.small{
+									margin-top: 0;
+									margin-bottom: .5rem;
+								}
                                 li{
                                     a{
                                         background-color: var(--cat-background-color);
@@ -63,7 +77,7 @@
                                 font-size: 22px;
                                 font-style: normal;
                                 font-weight: 700;
-                                line-height: 140%; 
+                                line-height: 140%;
                             }
                         }
                     }

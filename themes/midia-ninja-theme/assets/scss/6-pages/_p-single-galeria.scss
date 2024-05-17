@@ -79,6 +79,10 @@
 
 					.wp-block-gallery{
 						--wp--style--gallery-gap-default: 30px;
+						@include mobile{
+							--wp--style--gallery-gap-default: 0px;
+
+						}
 
 						.wp-block-image{
 							img{

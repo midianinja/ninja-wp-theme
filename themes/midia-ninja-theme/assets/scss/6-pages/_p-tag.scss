@@ -13,7 +13,9 @@
 				grid-template-columns: 1fr 1fr;
 			}
 			@include mixins.small{
-				grid-template-columns: 1fr;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
 				gap: 0;
 			}
 

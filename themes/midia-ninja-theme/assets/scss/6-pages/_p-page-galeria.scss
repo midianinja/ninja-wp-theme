@@ -19,10 +19,10 @@
 						.latest-vertical-posts-block__dots{
 							.slick-dots{
 								.slick-active{
-									background-color: #ccc;
+									background-color: var(--wp--preset--color--low-light);
 								}
 								li{
-									background-color: #848484;
+									background-color: var(--wp--preset--color--dark-pure);
 								}
 							}
 						}

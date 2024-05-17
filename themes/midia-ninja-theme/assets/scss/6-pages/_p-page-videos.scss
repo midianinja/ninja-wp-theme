@@ -269,6 +269,19 @@
             li.slick-active {
                 background-color: #898989;
             }
-        }
+			.latest-horizontal-posts-block__dots {
+				.slick-dots{
+					li{
+						@media(max-width: 782px){
+							background-color: var(--wp--preset--color--secondary-dark);
+						}
+					}
+					.slick-active{
+						background-color:var(--wp--preset--color--primary-dark);
+
+					}
+				}
+			}
+		}
     }
 }

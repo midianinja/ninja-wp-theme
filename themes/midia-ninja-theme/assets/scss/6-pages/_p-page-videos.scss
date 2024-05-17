@@ -203,17 +203,20 @@
 				@media(max-width: 876px){
 					width: 122px;
                 	height: 225px;
+					margin-left: auto;
+    				margin-right: auto;
 				}
-                @media(max-width: 782px){
-                    width: 132px !important;
-                    height: 235px;
-                }
             }
             .post-thumbnail{
                 .play{
                     display: none;
                 }
             }
+			.latest-horizontal-posts-block__arrows{
+				@media(max-width: 782px){
+					width: 240px;
+				}
+			}
             .slick-arrow {
                 transition: none !important;
             }

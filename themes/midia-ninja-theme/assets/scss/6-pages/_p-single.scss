@@ -43,6 +43,12 @@
 				width: 100%;
 			}
 
+			figure{
+				figcaption{
+					display: inherit;
+				}
+			}
+
 			.post {
 				font-family: "Manrope", sans-serif;
 				font-style: normal;

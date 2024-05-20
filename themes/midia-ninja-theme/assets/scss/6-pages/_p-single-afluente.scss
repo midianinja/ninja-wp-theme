@@ -945,4 +945,76 @@ body{
             }
         }
     }
+    &.afluente-amazonia{
+        .post-content{
+            .wp-block-columns{
+                .wp-block-column:last-child{
+                    .wp-block-cover__inner-container{
+                        h2{
+                            margin-bottom: 0px;
+                            margin-top: 23px;
+                        
+                        }
+                        hr{
+                            margin: 0px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.afluente-design-ativista,
+    &.afluente-poderes{
+        .post-content{
+            .wp-block-columns:first-child{
+                .container{
+                    a{
+                        @include mixins.mobile{
+                            display: contents !important;
+                        }
+                    }
+                }
+                .wp-block-column:first-child{
+                    @include mixins.mobile{
+                        margin-bottom: 10px;
+                    }
+                    .wp-block-spacer{
+                        @include mixins.mobile{
+                            height: 0px !important;
+                        }
+                    }
+                }
+                .wp-block-column:last-child{
+                    @include mixins.mobile{
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+    &.afluente-foda,
+    &.afluente-ella{
+        .post-content{
+            .wp-block-columns:first-child{
+               
+                .wp-block-column:first-child{
+                    @include mixins.mobile{
+                        margin-bottom: 10px;
+                    }
+                    .wp-block-spacer{
+                        @include mixins.mobile{
+                            height: 0px !important;
+                        }
+                    }
+                }
+                .wp-block-column:last-child{
+                    @include mixins.mobile{
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+
+    }
+    
 }

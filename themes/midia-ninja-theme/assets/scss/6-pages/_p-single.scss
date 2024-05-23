@@ -285,6 +285,13 @@
 								font-weight: 800;
 							}
 
+							@include mixins.small{
+								margin: -16px 37px 0;
+							}
+
+							@include mixins.small{
+								margin: -16px 37px 0;
+							}
 
 						}
 

@@ -309,7 +309,7 @@
 						.page-share {
 							width:20%;
 							margin-top: 24px;
-							justify-content: end;
+							justify-content: flex-end;
 
 							@media (min-width: 768px) {
 								margin-top: 10px;
@@ -336,7 +336,7 @@
 
 							.social-icons {
 								display: flex;
-								justify-content: end;
+								justify-content: flex-end;
 								position: relative;
 								top: -35px;
 

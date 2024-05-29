@@ -160,6 +160,7 @@ body.single-afluente {
                         .post {
                             align-items: center;
                             margin-bottom: 0;
+							padding-top: 15px;
 
                             &-author {
                                 color: #2D9CDB;
@@ -953,7 +954,7 @@ body{
                         h2{
                             margin-bottom: 0px;
                             margin-top: 23px;
-                        
+
                         }
                         hr{
                             margin: 0px !important;
@@ -996,7 +997,7 @@ body{
     &.afluente-ella{
         .post-content{
             .wp-block-columns:first-child{
-               
+
                 .wp-block-column:first-child{
                     @include mixins.mobile{
                         margin-bottom: 10px;
@@ -1016,5 +1017,5 @@ body{
         }
 
     }
-    
+
 }

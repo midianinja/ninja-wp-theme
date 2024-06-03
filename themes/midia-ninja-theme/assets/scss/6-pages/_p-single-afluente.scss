@@ -180,6 +180,23 @@ body.single-afluente {
                         }
                     }
 
+					.post--thumbnail-rounded{
+						.post {
+                            &-thumbnail{
+                                max-width: 88px;
+                                width: 100%;
+                                height: 88px;
+                                flex-basis: inherit;
+
+                                &--image{
+                                    height: 88px;
+                                    margin-bottom: 10px;
+									object-fit: cover;
+                                }
+                            }
+                        }
+					}
+
                     // Block latest vertical posts - Model collection (Flickr)
                     .latest-vertical-posts-block.model-collection {
                         .post.collection {

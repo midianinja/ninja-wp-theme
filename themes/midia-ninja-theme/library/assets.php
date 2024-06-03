@@ -29,12 +29,12 @@ class Assets
     public function initialize()
     {
         $this->enqueue_styles();
-        add_action('wp_enqueue_scripts', [ $this, 'enqueue_javascripts' ]);
-        add_action('enqueue_block_assets', [ $this, 'gutenberg_block_enqueues' ]);
-        add_action('admin_enqueue_scripts', [ $this, 'enqueue_admin_style' ]);
-        add_action('enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ]);
-        add_action('after_setup_theme', [ $this, 'action_add_editor_styles' ]);
-        add_filter('style_loader_tag', [ $this, 'add_rel_preload' ], 10, 4);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_javascripts']);
+        add_action('enqueue_block_assets', [$this, 'gutenberg_block_enqueues']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_style']);
+        add_action('enqueue_block_editor_assets', [$this, 'enqueue_block_editor_assets']);
+        add_action('after_setup_theme', [$this, 'action_add_editor_styles']);
+        add_filter('style_loader_tag', [$this, 'add_rel_preload'], 10, 4);
 
         // add_action( 'wp_head', [ $this, 'action_preload_styles' ] );
     }
@@ -44,9 +44,10 @@ class Assets
      *
      * Stylesheets that are global are enqueued. All other stylesheets are only registered, to be enqueued later.
      */
-    public function enqueue_styles() {
-        add_action( 'wp_head', [ $this, 'enqueue_inline_styles' ] );
-        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_generic_styles' ] );
+    public function enqueue_styles()
+    {
+        add_action('wp_head', [$this, 'enqueue_inline_styles']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_generic_styles']);
     }
 
     public function add_rel_preload($html, $handle, $href, $media)
@@ -65,11 +66,16 @@ class Assets
         $css_uri = get_stylesheet_directory() . '/dist/css/';
 
         $css_files = $this->get_css_files();
+ 
         foreach ($css_files as $handle => $data) {
             $src = $css_uri . $data['file'];
             $content = file_get_contents($src);
 
-            if ($data['global'] || ! $preloading_styles_enabled && is_callable($data['preload_callback']) && call_user_func($data['preload_callback']) && isset($data['inline']) && $data['inline']) {
+            if ($data['file'] == '_p-home.css') {
+                echo "<style id='$handle-css'>" . $content . "</style>";
+            }
+
+            if ($data['global'] || !$preloading_styles_enabled && is_callable($data['preload_callback']) && call_user_func($data['preload_callback']) && isset($data['inline']) && $data['inline']) {
                 echo "<style id='$handle-css'>" . $content . "</style>";
             }
         }
@@ -86,7 +92,7 @@ class Assets
         $css_files = $this->get_css_files();
         foreach ($css_files as $handle => $data) {
             // Skip inline styles
-            if(isset($data['inline']) && $data['inline']) {
+            if (isset($data['inline']) && $data['inline']) {
                 continue;
             }
 
@@ -99,7 +105,7 @@ class Assets
              * @see https://developer.wordpress.org/reference/functions/wp_enqueue_style/
              */
             $deps = [];
-            if (isset($data['deps']) && ! empty($data['deps'])) {
+            if (isset($data['deps']) && !empty($data['deps'])) {
                 $deps = $data['deps'];
             }
 
@@ -108,7 +114,7 @@ class Assets
             * (unless preloading stylesheets is disabled, in which case stylesheets should be immediately
             * enqueued based on whether they are necessary for the page content).
             */
-            if ($data['global'] || ! $preloading_styles_enabled && is_callable($data['preload_callback']) && call_user_func($data['preload_callback'])) {
+            if ($data['global'] || !$preloading_styles_enabled && is_callable($data['preload_callback']) && call_user_func($data['preload_callback'])) {
                 wp_enqueue_style($handle, $src, $deps, $version, $data['media']);
             } else {
                 wp_register_style($handle, $src, $deps, $version, $data['media']);
@@ -133,11 +139,11 @@ class Assets
             $version = (string) filemtime($js_dir . $data['file']);
 
             $deps = [];
-            if (isset($data['deps']) && ! empty($data['deps'])) {
+            if (isset($data['deps']) && !empty($data['deps'])) {
                 $deps = $data['deps'];
             }
 
-            if ($data['global'] || ! $preloading_styles_enabled && is_callable($data['preload_callback']) && call_user_func($data['preload_callback'])) {
+            if ($data['global'] || !$preloading_styles_enabled && is_callable($data['preload_callback']) && call_user_func($data['preload_callback'])) {
                 wp_enqueue_script($handle, $src, $deps, $version, true);
             }
         }
@@ -177,7 +183,6 @@ class Assets
             filemtime(get_stylesheet_directory() . '/dist/css/_b-cover.css'),
             'all'
         );
-
     }
 
     /**
@@ -194,21 +199,21 @@ class Assets
         foreach ($css_files as $handle => $data) {
 
             // Skip if stylesheet not registered.
-            if (! isset($wp_styles->registered[ $handle ])) {
+            if (!isset($wp_styles->registered[$handle])) {
                 continue;
             }
 
             // Skip if no preload callback provided.
-            if (! is_callable($data['preload_callback'])) {
+            if (!is_callable($data['preload_callback'])) {
                 continue;
             }
 
             // Skip if preloading is not necessary for this request.
-            if (! call_user_func($data['preload_callback'])) {
+            if (!call_user_func($data['preload_callback'])) {
                 continue;
             }
 
-            $preload_uri = $wp_styles->registered[ $handle ]->src . '?ver=' . $wp_styles->registered[ $handle ]->ver;
+            $preload_uri = $wp_styles->registered[$handle]->src . '?ver=' . $wp_styles->registered[$handle]->ver;
 
             echo '<link rel="preload" id="' . esc_attr($handle) . '-preload" href="' . esc_url($preload_uri) . '" as="style">';
             echo "\n";
@@ -242,8 +247,8 @@ class Assets
         $handles   = array_filter(
             $handles,
             function ($handle) use ($css_files) {
-                $is_valid = isset($css_files[ $handle ]) && ! $css_files[ $handle ]['global'];
-                if (! $is_valid) {
+                $is_valid = isset($css_files[$handle]) && !$css_files[$handle]['global'];
+                if (!$is_valid) {
                     /* translators: %s: stylesheet handle */
                     _doing_it_wrong(__CLASS__ . '::print_styles()', esc_html(sprintf(__('Invalid theme stylesheet handle: %s', 'buddyx'), $handle)), 'Buddyx 2.0.0');
                 }
@@ -286,28 +291,28 @@ class Assets
             'page' => [
                 'file' => '_p-page.css',
                 'preload_callback' => function () {
-                    return ! is_front_page() && is_page();
+                    return !is_front_page() && is_page();
                 },
             ],
 
             'page-fale-conosco' => [
                 'file' => '_p-page-fale-conosco.css',
                 'preload_callback' => function () {
-                    return ! is_front_page() && is_page();
+                    return !is_front_page() && is_page();
                 },
             ],
 
             'page-videos' => [
                 'file' => '_p-page-videos.css',
                 'preload_callback' => function () {
-                    return ! is_front_page() && is_page();
+                    return !is_front_page() && is_page();
                 },
             ],
 
             'page-opinioes' => [
                 'file' => '_p-page-opinioes.css',
                 'preload_callback' => function () {
-                    return ! is_front_page() && is_page( 'opiniao' );
+                    return !is_front_page() && is_page('opiniao');
                 },
             ],
 
@@ -334,22 +339,22 @@ class Assets
 
             'single-afluente' => [
                 'file'             => '_p-single-afluente.css',
-                'preload_callback' => function() {
-                    return is_singular( 'afluente' );
+                'preload_callback' => function () {
+                    return is_singular('afluente');
                 },
             ],
 
             'single-especial' => [
                 'file'             => '_p-single-especial.css',
-                'preload_callback' => function() {
-                    return is_singular( 'especial' );
+                'preload_callback' => function () {
+                    return is_singular('especial');
                 },
             ],
 
             'seja-ninja' => [
                 'file'             => '_p-seja-ninja.css',
-                'preload_callback' => function() {
-                    return ! is_front_page() && is_page();
+                'preload_callback' => function () {
+                    return !is_front_page() && is_page();
                 },
             ],
 
@@ -384,7 +389,7 @@ class Assets
             'page-galeria' => [
                 'file' => '_p-page-galeria.css',
                 'preload_callback' => function () {
-                    return ! is_front_page() && is_page();
+                    return !is_front_page() && is_page();
                 },
             ],
 
@@ -398,7 +403,7 @@ class Assets
             'archive-especial' => [
                 'file' => '_p-archive-especial.css',
                 'preload_callback' => function () {
-                    return is_post_type_archive( 'especial' );
+                    return is_post_type_archive('especial');
                 },
             ],
 
@@ -465,14 +470,14 @@ class Assets
         $this->css_files = [];
         foreach ($css_files as $handle => $data) {
             if (is_string($data)) {
-                $data = [ 'file' => $data ];
+                $data = ['file' => $data];
             }
 
             if (empty($data['file'])) {
                 continue;
             }
 
-            $this->css_files[ $handle ] = array_merge(
+            $this->css_files[$handle] = array_merge(
                 [
                     'global'           => false,
                     'preload_callback' => null,
@@ -554,14 +559,14 @@ class Assets
         $this->js_files = [];
         foreach ($js_files as $handle => $data) {
             if (is_string($data)) {
-                $data = [ 'file' => $data ];
+                $data = ['file' => $data];
             }
 
             if (empty($data['file'])) {
                 continue;
             }
 
-            $this->js_files[ $handle ] = array_merge(
+            $this->js_files[$handle] = array_merge(
                 [
                     'global'           => false,
                     'preload_callback' => null,

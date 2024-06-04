@@ -303,6 +303,7 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                 </header>
 
                 <section class="post-content">
+                    <?php get_template_part('./template-parts/content/player-elevenlabs.php');?>
                     <?php the_content(); ?>
 
                     <div class="page-share">

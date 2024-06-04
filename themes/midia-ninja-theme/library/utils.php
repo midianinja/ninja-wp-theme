@@ -744,3 +744,13 @@ function add_supported_post_types( $post_types ) {
     return array_merge( $post_types, ['afluente', 'especial', 'opiniao', 'galeria'] );
 }
 add_filter( 'ajax_pv/supported_post_types', 'add_supported_post_types' );
+
+
+function shortcode_player_elevenlabs() {
+    ob_start();
+
+    get_template_part( 'template-parts/content/player-elevenlabs' );
+
+    return ob_get_clean();
+}
+add_shortcode( 'player_elevenlabs', 'shortcode_player_elevenlabs' );

@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		);
 		postsDiv.innerHTML = '<div class="loading">Loading...</div>';
 
-		let url = "/wp-json/wp/v2/posts?_embed&per_page=9";
+		let url = "/wp-json/wp/v2/posts?_embed&per_page=12";
 		if (categoryId) {
-			url = `/wp-json/wp/v2/posts?categories=${categoryId}&_embed&per_page=9`;
+			url = `/wp-json/wp/v2/posts?categories=${categoryId}&_embed&per_page=12`;
 		}
 
 		fetch(url)

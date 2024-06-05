@@ -321,7 +321,7 @@ get_template_part( 'template-parts/header-especiais' );
                 </header>
 
                 <section class="post-content">
-                    <?php get_template_part('./template-parts/content/player-elevenlabs.php');?>
+                    <?php get_template_part('template-parts/content/player-elevenlabs');?>
                     <?php the_content(); ?>
 
                     <div class="page-share">

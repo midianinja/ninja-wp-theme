@@ -7,8 +7,8 @@ $show_thumbnail = ! empty( $args['attributes']['showThumbnail'] );
 $block_model    = ! empty( $args['attributes']['blockModel'] ) ? $args['attributes']['blockModel'] : 'posts';
 $counter_posts  = ! empty( $args['attributes']['counter_posts'] ) ? $args['attributes']['counter_posts'] : 1;
 $show_date      = isset( $args['attributes']['showDate'] ) ? $args['attributes']['showDate'] : false;
-/* 
-$coauthor = get_coauthors( $args['post']->ID ); */
+
+$coauthor = get_coauthors( $args['post']->ID );
 ?>
 
 <a href="<?php echo get_permalink(); ?>">
@@ -21,8 +21,8 @@ $coauthor = get_coauthors( $args['post']->ID ); */
             <div class="post-thumbnail">
                 <div class="post-thumbnail--image">
                     <?php if ( $show_avatar ) {
-                    /*     $coauthor = get_coauthors( $args['post']->ID );
-                        $thumbnail = get_the_post_thumbnail_url( $coauthor[0], 'medium' ); */
+                        $coauthor = get_coauthors( $args['post']->ID );
+                        $thumbnail = get_the_post_thumbnail_url( $coauthor[0], 'medium' );
                     } else {
                         $thumbnail = get_the_post_thumbnail_url( $args['post']->ID, 'medium' );
                     }

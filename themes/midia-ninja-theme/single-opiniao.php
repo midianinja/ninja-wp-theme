@@ -298,7 +298,7 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                         ?>
                     </div>
 
-                    <?php get_template_part('template-parts/content/player-elevenlabs');?>
+                    <?php //get_template_part('template-parts/content/player-elevenlabs');?>
                     <?php the_content(); ?>
 
                     <div class="page-share">

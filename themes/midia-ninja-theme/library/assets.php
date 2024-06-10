@@ -66,15 +66,11 @@ class Assets
         $css_uri = get_stylesheet_directory() . '/dist/css/';
 
         $css_files = $this->get_css_files();
-    /*     echo (json_encode($_SERVER['REQUEST_URI']));
-        die(); */
+ 
         foreach ($css_files as $handle => $data) {
             $src = $css_uri . $data['file'];
             $content = file_get_contents($src);
-
-            if ($data['file'] == '_p-home.css' && $_SERVER['REQUEST_URI'] == '/') {
-                echo "<style id='$handle-css'>" . $content . "</style>";
-            }
+ 
 
             if ($data['global'] || !$preloading_styles_enabled && is_callable($data['preload_callback']) && call_user_func($data['preload_callback']) && isset($data['inline']) && $data['inline']) {
                 echo "<style id='$handle-css'>" . $content . "</style>";
@@ -284,6 +280,7 @@ class Assets
 
             'home' => [
                 'file' => '_p-home.css',
+                'inline' => true,
                 'preload_callback' => function () {
                     return is_front_page();
                 },

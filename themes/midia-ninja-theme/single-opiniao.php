@@ -66,19 +66,6 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                     <div class="post-info">
                     <div class="post-date">
                         <?php echo $date; ?>
-                        <?php
-                        // Verificar se o post possui uma imagem destacada
-                        if (has_post_thumbnail()) {
-                            // Exibe a imagem destacada
-                            the_post_thumbnail('full', ['class' => 'post-thumbnail']); 
-                        } else {
-                            // Caso não haja imagem destacada, exibir uma imagem placeholder
-                            ?>
-                            <img src="<?php echo get_template_directory_uri() . '/assets/images/background-green.png'; ?>" class="placeholder-image" alt="Placeholder Image"> 
-                            <?php
-                        }
-                        
-                        ?>
                     </div>
 
                         <h2 class="title"><?php the_title(); ?></h2>
@@ -303,7 +290,15 @@ $container_class = $has_columnist ? 'container has-columnist' : 'container';
                 </header>
 
                 <section class="post-content">
-                    <?php get_template_part('./template-parts/content/player-elevenlabs.php');?>
+                    <div class="post-image">
+                        <?php
+                        if (has_post_thumbnail() && get_post_meta( get_the_ID(), 'show_thumbnail_single', true) === '1') {
+                            the_post_thumbnail('full', ['class' => 'post-thumbnail']); 
+                        } 
+                        ?>
+                    </div>
+
+                    <?php //get_template_part('template-parts/content/player-elevenlabs');?>
                     <?php the_content(); ?>
 
                     <div class="page-share">

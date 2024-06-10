@@ -196,6 +196,13 @@ body.single-afluente {
                             }
                         }
 					}
+                    :not(.post--thumbnail-rounded){
+                        img {
+                            object-fit: cover;
+                        }
+                    }
+
+
 
                     // Block latest vertical posts - Model collection (Flickr)
                     .latest-vertical-posts-block.model-collection {

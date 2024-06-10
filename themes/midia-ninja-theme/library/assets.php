@@ -7,6 +7,7 @@ class Assets
     private static $instances = [];
     protected $js_files;
     protected $css_files;
+    protected $fonts_files;
 
     protected function __construct()
     {
@@ -23,12 +24,42 @@ class Assets
         return self::$instances[$cls];
     }
 
+    public function action_preload_javascripts()
+    {
+        $js_uri = get_theme_file_uri('/dist/js/functionalities/');
+        $js_files = $this->get_js_files();
+
+        foreach ($js_files as $handle => $data) {
+            $src = $js_uri . $data['file'];
+            if ($data['pre-load']) {
+                echo "\n";
+                echo '<link rel="preload" id="' . esc_attr($handle) . '-preload" href="' . esc_url($src) . '" as="script">';
+                echo "\n";
+            }
+        }
+    }
+    public function action_preload_fonts()
+    {
+        $font_uri = get_theme_file_uri('/assets/fonts/');
+        $font_files = $this->get_font_files();
+        foreach ($font_files as $handle => $data) {
+            $src = $font_uri . $data['file'];
+            if ($data['pre-load']) {
+                echo "\n";
+                echo '<link rel="preload" id="' . esc_attr($handle) . '-preload" href="' . esc_url($src) . '" as="font">';
+                echo "\n";
+            }
+        }
+    }
+
     /**
      * Adds the action and filter hooks to integrate with WordPress.
      */
     public function initialize()
     {
         $this->enqueue_styles();
+        add_action('wp_head', [$this, 'action_preload_javascripts']);
+        add_action('wp_head', [$this, 'action_preload_fonts']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_javascripts']);
         add_action('enqueue_block_assets', [$this, 'gutenberg_block_enqueues']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_style']);
@@ -66,15 +97,11 @@ class Assets
         $css_uri = get_stylesheet_directory() . '/dist/css/';
 
         $css_files = $this->get_css_files();
-    /*     echo (json_encode($_SERVER['REQUEST_URI']));
-        die(); */
+
         foreach ($css_files as $handle => $data) {
             $src = $css_uri . $data['file'];
             $content = file_get_contents($src);
 
-            if ($data['file'] == '_p-home.css' && $_SERVER['REQUEST_URI'] == '/') {
-                echo "<style id='$handle-css'>" . $content . "</style>";
-            }
 
             if ($data['global'] || !$preloading_styles_enabled && is_callable($data['preload_callback']) && call_user_func($data['preload_callback']) && isset($data['inline']) && $data['inline']) {
                 echo "<style id='$handle-css'>" . $content . "</style>";
@@ -284,6 +311,7 @@ class Assets
 
             'home' => [
                 'file' => '_p-home.css',
+                'inline' => true,
                 'preload_callback' => function () {
                     return is_front_page();
                 },
@@ -497,6 +525,69 @@ class Assets
      *
      * @return array Associative array of $handle => $data pairs.
      */
+    protected function get_font_files(): array
+    {
+        if (is_array($this->fonts_files)) {
+            return $this->fonts_files;
+        }
+        $fonts_files = [
+            'Manrope-Regular'     => [
+                'file' => 'Manrope-Regular.ttf',
+                'pre-load' => true,
+             ],
+
+            'Manrope-ExtraBold'     => [
+                'file' => 'Manrope-ExtraBold.ttf',
+                'pre-load' => true,
+             ],
+
+            'Manrope-Medium' => [
+                'file'   => 'Manrope-Medium.ttf',
+                'pre-load' => true,
+             ],
+
+            'Manrope-Bold' => [
+                'pre-load' => true,
+                'file'   => 'Manrope-Bold.ttf',
+            ],
+
+            'Archivo_Expanded-ExtraBold' => [
+                'pre-load' => false,
+                'file' => 'Archivo_Expanded-ExtraBold.ttf',
+            ],
+
+            'TipoNinja-Regular'     => [
+                'pre-load' => false,
+                'file' => 'TipoNinja-Regular.otf',
+            ],
+            'Manrope-SemiBold' => [
+                'pre-load' => true,
+                'file'   => 'Manrope-SemiBold.ttf',
+            ],
+        ];
+    
+
+        $this->fonts_files = [];
+        foreach ($fonts_files as $handle => $data) {
+            if (is_string($data)) {
+                $data = ['file' => $data];
+            }
+
+            if (empty($data['file'])) {
+                continue;
+            }
+
+            $this->fonts_files[$handle] = array_merge(
+                [
+                    'global'           => false,
+                    'preload_callback' => null,
+                ],
+                $data
+            );
+        }
+
+        return $this->fonts_files;
+    }
     protected function get_js_files(): array
     {
         if (is_array($this->js_files)) {
@@ -506,20 +597,24 @@ class Assets
         $js_files = [
             'menu'     => [
                 'file' => 'menu.js',
+                'pre-load' => true,
                 'global' => true,
             ],
 
             'scroll-behavior'     => [
                 'file' => 'anchor-behavior.js',
+                'pre-load' => true,
                 'global' => true,
             ],
 
             'search' => [
                 'file'   => 'search.js',
+                'pre-load' => false,
                 'global' => true,
             ],
 
             'filter' => [
+                'pre-load' => false,
                 'file'   => 'perguntas-frequentes.js',
                 'preload_callback' => function () {
                     return (is_post_type_archive('perguntas_frequentes') || is_singular('perguntas_frequentes')) ? true : false;
@@ -527,11 +622,13 @@ class Assets
             ],
 
             'copy-url' => [
+                'pre-load' => false,
                 'file' => 'copy-url.js',
                 'global' => true,
             ],
 
             'anchor-sidebar'     => [
+                'pre-load' => false,
                 'file' => 'anchor-sidebar.js',
                 'preload_callback' => function () {
                     return is_page_template('page-anchor.php');
@@ -540,6 +637,7 @@ class Assets
 
 
             'archive-opiniao' => [
+                'pre-load' => false,
                 'file'   => 'archive-opiniao.js',
                 'preload_callback' => function () {
                     return is_post_type_archive('opiniao');
@@ -547,6 +645,7 @@ class Assets
             ],
 
             'seja-ninja' => [
+                'pre-load' => false,
                 'file'   => 'seja-ninja.js',
                 'preload_callback' => function () {
                     return is_page('seja-ninja');

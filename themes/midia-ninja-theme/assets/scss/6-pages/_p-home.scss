@@ -1584,4 +1584,34 @@
 			display: none;
 		}
 	}
+
+	.wp-block-cover.bloco-telegram {
+		padding-top: 0;
+		padding-bottom: 0;
+		margin-top: -30px;
+
+		.wp-block-buttons {
+			@media (max-width: 782px) {
+				align-content: center;
+			}
+
+			.wp-block-button__link {
+				border-radius:8px;
+				color: inherit;
+			}
+		}
+		.wp-block-columns {
+			margin:0;
+			.wp-block-column:last-child {
+				margin-top:20px;
+				@media (max-width: 782px) {
+					padding-bottom: 60px;
+					h2, p {
+						text-align:center;
+					}
+				}
+			}
+		}
+	}
 }
+

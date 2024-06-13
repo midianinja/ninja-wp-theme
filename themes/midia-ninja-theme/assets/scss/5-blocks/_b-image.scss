@@ -1,44 +1,51 @@
 @import "./../1-settings/_s-variables";
 @import "./../2-atoms/a-mixins";
 
-.wp-block-image {
-	img {
-		height: auto;
-	}
-figcaption,
-.wp-caption-text {
-	width: fit-content;
-}
-}
+// .wp-block-image {
+// 	img {
+// 		height: auto;
+// 	}
+// figcaption,
+// .wp-caption-text {
+// 	width: fit-content;
+// }
+// }
 
-.wp-caption {
-	width: auto !important;
-}
+// .wp-caption {
+// 	width: auto !important;
+// }
 
-figure.wp-block-image.aligncenter,
-figure.wp-block-image.alignleft,
-figure.wp-block-image.alignright {
-	display: block;
+// figure.wp-block-image.aligncenter,
+// figure.wp-block-image.alignleft,
+// figure.wp-block-image.alignright {
+// 	display: block;
 
-	&.size-full {
-		img {
-			width: 100%;
-		}
-	}
+// 	&.size-full {
+// 		img {
+// 			width: 100%;
+// 		}
+// 	}
 
-	img {
-		width: 100%;
-	}
-}
+// 	img {
+// 		width: 100%;
+// 	}
+// }
 
-figure.wp-block-image.size-full {
-	img {
-		width: 960px;
-	}
-}
+// figure.wp-block-image.size-full {
+// 	img {
+// 		width: 960px;
+// 	}
+// }
 
 figure.wp-block-image.alignwide {
+	width: 100%;
 	img {
 		width: 1170px;
+	}
+}
+
+figure.wp-block-image.border-rounded {
+	img {
+		border-radius: 8px;
 	}
 }

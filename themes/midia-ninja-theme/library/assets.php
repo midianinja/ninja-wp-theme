@@ -683,6 +683,9 @@ class Assets
         $id = get_the_ID();
 
         $block_list = [
+            'core/image' => function () {
+                $this->format_enqueue_css('ninja-core-image', '_b-image.css');
+            },
             'ninja/latest-vertical-posts' => function () {
                 $this->format_enqueue_css('ninja-latest-vertical-posts', '_b-latest-vertical-posts.css');
             },

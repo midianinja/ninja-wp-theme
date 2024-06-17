@@ -1,6 +1,11 @@
+@import '../1-settings/s-variables';
+@import '../2-atoms/a-mixins';
+
 .wp-block-newspack-blocks-homepage-articles {
 	// general style of the Newspack Blocks/Homepage Articles card
 	article {
+		width: 100%;
+
 		.entry-wrapper {
 			.cat-links {
 				a {
@@ -217,7 +222,7 @@
 				justify-content: flex-end;
 				left: 0;
 				max-width: 100%;
-				padding: 15px 250px 44px 60px;
+				padding: 15px 80px 44px 60px;
 				position: relative;
 				right: 0;
 				z-index: 2;

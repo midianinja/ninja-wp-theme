@@ -1,6 +1,6 @@
 @use "./../1-settings/s-variables" as variables;
 @use "./../2-atoms/a-mixins" as mixins;
-@import "../5-blocks/b-newspack-blocks-homepage-articles";
+
 
 body.single-afluente {
     .container {
@@ -14,6 +14,8 @@ body.single-afluente {
 
                 .post-content {
                     max-width: 1280px;
+
+					@import "../5-blocks/b-newspack-blocks-homepage-articles";
 
                     img {
                         max-width: 100%;

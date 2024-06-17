@@ -1,5 +1,6 @@
 @use "./../1-settings/s-variables" as variables;
 @use "./../2-atoms/a-mixins" as mixins;
+@import "../5-blocks/b-newspack-blocks-homepage-articles";
 
 body.single-afluente {
     .container {

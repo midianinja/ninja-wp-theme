@@ -1,6 +1,20 @@
-@use "./../1-settings/s-variables" as variables;
-@use "./../2-atoms/a-mixins" as mixins;
+@use "./../1-settings/s-variables"as variables;
+@use "./../2-atoms/a-mixins"as mixins;
 
-main {
-    @import "./../7-parts/p-content-post";
+.archive {
+    @import "../5-blocks/b-newspack-blocks-homepage-articles";
+
+    .header-and-footer-archive.position-header .wp-block-newspack-blocks-homepage-articles.posts-sidebar {
+        .article-section-title {
+            display: none;
+        }
+
+        article .post-thumbnail {
+            position: absolute;
+        }
+
+        main {
+            @import "./../7-parts/p-content-post";
+        }
+    }
 }

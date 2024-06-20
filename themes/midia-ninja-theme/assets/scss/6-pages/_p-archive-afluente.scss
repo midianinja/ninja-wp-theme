@@ -1,291 +1,323 @@
-@use "./../1-settings/s-variables" as variables;
+@use "./../1-settings/s-variables"as variables;
 @import "./../2-atoms/a-mixins";
 @import "../3-components/c-share";
 @import "../5-blocks/b-image";
+
 main.content.col-md-12 {
     padding: 0px;
 }
-.post-type-archive-afluente{
-	.container{
-		padding-right: 15px !important;
-		padding-left: 15px !important;
-		margin-right: auto;
-		margin-left: auto;
-	}
-	#app{
-		background-color: #F5F5F5;
-	}
 
-	.header-and-footer-archive {
-		margin: 40px 0px;
-		margin-top: 0;
-		.wp-block-cover{
-			height: 506px !important;
-			padding: 0px;
-			border-radius: 1%;
-			@include mobile{
-				border-radius: 8px;
-			}
+.post-type-archive-afluente {
+    .container {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
 
-			.wp-block-columns {
-				width: 50%;
-				margin-left: 0px !important;
-				margin-bottom: 0px;
-				-webkit-backdrop-filter: blur(10.6999998093px);
-				backdrop-filter: blur(10.6999998093px);
-				height: 506px !important;
-				background-color: #0000008a;
-			
-				@include mobile{
-					width: 100%;
-					position: relative;
-					top: 261px;
+    #app {
+        background-color: #F5F5F5;
+    }
 
-				}
-				.wp-block-column{
-					margin: auto;
-					display: flex;
-					align-items: center;
-					justify-content: center; 
-					flex-direction: column;
-					
-				
-					@include mobile{
-						display: flex;
-						margin-left: 20px;
-						justify-content: flex-start;
-						margin-top: 40px;
-						align-items: flex-start;
-					}
-					h2{
-						color: #fff;
-						font-family: var(--wp--preset--font-family--manrope);
-						font-size: 48px;
-						font-style: normal;
-						font-weight: 800;
-						line-height: 115%;
-						letter-spacing: -1.44px;
-						max-width: 267px;
-						width: 100%;
-						margin-top: 8px;
-						margin-bottom: 8px;
-					}
-					h4{
-						color: var(--Secondary-light, #f5f5f5);
-						font-family: var(--wp--preset--font-family--archivo-expanded);
-						font-size: var(--wp--preset--font-size--small);
-						font-style: normal;
-						font-weight: 800;
-						line-height: 155%;
-						letter-spacing: -0.42px;
-						/* margin: 0 auto 0 143px; */
-						text-transform: uppercase;
-						width: 46%;
-						@include mobile{
-							color: var(--Secondary-light, #f5f5f5);
-							font-family: var(--wp--preset--font-family--archivo-expanded);
-							font-size: var(--wp--preset--font-size--small);
-							font-style: normal;
-							font-weight: 800;
-							line-height: 155%;
-							letter-spacing: -0.42px;
-							margin: 0 auto 0 143px;
-							text-transform: uppercase;
-							width: 49%;
-							margin: 0;
-							padding-top: 27px;
-						
-						}
-					
+    .header-and-footer-archive {
+        margin: 40px 0px;
+        margin-top: 0;
 
-					}
-					
-					p{
-						color: #fff;
-						font-family: var(--wp--preset--font-family--manrope);
-						font-size: 13px;
-						font-style: normal;
-						font-weight: 500;
-						line-height: 145%;
-						max-width: 257px;
-						@include mobile{
-							display: none;
-						}
-					}
-							
-							
-							
-						
-					
-				}
-			}
+        .wp-block-cover {
+            height: 506px !important;
+            padding: 0px;
+            border-radius: 1%;
 
-		}
+            @include mobile {
+                border-radius: 8px;
+            }
+
+            .wp-block-columns {
+                margin-left: 0px !important;
+                margin-bottom: 0px;
+                height: 506px !important;
+
+                @include mobile {
+                    width: 100%;
+                    position: relative;
+                    top: 261px;
+
+                }
+
+                .wp-block-column {
+                    margin-top: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    padding: 24px 80px 18px 60px;
+                    background: linear-gradient(0deg, rgba(38, 38, 38, 0.64) 49.5%, rgba(38, 38, 38, 0) 100%);
+                    color: var(--wp--preset--color--secondary-light);
 
 
-	}
-	main{
-		@import "../6-pages/p-search";
-		@import "./../2-atoms/a-mixins";
-		@import "../3-components/c-share";
-		@import "../5-blocks/b-image";
+                    @include mobile {
+                        display: flex;
+                        margin-left: 20px;
+                        justify-content: flex-start;
+                        margin-top: 40px;
+                        align-items: flex-start;
+                    }
 
-        .search{
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			width: auto;
-			margin-bottom: 24px;
-			/* margin: auto; */
-			margin-left: 30px;
-			margin-right: 30px;
+                    h2 {
+                        color: #fff;
+                        font-family: var(--wp--preset--font-family--manrope);
+                        font-size: 32px;
+                        font-style: normal;
+                        font-weight: 800;
+                        line-height: 38.4px;
+                        letter-spacing: -1.44px;
+                        width: 100%;
+                        margin-top: 8px;
+                        margin-bottom: 0;
+                    }
 
-            h2{
+                    h4 {
+                        color: var(--Secondary-light, #f5f5f5);
+                        width: 100%;
+                        font-family: var(--wp--preset--font-family--archivo-expanded);
+                        font-size: var(--wp--preset--font-size--small);
+                        font-style: normal;
+                        font-weight: 800;
+                        line-height: 155%;
+                        letter-spacing: -0.42px;
+                        margin-bottom: 0;
+                        text-transform: uppercase;
+
+                        @include mobile {
+                            color: var(--Secondary-light, #f5f5f5);
+                            font-family: var(--wp--preset--font-family--archivo-expanded);
+                            font-size: var(--wp--preset--font-size--small);
+                            font-style: normal;
+                            font-weight: 800;
+                            line-height: 155%;
+                            letter-spacing: -0.42px;
+                            margin: 0 auto 0 143px;
+                            text-transform: uppercase;
+                            width: 49%;
+                            margin: 0;
+                            padding-top: 27px;
+
+                        }
+
+
+                    }
+
+                    p {
+                        color: #fff;
+                        font-family: var(--wp--preset--font-family--manrope);
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 140%;
+
+                        @include mobile {
+                            display: none;
+                        }
+                    }
+
+
+
+
+
+                }
+            }
+
+        }
+
+
+    }
+
+    main {
+        @import "../6-pages/p-search";
+        @import "./../2-atoms/a-mixins";
+        @import "../3-components/c-share";
+        @import "../5-blocks/b-image";
+
+        .search {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: auto;
+            margin-bottom: 24px;
+            /* margin: auto; */
+            margin-left: 30px;
+            margin-right: 30px;
+
+            h2 {
                 margin: 0px;
-				color: #000;
+                color: #000;
 
-				/* <h2> Manrope */
-				font-family: 'Manrope', sans-serif;
-				font-size: 32px;
-				font-style: normal;
-				font-weight: 800;
-				line-height: 120%; /* 38.4px */
-				letter-spacing: -0.64px;
-				@include mobile{
-					
-					font-size: 27px;
-				}
+                /* <h2> Manrope */
+                font-family: 'Manrope', sans-serif;
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 120%;
+                /* 38.4px */
+                letter-spacing: -0.64px;
+
+                @include mobile {
+
+                    font-size: 27px;
+                }
 
             }
-            form{
-				width: 100%;
-				/* max-width: 460px; */
-				display: flex;
-				margin: auto;
-				flex-direction: row;
-				justify-content: center;
-				@include mobile{
-					display: block;
-				}
 
-                & .input-search{
-					flex-grow: 1;
-					position: relative;
-					margin-left: 30px;
-					max-width: 460px;
-					@include mobile{
-						margin-left: 0px;
-						margin-top: 16px;
-					}
+            form {
+                width: 100%;
+                /* max-width: 460px; */
+                display: flex;
+                margin: auto;
+                flex-direction: row;
+                justify-content: center;
 
+                @include mobile {
+                    display: block;
+                }
 
-                    input{
-                         width: 100%; /* Ocupa toda a largura disponível dentro do contêiner pai */
-						height: 46px;
-						border-radius: 8px;
-						border: 2px solid var(--PRIMARY-PURE, #848484);
-						padding-left: 8px;
-						background-color: #F5F5F5;
-						
+                & .input-search {
+                    flex-grow: 1;
+                    position: relative;
+                    margin-left: 30px;
+                    max-width: 460px;
+
+                    @include mobile {
+                        margin-left: 0px;
+                        margin-top: 16px;
                     }
-					input::placeholder{
-						margin-left: 8px;
-					}
-                    button{
+
+
+                    input {
+                        width: 100%;
+                        /* Ocupa toda a largura disponível dentro do contêiner pai */
+                        height: 46px;
+                        border-radius: 8px;
+                        border: 2px solid var(--PRIMARY-PURE, #848484);
+                        padding-left: 8px;
+                        background-color: #F5F5F5;
+
+                    }
+
+                    input::placeholder {
+                        margin-left: 8px;
+                    }
+
+                    button {
                         position: absolute;
-						right: 7px;
-						top: 13%;
-						height: 32px;
-						width: 32px;
-						background-color: #F5F5F5;
-						border: none;
-						@include mobile{
-							right: 23px;
-						}
-                        
+                        right: 7px;
+                        top: 13%;
+                        height: 32px;
+                        width: 32px;
+                        background-color: #F5F5F5;
+                        border: none;
+
+                        @include mobile {
+                            right: 23px;
+                        }
+
                     }
                 }
             }
         }
 
-        .posts{
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 30px;
-			margin-top: 48px;
-			margin-bottom: 48px;
+        .posts {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-top: 48px;
+            margin-bottom: 48px;
 
-			
-			@media(max-width:1200px){
-				grid-template-columns: 1fr 1fr;
-			}
-			@media(max-width:767px){
-				display: flex;
-				flex-direction: column;
-				align-items: center;
 
-			}
-			@include mobile{
-				margin: auto;
+            @media(max-width:1200px) {
+                grid-template-columns: 1fr 1fr;
+            }
 
-			}
-            article{
-				@include mobile{
-					margin: auto;
-				}
-                .post-card{
+            @media(max-width:767px) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+            }
+
+            @include mobile {
+                margin: auto;
+
+            }
+
+            article {
+                @include mobile {
+                    margin: auto;
+                }
+
+                .post-card {
                     display: flex;
                     flex-direction: column;
                     margin-bottom: 30px;
-					border: none;
-					@media(max-width:767px){
-						align-items: start;
-					}
-					@include mobile{
-						margin: 0px;
-   						padding: 0px;
-						margin-top: 13px;
+                    border: none;
 
-					}
-                    .post-card--thumb{
-						width: 100%;
-						padding: 0px;
-						padding-bottom: 16px;
-						@include mobile{
-							width: 328px;
-							height: 184px;
-						}
-						.aspect-ratio{
-							border-radius: 12px;
-							img {
-								object-fit: fill;
-								height: 208px !important; 
-							}
-						} 
-						
+                    @media(max-width:767px) {
+                        align-items: start;
                     }
-                    .post-card--content{
-                        & .entry-title{
+
+                    @include mobile {
+                        margin: 0px;
+                        padding: 0px;
+                        margin-top: 13px;
+
+                    }
+
+                    .post-card--thumb {
+                        width: 100%;
+                        padding: 0px;
+                        padding-bottom: 16px;
+
+                        @include mobile {
+                            width: 328px;
+                            height: 184px;
+                        }
+
+                        .aspect-ratio {
+                            border-radius: 12px;
+
+                            img {
+                                object-fit: fill;
+                                height: 208px !important;
+                            }
+                        }
+
+                    }
+
+                    .post-card--content {
+                        & .entry-title {
                             color: var(--PURE, #262626);
                             font-family: 'Manrope', sans-serif;
                             font-size: 24px;
                             font-style: normal;
                             font-weight: 800;
-                            line-height: 120%; /* 28.8px */
+                            line-height: 120%;
+                            /* 28.8px */
                             letter-spacing: -0.72px;
                         }
-                        & .entry-date{
+
+                        & .entry-date {
                             display: none;
                         }
-                        & .entry-excerpt{
+
+                        & .entry-excerpt {
                             display: none;
                         }
                     }
                 }
             }
         }
-		.navigation{
-			margin: 64px 0px;
-		}
-	}
+
+        .navigation {
+            margin: 64px 0px;
+        }
+    }
 }

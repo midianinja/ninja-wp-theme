@@ -17,4 +17,28 @@
             @import "./../7-parts/p-content-post";
         }
     }
+
+    #app .container {
+        main.content {
+            width: 70%;
+            padding: 0;
+
+            .posts {
+                left: 0;
+
+                .post-card--thumb .aspect-ratio img {
+                    width: 100%;
+                    max-width: 370px;
+                    max-height: 209px;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+    aside {
+        width: 30% !important;
+        float: right;
+    }
+
 }

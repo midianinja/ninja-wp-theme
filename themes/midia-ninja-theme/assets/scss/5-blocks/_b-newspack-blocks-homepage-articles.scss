@@ -169,6 +169,7 @@
 
             @include mobile {
                 aspect-ratio: 16 / 10;
+                height: 200px;
             }
 
             .post-thumbnail {
@@ -234,8 +235,8 @@
                     gap: .2rem;
                     padding: size(20) size(20);
                     justify-content: flex-end;
-                    height: 100%;
-                    top: 0;
+                    //height: 100%;
+                    //top: 0;
 
                 }
 
@@ -279,6 +280,8 @@
                         font-size: 1rem !important;
                         margin-bottom: 0;
                         padding-bottom: 0;
+                        font-weight: 700;
+                        line-height: 22.4px;
                     }
                 }
             }

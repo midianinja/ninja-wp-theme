@@ -452,7 +452,7 @@
 
         .wp-block-cover {
             padding: 20px 35px 54px;
-            height: 370px;
+            height: auto;
             min-height: unset !important;
 
             @media (max-width: 1199px) {
@@ -488,7 +488,6 @@
             }
 
             img {
-                height: 347px;
 
                 @media (max-width: 1199px) {
                     width: 370px;

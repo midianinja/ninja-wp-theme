@@ -1,5 +1,6 @@
 @use "./../1-settings/s-variables"as variables;
 @use "./../2-atoms/a-mixins"as mixins;
+@import "./../2-atoms/a-mixins";
 
 .archive {
     @import "../5-blocks/b-newspack-blocks-homepage-articles";
@@ -20,8 +21,12 @@
 
     #app .container {
         main.content {
-            width: 70%;
+            width: 100%;
             padding: 0;
+
+            @media (min-width: 1200px) {
+                width: 70%;
+            }
 
             .posts {
                 left: 0;
@@ -38,7 +43,11 @@
     }
 
     aside {
-        float: right;
+        margin-bottom: 3rem;
+
+        @media (min-width: 1200px) {
+            float: right;
+        }
     }
 
 }

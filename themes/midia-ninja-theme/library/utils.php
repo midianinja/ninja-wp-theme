@@ -754,3 +754,42 @@ function shortcode_player_elevenlabs() {
     return ob_get_clean();
 }
 add_shortcode( 'player_elevenlabs', 'shortcode_player_elevenlabs' );
+
+
+/** Remove newspack image size, add new newspack image size
+ *
+ */
+add_action( 'after_setup_theme', 'ethos_remove_newspack_image_size' );
+
+function ethos_remove_newspack_image_size() {
+    remove_image_size( 'newspack-article-block-landscape-large' );
+}
+
+add_action( 'after_setup_theme', 'ethos_theme_setup', 20 );
+
+function ethos_theme_setup() {
+	add_image_size( 'newspack-article-block-landscape-large', 1000, 563, true );
+}
+
+/** Add caracter limit to title and excerpt
+ *
+ */
+function limit_title_length($title) {
+    $max_length = 50; // Defina o número máximo de caracteres
+    if (is_home()) {
+        if (strlen($title) > $max_length) {
+            return substr($title, 0, $max_length) . '...';
+        } else {
+            return $title;
+        }
+    }
+}
+add_filter('the_title', 'limit_title_length');
+
+function custom_excerpt_length($length) {
+    if (is_home()) {
+        return 30; // Defina o número máximo de palavras
+    }
+}
+add_filter('excerpt_length', 'custom_excerpt_length', 999);
+

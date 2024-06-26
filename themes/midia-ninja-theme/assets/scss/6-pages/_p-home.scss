@@ -35,6 +35,10 @@
 
     @import "../5-blocks/b-newspack-blocks-homepage-articles";
 
+    .wp-block-newspack-blocks-homepage-articles.show-image.image-aligntop article .entry-wrapper .cat-links {
+        margin-top: -2.6rem;
+    }
+
     .grid-latest-posts {
         margin-top: -1.7rem;
         margin-bottom: 0.5rem;
@@ -60,6 +64,7 @@
 
                 h2 {
                     line-height: 125%;
+                    margin-top: 10px;
 
                     a {
                         font-size: 24px;
@@ -87,6 +92,7 @@
             .entry-wrapper {
                 h2.entry-title {
                     line-height: 140%;
+                    margin-top: 10px;
                 }
             }
 

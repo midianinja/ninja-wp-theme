@@ -20,6 +20,14 @@
         }
     }
 
+    .page-content>figure {
+        margin-bottom: 78px;
+
+        @include mobile {
+            margin-bottom: 24px;
+        }
+    }
+
     .wp-block-columns {
         gap: 30px;
     }
@@ -311,6 +319,7 @@
 
     .sessao-opiniao {
         font-family: "Manrope", sans-serif;
+        margin-bottom: 0;
 
         @media (max-width: 1199px) {
             display: block;
@@ -394,10 +403,12 @@
                 justify-content: right;
                 margin-right: -100px;
                 margin-top: -1rem;
-                margin-bottom: 0;
+                margin-bottom: 40px;
 
                 @media (max-width: 992px) {
-                    display: none;
+                    width: 100%;
+                    justify-content: center;
+                    //margin-bottom: 40px;
                 }
             }
 

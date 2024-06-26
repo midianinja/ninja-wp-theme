@@ -774,22 +774,27 @@ function ethos_theme_setup() {
 /** Add caracter limit to title and excerpt
  *
  */
-function limit_title_length($title) {
-    $max_length = 50; // Defina o número máximo de caracteres
-    if (is_home()) {
+function limit_title_length_on_home($title) {
+    if (is_front_page()) {
+        $max_length = 50; // Defina o número máximo de caracteres
         if (strlen($title) > $max_length) {
             return substr($title, 0, $max_length) . '...';
         } else {
-            return $title;
+			return $title;
+		}
+    }
+    return $title;
+}
+add_filter('the_title', 'limit_title_length_on_home');
+
+function limit_excerpt_length_on_home($excerpt) {
+    if (is_front_page()) {
+        $max_length = 150; // Defina o número máximo de caracteres
+        if (strlen($excerpt) > $max_length) {
+            return substr($excerpt, 0, $max_length) . '...';
         }
     }
+    return $excerpt;
 }
-add_filter('the_title', 'limit_title_length');
-
-function custom_excerpt_length($length) {
-    if (is_home()) {
-        return 30; // Defina o número máximo de palavras
-    }
-}
-add_filter('excerpt_length', 'custom_excerpt_length', 999);
+add_filter('the_excerpt', 'limit_excerpt_length_on_home');
 

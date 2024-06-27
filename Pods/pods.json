@@ -1,7 +1,7 @@
 {
     "@meta": {
         "version": "3.2.1.1",
-        "build": 1717621821
+        "build": 1719484778
     },
     "settings": {
         "types_only": "0",
@@ -57,7 +57,7 @@
             "supports_excerpt": "1",
             "supports_comments": "1",
             "supports_revisions": "1",
-            "menu_position": "9",
+            "menu_position": "7",
             "write_all": "especial2",
             "rest_api_field_mode": "value",
             "query_var": "1",
@@ -387,7 +387,7 @@
             "supports_page_attributes": "1",
             "supports_post_formats": "1",
             "supports_quick_edit": "1",
-            "menu_position": "7",
+            "menu_position": "9",
             "groups": [
                 {
                     "name": "mais_campos",
@@ -1002,29 +1002,25 @@
                     "fields": []
                 },
                 {
-                    "name": "config_thumb",
-                    "id": 4561577,
-                    "label": "Configura\u00e7\u00e3o de imagem destacada",
+                    "name": "_image_options",
+                    "id": 4560579,
+                    "label": "Op\u00e7\u00f5es da imagem",
                     "description": "",
                     "weight": 1,
                     "roles_allowed": "administrator",
                     "meta_box_context": "side",
-                    "meta_box_priority": "default",
-                    "logged_in": "0",
-                    "admin_only": "0",
-                    "restrict_role": "0",
-                    "restrict_capability": "0",
-                    "_wpml_word_count": "{\"total\":6,\"to_translate\":{\"en\":6,\"es\":6}}",
+                    "meta_box_priority": "high",
+                    "_wpml_word_count": "{\"total\":5,\"to_translate\":{\"en\":5,\"es\":5}}",
                     "fields": [
                         {
-                            "name": "show_thumbnail_single",
-                            "id": 4561578,
-                            "label": "Exibir imagem destacada na visualiza\u00e7\u00e3o do post?",
+                            "name": "_show_thumbnail",
+                            "id": 4560580,
+                            "label": "Exibir imagem de destaque no post?",
                             "description": "",
                             "weight": 0,
                             "type": "boolean",
                             "boolean_format_type": "checkbox",
-                            "boolean_yes_label": "Habilitar",
+                            "boolean_yes_label": "Sim",
                             "boolean_no_label": "N\u00e3o",
                             "repeatable": "0",
                             "repeatable_format": "default",
@@ -1042,7 +1038,7 @@
                             "restrict_capability": "0",
                             "hidden": "0",
                             "read_only": "0",
-                            "_wpml_word_count": "{\"total\":10,\"to_translate\":{\"en\":10,\"es\":10}}"
+                            "_wpml_word_count": "{\"total\":8,\"to_translate\":{\"en\":8,\"es\":8}}"
                         }
                     ]
                 }

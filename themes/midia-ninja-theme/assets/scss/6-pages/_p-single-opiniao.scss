@@ -16,52 +16,72 @@
                     margin-right: 120px;
                     max-width: 768px;
                     gap: 100px;
+					&.has-thumbnail {
+						gap:20px;
+						max-width:none;
+						.post-info {
+							margin-top:0;
+						}
+					}
                     @media(max-width: 1199px){
                         margin-right: 0;
                     }
+					.post-date{
+						margin-bottom:50px;
+					}
+					h2.title {
+						margin-top: -30px;
+						color: var(--PURE, #262626);
+						font-family: 'Manrope', sans-serif;
+						font-size: 48px;
+						font-style: normal;
+						font-weight: 700;
+						line-height: 120%; /* 57.6px */
+						letter-spacing: -1.44px;
+						margin-bottom: -3rem;
+						&.header-post-content {
+							@media( min-width:992px ) {
+								margin-top:40px;
+							}
+						}
+						@media(max-width:992px){
+							margin-bottom: 0rem;
+							margin-top: 0;
+						}
+					}
+					.excerpt{
+						margin-top: 1rem;
+						margin-bottom: -20px;
+						&.header-post-content {
+							@media( min-width:992px ) {
+								margin-top:59px;
+								clear:both;
+								margin-bottom:35px;
+							}
+						}
+						@media(max-width:782px){
+							margin: 24px 0px;
+						}
+						p{
+							color: var(--PRIMARY-PURE, #848484);
+							font-family: 'Manrope', sans-serif;
+							font-size: 20px;
+							font-style: normal;
+							font-weight: 700;
+							line-height: 150%; /* 30px */
+							margin-top: 24px;
+							margin-bottom: 31px;
+
+						}
+
+					}
+
                     .post-info{
                         flex-direction: column;
                         max-width: 768px;
                         margin-top: 40px;
                         @media(max-width:992px){
                             margin-top: 20px;
-                        }
-                        .post-date{
-                            display: none;
-                        }
-                        h2{
-                            margin-top: -30px;
-                            color: var(--PURE, #262626);
-                            font-family: 'Manrope', sans-serif;
-                            font-size: 48px;
-                            font-style: normal;
-                            font-weight: 700;
-                            line-height: 120%; /* 57.6px */
-                            letter-spacing: -1.44px;
-                            margin-bottom: -3rem;
-                            @media(max-width:992px){
-                                margin-bottom: 0rem;
-                                margin-top: 0;
-                            }
-                        }
-                        .excerpt{
-                            margin-top: 1rem;
-                            margin-bottom: -20px;
-                            @media(max-width:782px){
-                                margin: 24px 0px;
-                            }
-                            p{
-                                color: var(--PRIMARY-PURE, #848484);
-                                font-family: 'Manrope', sans-serif;
-                                font-size: 20px;
-                                font-style: normal;
-                                font-weight: 700;
-                                line-height: 150%; /* 30px */
-                                margin-top: 24px;
-                                margin-bottom: 31px;
-
-                            }
-
                         }
 
                         .content-author {
@@ -265,7 +285,7 @@
                                 max-width: 204px;
                                 width: 100%;
                                 margin-left: -23px;
-                                
+
                                 span{
                                     a{
                                         margin-left: 8px;
@@ -351,12 +371,12 @@
 
                     }
                     h2{
-                   
+
                         @include mixins.mobile{
                             margin-top: inherit !important;
                             margin-bottom: inherit !important;
                         }
-                        
+
                     }
                     h1{
                         margin-top: 12px !important;
@@ -426,7 +446,7 @@
                             margin-top: 0;
                             margin-bottom: -10px;
                         }
-                      
+
                         .social-menu{
                             height: 35px;
                             width: 35px;
@@ -541,6 +561,9 @@
                 margin-right: auto;
                 max-width: 970px;
                 gap: 100px;
+				&.has-thumbnail {
+					gap:20px;
+				}
 
                 .post-info{
                     .post-date{

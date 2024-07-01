@@ -30,5 +30,29 @@ html {
 				padding-top: 160px;
 			}
 		}
+
+		.wp-block-newspack-blocks-wp-block-newspack-ads-blocks-ad-unit.aligncenter {
+			text-align: center;
+			display: flex;
+			justify-content: center;
+		}
+
+		.newspack_global_ad {
+			display: flex;
+			flex: none !important;
+		}
+
+		.newspack_global_ad.scaip-1.fixed-height,
+		.newspack_global_ad.scaip-2.fixed-height,
+		.newspack_global_ad.scaip-3.fixed-height {
+			flex: none !important;
+			justify-content: center;
+		}
+
+		.newspack_global_ad.sidebar_sidebar-default.sidebar_sidebar-default-after.hook-after.fixed-height,
+		.newspack_global_ad.sidebar_sidebar-posts.sidebar_sidebar-posts-after.hook-after.fixed-height {
+			flex: none !important;
+			justify-content: center;
+		}
 	}
 }

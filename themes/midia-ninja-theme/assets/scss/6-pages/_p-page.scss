@@ -23,3 +23,44 @@
 		}
 	}
 }
+
+.page-cpi-da-covid{
+
+	#app{
+		background-color: black;
+
+		#main-header{
+			display: none !important;
+		}
+
+		#menu-cpi{
+			display: none;
+		}
+
+		#main-content{
+			background-color: black;
+		}
+
+		#inicio{
+			margin-top: 0;
+		}
+
+		.et_pb_section_2{
+			p{
+				color: white;
+			}
+		}
+
+		.fixed-header{
+			display: none;
+		}
+
+		.et_menu_container{
+			display: none;
+		}
+
+		.et_search_outer{
+			display: none;
+		}
+	}
+}

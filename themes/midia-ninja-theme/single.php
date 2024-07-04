@@ -33,7 +33,7 @@ foreach( $coauthors as $coauthor ):
         $coauthor_data['author_name'] = $coauthor->display_name;
     }
     $get_coauthors[] = $coauthor_data;
-endforeach;   
+endforeach;
 
 $container_classes[] = 'container';
 $container_classes[] = $has_thumbnail ? 'post--has-thumbnail' : '';
@@ -68,9 +68,9 @@ get_template_part( 'template-parts/header-especiais' );
                                 </div>
                             <?php endif; ?>
 
-                            <h2 class="title"><?php the_title(); ?></h2>
+                            <h1 class="title"><?php the_title(); ?></h1>
 
-                            <h5 class="excerpt"><?php the_excerpt(); ?></h5>
+                            <h4 class="excerpt"><?php the_excerpt(); ?></h4>
 
                             <div class="author-info-mobile">
                             <?php
@@ -102,7 +102,7 @@ get_template_part( 'template-parts/header-especiais' );
                                                     <?php echo $afluente_name; ?>
                                                 </div>
 
-                                                
+
                                                 <div class="authbio">
                                                     <?php echo $afluente_bio; ?>
                                                 </div>
@@ -191,13 +191,13 @@ get_template_part( 'template-parts/header-especiais' );
                                         <div class="byline">
                                             <span><?php _e('By', 'ninja');?></span>
                                             <?php echo $coauthor['author_name']; ?>
-                                        </div>   
+                                        </div>
                                     </div>
 
                                     <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
-                                <div class="date-networks">        
+                                <div class="date-networks">
                                     <div class="date" datetime="<?php echo get_the_date('c'); ?>">
                                         <span>
                                             <?php the_date();?>

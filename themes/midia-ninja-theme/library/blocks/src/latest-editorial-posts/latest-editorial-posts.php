@@ -7,7 +7,17 @@ function latest_editorial_posts_callback( $attributes ) {
     global $newspack_blocks_post_id;
     global $latest_blocks_posts_ids;
 
-    $attributes['postsToShow'] = 9;
+	$ad_shortcode_raw = ( isset( $attributes['adShortcode'] ) && ! empty( $attributes['adShortcode'] ) ) ? $attributes['adShortcode'] : false;
+	$ad_shortcode = '';
+
+	preg_match( '/^\[([^\]\s]+)/', $ad_shortcode_raw, $matches );
+	$shortcode_name = $matches[1] ?? '';
+
+	if ( ! empty( $shortcode_name ) && shortcode_exists( $shortcode_name ) ) {
+		$ad_shortcode = $ad_shortcode_raw;
+	}
+
+    $attributes['postsToShow'] = $ad_shortcode ? 9 : 12;
 
     $post__not_in = array_merge( $latest_blocks_posts_ids, array_keys( $newspack_blocks_post_id ) );
     $post__not_in = array_unique( $post__not_in, SORT_STRING );
@@ -53,16 +63,6 @@ function latest_editorial_posts_callback( $attributes ) {
                 endif;
 
                 echo '<div class="latest-editorial-posts-block__content">';
-
-                    $ad_shortcode_raw = ( isset( $attributes['adShortcode'] ) && ! empty( $attributes['adShortcode'] ) ) ? $attributes['adShortcode'] : false;
-                    $ad_shortcode = '';
-
-                    preg_match( '/^\[([^\]\s]+)/', $ad_shortcode_raw, $matches );
-                    $shortcode_name = $matches[1] ?? '';
-
-                    if ( ! empty( $shortcode_name ) && shortcode_exists( $shortcode_name ) ) {
-                        $ad_shortcode = $ad_shortcode_raw;
-                    }
 
                     if ( $ad_shortcode ) {
                         echo '<div class="latest-editorial-posts-block__sidebar">';

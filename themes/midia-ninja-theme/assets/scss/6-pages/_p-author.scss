@@ -116,8 +116,9 @@
             max-width: 377px;
             height: 497px;
             border-radius: 8px 8px 8px 8px;
-            background: rgba(51, 51, 51, 0.70);
-            backdrop-filter: blur(11px);
+            // background: rgba(51, 51, 51, 0.70);
+    // backdrop-filter: blur(11px);
+			background: linear-gradient(0deg,rgba(38,38,38,.64) 49.5%,rgba(38,38,38,0));
             position: absolute;
             top: 0;
 

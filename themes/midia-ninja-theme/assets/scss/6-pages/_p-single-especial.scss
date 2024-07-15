@@ -184,11 +184,21 @@ body{
             }
         }
     }
-	.cop-climax.latest-vertical-posts-block .post.videos .post-thumbnail {
-		max-width: 124px;
-		width: 100%;
-		height: 88px;
-		flex-basis: inherit;
+	.cop-climax {
+		border-radius: 12px;
+		border: 2px solid var(--SECONDARY,#ccc);
+		background: var(--White,#fff);
+		padding: 38px 29px;
+		background: black!important;
+		color: white;
+		a, h2 {
+			color:white!important;
+		}
+		.latest-vertical-posts-block .post.videos .post-thumbnail {
+			max-width: 124px;
+			width: 100%;
+			height: 88px;
+			flex-basis: inherit;
 		img {
 			max-width: 100%;
 			left: auto;
@@ -197,12 +207,13 @@ body{
 			object-fit: inherit;
 			border-radius: 9px;
 		}
+		.latest-vertical-posts-block.cop-climax .post.videos .video-title {
+			font-size: .85rem;
+			font-weight: 600;
+			line-height: 1.4;
+		}
 	}
-	.cop-climax.latest-vertical-posts-block.cop-climax .post.videos .video-title {
-		font-size: .85rem;
-		font-weight: 600;
-		line-height: 1.4;
-	}
+
 }
 
 

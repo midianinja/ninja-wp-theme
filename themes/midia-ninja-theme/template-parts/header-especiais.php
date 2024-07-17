@@ -1,9 +1,7 @@
 <?php
-$especial_terms = get_the_terms( get_the_ID(), 'marcador_especial' );
+$especial_term = get_primary_term( get_the_ID(), 'marcador_especial' );
 
-if ( ! empty( $especial_terms ) ):
-	$especial_term = $especial_terms[0];
-
+if ( ! empty( $especial_term ) ):
 	$especial_pages = get_posts( [
 		'post_type' => 'especial',
 		'tax_query' => [[

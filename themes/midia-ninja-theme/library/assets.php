@@ -565,7 +565,7 @@ class Assets
                 'file'   => 'Manrope-SemiBold.ttf',
             ],
         ];
-    
+
 
         $this->fonts_files = [];
         foreach ($fonts_files as $handle => $data) {
@@ -649,6 +649,13 @@ class Assets
                 'file'   => 'seja-ninja.js',
                 'preload_callback' => function () {
                     return is_page('seja-ninja');
+                }
+            ],
+            'single-opiniao' => [
+                'pre-load' => false,
+                'file'   => 'single-opiniao.js',
+                'preload_callback' => function () {
+                    return is_singular('opiniao');
                 }
             ],
 

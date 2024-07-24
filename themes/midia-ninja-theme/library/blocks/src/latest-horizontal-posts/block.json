@@ -51,6 +51,19 @@
 		"linkUrl": {
 			"type": "string"
 		},
+		"noCompare": {
+			"type": "string",
+			"default": "OR"
+		},
+		"noPostType": {
+			"type": "string"
+		},
+		"noQueryTerms": {
+			"type": "array"
+		},
+		"noTaxonomy": {
+			"type": "string"
+		},
 		"playlistId": {
 			"type": "string"
 		},

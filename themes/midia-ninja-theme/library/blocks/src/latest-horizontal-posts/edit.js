@@ -51,6 +51,10 @@ export default function Edit( { attributes, setAttributes } ) {
 		flickrByType,
 		flickrUserId,
 		heading,
+		noCompare,
+		noPostType,
+		noQueryTerms,
+		noTaxonomy,
 		playlistId,
 		postsToShow,
 		postType,
@@ -67,6 +71,22 @@ export default function Edit( { attributes, setAttributes } ) {
 			setAttributes({ blockId: instanceId })
 		}
 	})
+
+	const onChangeNoPostType = ( value ) => {
+		setAttributes( { noPostType: value } )
+	}
+
+	const onChangeNoTaxonomy = ( value ) => {
+		setAttributes( { noTaxonomy: value } )
+	}
+
+	const onChangeNoSelectTerm = ( value ) => {
+		setAttributes( { noQueryTerms: value.length > 0 ? value : undefined } )
+	}
+
+	const onChangeNoCompare = ( value ) => {
+		setAttributes( { noCompare: value == 'OR' ? 'OR' : 'AND' } )
+	}
 
 	const onChangeBlockModel = ( value ) => {
 		setAttributes( { blockModel: value } )
@@ -116,6 +136,18 @@ export default function Edit( { attributes, setAttributes } ) {
 	const onChangeCoAuthor = (value) => {
 		setAttributes({ coAuthor: value })
 	}
+
+	// Get taxonomies from the post type selected
+	const [noTaxonomies, setNoTaxonomies] = useState([])
+
+	useEffect(() => {
+		if(noPostType) {
+			apiFetch({ path: `/ninja/v1/taxonomias/${postType}` })
+				.then((noTaxonomies) => {
+					setNoTaxonomies(noTaxonomies)
+				})
+		}
+	}, [noPostType])
 
 	return (
 		<>
@@ -402,6 +434,60 @@ export default function Edit( { attributes, setAttributes } ) {
 									) }
 								/>
 							</PanelRow>
+
+							<PanelRow>
+								<h2>{ __( 'Filter posts to not display', 'ninja' ) }</h2>
+							</PanelRow>
+
+							<PanelRow>
+
+								<SelectPostType postType={ noPostType } onChangePostType={ onChangeNoPostType } />
+							</PanelRow>
+
+							{ noPostType && (
+								<PanelRow>
+									<SelectControl
+										label={ __( 'Taxonomy to filter', 'ninja' ) }
+										value={ noTaxonomy }
+										options={ noTaxonomies.map( noTaxonomy => ( {
+											label: noTaxonomy.label,
+											value: noTaxonomy.value
+										}))}
+										onChange={ onChangeNoTaxonomy }
+										help={ __(
+											'Leave blank to not filter by taxonomy',
+											'ninja'
+										) }
+									/>
+								</PanelRow>
+							) }
+
+							{ noTaxonomy && (
+								<PanelRow>
+									<SelectTerms onChangeSelectTerm={ onChangeNoSelectTerm } selectedTerms={ noQueryTerms } taxonomy={ noTaxonomy } />
+								</PanelRow>
+							) }
+
+							{ noQueryTerms?.length > 1 && (
+								<PanelRow>
+									<SelectControl
+										label={ __( 'Compare terms', 'ninja' ) }
+										value={ noCompare }
+										options={ [
+											{
+												label: __( 'OR', 'ninja' ),
+												value: "or"
+											},
+											{
+												label: __( 'AND', 'ninja' ),
+												value: "and"
+											}
+
+										]}
+										onChange={ onChangeNoCompare }
+									/>
+								</PanelRow>
+							) }
 						</>
 					) }
 

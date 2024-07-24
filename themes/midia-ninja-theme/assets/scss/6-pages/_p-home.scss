@@ -64,7 +64,7 @@
             }
 
             .show-image.show-category {
-                margin-bottom: 3.7rem;
+                margin-bottom: 1.5rem;
 
                 h2 {
                     line-height: 125%;
@@ -113,6 +113,11 @@
             @media (max-width: 992px) {
                 order: 1;
             }
+        }
+        .ajuste-espacamento-aumentar{
+			h2{
+				padding-top:15px !important;
+			}
         }
     }
 

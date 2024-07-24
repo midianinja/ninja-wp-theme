@@ -789,7 +789,7 @@ add_filter('the_title', 'limit_title_length_on_home');
 
 function limit_excerpt_length_on_home($excerpt) {
     if (is_front_page()) {
-        $max_length = 160; // Defina o número máximo de caracteres
+        $max_length = 150; // Defina o número máximo de caracteres
         if (strlen($excerpt) > $max_length) {
             return substr($excerpt, 0, $max_length) . "...";
         }

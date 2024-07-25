@@ -22,6 +22,13 @@
 						.post-info {
 							margin-top:0;
 						}
+						.post-thumbnail img {
+							object-fit: cover;
+							aspect-ratio: 16/9;
+							@media(max-width: 768px){
+								margin-bottom: 15px;
+							}
+						}
 					}
                     @media(max-width: 1199px){
                         margin-right: 0;

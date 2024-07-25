@@ -776,7 +776,7 @@ function ethos_theme_setup() {
  */
 function limit_title_length_on_home($title) {
     if (is_front_page()) {
-        $max_length = 103; // Defina o número máximo de caracteres
+        $max_length = 112; // Defina o número máximo de caracteres
         if (strlen($title) > $max_length) {
             return substr($title, 0, $max_length) . '...';
         } else {

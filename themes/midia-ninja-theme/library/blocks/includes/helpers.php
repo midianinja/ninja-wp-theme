@@ -25,7 +25,7 @@ function build_posts_query( $attributes, $post__not_in = [] ) {
 
     // Exclude posts
     $no_compare     = ! empty( $attributes['noCompare'] ) ? $attributes['noCompare'] : 'OR';
-    $no_post_type   = ! empty( $attributes['noPostType'] ) ? $attributes['postType'] : '';
+    $no_post_type   = ! empty( $attributes['noPostType'] ) ? $attributes['noPostType'] : '';
     $no_taxonomy    = ! empty( $attributes['noTaxonomy'] ) ? $attributes['noTaxonomy'] : '';
     $no_query_terms = ! empty( $attributes['noQueryTerms'] ) ? $attributes['noQueryTerms'] : [];
 

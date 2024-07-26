@@ -142,7 +142,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	useEffect(() => {
 		if(noPostType) {
-			apiFetch({ path: `/ninja/v1/taxonomias/${postType}` })
+			apiFetch({ path: `/ninja/v1/taxonomias/${noPostType}` })
 				.then((noTaxonomies) => {
 					setNoTaxonomies(noTaxonomies)
 			})

@@ -72,22 +72,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		}
 	})
 
-	const onChangeNoPostType = ( value ) => {
-		setAttributes( { noPostType: value } )
-	}
-
-	const onChangeNoTaxonomy = ( value ) => {
-		setAttributes( { noTaxonomy: value } )
-	}
-
-	const onChangeNoSelectTerm = ( value ) => {
-		setAttributes( { noQueryTerms: value.length > 0 ? value : undefined } )
-	}
-
-	const onChangeNoCompare = ( value ) => {
-		setAttributes( { noCompare: value == 'OR' ? 'OR' : 'AND' } )
-	}
-
 	const onChangeBlockModel = ( value ) => {
 		setAttributes( { blockModel: value } )
 		setAttributes( { showTaxonomy: '' } )
@@ -121,6 +105,23 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { queryTerms: [] } )
 	}
 
+	// No
+	const onChangeNoPostType = ( value ) => {
+		setAttributes( { noPostType: value } )
+	}
+
+	const onChangeNoTaxonomy = ( value ) => {
+		setAttributes( { noTaxonomy: value } )
+	}
+
+	const onChangeNoSelectTerm = ( value ) => {
+		setAttributes( { noQueryTerms: value.length > 0 ? value : undefined } )
+	}
+
+	const onChangeNoCompare = ( value ) => {
+		setAttributes( { noCompare: value == 'OR' ? 'OR' : 'AND' } )
+	}
+
 	// Get taxonomies from the post type selected
 	const [taxonomies, setTaxonomies] = useState([])
 
@@ -142,7 +143,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	useEffect(() => {
 		if(noPostType) {
-			apiFetch({ path: `/ninja/v1/taxonomias/${noPostType}` })
+			apiFetch({ path: `/ninja/v1/taxonomias/${postType}` })
 				.then((noTaxonomies) => {
 					setNoTaxonomies(noTaxonomies)
 			})

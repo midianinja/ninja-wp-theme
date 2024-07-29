@@ -44,6 +44,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		blockModel,
 		channelId,
 		coAuthor,
+		compare,
 		contentPosition,
 		description,
 		flickrAlbumId,

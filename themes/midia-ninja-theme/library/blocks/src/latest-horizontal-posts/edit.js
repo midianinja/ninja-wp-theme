@@ -105,6 +105,10 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { queryTerms: [] } )
 	}
 
+	const onChangeCompare = ( value ) => {
+        setAttributes( { compare: value == 'OR' ? 'OR' : 'AND' } )
+    }
+
 	// No
 	const onChangeNoPostType = ( value ) => {
 		setAttributes( { noPostType: value } )
@@ -402,6 +406,27 @@ export default function Edit( { attributes, setAttributes } ) {
 									<SelectTerms onChangeSelectTerm={ onChangeSelectTerm } selectedTerms={ queryTerms } taxonomy={ taxonomy } />
 								</PanelRow>
 							) }
+
+							{ queryTerms?.length > 1 && (
+								<PanelRow>
+									<SelectControl
+										label={ __( 'Compare terms', 'ninja' ) }
+										value={ compare }
+										options={ [
+											{
+												label: __( 'OR', 'ninja' ),
+												value: "or"
+											},
+											{
+												label: __( 'AND', 'ninja' ),
+												value: "and"
+											}
+										]}
+										onChange={ onChangeCompare }
+									/>
+								</PanelRow>
+							) }
+
 
 							{ blockModel === 'most-read' && (
 								<PanelRow>

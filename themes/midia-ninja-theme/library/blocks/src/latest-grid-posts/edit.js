@@ -123,7 +123,7 @@ export default function Edit( { attributes, setAttributes } ) {
                             value={ postsToShow }
                             onChange={ ( value ) => setAttributes( { postsToShow: value } ) }
                             min={ 2 }
-                            max={ 99 }
+                            max={ 999 }
                             step={ 2 }
                         />
                     </PanelRow>
@@ -134,7 +134,7 @@ export default function Edit( { attributes, setAttributes } ) {
                             value={ postsPerPage }
                             onChange={ ( value ) => setAttributes( { postsPerPage: value } ) }
                             min={ 2 }
-                            max={ 99 }
+                            max={ 999 }
                             step={ 2 }
                         />
                     </PanelRow>

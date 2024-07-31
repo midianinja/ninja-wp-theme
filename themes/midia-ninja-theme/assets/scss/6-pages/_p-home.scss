@@ -59,10 +59,10 @@
         }
 
         .middle-column {
-            @media (max-width: 992px) {
-                display: none;
-            }
 
+			@media (max-width: 992px) {
+                order: 2;
+            }
             .show-image.show-category {
                 margin-bottom: 1.5rem;
 
@@ -101,7 +101,7 @@
             }
 
             @media (max-width: 992px) {
-                order: 2;
+                order: 3;
             }
         }
 

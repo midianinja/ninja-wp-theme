@@ -1,6 +1,6 @@
 const setThumbnailHeightByAuthorCard = function() {
     // Função para definir a altura da imagem de acordo com o card do autor
-    var thumbnailImg = document.querySelector('img.attachment-post-thumbnail');
+    var thumbnailImg = document.querySelector('header.post-header.has-thumbnail img.attachment-post-thumbnail');
 
     if (thumbnailImg) {
 		var authorInfoCard = document.querySelector('.author-info .author-info-card');

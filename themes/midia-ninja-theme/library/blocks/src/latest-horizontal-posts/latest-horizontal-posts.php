@@ -120,6 +120,9 @@ function latest_horizontal_posts_callback( $attributes ) {
             } else {
                 $args = build_posts_query( $attributes, $post__not_in );
             }
+			if (!isset($args)){
+				$args = [];
+			}
 
             $posts_query = new \WP_Query( $args );
 

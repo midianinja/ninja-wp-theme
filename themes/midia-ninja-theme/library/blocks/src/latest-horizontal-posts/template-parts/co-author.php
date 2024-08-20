@@ -3,7 +3,7 @@ $coauthor = $args['author'];
 $user_login = get_post_meta( $coauthor, 'cap-user_login', true );
 $display_name = get_post_meta( $coauthor, 'cap-display_name', true );
 
-$link = get_author_posts_url( $author, $user_login );
+$link = get_author_posts_url( $coauthor, $user_login );
 
 $bio = get_post_meta( $coauthor, 'cap-description', true );
 $bio = explode( ' ', $bio, 15 );

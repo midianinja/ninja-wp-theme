@@ -171,7 +171,8 @@
                         }
 
                         .title {
-                            font-size: 3rem;
+                            font-size: 24px;
+                            line-height: 1.25;
                             margin-top: 15px;
 
                             @include mixins.mobile {
@@ -477,7 +478,7 @@
 
                     .tts_play_button {
                         margin: 2rem 0;
-						display: block;
+                        display: block;
                     }
 
                     p {

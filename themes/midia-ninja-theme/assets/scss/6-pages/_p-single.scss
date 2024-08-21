@@ -30,6 +30,15 @@
             max-width: 1170px;
             margin: auto;
 
+            .wp-block-quote {
+                font-weight: bold;
+                font-size: 22px;
+                line-height: 1.2;
+                padding-left: 40px;
+                border-left: 4px solid;
+                margin: 40px 0;
+            }
+
             .wp-block-gallery.has-nested-images figure.wp-block-image figcaption,
             figcaption {
                 color: var(--wp--preset--color--secondary-dark);

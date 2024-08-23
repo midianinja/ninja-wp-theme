@@ -11,16 +11,14 @@
                 max-width: initial;
                 margin: initial;
 
-                header {
+                header.post-header {
                     width: 100%;
-                    margin-left: auto;
-                    margin-right: 120px;
-                    max-width: 768px;
+                    margin: auto;
                     gap: 100px;
 
                     &.has-thumbnail {
                         gap: 20px;
-                        max-width: none;
+                        max-width: 970px;
 
                         .post-info {
                             margin-top: 0;

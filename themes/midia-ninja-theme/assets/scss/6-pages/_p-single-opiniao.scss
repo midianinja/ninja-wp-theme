@@ -107,7 +107,7 @@
                         }
 
                         .content-author {
-                            display: flex;
+                            display: none;
                             flex-direction: column;
                             align-items: center;
                             border-top: 1px solid;
@@ -385,6 +385,17 @@
                 .post-content {
                     max-width: 970px;
 
+                    header {
+                        .title {
+                            text-align: center;
+                        }
+
+                        .excerpt {
+                            width: fit-content;
+                            margin: auto;
+                        }
+                    }
+
                     @media(max-width:992px) {
                         margin: 50px 0;
                         width: 100%;
@@ -656,9 +667,6 @@
                         line-height: 145%;
                     }
 
-                    .content-author {
-                        display: none;
-                    }
                 }
 
             }

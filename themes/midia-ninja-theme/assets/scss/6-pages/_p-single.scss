@@ -171,7 +171,8 @@
                         }
 
                         .title {
-                            font-size: 3rem;
+                            font-size: 24px;
+                            line-height: 1.25;
                             margin-top: 15px;
 
                             @include mixins.mobile {
@@ -475,10 +476,28 @@
                     max-width: 570px;
                     margin: auto;
 
+                    .tts_play_button {
+                        margin: 2rem 0;
+                        display: block;
+                    }
+
                     p {
                         line-height: 140%;
                         letter-spacing: 0;
                         font-weight: 500;
+                    }
+
+                    .wp-block-quote {
+                        margin: 40px 0;
+
+                        p {
+                            font-weight: bold;
+                            font-size: 22px;
+                            line-height: 1.2;
+                            padding-left: 40px;
+                            border-left: 4px solid;
+
+                        }
                     }
 
                     img {

@@ -551,7 +551,10 @@
 
                 }
 
-
+                .post-content *:nth-child(n+3) {
+                    max-width: 570px;
+                    margin: auto;
+                }
             }
 
             .post-footer {

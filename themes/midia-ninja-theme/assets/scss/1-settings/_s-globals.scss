@@ -65,5 +65,17 @@ html {
             flex: none !important;
             justify-content: center;
         }
+
+        .hide-mobile {
+            @media (max-width: 576px) {
+                display: none;
+            }
+        }
+
+        .hide-desktop {
+            @media (min-width: 576px) {
+                display: none;
+            }
+        }
     }
 }

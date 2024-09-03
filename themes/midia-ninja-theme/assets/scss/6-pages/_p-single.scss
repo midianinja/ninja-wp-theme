@@ -733,9 +733,22 @@
         margin-bottom: 33px;
         max-width: 1140px;
         width: 100%;
+        position: relative;
+
+        &__button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: transparent;
+            color: #fff;
+            border: none;
+            font-size: 26px;
+        }
 
         &__links {
             background-color: var(--menu-especial-bg);
+            min-height: 40px;
+            place-content: center;
 
             ul,
             li {
@@ -758,6 +771,7 @@
                 font-weight: bold;
                 text-decoration: none;
             }
+
         }
 
         @media screen and (max-width: 767px) {
@@ -770,6 +784,13 @@
                 ul {
                     flex-wrap: wrap;
                     gap: 5px 10px;
+                }
+
+                ul.menu {
+                    text-align: left;
+                    justify-content: left;
+                    display: grid;
+                    display: none;
                 }
             }
 

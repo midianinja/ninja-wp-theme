@@ -316,7 +316,7 @@ function get_posts_by_taxonomy_term( $request ) {
         'post_type'           => $post_type,
         'posts_per_page'      => $per_page,
         'paged'               => $page,
-        'no_found_rows'       => $no_found_rows,
+        'no_found_rows'       => false,
         'ignore_sticky_posts' => true
     ];
 
@@ -413,10 +413,10 @@ function get_posts_by_taxonomy_term( $request ) {
         return new \WP_Error( 'no_posts', 'Nenhum post encontrado com os critérios especificados', ['status' => 404] );
     }
 
-    return new \WP_REST_Response( [
-        'posts'      => $data,
-        'totalPages' => ( $max_posts > $query->max_num_pages ) ? $query->max_num_pages : ceil( $max_posts / $per_page )
-    ], 200 );
+	return new \WP_REST_Response( [
+		'posts'      => $data,
+		'totalPages' => ceil( min( $max_posts, $query->found_posts ) / $per_page ),
+	], 200 );
 }
 
 function get_coauthors_callback( $request ) {

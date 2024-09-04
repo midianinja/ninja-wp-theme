@@ -203,4 +203,20 @@ document.addEventListener("DOMContentLoaded", function() {
             item.classList.remove('active')
         })
     }
+
+	//menu-hamburger-especiais
+
+	var menuButtonEspecial = document.querySelector('.menu-especial .menu-especial__button');
+	var menuEspecial = document.querySelector('.menu-especial .menu-especial__links ul.menu');
+
+	menuButtonEspecial.addEventListener("click", function() {
+
+	menuButtonEspecial.classList.toggle('active');
+
+	if (menuEspecial.style.display === "block") {
+		menuEspecial.style.display = "none";
+	} else {
+		menuEspecial.style.display = "block";
+	}
+	});
 })

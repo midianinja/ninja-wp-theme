@@ -3,7 +3,18 @@
 
 .single-especial{
 
+	.main-header{
+		@media(max-width: 992px){
+			.primary-menu{
+				display: none;
+			}
+		}
+	}
+
     #app{
+		@media(max-width: 992px){
+			padding-top: 7rem;
+		}
         .container{
             .post-content{
                 .wp-block-columns{
@@ -86,7 +97,20 @@
                 }
             }
         }
+		.menu-especial{
+			ul{
+				@media(max-width: 992px){
+					display: flex;
+					flex-wrap: nowrap;
+					overflow: scroll;
+					white-space: nowrap;
+					padding-bottom: 5px;
+				}
+			}
+		}
     }
+
+
 
     &.especial-paris-2024{
         #news-olimpica{

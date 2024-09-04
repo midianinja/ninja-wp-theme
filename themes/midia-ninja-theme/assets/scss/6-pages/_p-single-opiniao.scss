@@ -4,12 +4,48 @@
 @import "../5-blocks/b-image";
 
 .single-opiniao {
-
     #single-opiniao {
         main {
             article {
                 max-width: initial;
                 margin: initial;
+
+                .excerpt {
+                    margin-top: 1rem;
+                    margin-bottom: -20px;
+
+                    &.header-post-content {
+                        @media(min-width:992px) {
+                            margin-top: 59px;
+                            clear: both;
+                            margin-bottom: 35px;
+                        }
+
+                        p {
+                            color: var(--PRIMARY-PURE, #848484);
+                            font-family: 'Manrope', sans-serif;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 150%;
+                            /* 30px */
+                            margin-top: 24px;
+                            margin-bottom: 31px;
+                            text-align: center;
+
+                        }
+                    }
+
+                    @media(max-width:782px) {
+                        margin: 24px 0px;
+                    }
+
+
+                }
+
+                .post-date {
+                    margin: 1rem 0;
+                }
 
                 header.post-header {
                     width: 100%;
@@ -38,10 +74,6 @@
                         margin-right: 0;
                     }
 
-                    .post-date {
-                        margin-bottom: 50px;
-                    }
-
                     h2.title {
                         margin-top: -30px;
                         color: var(--PURE, #262626);
@@ -64,37 +96,6 @@
                             margin-bottom: 0rem;
                             margin-top: 0;
                         }
-                    }
-
-                    .excerpt {
-                        margin-top: 1rem;
-                        margin-bottom: -20px;
-
-                        &.header-post-content {
-                            @media(min-width:992px) {
-                                margin-top: 59px;
-                                clear: both;
-                                margin-bottom: 35px;
-                            }
-                        }
-
-                        @media(max-width:782px) {
-                            margin: 24px 0px;
-                        }
-
-                        p {
-                            color: var(--PRIMARY-PURE, #848484);
-                            font-family: 'Manrope', sans-serif;
-                            font-size: 20px;
-                            font-style: normal;
-                            font-weight: 700;
-                            line-height: 150%;
-                            /* 30px */
-                            margin-top: 24px;
-                            margin-bottom: 31px;
-
-                        }
-
                     }
 
                     .post-info {
@@ -384,24 +385,20 @@
 
                 .post-content {
                     max-width: 970px;
+                    // margin: 0;
+                    width: 100%;
 
                     header {
                         .title {
                             text-align: center;
                         }
-
-                        .excerpt {
-                            width: fit-content;
-                            margin: auto;
-                        }
                     }
 
-                    @media(max-width:992px) {
-                        margin: 50px 0;
-                        width: 100%;
+                    @media(min-width: 769px) {
+                        //margin: 50px 0;
                         max-width: 100%;
-
                     }
+
 
                     p {
                         color: var(--PURE, #262626);
@@ -551,7 +548,7 @@
 
                 }
 
-                .post-content *:nth-child(n+3) {
+                .post-content .tts_content_wrapper_1 {
                     max-width: 570px;
                     margin: auto;
                 }
@@ -668,6 +665,7 @@
                         font-style: normal;
                         font-weight: 500;
                         line-height: 145%;
+                        margin: 2rem 0;
                     }
 
                 }

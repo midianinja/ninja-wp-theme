@@ -41,7 +41,7 @@ if ( ! empty( $especial_term ) ):
 				<?= wp_get_attachment_image( $especial_menu['logo_mobile'], 'medium', true ) ?>
 			</a>
 
-			<button class="menu-especial__button hide-desktop">&#9776;</button>
+			<!-- <button class="menu-especial__button hide-desktop">&#9776;</button> -->
 
 			<nav class="menu-especial__links">
 				<?php wp_nav_menu( [ 'menu' => intval( $especial_menu['id'] ) ] ) ?>

@@ -6,8 +6,14 @@
 	<meta charset="<?php bloginfo('charset');?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<?php wp_head()?>
+	<script src="https://tpc.googlesyndication.com/sodar/sodar2.js" defer></script>
+	<script src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" defer></script>
 	<title><?= is_front_page() ? get_bloginfo('name') : wp_title()?></title>
 	<link rel="icon" href="<?= get_site_icon_url() ?>" />
+	<link rel="preconnect" href="https://securepubads.g.doubleclick.net">
+	<link rel="preconnect" href="https://www.googletagmanager.com">
+	<link rel="preconnect" href="https://static.addtoany.com">
+
 </head>
 <body <?php body_class();?>>
     <?php

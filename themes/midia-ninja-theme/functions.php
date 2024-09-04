@@ -27,6 +27,12 @@ if ( is_plugin_active( 'tutor/tutor.php' ) ) {
     require __DIR__ . '/library/tutorstarter.php';
 }
 
+// REMOVE WP EMOJI
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
 require __DIR__ . '/library/header-and-footer-archive/header-and-footer-archive.php';
 require __DIR__ . '/library/supports.php';
 require __DIR__ . '/library/blocks/index.php';

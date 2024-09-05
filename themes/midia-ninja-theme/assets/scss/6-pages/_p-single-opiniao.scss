@@ -388,7 +388,7 @@
                     width: 100%;
 					max-width: 570px;
 					margin-left: 5.3rem;
-					@media(min-width: 1199px){
+					@media(max-width: 1199px){
 						margin-left: 0;
 					}
 

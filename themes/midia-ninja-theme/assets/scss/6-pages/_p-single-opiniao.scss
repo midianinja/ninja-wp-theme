@@ -384,9 +384,13 @@
                 }
 
                 .post-content {
-                    max-width: 970px;
                     // margin: 0;
                     width: 100%;
+					max-width: 570px;
+					margin-left: 5.3rem;
+					@media(max-width: 1199px){
+						margin-left: 0;
+					}
 
                     header {
                         .title {
@@ -395,10 +399,10 @@
                         }
                     }
 
-                    @media(min-width: 769px) {
-                        //margin: 50px 0;
-                        max-width: 100%;
-                    }
+                    // @media(min-width: 769px) {
+                    //     //margin: 50px 0;
+                    //     max-width: 100%;
+                    // }
 
 
                     p {
@@ -549,10 +553,10 @@
 
                 }
 
-                .post-content .tts_content_wrapper_1 {
-                    max-width: 570px;
-                    margin: auto;
-                }
+                // .post-content .tts_content_wrapper_1 {
+                //     max-width: 570px;
+                //     margin: auto;
+                // }
             }
 
             .post-footer {

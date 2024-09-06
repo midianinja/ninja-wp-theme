@@ -776,17 +776,31 @@ function ethos_theme_setup() {
  */
 function limit_title_length_on_home($title) {
     if (is_front_page()) {
-        $max_words = 20; // Defina o número máximo de caracteres
-		return wp_trim_words($title, $max_words, "...");
+        $size = 21; // Número inicial de palavras
+        $title = wp_trim_words($title, $size); // Limita inicialmente a 21 palavras
+
+        // Enquanto o título tiver mais que 100 caracteres e o número de palavras for maior que 1
+        while (mb_strlen($title) > 103 && $size > 1) {
+            $size--; // Diminui o número de palavras
+            $title = wp_trim_words($title, $size); // Limita o título a esse novo número de palavras
+        }
     }
     return $title;
 }
+
 add_filter('the_title', 'limit_title_length_on_home', -1);
+
 
 function limit_excerpt_length_on_home($excerpt) {
     if (is_front_page()) {
-        $max_words = 35; // Defina o número máximo de caracteres
-		return wp_trim_words($excerpt, $max_words, "...");
+        $size = 35; // Número inicial de palavras
+        $excerpt = wp_trim_words($excerpt, $size); // Limita inicialmente a 21 palavras
+
+        // Enquanto o título tiver mais que 100 caracteres e o número de palavras for maior que 1
+        while (mb_strlen($excerpt) > 153 && $size > 1) {
+            $size--; // Diminui o número de palavras
+            $excerpt = wp_trim_words($excerpt, $size); // Limita o título a esse novo número de palavras
+        }
     }
     return $excerpt;
 }

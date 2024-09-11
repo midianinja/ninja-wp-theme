@@ -3,8 +3,8 @@ import slick from 'slick-carousel'
 document.addEventListener("DOMContentLoaded", function() {
     const horizontalSliders = document.querySelectorAll('[data-slider="horizontal-posts"]')
 
-    horizontalSliders.forEach(slider => {
-        const slides = slider.querySelector('.latest-horizontal-posts-block__slides')
+	function initializeSlick(slider){
+		const slides = slider.querySelector('.latest-horizontal-posts-block__slides')
         const arrows = slider.querySelector('.latest-horizontal-posts-block__arrows')
         const dots = slider.querySelector('.latest-horizontal-posts-block__dots')
         const slidesToShow = slider.dataset.slidesToShow || 3
@@ -37,5 +37,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             ]
         })
+
+	}
+    horizontalSliders.forEach(slider => {
+		const options = {
+			root: document.body,
+			threshold: 0
+		}
+		const callback = (entries, observer) => {
+			if(entries[0].isIntersecting){
+				observer.unobserve(slider)
+				initializeSlick(slider)
+
+			}
+		}
+		const observer = new IntersectionObserver(callback, options)
+        observer.observe(slider)
     })
 })

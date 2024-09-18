@@ -167,7 +167,7 @@
 
 
 
-                
+
 				{
 					"name": "Highlight pure",
 					"slug": "highlight-pure",
@@ -413,6 +413,11 @@
 					"fontFamily": "\"Archivo Expanded\", sans-serif",
 					"slug": "archivo-expanded",
 					"name": "Archivo Expanded"
+				},
+				{
+					"fontFamily": "\"Tungsten\", sans-serif",
+					"slug": "tungsten",
+					"name": "Tungsten"
 				}
 			],
 			"fontSizes": [

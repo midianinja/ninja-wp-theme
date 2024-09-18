@@ -564,6 +564,18 @@ class Assets
                 'pre-load' => true,
                 'file'   => 'Manrope-SemiBold.ttf',
             ],
+			'Tungsten-Bold' => [
+                'pre-load' => true,
+                'file'   => 'Tungsten-Bold.ttf',
+            ],
+			'Tungsten-Light' => [
+                'pre-load' => true,
+                'file'   => 'Tungsten-Light.ttf',
+            ],
+			'Tungsten-Medium' => [
+                'pre-load' => true,
+                'file'   => 'Tungsten-Medium.ttf',
+            ],
         ];
 
 

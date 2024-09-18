@@ -46,3 +46,17 @@
     src: url("/wp-content/themes/midia-ninja-theme/assets/fonts/TipoNinja-Regular.otf") format("otf");
     src: url("/wp-content/themes/midia-ninja-theme/assets/fonts/TipoNinja-Regular.otf") format("opentype");
 }
+
+@font-face {
+    font-family: 'Tungsten';
+	font-weight: 500;
+    font-display: swap;
+    src: url("/wp-content/themes/midia-ninja-theme/assets/fonts/Tungsten-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Tungsten';
+	font-weight: 600;
+    font-display: swap;
+    src: url("/wp-content/themes/midia-ninja-theme/assets/fonts/Tungsten-Bold.ttf") format("truetype");
+}

@@ -48,6 +48,8 @@
 		.et_pb_section_2{
 			p{
 				color: white;
+				font-family: 'Tungsten';
+				font-size: 1.5rem;
 			}
 		}
 
@@ -60,6 +62,51 @@
 		}
 
 		.et_search_outer{
+			display: none;
+		}
+
+		.et_pb_text_inner{
+			font-family: 'Tungsten';
+			font-size: 1.5rem;
+
+			h1 {
+				font-size: 5rem;
+			}
+			p{
+				color: white;
+				font-family: 'Tungsten';
+				font-size: 1.5rem;
+			}
+			ul {
+				li{
+					font-size: 1.2rem;
+				}
+			}
+		}
+
+		.et_pb_row_52{
+
+			.et_pb_text{
+				height: fit-content !important;
+				margin: 5% 0;
+			}
+			.et_pb_text_inner{
+				p{
+					color: black;
+				}
+			}
+		}
+
+		.et_pb_team_member {
+			.et_pb_member_position{
+				font-family: 'Tungsten' !important;
+				font-size: 1.25rem;
+				line-height: 1;
+			}
+		}
+
+
+		#main-footer{
 			display: none;
 		}
 	}

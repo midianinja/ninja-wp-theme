@@ -1,113 +1,120 @@
 .page-a-midia-ninja {
-	#app {
-		padding-top: 133px;
+    #app {
+        padding-top: 133px;
 
-		@media (min-width: 768px) {
-			padding-top: 140px;
-		}
+        @media (min-width: 768px) {
+            padding-top: 140px;
+        }
 
-		.page-content {
-			.wp-block-group {
-				margin: 32px 0;
+        .page-content {
+            .wp-block-group {
+                margin: 32px 0;
 
-				@media (min-width: 768px) {
-					margin: 100px 0;
-				}
-			}
-		}
-	}
+                @media (min-width: 768px) {
+                    margin: 100px 0;
+                }
+            }
+        }
+    }
 
-	footer {
-		.newsletter {
-			display: none;
-		}
-	}
+    footer {
+        .newsletter {
+            display: none;
+        }
+    }
 }
 
-.page-cpi-da-covid{
+.page-cpi-da-covid {
 
-	#app{
-		background-color: black;
+    #app {
+        background-color: black;
 
-		#main-header{
-			display: none !important;
-		}
+        #main-header {
+            display: none !important;
+        }
 
-		#menu-cpi{
-			display: none;
-		}
+        #menu-cpi {
+            display: none;
+        }
 
-		#main-content{
-			background-color: black;
-		}
+        #main-content {
+            background-color: black;
+        }
 
-		#inicio{
-			margin-top: 0;
-		}
+        #inicio {
+            margin-top: 0;
+        }
 
-		.et_pb_section_2{
-			p{
-				color: white;
-				font-family: 'Tungsten';
-				font-size: 1.5rem;
-			}
-		}
+        .et_pb_section_2 {
+            p {
+                color: white;
+                font-family: 'Tungsten';
+                font-size: 1.5rem;
+            }
+        }
 
-		.fixed-header{
-			display: none;
-		}
+        .fixed-header {
+            display: none;
+        }
 
-		.et_menu_container{
-			display: none;
-		}
+        .et_menu_container {
+            display: none;
+        }
 
-		.et_search_outer{
-			display: none;
-		}
+        .et_search_outer {
+            display: none;
+        }
 
-		.et_pb_text_inner{
-			font-family: 'Tungsten';
-			font-size: 1.5rem;
+        .et_pb_text_inner {
+            font-family: 'Tungsten';
+            font-size: 1.5rem;
 
-			h1 {
-				font-size: 5rem;
-			}
-			p{
-				color: white;
-				font-family: 'Tungsten';
-				font-size: 1.5rem;
-			}
-			ul {
-				li{
-					font-size: 1.2rem;
-				}
-			}
-		}
+            h1 {
+                font-size: 5rem;
+            }
 
-		.et_pb_row_52{
+            p {
+                color: white;
+                font-family: 'Tungsten';
+                font-size: 1.5rem;
+            }
 
-			.et_pb_text{
-				height: fit-content !important;
-				margin: 5% 0;
-			}
-			.et_pb_text_inner{
-				p{
-					color: black;
-				}
-			}
-		}
+            ul {
+                li {
+                    font-size: 1.2rem;
+                }
+            }
+        }
 
-		.et_pb_team_member {
-			.et_pb_member_position{
-				font-family: 'Tungsten' !important;
-				font-size: 1.25rem;
-				line-height: 1;
-			}
-		}
+        .et_pb_row_52 {
+
+            .et_pb_text {
+                height: fit-content !important;
+                margin: 5% 0;
+            }
+
+            .et_pb_text_inner {
+                p {
+                    color: black;
+                }
+            }
+        }
+
+        .et_pb_team_member {
+            .et_pb_member_position {
+                font-family: 'Tungsten' !important;
+                font-size: 1.25rem;
+                line-height: 1;
+            }
+        }
 
 
-		#main-footer{
-			display: none;
-		}
-	}
+        #main-footer {
+            display: none;
+        }
+    }
+}
+
+#cmplz-document p {
+    font-size: 1rem;
 }

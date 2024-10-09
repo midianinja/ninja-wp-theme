@@ -115,6 +115,44 @@
     }
 }
 
-#cmplz-document p {
-    font-size: 1rem;
+.privacy-policy,
+.page-termos-e-condicoes {
+
+    ol {
+        padding-left: 24px;
+
+        a {
+            color: #262626;
+        }
+    }
+
+    .sidebar-page {
+        margin-bottom: 4rem;
+    }
+
+    @media (min-width: 992px) {
+        .sidebar-page {
+            width: 30%;
+        }
+
+        .content {
+            width: 57%;
+            float: right;
+        }
+    }
+}
+
+.page-termos-e-condicoes {
+
+    #app .container .row {
+        margin-top: 1.5rem;
+    }
+
+    .page-title {
+        margin-top: 0;
+    }
+
+    #cmplz-document p {
+        font-size: 1rem;
+    }
 }

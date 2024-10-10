@@ -118,6 +118,24 @@
 .privacy-policy,
 .page-termos-e-condicoes {
 
+    #app .container .row {
+        padding-top: 10rem;
+        position: relative;
+
+        .content {
+            position: unset;
+
+            .wp-block-columns {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 1170px;
+                max-width: 100%;
+                border-radius: 8px;
+            }
+        }
+    }
+
     ol {
         padding-left: 24px;
 
@@ -143,10 +161,6 @@
 }
 
 .page-termos-e-condicoes {
-
-    #app .container .row {
-        margin-top: 1.5rem;
-    }
 
     .page-title {
         margin-top: 0;

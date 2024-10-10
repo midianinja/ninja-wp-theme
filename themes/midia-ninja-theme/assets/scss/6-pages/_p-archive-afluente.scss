@@ -17,6 +17,10 @@ main.content.col-md-12 {
 
     #app {
         background-color: #F5F5F5;
+
+        a {
+            text-decoration: none;
+        }
     }
 
     .header-and-footer-archive {
@@ -57,7 +61,7 @@ main.content.col-md-12 {
 
                     @include mobile {
                         display: flex;
-                        margin-left: 20px;
+                        padding: 24px;
                         justify-content: flex-start;
                         margin-top: 40px;
                         align-items: flex-start;

@@ -343,26 +343,30 @@
 
                 figure {
                     @include mixins.small {
-                        max-width: 300px;
-                        height: 55px;
+                        //max-width: 300px;
+                        //height: 55px;
+                        max-width: 100%;
                         margin-right: auto;
                         margin-left: auto;
                     }
 
                     @include mixins.mobile {
-                        max-width: 300px;
-                        height: 55px;
+                        //max-width: 300px;
+                        //height: 55px;
+                        max-width: 100%;
                         margin-right: auto;
                         margin-left: auto;
                     }
 
                     img {
                         @include mixins.small {
-                            height: 50px;
+                            //height: 50px;
+                            height: 100%;
                         }
 
                         @include mixins.mobile {
-                            height: 50px;
+                            //height: 50px;
+                            height: 100%;
                         }
                     }
                 }
@@ -405,6 +409,7 @@
                         margin-right: auto;
                         margin-left: auto;
                         align-items: center;
+                        padding: 0 15px;
                     }
 
                     @include mixins.mobile {
@@ -415,6 +420,7 @@
                         margin-right: auto;
                         margin-left: auto;
                         align-items: center;
+                        padding: 0 15px;
                     }
 
                     .post {
@@ -427,7 +433,7 @@
                         }
 
                         @include mixins.mobile {
-                            max-width: 328px;
+                            max-width: 370px;
                             width: 100%;
                             height: auto;
                         }
@@ -468,6 +474,7 @@
                             &--content {
                                 display: flex;
                                 flex-direction: column-reverse;
+                                margin-bottom: 2rem;
 
                                 .entry-title {
                                     color: #111111;

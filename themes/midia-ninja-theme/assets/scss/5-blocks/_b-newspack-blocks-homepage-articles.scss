@@ -230,6 +230,7 @@
                 top: 56%;
 
                 @include mobile {
+					background: linear-gradient(180deg, rgba(51, 51, 51, 0.00) 0%, #333 75%);
                     border-radius: 8px;
                     gap: .2rem;
                     padding: size(20) size(20);
@@ -237,7 +238,6 @@
                     //height: 100%;
                     //top: 0;
 					position: absolute;
-
                 }
 
                 .cat-links {
@@ -382,7 +382,7 @@
                 border-radius: 8px;
 
                 @include mobile {
-                    background: linear-gradient(180deg, rgba(51, 51, 51, 0.00) 0%, #333 50.5%);
+                    background: linear-gradient(180deg, rgba(51, 51, 51, 0.00) 0%, #333 65%);
                     height: 100%;
                     top: 0;
                     padding: 16px 16px 12px;

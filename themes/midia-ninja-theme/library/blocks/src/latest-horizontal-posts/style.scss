@@ -286,6 +286,10 @@
 				margin-right: auto;
 			}
 
+			@media (max-width: 769px){
+				width: 230px;
+			}
+
 			.slick-arrow {
 				background-color: var(--wp--preset--color--secondary-light);
 				background-image: url("./images/slider-arrow.svg");

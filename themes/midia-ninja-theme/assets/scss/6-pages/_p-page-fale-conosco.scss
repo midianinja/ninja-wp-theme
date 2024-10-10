@@ -70,7 +70,7 @@
 		.coluna-contato-mobile {
 			padding-top: 40px;
 			padding-left: 18px;
-			fill: rgba(51, 51, 51, 0.7);
+			background-color: rgba(51, 51, 51, 0.70);
 			backdrop-filter: blur(10.699999809265137px);
 		}
 	}
@@ -258,6 +258,10 @@
 				border: none;
 				margin-left: 0;
 				color: #FFF;
+
+				@include mobile {
+					position: unset;
+				}
 			}
 		}
 	}

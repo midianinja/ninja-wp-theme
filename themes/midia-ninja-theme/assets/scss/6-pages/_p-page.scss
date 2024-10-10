@@ -133,6 +133,15 @@
                 max-width: 100%;
                 border-radius: 8px;
             }
+
+            .wp-block-column:has(.wp-block-group) {
+                overflow: auto;
+
+                .wp-block-group {
+                    overflow: scroll;
+                    width: max-content;
+                }
+            }
         }
     }
 

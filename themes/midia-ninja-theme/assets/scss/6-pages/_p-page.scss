@@ -119,9 +119,8 @@
 .page-termos-e-condicoes {
 
     #app {
-
         @media (max-width: 768px) {
-            padding-top: 60px;
+            padding-top: 130px;
         }
 
         .container .row {
@@ -142,7 +141,7 @@
 
                     @media (max-width: 768px) {
                         flex-wrap: nowrap !important;
-                        padding: 30px 16px 10px;
+                        padding: 10px 16px;
 
                         .wp-block-column:first-child {
                             flex-basis: 12% !important;
@@ -157,10 +156,6 @@
                                 display: none;
                             }
                         }
-                    }
-
-                    @media (max-width: 497px) {
-                        padding: 10px 16px;
                     }
                 }
 

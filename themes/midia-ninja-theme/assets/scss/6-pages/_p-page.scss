@@ -118,55 +118,93 @@
 .privacy-policy,
 .page-termos-e-condicoes {
 
-    #app .container .row {
-        padding-top: 10rem;
-        position: relative;
+    #app {
 
-        .content {
-            position: unset;
+        @media (max-width: 768px) {
+            padding-top: 60px;
+        }
 
-            .wp-block-columns {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 1170px;
-                max-width: 100%;
-                border-radius: 8px;
-            }
+        .container .row {
+            padding-top: 6rem;
+            position: relative;
 
-            .wp-block-column:has(.wp-block-group) {
-                overflow: auto;
+            .content {
+                position: unset;
 
-                .wp-block-group {
-                    overflow: scroll;
-                    width: max-content;
+                .wp-block-columns {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 1170px;
+                    max-width: 100%;
+                    border-radius: 8px;
+                    padding: 11px 40px;
+
+                    @media (max-width: 768px) {
+                        flex-wrap: nowrap !important;
+                        padding: 30px 16px 10px;
+
+                        .wp-block-column:first-child {
+                            flex-basis: 12% !important;
+                        }
+
+                        .wp-block-group {
+                            .wp-block-image img {
+                                max-width: 35px;
+                            }
+
+                            p {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    @media (max-width: 497px) {
+                        padding: 10px 16px;
+                    }
+                }
+
+                .wp-block-button.is-style-outline>.wp-block-button__link,
+                .wp-block-button>.wp-block-button__link {
+                    padding: 8px 16px;
+                    border-radius: 8px;
+                }
+
+                .wp-block-column:has(.wp-block-group) {
+                    overflow: auto;
+
+                    .wp-block-group {
+                        overflow: scroll;
+                        width: max-content;
+                    }
                 }
             }
         }
-    }
 
-    ol {
-        padding-left: 24px;
+        ol {
+            padding-left: 24px;
 
-        a {
-            color: #262626;
+            a {
+                color: #262626;
+            }
         }
-    }
 
-    .sidebar-page {
-        margin-bottom: 4rem;
-    }
-
-    @media (min-width: 992px) {
         .sidebar-page {
-            width: 30%;
+            margin-bottom: 4rem;
         }
 
-        .content {
-            width: 57%;
-            float: right;
+        @media (min-width: 992px) {
+            .sidebar-page {
+                width: 30%;
+            }
+
+            .content {
+                width: 57%;
+                float: right;
+            }
         }
     }
+
 }
 
 .page-termos-e-condicoes {

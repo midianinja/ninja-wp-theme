@@ -1,72 +1,88 @@
 <?php
 
 $post_id = get_the_ID();
+$displayed_authors = []; // Array para armazenar os slugs dos autores já exibidos
+$related_posts = []; // Array para armazenar os posts selecionados
+$limit = 3; // Quantidade de posts desejada
 
-$args = [
-    'post_type'      => 'guest-author',
-    'posts_per_page' => 12,
-    'order'          => 'DESC',
-    'meta_query'     => [
-        [
-            'key'     => 'colunista',
-            'value'   => 1,
-            'compare' => '=',
-        ],
-    ]
-];
+?>
 
-$related_posts = get_posts( $args );
-$count = 0;
-$limit = 3;
+<h2><?php _e('Conheça outros colunistas', 'ninja'); ?></h2>
+<div class="related">
 
-if ( $related_posts ) : ?>
+    <?php
+    // Loop para executar três consultas, uma para cada post desejado
+    for ($i = 0; $i < $limit; $i++) {
+        $args = [
+            'post_type'      => 'opiniao',
+            'posts_per_page' => 1,
+            'orderby'        => 'rand',
+            'post__not_in'   => [$post_id],
+        ];
 
-    <h2><?php _e( 'Conheça outros colunistas', 'ninja' ); ?></h2>
-
-    <div class="related">
-        <?php foreach( $related_posts as $related_post ) :
-
-            $co_authors_args = [
-                'post_type'      => 'opiniao',
-                'posts_per_page' => 1,
-                'post__not_in'   => [ $post_id ],
-                'author_name'    => $related_post->post_name,
-                'order'          => 'DESC',
-                'fields'         => 'ids'
+        // Se já temos autores exibidos, adicionamos a exclusão deles na query
+        if (!empty($displayed_authors)) {
+            $args['tax_query'] = [
+                [
+                    'taxonomy' => 'author', // Ajuste para o termo correto se o Co-Authors Plus usa outra taxonomia
+                    'field'    => 'slug',
+                    'terms'    => $displayed_authors,
+                    'operator' => 'NOT IN',
+                ],
             ];
+        }
 
-            $co_authors_posts = new WP_Query( $co_authors_args );
+        $query = get_posts($args);
 
-            if ( $co_authors_posts->found_posts ) {
-                $co_authors_post_id = $co_authors_posts->posts[0];
-                $count++;
-            } else {
-                // Exit if no posts found that match the author name
-                continue;
+        // Se encontrar um post, adiciona aos resultados e armazena o autor
+        if ($query){
+			setup_postdata($query[0]);
+            // Obtém os co-autores do post
+            $coauthors = get_coauthors();
+
+            // Armazena os slugs dos co-autores exibidos
+            foreach ($coauthors as $coauthor) {
+                $displayed_authors[] = $coauthor->user_nicename;
             }
 
-            // Thumbnail
-            $thumbnail = has_post_thumbnail( $related_post->ID ) ? get_the_post_thumbnail( $related_post->ID ) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">'; ?>
-
-            <div class="related-post-card">
-                <a class="related-post-image" href="<?php the_permalink();?>"><?php echo $thumbnail; ?></a>
-
-                <div class="related-post-content">
-                    <div class="info">
-                        <a href="<?php echo get_the_permalink( $co_authors_post_id );?>">
-                            <h4><?php echo get_the_title( $co_authors_post_id ); ?></h4>
-                        </a>
-                        <h5><?php echo get_the_title( $related_post->ID ); ?></h5>
-                    </div>
-                </div>
-            </div>
-
-            <?php if ( $count == $limit ) {
-                break;
-            }
+            // Armazena o post no array para exibição
+            $related_posts[] = $query[0];
 
             wp_reset_postdata();
-        endforeach; ?>
-    </div>
+        }
+    }
 
-<?php endif; ?>
+    // Exibe os posts encontrados
+    foreach ($related_posts as $post) :
+        setup_postdata($post);
+        ?>
+
+        <div class="related-post-card">
+            <a class="related-post-image" href="<?php the_permalink(); ?>">
+                <?php
+                if (has_post_thumbnail()) {
+                    the_post_thumbnail();
+                } else {
+                    echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
+                }
+                ?>
+            </a>
+
+            <div class="related-post-content">
+                <div class="info">
+                    <a href="<?php the_permalink(); ?>">
+                        <h4><?php the_title(); ?></h4>
+                    </a>
+                    <?php
+                    // Exibe os nomes dos co-autores
+                    $coauthors = get_coauthors();
+                    foreach ($coauthors as $coauthor) {
+                        echo '<h5>' . esc_html($coauthor->display_name) . '</h5>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+
+    <?php endforeach; wp_reset_postdata(); ?>
+</div>

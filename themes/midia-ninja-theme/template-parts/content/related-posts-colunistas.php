@@ -25,24 +25,26 @@ $limit = 3; // Quantidade de posts desejada
             $args['tax_query'] = [
                 [
                     'taxonomy' => 'author', // Ajuste para o termo correto se o Co-Authors Plus usa outra taxonomia
-                    'field'    => 'term_id',
+                    'field'    => 'slug',
                     'terms'    => $displayed_authors,
                     'operator' => 'NOT IN',
                 ],
             ];
         }
 
-		$query = get_posts($args);
+        $query = get_posts($args);
 
         // Se encontrar um post, adiciona aos resultados e armazena o autor
         if ($query){
 			setup_postdata($query[0]);
             // Obtém os co-autores do post
-			$coauthors_terms = get_the_terms( $query[0], 'author' );
+            $coauthors = get_coauthors();
 
             // Armazena os slugs dos co-autores exibidos
-            foreach ($coauthors_terms as $coauthor) {
-                $displayed_authors[] = $coauthor->term_id;
+			foreach ( $coauthors as $coauthor ) {
+				if ( ! in_array( $coauthor->user_nicename, $displayed_authors ) ) {
+					$displayed_authors[] = $coauthor->user_nicename;
+				}
             }
 
             // Armazena o post no array para exibição

@@ -85,6 +85,8 @@
                         /* 57.6px */
                         letter-spacing: -1.44px;
                         margin-bottom: -3rem;
+						hyphens: auto;
+						overflow-wrap: anywhere;
 
                         &.header-post-content {
                             @media(min-width:992px) {

@@ -280,8 +280,12 @@
 
                                 img {
                                     width: 100%;
-                                    height: 337px;
-									max-height: 337px !important;
+                                    @media screen and (min-width: 1200px) {
+                                        height: 337px !important;
+									    max-height: 337px !important;
+
+                                    }
+
                                     object-fit: cover;
 
                                     @include mixins.small {

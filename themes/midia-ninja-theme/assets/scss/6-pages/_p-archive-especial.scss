@@ -315,6 +315,10 @@
                         }
 
                         a {
+							text-decoration: none;
+							&:hover {
+								text-decoration: underline;
+							}
                             .entry-title {
                                 color: #000000;
                                 font-family: var(--wp--preset--font-family--manrope);

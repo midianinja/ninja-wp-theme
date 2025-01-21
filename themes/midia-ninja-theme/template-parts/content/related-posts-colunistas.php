@@ -54,14 +54,16 @@ $post_not_in = [$post_id];
 	}
 	// Exibe os posts encontrados
 	foreach ($related_posts as $post) :
-
+		$coauthors = get_coauthors($post);
 	?>
 
 		<div class="related-post-card">
+
 			<a class="related-post-image" href="<?php the_permalink($post); ?>">
 				<?php
-				if (has_post_thumbnail($post)) {
-					echo get_the_post_thumbnail($post);
+
+				if (!empty($coauthors) && $coauthors[0]) {
+					echo coauthors_get_avatar( $coauthors[0], 170 );
 				} else {
 					echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
 				}
@@ -75,7 +77,6 @@ $post_not_in = [$post_id];
 					</a>
 					<?php
 					// Exibe os nomes dos co-autores
-					$coauthors = get_coauthors($post);
 					foreach ($coauthors as $coauthor) {
 						echo '<h5>' . esc_html($coauthor->display_name) . '</h5>';
 					}

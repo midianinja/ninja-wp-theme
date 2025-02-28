@@ -85,8 +85,7 @@
                         /* 57.6px */
                         letter-spacing: -1.44px;
                         margin-bottom: -3rem;
-						hyphens: auto;
-						overflow-wrap: anywhere;
+						word-break: break-word;
 
                         &.header-post-content {
                             @media(min-width:992px) {
@@ -396,7 +395,7 @@
 
                     header {
                         .title {
-                            text-align: center;
+                            text-align: left;
                             font-size: 48px;
                         }
                     }

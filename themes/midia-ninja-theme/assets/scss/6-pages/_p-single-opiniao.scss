@@ -82,12 +82,12 @@
                         font-style: normal;
                         font-weight: 700;
                         line-height: 120%;
-                        /* 57.6px */
                         letter-spacing: -1.44px;
                         margin-bottom: -3rem;
-						word-break: break-word;
+						white-space: normal;
+						max-width: 768px;
+						word-break: keep-all;
 						overflow-wrap: anywhere;
-						hyphens:auto;
 
                         &.header-post-content {
                             @media(min-width:992px) {

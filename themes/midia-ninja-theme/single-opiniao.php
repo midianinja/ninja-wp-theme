@@ -77,12 +77,15 @@ $has_thumbnail = (has_post_thumbnail() && get_post_meta(get_the_ID(), '_show_thu
 						<?php else : ?>
 							<div class="post-date">
 								<?php echo $date; ?>
-
 							</div>
 
 							<h2 class="title"><?php the_title(); ?></h2>
 
 							<h5 class="excerpt"><?php the_excerpt(); ?></h5>
+
+							<div class="text-player">
+								<?php echo do_shortcode('[tta_listen_btn listen_text="Ouvir"]'); ?>
+							</div>
 						<?php endif; ?>
 
 						<div class="author-info-mobile">
@@ -312,7 +315,7 @@ $has_thumbnail = (has_post_thumbnail() && get_post_meta(get_the_ID(), '_show_thu
 							<h5 class="excerpt header-post-content"><?php the_excerpt(); ?></h5>
 						</header>
 					<?php endif; ?>
-					<?php //get_template_part('./template-parts/content/player-elevenlabs.php');
+					<?php get_template_part('./template-parts/content/player-elevenlabs.php');
 					?>
 					<?php the_content(); ?>
 

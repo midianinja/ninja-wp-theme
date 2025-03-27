@@ -806,4 +806,22 @@ function limit_excerpt_length_on_home($excerpt) {
 }
 add_filter('the_excerpt', 'limit_excerpt_length_on_home', -1);
 
+function embed_instagram_reel( $atts ) {
+    $atts = shortcode_atts(
+        array(
+            'url' => '',
+        ),
+        $atts,
+        'insta_reel'
+    );
+
+    if ( empty( $atts['url'] ) ) {
+        return '';
+    }
+
+    return '<blockquote class="instagram-media" data-instgrm-permalink="' . esc_url( $atts['url'] ) . '" data-instgrm-version="14" style=" background:#FFF; border:0; margin: 1px; max-width:540px; padding:0; width:99.375%;"></blockquote><script async src="//www.instagram.com/embed.js"></script>';
+}
+add_shortcode( 'insta_reel', 'embed_instagram_reel' );
+
+
 

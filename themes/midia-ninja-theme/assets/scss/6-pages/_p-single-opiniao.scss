@@ -379,6 +379,11 @@
                         .social-networks {
                             display: flex;
                             gap: .5rem;
+
+							@media (max-width: size(768)) {
+								gap: 0;
+								justify-content: center;
+							}
                         }
                     }
                 }

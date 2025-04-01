@@ -301,6 +301,13 @@
                                 margin: -12px 37px 0;
                             }
 
+							.byline{
+								@media (max-width: size(782)) {
+									position: relative;
+									top: size(16);
+								}
+							}
+
                         }
 
                         time {
@@ -327,9 +334,9 @@
                                 }
                             }
 
-                            @media(max-width: 782px) {
+                            @media(max-width: size(782)) {
                                 display: flex;
-                                margin-left: 50px;
+                                margin-left: size(62);
                             }
 
                             span {

@@ -19,7 +19,7 @@
             .post-content{
                 .wp-block-columns{
                     @media(max-width: 992px){
-                        display: block;
+                        //display: block;
                     }
                 }
                 .wp-block-columns:nth-of-type(1){
@@ -31,31 +31,50 @@
                     :last-child{
                         .wp-block-cover {
                             border-radius: 8px;
+
                             @media(max-width: 992px){
                                 margin-top: 32px;
+								min-height: unset;
                             }
+
+							&__inner-container{
+								@media (max-width: 768px){
+									display: flex;
+									gap: 8px;
+								}
+
+								.wp-block-image:nth-child(2){
+									@media (max-width: 768px){
+										height: 80px;
+									}
+
+									img{
+										@media (max-width: 768px){
+											height: auto !important;
+											margin-top: 25px;
+											width: 340px !important;
+										}
+									}
+								}
+							}
 
                             p{
                                 @media(max-width: 992px){
-                                    max-width: 200px;
+                                    //max-width: 200px;
                                     width: 100%;
                                     margin-bottom: 1rem;
+									margin-top: 0;
                                 }
                             }
                             .wp-block-columns{
-
-                                max-width: 200px;
-                                width: 100%;
-                                gap: 8px;
-
-                                @media(max-width: 992px){
-                                    display: flex;
-                                    gap: 0;
-                                }
+								@media (max-width: 992px){
+									gap: 4px;
+								}
 
                                 .wp-block-column{
                                     @media(max-width: 992px){
-                                        flex-basis: 20% !important;
+                                        flex-basis: 15% !important;
+										flex-grow: 0;
                                     }
 
                                     .wp-block-image.aligncenter{
@@ -240,32 +259,3 @@ body{
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

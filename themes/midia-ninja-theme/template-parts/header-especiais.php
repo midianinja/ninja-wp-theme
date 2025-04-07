@@ -1,15 +1,15 @@
 <?php
-$especial_term = get_primary_term( get_the_ID(), 'marcador_especial' );
+$especial_term = get_primary_term(get_the_ID(), 'marcador_especial');
 
-if ( ! empty( $especial_term ) ):
-	$especial_pages = get_posts( [
+if (! empty($especial_term)):
+	$especial_pages = get_posts([
 		'post_type' => 'especial',
 		'tax_query' => [[
 			'taxonomy' => 'marcador_especial',
 			'field' => 'term_id',
 			'terms' => $especial_term->term_id,
 		]],
-	] );
+	]);
 
 	$especial_menu = [
 		'background_color' => '#333333',
@@ -21,31 +21,43 @@ if ( ! empty( $especial_term ) ):
 
 	$especial_menu_keys = ['background_color', 'id', 'link_color', 'logo_desktop', 'logo_mobile'];
 
-	foreach ( $especial_menu_keys as $meta_key ) {
-		$meta_value = get_term_meta( $especial_term->term_id, 'menu_' . $meta_key, true );
+	foreach ($especial_menu_keys as $meta_key) {
+		$meta_value = get_term_meta($especial_term->term_id, 'menu_' . $meta_key, true);
 
-		if ( ! empty( $meta_value ) ) {
-			$especial_menu[ $meta_key ] = $meta_value;
+		if (! empty($meta_value)) {
+			$especial_menu[$meta_key] = $meta_value;
 		}
 	}
 
-	if ( ! empty( $especial_menu['id'] ) && ! empty( $especial_pages ) ):
+	if (! empty($especial_menu['id']) && ! empty($especial_pages)):
 		$especial_page = $especial_pages[0];
 		$especial_style = "--menu-especial-bg: {$especial_menu['background_color']}; --menu-especial-link: {$especial_menu['link_color']}";
 ?>
 		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="<?= $especial_style ?>">
-			<a class="menu-especial__logo-desktop" href="<?= get_permalink( $especial_page->ID ) ?>">
-				<?= wp_get_attachment_image( $especial_menu['logo_desktop'], 'medium', true ) ?>
+			<a class="menu-especial__logo-desktop" href="<?= get_permalink($especial_page->ID) ?>">
+				<?= wp_get_attachment_image($especial_menu['logo_desktop'], 'medium', true) ?>
 			</a>
-			<a class="menu-especial__logo-mobile" href="<?= get_permalink( $especial_page->ID ) ?>">
-				<?= wp_get_attachment_image( $especial_menu['logo_mobile'], 'medium', true ) ?>
+			<a class="menu-especial__logo-mobile" href="<?= get_permalink($especial_page->ID) ?>">
+				<?= wp_get_attachment_image($especial_menu['logo_mobile'], 'medium', true) ?>
 			</a>
 
 			<!-- <button class="menu-especial__button hide-desktop">&#9776;</button> -->
 
 			<nav class="menu-especial__links">
-				<?php wp_nav_menu( [ 'menu' => intval( $especial_menu['id'] ) ] ) ?>
+				<?php wp_nav_menu(['menu' => intval($especial_menu['id'])]) ?>
 			</nav>
+
 		</div>
+		<div class="menu-especial__scroll">
+			<button class="menu-especial__scroll-btn menu-especial__scroll-btn--left" aria-label="Ver anterior">
+				&#9664;
+			</button>
+
+			<button class="menu-especial__scroll-btn menu-especial__scroll-btn--right" aria-label="Ver mais">
+				&#9654;
+			</button>
+		</div>
+
+
 	<?php endif; ?>
 <?php endif; ?>

@@ -117,13 +117,37 @@
             }
         }
 		.menu-especial{
+			position: relative;
+
 			ul{
 				@media(max-width: 992px){
 					display: flex;
 					flex-wrap: nowrap;
-					overflow: scroll;
+					overflow-x: scroll;
 					white-space: nowrap;
 					padding-bottom: 5px;
+				}
+			}
+
+			&__scroll{
+				display: flex;
+				justify-content: space-around;
+			}
+
+			&__scroll-btn {
+				display: none;
+				transform: translateY(-50%);
+				z-index: 10;
+				background-color: rgba(0,0,0,0.6);
+				color: #fff;
+				border: none;
+				border-radius: 50%;
+				width: 40px;
+				height: 40px;
+				cursor: pointer;
+
+				@media (max-width: 768px) {
+					display: block;
 				}
 			}
 		}

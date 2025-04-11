@@ -123,15 +123,26 @@
 				@media(max-width: 992px){
 					display: flex;
 					flex-wrap: nowrap;
+					font-size: 14px;
 					overflow-x: scroll;
-					white-space: nowrap;
+					padding-left: 37px;
 					padding-bottom: 5px;
+					white-space: nowrap;
+				}
+			}
+
+			&__links{
+				@media (max-width: 768px){
+					padding-right: 48px;
+					padding-left: 37;
 				}
 			}
 
 			&__scroll{
-				display: none;
-				justify-content: space-around;
+				display: flex;
+				justify-content: space-between;
+				position: relative;
+				top: -31px;
 			}
 
 			&__scroll-btn {
@@ -142,8 +153,8 @@
 				color: #fff;
 				border: none;
 				border-radius: 50%;
-				width: 40px;
-				height: 40px;
+				width: 30px;
+				height: 30px;
 				cursor: pointer;
 
 				@media (max-width: 768px) {

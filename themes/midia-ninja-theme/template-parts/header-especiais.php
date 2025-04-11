@@ -34,6 +34,15 @@ if (! empty($especial_term)):
 		$especial_style = "--menu-especial-bg: {$especial_menu['background_color']}; --menu-especial-link: {$especial_menu['link_color']}";
 ?>
 		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="<?= $especial_style ?>">
+			<div class="menu-especial__scroll">
+				<button class="menu-especial__scroll-btn menu-especial__scroll-btn--left" aria-label="Ver anterior">
+					&#9664;
+				</button>
+
+				<button class="menu-especial__scroll-btn menu-especial__scroll-btn--right" aria-label="Ver mais">
+					&#9654;
+				</button>
+			</div>
 			<a class="menu-especial__logo-desktop" href="<?= get_permalink($especial_page->ID) ?>">
 				<?= wp_get_attachment_image($especial_menu['logo_desktop'], 'medium', true) ?>
 			</a>
@@ -48,16 +57,6 @@ if (! empty($especial_term)):
 			</nav>
 
 		</div>
-		<div class="menu-especial__scroll">
-			<button class="menu-especial__scroll-btn menu-especial__scroll-btn--left" aria-label="Ver anterior">
-				&#9664;
-			</button>
-
-			<button class="menu-especial__scroll-btn menu-especial__scroll-btn--right" aria-label="Ver mais">
-				&#9654;
-			</button>
-		</div>
-
 
 	<?php endif; ?>
 <?php endif; ?>

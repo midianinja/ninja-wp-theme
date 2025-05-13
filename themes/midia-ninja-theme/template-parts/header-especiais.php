@@ -34,7 +34,7 @@ if (! empty($especial_term)):
 		$especial_style = "--menu-especial-bg: {$especial_menu['background_color']}; --menu-especial-link: {$especial_menu['link_color']}";
 ?>
 		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="<?= $especial_style ?>">
-			<div class="menu-especial__scroll">
+			<div class="menu-especial__scroll" style="top: <?= ! empty($especial_menu['logo_mobile']) ? '-165px' : '-25px' ?>;">
 				<button class="menu-especial__scroll-btn menu-especial__scroll-btn--left" aria-label="Ver anterior">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
 						<path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>

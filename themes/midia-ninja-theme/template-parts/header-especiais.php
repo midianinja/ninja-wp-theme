@@ -36,19 +36,33 @@ if (! empty($especial_term)):
 		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="<?= $especial_style ?>">
 			<div class="menu-especial__scroll">
 				<button class="menu-especial__scroll-btn menu-especial__scroll-btn--left" aria-label="Ver anterior">
-					&#9664;
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+						<path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+					</svg>
 				</button>
 
 				<button class="menu-especial__scroll-btn menu-especial__scroll-btn--right" aria-label="Ver mais">
-					&#9654;
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+						<path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+					</svg>
 				</button>
 			</div>
 			<a class="menu-especial__logo-desktop" href="<?= get_permalink($especial_page->ID) ?>">
 				<?= wp_get_attachment_image($especial_menu['logo_desktop'], 'medium', true) ?>
 			</a>
-			<a class="menu-especial__logo-mobile" href="<?= get_permalink($especial_page->ID) ?>">
-				<?= wp_get_attachment_image($especial_menu['logo_mobile'], 'medium', true) ?>
-			</a>
+			<?php if (! empty($especial_menu['logo_mobile'])) : ?>
+				<a class="menu-especial__logo-mobile" href="<?= get_permalink($especial_page->ID) ?>">
+					<?= wp_get_attachment_image($especial_menu['logo_mobile'], 'medium', true) ?>
+				</a>
+
+				<style>
+					@media (max-width: 768px) {
+						.single-especial .wp-block-columns:first-of-type>.wp-block-column:first-child {
+							display: none !important;
+						}
+					}
+				</style>
+			<?php endif; ?>
 
 			<!-- <button class="menu-especial__button hide-desktop">&#9776;</button> -->
 

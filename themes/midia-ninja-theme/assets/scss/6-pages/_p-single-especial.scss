@@ -142,14 +142,14 @@
 				display: flex;
 				justify-content: space-between;
 				position: relative;
-				top: -31px;
+				top: -25px;
 			}
 
 			&__scroll-btn {
 				display: none;
 				transform: translateY(-50%);
 				z-index: 10;
-				background-color: rgba(0,0,0,0.6);
+				background-color: transparent;
 				color: #fff;
 				border: none;
 				border-radius: 50%;
@@ -241,9 +241,7 @@ body{
     }
     &.especial-grammy2022{
         .menu-especial__logo-mobile{
-            .menu-especial__logo-mobile{
-                object-fit: contain !important;
-            }
+			object-fit: contain !important;
         }
     }
     &.especial-cop-26 {

@@ -2,26 +2,9 @@
 @use "./../2-atoms/a-mixins" as mixins;
 
 .single-especial{
-
-	// .main-header{
-	// 	@media(max-width: 992px){
-	// 		.primary-menu{
-	// 			display: none;
-	// 		}
-	// 	}
-	// }
-
     #app{
-		// @media(max-width: 992px){
-		// 	padding-top: 7rem;
-		// }
         .container{
             .post-content{
-                .wp-block-columns{
-                    @media(max-width: 992px){
-                        //display: block;
-                    }
-                }
                 .wp-block-columns:nth-of-type(1){
                     :first-child{
                         img{
@@ -39,36 +22,70 @@
 
 							&__inner-container{
 								@media (max-width: 768px){
-									display: flex;
-									gap: 8px;
+									align-items: center;
+									display: grid;
+									grid-template-columns: 1fr 1fr;
+									grid-template-rows: auto auto;
+									gap: 10px;
+								}
+
+								.wp-block-spacer{
+									@media (max-width: 768px){
+										display: none;
+									}
+								}
+
+								.wp-block-post-author{
+									display: none;
+
+									@media (max-width: 768px) {
+										display: grid;
+										border-bottom: 1px solid white;
+    									padding-bottom: 10px;
+										width: 100%;
+										padding-top: 16px;
+									}
+
+									&__name {
+										display: block !important;
+										color: white !important;
+										font-weight: 600;
+										grid-row: 1;
+  										grid-column: 2;
+									}
 								}
 
 								.wp-block-image:nth-child(2){
 									@media (max-width: 768px){
 										height: 80px;
+										grid-column: 1;
+  										grid-row: 1 / span 2;
 									}
 
 									img{
 										@media (max-width: 768px){
 											height: auto !important;
 											margin-top: 25px;
-											width: 340px !important;
+											width: 100% !important;
+											grid-row: 1 / span 2;
+  											grid-column: 1;
 										}
 									}
 								}
 							}
 
                             p{
-                                @media(max-width: 992px){
-                                    //max-width: 200px;
-                                    width: 100%;
-                                    margin-bottom: 1rem;
-									margin-top: 0;
+                                @media(max-width: 768px){
+									display: none;
                                 }
                             }
                             .wp-block-columns{
 								@media (max-width: 992px){
 									gap: 4px;
+									grid-row: 2;
+  									grid-column: 2;
+									margin-bottom: 0;
+									width: 100%;
 								}
 
                                 .wp-block-column{

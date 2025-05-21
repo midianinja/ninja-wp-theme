@@ -155,11 +155,22 @@
 				}
 			}
 
-			&__scroll{
-				display: flex;
-				justify-content: space-between;
-				position: relative;
-				top: -25px;
+			&__scroll {
+			    display: flex;
+			    justify-content: space-between;
+			    position: relative;
+			    top: -25px;
+			    position: relative;
+
+			    &.has-logo {
+			        top: -190px;
+			    }
+
+			    @media (max-width: 390px) {
+			        &.has-logo {
+			            top: -80px;
+			        }
+			    }
 			}
 
 			&__scroll-btn {

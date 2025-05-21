@@ -226,25 +226,29 @@ document.addEventListener("DOMContentLoaded", function () {
 	// }
 	// });
 
-	const scrollContainer = document.querySelector('.menu-especial__links ul');
-	const scrollLeftBtn = document.querySelector('.menu-especial__scroll-btn--left');
-	const scrollRightBtn = document.querySelector('.menu-especial__scroll-btn--right');
+const scrollContainer = document.querySelector('.menu-especial__links ul');
+const scrollLeftBtn = document.querySelector('.menu-especial__scroll-btn--left');
+const scrollRightBtn = document.querySelector('.menu-especial__scroll-btn--right');
 
-	if (scrollContainer && scrollLeftBtn && scrollRightBtn) {
-		const scrollAmount = 150;
+if (scrollContainer && scrollLeftBtn && scrollRightBtn) {
+	const scrollAmount = 150;
 
-		scrollLeftBtn.addEventListener('click', function () {
-			scrollContainer.scrollBy({
-				left: -scrollAmount,
-				behavior: 'smooth'
-			});
+	// Oculta a barra de rolagem horizontal
+	scrollContainer.style.overflowX = 'hidden';
+
+	scrollLeftBtn.addEventListener('click', function () {
+		scrollContainer.scrollBy({
+			left: -scrollAmount,
+			behavior: 'smooth'
 		});
+	});
 
-		scrollRightBtn.addEventListener('click', function () {
-			scrollContainer.scrollBy({
-				left: scrollAmount,
-				behavior: 'smooth'
-			});
+	scrollRightBtn.addEventListener('click', function () {
+		scrollContainer.scrollBy({
+			left: scrollAmount,
+			behavior: 'smooth'
 		});
-	}
+	});
+}
+
 })

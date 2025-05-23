@@ -170,8 +170,16 @@
 				position: absolute;
 				top: 21px;
 				display: flex;
-				gap: 295px;
+				gap: 365px;
 				z-index: 0;
+
+				@media (min-width: 376px) and (max-width: 430px) {
+					gap: 350px;
+				}
+
+				@media (max-width: 375px){
+					gap: 290px;
+				}
 			}
 
 			&__scroll-btn {

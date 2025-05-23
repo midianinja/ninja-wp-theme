@@ -16,7 +16,6 @@
                             border-radius: 8px;
 
                             @media(max-width: 992px){
-                                margin-top: 32px;
 								min-height: unset;
                             }
 
@@ -55,6 +54,12 @@
 									}
 								}
 
+								.wp-block-group{
+									@media (max-width: 768px){
+										margin-left: 0 !important;
+									}
+								}
+
 								.wp-block-image:nth-child(2){
 									@media (max-width: 768px){
 										height: 80px;
@@ -66,7 +71,7 @@
 										@media (max-width: 768px){
 											height: auto !important;
 											margin-top: 25px;
-											width: 100% !important;
+											width: 68px !important;
 											grid-row: 1 / span 2;
   											grid-column: 1;
 										}
@@ -90,7 +95,7 @@
 
                                 .wp-block-column{
                                     @media(max-width: 992px){
-                                        flex-basis: 15% !important;
+                                        flex-basis: 30% !important;
 										flex-grow: 0;
                                     }
 
@@ -136,6 +141,10 @@
 		.menu-especial{
 			position: relative;
 
+			&__logo-mobile{
+				position: relative;
+			}
+
 			ul{
 				@media(max-width: 992px){
 					display: flex;
@@ -158,19 +167,11 @@
 			&__scroll {
 			    display: flex;
 			    justify-content: space-between;
-			    position: relative;
-			    top: -25px;
-			    position: relative;
-
-			    &.has-logo {
-			        top: -190px;
-			    }
-
-			    @media (max-width: 390px) {
-			        &.has-logo {
-			            top: -80px;
-			        }
-			    }
+				position: absolute;
+				top: 21px;
+				display: flex;
+				gap: 295px;
+				z-index: 0;
 			}
 
 			&__scroll-btn {
@@ -191,8 +192,6 @@
 			}
 		}
     }
-
-
 
     &.especial-paris-2024{
         #news-olimpica{

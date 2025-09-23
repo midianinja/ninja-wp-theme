@@ -84,7 +84,6 @@ $has_thumbnail = (has_post_thumbnail() && get_post_meta(get_the_ID(), '_show_thu
 							<h5 class="excerpt"><?php the_excerpt(); ?></h5>
 
 							<!-- <div class="text-player">
-								<?php echo do_shortcode('[tta_listen_btn listen_text="Ouvir"]'); ?>
 							</div> -->
 						<?php endif; ?>
 

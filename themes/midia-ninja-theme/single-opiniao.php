@@ -82,9 +82,6 @@ $has_thumbnail = (has_post_thumbnail() && get_post_meta(get_the_ID(), '_show_thu
 							<h2 class="title"><?php the_title(); ?></h2>
 
 							<h5 class="excerpt"><?php the_excerpt(); ?></h5>
-
-							<!-- <div class="text-player">
-							</div> -->
 						<?php endif; ?>
 
 						<div class="author-info-mobile">

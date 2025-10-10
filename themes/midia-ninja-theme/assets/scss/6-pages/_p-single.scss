@@ -793,6 +793,10 @@
 
         }
 
+        &__scroll {
+            display: none;
+        }
+
         @media screen and (max-width: 767px) {
             gap: 3px;
             flex-direction: column-reverse;

@@ -165,7 +165,8 @@
 			}
 
 			&__scroll {
-			    display: flex;
+			    // display: flex;
+			    display: none;
 			    justify-content: space-between;
 				position: absolute;
 				top: 21px;

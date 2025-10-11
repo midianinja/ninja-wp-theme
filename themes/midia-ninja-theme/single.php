@@ -207,7 +207,7 @@ get_template_part( 'template-parts/header-especiais' );
                                         </span>
                                     </div>
 
-                                    <div class="page-share">
+                                    <div class="page-share hide-mobile">
                                         <span><?php _e('Share:', 'ninja');?></span>
                                         <div class="social-icons">
                                             <?php //the_social_networks_menu() ?>
@@ -215,6 +215,12 @@ get_template_part( 'template-parts/header-especiais' );
                                         </div>
                                     </div>
                                 </div>
+								<div class="page-share hide-desktop">
+									<span><?= __( 'Share:', 'ninja' ) ?></span>
+									<div class="social-icons">
+										<?= do_shortcode( '[addtoany]' ) ?>
+									</div>
+								</div>
                             </div>
                         </div>
 

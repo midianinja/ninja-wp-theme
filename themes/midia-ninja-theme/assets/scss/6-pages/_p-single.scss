@@ -433,6 +433,38 @@
                                     }
                                 }
                             }
+
+							&.hide-desktop {
+								justify-content: center;
+								margin: 2rem auto 1rem;
+								width: 100%;
+
+								@include mixins.mobile-up {
+									display: none !important;
+								}
+
+								.social-icons {
+									.addtoany_shortcode {
+										margin-left: 1rem;
+
+										.addtoany_list {
+											align-items: center;
+											margin-right: 0;
+
+											> a {
+												align-items: center;
+												display: flex;
+											}
+										}
+									}
+								}
+							}
+
+							&.hide-mobile {
+								@include mixins.mobile {
+									display: none !important;
+								}
+							}
                         }
                     }
 

@@ -864,6 +864,37 @@
                 text-decoration: none;
             }
 
+			.menu-cirio-2025-container {
+				@include mixins.mobile {
+					overflow-x: auto;
+				}
+
+				ul {
+					&.menu {
+						@include mixins.mobile {
+							display: flex;
+							flex-wrap: nowrap;
+							overflow-x: scroll !important;
+							width: 100%;
+						}
+
+						li {
+							@include mixins.mobile {
+								display: block;
+								flex-shrink: 0;
+							}
+
+							a {
+								@include mixins.mobile {
+									display: block;
+									padding-bottom: .5rem;
+									padding-top: .5rem;
+								}
+							}
+						}
+					}
+				}
+			}
         }
 
         &__scroll {
@@ -885,8 +916,6 @@
                 ul.menu {
                     text-align: left;
                     justify-content: left;
-                    display: grid;
-                    display: none;
                 }
             }
 

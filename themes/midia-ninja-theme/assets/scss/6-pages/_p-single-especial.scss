@@ -267,9 +267,13 @@
 			}
 
 		}
+
+		.wp-block-columns:first-of-type > .wp-block-column:first-child {
+			@include mixins.mobile {
+				display: block !important;
+			}
+		}
 	}
-
-
 }
 body{
     &.especial-circuito-de-formacao{

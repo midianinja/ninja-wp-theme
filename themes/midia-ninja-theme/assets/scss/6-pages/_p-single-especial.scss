@@ -196,15 +196,16 @@
 		}
 
 		.wp-block-cover {
-			&.topotiradentes25 {
-				img {
-					// @include mobile {
-					// 	position: relative;
-					// }
+			&#cobertura {
+				.wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column:not(:only-child) {
+					@include mixins.mobile {
+						padding-left: 1rem;
+						padding-right: 1rem;
+					}
 				}
 			}
 		}
-    }
+	}
 
     &.especial-paris-2024{
         #news-olimpica{
@@ -218,6 +219,55 @@
                 }
         }
     }
+
+	&.especial-cirio-2025 {
+		#banner {
+			.wp-block-cover {
+				@include mixins.mobile {
+					min-height: 300px !important;
+					padding-bottom: 2rem;
+					padding-top: 2rem;
+				}
+
+				.wp-block-cover__inner-container {
+					@include mixins.mobile {
+						flex-direction: column;
+					}
+
+					.wp-block-separator {
+						@include mixins.mobile {
+							display: none;
+							padding: 1rem;
+						}
+					}
+
+					.wp-block-image {
+						img {
+							@include mixins.mobile {
+								height: auto;
+								max-width: 190px;
+								width: 100%;
+							}
+						}
+					}
+
+					.wp-block-columns {
+						@include mixins.mobile {
+							justify-content: center;
+						}
+
+						.wp-block-column {
+								@include mixins.mobile {
+									display: flex;
+									justify-content: center;
+								}
+							}
+					}
+				}
+			}
+
+		}
+	}
 
 
 }

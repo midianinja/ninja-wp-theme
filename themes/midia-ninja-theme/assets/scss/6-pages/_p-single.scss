@@ -798,7 +798,7 @@
         }
 
         @media screen and (max-width: 767px) {
-            gap: 3px;
+            gap: 0;
             flex-direction: column-reverse;
 
             &__links {

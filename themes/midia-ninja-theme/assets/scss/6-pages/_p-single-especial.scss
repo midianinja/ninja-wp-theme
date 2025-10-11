@@ -228,6 +228,10 @@ body{
                 @include mixins.mobile{
                     max-width: 100%;
                 }
+
+				@include mixins.small {
+					flex-direction: column;
+				}
             }
             .wp-block-columns:nth-of-type(1){
                 img{

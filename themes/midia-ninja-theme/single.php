@@ -91,7 +91,7 @@ get_template_part( 'template-parts/header-especiais' );
                                         $url_afluente = get_term_meta($term_id, 'url_afluente', true);
 
                                         ?>
-                                        <div class="author-info-card">
+                                        <div class="author-info-card author-info-card__<?= $term->slug ?>">
                                             <a href="<?php echo $url_afluente ?>">
                                                 <?php if($avatar): ?>
                                                     <img src="<?php echo wp_get_attachment_url($avatar); ?>" alt="<?php echo $afluente_name; ?>" class="avatar" height="64" width="64">
@@ -101,7 +101,6 @@ get_template_part( 'template-parts/header-especiais' );
                                                 <div class="authname">
                                                     <?php echo $afluente_name; ?>
                                                 </div>
-
 
                                                 <div class="authbio">
                                                     <?php echo $afluente_bio; ?>

@@ -59,7 +59,10 @@ if (! empty($especial_term)):
 			<?php endif; ?>
 
 			<nav class="menu-especial__links">
-				<?php wp_nav_menu(['menu' => intval($especial_menu['id'])]) ?>
+				<?php wp_nav_menu( [
+						'menu' => intval( $especial_menu['id'] ),
+						'container_class' => 'menu-container'
+				] ) ?>
 			</nav>
 
 			<button class="menu-especial__scroll-btn menu-especial__scroll-btn--right" aria-label="Próximo">

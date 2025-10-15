@@ -34,14 +34,26 @@ if (! empty($especial_term)):
 		$especial_style = "--menu-especial-bg: {$especial_menu['background_color']}; --menu-especial-link: {$especial_menu['link_color']}";
 ?>
 		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="<?= $especial_style ?>">
-		  	<button class="menu-especial__scroll-btn menu-especial__scroll-btn--left" aria-label="Anterior">
+			<button class="menu-especial__scroll-btn menu-especial__scroll-btn--left" aria-label="Anterior">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-					<path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+					<path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
 				</svg>
 			</button>
 
 			<a class="menu-especial__logo-desktop" href="<?= get_permalink($especial_page->ID) ?>">
-				<?= wp_get_attachment_image($especial_menu['logo_desktop'], 'medium', true) ?>
+				<?php
+				$logo = $especial_menu['logo_desktop'];
+				if (is_array($logo)) {
+					$logo_id = $logo['ID'] ?? $logo['id'] ?? null;
+				} else {
+					$logo_id = $logo;
+				}
+
+				if ($logo_id) {
+					echo wp_get_attachment_image($logo_id, 'medium', true);
+				}
+				?>
+
 			</a>
 
 			<?php if (! empty($especial_menu['logo_mobile'])) : ?>
@@ -59,15 +71,15 @@ if (! empty($especial_term)):
 			<?php endif; ?>
 
 			<nav class="menu-especial__links">
-				<?php wp_nav_menu( [
-						'menu' => intval( $especial_menu['id'] ),
-						'container_class' => 'menu-container'
-				] ) ?>
+				<?php wp_nav_menu([
+					'menu' => intval($especial_menu['id']),
+					'container_class' => 'menu-container'
+				]) ?>
 			</nav>
 
 			<button class="menu-especial__scroll-btn menu-especial__scroll-btn--right" aria-label="Próximo">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-					<path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+					<path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z" />
 				</svg>
 			</button>
 		</div>

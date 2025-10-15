@@ -5,6 +5,38 @@
     #app{
         .container{
             .post-content{
+				.climax{
+					.wp-block-cover__inner-container{
+						@include mixins.mobile{
+							flex-direction: column;
+						}
+
+						.wp-block-image > img{
+							@include mixins.mobile{
+								height: auto;
+								max-width: 190px;
+								width: 100%;
+							}
+						}
+
+						.wp-block-columns:last-child{
+							@include mixins.mobile{
+								justify-content: center;
+								position: relative;
+								left: 10%;
+							}
+
+							.wp-block-column > .wp-block-image > a > img{
+								@include mixins.mobile{
+									height: auto;
+									max-width: 36px;
+									width: 100%;
+								}
+							}
+						}
+					}
+				}
+
                 .wp-block-columns:nth-of-type(1){
                     :first-child{
                         img{

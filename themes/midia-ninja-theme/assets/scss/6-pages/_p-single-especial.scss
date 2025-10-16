@@ -2,6 +2,7 @@
 @use "./../2-atoms/a-mixins" as mixins;
 @use "./../3-components/c-header-especiais";
 
+
 .single-especial {
     #app {
         @extend .header-especiais;
@@ -66,6 +67,192 @@
 									max-width: 25px;
 									width: 100%;
 								}
+							}
+						}
+					}
+				}
+
+				.model-albums{
+					margin-bottom: 0;
+				}
+
+				.model-videos {
+					background-color: var(--wp--preset--color--secondary-pure);
+					margin-bottom: 0;
+
+					@media(max-width: 782px) {
+						background-color: var(--wp--preset--color--secondary-light);
+					}
+
+					.container {
+						@media(max-width: 992px) {
+							padding: 50px 15px 48px 15px;
+						}
+
+						@media(max-width: 576px) {
+							padding: 16px 0px 48px 0;
+							margin-left: -12px;
+						}
+					}
+
+					.latest-horizontal-posts-block__content {
+						padding-left: 6rem;
+						padding-bottom: 1rem;
+
+						@media(max-width: 1052px) {
+							padding-bottom: 2rem;
+						}
+
+						@media(max-width: 992px) {
+							padding-left: 15px;
+							padding-bottom: 5.2rem;
+
+						}
+
+						@media(max-width: 767px) {
+							padding-bottom: 0rem;
+
+						}
+
+						h2 {
+							color: var(--wp--preset--color--primary-dark);
+							font-size: 3rem;
+							font-weight: 800;
+
+							@media(max-width: 992px) {
+								text-align: center;
+
+							}
+						}
+					}
+
+					.latest-horizontal-posts-block__slides {
+						&::after {
+							display: none;
+						}
+
+						&::before {
+							display: none;
+						}
+					}
+
+					.slick-list {
+						height: 332px;
+						margin-left: 1rem;
+
+						@media(max-width: 1052px) {
+							margin-top: 1.2rem;
+
+						}
+
+						@media(max-width: 767px) {
+							height: 265px;
+							margin-left: -10px;
+						}
+					}
+
+					.slick-slide,
+					.videos,
+					.post-thumbnail,
+					img {
+						width: 170px;
+						height: 302px;
+						border-radius: 12px;
+
+						@media(max-width: 1292px) {
+							width: 140px;
+							height: 272px;
+						}
+
+						@media(max-width: 1094px) {
+							width: 122px;
+							height: 225px;
+						}
+
+						@media(max-width: 964px) {
+							width: 102px;
+							height: 225px;
+						}
+
+						@media(max-width: 822px) {
+							width: 92px;
+							height: 225px;
+						}
+
+						@media(max-width: 782px) {
+							width: 325px;
+							height: 245px;
+							margin-left: auto;
+							margin-right: auto;
+							border-radius: 8px;
+						}
+
+						@media(max-width: 359px) {
+							width: 305px;
+							height: 245px;
+						}
+					}
+
+					.post-thumbnail {
+						.play {
+							display: none;
+						}
+					}
+
+					.latest-horizontal-posts-block__arrows {
+						@media(max-width: 782px) {
+							width: 240px;
+						}
+					}
+
+					.slick-arrow {
+						transition: none !important;
+					}
+
+					.slick-arrow.slick-prev {
+						background-color: var(--wp--preset--color--primary-light) !important;
+						background-image: url(variables.$p_theme_assets + "/images/arrow-white-next.svg");
+						transform: rotate(180deg);
+
+						&:hover {
+							background-color: #333 !important;
+							background-image: url(variables.$p_theme_assets + "/images/arrow-white-next.svg");
+							background-position: center !important;
+							background-repeat: no-repeat !important;
+						}
+					}
+
+					.slick-arrow.slick-next {
+						background-color: var(--wp--preset--color--primary-light) !important;
+						background-image: url(variables.$p_theme_assets + "/images/arrow-left-slider-white.png");
+
+						&:hover {
+							background-color: #333 !important;
+							background-image: url(variables.$p_theme_assets + "/images/arrow-left-slider-white.png");
+							background-position: center !important;
+							background-repeat: no-repeat !important;
+						}
+					}
+
+					.slick-arrow.slick-disabled {
+						background-color: #898989 !important;
+					}
+
+					li.slick-active {
+						background-color: #898989;
+					}
+
+					.latest-horizontal-posts-block__dots {
+						.slick-dots {
+							li {
+								@media(max-width: 782px) {
+									background-color: var(--wp--preset--color--secondary-dark);
+								}
+							}
+
+							.slick-active {
+								background-color: var(--wp--preset--color--primary-dark);
+
 							}
 						}
 					}
@@ -400,10 +587,16 @@ body{
 
 }
 
+.especial-cop-30,
 .especial-cop-30-1{
 	.especial-sobre{
 		background-color: #ffe7b6;
 		justify-content: center;
+		margin-bottom: 0;
+
+		@include mixins.mobile{
+			margin-top: 24px;
+		}
 
 		.wp-block-column:first-child {
 		    flex-basis: 770px !important;

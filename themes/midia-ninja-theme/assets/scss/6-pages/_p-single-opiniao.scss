@@ -1,9 +1,14 @@
 @use "./../1-settings/s-variables"as variables;
 @use "./../2-atoms/a-mixins"as mixins;
+@use "./../3-components/c-header-especiais";
 @import "../3-components/c-share";
 @import "../5-blocks/b-image";
 
 .single-opiniao {
+	#app {
+		@extend .header-especiais;
+	}
+
     #single-opiniao {
         main {
             article {

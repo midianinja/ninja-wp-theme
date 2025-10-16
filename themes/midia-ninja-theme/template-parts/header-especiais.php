@@ -33,8 +33,9 @@ if (! empty($especial_term)):
 		$especial_page = $especial_pages[0];
 		$especial_style = "--menu-especial-bg: {$especial_menu['background_color']}; --menu-especial-link: {$especial_menu['link_color']}";
 ?>
+	<header class="header-especiais">
 		<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="<?= $especial_style ?>">
-		  	<button class="menu-especial__scroll-btn menu-especial__scroll-btn--left" aria-label="Anterior">
+			<button class="menu-especial__scroll-btn menu-especial__scroll-btn--left" aria-label="Anterior">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
 					<path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
 				</svg>
@@ -71,6 +72,6 @@ if (! empty($especial_term)):
 				</svg>
 			</button>
 		</div>
-
+	</header>
 	<?php endif; ?>
 <?php endif; ?>

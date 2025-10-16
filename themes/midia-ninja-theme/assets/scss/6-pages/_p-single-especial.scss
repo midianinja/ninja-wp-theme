@@ -47,6 +47,10 @@
 						}
 
 						.wp-block-columns:last-child{
+							@include mixins.mobile{
+								gap: 17px !important;
+								padding-inline: 0;
+							}
 							.wp-block-column{
 								@include mixins.mobile{
 									max-width: 25px;
@@ -458,8 +462,27 @@ body{
 
 }
 
-.especial-cop-30{
-	.wp-block-columns:last-child{
+.especial-cop-30-1{
+	.especial-sobre{
+		background-color: #ffe7b6;
+		justify-content: center;
+
+		.wp-block-column:first-child {
+		    flex-basis: 770px !important;
+
+		    @include mixins.mobile {
+		        flex-basis: inherit !important;
+		    }
+		}
+
+		.wp-block-column:last-child {
+		    flex-basis: 342px !important;
+
+		    @include mixins.mobile {
+		        flex-basis: inherit !important;
+		    }
+		}
+
 		@include mixins.mobile{
 			padding-inline: 16px;
 		}

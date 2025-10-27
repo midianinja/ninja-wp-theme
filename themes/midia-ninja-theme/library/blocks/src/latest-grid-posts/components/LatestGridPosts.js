@@ -10,49 +10,59 @@ function LatestGridPosts({ compare, maxPosts, noCompare, noPostType, noQueryTerm
         fetchPosts(currentPage)
     }, [currentPage])
 
-    const fetchPosts = useCallback(async (page) => {
-        setError(null)
-        const base = `/wp-json/ninja/v1/posts/${postType}`
-        const urlParams = {
-            compare: compare,
-            taxonomy: taxonomy,
-            terms: terms,
-            page: page.toString(),
-            per_page: perPage,
-            max_posts: maxPosts,
-            post_not_in: postNotIn,
-            no_compare: noCompare,
-            no_post_type: noPostType,
-            no_query_terms: noQueryTerms,
-            no_taxonomy: noTaxonomy
-        }
+	const fetchPosts = useCallback(async (page) => {
+		setError(null);
+		const base = `/wp-json/ninja/v1/posts/${postType}`;
+		const urlParams = {
+			compare: compare,
+			taxonomy: taxonomy,
+			terms: terms,
+			page: page.toString(),
+			per_page: perPage,
+			max_posts: maxPosts,
+			post_not_in: postNotIn,
+			no_compare: noCompare,
+			no_post_type: noPostType,
+			no_query_terms: noQueryTerms,
+			no_taxonomy: noTaxonomy
+		};
 
-        if (showChildren) {
-            urlParams.post_parent = 1
-        }
+		if (showChildren) {
+			urlParams.post_parent = 1;
+		}
 
-        const url = buildUrl(base, urlParams)
+		const url = buildUrl(base, urlParams);
 
-        try {
-            const response = await fetch(url)
-            if (response.ok) {
-                const data = await response.json()
-                if (data && Array.isArray(data.posts) && typeof data.totalPages === "number") {
-                    if (data.totalPages > 0) {
-                        setTotalPages(data.totalPages)
-                    }
-                    setPosts(data.posts)
-                } else {
-                    setError("Dados recebidos são inválidos.")
-                }
-            } else {
-                throw new Error('Response not ok')
-            }
-        } catch (error) {
-            console.error('Error fetching posts:', error)
-            setError('Failed to load posts.')
-        }
-    }, [noPostType, noQueryTerms, noTaxonomy, postType, perPage, showAuthor, showDate, showExcerpt, taxonomy, terms, currentPage])
+		try {
+			const response = await fetch(url)
+			if (!response.ok) {
+				throw new Error('Response not ok')
+			}
+
+			const data = await response.json()
+
+			if (data && Array.isArray(data.posts) && typeof data.totalPages === "number") {
+				setTotalPages(data.totalPages)
+				setPosts(data.posts)
+
+				// ✅ não trata ausência de posts como erro
+				if (data.posts.length === 0) {
+					setError(null)
+				}
+			} else {
+				setError("Dados recebidos são inválidos.")
+			}
+		} catch (error) {
+			console.error('Error fetching posts:', error)
+
+			if (!posts.length) {
+				setError(null)
+			} else {
+				setError('Failed to load posts.')
+			}
+		}
+	}, [noPostType, noQueryTerms, noTaxonomy, postType, perPage, showAuthor, showDate, showExcerpt, taxonomy, terms, currentPage]);
+
 
     const buildUrl = (base, params) => {
         const query = Object.entries(params)
@@ -80,12 +90,14 @@ function LatestGridPosts({ compare, maxPosts, noCompare, noPostType, noQueryTerm
 
     return (
         <>
-            <div className="latest-grid-posts-block__posts">
-                {posts.map(post => (
-                    <Post key={post.id} post={post} showAuthor={showAuthor} showDate={showDate} showExcerpt={showExcerpt} />
-                ))}
-                {error && <p>Erro ao carregar posts: {error}</p>}
-            </div>
+			<div className="latest-grid-posts-block__posts">
+				{error && <p className="error-message">Erro ao carregar posts: {error}</p>}
+				{!error && posts.length === 0 && <p className="no-posts-message"></p>}
+				{posts.map(post => (
+					<Post key={post.id} post={post} showAuthor={showAuthor} showDate={showDate} showExcerpt={showExcerpt} />
+				))}
+			</div>
+
             <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

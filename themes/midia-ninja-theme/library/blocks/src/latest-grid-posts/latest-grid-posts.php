@@ -19,7 +19,7 @@ function latest_grid_posts_callback( $attributes ) {
     $show_date      = ! empty( $attributes['showDate'] );
     $show_excerpt   = ! empty( $attributes['showExcerpt'] );
 
-    // Exclude posts
+    // Exclusão de posts
     $no_compare     = ! empty( $attributes['noCompare'] ) ? $attributes['noCompare'] : 'OR';
     $no_post_type   = ! empty( $attributes['noPostType'] ) ? $attributes['postType'] : '';
     $no_taxonomy    = ! empty( $attributes['noTaxonomy'] ) ? $attributes['noTaxonomy'] : '';
@@ -40,13 +40,16 @@ function latest_grid_posts_callback( $attributes ) {
 
     $args = build_posts_query( $attributes, $post__not_in );
 
+    $args['suppress_filters'] = false;
+
+    $args['blockId'] = $block_id;
+
     $posts_query = get_posts( $args );
 
     $latest_blocks_posts_ids = array_merge( $post__not_in, $posts_query );
 
     ob_start();
 
-    // Start the block structure
     echo '<div id="block__' . $block_id . '" class="' . implode( ' ', $block_classes ) . '">';
         echo '<div class="container">';
             echo '<div class="latest-grid-posts-block__content"
@@ -68,7 +71,7 @@ function latest_grid_posts_callback( $attributes ) {
             echo '</div><!-- .latest-grid-posts-block__content -->';
             echo '<ul class="latest-grid-posts-block__pagination"></ul>';
         echo '</div>';
-    echo '</div><!-- .latest-grid-posts-block-block -->';
+    echo '</div><!-- .latest-grid-posts-block -->';
 
     $output = ob_get_clean();
     return $output;

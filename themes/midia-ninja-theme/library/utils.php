@@ -823,5 +823,27 @@ function embed_instagram_reel( $atts ) {
 }
 add_shortcode( 'insta_reel', 'embed_instagram_reel' );
 
+add_action( 'pre_get_posts', 'ninja_latest_grid_filter_by_language' );
+
+add_action( 'pre_get_posts', 'ninja_latest_grid_filter_by_language' );
+
+function ninja_latest_grid_filter_by_language( $query ) {
+    if ( is_admin() ) {
+        return;
+    }
+
+    if ( ! isset( $query->query['blockId'] ) ) {
+        return;
+    }
+
+    $current_lang = apply_filters( 'wpml_current_language', null );
+
+    if ( $current_lang ) {
+        $query->set( 'lang', $current_lang );
+    }
+}
+
+
+
 
 

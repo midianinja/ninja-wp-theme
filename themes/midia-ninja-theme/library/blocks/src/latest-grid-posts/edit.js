@@ -68,6 +68,8 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const onChangeLanguage = ( value ) => {
 		setAttributes( { localeCode: value } )
+        setAttributes({ queryTerms: [] })
+        setAttributes({ noQueryTerms: [] })
 	}
 
     const onChangeSelectTerm = (value) => {

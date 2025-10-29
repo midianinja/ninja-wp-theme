@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
-function LatestGridPosts({ compare, maxPosts, noCompare, noPostType, noQueryTerms, noTaxonomy, perPage, postNotIn, postType, taxonomy, terms, showAuthor, showChildren, showDate, showExcerpt }) {
+function LatestGridPosts({ compare, localeCode, maxPosts, noCompare, noPostType, noQueryTerms, noTaxonomy, perPage, postNotIn, postType, taxonomy, terms, showAuthor, showChildren, showDate, showExcerpt }) {
     const [posts, setPosts] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
@@ -10,11 +10,13 @@ function LatestGridPosts({ compare, maxPosts, noCompare, noPostType, noQueryTerm
         fetchPosts(currentPage)
     }, [currentPage])
 
+
 	const fetchPosts = useCallback(async (page) => {
 		setError(null);
 		const base = `/wp-json/ninja/v1/posts/${postType}`;
 		const urlParams = {
 			compare: compare,
+			locale_code: localeCode,
 			taxonomy: taxonomy,
 			terms: terms,
 			page: page.toString(),
@@ -32,9 +34,9 @@ function LatestGridPosts({ compare, maxPosts, noCompare, noPostType, noQueryTerm
 		}
 
 		const url = buildUrl(base, urlParams);
-
 		try {
-			const response = await fetch(url)
+			const response = await fetch(url, {cache: "no-store", time: Math.random()});
+
 			if (!response.ok) {
 				throw new Error('Response not ok')
 			}
@@ -45,7 +47,6 @@ function LatestGridPosts({ compare, maxPosts, noCompare, noPostType, noQueryTerm
 				setTotalPages(data.totalPages)
 				setPosts(data.posts)
 
-				// ✅ não trata ausência de posts como erro
 				if (data.posts.length === 0) {
 					setError(null)
 				}
@@ -61,7 +62,7 @@ function LatestGridPosts({ compare, maxPosts, noCompare, noPostType, noQueryTerm
 				setError('Failed to load posts.')
 			}
 		}
-	}, [noPostType, noQueryTerms, noTaxonomy, postType, perPage, showAuthor, showDate, showExcerpt, taxonomy, terms, currentPage]);
+	}, [localeCode, noPostType, noQueryTerms, noTaxonomy, postType, perPage, showAuthor, showDate, showExcerpt, taxonomy, terms, currentPage]);
 
 
     const buildUrl = (base, params) => {
@@ -83,6 +84,18 @@ function LatestGridPosts({ compare, maxPosts, noCompare, noPostType, noQueryTerm
             .join('&')
         return `${base}?${query}`
     }
+
+	useEffect(() => {
+		setCurrentPage(1);
+	}, [
+		compare, localeCode, taxonomy, terms, perPage, maxPosts, postNotIn,
+		noCompare, noPostType, noQueryTerms, noTaxonomy, postType, showChildren
+	]);
+
+	useEffect(() => {
+		if (!postType) return;
+		fetchPosts(currentPage);
+	}, [fetchPosts, currentPage, postType]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page)

@@ -8,6 +8,7 @@ import { useInstanceId } from "@wordpress/compose"
 import apiFetch from '@wordpress/api-fetch'
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor'
 import SelectPostType from "../../shared/components/SelectPostType"
+import SelectLanguages from "../../shared/components/SelectLanguages"
 import SelectTerms from "../../shared/components/SelectTerms"
 import LatestGridPosts from "./components/LatestGridPosts"
 
@@ -34,9 +35,11 @@ export default function Edit( { attributes, setAttributes } ) {
         className: 'latest-grid-posts-block'
     } )
 
+
     const {
         blockId,
         compare,
+		localeCode,
         noCompare,
         noPostType,
         noQueryTerms,
@@ -62,6 +65,10 @@ export default function Edit( { attributes, setAttributes } ) {
         setAttributes({ postType: value })
         setAttributes({ queryTerms: [] })
     }
+
+	const onChangeLanguage = ( value ) => {
+		setAttributes( { localeCode: value } )
+	}
 
     const onChangeSelectTerm = (value) => {
         setAttributes({ queryTerms: value.length > 0 ? value : undefined })
@@ -169,6 +176,10 @@ export default function Edit( { attributes, setAttributes } ) {
                     title={ __( 'Query', 'ninja' ) }
                     initialOpen={ false }
                 >
+					<PanelRow>
+						<SelectLanguages language={localeCode} onChangeLanguage={onChangeLanguage} />
+					</PanelRow>
+
                     <PanelRow>
                         <SelectPostType postType={ postType } onChangePostType={ onChangePostType } />
                     </PanelRow>
@@ -281,6 +292,7 @@ export default function Edit( { attributes, setAttributes } ) {
             <div { ...blockProps }>
                 <Disabled>
                     <LatestGridPosts
+						localeCode={localeCode}
                         postType={postType}
                         perPage={postsPerPage}
                         showAuthor={showAuthor}

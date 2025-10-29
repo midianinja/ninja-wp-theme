@@ -822,28 +822,3 @@ function embed_instagram_reel( $atts ) {
     return '<blockquote class="instagram-media" data-instgrm-permalink="' . esc_url( $atts['url'] ) . '" data-instgrm-version="14" style=" background:#FFF; border:0; margin: 1px; max-width:540px; padding:0; width:99.375%;"></blockquote><script async src="//www.instagram.com/embed.js"></script>';
 }
 add_shortcode( 'insta_reel', 'embed_instagram_reel' );
-
-add_action( 'pre_get_posts', 'ninja_latest_grid_filter_by_language' );
-
-add_action( 'pre_get_posts', 'ninja_latest_grid_filter_by_language' );
-
-function ninja_latest_grid_filter_by_language( $query ) {
-    if ( is_admin() ) {
-        return;
-    }
-
-    if ( ! isset( $query->query['blockId'] ) ) {
-        return;
-    }
-
-    $current_lang = apply_filters( 'wpml_current_language', null );
-
-    if ( $current_lang ) {
-        $query->set( 'lang', $current_lang );
-    }
-}
-
-
-
-
-

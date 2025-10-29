@@ -7,6 +7,7 @@ const containers = document.querySelectorAll(".latest-grid-posts-block__content"
 
 containers.forEach((container) => {
     const compare      = container.getAttribute('data-compare')
+	const localeCode   = container.getAttribute('data-locale-code')
     const maxPosts     = container.getAttribute('data-max-posts')
     const noCompare    = container.getAttribute('data-no-compare')
     const noPostType   = container.getAttribute('data-no-post-type')
@@ -25,6 +26,7 @@ containers.forEach((container) => {
     ReactDOM.render(
         <LatestGridPosts
             compare={compare}
+			localeCode={localeCode}
             maxPosts={maxPosts}
             noCompare={noCompare}
             noPostType={noPostType}

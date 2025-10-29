@@ -15,6 +15,9 @@
             "type": "string",
             "default": "OR"
         },
+		"localeCode": {
+            "type": "string"
+        },
         "noCompare": {
             "type": "string",
             "default": "OR"

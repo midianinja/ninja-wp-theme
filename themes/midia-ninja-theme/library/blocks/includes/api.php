@@ -9,7 +9,37 @@ use phpDocumentor\Reflection\Types\Null_;
  *
  * Use the callback functions in the same order as the endpoints you created
  */
+
+add_filter('rest_request_before_callbacks', function ($response, $handler, $request) {
+    $target_endpoints = ['/ninja/v1/posts/post'];
+    if (in_array($request->get_route(), $target_endpoints, true)) {
+
+		if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
+			$current_language = ICL_LANGUAGE_CODE;
+			$params = $request->get_params();
+			if ( isset( $params['locale_code'] ) && ! empty( $params['locale_code'] ) ) {
+				$current_language = sanitize_text_field( $params['locale_code'] );
+			}
+			do_action('wpml_switch_language', $current_language);
+		}
+    }
+    return $response;
+}, 10, 3);
+
 function register_endpoints() {
+
+	if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
+		register_rest_route(
+			'wpml/v1',
+			'/languages',
+			[
+				'methods' => 'GET',
+				'callback' => 'Ninja\\get_wpml_languages_callback',
+				'permission_callback' => '__return_true',
+			]
+		);
+	}
+
     register_rest_route(
         'ninja/v1',
         '/posttypes',
@@ -74,6 +104,11 @@ function register_endpoints() {
                         return true;
                     }
                 ],
+				'locale_code' => [
+					'required' => false,
+					'validate_callback' => '__return_true',
+					'default' => null,
+				],
                 'max_posts' => [
                     'required' => false,
                     'default' => 10,
@@ -210,6 +245,21 @@ function register_endpoints() {
 
 add_action( 'rest_api_init', 'Ninja\\register_endpoints' );
 
+function get_wpml_languages_callback( $request ) {
+	$wpml_active_languages = apply_filters( 'wpml_active_languages', NULL, 'skip_missing=0&orderby=code' );
+	$languages = [];
+
+	if ( ! empty( $wpml_active_languages ) ) {
+		foreach( $wpml_active_languages as $language ){
+			$languages[] = [$language['language_code'] => strtoupper( $language['native_name'] )];
+		}
+	}
+
+	$languages = apply_filters( 'wpml/helpers/languages', $languages );
+
+	return new \WP_REST_Response( $languages, 200 );
+}
+
 function get_public_post_types( $request ) {
     $args = [
         'public' => true,
@@ -317,7 +367,11 @@ function get_posts_by_taxonomy_term( $request ) {
         'posts_per_page'      => $per_page,
         'paged'               => $page,
         'no_found_rows'       => false,
-        'ignore_sticky_posts' => true
+        'ignore_sticky_posts' => true,
+		'suppress_filters'    => false,
+		'cache_results'	   	  => false,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
     ];
 
     $args['post__not_in'] = array_merge(
@@ -409,6 +463,8 @@ function get_posts_by_taxonomy_term( $request ) {
         }
     }
 
+	wp_reset_postdata();
+
     if ( empty( $data ) ) {
         return new \WP_Error( 'no_posts', 'Nenhum post encontrado com os critérios especificados', ['status' => 404] );
     }
@@ -457,6 +513,7 @@ function get_coauthors_callback( $request ) {
 /**
  * Adds custom fields to a response post.
  */
+
 function add_fields_to_post() {
 	register_rest_field( 'post', 'main_category', [
 		'get_callback' => function( $attr ) {

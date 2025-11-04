@@ -594,8 +594,16 @@ body{
 		justify-content: center;
 		margin-bottom: 0;
 
+		.wp-block-spacer{
+			@include mixins.mobile{
+				display: none;
+			}
+		}
+
 		@include mixins.mobile{
-			margin-top: 24px;
+			margin-bottom: 0;
+			margin-top: 0;
+			padding-bottom: 24px;
 		}
 
 		.wp-block-column:first-child {
@@ -619,7 +627,34 @@ body{
 		}
 	}
 
+	#app > .container > .post-content > .wp-block-columns > .wp-block-column > .latest-grid-posts-block > .container > .latest-grid-posts-block__pagination{
+		margin-bottom: 0;
+		margin-top: 0;
+	}
+
 	.latest-horizontal-posts-block{
 		margin-bottom: 0;
 	}
+}
+
+.wp-block-atbs-tabs {
+	margin-bottom: 100px;
+
+    .tabs-container {
+        .tabs-nav {
+            .tabs-titles {
+                background-color: transparent;
+
+                .tab-title {
+                	color: #111111;
+
+                    &.active {
+                        border-bottom: 2px solid #111111;
+                		background-color: #333;
+						color: #fff;
+                    }
+                }
+            }
+        }
+    }
 }

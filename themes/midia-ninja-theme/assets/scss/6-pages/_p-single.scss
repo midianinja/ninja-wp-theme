@@ -910,7 +910,7 @@
 
         @media screen and (max-width: 767px) {
             gap: 0;
-            flex-direction: column-reverse;
+            // flex-direction: column-reverse;
 
             &__links {
                 padding: 10px;
@@ -1053,82 +1053,6 @@
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* ====== MOBILE ====== */
-@media (max-width: 768px) {
-  .menu-especial {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .menu-especial__links .menu-container ul {
-    flex-direction: column;
-    gap: 0;
-    align-items: flex-start;
-  }
-
-  .menu-especial__links .menu-container .menu-item-has-children > a::after {
-    content: "▸";
-    float: right;
-    margin-left: 0.5rem;
-  }
-
-  .menu-especial__links .menu-container .menu-item-has-children.open > a::after {
-    content: "▾";
-  }
-
-  .menu-especial__links .menu-container .sub-menu {
-    position: relative;
-    display: none;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    background: transparent;
-    box-shadow: none;
-    padding-left: 1rem;
-  }
-
-  .menu-especial__links .menu-container .menu-item-has-children.open > .sub-menu {
-    display: block;
-  }
-
-  .menu-especial__links .menu-container .sub-menu li a {
-    color: var(--menu-especial-link, #fff);
-  }
-}
-
-/* ====== SCROLL BUTTONS ====== */
-.menu-especial__scroll-btn {
-  background: transparent;
-  color: var(--menu-especial-link, #fff);
-  border: none;
-  cursor: pointer;
-  padding: 0.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.2s ease;
-}
-
-.menu-especial__scroll-btn:hover {
-  opacity: 0.8;
-}
-
-/* ====== LOGOS ====== */
-.menu-especial__logo-desktop img,
-.menu-especial__logo-mobile img {
-  height: 40px;
-  width: auto;
-}
-
-@media (max-width: 768px) {
-  .menu-especial__logo-desktop {
-    display: none;
-  }
-  .menu-especial__logo-mobile {
-    display: block;
-  }
-}
-
 .menu-especial-submenu {
   display: none;
   position: fixed;
@@ -1156,3 +1080,4 @@
 .menu-especial-submenu a:hover {
   background: rgba(255, 255, 255, 0.15);
 }
+

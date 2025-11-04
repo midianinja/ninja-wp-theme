@@ -841,6 +841,7 @@
             background-color: var(--menu-especial-bg);
             min-height: 40px;
             place-content: center;
+			position: relative;
 
             ul,
             li {
@@ -879,6 +880,11 @@
 						}
 
 						li {
+
+							.fas{
+								display: none;
+							}
+
 							@include mixins.mobile {
 								display: block;
 								flex-shrink: 0;
@@ -895,6 +901,7 @@
 					}
 				}
 			}
+
         }
 
         &__scroll {
@@ -950,4 +957,202 @@
             }
         }
     }
+}
+
+/* ====== MENU DE ESPECIAIS ====== */
+
+.menu-especial {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--menu-especial-bg, #333);
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 0.5rem 1rem;
+}
+
+.menu-especial__links {
+  position: relative;
+  flex: 1;
+  overflow: visible;
+}
+
+.menu-especial__links .menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-especial__links .menu-container ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-especial__links .menu-container li {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.menu-especial__links .menu-container a {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  color: var(--menu-especial-link, #fff);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+  transition: background 0.2s ease, opacity 0.2s ease;
+  border-radius: 6px;
+}
+
+.menu-especial__links .menu-container a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 0.9;
+}
+
+.menu-especial__links .menu-container .menu-item-has-children > a::after {
+  content: "▾";
+  font-size: 0.8em;
+  margin-left: 0.4rem;
+}
+
+/* ====== SUBMENU ====== */
+
+.menu-especial__links .menu-container .sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--menu-especial-bg, #333);
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  z-index: 9999;
+}
+
+.menu-especial__links .menu-container li:hover > .sub-menu {
+  display: block;
+}
+
+.menu-especial__links .menu-container .sub-menu li a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+.menu-especial__links .menu-container .sub-menu li a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ====== MOBILE ====== */
+@media (max-width: 768px) {
+  .menu-especial {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menu-especial__links .menu-container ul {
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .menu-especial__links .menu-container .menu-item-has-children > a::after {
+    content: "▸";
+    float: right;
+    margin-left: 0.5rem;
+  }
+
+  .menu-especial__links .menu-container .menu-item-has-children.open > a::after {
+    content: "▾";
+  }
+
+  .menu-especial__links .menu-container .sub-menu {
+    position: relative;
+    display: none;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    background: transparent;
+    box-shadow: none;
+    padding-left: 1rem;
+  }
+
+  .menu-especial__links .menu-container .menu-item-has-children.open > .sub-menu {
+    display: block;
+  }
+
+  .menu-especial__links .menu-container .sub-menu li a {
+    color: var(--menu-especial-link, #fff);
+  }
+}
+
+/* ====== SCROLL BUTTONS ====== */
+.menu-especial__scroll-btn {
+  background: transparent;
+  color: var(--menu-especial-link, #fff);
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.menu-especial__scroll-btn:hover {
+  opacity: 0.8;
+}
+
+/* ====== LOGOS ====== */
+.menu-especial__logo-desktop img,
+.menu-especial__logo-mobile img {
+  height: 40px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .menu-especial__logo-desktop {
+    display: none;
+  }
+  .menu-especial__logo-mobile {
+    display: block;
+  }
+}
+
+.menu-especial-submenu {
+  display: none;
+  position: fixed;
+  background: var(--menu-especial-bg, #333);
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 0;
+  z-index: 9999;
+}
+
+.menu-especial-submenu li {
+  list-style: none;
+}
+
+.menu-especial-submenu a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+.menu-especial-submenu a:hover {
+  background: rgba(255, 255, 255, 0.15);
 }

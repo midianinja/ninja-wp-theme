@@ -966,7 +966,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--menu-especial-bg, #333);
+  background: var(--menu-especial-bg);
   overflow-x: auto;
   overflow-y: visible;
   padding: 0.5rem 1rem;
@@ -1027,7 +1027,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background: var(--menu-especial-bg, #333);
+  background-color: var(--menu-especial-bg);
   border-radius: 6px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   padding: 0.5rem 0;
@@ -1042,11 +1042,11 @@
 .menu-especial__links .menu-container .sub-menu li a {
   display: block;
   padding: 0.6rem 1rem;
-  color: #fff;
+  color: var(--menu-especial-link);
   text-decoration: none;
   font-weight: 500;
   background: transparent;
-  transition: background 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .menu-especial__links .menu-container .sub-menu li a:hover {
@@ -1056,7 +1056,7 @@
 .menu-especial-submenu {
   display: none;
   position: fixed;
-  background: var(--menu-especial-bg, #333);
+  background: var(--menu-especial-bg);
   border-radius: 6px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   padding: 0.5rem 0;
@@ -1065,6 +1065,7 @@
 
 .menu-especial-submenu li {
   list-style: none;
+  background: var(--menu-especial-bg);
 }
 
 .menu-especial-submenu a {
@@ -1073,8 +1074,8 @@
   color: #fff;
   text-decoration: none;
   font-weight: 500;
-  background: transparent;
-  transition: background 0.2s ease;
+  background: var(--menu-especial-bg);
+  transition: 0.2s ease;
 }
 
 .menu-especial-submenu a:hover {

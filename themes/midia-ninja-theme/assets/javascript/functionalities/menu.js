@@ -212,6 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuRoot = document.querySelector('.menu-especial__links');
   if (!menuRoot) return;
 
+  const isDesktop = () => window.matchMedia('(min-width: 769px)').matches;
+
   const closeItem = (item) => {
     item.classList.remove('open');
     const sm = item.querySelector('.sub-menu');
@@ -237,6 +239,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  const copyVars = (target, fromEl) => {
+    const root = fromEl.closest('.menu-especial') || document.documentElement;
+    const cs = getComputedStyle(root);
+    const bg = cs.getPropertyValue('--menu-especial-bg').trim();
+    const link = cs.getPropertyValue('--menu-especial-link').trim();
+    if (bg) target.style.setProperty('--menu-especial-bg', bg);
+    if (link) target.style.setProperty('--menu-especial-link', link);
+  };
+
   const menuItems = menuRoot.querySelectorAll('.menu-item-has-children');
   menuItems.forEach(item => {
     const submenu = item.querySelector('.sub-menu');
@@ -245,17 +256,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const floating = submenu.cloneNode(true);
     floating.classList.add('menu-especial-submenu');
     floating.style.display = 'none';
-    floating.style.position = 'absolute';
+    floating.style.position = 'fixed';
+    floating.style.zIndex = '9999';
+    copyVars(floating, item);
     document.body.appendChild(floating);
 
     let isHovering = false;
 
-    const showFloating = () => {
+    const positionFloating = () => {
       const rect = item.getBoundingClientRect();
-      floating.style.display = 'block';
       floating.style.top = rect.bottom - 10 + 'px';
       floating.style.left = rect.left + 'px';
       floating.style.minWidth = rect.width + 'px';
+    };
+
+    const showFloating = () => {
+      if (!isDesktop()) return;
+      copyVars(floating, item);
+      positionFloating();
+      floating.style.display = 'block';
     };
 
     const hideFloating = () => {
@@ -267,6 +286,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     floating.addEventListener('mouseenter', () => { isHovering = true; floating.style.display = 'block'; });
     floating.addEventListener('mouseleave', () => { isHovering = false; floating.style.display = 'none'; });
+    floating.addEventListener('click', e => { e.stopPropagation(); });
+
+    window.addEventListener('scroll', () => { if (floating.style.display === 'block') positionFloating(); }, { passive: true });
+    window.addEventListener('resize', () => {
+      if (floating.style.display === 'block') positionFloating();
+      if (isDesktop()) {
+        document.querySelectorAll('.menu-especial__links .menu-item-has-children .sub-menu').forEach(sm => sm.style.display = '');
+        document.querySelectorAll('.menu-especial__links .menu-item-has-children').forEach(i => i.classList.remove('open'));
+      } else {
+        floating.style.display = 'none';
+      }
+    });
   });
 
   document.addEventListener('click', e => {
@@ -275,13 +306,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keyup', e => {
     if (e.key === 'Escape') closeAll();
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.matchMedia('(min-width: 769px)').matches) {
-      document.querySelectorAll('.menu-especial__links .menu-item-has-children .sub-menu').forEach(sm => sm.style.display = '');
-      document.querySelectorAll('.menu-especial__links .menu-item-has-children').forEach(i => i.classList.remove('open'));
-    }
   });
 });
 

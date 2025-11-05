@@ -309,3 +309,145 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+  const getNavEl = (wrap) =>
+    wrap.querySelector('.tabs-titles') ||
+    wrap.querySelector('[role="tablist"]') ||
+    wrap.querySelector('.atbs-tabs__nav') ||
+    wrap.querySelector('ul');
+
+  const getTabs = (nav) => {
+    const sel = '[role="tab"], .tab-title, .tab-title > a, .tab-title > button, li > a, li > button';
+    const found = Array.from(nav.querySelectorAll(sel));
+    return found.length ? found : Array.from(nav.children);
+  };
+
+  const parsePX = (v) => (v ? parseFloat(v) || 0 : 0);
+
+  const centerTabInView = (nav, tab) => {
+    const item = tab.closest('li') || tab;
+    const cs = getComputedStyle(nav);
+    const padL = parsePX(cs.paddingLeft);
+    const padR = parsePX(cs.paddingRight);
+    const max = Math.max(0, nav.scrollWidth - nav.clientWidth);
+    const target = (item.offsetLeft - padL) - (nav.clientWidth - item.offsetWidth) / 2;
+    const clamped = Math.min(Math.max(target, 0), max);
+    nav.scrollTo({ left: clamped, behavior: 'smooth' });
+  };
+
+  const getActiveIndex = (wrap, tabs) => {
+    let i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+    if (i > -1) return i;
+    i = tabs.findIndex(t => t.classList.contains('is-active') || t.classList.contains('active'));
+    if (i > -1) return i;
+    if (wrap.dataset.atbsActive) return Math.max(0, Math.min(tabs.length - 1, Number(wrap.dataset.atbsActive) || 0));
+    return 0;
+  };
+
+  const activateTab = (wrap, nav, tabs, index) => {
+    if (index < 0 || index >= tabs.length) return;
+    wrap.dataset.atbsActive = String(index);
+    const keepY = window.scrollY;
+    tabs[index].dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    requestAnimationFrame(() => {
+      window.scrollTo(window.scrollX, keepY);
+      centerTabInView(nav, tabs[index]);
+    });
+  };
+
+  const updateArrows = (nav, leftBtn, rightBtn) => {
+    const max = Math.max(0, nav.scrollWidth - nav.clientWidth);
+    leftBtn.disabled = nav.scrollLeft <= 1;
+    rightBtn.disabled = nav.scrollLeft >= max - 1;
+  };
+
+  const placeArrows = (wrap, nav, leftBtn, rightBtn) => {
+    const wRect = wrap.getBoundingClientRect();
+    const nRect = nav.getBoundingClientRect();
+    const top = (nRect.top - wRect.top) + nRect.height / 2 - leftBtn.offsetHeight / 2;
+    leftBtn.style.top = `${top}px`;
+    rightBtn.style.top = `${top}px`;
+  };
+
+  const initCarousel = (wrap) => {
+    if (!isMobile() || wrap.dataset.atbsCarouselInit === '1') return;
+
+    const nav = getNavEl(wrap);
+    if (!nav) return;
+
+    const tabs = getTabs(nav);
+    if (!tabs.length) return;
+
+    // garante “respiro” final/inicial via JS (sem depender do CSS)
+    const cs = getComputedStyle(nav);
+    const endPadDefault = 56;
+    const startPadDefault = 14;
+    const padL = parsePX(cs.paddingLeft);
+    const padR = parsePX(cs.paddingRight);
+    if (padL < startPadDefault) nav.style.paddingLeft = startPadDefault + 'px';
+    if (padR < endPadDefault) nav.style.paddingRight = endPadDefault + 'px';
+
+    const leftBtn = document.createElement('button');
+    leftBtn.type = 'button';
+    leftBtn.className = 'atbs-tabs__scroll-btn atbs-tabs__scroll-btn--left';
+    leftBtn.setAttribute('aria-label', 'Anterior');
+    leftBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>';
+
+    const rightBtn = document.createElement('button');
+    rightBtn.type = 'button';
+    rightBtn.className = 'atbs-tabs__scroll-btn atbs-tabs__scroll-btn--right';
+    rightBtn.setAttribute('aria-label', 'Próximo');
+    rightBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>';
+
+    wrap.appendChild(leftBtn);
+    wrap.appendChild(rightBtn);
+
+    tabs.forEach((t, i) => t.addEventListener('click', () => { wrap.dataset.atbsActive = String(i); }));
+
+    leftBtn.addEventListener('click', () => {
+      const i = getActiveIndex(wrap, tabs);
+      activateTab(wrap, nav, tabs, Math.max(0, i - 1));
+    });
+
+    rightBtn.addEventListener('click', () => {
+      const i = getActiveIndex(wrap, tabs);
+      activateTab(wrap, nav, tabs, Math.min(tabs.length - 1, i + 1));
+    });
+
+    nav.addEventListener('scroll', () => updateArrows(nav, leftBtn, rightBtn), { passive: true });
+
+    const ro = new ResizeObserver(() => {
+      placeArrows(wrap, nav, leftBtn, rightBtn);
+      updateArrows(nav, leftBtn, rightBtn);
+    });
+    ro.observe(nav);
+    ro.observe(wrap);
+
+    placeArrows(wrap, nav, leftBtn, rightBtn);
+    updateArrows(nav, leftBtn, rightBtn);
+
+    const initIdx = getActiveIndex(wrap, tabs);
+    centerTabInView(nav, tabs[initIdx]);
+
+    wrap.dataset.atbsCarouselInit = '1';
+  };
+
+  const teardownCarousel = (wrap) => {
+    wrap.querySelectorAll('.atbs-tabs__scroll-btn').forEach(b => b.remove());
+    wrap.removeAttribute('data-atbs-carousel-init');
+  };
+
+  const refreshAll = () => {
+    document.querySelectorAll('.wp-block-atbs-tabs').forEach(wrap => {
+      if (isMobile()) initCarousel(wrap); else teardownCarousel(wrap);
+    });
+  };
+
+  refreshAll();
+  window.addEventListener('resize', refreshAll, { passive: true });
+
+  const mo = new MutationObserver(refreshAll);
+  mo.observe(document.body, { childList: true, subtree: true });
+});

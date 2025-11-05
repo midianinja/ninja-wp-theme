@@ -41,12 +41,12 @@ if (! empty($especial_term)):
 				</svg>
 			</button>
 
-			<a class="menu-especial__logo-desktop" href="<?= get_permalink($especial_page->ID) ?>">
+			<a class="menu-especial__logo-desktop" href="<?= home_url('/') ?>">
 				<?= wp_get_attachment_image($especial_menu['logo_desktop'], 'medium', true) ?>
 			</a>
 
 			<?php if (! empty($especial_menu['logo_mobile'])) : ?>
-				<a class="menu-especial__logo-mobile" href="<?= get_permalink($especial_page->ID) ?>">
+				<a class="menu-especial__logo-desktop" href="<?= home_url('/') ?>">
 					<?= wp_get_attachment_image($especial_menu['logo_mobile'], 'medium', true) ?>
 				</a>
 

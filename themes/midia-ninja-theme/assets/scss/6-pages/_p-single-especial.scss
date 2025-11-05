@@ -9,6 +9,12 @@
 
         .container{
             .post-content{
+				h1{
+					@include mixins.mobile{
+						font-size: 2.4rem;
+						line-height: 3.2rem;
+					}
+				}
 				.climax{
 					@include mixins.mobile{
 						padding-inline: 30px;
@@ -645,6 +651,11 @@ body{
             .tabs-titles {
                 background-color: transparent;
 
+				@include mixins.mobile {
+					flex-direction: row;
+					overflow: scroll;
+				}
+
                 .tab-title {
                 	color: #111111;
 
@@ -658,3 +669,65 @@ body{
         }
     }
 }
+
+@media (max-width: 768px) {
+  .wp-block-atbs-tabs { position: relative; }
+
+  .wp-block-atbs-tabs .atbs-tabs__nav,
+  .wp-block-atbs-tabs [role="tablist"] {
+    --tabs-start-spacer: 14px;
+    --tabs-end-spacer: 56px;
+    display: flex;
+    gap: .5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 .5rem;
+    padding-inline-start: var(--tabs-start-spacer);
+    padding-inline-end: var(--tabs-end-spacer);
+    scroll-padding-inline-start: var(--tabs-start-spacer);
+    scroll-padding-inline-end: var(--tabs-end-spacer);
+  }
+  .wp-block-atbs-tabs .atbs-tabs__nav::-webkit-scrollbar,
+  .wp-block-atbs-tabs [role="tablist"]::-webkit-scrollbar { display: none; }
+
+  .wp-block-atbs-tabs .atbs-tabs__nav::before,
+  .wp-block-atbs-tabs [role="tablist"]::before {
+    content: "";
+    flex: 0 0 var(--tabs-start-spacer);
+  }
+  .wp-block-atbs-tabs .atbs-tabs__nav::after,
+  .wp-block-atbs-tabs [role="tablist"]::after {
+    content: "";
+    flex: 0 0 var(--tabs-end-spacer);
+  }
+
+  .wp-block-atbs-tabs .atbs-tabs__nav > *,
+  .wp-block-atbs-tabs [role="tablist"] > * {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+
+  .wp-block-atbs-tabs .tabs-nav { overflow: visible; }
+
+  .wp-block-atbs-tabs .atbs-tabs__scroll-btn {
+    position: absolute;
+    height: 36px; width: 36px;
+    display: grid; place-items: center;
+    border: 0; border-radius: 9999px;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .wp-block-atbs-tabs .atbs-tabs__scroll-btn[disabled] { opacity: .35; cursor: default; }
+  .wp-block-atbs-tabs .atbs-tabs__scroll-btn--left { left: -12px; }
+  .wp-block-atbs-tabs .atbs-tabs__scroll-btn--right { right: 4px; }
+}
+
+@media (min-width: 769px) {
+  .wp-block-atbs-tabs .atbs-tabs__scroll-btn { display: none; }
+}
+

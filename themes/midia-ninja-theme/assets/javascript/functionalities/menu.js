@@ -228,14 +228,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const dropdownParents = menuRoot.querySelectorAll('.menu-item-has-children > a');
   dropdownParents.forEach(link => {
     link.addEventListener('click', e => {
-      e.preventDefault();
-      e.stopPropagation();
       const parent = link.parentElement;
-      const isOpening = !parent.classList.contains('open');
-      document.querySelectorAll('.menu-especial__links .menu-item-has-children.open').forEach(i => { if (i !== parent) closeItem(i); });
-      if (isOpening) parent.classList.add('open'); else parent.classList.remove('open');
       const submenu = parent.querySelector('.sub-menu');
-      if (submenu) submenu.style.display = parent.classList.contains('open') ? 'block' : 'none';
+      const href = link.getAttribute('href') || '#';
+
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+
+      if (isDesktop()) {
+        closeAll();
+        return;
+      }
+
+      if (!parent.classList.contains('open')) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelectorAll('.menu-especial__links .menu-item-has-children.open').forEach(i => { if (i !== parent) closeItem(i); });
+        parent.classList.add('open');
+        if (submenu) submenu.style.display = 'block';
+      } else {
+        window.location.href = href;
+      }
     });
   });
 
@@ -308,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeAll();
   });
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const isMobile = () => window.matchMedia('(max-width: 768px)').matches;

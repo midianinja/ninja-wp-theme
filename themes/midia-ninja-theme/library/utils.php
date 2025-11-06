@@ -843,6 +843,21 @@ function nin_post_translation_switcher($post_id = null) {
     $translations = apply_filters('wpml_get_element_translations', null, $trid, $element_type);
     if (empty($translations) || !is_array($translations)) return '';
 
+    $fallback_titles = [
+        'pt' => 'Também disponível em:',
+        'es' => 'También disponible en:',
+        'en' => 'Also available in:',
+    ];
+    $fallback_title = $fallback_titles[$post_lang] ?? 'Also available in:';
+
+    $title = apply_filters(
+        'wpml_translate_single_string',
+        $fallback_title,
+        'Theme: Nin',
+        'translation_switcher_title',
+        $post_lang
+    );
+
     $items = [];
 
     foreach ($translations as $lang_code => $t) {
@@ -867,7 +882,7 @@ function nin_post_translation_switcher($post_id = null) {
 
     ob_start(); ?>
     <nav class="nin-translation-switcher" aria-label="Traduções disponíveis">
-        <span class="nin-translation-title">Também disponível em:</span>
+        <span class="nin-translation-title"><?php echo esc_html($title); ?></span>
         <ul class="nin-translation-list">
             <?php foreach ($items as $it): ?>
                 <li class="nin-translation-item">
@@ -883,4 +898,16 @@ function nin_post_translation_switcher($post_id = null) {
     <?php
     return ob_get_clean();
 }
+
+add_action('after_setup_theme', function () {
+    if (function_exists('icl_register_string')) {
+
+        do_action(
+            'wpml_register_single_string',
+            'Theme: Nin',
+            'translation_switcher_title',
+            'Also available in:'
+        );
+    }
+});
 

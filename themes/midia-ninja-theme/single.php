@@ -327,6 +327,7 @@ get_template_part( 'template-parts/header-especiais' );
 
                 <section class="post-content">
                     <?php //get_template_part('template-parts/content/player-elevenlabs');?>
+					<?php echo nin_post_translation_switcher(); ?>
                     <?php the_content(); ?>
 
                     <div class="page-share">

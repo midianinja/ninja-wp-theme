@@ -10,6 +10,7 @@ get_template_part( 'template-parts/header-especiais' );
 ?>
 
 <div class="container container-single" id="single-especial">
+
 	<?php while ( have_posts() ) :
 		the_post(); ?>
 		<div class="post-content">

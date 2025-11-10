@@ -2,6 +2,7 @@
 @use "./../2-atoms/a-mixins"as mixins;
 @import "./../2-atoms/a-mixins";
 
+.tax-marcador_especial,
 .archive {
     @import "../5-blocks/b-newspack-blocks-homepage-articles";
 
@@ -23,10 +24,22 @@
         border: none;
     }
 
+	#app{
+		margin-bottom: 100px;
+
+		@media (max-width: 768px) {
+			padding-inline: 16px;
+		}
+	}
+
     #app .container {
         main.content {
             width: 100%;
             padding: 0;
+
+			@media (max-width: 768px) {
+				margin-bottom: 32px;
+			}
 
             @media (min-width: 1200px) {
                 width: 70%;
@@ -34,6 +47,14 @@
 
             .posts {
                 left: 0;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 30px;
+
+				@media (max-width: 768px) {
+					display: flex;
+					flex-direction: column;
+				}
 
                 .post-card--thumb .aspect-ratio img {
                     width: 100%;
@@ -41,6 +62,43 @@
                     object-fit: cover;
                     border-radius: 8px;
                 }
+
+				.post-card--content{
+					display: flex;
+					flex-direction: column;
+
+					& > a{
+						text-decoration: none;
+					}
+
+					& > a > h5{
+					    color: #111111;
+					    font-family: var(--wp--preset--font-family--manrope);
+					    font-size: 24px;
+					    font-style: normal;
+					    font-weight: 800;
+					    line-height: 125%;
+					    letter-spacing: -0.24px;
+					    max-width: 371px;
+					    width: 100%;
+					    margin-top: 16px;
+					    margin-bottom: 8px;
+					}
+
+					.entry-date {
+					    order: 3;
+					    color: var(--wp--preset--color--primary-light);
+					    font-family: var(--wp--preset--font-family--manrope);
+					    font-size: 13px;
+					    font-style: normal;
+					    font-weight: 700;
+					    line-height: 145%;
+					}
+
+					.entry-excerpt{
+						display: none;
+					}
+				}
             }
         }
     }

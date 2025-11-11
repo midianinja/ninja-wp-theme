@@ -15,6 +15,10 @@ jobs:
       working-directory: dev-scripts
       run: |
         /bin/bash ./producao.sh
+    - name: Run composer # Remove or modify this step as needed
+      working-directory: dev-scripts
+      run: |
+        /bin/bash ./composer-install.sh
     - name: Unzip the archive (prevents double zip problem)
       working-directory: zips
       id: unzip

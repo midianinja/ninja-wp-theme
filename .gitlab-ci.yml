@@ -4,6 +4,7 @@ services:
   - docker:18.01.0-ce-dind
 stages:
 - build_assets
+- run_composer
 - create_pack
 - deploy
      
@@ -25,6 +26,9 @@ build_assets:
  only:
    - /main/
    - tags
+   - /feat/flickr/
+
+
  tags:
    - docker
  image: node:12
@@ -35,11 +39,26 @@ build_assets:
    - npm --prefix themes/${THEME_NAME}/ run production
    - rm -rf themes/${THEME_NAME}/node_modules
 
+run_composer:
+  stage: run_composer
+  only:
+   - /main/
+   - /feat/flickr/
+   - tags
+  tags:
+   - docker
+  image: composer:2.9    
+  script:
+    - cd themes/${THEME_NAME}/
+    - composer install
+
 ########################DEVELOP#######################
 create_pack_develop:
   stage: create_pack
   only:
     - /main/
+    - /feat/flickr/
+
   tags:
     - docker
   image: hacklab/alpine-3.14.2-zip:1.1.0

@@ -13,3 +13,4 @@ wp-content/languages/*
 mariadb_data/
 mix-manifest.json
 wp-root
+themes/midia-ninja-theme/vendor/

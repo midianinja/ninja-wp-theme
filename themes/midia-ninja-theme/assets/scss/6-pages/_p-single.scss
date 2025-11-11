@@ -30,6 +30,30 @@
 		            background-color: #fff;
 		            margin-bottom: 0;
 		            height: auto;
+
+					&__slides{
+						.post-meta{
+							&--terms{
+
+								& > ul{
+									margin-block-start: 0;
+								}
+
+								& > ul > li {
+								    color: #27AE60 !important;
+								    font-family: var(--wp--preset--font-family--manrope);
+								    font-size: 10px;
+								    font-style: normal;
+								    font-weight: 700;
+								    line-height: 21px;
+								    letter-spacing: 1px;
+								    text-transform: uppercase;
+								    background-color: transparent !important;
+								    margin-bottom: 0;
+								}
+							}
+						}
+					}
 		        }
 		    }
 		}

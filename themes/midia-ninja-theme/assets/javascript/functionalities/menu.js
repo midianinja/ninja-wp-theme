@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function () {
   pop.style.position = 'fixed';
   pop.style.zIndex = '9999';
   pop.style.display = 'none';
-  pop.style.left = '207px';
+  pop.style.left = '237px';
   document.body.appendChild(pop);
 
   let openOwner = null;

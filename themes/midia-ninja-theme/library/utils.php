@@ -822,3 +822,91 @@ function embed_instagram_reel( $atts ) {
     return '<blockquote class="instagram-media" data-instgrm-permalink="' . esc_url( $atts['url'] ) . '" data-instgrm-version="14" style=" background:#FFF; border:0; margin: 1px; max-width:540px; padding:0; width:99.375%;"></blockquote><script async src="//www.instagram.com/embed.js"></script>';
 }
 add_shortcode( 'insta_reel', 'embed_instagram_reel' );
+
+function nin_post_translation_switcher($post_id = null) {
+    if (!$post_id) $post_id = get_the_ID();
+    if (!$post_id) return '';
+
+    $type = get_post_type($post_id);
+
+    $post_lang_data = apply_filters('wpml_post_language_details', null, $post_id);
+    $post_lang = $post_lang_data['language_code'] ?? null;
+    if (!$post_lang) return '';
+
+    $active_langs = apply_filters('wpml_active_languages', null, ['skip_missing' => 0, 'orderby' => 'code']);
+    if (empty($active_langs) || !is_array($active_langs)) return '';
+
+    $element_type = 'post_' . $type;
+    $trid = apply_filters('wpml_element_trid', null, $post_id, $element_type);
+    if (!$trid) return '';
+
+    $translations = apply_filters('wpml_get_element_translations', null, $trid, $element_type);
+    if (empty($translations) || !is_array($translations)) return '';
+
+    $fallback_titles = [
+        'pt' => 'Também disponível em:',
+        'es' => 'También disponible en:',
+        'en' => 'Also available in:',
+    ];
+    $fallback_title = $fallback_titles[$post_lang] ?? 'Also available in:';
+
+    $title = apply_filters(
+        'wpml_translate_single_string',
+        $fallback_title,
+        'Theme: Nin',
+        'translation_switcher_title',
+        $post_lang
+    );
+
+    $items = [];
+
+    foreach ($translations as $lang_code => $t) {
+        if ($lang_code === $post_lang) continue;
+
+        $translated_id = apply_filters('wpml_object_id', $post_id, $type, false, $lang_code);
+        if (!$translated_id || get_post_status($translated_id) !== 'publish') continue;
+
+        $raw_url = get_permalink($translated_id);
+        $url = apply_filters('wpml_permalink', $raw_url, $lang_code);
+
+        $label = $active_langs[$lang_code]['native_name'] ?? strtoupper($lang_code);
+
+        $items[] = [
+            'url'   => $url,
+            'label' => $label,
+            'code'  => $lang_code,
+        ];
+    }
+
+    if (empty($items)) return '';
+
+    ob_start(); ?>
+    <nav class="nin-translation-switcher" aria-label="Traduções disponíveis">
+        <span class="nin-translation-title"><?php echo esc_html($title); ?></span>
+        <ul class="nin-translation-list">
+            <?php foreach ($items as $it): ?>
+                <li class="nin-translation-item">
+                    <a href="<?php echo esc_url($it['url']); ?>"
+                       hreflang="<?php echo esc_attr($it['code']); ?>"
+                       rel="alternate">
+                        <?php echo esc_html($it['label']); ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
+    <?php
+    return ob_get_clean();
+}
+
+add_action('after_setup_theme', function () {
+    if (function_exists('icl_register_string')) {
+
+        do_action(
+            'wpml_register_single_string',
+            'Theme: Nin',
+            'translation_switcher_title',
+            'Also available in:'
+        );
+    }
+});

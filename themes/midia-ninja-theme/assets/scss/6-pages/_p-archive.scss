@@ -47,14 +47,7 @@
 
             .posts {
                 left: 0;
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 30px;
 
-				@media (max-width: 768px) {
-					display: flex;
-					flex-direction: column;
-				}
 
                 .post-card--thumb .aspect-ratio img {
                     width: 100%;

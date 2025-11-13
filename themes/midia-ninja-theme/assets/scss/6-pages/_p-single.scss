@@ -34,13 +34,6 @@
 
 				.wp-block-cover__inner-container{
 					.wp-block-gallery{
-
-						@include mixins.mobile {
-							display: flex;
-							flex-direction: column;
-							align-items: center;
-						}
-
 						.wp-block-image > a{
 							display: flex;
 							justify-content: center;

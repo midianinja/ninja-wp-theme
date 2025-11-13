@@ -34,6 +34,11 @@
 
 				.wp-block-cover__inner-container{
 					.wp-block-gallery{
+						@include mobile {
+						    display: grid;
+						    grid-template-columns: 1fr 1fr;
+						}
+
 						.wp-block-image > a{
 							display: flex;
 							justify-content: center;

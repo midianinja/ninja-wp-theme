@@ -361,3 +361,42 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const tabsBlock = document.querySelector('#single-especial .wp-block-atbs-tabs');
+  if (!tabsBlock) return;
+
+  const tabButtons = tabsBlock.querySelectorAll('.tabs-nav .tab-title');
+  if (!tabButtons.length) return;
+
+  const abrirAbaPorIndice = (index) => {
+    const btn = tabButtons[index];
+    if (!btn) return;
+    btn.click();
+  };
+
+  const abrirAbaPelaUrl = () => {
+    const url = new URL(window.location.href);
+    const dia = url.searchParams.get('dia');
+    if (!dia) return;
+
+    const index = parseInt(dia, 10) - 1;
+    if (Number.isNaN(index) || index < 0 || index >= tabButtons.length) return;
+
+    abrirAbaPorIndice(index);
+  };
+
+  tabButtons.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      const url = new URL(window.location.href);
+      url.searchParams.set('dia', i + 1);
+      window.history.replaceState({}, '', url);
+    });
+  });
+
+  window.addEventListener('load', function () {
+    setTimeout(abrirAbaPelaUrl, 50);
+  });
+
+  setTimeout(abrirAbaPelaUrl, 200);
+});

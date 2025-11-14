@@ -34,7 +34,7 @@
 
 				.wp-block-cover__inner-container{
 					.wp-block-gallery{
-						@include mobile {
+						@include mixins.mobile {
 						    display: grid;
 						    grid-template-columns: 1fr 1fr;
 						}

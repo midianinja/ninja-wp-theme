@@ -160,70 +160,185 @@ function flickr_render_settings_page() {
 		return;
 	}
 
-	if ( isset( $_POST['hacklab_flickr_disconnect'] ) && check_admin_referer( 'hacklab_flickr_disconnect' ) ) {
+	$api_key       = flickr_get_api_key();
+	$secret_is_set = flickr_api_secret_is_set();
+
+	if ( isset( $_POST['hacklab_flickr_save_keys'] ) && check_admin_referer( 'hacklab_flickr_save_keys' ) ) {
+
+		if ( isset( $_POST['hacklab_flickr_api_key'] ) ) {
+			$new_key = sanitize_text_field( wp_unslash( $_POST['hacklab_flickr_api_key'] ) );
+			flickr_set_api_key( $new_key );
+			$api_key = $new_key;
+		}
+
+		if ( isset( $_POST['hacklab_flickr_api_secret'] ) ) {
+			$new_secret = trim( (string) wp_unslash( $_POST['hacklab_flickr_api_secret'] ) );
+			if ( $new_secret !== '' ) {
+				flickr_set_api_secret( $new_secret );
+				$secret_is_set = true;
+			}
+		}
+
+		echo '<div class="updated"><p>Chaves atualizadas.</p></div>';
+	}
+
+	if ( isset( $_POST['hacklab_flickr_disconnect'] ) && check_admin_referer( 'hacklab_flickr_connection' ) ) {
 		flickr_disconnect();
 		echo '<div class="updated"><p>Desconectado do Flickr.</p></div>';
 	}
 
 	$is_connected = flickr_is_connected();
-	$tokens = flickr_get_tokens();
+	$tokens       = flickr_get_tokens();
 
-	$perm = isset( $_POST['hacklab_flickr_perm'] ) ? sanitize_text_field( $_POST['hacklab_flickr_perm']) : $tokens['perm'];
-	if ( ! in_array( $perm, ['read', 'write', 'delete'], true ) ) {
-		$perm = 'read';
+	if ( $is_connected && ! empty( $tokens['perm'] ) ) {
+		$current_perm = $tokens['perm'];
+	} else {
+		$current_perm = isset( $_POST['hacklab_flickr_perm'] )
+			? sanitize_text_field( wp_unslash( $_POST['hacklab_flickr_perm'] ) )
+			: 'read';
+
+		if ( ! in_array( $current_perm, [ 'read', 'write', 'delete' ], true ) ) {
+			$current_perm = 'read';
+		}
 	}
 
-	$nonce = wp_create_nonce( 'hacklab_flickr_auth' );
-	$auth_url_base = add_query_arg( [
-		'action'   => 'hacklab_flickr_auth_start',
-		'perm'     => $perm,
-		'_wpnonce' => $nonce
-	], admin_url( 'admin-ajax.php' ) );
+	$can_connect = ( $api_key !== '' && $secret_is_set );
 
-	$auth_url = add_query_arg( 'perm', $perm, $auth_url_base );
-
+	$nonce    = wp_create_nonce( 'hacklab_flickr_auth' );
+	$auth_url = add_query_arg(
+		[
+			'action'   => 'hacklab_flickr_auth_start',
+			'perm'     => $current_perm,
+			'_wpnonce' => $nonce,
+		],
+		admin_url( 'admin-ajax.php' )
+	);
 	?>
 
 	<div class="wrap">
 		<h1>Configurações do Flickr</h1>
 		<i>Configurações usadas na integração do plugin Hacklab Blocks com o Flickr</i>
 
-		<form method="post">
+		<hr />
+
+		<h2>Credenciais da API</h2>
+		<form method="post" style="margin-top:12px;">
+			<?php wp_nonce_field( 'hacklab_flickr_save_keys' ); ?>
+			<input type="hidden" name="hacklab_flickr_save_keys" value="1" />
+
 			<table class="form-table" role="presentation">
 				<tr>
-					<th scope="row">Status</th>
+					<th scope="row">
+						<label for="hacklab_flickr_api_key">Chave da API</label>
+					</th>
+					<td>
+						<input type="text"
+							   id="hacklab_flickr_api_key"
+							   name="hacklab_flickr_api_key"
+							   class="regular-text"
+							   value="<?php echo esc_attr( $api_key ); ?>"
+							   autocomplete="off" />
+						<p class="description">
+							Sua <em>API Key</em> pública do Flickr.
+						</p>
+					</td>
+				</tr>
+
+				<tr>
+					<th scope="row">
+						<label for="hacklab_flickr_api_secret">Segredo da API</label>
+					</th>
+					<td>
+						<input type="password"
+							   id="hacklab_flickr_api_secret"
+							   name="hacklab_flickr_api_secret"
+							   class="regular-text"
+							   value=""
+							   placeholder="<?php echo $secret_is_set ? esc_attr( '***********' ) : ''; ?>"
+							   autocomplete="new-password" />
+						<p class="description">
+							Digite para definir/atualizar. Deixe em branco para manter o segredo atual.
+							O valor não é exibido por segurança.
+						</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>
+				<button class="button button-primary" type="submit">
+					Salvar chaves
+				</button>
+			</p>
+		</form>
+
+		<hr />
+
+		<h2>Conexão com o Flickr</h2>
+		<form method="post" style="margin-top:12px;">
+			<?php wp_nonce_field( 'hacklab_flickr_connection' ); ?>
+
+			<table class="form-table" role="presentation">
+				<tr>
+					<th scope="row">Status de conexão</th>
 					<td>
 						<?php if ( $is_connected ) : ?>
-							<strong>Conectado <code>[<?php echo esc_html( $tokens['perm'] ); ?>]</code></strong><br>
-						<?php else: ?>
+							<strong>
+								Conectado
+								<?php if ( ! empty( $tokens['perm'] ) ) : ?>
+									<code>[<?php echo esc_html( $tokens['perm'] ); ?>]</code>
+								<?php endif; ?>
+							</strong>
+						<?php else : ?>
 							<strong>Desconectado</strong>
 						<?php endif; ?>
 					</td>
 				</tr>
+
 				<?php if ( ! $is_connected ) : ?>
 					<tr>
-						<th scope="row">Permissão</th>
+						<th scope="row">Permissão solicitada</th>
 						<td>
 							<select name="hacklab_flickr_perm">
-								<option value="read"   <?php selected( $perm, 'read' ); ?>>read</option>
-								<option value="write"  <?php selected( $perm,'write' ); ?>>write</option>
-								<option value="delete" <?php selected( $perm,'delete' ); ?>>delete</option>
+								<option value="read"   <?php selected( $current_perm, 'read' ); ?>>read</option>
+								<option value="write"  <?php selected( $current_perm, 'write' ); ?>>write</option>
+								<option value="delete" <?php selected( $current_perm, 'delete' ); ?>>delete</option>
 							</select>
-							<p class="description">Escolha o escopo antes de conectar.</p>
+							<p class="description">
+								Escopo de permissão que será solicitado ao conectar ao Flickr.
+							</p>
 						</td>
 					</tr>
 				<?php endif; ?>
 			</table>
 
-			<?php if ( $is_connected ): ?>
-				<?php wp_nonce_field('hacklab_flickr_disconnect'); ?>
+			<?php if ( $is_connected ) : ?>
+
 				<p>
-					<button class="button button-secondary" name="hacklab_flickr_disconnect" value="1">Desconectar</button>
+					<button class="button button-secondary"
+							type="submit"
+							name="hacklab_flickr_disconnect"
+							value="1">
+						Desconectar
+					</button>
 				</p>
-			<?php else: ?>
+
+			<?php else : ?>
+
 				<p>
-					<a class="button button-primary" href="<?php echo esc_url( $auth_url ); ?>">Conectar ao Flickr</a>
+					<a class="button button-primary <?php echo $can_connect ? '' : 'disabled'; ?>"
+					   href="<?php echo esc_url( $can_connect ? $auth_url : '#' ); ?>"
+					   <?php echo $can_connect ? '' : 'aria-disabled="true"'; ?>>
+						Conectar ao Flickr
+					</a>
 				</p>
+
+				<?php if ( ! $can_connect ) : ?>
+					<p class="description">
+						Defina a <strong>Chave da API</strong> e o <strong>Segredo</strong> na seção acima
+						antes de tentar conectar.
+					</p>
+				<?php endif; ?>
+
 			<?php endif; ?>
 		</form>
 	</div>
@@ -268,13 +383,44 @@ function flickr_set_tokens( string $access, string $secret, string $perm ): void
 	update_option( 'hacklab_flickr_perm',          $perm );
 }
 
+function flickr_get_api_key(): string {
+    return (string) get_option( 'hacklab_flickr_api_key', '' );
+}
+
+function flickr_set_api_key( string $key ): void {
+    update_option( 'hacklab_flickr_api_key', trim( $key ), true );
+}
+
+function flickr_get_api_secret(): string {
+    return (string) get_option( 'hacklab_flickr_api_secret', '' );
+}
+
+function flickr_set_api_secret( string $secret ): void {
+    $secret = trim( wp_unslash( $secret ) );
+
+    if ( false === get_option( 'hacklab_flickr_api_secret', false ) ) {
+        add_option( 'hacklab_flickr_api_secret', $secret, '', 'no' );
+        return;
+    }
+
+    update_option( 'hacklab_flickr_api_secret', $secret, false );
+}
+
+function flickr_api_secret_is_set(): bool {
+    $s = (string) get_option( 'hacklab_flickr_api_secret', '' );
+    return $s !== '';
+}
 
 // Auth
 function flickr_client(): \Samwilson\PhpFlickr\PhpFlickr {
-	if ( ! defined('FLICKR_API_KEY') || ! defined( 'FLICKR_API_SECRET' ) ) {
-		wp_die('Defina FLICKR_API_KEY e FLICKR_API_SECRET no wp-config.php');
+	$flickr_api_key = flickr_get_api_key();
+	$flickr_api_secret = flickr_get_api_secret();
+
+	if ( ! $flickr_api_key || ! $flickr_api_secret ) {
+		wp_die( 'Adicione a chave da API e o secret no painel administrativo.' );
 	}
-	return new \Samwilson\PhpFlickr\PhpFlickr( FLICKR_API_KEY, FLICKR_API_SECRET );
+
+	return new \Samwilson\PhpFlickr\PhpFlickr( $flickr_api_key, $flickr_api_secret );
 }
 
 function flickr_auth_start() {

@@ -8,7 +8,7 @@ $thumbnail = ! empty( $collection['thumb_url'] ) ? esc_url( $collection['thumb_u
 if ( $user_id && ! empty( $collection['id'] ) ) : ?>
 
 <div class="slide">
-    <a href="https://www.flickr.com/photos/<?php echo $owner; ?>/<?php echo $photo_id; ?>" target="_blank">
+    <a href="<?php echo \Ninja\flickr_get_album_url( $collection['id'], $user_id ); ?>" target="_blank">
         <div class="post specials">
             <div class="post-thumbnail">
                 <div class="post-thumbnail__info">

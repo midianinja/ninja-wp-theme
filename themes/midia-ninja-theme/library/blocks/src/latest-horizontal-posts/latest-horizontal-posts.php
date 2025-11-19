@@ -67,6 +67,9 @@ function latest_horizontal_posts_callback( $attributes ) {
 			if ( ! empty( $has_content['data'] ) ) {
 				foreach ( $has_content['data'] as &$collection ) {
 					if ( ! empty( $collection['set'] ) && is_array( $collection['set'] ) ) {
+						// Limit to 10 albums per collection
+						$collection['set'] = array_slice( $collection['set'], 0, 10 );
+
 						foreach ( $collection['set'] as &$set ) {
 							$set_id = (string) ( $set['id'] ?? '' );
 							$set['thumb_url'] = $set_id !== ''

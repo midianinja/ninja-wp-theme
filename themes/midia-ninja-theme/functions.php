@@ -1,7 +1,6 @@
 <?php
 namespace hacklabTema;
 
-// require_once 'vendor/autoload.php';
 
 // Blocos ativos:
 add_filter('hacklab_blocos_ativos','hacklabTema\\blocos_ativos');

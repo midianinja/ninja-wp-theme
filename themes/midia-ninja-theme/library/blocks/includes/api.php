@@ -202,9 +202,6 @@ function register_endpoints() {
 			'methods' => 'GET',
 			'callback' => 'Ninja\\flickr_album_rest_callback',
 			'args' => [
-				'api_key' => [
-					'required' => true,
-				],
 				'page' => [
 					'default' => 1,
 				],
@@ -533,9 +530,8 @@ function add_fields_to_post() {
 }
 
 function flickr_album_rest_callback( \WP_REST_Request $request ) {
-	require_once __DIR__ . '/../src/shared/includes/flickr.php';
-
-	return flickr_get_albums( $request['api_key'], $request['user_id'], 10, $request['page'] );
+	$api_key = flickr_get_api_key();
+	return flickr_get_albums( $api_key, $request['user_id'], 10, $request['page'] );
 }
 
 function flickr_page_rest_callback( \WP_REST_Request $request ) {

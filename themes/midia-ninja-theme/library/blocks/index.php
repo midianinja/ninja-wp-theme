@@ -2,6 +2,9 @@
 
 namespace Ninja;
 
+require_once get_template_directory() . '/vendor/autoload.php';
+
+require __DIR__ . '/src/shared/includes/flickr.php';
 require __DIR__ . '/includes/helpers.php';
 require __DIR__ . '/includes/settings.php';
 require __DIR__ . '/includes/api.php';

@@ -3,27 +3,28 @@
 namespace Ninja;
 
 function flickr_gallery_callback( $attributes ) {
-	require_once  __DIR__ . '/../shared/includes/flickr.php';
-
-    $custom_class     = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
+    $custom_class    = isset( $attributes['className'] ) ? sanitize_title( $attributes['className'] ) : '';
 
     $block_classes[] = 'flickr-gallery-block';
     $block_classes[] = $custom_class;
 
     $block_classes = array_filter( $block_classes );
 
-	$api_key = ( isset( $attributes['flickrAPIKey'] ) && ! empty( $attributes['flickrAPIKey'] ) ) ? esc_attr( $attributes['flickrAPIKey'] ) : false;
+	$api_key = flickr_get_api_key();
+
 	$flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';
 
 	if ( $flickr_by_type === 'album' ) {
 		$data_id = ( isset( $attributes['flickrAlbumId'] ) && ! empty( $attributes['flickrAlbumId'] ) ) ? esc_attr( $attributes['flickrAlbumId'] ) : false;
+	} elseif ( $flickr_by_type === 'collection' ) {
+		$data_id = ! empty( $attributes['flickrCollectionId'] ) ? esc_attr( $attributes['flickrCollectionId'] ) : false;
 	} else {
 		$data_id = ( isset( $attributes['flickrUserId'] ) && ! empty( $attributes['flickrUserId'] ) ) ? esc_attr( $attributes['flickrUserId'] ) : false;
 	}
 
 	if ( ! $api_key || ! $data_id ) {
 		if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
-			return '<h2>' . __( 'Check the API Key, user or album ID', 'ninja' ) . '</h2>';
+			return '<h2>' . __( 'Check the API Key, user, collection or album ID', 'ninja' ) . '</h2>';
 		}
 
 		return;
@@ -31,6 +32,24 @@ function flickr_gallery_callback( $attributes ) {
 
 	if ( $flickr_by_type === 'albums' ) {
 		$data = flickr_get_albums( $api_key, $data_id, 9, 1 );
+	} elseif ( $flickr_by_type === 'collection' ) {
+		$user_id       = ! empty( $attributes['flickrUserId'] ) ? esc_attr( $attributes['flickrUserId'] ) : false;
+		$collection_id = ! empty( $attributes['flickrCollectionId'] ) ? esc_attr( $attributes['flickrCollectionId'] ) : false;
+		$data          = flickr_get_collections( $user_id, $collection_id );
+
+		if ( ! empty( $data['data'] ) ) {
+			foreach ( $data['data'] as &$collection ) {
+				if ( ! empty( $collection['set'] ) && is_array( $collection['set'] ) ) {
+					foreach ( $collection['set'] as &$set ) {
+						$set_id = (string) ( $set['id'] ?? '' );
+						$set['thumb_url'] = $set_id !== ''
+							? flickr_get_photoset_thumb_url( $set_id, $user_id )
+							: null;
+					}
+				}
+			}
+			unset( $collection, $set );
+		}
 	} else {
 		$data = flickr_get_photos( $api_key, $flickr_by_type, $data_id, 9, 1 );
 	}
@@ -55,6 +74,10 @@ function flickr_gallery_callback( $attributes ) {
 				<?php if ( $flickr_by_type === 'albums' ):
 					foreach( $data['data'] as $album ):
 						get_template_part( 'library/blocks/src/flickr-gallery/template-parts/album', null, [ 'album' => $album ] );
+					endforeach;
+				elseif ( $flickr_by_type === 'collection' ):
+					foreach( $data['data'][0]['set'] as $collection ):
+						get_template_part( 'library/blocks/src/flickr-gallery/template-parts/collection', null, [ 'collection' => $collection, 'user_id' => $user_id ] );
 					endforeach;
 				else:
 					foreach( $data['data'] as $photo ):

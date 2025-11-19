@@ -1,38 +1,22 @@
 <?php
-$photo = $args['photo'];
 
-$title     = ( ! empty( $photo['title'] ) ) ? esc_attr( $photo['title'] ) : false;
-$owner     = ( ! empty( $photo['owner'] ) ) ? esc_attr( $photo['owner'] ) : false;
-$photo_id  = ( ! empty( $photo['id'] ) ) ? esc_attr( $photo['id'] ) : false;
+extract( $args );
 
-if ( $title ) {
-	list( $title, $date, $location ) = split_ninja_flickr_title( $title );
-}
+$title = ( ! empty( $collection['title'] ) ) ? esc_attr( $collection['title'] ) : false;
+$thumbnail = ! empty( $collection['thumb_url'] ) ? esc_url( $collection['thumb_url'] ) : false ;
 
-if ( $photo_id && $owner ) :
-
-$thumbnail = 'https://live.staticflickr.com/' . $photo['server'] . '/' . $photo_id . '_' . $photo['secret'] . '.jpg'; ?>
+if ( $user_id && ! empty( $collection['id'] ) ) : ?>
 
 <div class="slide">
-    <a href="https://www.flickr.com/photos/<?php echo $owner; ?>/<?php echo $photo_id; ?>" target="_blank">
+    <a href="<?php echo \Ninja\flickr_get_album_url( $collection['id'], $user_id ); ?>" target="_blank">
         <div class="post specials">
             <div class="post-thumbnail">
                 <div class="post-thumbnail__info">
                     <?php if ( $title ) : ?>
                         <h2><?php echo apply_filters( 'the_title', $title ); ?></h2>
                     <?php endif;?>
-
-                    <div class="post-thumbnail__meta">
-						<?php if ( $location ) : ?>
-                            <span class="tag"><?php echo $location; ?></span>
-                        <?php endif;?>
-
-                        <?php if ( $date ) : ?>
-                            <span class="date"><?php echo $date; ?></span>
-                        <?php endif; ?>
-                    </div>
                 </div>
-                <img loading="lazy" src="<?php echo $thumbnail; ?>" alt="<?php echo esc_attr( $title ); ?>">
+                <img loading="lazy" src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>">
             </div>
         </div>
     </a>

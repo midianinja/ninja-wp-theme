@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		let slidesToShowMobile = 1
 		if (slider.classList.contains('model-specials') || slider.classList.contains('model-most-read')) {
 			slidesToShowMobile = 2
-		} else if (slider.classList.contains('model-collection') || slider.classList.contains('model-albums')) {
+		} else if (slider.classList.contains('model-photos') || slider.classList.contains('model-albums')) {
 			slidesToShowMobile = 1.5
 		}
 

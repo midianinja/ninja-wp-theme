@@ -50,6 +50,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		flickrAlbumId,
 		flickrAPIKey,
 		flickrByType,
+		flickrCollectionId,
 		flickrUserId,
 		heading,
 		noCompare,
@@ -202,7 +203,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								},
 								{
 									label: __( 'Photos (Flickr)', 'ninja' ),
-									value: "collection"
+									value: "photos"
 								},
 								{
 									label: __( 'Columnists', 'ninja' ),
@@ -318,17 +319,9 @@ export default function Edit( { attributes, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel === 'collection' || blockModel === 'albums' ) && (
+					{ ( blockModel === 'photos' || blockModel === 'albums' ) && (
 						<>
-							<PanelRow>
-								<TextControl
-									label={ __( 'Flickr API Key', 'ninja' ) }
-									value={ flickrAPIKey }
-									onChange={ ( value ) => { setAttributes( { flickrAPIKey: value } ) } }
-								/>
-							</PanelRow>
-
-							{ ( blockModel === 'collection' ) && (
+							{ ( blockModel === 'photos' ) && (
 								<PanelRow>
 									<SelectControl
 										label={ __( 'Type of the content', 'ninja' ) }
@@ -341,7 +334,11 @@ export default function Edit( { attributes, setAttributes } ) {
 											{
 												label: __( 'Images by album', 'ninja' ),
 												value: "album"
-											}
+											},
+											{
+												label: __( 'Images by collection', 'ninja' ),
+												value: "collection"
+											},
 										]}
 										onChange={ ( value ) => {
 											setAttributes( { flickrByType: value } )
@@ -351,7 +348,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							) }
 
 							<PanelRow>
-								{ ( blockModel === 'collection' && flickrByType === 'album' ) ? (
+								{ ( blockModel === 'photos' && flickrByType === 'album' ) ? (
 									<TextControl
 										label={ __( 'Album ID', 'ninja' ) }
 										value={ flickrAlbumId }
@@ -369,6 +366,18 @@ export default function Edit( { attributes, setAttributes } ) {
 									/>
 								) }
 							</PanelRow>
+
+							{ ( flickrByType === 'collection' ) && (
+								<PanelRow>
+										<TextControl
+											label={ __( 'Collection ID', 'ninja' ) }
+											value={ flickrCollectionId }
+											onChange={ ( value ) => {
+												setAttributes( { flickrCollectionId: value } )
+											} }
+										/>
+								</PanelRow>
+							) }
 						</>
 					) }
 

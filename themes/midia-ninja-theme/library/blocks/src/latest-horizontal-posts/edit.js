@@ -202,7 +202,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								},
 								{
 									label: __( 'Photos (Flickr)', 'ninja' ),
-									value: "collection"
+									value: "photos"
 								},
 								{
 									label: __( 'Columnists', 'ninja' ),
@@ -318,7 +318,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						</>
 					) }
 
-					{ ( blockModel === 'collection' || blockModel === 'albums' ) && (
+					{ ( blockModel === 'photos' || blockModel === 'albums' ) && (
 						<>
 							<PanelRow>
 								<TextControl
@@ -328,7 +328,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								/>
 							</PanelRow>
 
-							{ ( blockModel === 'collection' ) && (
+							{ ( blockModel === 'photos' ) && (
 								<PanelRow>
 									<SelectControl
 										label={ __( 'Type of the content', 'ninja' ) }
@@ -351,7 +351,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							) }
 
 							<PanelRow>
-								{ ( blockModel === 'collection' && flickrByType === 'album' ) ? (
+								{ ( blockModel === 'photos' && flickrByType === 'album' ) ? (
 									<TextControl
 										label={ __( 'Album ID', 'ninja' ) }
 										value={ flickrAlbumId }

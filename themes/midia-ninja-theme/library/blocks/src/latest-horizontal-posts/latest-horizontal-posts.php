@@ -34,14 +34,14 @@ function latest_horizontal_posts_callback( $attributes ) {
 
     $attributes_hash = md5( $block_id );
 
-    if ( $block_model == 'collection'  || $block_model == 'albums' ) {
+    if ( $block_model == 'photos'  || $block_model == 'albums' ) {
         // Flickr
         require_once  __DIR__ . '/../shared/includes/flickr.php';
 
         $api_key = ( isset( $attributes['flickrAPIKey'] ) && ! empty( $attributes['flickrAPIKey'] ) ) ? esc_attr( $attributes['flickrAPIKey'] ) : false;
         $flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';
 
-        if ( $block_model == 'collection' && $flickr_by_type == 'album' ) {
+        if ( $block_model == 'photos' && $flickr_by_type == 'album' ) {
             $data_id = ( isset( $attributes['flickrAlbumId'] ) && ! empty( $attributes['flickrAlbumId'] ) ) ? esc_attr( $attributes['flickrAlbumId'] ) : false;
         } else {
             $data_id = ( isset( $attributes['flickrUserId'] ) && ! empty( $attributes['flickrUserId'] ) ) ? esc_attr( $attributes['flickrUserId'] ) : false;
@@ -214,7 +214,7 @@ function latest_horizontal_posts_callback( $attributes ) {
 					endforeach;
 				}
 
-                if ( $block_model == 'collection' ) {
+                if ( $block_model == 'photos' ) {
                     // Flickr photos
                     foreach( $has_content['data'] as $photo ) :
                         get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, [ 'photo' => $photo ] );

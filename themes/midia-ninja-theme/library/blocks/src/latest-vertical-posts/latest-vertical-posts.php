@@ -63,7 +63,7 @@ function latest_vertical_posts_callback( $attributes ) {
         // Flickr
         require_once  __DIR__ . '/../shared/includes/flickr.php';
 
-        $api_key = ( isset( $attributes['flickrAPIKey'] ) && ! empty( $attributes['flickrAPIKey'] ) ) ? esc_attr( $attributes['flickrAPIKey'] ) : false;
+        $api_key = flickr_get_api_key();
         $flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';
 
         if ( $flickr_by_type == 'album' ) {

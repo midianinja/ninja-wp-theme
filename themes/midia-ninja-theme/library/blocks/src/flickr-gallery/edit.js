@@ -25,10 +25,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 
 	const {
 		blockId,
-		flickrAPIKey,
-		flickrByType,
-		flickrUserId,
 		flickrAlbumId,
+		flickrByType,
+		flickrCollectionId,
+		flickrUserId,
 	} = attributes
 
 	const onSelectUserAlbum = ( flickrAlbumId ) => {
@@ -50,14 +50,6 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					initialOpen={ true }
 				>
 					<PanelRow>
-						<TextControl
-							label={ __( 'Flickr API Key', 'ninja' ) }
-							value={ flickrAPIKey }
-							onChange={ ( value ) => { setAttributes( { flickrAPIKey: value } ) } }
-						/>
-					</PanelRow>
-
-					<PanelRow>
 						<SelectControl
 							label={ __( 'Type of the content', 'ninja' ) }
 							value={ flickrByType }
@@ -65,6 +57,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 								{
 									label: __( 'Albums per user', 'ninja' ),
 									value: "albums",
+								},
+								{
+									label: __( 'Collection from user', 'ninja' ),
+									value: "collection",
 								},
 								{
 									label: __( 'Images by user', 'ninja' ),
@@ -103,10 +99,21 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						) }
 					</PanelRow>
 
-					{ ( flickrByType === 'user' && flickrAPIKey && flickrUserId ) ? (
+					<PanelRow>
+						{ ( flickrByType === 'collection' ) && (
+							<TextControl
+								label={ __( 'Collection ID', 'ninja' ) }
+								value={ flickrCollectionId }
+								onChange={ ( value ) => {
+									setAttributes( { flickrCollectionId: value } )
+								} }
+							/>
+						) }
+					</PanelRow>
+
+					{ ( flickrByType === 'user' && flickrUserId ) ? (
 						<PanelRow>
 							<SelectUserAlbum
-								flickrAPIKey={ flickrAPIKey }
 								flickrUserId={ flickrUserId }
 								onChange={ onSelectUserAlbum }
 							/>

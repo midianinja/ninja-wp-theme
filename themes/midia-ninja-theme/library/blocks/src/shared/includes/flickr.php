@@ -3,6 +3,8 @@
 namespace Ninja;
 
 use Throwable;
+use OAuth\Common\Storage\Memory;
+use OAuth\OAuth1\Token\StdOAuth1Token;
 
 add_action( 'init', function () {
 	if ( ! headers_sent() && ! session_id() ) {
@@ -102,43 +104,66 @@ function flickr_get_photos( $api_key, $flickr_by_type = 'user', $data_id = '', $
  * @return array|false           ['data' => <array>, 'pages' => 1] em caso de sucesso; false se vazio/erro.
  */
 function flickr_get_collections( string $user_id = '', string $collection_id = '', int $cache_ttl = 3600 ) {
-    $cache_key = 'ninja_flickr_collections_' . md5( $user_id . '|' . $collection_id );
-    $cached = get_transient( $cache_key );
-    if ( false !== $cached ) {
-        return $cached;
-    }
+	if ( $user_id === '' ) {
+		$tokens  = flickr_get_tokens();
+		$user_id = (string) ( $tokens['user_id'] ?? '' );
+	}
 
-    try {
-        $flickr = flickr_client();
+	if ( $user_id === '' ) {
+		do_action( 'logger', [
+			'context' => 'flickr_get_collections_no_user',
+			'message' => 'Sem user_id definido para flickr_get_collections()',
+		] );
+		return false;
+	}
 
-        if ( $storage = flickr_storage_from_options() ) {
-            $flickr->setOauthStorage( $storage );
-        }
+	$cache_key = 'ninja_flickr_collections_' . md5( $user_id . '|' . $collection_id );
+	$cached    = get_transient( $cache_key );
 
-        $params = [];
-        if ( $user_id !== '' )       $params['user_id']       = $user_id;
-        if ( $collection_id !== '' ) $params['collection_id'] = $collection_id;
+	if ( false !== $cached ) {
+		return $cached;
+	}
 
-        $resp = $flickr->collections()->getTree( $params );
+	try {
+		$flickr = flickr_client();
 
-        $data = [];
-        if ( is_array( $resp ) && ! empty( $resp['collections'] ) ) {
-            $data = $resp['collections']['collection'] ?? [];
-            if ( ! is_array( $data ) ) $data = [];
-        }
+		if ( $storage = flickr_storage_from_options() ) {
+			$flickr->setOauthStorage( $storage );
+		}
 
-        $out = ['data' => $data, 'pages' => 1];
+		$collection_arg = $collection_id !== '' ? (string) $collection_id : null;
+		$user_arg       = $user_id       !== '' ? (string) $user_id       : null;
 
-        if ( !empty($out['data'] ) ) {
-            set_transient( $cache_key, $out, $cache_ttl );
-            return $out;
-        }
+		$resp = $flickr->collections()->getTree( $collection_arg, $user_arg );
 
-        return false;
+		$data = [];
+		if ( is_array( $resp ) && ! empty( $resp['collections'] ) ) {
+			$data = $resp['collections']['collection'] ?? [];
+			if ( ! is_array( $data ) ) {
+				$data = [];
+			}
+		}
 
-    } catch (Throwable $e) {
-        return false;
-    }
+		$out = [
+			'data'  => $data,
+			'pages' => 1,
+		];
+
+		if ( ! empty( $out['data'] ) ) {
+			set_transient( $cache_key, $out, $cache_ttl );
+			return $out;
+		}
+
+		return false;
+
+	} catch ( Throwable $e ) {
+		do_action( 'logger', [
+			'context' => 'flickr_get_collections_error',
+			'error'   => $e->getMessage(),
+		] );
+
+		return false;
+	}
 }
 
 
@@ -346,17 +371,43 @@ function flickr_render_settings_page() {
 }
 
 // Helpers
-function flickr_storage_from_options(): ?\OAuth\Common\Storage\Memory {
-	$t = flickr_get_tokens();
-	if ( ! $t['access'] || !$t['secret'] ) return null;
+function flickr_storage_from_options() {
+    $tokens = flickr_get_tokens();
 
-	$token = new \OAuth\OAuth1\Token\StdOAuth1Token();
-	$token->setAccessToken( $t['access'] );
-	$token->setAccessTokenSecret( $t['secret'] );
+    $access = (string) ( $tokens['access'] ?? '' );
+    $secret = (string) ( $tokens['secret'] ?? '' );
 
-	$storage = new \OAuth\Common\Storage\Memory();
-	$storage->storeAccessToken( 'Flickr', $token );
-	return $storage;
+    if ( $access === '' || $secret === '' ) {
+        return null;
+    }
+
+    $access = is_array( $access ) ? reset( $access ) : $access;
+    $secret = is_array( $secret ) ? reset( $secret ) : $secret;
+
+    $token = new StdOAuth1Token();
+    $token->setAccessToken( $access );
+    $token->setAccessTokenSecret( $secret );
+
+    $extra = [];
+
+    $user_id  = get_option( 'hacklab_flickr_user_id' );
+    $username = get_option( 'hacklab_flickr_username' );
+
+    if ( is_string( $user_id ) && $user_id !== '' ) {
+        $extra['user_nsid'] = $user_id;
+    }
+    if ( is_string( $username ) && $username !== '' ) {
+        $extra['username'] = $username;
+    }
+
+    if ( $extra ) {
+        $token->setExtraParams( $extra );
+    }
+
+    $storage = new Memory();
+    $storage->storeAccessToken( 'Flickr', $token );
+
+    return $storage;
 }
 
 function flickr_disconnect(): void {
@@ -371,16 +422,20 @@ function flickr_is_connected(): bool {
 
 function flickr_get_tokens(): array {
 	return [
-		'access' => get_option( 'hacklab_flickr_access_token' ) ?: '',
-		'secret' => get_option( 'hacklab_flickr_access_secret' ) ?: '',
-		'perm'   => get_option( 'hacklab_flickr_perm' ) ?: 'read',
+		'access'   => get_option( 'hacklab_flickr_access_token' ) ?: '',
+		'secret'   => get_option( 'hacklab_flickr_access_secret' ) ?: '',
+		'perm'     => get_option( 'hacklab_flickr_perm' ) ?: 'read',
+		'user_id'  => get_option( 'hacklab_flickr_user_id' ) ?: '',
+		'username' => get_option( 'hacklab_flickr_username' ) ?: ''
 	];
 }
 
-function flickr_set_tokens( string $access, string $secret, string $perm ): void {
+function flickr_set_tokens( string $access, string $secret, string $perm, string $user_id = '', string $username = '' ): void {
 	update_option( 'hacklab_flickr_access_token',  $access );
 	update_option( 'hacklab_flickr_access_secret', $secret );
 	update_option( 'hacklab_flickr_perm',          $perm );
+	update_option( 'hacklab_flickr_user_id',       $user_id );
+	update_option( 'hacklab_flickr_username',      $username );
 }
 
 function flickr_get_api_key(): string {
@@ -409,6 +464,81 @@ function flickr_set_api_secret( string $secret ): void {
 function flickr_api_secret_is_set(): bool {
     $s = (string) get_option( 'hacklab_flickr_api_secret', '' );
     return $s !== '';
+}
+
+function flickr_get_album_url( $album, ?string $user_id = null ): string {
+	if ( is_array( $album ) ) {
+		$album_id = (string) ( $album['id'] ?? '' );
+	} else {
+		$album_id = (string) $album;
+	}
+
+	$album_id = trim( $album_id );
+
+	if ( $album_id === '' ) {
+		return '';
+	}
+
+	if ( $user_id === null || $user_id === '' ) {
+		$tokens  = flickr_get_tokens();
+		$user_id = (string) ( $tokens['user_id'] ?? '' );
+	}
+
+	$user_id = trim( (string) $user_id );
+
+	if ( $user_id === '' ) {
+		return '';
+	}
+
+	$base = 'https://www.flickr.com/photos/';
+
+	return $base . $user_id . '/albums/' . $album_id . '/';
+}
+
+function flickr_get_photoset_thumb_url( string $photoset_id, ?string $user_id = null ): ?string {
+	if ( $photoset_id === '' || $user_id === '' ) {
+		return null;
+	}
+
+	try {
+		$flickr = flickr_client();
+
+		if ( $storage = flickr_storage_from_options() ) {
+			$flickr->setOauthStorage( $storage );
+		}
+
+		$resp = $flickr->photosets()->getPhotos( $photoset_id );
+
+		if ( ! is_array( $resp ) || empty( $resp['photo'] ) ) {
+			return null;
+		}
+
+		$photo = $resp['photo'][0];
+
+		if (
+			empty( $photo['farm'] ) ||
+			empty( $photo['server'] ) ||
+			empty( $photo['id'] ) ||
+			empty( $photo['secret'] )
+		) {
+			return null;
+		}
+
+		return sprintf(
+			'https://farm%s.staticflickr.com/%s/%s_%s_z.jpg',
+			$photo['farm'],
+			$photo['server'],
+			$photo['id'],
+			$photo['secret']
+		);
+
+	} catch ( Throwable $e ) {
+		do_action( 'logger', [
+			'context' => 'flickr_get_photoset_thumb_url_error',
+			'error'   => $e->getMessage(),
+		] );
+		return null;
+	}
 }
 
 // Auth
@@ -464,20 +594,42 @@ function flickr_auth_callback() {
 	}
 
 	$flickr  = flickr_client();
+
 	$storage = new \OAuth\Common\Storage\Session();
 	$flickr->setOauthStorage( $storage );
 
 	try {
-		$accessObj = $flickr->retrieveAccessToken(
-			sanitize_text_field( $_GET['oauth_verifier'] ),
-			sanitize_text_field( $_GET['oauth_token'] )
-		);
+		$oauth_verifier = sanitize_text_field( wp_unslash( $_GET['oauth_verifier'] ) );
+		$oauth_token    = sanitize_text_field( wp_unslash( $_GET['oauth_token'] ) );
+
+		/** @var \OAuth\OAuth1\Token\StdOAuth1Token $accessObj */
+		$accessObj = $flickr->retrieveAccessToken( $oauth_verifier, $oauth_token );
 
 		$perm   = get_option( 'hacklab_flickr_perm', 'read' );
-		$access = $accessObj->getAccessToken();
-		$secret = $accessObj->getAccessTokenSecret();
+		$access = (string) $accessObj->getAccessToken();
+		$secret = (string) $accessObj->getAccessTokenSecret();
 
-		flickr_set_tokens( $access, $secret, $perm );
+		$extra_params = [];
+		if ( method_exists( $accessObj, 'getExtraParams' ) ) {
+			$extra_params = (array) $accessObj->getExtraParams();
+		}
+
+		$user_id  = '';
+		$username = '';
+
+		if ( ! empty( $extra_params['user_nsid'] ) ) {
+			$user_id = (string) $extra_params['user_nsid'];
+		} elseif ( ! empty( $extra_params['user']['nsid'] ) ) {
+			$user_id = (string) $extra_params['user']['nsid'];
+		}
+
+		if ( ! empty( $extra_params['username'] ) && is_string( $extra_params['username'] ) ) {
+			$username = $extra_params['username'];
+		} elseif ( ! empty( $extra_params['user']['username']['_content'] ) ) {
+			$username = (string) $extra_params['user']['username']['_content'];
+		}
+
+		flickr_set_tokens( $access, $secret, $perm, $user_id, $username );
 
 		$target = $is_admin
 			? admin_url( 'options-general.php?page=hacklab-flickr&flickr_connected=1' )

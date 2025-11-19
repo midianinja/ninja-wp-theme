@@ -38,18 +38,20 @@ function latest_horizontal_posts_callback( $attributes ) {
         // Flickr
         require_once  __DIR__ . '/../shared/includes/flickr.php';
 
-        $api_key = ( isset( $attributes['flickrAPIKey'] ) && ! empty( $attributes['flickrAPIKey'] ) ) ? esc_attr( $attributes['flickrAPIKey'] ) : false;
+        $api_key = flickr_get_api_key();
         $flickr_by_type = ( isset( $attributes['flickrByType'] ) && ! empty( $attributes['flickrByType'] ) ) ? esc_attr( $attributes['flickrByType'] ) : 'user';
 
         if ( $block_model == 'photos' && $flickr_by_type == 'album' ) {
             $data_id = ( isset( $attributes['flickrAlbumId'] ) && ! empty( $attributes['flickrAlbumId'] ) ) ? esc_attr( $attributes['flickrAlbumId'] ) : false;
-        } else {
+        } elseif ( $block_model == 'photos' && $flickr_by_type == 'collection' ) {
+			$data_id = ! empty( $attributes['flickrCollectionId'] ) ? esc_attr( $attributes['flickrCollectionId'] ) : false;
+		} else {
             $data_id = ( isset( $attributes['flickrUserId'] ) && ! empty( $attributes['flickrUserId'] ) ) ? esc_attr( $attributes['flickrUserId'] ) : false;
         }
 
         if ( ! $api_key || ! $data_id ) {
             if ( is_admin() || defined( 'REST_REQUEST' ) && REST_REQUEST ) {
-                return '<h2>' . __( 'Check the API Key, user or album ID', 'ninja' ) . '</h2>';
+                return '<h2>' . __( 'Check the API Key, user, collection or album ID', 'ninja' ) . '</h2>';
             }
 
             return;
@@ -57,6 +59,24 @@ function latest_horizontal_posts_callback( $attributes ) {
 
 		if ( $block_model == 'albums' ) {
 			$has_content = flickr_get_albums( $api_key, $data_id, 10, 1 );
+		} elseif ( $flickr_by_type === 'collection' ) {
+			$user_id       = ! empty( $attributes['flickrUserId'] ) ? esc_attr( $attributes['flickrUserId'] ) : false;
+			$collection_id = ! empty( $attributes['flickrCollectionId'] ) ? esc_attr( $attributes['flickrCollectionId'] ) : false;
+			$has_content   = flickr_get_collections( $user_id, $collection_id );
+
+			if ( ! empty( $has_content['data'] ) ) {
+				foreach ( $has_content['data'] as &$collection ) {
+					if ( ! empty( $collection['set'] ) && is_array( $collection['set'] ) ) {
+						foreach ( $collection['set'] as &$set ) {
+							$set_id = (string) ( $set['id'] ?? '' );
+							$set['thumb_url'] = $set_id !== ''
+								? flickr_get_photoset_thumb_url( $set_id, $user_id )
+								: null;
+						}
+					}
+				}
+				unset( $collection, $set );
+			}
 		} else {
 			$has_content = flickr_get_photos( $api_key, $flickr_by_type, $data_id, 10, 1 );
 		}
@@ -215,10 +235,17 @@ function latest_horizontal_posts_callback( $attributes ) {
 				}
 
                 if ( $block_model == 'photos' ) {
-                    // Flickr photos
-                    foreach( $has_content['data'] as $photo ) :
-                        get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, [ 'photo' => $photo ] );
-                    endforeach;
+					if ( $flickr_by_type == 'collection' ) {
+						// Flickr collection
+						foreach( $has_content['data'][0]['set'] as $collection ):
+							get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $flickr_by_type, [ 'collection' => $collection, 'user_id' => $user_id ] );
+						endforeach;
+					} else {
+						// Flickr photos
+						foreach( $has_content['data'] as $photo ) :
+							get_template_part( 'library/blocks/src/latest-horizontal-posts/template-parts/post', $block_model, [ 'photo' => $photo ] );
+						endforeach;
+					}
                 }
 
                 if ( $block_model == 'columnists' ) {

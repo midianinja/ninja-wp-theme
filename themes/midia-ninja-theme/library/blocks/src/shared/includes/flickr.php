@@ -417,16 +417,16 @@ function flickr_disconnect(): void {
 
 function flickr_is_connected(): bool {
 	$t = flickr_get_tokens();
-	return (bool)( $t['access'] && $t['secret'] );
+	return ( $t['access'] !== '' && $t['secret'] !== '' );
 }
 
 function flickr_get_tokens(): array {
 	return [
-		'access'   => get_option( 'hacklab_flickr_access_token' ) ?: '',
+		'access'   => get_option( 'hacklab_flickr_access_token' )  ?: '',
 		'secret'   => get_option( 'hacklab_flickr_access_secret' ) ?: '',
-		'perm'     => get_option( 'hacklab_flickr_perm' ) ?: 'read',
-		'user_id'  => get_option( 'hacklab_flickr_user_id' ) ?: '',
-		'username' => get_option( 'hacklab_flickr_username' ) ?: ''
+		'perm'     => get_option( 'hacklab_flickr_perm' )          ?: 'read',
+		'user_id'  => get_option( 'hacklab_flickr_user_id' )       ?: '',
+		'username' => get_option( 'hacklab_flickr_username' )      ?: '',
 	];
 }
 

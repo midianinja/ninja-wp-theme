@@ -1,6 +1,27 @@
 @use "./../1-settings/s-variables"as variables;
 @use "./../2-atoms/a-mixins"as mixins;
 @import "./../5-blocks/b-latest-vertical-posts";
+.page-opiniao{
+	#app {
+		.container > .content > .page{
+			.page-content{
+				.opiniao-header{
+					.wp-block-column:last-child{
+						.latest-vertical-posts-block{
+							&__slides{
+								.slick-list > .slick-track > .slick-slide > div > .slide > a > .post{
+									.post-content > .post-title{
+										color: #fff;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+}
 
 .page-galeria {
     background-color: #f5f5f5;
@@ -124,15 +145,15 @@
 
                             .post-content {
                                 .post-title {
-                                    color: #fff;
+                                    color: #fff !important;
                                     font-family: "Manrope", sans-serif;
                                     font-size: 14px;
                                     font-style: normal;
                                     font-weight: 500;
                                     line-height: 130%;
-                                    /* 18.2px */
                                     margin-top: 0;
                                     display: -webkit-box;
+									line-clamp: 1;
                                     -webkit-box-orient: vertical;
                                     -webkit-line-clamp: 1;
                                     overflow: hidden;

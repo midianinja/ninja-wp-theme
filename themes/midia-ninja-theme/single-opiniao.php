@@ -87,7 +87,7 @@ $has_thumbnail = (has_post_thumbnail() && get_post_meta(get_the_ID(), '_show_thu
 						<div class="author-info-mobile">
 							<?php foreach ($get_coauthors as $coauthor) : ?>
 
-								<?php if ($coauthor['colunista'] == '1') : ?>
+								<?php if (!empty($coauthor['author_id'])) : ?>
 									<div class="author-info-card">
 										<div class="info-container">
 											<a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']); ?>">
@@ -215,9 +215,10 @@ $has_thumbnail = (has_post_thumbnail() && get_post_meta(get_the_ID(), '_show_thu
 
 					</div>
 					<div class="author-info">
+
 						<?php foreach ($get_coauthors as $coauthor) : ?>
 
-							<?php if ($coauthor['colunista'] == '1') : ?>
+							<?php if (!empty($coauthor['author_id'])) : ?>
 
 								<div class="author-info-card">
 									<a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']); ?>">

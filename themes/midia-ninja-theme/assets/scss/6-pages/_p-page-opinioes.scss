@@ -71,7 +71,6 @@
             }
 
             .entry-title {
-                /* <h2> Manrope */
                 font-size: 28px;
                 font-style: normal;
                 letter-spacing: -0.64px;
@@ -79,11 +78,11 @@
                 margin-bottom: 20px;
                 color: #fff;
 
-                @media (min-width: 992px) {
-                    font-size: 32px;
-                    line-height: 120%; /* 38.4px */
-                    margin-bottom: 35px;
-                }
+                // @media (min-width: 992px) {
+                //     font-size: 32px;
+                //     line-height: 120%; /* 38.4px */
+                //     margin-bottom: 35px;
+                // }
             }
 
             p {
@@ -118,7 +117,7 @@
                     display: none;
                 }
 
-                
+
             }
             .latest-vertical-posts-block{
                 background-color: #000;
@@ -129,19 +128,19 @@
                     margin-bottom: -20px;
                 }
                 a, h2, p{
-                    color:#fff; 
+                    color:#fff;
                 }
                 .slide{
                     margin-top: 1rem;
-                  
+
                 }
                 .slide{
                     :nth-child(3){
-                        
+
                         .post{
                             border: none;
                         }
-                        
+
                     }
                     :nth-child(6){
                         a{
@@ -187,7 +186,7 @@
                         }
                     }
 
-                   
+
                 }
                 .latest-vertical-posts-block__footer{
                     display: none;
@@ -201,7 +200,7 @@
                 }
             }
         }
-        
+
         .wp-block-columns:nth-of-type(2){
             margin-bottom: 0;
             .latest-grid-posts-block{
@@ -232,7 +231,7 @@
                             text-transform: uppercase;
                             color: var(--wp--preset--color--primary-light);
                         }
-                        
+
                     }
                 }
                 .latest-grid-posts-block__pagination{
@@ -267,8 +266,8 @@
                 }
             }
         }
-        
-        
+
+
         .wp-block-group {
             position: relative;
             display: flex;
@@ -451,7 +450,7 @@
             .vertical-post-mobile{
                 display: none !important;
                 @include mobile{
-                    display: block !important; 
+                    display: block !important;
                     width: 100%;
                     max-width: 100%;
                     background-color: #f5f5f5;
@@ -467,12 +466,12 @@
                             }
                         }
                     }
-                    
+
                 }
             }
             h4{
                 display: none !important;
-                @include mobile{ 
+                @include mobile{
                     display: block !important;
                     order: 1;
                     color: var(--Primary-dark, var(--DARK, #111));
@@ -503,7 +502,7 @@
                 margin-left: auto;
                 margin-right: auto;
                 width: 100%;
-                
+
 			}
 			.wp-block-columns {
 				margin-top: 1.8rem;
@@ -516,7 +515,7 @@
 
 			p {
 				font-feature-settings: 'calt' on;
-                font-family: "MidiaNinja";          
+                font-family: "MidiaNinja";
 				color: #fff;
 				font-size: 32px;
 				font-weight: 400;
@@ -525,7 +524,7 @@
 				letter-spacing: normal;
 				padding-top: 1rem;
     			padding-left: 2rem;
-                
+
 				@media (max-width: 992px) {
 					color: #000;
 					font-family: "Manrope", sans-serif;
@@ -539,7 +538,7 @@
                     margin-left: auto;
                     margin-right: auto;
                     padding-top: 0;
-                   
+
 				}
 				img {
 					margin-left: 4.5rem;
@@ -557,13 +556,13 @@
 					text-align: center;
 					font-size: 24px;
 					line-height: 130%;
-                   
+
                     @media(max-width: 400px){
                         max-width: 380px !important;
                     }
-                    
-                
-                   
+
+
+
 				}
 			}
 			.wp-block-buttons {

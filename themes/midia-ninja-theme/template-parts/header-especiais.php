@@ -17,9 +17,11 @@ if (! empty($especial_term)):
 		'link_color'       => '#FFFFFF',
 		'logo_desktop'     => null,
 		'logo_mobile'      => null,
+		'url'              => home_url("/especial/{$especial_term->slug}/"),
 	];
+	
 
-	$especial_menu_keys = ['background_color', 'id', 'link_color', 'logo_desktop', 'logo_mobile'];
+	$especial_menu_keys = ['background_color', 'id', 'link_color', 'logo_desktop', 'logo_mobile', 'url'];
 
 	foreach ($especial_menu_keys as $meta_key) {
 		$meta_value = get_term_meta($especial_term->term_id, 'menu_' . $meta_key, true);
@@ -32,11 +34,13 @@ if (! empty($especial_term)):
 		$especial_page  = $especial_pages[0];
 		$especial_style = "--menu-especial-bg: {$especial_menu['background_color']}; --menu-especial-link: {$especial_menu['link_color']}";
 
-		$logo_href = home_url('/');
+		$logo_href = $especial_menu['url'];
+
 
 		if ( 'cop30' === $especial_term->slug ) {
 			$logo_href = home_url('/especial/cop-30/');
 		}
+
 ?>
 		<header class="header-especiais">
 			<div class="menu-especial menu-especial--<?= $especial_term->slug ?>" style="<?= $especial_style ?>">
@@ -46,13 +50,14 @@ if (! empty($especial_term)):
 						<path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
 					</svg>
 				</button>
+				<?php if (! empty($especial_menu['logo_desktop'])) : ?>
 
-				<a class="menu-especial__logo-desktop" href="<?= $logo_href ?>">
-					<?= wp_get_attachment_image($especial_menu['logo_desktop'], 'medium', true) ?>
-				</a>
-
-				<?php if (! empty($especial_menu['logo_mobile'])) : ?>
 					<a class="menu-especial__logo-desktop" href="<?= $logo_href ?>">
+						<?= wp_get_attachment_image($especial_menu['logo_desktop'], 'medium', true) ?>
+					</a>
+				<?php endif; ?>
+				<?php if (! empty($especial_menu['logo_mobile'])) : ?>
+					<a class="menu-especial__logo-mobile" href="<?= $logo_href ?>">
 						<?= wp_get_attachment_image($especial_menu['logo_mobile'], 'medium', true) ?>
 					</a>
 

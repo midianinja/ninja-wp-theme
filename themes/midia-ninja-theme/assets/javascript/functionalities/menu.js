@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				child.classList.add('promoted-subitem');
 				parent.after(child);
 			});
+
 			submenu.style.display = 'none';
 			parent.classList.remove('active');
 		});
@@ -43,96 +44,100 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function handleLayout() {
-		if (mq.matches) {
-			restoreSubmenus();
-		} else {
-			promoteSubmenus();
-		}
+		if (mq.matches) restoreSubmenus();
+		else promoteSubmenus();
+		closeAllDesktop();
 	}
 
-	mainMenu.addEventListener('mouseenter', (e) => {
-		if (!mq.matches) return;
-		const li = e.target.closest('li.menu-item-has-children');
-		if (li && li.parentElement === mainMenu) li.classList.add('active');
-	}, true);
+	function openDesktop(li) {
+		if (!li || li.parentElement !== mainMenu) return;
+		const current = mainMenu.querySelector(':scope > li.menu-item-has-children.active');
+		if (current && current !== li) {
+			current.classList.remove('active');
+			const sm = current.querySelector(':scope > .sub-menu');
+			if (sm) sm.style.display = '';
+		}
+		li.classList.add('active');
+		const submenu = li.querySelector(':scope > .sub-menu');
+		if (submenu) submenu.style.display = 'block';
+	}
 
-	mainMenu.addEventListener('mouseleave', (e) => {
+	function closeAllDesktop() {
+		const actives = mainMenu.querySelectorAll(':scope > li.menu-item-has-children.active');
+		actives.forEach(li => {
+			li.classList.remove('active');
+			const submenu = li.querySelector(':scope > .sub-menu');
+			if (submenu) submenu.style.display = '';
+		});
+	}
+
+	mainMenu.addEventListener('mouseover', (e) => {
 		if (!mq.matches) return;
 		const li = e.target.closest('li.menu-item-has-children');
-		if (li && li.parentElement === mainMenu) li.classList.remove('active');
-	}, true);
+		if (li && li.parentElement === mainMenu) openDesktop(li);
+	});
+
+	mainMenu.addEventListener('focusin', (e) => {
+		if (!mq.matches) return;
+		const li = e.target.closest('li.menu-item-has-children');
+		if (li && li.parentElement === mainMenu) openDesktop(li);
+	});
+
+	document.addEventListener('click', function (e) {
+		if (!mq.matches) return;
+		if (e.target.closest('.primary-menu') === null) closeAllDesktop();
+	});
 
 	handleLayout();
 	mq.addEventListener('change', handleLayout);
 
 	const menuItens = document.querySelector(".menu-items");
-	const menuButton = document.querySelector("#burguer-checkbox");
 	const buttonMais = document.querySelector(".mais");
 	const searchMenu = document.querySelector(".search-menu");
 	const hamburgerLines = document.querySelector(".hamburger-lines");
 	const hamburgerLinesMobile = document.querySelector(".hamburger-lines--mobile");
 	const closeMenu = document.querySelector(".close-menu");
 
-	hamburgerLines.addEventListener('click', function (ev) {
-		ev.preventDefault();
+	function searchFieldFocus(element) {
+		const searchField = document.querySelector(element);
+		if (searchField) {
+			setTimeout(function () { searchField.focus(); }, 100);
+		}
+	}
+
+	function toggleMenu(ev) {
+		if (ev) ev.preventDefault();
+		if (!menuItens) return;
 		if (menuItens.classList.contains('open')) {
 			menuItens.classList.remove('open');
 		} else {
 			menuItens.classList.add('open');
 			searchFieldFocus('#searchform .search-field');
 		}
-	});
+	}
 
-	hamburgerLinesMobile.addEventListener('click', function (ev) {
-		ev.preventDefault();
-		if (menuItens.classList.contains('open')) {
-			menuItens.classList.remove('open');
-		} else {
-			menuItens.classList.add('open');
-			searchFieldFocus('#searchform .search-field');
-		}
-	});
+	hamburgerLines && hamburgerLines.addEventListener('click', toggleMenu);
+	hamburgerLinesMobile && hamburgerLinesMobile.addEventListener('click', toggleMenu);
+	searchMenu && searchMenu.addEventListener("click", toggleMenu);
+	buttonMais && buttonMais.addEventListener("click", toggleMenu);
 
-	closeMenu.addEventListener('click', function (ev) {
+	closeMenu && closeMenu.addEventListener('click', function (ev) {
 		ev.preventDefault();
+		if (!menuItens) return;
 		menuItens.classList.remove('open');
-	});
-
-	searchMenu.addEventListener("click", function () {
-		if (menuItens.classList.contains("open")) {
-			menuItens.classList.remove("open");
-		} else {
-			menuItens.classList.add("open");
-			searchFieldFocus('#searchform .search-field');
-		}
-	});
-
-	buttonMais.addEventListener("click", function (ev) {
-		ev.preventDefault();
-		if (menuItens.classList.contains('open')) {
-			menuItens.classList.remove('open');
-		} else {
-			menuItens.classList.add('open');
-			searchFieldFocus('#searchform .search-field');
-		}
 	});
 
 	const burguerMenu = document.querySelector('.hamburguer #menu-hamburguer');
 	const burguerWithChild = burguerMenu ? burguerMenu.querySelectorAll('#menu-hamburguer li.menu-item-has-children') : [];
 
 	burguerWithChild.forEach(item => {
-		if (item.parentElement.classList.contains('sub-menu')) return;
-		item.querySelector('a').addEventListener('click', function (e) {
+		if (item.parentElement && item.parentElement.classList.contains('sub-menu')) return;
+		const a = item.querySelector(':scope > a');
+		if (!a) return;
+		a.addEventListener('click', function (e) {
 			e.preventDefault();
 			item.classList.toggle('active');
 		});
-	});
-
-	document.addEventListener('click', function (e) {
-		if (e.target.closest('.primary-menu') === null) {
-			let allItens = mainMenu.querySelectorAll('.active');
-			allItens.forEach(function (item) { item.classList.remove('active'); });
-		}
 	});
 
 	function throttle(func, delay) {
@@ -160,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	let isScrolled = false;
 
 	const detectScroll = throttle(function () {
+		if (!header) return;
 		const scroll = window.scrollY || document.documentElement.scrollTop;
 		const threshold = 100;
 		const returnPoint = 50;
@@ -170,27 +176,11 @@ document.addEventListener("DOMContentLoaded", function () {
 			header.classList.remove("scrolado");
 			isScrolled = false;
 		}
-		closeSubmenus();
 	}, 200);
 
 	document.addEventListener('wheel', detectScroll, { passive: true });
 	document.addEventListener('touchmove', detectScroll, { passive: true });
 	document.addEventListener('scroll', detectScroll, { passive: true });
-
-	function searchFieldFocus(element) {
-		let searchField = document.querySelector(element);
-		if (searchField) {
-			setTimeout(function () { searchField.focus(); }, 100);
-		}
-	}
-
-	function closeSubmenus() {
-		const itensWithChild = mainMenu.querySelectorAll('#main-menu li.menu-item-has-children');
-		itensWithChild.forEach(item => {
-			if (item.parentElement.classList.contains('sub-menu')) return;
-			item.classList.remove('active');
-		});
-	}
 
 	const scrollContainer = document.querySelector('.menu-especial__links ul');
 	const scrollLeftBtn = document.querySelector('.menu-especial__scroll-btn--left');
@@ -206,197 +196,4 @@ document.addEventListener("DOMContentLoaded", function () {
 			scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 		});
 	}
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
-
-  const getNavEl = (wrap) =>
-    wrap.querySelector('.tabs-titles') ||
-    wrap.querySelector('[role="tablist"]') ||
-    wrap.querySelector('.atbs-tabs__nav') ||
-    wrap.querySelector('ul');
-
-  const getTabs = (nav) => {
-    const sel = '[role="tab"], .tab-title, .tab-title > a, .tab-title > button, li > a, li > button';
-    const found = Array.from(nav.querySelectorAll(sel));
-    return found.length ? found : Array.from(nav.children);
-  };
-
-  const parsePX = (v) => (v ? parseFloat(v) || 0 : 0);
-
-  const centerTabInView = (nav, tab) => {
-    const item = tab.closest('li') || tab;
-    const cs = getComputedStyle(nav);
-    const padL = parsePX(cs.paddingLeft);
-    const padR = parsePX(cs.paddingRight);
-    const max = Math.max(0, nav.scrollWidth - nav.clientWidth);
-    const target = (item.offsetLeft - padL) - (nav.clientWidth - item.offsetWidth) / 2;
-    const clamped = Math.min(Math.max(target, 0), max);
-    nav.scrollTo({ left: clamped, behavior: 'smooth' });
-  };
-
-  const getActiveIndex = (wrap, tabs) => {
-    let i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
-    if (i > -1) return i;
-    i = tabs.findIndex(t => t.classList.contains('is-active') || t.classList.contains('active'));
-    if (i > -1) return i;
-    if (wrap.dataset.atbsActive) return Math.max(0, Math.min(tabs.length - 1, Number(wrap.dataset.atbsActive) || 0));
-    return 0;
-  };
-
-  const activateTab = (wrap, nav, tabs, index) => {
-    if (index < 0 || index >= tabs.length) return;
-    wrap.dataset.atbsActive = String(index);
-    const keepY = window.scrollY;
-    tabs[index].dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
-    requestAnimationFrame(() => {
-      window.scrollTo(window.scrollX, keepY);
-      centerTabInView(nav, tabs[index]);
-    });
-  };
-
-  const updateArrows = (nav, leftBtn, rightBtn) => {
-    const max = Math.max(0, nav.scrollWidth - nav.clientWidth);
-    leftBtn.disabled = nav.scrollLeft <= 1;
-    rightBtn.disabled = nav.scrollLeft >= max - 1;
-  };
-
-  const placeArrows = (wrap, nav, leftBtn, rightBtn) => {
-    const wRect = wrap.getBoundingClientRect();
-    const nRect = nav.getBoundingClientRect();
-    const top = (nRect.top - wRect.top) + nRect.height / 2 - leftBtn.offsetHeight / 2;
-    leftBtn.style.top = `${top}px`;
-    rightBtn.style.top = `${top}px`;
-  };
-
-  const initCarousel = (wrap) => {
-    if (!isMobile() || wrap.dataset.atbsCarouselInit === '1') return;
-
-    const nav = getNavEl(wrap);
-    if (!nav) return;
-
-    const tabs = getTabs(nav);
-    if (!tabs.length) return;
-
-    // garante “respiro” final/inicial via JS (sem depender do CSS)
-    const cs = getComputedStyle(nav);
-    const endPadDefault = 56;
-    const startPadDefault = 14;
-    const padL = parsePX(cs.paddingLeft);
-    const padR = parsePX(cs.paddingRight);
-    if (padL < startPadDefault) nav.style.paddingLeft = startPadDefault + 'px';
-    if (padR < endPadDefault) nav.style.paddingRight = endPadDefault + 'px';
-
-    const leftBtn = document.createElement('button');
-    leftBtn.type = 'button';
-    leftBtn.className = 'atbs-tabs__scroll-btn atbs-tabs__scroll-btn--left';
-    leftBtn.setAttribute('aria-label', 'Anterior');
-    leftBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>';
-
-    const rightBtn = document.createElement('button');
-    rightBtn.type = 'button';
-    rightBtn.className = 'atbs-tabs__scroll-btn atbs-tabs__scroll-btn--right';
-    rightBtn.setAttribute('aria-label', 'Próximo');
-    rightBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>';
-
-    wrap.appendChild(leftBtn);
-    wrap.appendChild(rightBtn);
-
-    tabs.forEach((t, i) => t.addEventListener('click', () => { wrap.dataset.atbsActive = String(i); }));
-
-    leftBtn.addEventListener('click', () => {
-      const i = getActiveIndex(wrap, tabs);
-      activateTab(wrap, nav, tabs, Math.max(0, i - 1));
-    });
-
-    rightBtn.addEventListener('click', () => {
-      const i = getActiveIndex(wrap, tabs);
-      activateTab(wrap, nav, tabs, Math.min(tabs.length - 1, i + 1));
-    });
-
-    nav.addEventListener('scroll', () => updateArrows(nav, leftBtn, rightBtn), { passive: true });
-
-    const ro = new ResizeObserver(() => {
-      placeArrows(wrap, nav, leftBtn, rightBtn);
-      updateArrows(nav, leftBtn, rightBtn);
-    });
-    ro.observe(nav);
-    ro.observe(wrap);
-
-    placeArrows(wrap, nav, leftBtn, rightBtn);
-    updateArrows(nav, leftBtn, rightBtn);
-
-    const initIdx = getActiveIndex(wrap, tabs);
-    centerTabInView(nav, tabs[initIdx]);
-
-    wrap.dataset.atbsCarouselInit = '1';
-  };
-
-  const teardownCarousel = (wrap) => {
-    wrap.querySelectorAll('.atbs-tabs__scroll-btn').forEach(b => b.remove());
-    wrap.removeAttribute('data-atbs-carousel-init');
-  };
-
-  const refreshAll = () => {
-    document.querySelectorAll('.wp-block-atbs-tabs').forEach(wrap => {
-      if (isMobile()) initCarousel(wrap); else teardownCarousel(wrap);
-    });
-  };
-
-  refreshAll();
-  window.addEventListener('resize', refreshAll, { passive: true });
-
-  const mo = new MutationObserver(refreshAll);
-  mo.observe(document.body, { childList: true, subtree: true });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  var sel = document.getElementById('lang-switcher-especial');
-  if (!sel) return;
-  sel.addEventListener('change', function () {
-    var url = sel.value;
-    if (typeof url === 'string' && url.trim() !== '') {
-      window.location.href = url;
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  const tabsBlock = document.querySelector('#single-especial .wp-block-atbs-tabs');
-  if (!tabsBlock) return;
-
-  const tabButtons = tabsBlock.querySelectorAll('.tabs-nav .tab-title');
-  if (!tabButtons.length) return;
-
-  const abrirAbaPorIndice = (index) => {
-    const btn = tabButtons[index];
-    if (!btn) return;
-    btn.click();
-  };
-
-  const abrirAbaPelaUrl = () => {
-    const url = new URL(window.location.href);
-    const dia = url.searchParams.get('dia');
-    if (!dia) return;
-
-    const index = parseInt(dia, 10) - 1;
-    if (Number.isNaN(index) || index < 0 || index >= tabButtons.length) return;
-
-    abrirAbaPorIndice(index);
-  };
-
-  tabButtons.forEach((btn, i) => {
-    btn.addEventListener('click', () => {
-      const url = new URL(window.location.href);
-      url.searchParams.set('dia', i + 1);
-      window.history.replaceState({}, '', url);
-    });
-  });
-
-  window.addEventListener('load', function () {
-    setTimeout(abrirAbaPelaUrl, 50);
-  });
-
-  setTimeout(abrirAbaPelaUrl, 200);
 });

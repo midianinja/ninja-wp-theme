@@ -545,40 +545,44 @@ header {
 								}
 							}
 							.sub-menu {
-								background-color: var(--header-background-color);
-								border-left: 0px;
-								padding: 10px 0px 10px 0px;
-								box-shadow: 0px 3px 5px 0px rgba(#000000, 0.3);
-								z-index: 5;
+							    background-color: var(--header-background-color);
+							    border-left: 0px;
+							    padding: 10px 0px 10px 0px;
+							    box-shadow: 0px 3px 5px 0px rgba(#000000, 0.3);
+							    z-index: 5;
+							    max-height: 400px;
+							    overflow: scroll;
 
-								@media (max-width: $desktop-width) {
-									margin-top: 15px;
-									padding-top: 0;
-								}
+							    @media (max-width: $desktop-width) {
+							        margin-top: 15px;
+							        padding-top: 0;
+							    }
 
-								@media (max-width: $desktop-width) {
-									box-shadow: none;
-								}
+							    @media (max-width: $desktop-width) {
+							        box-shadow: none;
+							    }
 
-								> li {
-									background-color: var(--header-background-color);
-									padding: 5px 15px 5px 15px;
-									margin-right: 0;
-									font-size: 80%;
-									width: fit-content;
+							    >li {
+							        background-color: var(--header-background-color);
+							        padding: 5px 15px 5px 15px;
+							        margin-right: 0;
+							        font-size: 80%;
+							        width: fit-content;
+							        position: relative;
+							        top: -15px;
+							        height: 100%;
 
-									@media (max-width: $desktop-width) {
-										background-color: transparent;
-										//border-left: 2px solid #035299;
-									}
+							        @media (max-width: $desktop-width) {
+							            background-color: transparent;
+							        }
 
-									a {
-										@include desktop {
-											display: block;
-											width: 100%;
-										}
-									}
-								}
+							        a {
+							            @include desktop {
+							                display: block;
+							                width: 100%;
+							            }
+							        }
+							    }
 							}
 						}
 					}

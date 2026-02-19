@@ -572,6 +572,15 @@ header {
 							        top: -15px;
 							        height: 100%;
 
+									&:hover{
+										background-color: #333333;
+										width: unset;
+
+										a {
+											color: #fff;
+										}
+									}
+
 							        @media (max-width: $desktop-width) {
 							            background-color: transparent;
 							        }

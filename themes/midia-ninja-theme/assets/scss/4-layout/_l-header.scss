@@ -490,12 +490,13 @@ header {
 			display: flex;
 			margin-top: 6px;
 			width: 100%;
-			height: auto;
+			height: 49px;
 			justify-self: center;
 			overflow: auto;
 			margin-top: 0;
 			transition: all 0.3s ease-in-out;
 			overflow: hidden;
+
 
 			a:hover {
 				color: #111;
@@ -547,11 +548,9 @@ header {
 							.sub-menu {
 							    background-color: var(--header-background-color);
 							    border-left: 0px;
-							    padding: 10px 0px 10px 0px;
+							    padding: 18px 0px 18px 0px;
 							    box-shadow: 0px 3px 5px 0px rgba(#000000, 0.3);
-							    z-index: 5;
-							    max-height: 400px;
-							    overflow: scroll;
+								padding-bottom: 0;
 
 							    @media (max-width: $desktop-width) {
 							        margin-top: 15px;

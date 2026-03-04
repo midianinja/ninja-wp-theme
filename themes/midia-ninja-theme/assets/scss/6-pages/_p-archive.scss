@@ -48,6 +48,11 @@
             .posts {
                 left: 0;
 
+				@include mixins.tablet{
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					gap: 16px;
+				}
 
                 .post-card--thumb .aspect-ratio img {
                     width: 100%;

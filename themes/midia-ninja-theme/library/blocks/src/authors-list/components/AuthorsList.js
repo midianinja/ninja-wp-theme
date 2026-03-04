@@ -8,9 +8,6 @@ function AuthorsList() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    /* -------------------------
-       Escuta o input externo
-    -------------------------- */
     useEffect(() => {
         const input = document.getElementById("authors-search-input");
         if (!input) return;
@@ -23,7 +20,7 @@ function AuthorsList() {
             clearTimeout(debounce);
 
             debounce = setTimeout(() => {
-                setCurrentPage(1); // sempre volta para página 1
+                setCurrentPage(1);
                 setSearch(value.trim());
             }, 400);
         };
@@ -35,9 +32,6 @@ function AuthorsList() {
         };
     }, []);
 
-    /* -------------------------
-       Busca dados na API
-    -------------------------- */
     const fetchPosts = useCallback(async (page, searchTerm) => {
         setError(null);
         setLoading(true);
@@ -74,16 +68,10 @@ function AuthorsList() {
         }
     }, []);
 
-    /* -------------------------
-       Atualiza quando muda página ou busca
-    -------------------------- */
     useEffect(() => {
         fetchPosts(currentPage, search);
     }, [currentPage, search, fetchPosts]);
 
-    /* -------------------------
-       Monta URL
-    -------------------------- */
     const buildUrl = (base, params) => {
         const query = Object.entries(params)
             .filter(([_, value]) => value !== undefined && value !== null && value !== "")
@@ -115,7 +103,6 @@ function AuthorsList() {
                 {error && <p>{error}</p>}
             </div>
 
-            {/* 🔥 Paginação só aparece se NÃO estiver buscando */}
             {!search && totalPages > 1 && (
                 <Pagination
                     currentPage={currentPage}

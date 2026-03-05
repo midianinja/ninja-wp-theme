@@ -55,13 +55,20 @@
                     background: linear-gradient(0deg, rgba(38, 38, 38, 0.64) 49.5%, rgba(38, 38, 38, 0) 100%);
                     color: var(--wp--preset--color--secondary-light);
 
+					@include mixins.small{
+						margin-inline: 0;
+						padding: 16px;
+                   		background: linear-gradient(0deg, rgba(38, 38, 38, 0.64) 106%, rgba(38, 38, 38, 0) 100%);
+					}
+
 
                     @include mobile {
                         display: flex;
-                        margin-left: 20px;
                         justify-content: flex-start;
                         margin-top: 40px;
                         align-items: flex-start;
+						padding: 16px;
+                   		background: linear-gradient(0deg, rgba(38, 38, 38, 0.64) 106%, rgba(38, 38, 38, 0) 100%);
                     }
 
                     h2 {
@@ -132,6 +139,19 @@
 
 
     }
+
+	#app{
+		@include mixins.small{
+			padding-inline: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	#app > .container{
+		@include mixins.small{
+			padding-inline: 0;
+		}
+	}
 
     .content {
         padding-left: 0;
@@ -212,19 +232,13 @@
 
 
             @include mixins.small {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-                margin-top: 40px;
-                max-width: 343px;
-                width: 100%;
-                margin-right: auto;
-                margin-left: auto;
-                justify-items: center;
+				gap: 4px !important;
+				margin-bottom: 32px;
             }
 
             @include mixins.mobile {
                 grid-template-columns: 1fr 1fr;
-                gap: 8px;
+                gap: 4px;
                 margin-top: 40px;
                 max-width: 343px;
                 width: 100%;
@@ -239,6 +253,7 @@
 
                 @include mixins.small {
                     max-width: 158px;
+					scale: 0.9;
                 }
 
                 @include mixins.mobile {
@@ -270,12 +285,14 @@
 
                         @include mixins.small {
                             max-width: 158px;
-                            height: 197px;
+							width: 100%;
+                            height: auto;
                         }
 
                         @include mixins.mobile {
                             max-width: 158px;
-                            height: 197px;
+							width: 100%;
+                            height: auto;
                         }
 
                         a {
@@ -285,7 +302,7 @@
                                 border-radius: 8px;
 
                                 @include mixins.small {
-                                    height: 197px;
+                                    height: auto;
                                 }
 
                                 @include mixins.mobile {
@@ -294,6 +311,11 @@
 
                                 img {
                                     width: 100%;
+
+									@include mixins.small{
+										max-width: 158px;
+									}
+
                                     @media screen and (min-width: 1200px) {
                                         height: 337px !important;
 									    max-height: 337px !important;
@@ -342,6 +364,10 @@
                                 line-height: 125%;
                                 letter-spacing: -0.24px;
                                 margin-top: 8px;
+
+								@include mixins.small{
+									font-size: 18px !important;
+								}
                             }
                         }
                     }

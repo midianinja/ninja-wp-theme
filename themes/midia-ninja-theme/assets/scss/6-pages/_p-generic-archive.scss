@@ -556,7 +556,7 @@
 
 					&__arrows{
 						@media (min-width: 900px) and (max-width: 1024px) {
-							right: 10px;
+							right: 21px;
 							position: relative;
 						}
 					}
@@ -592,6 +592,11 @@
                         padding-bottom: 15px;
 
                         .latest-vertical-posts-block__dots {
+							@media (min-width: 900px) and (max-width: 1024px) {
+								right: 15px;
+								position: relative;
+							}
+
                             .slick-dots {
                                 .slick-active {
                                     background-color: #848484;

@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // --- GESTÃO DE LAYOUT (MOBILE VS DESKTOP) ---
     function promoteSubmenus() {
         const parents = mainMenu.querySelectorAll(':scope > li.menu-item-has-children');
         parents.forEach(parent => {
@@ -163,17 +162,15 @@ document.addEventListener("DOMContentLoaded", function () {
         menuItens.classList.remove('open');
     });
 
-    const burguerMenu = document.querySelector('.hamburguer #menu-hamburguer');
+    const burguerMenu = document.querySelector('.hamburguer nav > ul');
     const burguerWithChild = burguerMenu ? burguerMenu.querySelectorAll('li.menu-item-has-children') : [];
 
     burguerWithChild.forEach(item => {
         const a = item.querySelector(':scope > a');
         if (!a) return;
         a.addEventListener('click', function (e) {
-            if (!mq.matches) { // Só ativa comportamento de toggle no mobile
-                e.preventDefault();
-                item.classList.toggle('active');
-            }
+            e.preventDefault();
+            item.classList.toggle('active');
         });
     });
 

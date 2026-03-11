@@ -6,7 +6,7 @@ $coauthor       = $args['author'];
 $user_login = get_post_meta( $coauthor, 'cap-user_login', true );
 $display_name = get_post_meta( $coauthor, 'cap-display_name', true );
 
-$link = get_author_posts_url( $author, $user_login );
+$link = get_author_posts_url( $coauthor, $user_login );
 
 $bio = get_post_meta( $coauthor, 'cap-description', true );
 $bio = explode( ' ', $bio, 15 );
@@ -19,7 +19,11 @@ if ( count( $bio ) >= 15 ) {
 }
 
 // Thumbnail
-$thumbnail = ( has_post_thumbnail( $coauthor ) ) ? get_the_post_thumbnail( $coauthor ) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
+if ( function_exists( 'coauthors_get_avatar' ) ) {
+    $thumbnail = coauthors_get_avatar( $coauthor, 'medium' );
+} else {
+    $thumbnail = ( has_post_thumbnail( $coauthor ) ) ? get_the_post_thumbnail( $coauthor ) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
+}
 
 ?>
 

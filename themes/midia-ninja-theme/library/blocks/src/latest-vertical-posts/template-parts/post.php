@@ -20,16 +20,23 @@ $coauthor = get_coauthors( $args['post']->ID );
         <?php elseif ( $show_thumbnail ) : ?>
             <div class="post-thumbnail">
                 <div class="post-thumbnail--image">
-                    <?php if ( $show_avatar ) {
-                        $coauthor = get_coauthors( $args['post']->ID );
-                        $thumbnail = get_the_post_thumbnail_url( $coauthor[0], 'medium' );
-                    } else {
+                    <?php if ( $show_avatar ) : ?>
+                        <?php
+                        $coauthors = get_coauthors( $args['post']->ID );
+                        if ( ! empty( $coauthors ) && function_exists( 'coauthors_get_avatar' ) ) {
+                            echo coauthors_get_avatar( $coauthors[0], 'medium' );
+                        } else {
+                            $thumbnail = get_stylesheet_directory_uri() . "/assets/images/default-image.png";
+                            echo '<img src="' . $thumbnail . '">';
+                        }
+                        ?>
+                    <?php else : ?>
+                        <?php
                         $thumbnail = get_the_post_thumbnail_url( $args['post']->ID, 'medium' );
-                    }
-
-                    $thumbnail = $thumbnail ? $thumbnail : get_stylesheet_directory_uri() . "/assets/images/default-image.png"; ?>
-
-                    <img src="<?php echo $thumbnail; ?>">
+                        $thumbnail = $thumbnail ? $thumbnail : get_stylesheet_directory_uri() . "/assets/images/default-image.png";
+                        ?>
+                        <img src="<?php echo $thumbnail; ?>">
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?>

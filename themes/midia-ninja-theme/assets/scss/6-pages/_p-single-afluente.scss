@@ -796,6 +796,131 @@ body {
     }
 
     &.afluente-cine-ninja {
+		#app > .container > .content > .post > .post-content{
+			.wp-block-columns > .wp-block-column{
+				.post--type-opiniao{
+					.container {
+					    .latest-grid-posts-block__content>.latest-grid-posts-block__posts>.post {
+					        display: flex;
+					        max-width: 370px;
+					        width: 100%;
+					        gap: 30px;
+					        align-items: center;
+
+					        .post-thumbnail {
+					            width: 70px;
+					            height: 70px;
+					            background-color: #f5f5f5;
+
+					            img {
+					                width: 70px;
+					                height: 70px;
+					                position: relative;
+					                border-radius: 50px;
+					            }
+					        }
+
+					        .post-content {
+					            max-width: 270px;
+
+					            .post-title {
+					                font-weight: 700;
+					                font-size: 20px;
+					            }
+
+					            .post-meta--author {
+					                text-transform: uppercase;
+					                color: var(--wp--preset--color--primary-light);
+					            }
+
+					        }
+					    }
+					}
+				}
+			}
+		}
+
+        #premiacoes {
+            .wp-block-cover__inner-container {
+                .wp-block-columns {
+                    @include mixins.mobile {
+                        display: grid;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                    }
+
+                    .wp-block-column {
+                        figure {
+                            img {
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #quemsomos {
+            h2 {
+                color: var(--Gray-1, #333);
+                font-feature-settings: "calt"off;
+                font-family: "Tipo Ninja", sans-serif !important;
+                font-size: 54px !important;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 100%;
+                letter-spacing: -2.7px;
+                text-align: start;
+            }
+        }
+
+        #donate {
+            @include mixins.mobile {
+                h2 {
+                    color: #000 !important;
+                    text-align: center;
+                    font-family: Manrope;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 130%;
+                    /* 31.2px */
+                }
+
+
+            }
+
+            .wp-block-cover__background {
+                @include mixins.mobile {
+                    background-color: #FDF250 !important;
+                    border: none;
+                }
+            }
+
+            .wp-block-buttons {
+                @include mixins.mobile {
+                    display: flex;
+                    justify-content: center;
+
+
+                }
+
+                .wp-block-button {
+                    @include mixins.mobile {
+                        border-radius: 8px;
+                        background: var(--DARK, #111)
+                    }
+
+                    .wp-block-button__link {
+                        @include mixins.mobile {
+                            padding: 14px 20px;
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+
         #premiacoes {
             h2 {
                 font-feature-settings: var(--f-ninja-config);
@@ -822,6 +947,15 @@ body {
             }
         }
 
+		.wp-block-columns > .wp-block-column > .post--type-opinao{
+			border: 1px solid red;
+		}
+
+
+		.wp-block-columns > .wp-block-column > h2 > a{
+			color: #333;
+		}
+
         .wp-block-columns:nth-last-of-type(1) {
             //redes sociais
             gap: 17px !important;
@@ -842,6 +976,55 @@ body {
                 margin-left: 0px !important;
             }
 
+        }
+
+        .model-videos {
+            .container {
+                max-width: 1170px;
+                justify-content: flex-start !important;
+            }
+        }
+
+		.latest-grid-posts-block{
+			&__content{
+				margin-top: 32px;
+			}
+
+			&__posts{
+				a > .post-thumbnail {
+					@include mixins.mobile{
+						max-height: 208px;
+					}
+				}
+
+				a > .post-thumbnail > .post-thumbnail--image {
+					@include mixins.mobile {
+						max-height: 208px;
+					}
+				}
+			}
+		}
+
+        .latest-horizontal-posts-block {
+            .container {
+                justify-content: center;
+            }
+
+            &__content {
+                flex-basis: unset;
+            }
+
+            &__slides {
+                .slick-list {
+                    margin: unset;
+                }
+            }
+
+            &__heading {
+                h2 {
+                    font-size: 38px !important;
+                }
+            }
         }
 
         .latest-vertical-posts-block {
@@ -957,89 +1140,6 @@ body {
 
                     @include mixins.mobile {
                         margin-bottom: 20px;
-                    }
-                }
-            }
-        }
-    }
-
-    &.afluente-cine-ninja {
-        #premiacoes {
-            .wp-block-cover__inner-container {
-                .wp-block-columns {
-                    @include mixins.mobile {
-                        display: grid;
-                        width: 100% !important;
-                        max-width: 100% !important;
-                    }
-
-                    .wp-block-column {
-                        figure {
-                            img {
-                                border-radius: 50%;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        #quemsomos {
-            h2 {
-                color: var(--Gray-1, #333);
-                font-feature-settings: "calt"off;
-                font-family: "Tipo Ninja", sans-serif !important;
-                font-size: 54px !important;
-                font-style: normal;
-                font-weight: 600;
-                line-height: 100%;
-                letter-spacing: -2.7px;
-                text-align: start;
-            }
-        }
-
-        #donate {
-            @include mixins.mobile {
-                h2 {
-                    color: #000 !important;
-                    text-align: center;
-                    font-family: Manrope;
-                    font-size: 24px;
-                    font-style: normal;
-                    font-weight: 800;
-                    line-height: 130%;
-                    /* 31.2px */
-                }
-
-
-            }
-
-            .wp-block-cover__background {
-                @include mixins.mobile {
-                    background-color: #FDF250 !important;
-                    border: none;
-                }
-            }
-
-            .wp-block-buttons {
-                @include mixins.mobile {
-                    display: flex;
-                    justify-content: center;
-
-
-                }
-
-                .wp-block-button {
-                    @include mixins.mobile {
-                        border-radius: 8px;
-                        background: var(--DARK, #111)
-                    }
-
-                    .wp-block-button__link {
-                        @include mixins.mobile {
-                            padding: 14px 20px;
-                            border: none;
-                        }
                     }
                 }
             }

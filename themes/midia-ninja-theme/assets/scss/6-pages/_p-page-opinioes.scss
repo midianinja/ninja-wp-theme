@@ -5,6 +5,50 @@
     #app{
         background-color: var(--wp--preset--color--secondary-light);
 
+		.latest-grid-posts-block {
+			.post {
+				display: flex;
+				max-width: 370px;
+				width: 100%;
+				gap: 30px;
+				align-items: center;
+
+				.post-thumbnail {
+					width: 70px;
+					height: 70px;
+					background-color: #f5f5f5;
+
+					img {
+						width: 70px;
+						height: 70px;
+						position: relative;
+						border-radius: 50px;
+					}
+				}
+
+				.post-content {
+					max-width: 270px;
+
+					.post-title {
+						font-weight: 700;
+						font-size: 20px;
+					}
+
+					.post-meta--author {
+						text-transform: uppercase;
+						color: var(--wp--preset--color--primary-light);
+					}
+
+				}
+			}
+
+			.latest-grid-posts-block__pagination {
+				@media(max-width: 767px) {
+					margin-left: -45px;
+				}
+			}
+		}
+
         a{
             text-decoration: none;
         }
@@ -210,6 +254,7 @@
                     width: 100%;
                     gap: 30px;
                     align-items: center;
+
                     .post-thumbnail{
                         width: 70px;
                         height: 70px;
@@ -240,6 +285,7 @@
                     }
                 }
             }
+
             .latest-vertical-posts-block{
                 @media(max-width: 767px){
                     margin-top: -30px;

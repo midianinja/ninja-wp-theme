@@ -464,32 +464,64 @@ function get_posts_by_taxonomy_term($request)
 			$get_coauthors = get_coauthors($post->ID);
 
 			foreach ($get_coauthors as $coauthor) {
-				if (get_post_meta($coauthor->ID, 'colunista', true)) {
-					$thumbnail = get_the_post_thumbnail_url($coauthor->ID);
-
-					if ($thumbnail) {
-						break;
+				$is_guest_author = ( isset( $coauthor->type ) && $coauthor->type === 'guest-author' );
+				
+				// Se for Guest Author, tenta a imagem destacada do post de autor
+				if ( $is_guest_author ) {
+					if ( get_post_meta( $coauthor->ID, 'colunista', true ) || has_post_thumbnail( $coauthor->ID ) ) {
+						$thumbnail = get_the_post_thumbnail_url( $coauthor->ID );
 					}
 				}
 
-				if (has_post_thumbnail($coauthor->ID)) {
-					$thumbnail = get_the_post_thumbnail_url($coauthor->ID);
+				// Se não encontrou imagem destacada (ou se for WP_User), tenta o avatar local ou Gravatar
+				if ( ! $thumbnail ) {
+					$user_id = $is_guest_author ? $coauthor->linked_account : $coauthor->ID;
+					if ( $user_id ) {
+						$thumbnail = get_user_meta( $user_id, 'avatar', true );
+					}
+
+					if ( ! $thumbnail ) {
+						$thumbnail = get_avatar_url( $coauthor );
+					}
+				}
+
+				if ( $thumbnail ) {
+					break;
 				}
 			}
-		} else {
-			$thumbnail = has_post_thumbnail($post) ? get_the_post_thumbnail_url($post) : get_stylesheet_directory_uri() . '/assets/images/default-image.png';
+		}
+
+		// Se ainda não tem thumbnail (ex: post comum sem autor com avatar), pega a do post
+		if ( ! $thumbnail ) {
+			$thumbnail = has_post_thumbnail($post) ? get_the_post_thumbnail_url($post) : '';
 		}
 
 		if (! $thumbnail) {
-			$thumbnail = get_stylesheet_directory_uri() . '/assets/images/default-avatar.png';
+			$thumbnail = get_stylesheet_directory_uri() . '/assets/images/default-image.png';
 		}
 
 
 		if ($post_type == 'guest-author') {
+			$thumbnail = has_post_thumbnail($post) ? get_the_post_thumbnail_url($post) : '';
+
+			if ( ! $thumbnail ) {
+				global $coauthors_plus;
+				if ( isset( $coauthors_plus ) ) {
+					$ga = $coauthors_plus->get_coauthor_by( 'id', $post->ID );
+					if ( $ga ) {
+						$thumbnail = get_avatar_url( $ga );
+					}
+				}
+			}
+
+			if ( ! $thumbnail ) {
+				$thumbnail = get_stylesheet_directory_uri() . '/assets/images/default-avatar.png';
+			}
+
 			$data[] = [
 				'ID'        => $post->ID,
-				'link'      => get_author_posts_url($post->id, str_ireplace('cap-', '', $post->post_name)),
-				'thumbnail' => has_post_thumbnail($post) ? get_the_post_thumbnail_url($post) : get_stylesheet_directory_uri() . '/assets/images/default-avatar.png',
+				'link'      => get_author_posts_url($post->ID, str_ireplace('cap-', '', $post->post_name)),
+				'thumbnail' => $thumbnail,
 				'title'     => $post->post_title,
 			];
 		} else {

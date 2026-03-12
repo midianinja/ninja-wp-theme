@@ -985,6 +985,31 @@ body {
             }
         }
 
+        .wp-block-navigation {
+            @include mixins.mobile {
+                .wp-block-navigation__container {
+                    gap: 0 !important;
+
+                    .wp-block-navigation-item {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: space-evenly !important;
+
+                        &:not(:last-child)::after {
+                            content: "";
+                            width: 4px;
+                            height: 4px;
+                            background-color: currentColor;
+                            border-radius: 50%;
+                            margin: 0 12px;
+                            pointer-events: none;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+
 		.latest-grid-posts-block{
 			&__content{
 				margin-top: 32px;

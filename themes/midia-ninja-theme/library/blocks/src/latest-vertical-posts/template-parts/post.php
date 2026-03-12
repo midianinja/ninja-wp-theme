@@ -23,8 +23,19 @@ $coauthor = get_coauthors( $args['post']->ID );
                     <?php if ( $show_avatar ) : ?>
                         <?php
                         $coauthors = get_coauthors( $args['post']->ID );
-                        if ( ! empty( $coauthors ) && function_exists( 'coauthors_get_avatar' ) ) {
-                            echo coauthors_get_avatar( $coauthors[0], 'medium' );
+                        if ( ! empty( $coauthors ) ) {
+                            if ( function_exists( 'coauthors_get_avatar' ) ) {
+                                echo coauthors_get_avatar( $coauthors[0], 'medium' );
+                            } else {
+                                $user_id = ( isset( $coauthors[0]->type ) && $coauthors[0]->type === 'guest-author' ) ? $coauthors[0]->linked_account : $coauthors[0]->ID;
+                                $thumbnail = $user_id ? get_user_meta( $user_id, 'avatar', true ) : '';
+                                
+                                if ( ! $thumbnail ) {
+                                    $thumbnail = get_avatar_url( $coauthors[0], [ 'size' => 300 ] );
+                                }
+                                
+                                echo '<img src="' . $thumbnail . '">';
+                            }
                         } else {
                             $thumbnail = get_stylesheet_directory_uri() . "/assets/images/default-image.png";
                             echo '<img src="' . $thumbnail . '">';

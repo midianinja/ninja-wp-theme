@@ -23,6 +23,11 @@
                     transition: all 0.3s ease-in-out;
                     font-weight: 800;
 
+					@media (min-width: 783px) and (max-width: 992px) {
+						white-space: nowrap;
+						font-size: 11px;
+					}
+
                     &:hover {
                         opacity: 0.9;
                     }

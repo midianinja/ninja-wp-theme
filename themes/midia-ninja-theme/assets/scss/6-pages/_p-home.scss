@@ -52,6 +52,12 @@
             color: var(--cat-background-color) !important;
         }
 
+		.wp-block-column:last-child{
+			@media (min-width: 783px) and (max-width: 992px) {
+				order: 3;
+			}
+		}
+
         @include mobile {
             margin-top: 0;
             gap: 0;

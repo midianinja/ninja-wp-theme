@@ -205,6 +205,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    const langSelect = document.getElementById('lang-switcher-especial');
+    if (langSelect) {
+        langSelect.addEventListener('change', function() {
+            if (this.value) {
+                window.location.href = this.value;
+            }
+        });
+    }
+
     handleLayout();
     mq.addEventListener('change', handleLayout);
 });

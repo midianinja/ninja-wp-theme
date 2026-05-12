@@ -167,11 +167,6 @@
 
                 .wp-block-column:has(.wp-block-group) {
                     overflow: auto;
-
-                    .wp-block-group {
-                        overflow: scroll;
-                        width: max-content;
-                    }
                 }
             }
         }

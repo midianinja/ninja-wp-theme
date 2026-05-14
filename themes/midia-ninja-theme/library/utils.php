@@ -554,6 +554,7 @@ function alterar_consulta_pesquisa_afluente($query) {
         }
 		$query->set('orderby', 'title');
 		$query->set('order', 'ASC');
+		$query->set('post_parent', 0);
     }
 }
 add_action('pre_get_posts', 'alterar_consulta_pesquisa_afluente');

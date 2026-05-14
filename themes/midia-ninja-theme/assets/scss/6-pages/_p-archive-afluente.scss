@@ -21,6 +21,10 @@ main.content.col-md-12 {
         a {
             text-decoration: none;
         }
+
+		.container > .content{
+			width: unset !important;
+		}
     }
 
     .header-and-footer-archive {

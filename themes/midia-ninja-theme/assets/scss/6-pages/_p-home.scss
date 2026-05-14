@@ -2,6 +2,12 @@
 @import "./../2-atoms/a-mixins";
 
 .home {
+	.cat-links > a{
+		@media (min-width: 782px) and (max-width: 991px) {
+			font-size: 9px !important;
+		}
+	}
+
     #app {
         background-color: var(--wp--preset--color--secondary-light);
         overflow-y: hidden;
@@ -354,12 +360,22 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px 30px;
 
-            @media (max-width: 992px) {
-                grid-template-columns: 1fr;
+            @media (width: 991px) {
+                grid-template-columns: 1fr 1fr !important;
             }
 
             .wp-block-newspack-blocks-homepage-articles {
                 border: none;
+
+				@media (max-width: 992px) {
+					max-width: unset;
+				}
+
+				&:nth-child(3){
+					@media (min-width: 782px) and (max-width: 992px) {
+						display: none;
+					}
+				}
 
                 article {
                     border: 1px solid #ccc;
@@ -391,6 +407,10 @@
                         position: absolute;
                         top: -9rem;
                         left: 0;
+
+						@include tablet{
+							top: unset;
+						}
                     }
 
                     .entry-title {

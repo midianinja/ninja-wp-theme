@@ -540,7 +540,10 @@ function get_posts_by_taxonomy_term($request)
 	wp_reset_postdata();
 
 	if (empty($data)) {
-		return new \WP_Error('no_posts', 'Nenhum post encontrado com os critérios especificados', ['status' => 404]);
+		return new \WP_REST_Response([
+			'posts'      => [],
+			'totalPages' => 0,
+		], 200);
 	}
 
 	return new \WP_REST_Response([

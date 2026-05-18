@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { __ } from "@wordpress/i18n";
 
 function AuthorsList() {
     const [posts, setPosts] = useState([]);
@@ -93,7 +94,7 @@ function AuthorsList() {
                 {loading && <p>Carregando...</p>}
 
                 {!loading && posts.length === 0 && (
-                    <p>Nenhum colunista encontrado.</p>
+                    <p>{__("Colunista não encontrado", "ninja")}</p>
                 )}
 
                 {posts.map((post) => (

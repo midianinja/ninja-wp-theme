@@ -68,7 +68,7 @@ function authors_list_block_callback( $attributes ) {
 					type="text"
 					id="authors-search-input"
 					class="authors-list-block__search-input"
-					placeholder="Pesquisar colunista..."
+					placeholder="Pesquisar colunistas..."
 					autocomplete="off"
 				/>
 			</div>

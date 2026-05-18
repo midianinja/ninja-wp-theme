@@ -331,11 +331,11 @@
                                 width: 100%;
                             }
 
-							.authbio {
-								@include mixins.small {
-									display: none;
-								}
-							}
+							// .authbio {
+							// 	@include mixins.small {
+							// 		display: none;
+							// 	}
+							// }
 
                             hr {
                                 border-top: 1px solid #f2f2f2;
@@ -632,6 +632,14 @@
                             font-weight: 500;
                             line-height: 130%;
                             letter-spacing: -0.36px;
+
+							@include mixins.mobile{
+								padding-top: 0;
+							}
+
+							@include mixins.small{
+								padding-top: 0;
+							}
                         }
 
                         .social-networks {

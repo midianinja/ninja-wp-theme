@@ -26,3 +26,20 @@
         padding-right: 0;
     }
 }
+
+.wp-block-cover.alignfull {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+	padding-inline: 0;
+	display: block;
+}
+
+// .wp-block-cover.is-full-height {
+//     min-height: 100vh;
+// }
+
+.wp-block-cover__inner-container {
+    width: 100%;
+}

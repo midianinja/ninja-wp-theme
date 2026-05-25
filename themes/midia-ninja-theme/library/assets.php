@@ -705,6 +705,9 @@ class Assets
             'core/image' => function () {
                 $this->format_enqueue_css('ninja-core-image', '_b-image.css');
             },
+            'core/cover' => function () {
+                $this->format_enqueue_css('ninja-core-cover', '_b-cover.css');
+            },
             'ninja/latest-vertical-posts' => function () {
                 $this->format_enqueue_css('ninja-latest-vertical-posts', '_b-latest-vertical-posts.css');
             },

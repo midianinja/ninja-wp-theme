@@ -21,6 +21,10 @@
 }
 
 .wp-block-cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     @include small {
         padding-left: 0;
         padding-right: 0;
@@ -33,12 +37,22 @@
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
 	padding-inline: 0;
-	display: block;
 }
 
 // .wp-block-cover.is-full-height {
 //     min-height: 100vh;
 // }
+
+.wp-block-cover__image-background {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    transform: none !important;
+}
 
 .wp-block-cover__inner-container {
     width: 100%;

@@ -1458,14 +1458,28 @@ hr {
 .alignwide,
 .wp-block-cover.alignwide {
     width: 100vw;
-    max-width: 1170px;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
 
-    // @include tablet {
-    // 	width: calc(100% + 7px);
-    // }
+    @media (min-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+        max-width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 1170px;
+    }
+}
+
+.alignfull,
+.alignwide {
+    img {
+        height: auto;
+    }
 }
 
 #app .content {

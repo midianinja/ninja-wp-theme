@@ -713,6 +713,13 @@
                         object-fit: contain;
                     }
 
+                    .alignfull img,
+                    .alignwide img {
+                        left: auto;
+                        transform: none;
+                        object-fit: initial;
+                    }
+
                     .page-share {
                         margin: 24px auto;
                         width: max-content;

@@ -1487,3 +1487,20 @@ hr {
         margin-bottom: 100px;
     }*/
 }
+
+// Limita títulos a 2 linhas com reticências em tablets
+@media (min-width: 768px) and (max-width: 1080px) {
+    .entry-title,
+    .card--title,
+    .post-title,
+    h2.entry-title,
+    h3.entry-title,
+    h4.card--title,
+    h5.entry-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

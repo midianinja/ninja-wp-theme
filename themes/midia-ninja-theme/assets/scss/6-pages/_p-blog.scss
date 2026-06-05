@@ -11,34 +11,48 @@
 		display: none;
 	}
 
-	.content{
-		.posts{
-			justify-items: center;
+	#app .container {
+		main.content {
+			width: 100%;
+			padding: 0;
 
-			.post{
-				height: 400px;
-			}
+			.posts{
+				justify-items: center;
 
-			.post-card{
-				&--content{
-					.entry-meta{
-						display: none !important;
-						order: 1;
-						position: relative;
-						top: -60px;
-						right: -12px;
+				@include mixins.tablet{
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					gap: 16px;
+					justify-items: end;
+				}
+
+				@include mixins.small{
+					grid-template-columns: 1fr;
+				}
+
+				.post{
+					height: 400px;
+				}
+
+				.post-card{
+					&--content{
+						.entry-meta{
+							display: none !important;
+							order: 1;
+							position: relative;
+							top: -60px;
+							right: -12px;
+						}
+
+						.entry-title{
+							position: relative;
+						}
+
+						.entry-date{
+							position: relative;
+						}
 					}
-
-					.entry-title{
-						position: relative;
-    					
-					}
-
-					.entry-date{
-						position: relative;
-						
-					}
-				} 
+				}
 			}
 		}
 	}

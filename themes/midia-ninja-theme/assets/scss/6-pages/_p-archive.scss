@@ -42,13 +42,15 @@
 			}
 
             .posts {
-                left: 0;
-
 				@include mixins.tablet{
 					align-items: start;
 					display: grid;
 					grid-template-columns: repeat(2, 1fr);
 					gap: 16px;
+				}
+
+				@include mixins.small{
+					grid-template-columns: 1fr;
 				}
 
                 .post-card--thumb .aspect-ratio img {
@@ -104,5 +106,12 @@
             float: right;
         }
     }
+}
 
+.archive{
+	#app > .index-wrapper > .container > .header-and-footer-archive{
+		@include mixins.tablet{
+			margin-top: 95px;
+		}
+	}
 }

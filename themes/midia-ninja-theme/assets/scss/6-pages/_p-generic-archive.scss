@@ -401,15 +401,10 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     position: relative;
-                    right: 65px;
                     width: 805px;
 
                     @media (max-width: 1023px) {
                         right: 60px;
-                    }
-
-                    @media (min-width: 1024px) and (max-width: 1074px) {
-                        right: 35px;
                     }
 
                     @include mixins.small {

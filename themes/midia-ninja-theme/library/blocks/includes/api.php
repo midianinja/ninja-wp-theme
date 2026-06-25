@@ -413,8 +413,34 @@ function get_posts_by_taxonomy_term($request)
 		: '';
 
 	if ($search) {
-		$args['s'] = $search;
-		$args['orderby'] = 'relevance';
+		global $wpdb;
+
+		$search_terms = explode(' ', $search);
+		$search_terms = array_values(array_filter(array_map('trim', $search_terms)));
+
+		if (! empty($search_terms)) {
+			$conditions = [];
+			foreach ($search_terms as $term) {
+				$conditions[] = $wpdb->prepare(
+					'post_title LIKE %s',
+					'%' . $wpdb->esc_like($term) . '%'
+				);
+			}
+
+			$where = implode(' AND ', $conditions);
+
+			$search_ids = $wpdb->get_col($wpdb->prepare(
+				"SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND ({$where})",
+				$post_type
+			));
+
+			if (! empty($search_ids)) {
+				$args['post__in'] = $search_ids;
+				$args['orderby'] = 'post__in';
+			} else {
+				$args['post__in'] = [0];
+			}
+		}
 	}
 
 	$args['post__not_in'] = array_merge(
@@ -539,6 +565,58 @@ function get_posts_by_taxonomy_term($request)
 
 	wp_reset_postdata();
 
+	if ($search && $post_type === 'guest-author') {
+		global $wpdb;
+
+		$search_terms = explode(' ', $search);
+		$search_terms = array_values(array_filter(array_map('trim', $search_terms)));
+
+		if (! empty($search_terms)) {
+			$user_conditions = [];
+			foreach ($search_terms as $term) {
+				$user_conditions[] = $wpdb->prepare(
+					'u.display_name LIKE %s',
+					'%' . $wpdb->esc_like($term) . '%'
+				);
+			}
+
+			$user_where = implode(' AND ', $user_conditions);
+
+			$wp_users = $wpdb->get_results(
+				"SELECT u.ID, u.display_name, u.user_nicename
+				 FROM {$wpdb->users} u
+				 WHERE {$user_where}
+				 ORDER BY u.display_name ASC
+				 LIMIT 50"
+			);
+
+			if (! empty($wp_users)) {
+				$existing_ids = [];
+				foreach ($data as $item) {
+					$existing_ids[] = $item['ID'];
+				}
+
+				foreach ($wp_users as $wp_user) {
+					if (in_array($wp_user->ID, $existing_ids)) {
+						continue;
+					}
+
+					$term_slug = 'cap-' . $wp_user->user_nicename;
+					$term = term_exists($term_slug, 'author');
+
+					if ($term) {
+						$data[] = [
+							'ID'        => $wp_user->ID,
+							'link'      => get_author_posts_url($wp_user->ID),
+							'thumbnail' => get_avatar_url($wp_user->ID),
+							'title'     => $wp_user->display_name,
+						];
+					}
+				}
+			}
+		}
+	}
+
 	if (empty($data)) {
 		return new \WP_REST_Response([
 			'posts'      => [],
@@ -546,9 +624,11 @@ function get_posts_by_taxonomy_term($request)
 		], 200);
 	}
 
+	$total_found = $search ? count($data) : $query->found_posts;
+
 	return new \WP_REST_Response([
 		'posts'      => $data,
-		'totalPages' => ceil(min($max_posts, $query->found_posts) / $per_page),
+		'totalPages' => ceil(min($max_posts, $total_found) / $per_page),
 	], 200);
 }
 

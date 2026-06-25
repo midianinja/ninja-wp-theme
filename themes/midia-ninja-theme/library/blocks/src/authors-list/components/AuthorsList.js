@@ -98,7 +98,7 @@ function AuthorsList() {
                 )}
 
                 {posts.map((post) => (
-                    <Post key={post.id} post={post} />
+                    <Post key={post.ID} post={post} />
                 ))}
 
                 {error && <p>{error}</p>}

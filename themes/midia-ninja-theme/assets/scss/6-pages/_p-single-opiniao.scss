@@ -56,6 +56,9 @@
                     &.has-thumbnail {
                         gap: 20px;
                         max-width: 970px;
+						@include mixins.mobile{
+							padding-top: 67px;
+						}
 
                         .post-info {
                             margin-top: 0;
@@ -67,6 +70,7 @@
 
                             @media(max-width: 768px) {
                                 margin-bottom: 15px;
+								height: auto !important;
                             }
                         }
                     }

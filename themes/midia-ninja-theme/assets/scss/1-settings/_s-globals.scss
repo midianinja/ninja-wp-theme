@@ -42,6 +42,14 @@ html {
             }
         }
 
+		&.home{
+			#app{
+				@include mobile{
+					padding-top: size(140);
+				}
+			}
+		}
+
         .wp-block-newspack-blocks-wp-block-newspack-ads-blocks-ad-unit.aligncenter {
             text-align: center;
             display: flex;

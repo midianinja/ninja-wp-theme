@@ -115,3 +115,13 @@
 		}
 	}
 }
+
+.post-type-archive-especial{
+	#app{
+		.container main.content .posts{
+			@include mixins.mobile{
+				grid-template-columns: 1fr 1fr;
+			}
+		}
+	}
+}

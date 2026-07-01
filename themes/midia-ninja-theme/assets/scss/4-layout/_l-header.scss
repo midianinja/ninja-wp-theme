@@ -200,6 +200,9 @@ header {
 								position: absolute;
 								top: 0;
 								right: 0;
+								cursor: pointer;
+								z-index: 2;
+								padding: 0.5rem;
 							}
 
 							&.menu-item-has-children i::after {

@@ -166,10 +166,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const burguerWithChild = burguerMenu ? burguerMenu.querySelectorAll('li.menu-item-has-children') : [];
 
     burguerWithChild.forEach(item => {
-        const a = item.querySelector(':scope > a');
-        if (!a) return;
-        a.addEventListener('click', function (e) {
-            e.preventDefault();
+        const toggle = item.querySelector(':scope > i');
+        if (!toggle) return;
+
+        toggle.addEventListener('click', function (e) {
+            e.stopPropagation();
             item.classList.toggle('active');
         });
     });

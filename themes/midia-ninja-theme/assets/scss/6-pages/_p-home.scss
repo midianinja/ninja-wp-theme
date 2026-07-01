@@ -360,9 +360,14 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px 30px;
 
-            @media (width: 991px) {
+            @media (min-width: 769px) and (max-width: 991px) {
                 grid-template-columns: 1fr 1fr !important;
             }
+
+			@media (max-width: 768px){
+				display: flex;
+				flex-direction: column;
+			}
 
             .wp-block-newspack-blocks-homepage-articles {
                 border: none;
@@ -492,6 +497,10 @@
                 max-width: 380px;
                 width: 100%;
             }
+
+			@include mobile{
+				max-width: unset;
+			}
 
             @media (max-width: 400px) {
                 max-width: 350px;

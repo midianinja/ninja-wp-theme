@@ -41,7 +41,7 @@
                 height: auto !important;
             }
 
-            .wp-block-columns {
+             .wp-block-columns {
                 margin-left: 0px !important;
                 margin-bottom: 0px;
                 height: 506px !important;
@@ -49,7 +49,7 @@
                 @include mobile {
                     width: 100%;
                     position: relative;
-                    top: 0;
+                    top: 45px;
                     height: auto !important;
                 }
 

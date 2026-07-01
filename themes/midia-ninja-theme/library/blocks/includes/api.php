@@ -611,6 +611,18 @@ function get_posts_by_taxonomy_term($request)
 							'thumbnail' => get_avatar_url($wp_user->ID),
 							'title'     => $wp_user->display_name,
 						];
+					} else {
+						$user_data = get_userdata( $wp_user->ID );
+						$is_colunista = $user_data && in_array( 'colunista', $user_data->roles );
+
+						if ( ! $only_columnist || $is_colunista ) {
+							$data[] = [
+								'ID'        => $wp_user->ID,
+								'link'      => get_author_posts_url($wp_user->ID),
+								'thumbnail' => get_avatar_url($wp_user->ID),
+								'title'     => $wp_user->display_name,
+							];
+						}
 					}
 				}
 			}

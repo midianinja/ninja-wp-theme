@@ -64,6 +64,10 @@
 					display: flex;
 					flex-direction: column;
 
+					@include mobile{
+						margin-top: 10px;
+					}
+
 					& > a{
 						text-decoration: none;
 					}
@@ -112,6 +116,16 @@
 	#app > .index-wrapper > .container > .header-and-footer-archive{
 		@include mixins.tablet{
 			margin-top: 95px;
+		}
+	}
+}
+
+.post-type-archive-especial{
+	#app{
+		.container main.content .posts{
+			@include mixins.mobile{
+				grid-template-columns: 1fr 1fr;
+			}
 		}
 	}
 }

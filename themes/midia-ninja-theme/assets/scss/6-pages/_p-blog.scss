@@ -2,54 +2,123 @@
 @use "./../2-atoms/a-mixins"as mixins;
 
 
-.blog{
-	.c-title{
+.blog {
+	.c-title {
 		display: none;
 	}
 
-	.infos{
+	.infos {
 		display: none;
 	}
-
+	#app{
+		margin-bottom: 0 !important;
+	}
 	#app .container {
-		main.content {
-			width: 100%;
-			padding: 0;
+		@include mixins.mobile {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
 
-			.posts{
-				justify-items: center;
+		}
+		.archive-grid {
+			@include mixins.desktop {
+				display: flex;
+				flex-wrap: wrap;
 
-				@include mixins.tablet{
-					display: grid;
-					grid-template-columns: repeat(2, 1fr);
-					gap: 16px;
-					justify-items: end;
+				> main.content {
+					width: 75% !important;
+					padding: 0 32px 0 15px !important;
+					margin-top: 0 !important;
+					margin-bottom: 0 !important;
+					order: 1;
 				}
 
-				@include mixins.small{
-					grid-template-columns: 1fr;
+				> aside {
+					width: 25%;
+					padding: 0 15px !important;
+					height: fit-content;
+					margin-top: 0 !important;
+					order: 2;
 				}
 
-				.post{
-					height: 400px;
+				> .navigation.pagination {
+					width: 100%;
+					order: 3;
+					margin-top: 2rem;
+					margin-bottom: 4rem;
+					position: static !important;
+				}
+			}
+
+			@include mixins.mobile{
+
+				> main.content {
+					margin-top: 0 !important;
+					margin-bottom: 0 !important;
+				}
+				> aside {
+
+					margin-top: 0 !important;
 				}
 
-				.post-card{
-					&--content{
-						.entry-meta{
-							display: none !important;
-							order: 1;
-							position: relative;
-							top: -60px;
-							right: -12px;
-						}
+				> .navigation.pagination {
+					margin-top: 2rem;
+					margin-bottom: 2rem;
+				}
+			}
 
-						.entry-title{
-							position: relative;
-						}
+			main.content {
 
-						.entry-date{
-							position: relative;
+				@include mixins.tablet {
+					width: 100% !important;
+					padding: 0 !important;
+				}
+
+				.posts {
+					justify-items: stretch !important;
+					width: 100% !important;
+					position: static !important;
+
+					@include mixins.desktop {
+						display: grid;
+						grid-template-columns: repeat(2, 1fr);
+						gap: 32px;
+					}
+
+					@include mixins.tablet {
+						display: grid;
+						grid-template-columns: repeat(2, 1fr);
+						gap: 32px;
+						justify-items: stretch !important;
+					}
+
+					@include mixins.small {
+						grid-template-columns: 1fr;
+					}
+
+
+
+					.post {
+						width: 100% !important;
+					}
+
+					.post-card {
+						&--content {
+							margin-bottom: 0 !important;
+							.entry-meta {
+								display: none !important;
+								order: 1;
+								position: relative;
+								top: -60px;
+								right: -12px;
+							}
+
+							.entry-title {
+								position: relative;
+							}
+
+							.entry-date {
+								position: relative;
+							}
 						}
 					}
 				}

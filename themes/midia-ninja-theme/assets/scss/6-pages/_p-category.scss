@@ -1,0 +1,108 @@
+@use "./../1-settings/s-variables"as variables;
+@use "./../2-atoms/a-mixins"as mixins;
+
+
+.category {
+
+	#app{
+		margin-bottom: 0 !important;
+	}
+	#app .container {
+
+		.archive-grid {
+			@include mixins.desktop {
+				display: flex;
+				flex-wrap: wrap;
+
+				> main.content {
+					width: 75% !important;
+					padding: 0 15px !important;
+					margin-top: 0 !important;
+					margin-bottom: 0 !important;
+					order: 1;
+				}
+
+				> aside {
+					width: 25%;
+					padding: 0 15px;
+					height: fit-content;
+					margin-top: 0 !important;
+					order: 2;
+				}
+
+				> .navigation.pagination {
+					width: 100%;
+					order: 3;
+					margin-top: 2rem;
+					margin-bottom: 4rem;
+					position: static !important;
+				}
+			}
+
+			@include mixins.mobile {
+
+				> main.content {
+
+					margin-top: 64px!important;
+
+				}
+
+				> .navigation.pagination {
+					margin-top: 2rem;
+					margin-bottom: 2rem;
+				}
+			}
+
+			main.content {
+
+				@include mixins.tablet {
+					width: 100% !important;
+					padding: 0 !important;
+				}
+
+				.posts {
+					justify-items: stretch !important;
+					width: 100% !important;
+					position: static !important;
+
+					@include mixins.desktop {
+						display: grid;
+						grid-template-columns: repeat(2, 1fr);
+						gap: 32px;
+					}
+
+					@include mixins.tablet {
+						display: grid;
+						grid-template-columns: repeat(2, 1fr);
+						gap: 32px;
+						justify-items: stretch !important;
+					}
+
+					@include mixins.small {
+						grid-template-columns: 1fr;
+					}
+
+					.post-card {
+						&--content {
+							.entry-meta {
+								display: none !important;
+								order: 1;
+								position: relative;
+								top: -60px;
+								right: -12px;
+							}
+
+							.entry-title {
+								position: relative;
+							}
+
+							.entry-date {
+								position: relative;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

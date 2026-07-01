@@ -42,19 +42,23 @@ get_header();
         }
     ?>
 
-    <main class="content col-md-9">
-        <div class="posts">
-            <?php while ( have_posts() ) : the_post(); ?>
-                <?php get_template_part( 'template-parts/content/post' ); ?>
-            <?php endwhile; ?>
-        </div>
+    <div class="row">
+        <div class="archive-grid">
+            <main class="content col-md-9">
+                <div class="posts">
+                    <?php while ( have_posts() ) : the_post(); ?>
+                        <?php get_template_part( 'template-parts/content/post' ); ?>
+                    <?php endwhile; ?>
+                </div>
+            </main>
 
-        <?php get_template_part( 'template-parts/content/pagination' ); ?>
-    </main>
+            <?php get_template_part( 'template-parts/content/pagination' ); ?>
 
-    <aside class="col-md-3">
-        <?php dynamic_sidebar( 'sidebar-default' ) ?>
-    </aside>
+            <aside class="col-md-3">
+                <?php dynamic_sidebar( 'sidebar-default' ) ?>
+            </aside>
+        </div><!-- /.archive-grid -->
+    </div><!-- /.row -->
 </div>
 
 <?php get_footer(); ?>

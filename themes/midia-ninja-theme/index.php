@@ -31,18 +31,21 @@ $main_category = get_primary_term( $post->ID, 'category' );
 					</div>
                 </div><!-- .infos -->
 
-                <main class="content col-md-9">
-                    <div class="posts">
-                        <?php while ( have_posts() ) : the_post(); ?>
-                            <?php get_template_part( 'template-parts/content/post' ); ?>
-                        <?php endwhile; ?>
-                    </div>
-                    <?php get_template_part( 'template-parts/content/pagination' ); ?>
-                </main>
+                <div class="archive-grid">
+                    <main class="content col-md-9">
+                        <div class="posts">
+                            <?php while ( have_posts() ) : the_post(); ?>
+                                <?php get_template_part( 'template-parts/content/post' ); ?>
+                            <?php endwhile; ?>
+                        </div>
+                    </main>
 
-                <aside class="col-md-3">
-                    <?php dynamic_sidebar( 'sidebar-posts' ) ?>
-                </aside>
+                    <?php get_template_part( 'template-parts/content/pagination' ); ?>
+
+                    <aside class="col-md-3">
+                        <?php dynamic_sidebar( 'sidebar-posts' ) ?>
+                    </aside>
+                </div><!-- /.archive-grid -->
 
             <?php else : ?>
                 <div class="col-md-12">

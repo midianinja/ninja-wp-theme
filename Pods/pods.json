@@ -1013,7 +1013,7 @@
                     "_wpml_word_count": "{\"total\":5,\"to_translate\":{\"en\":5,\"es\":5}}",
                     "fields": [
                         {
-                            "name": "_show_thumbnail",
+                            "name": "show_thumbnail",
                             "id": 4560580,
                             "label": "Exibir imagem de destaque no post?",
                             "description": "",

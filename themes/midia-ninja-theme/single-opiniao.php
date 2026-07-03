@@ -57,7 +57,8 @@ foreach ($coauthors as $coauthor) :
 endforeach;
 
 $container_class = $has_columnist ? 'container has-columnist' : 'container';
-$has_thumbnail = (has_post_thumbnail() && get_post_meta(get_the_ID(), '_show_thumbnail', true) === '1') ? true : false;
+$show_thumbnail = get_post_meta(get_the_ID(), 'show_thumbnail', true);
+$has_thumbnail = (has_post_thumbnail() && filter_var($show_thumbnail, FILTER_VALIDATE_BOOLEAN)) ? true : false;
 ?>
 
 <div class="<?php echo $container_class ?>" id="single-opiniao">

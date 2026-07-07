@@ -1029,6 +1029,8 @@
                             "roles_allowed": "administrator",
                             "revisions_revision_field": "0",
                             "enable_conditional_logic": "0",
+                            "rest_write": "1",
+                            "rest_read": "1",
                             "rest_pick_response": "array",
                             "rest_pick_depth": "1",
                             "required": "0",

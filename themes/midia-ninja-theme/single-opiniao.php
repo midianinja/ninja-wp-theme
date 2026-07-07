@@ -58,6 +58,7 @@ endforeach;
 
 $container_class = $has_columnist ? 'container has-columnist' : 'container';
 $show_thumbnail = get_post_meta(get_the_ID(), 'show_thumbnail', true);
+$show_thumbnail = ($show_thumbnail === '') ? '1' : $show_thumbnail;
 $has_thumbnail = (has_post_thumbnail() && filter_var($show_thumbnail, FILTER_VALIDATE_BOOLEAN)) ? true : false;
 ?>
 

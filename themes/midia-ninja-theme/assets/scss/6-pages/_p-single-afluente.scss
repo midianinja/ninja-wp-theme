@@ -3,6 +3,11 @@
 
 
 body.single-afluente {
+	#app{
+		@include mixins.mobile {
+			padding-top: 140px !important;
+		}
+	}
     .container {
         @include mixins.desktop-xlarge {
             max-width: 1200px;

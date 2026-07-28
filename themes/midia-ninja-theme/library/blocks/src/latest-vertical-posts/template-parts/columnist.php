@@ -19,10 +19,26 @@ if ( count( $bio ) >= 15 ) {
 }
 
 // Thumbnail
-if ( function_exists( 'coauthors_get_avatar' ) ) {
-    $thumbnail = coauthors_get_avatar( $coauthor, 'medium' );
+// $coauthor pode chegar como objeto (stdClass do coauthors_get_users) ou como
+// inteiro (post ID do guest-author CPT, retornado por AjaxPageviews/get_posts).
+// coauthors_get_avatar() exige objeto; quando recebe int retorna string vazia,
+// por isso precisamos normalizar antes de chamar.
+if ( function_exists( 'coauthors_get_avatar' ) && is_object( $coauthor ) ) {
+	$thumbnail = coauthors_get_avatar( $coauthor, 'medium' );
 } else {
-    $thumbnail = ( has_post_thumbnail( $coauthor ) ) ? get_the_post_thumbnail( $coauthor ) : '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png">';
+	$guest_author_id = is_object( $coauthor ) && isset( $coauthor->ID ) ? $coauthor->ID : (int) $coauthor;
+	$thumbnail = ( has_post_thumbnail( $guest_author_id ) )
+		? get_the_post_thumbnail( $guest_author_id, 'medium' )
+		: '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png" alt="">';
+}
+
+// Fallback defensivo: coauthors_get_avatar() pode retornar vazio para objetos
+// guest-author sem thumbnail nem e-mail associado.
+if ( empty( $thumbnail ) ) {
+	$guest_author_id = is_object( $coauthor ) && isset( $coauthor->ID ) ? $coauthor->ID : (int) $coauthor;
+	$thumbnail = ( has_post_thumbnail( $guest_author_id ) )
+		? get_the_post_thumbnail( $guest_author_id, 'medium' )
+		: '<img src="' . get_stylesheet_directory_uri() . '/assets/images/default-image.png" alt="">';
 }
 
 ?>

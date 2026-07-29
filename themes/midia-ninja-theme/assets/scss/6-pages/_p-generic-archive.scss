@@ -372,7 +372,7 @@
                         }
 
 						@include mixins.tablet {
-						    object-fit: inherit;
+						    object-fit: cover;
 						}
 
                         @include mixins.mobile {

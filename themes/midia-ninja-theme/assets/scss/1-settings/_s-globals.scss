@@ -33,22 +33,18 @@ html {
         #app {
             padding-top: 170px;
 
-            @include tablet {
-                padding-top: 190px;
-            }
-
             @include mobile {
-                padding-top: 56px;
+                padding-top: 148px;
             }
         }
 
-		&.home{
-			#app{
-				@include mobile{
-					padding-top: size(140);
-				}
-			}
-		}
+		// &.home{
+		// 	#app{
+		// 		@include mobile{
+		// 			padding-top: size(140);
+		// 		}
+		// 	}
+		// }
 
         .wp-block-newspack-blocks-wp-block-newspack-ads-blocks-ad-unit.aligncenter {
             text-align: center;

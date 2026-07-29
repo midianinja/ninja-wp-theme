@@ -16,6 +16,8 @@
     }
 
     #app {
+		margin-bottom: 0 !important;
+		padding-bottom: size(80);
         background-color: #F5F5F5;
 
         a {
@@ -260,6 +262,7 @@
             }
 
             article {
+				width: 100%;
                 @include mobile {
                     margin: auto;
                 }

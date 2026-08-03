@@ -61,50 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function promoteSubmenus() {
-        const parents = mainMenu.querySelectorAll(':scope > li.menu-item-has-children');
-        parents.forEach(parent => {
-            if (!parent.dataset.pid) parent.dataset.pid = (++pidCounter).toString();
-            const submenu = parent.querySelector(':scope > .sub-menu');
-            if (!submenu) return;
-
-            const children = Array.from(submenu.children);
-            children.forEach(child => {
-                if (child.dataset.promoted === '1') return;
-                child.dataset.promoted = '1';
-                child.dataset.parentPid = parent.dataset.pid;
-                child.classList.add('promoted-subitem');
-                parent.after(child);
-            });
-
-            submenu.style.display = 'none';
-            parent.classList.remove('active');
-        });
-    }
-
-    function restoreSubmenus() {
-        const promoted = Array.from(mainMenu.querySelectorAll(':scope > li.promoted-subitem[data-promoted="1"]'));
-        promoted.forEach(item => {
-            const pid = item.dataset.parentPid;
-            const parent = mainMenu.querySelector(':scope > li.menu-item-has-children[data-pid="'+pid+'"]');
-            if (!parent) return;
-            const submenu = parent.querySelector(':scope > .sub-menu');
-            if (!submenu) return;
-            submenu.appendChild(item);
-            item.classList.remove('promoted-subitem');
-            delete item.dataset.promoted;
-            delete item.dataset.parentPid;
-        });
-        const submenus = mainMenu.querySelectorAll(':scope > li.menu-item-has-children > .sub-menu');
-        submenus.forEach(sm => { sm.style.display = ''; });
-    }
-
     function handleLayout() {
         if (mq.matches) {
-            restoreSubmenus();
             setupDesktopEvents();
-        } else {
-            promoteSubmenus();
         }
         closeAllDesktop();
     }

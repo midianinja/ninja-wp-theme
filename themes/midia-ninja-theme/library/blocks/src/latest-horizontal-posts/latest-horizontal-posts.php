@@ -111,7 +111,7 @@ function latest_horizontal_posts_callback( $attributes ) {
                     'post_type' => ! empty( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : null,
                     'taxonomy'  => ! empty( $attributes['taxonomy'] ) ? $attributes['taxonomy'] : null,
                     'terms'     => ! empty( $attributes['queryTerms'] ) ? array_map( function( $t ) { return $t['id']; }, $attributes['queryTerms'] ) : null,
-                    'post_from' => date( 'Y-m-d', strtotime( '-10 hours' ) )
+                    'from'      => date( 'Y-m-d H:i:s', strtotime( '-10 hours' ) )
                 ];
 
                 if ( is_plugin_active( 'co-authors-plus/co-authors-plus.php' ) ) {

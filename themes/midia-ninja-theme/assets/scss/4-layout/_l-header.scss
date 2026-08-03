@@ -694,6 +694,11 @@ header {
 							display: none;
 						}
 					}
+
+					@include mobile{
+						overflow-x: auto;
+						padding-right: .5rem;
+					}
 				}
 
 				@include mobile {

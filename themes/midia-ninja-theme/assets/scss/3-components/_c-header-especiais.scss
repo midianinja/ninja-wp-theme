@@ -66,5 +66,10 @@
 		&__scroll-btn--right {
 			right: 0;
 		}
+
+		// Esconde as setas quando não há overflow ou ao atingir as bordas
+		&__scroll-btn.is-hidden {
+			display: none !important;
+		}
 	}
 }

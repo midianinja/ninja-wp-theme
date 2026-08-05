@@ -98,13 +98,13 @@ const withQueryPostTypes = createHigherOrderComponent( ( BlockEdit ) => {
 				<BlockEdit { ...props } />
 				<InspectorControls>
 					<PanelBody
-						title={ __( 'Post types (mixed feed)', 'ninja' ) }
+						title={ __( 'Tipos de postagem (feed misto)', 'ninja' ) }
 						initialOpen={ false }
 					>
 						<p>
 							{ __(
-								'Select more than one post type to render a mixed feed. ' +
-									'When empty, the post type chosen in the "Post type" dropdown above is used.',
+								'Selecione mais de um tipo de postagem para exibir um feed misto. ' +
+									'Quando vazio, o tipo escolhido no dropdown "Tipo de postagem" acima é usado.',
 								'ninja'
 							) }
 						</p>

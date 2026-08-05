@@ -3,10 +3,10 @@
 	"apiVersion": 3,
 	"name": "ninja/query-post-types",
 	"version": "0.1.0",
-	"title": "Query Loop Post Types",
+	"title": "Tipos de Postagem do Query Loop",
 	"category": "widgets",
 	"icon": "list-view",
-	"description": "Adds a multi post type selection to the Query Loop block inspector.",
+	"description": "Adiciona seleção de múltiplos tipos de postagem ao inspetor do bloco Loop de Consulta.",
 	"supports": {
 		"inserter": false
 	},

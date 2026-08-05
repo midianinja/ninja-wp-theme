@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ninja/query-post-types",
+  "version": "0.1.0",
+  "title": "Query Loop Post Types",
+  "category": "widgets",
+  "icon": "list-view",
+  "description": "Adds a multi post type selection to the Query Loop block inspector.",
+  "supports": {
+    "inserter": false
+  },
+  "textdomain": "ninja",
+  "editorScript": "file:./index.js"
+}

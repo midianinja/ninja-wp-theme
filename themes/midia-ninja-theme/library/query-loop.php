@@ -8,10 +8,12 @@
  *
  * This module registers a lightweight taxonomy (`ninja_secao`) whose terms
  * act as virtual section options inside the Query Loop block (`core/query`)
- * filter panel, and translates a selected option into the correct
- * `post_type` when the loop is rendered. The same translation is applied to
- * the REST queries that power the block's editor preview, so the preview
- * matches the front-end render.
+ * filter panel. A selected option is added to the loop's own post type: a
+ * news loop (post type `post`) with "Colunas" and "Galerias" selected
+ * becomes a mixed feed of `post` + `opiniao` + `galeria`, keeping the base
+ * news feed intact. The same translation is applied to the REST queries
+ * that power the block's editor preview, so the preview matches the
+ * front-end render.
  *
  * @package Ninja
  */
@@ -95,8 +97,13 @@ function get_query_loop_section_post_type( $term_slug ) {
 }
 
 /**
- * Translate a Query Loop block "section" selection into the post type of
- * the rendered query.
+ * Add the post types of the Query Loop block "section" selection to the
+ * rendered query.
+ *
+ * The selection is additive: the post types of the selected sections are
+ * merged with the loop's own post type (defaults to `post`), so a news loop
+ * with "Colunas" and/or "Galerias" selected renders a mixed feed instead of
+ * replacing the base news feed.
  *
  * @param array    $query WP_Query arguments built from the block.
  * @param WP_Block $block The block being rendered.
@@ -112,7 +119,10 @@ function translate_query_loop_section_tax_query( $query, $block, $page ) {
 		return $query;
 	}
 
-	$post_types = [];
+	// Base post type of the loop (defaults to news), kept so the selected
+	// sections are added to it instead of replacing it.
+	$post_types = (array) $query['post_type'];
+	$post_types = $post_types ? array_values( $post_types ) : [ 'post' ];
 
 	foreach ( $selected as $term_id ) {
 		$term = get_term( (int) $term_id, 'ninja_secao' );
@@ -154,12 +164,13 @@ function translate_query_loop_section_tax_query( $query, $block, $page ) {
 add_filter( 'query_loop_block_query_vars', 'Ninja\\translate_query_loop_section_tax_query', 10, 3 );
 
 /**
- * Translate a Query Loop block "section" selection for the editor preview.
+ * Add the post types of the Query Loop block "section" selection to the
+ * editor preview query.
  *
  * The block editor preview fetches posts through the REST API, sending the
- * selected section terms as a taxonomy filter. The same translation applied
- * to the rendered query is applied here so the preview shows the matching
- * posts.
+ * selected section terms as a taxonomy filter. The same additive merge
+ * applied to the rendered query is applied here so the preview shows the
+ * matching mixed feed.
  *
  * @param array           $args    WP_Query arguments for the REST request.
  * @param WP_REST_Request $request The REST request.
@@ -170,7 +181,10 @@ function translate_query_loop_section_rest_query( $args, $request ) {
 		return $args;
 	}
 
-	$post_types = [];
+	// Keep the request's own post type (the loop's post type) and add the
+	// selected sections to it, matching the front-end merge.
+	$post_types = (array) $args['post_type'];
+	$post_types = $post_types ? array_values( $post_types ) : [ 'post' ];
 
 	foreach ( $args['tax_query'] as $key => $tax_item ) {
 		if ( ! is_array( $tax_item ) || ! isset( $tax_item['taxonomy'] ) || 'ninja_secao' !== $tax_item['taxonomy'] ) {

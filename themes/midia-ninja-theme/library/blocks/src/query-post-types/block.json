@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ninja/query-post-types",
+	"version": "0.1.0",
+	"title": "Tipos de Postagem do Query Loop",
+	"category": "widgets",
+	"icon": "list-view",
+	"description": "Adiciona seleção de múltiplos tipos de postagem ao inspetor do bloco Loop de Consulta.",
+	"supports": {
+		"inserter": false
+	},
+	"textdomain": "ninja",
+	"editorScript": "file:./index.js"
+}

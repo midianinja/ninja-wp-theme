@@ -19,7 +19,7 @@ if (! empty($especial_term)):
 		'logo_mobile'      => null,
 		'url'              => home_url("/especial/{$especial_term->slug}/"),
 	];
-	
+
 
 	$especial_menu_keys = ['background_color', 'id', 'link_color', 'logo_desktop', 'logo_mobile', 'url'];
 
@@ -71,7 +71,7 @@ if (! empty($especial_term)):
 				<?php endif; ?>
 
 				<?php
-				$languages    = apply_filters('wpml_active_languages', null, ['skip_missing' => 0, 'orderby' => 'id']);
+				$languages    = apply_filters('wpml_active_languages', null, ['skip_missing' => 1, 'orderby' => 'id']);
 				$current_code = apply_filters('wpml_current_language', null);
 
 				$menu_id_base = intval($especial_menu['id']);
@@ -96,7 +96,7 @@ if (! empty($especial_term)):
 						$is_target_menu = (! empty($args->container_class) && $args->container_class === 'menu-container');
 					}
 
-					if ($done || empty($languages) || ! is_array($languages) || ! $is_target_menu) {
+					if ($done || empty($languages) || ! is_array($languages) || count($languages) < 2 || ! $is_target_menu) {
 						return $items;
 					}
 

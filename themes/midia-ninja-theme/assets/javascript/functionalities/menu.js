@@ -151,20 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener('scroll', detectScroll, { passive: true });
 
-    const scrollContainer = document.querySelector('.menu-especial__links ul');
-    const scrollLeftBtn = document.querySelector('.menu-especial__scroll-btn--left');
-    const scrollRightBtn = document.querySelector('.menu-especial__scroll-btn--right');
-
-    if (scrollContainer && scrollLeftBtn && scrollRightBtn) {
-        const scrollAmount = 150;
-        scrollLeftBtn.addEventListener('click', function () {
-            scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
-        scrollRightBtn.addEventListener('click', function () {
-            scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        });
-    }
-
     const langSelect = document.getElementById('lang-switcher-especial');
     if (langSelect) {
         langSelect.addEventListener('change', function() {
@@ -176,4 +162,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
     handleLayout();
     mq.addEventListener('change', handleLayout);
+});
+
+// Bloco independente para setas de navegação do menu especial
+// Roda em qualquer página (single especial) — não depende do #main-menu
+document.addEventListener('DOMContentLoaded', function () {
+    const scrollContainer = document.querySelector('.menu-especial__links ul');
+    const scrollLeftBtn   = document.querySelector('.menu-especial__scroll-btn--left');
+    const scrollRightBtn  = document.querySelector('.menu-especial__scroll-btn--right');
+
+    if (!scrollContainer || !scrollLeftBtn || !scrollRightBtn) return;
+
+    let scrollTicking = false;
+    function updateScrollButtons() {
+        const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        if (maxScroll <= 1) {
+            scrollLeftBtn.classList.add('is-hidden');
+            scrollRightBtn.classList.add('is-hidden');
+            return;
+        }
+        scrollLeftBtn.classList.toggle('is-hidden', scrollContainer.scrollLeft <= 0);
+        scrollRightBtn.classList.toggle(
+            'is-hidden',
+            scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1
+        );
+    }
+
+    let resizeTicking = false;
+    function onResize() {
+        if (resizeTicking) return;
+        resizeTicking = true;
+        requestAnimationFrame(function () {
+            updateScrollButtons();
+            resizeTicking = false;
+        });
+    }
+
+    function onScroll() {
+        if (scrollTicking) return;
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            updateScrollButtons();
+            scrollTicking = false;
+        });
+    }
+
+    const scrollAmount = 150;
+    scrollLeftBtn.addEventListener('click', function () {
+        scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+    scrollRightBtn.addEventListener('click', function () {
+        scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    scrollContainer.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    updateScrollButtons();
 });

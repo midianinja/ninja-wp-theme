@@ -656,7 +656,7 @@ add_filter('body_class', 'add_category_class_to_blog');
 
 function hide_especial_parent( $query ) {
 
-    if ( !is_admin() && $query->is_post_type_archive( 'especial' ) ) {
+    if ( !is_admin() && $query->is_main_query() && $query->is_post_type_archive( 'especial' ) ) {
         $query->set('post_parent', 0);
     }
 }

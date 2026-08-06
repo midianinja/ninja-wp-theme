@@ -1,6 +1,25 @@
 <?php
 $especial_term = get_primary_term(get_the_ID(), 'marcador_especial');
 
+// Fallback defensivo: se filtros (WPML/object cache) impediram get_primary_term,
+// buscar o termo via Yoast primary meta com query direta (bypass de filtros).
+if (empty($especial_term)) {
+	$primary_term_id = (int) get_post_meta(get_the_ID(), '_yoast_wpseo_primary_marcador_especial', true);
+	if ($primary_term_id) {
+		$term_data = $GLOBALS['wpdb']->get_row($GLOBALS['wpdb']->prepare(
+			"SELECT t.*, tt.term_taxonomy_id, tt.taxonomy, tt.description, tt.parent, tt.count
+			 FROM {$GLOBALS['wpdb']->terms} t
+			 JOIN {$GLOBALS['wpdb']->term_taxonomy} tt ON t.term_id = tt.term_id
+			 WHERE t.term_id = %d AND tt.taxonomy = 'marcador_especial'
+			 LIMIT 1",
+			$primary_term_id
+		));
+		if ($term_data) {
+			$especial_term = new WP_Term($term_data);
+		}
+	}
+}
+
 if (! empty($especial_term)):
 	$especial_pages = get_posts([
 		'post_type' => 'especial',

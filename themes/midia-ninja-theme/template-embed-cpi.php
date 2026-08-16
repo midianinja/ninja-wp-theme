@@ -40,7 +40,9 @@ if (empty($content)) {
 		}
 
 		if ($node) {
-			foreach ($xpath->query('.//header | .//footer', $node) as $child) {
+			// Remove headers and footers more aggressively
+			$header_footer_query = './/header | .//footer | .//*[@id="header"] | .//*[contains(@class, "site-header")] | .//*[@id="masthead"] | .//*[contains(@class, "td-header-wrap")]';
+			foreach ($xpath->query($header_footer_query, $node) as $child) {
 				$child->parentNode->removeChild($child);
 			}
 
@@ -62,21 +64,26 @@ if (empty($content)) {
 
 get_header(); ?>
 
-<div class="container">
-	<main class="content embed-cpi-content">
+<div class="container" style="overflow-x: hidden;">
+	<main class="content embed-cpi-content" style="overflow-x: hidden;">
 		<?php if (!empty($content)) : ?>
 			<div class="embed-cpi-inner">
 				<?php echo $content; ?>
 			</div>
 		<?php else : ?>
 			<div class="embed-cpi-fallback">
-				<iframe src="<?php echo esc_url($remote_url); ?>" width="100%" height="1200" frameborder="0"></iframe>
+				<iframe src="<?php echo esc_url($remote_url); ?>" width="100%" height="1200" frameborder="0" scrolling="no"></iframe>
 			</div>
 		<?php endif; ?>
 	</main>
 </div>
 
 <style>
+.container,
+.embed-cpi-content {
+	max-width: 100vw;
+	overflow-x: hidden;
+}
 .embed-cpi-inner img {
 	max-width: 100%;
 	height: auto;
@@ -86,10 +93,16 @@ get_header(); ?>
 .embed-cpi-inner embed {
 	max-width: 100%;
 }
+.embed-cpi-fallback {
+	width: 100%;
+	overflow: hidden;
+}
 .embed-cpi-fallback iframe {
 	width: 100%;
 	min-height: 80vh;
 	border: 0;
+	/* Tentativa de esconder o header no iframe via negative margin caso seja usado o fallback */
+	margin-top: -120px;
 }
 </style>
 

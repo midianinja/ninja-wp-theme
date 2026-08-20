@@ -140,13 +140,13 @@ function latest_horizontal_posts_callback( $attributes ) {
                     if ( ! $show_children ) {
                         $args['post_parent'] = 0;
                     }
+                } else {
+                    // Fallback: quando AjaxPageviews não retorna dados (ex: ambiente local sem tracking)
+                    $args = build_posts_query( $attributes, $post__not_in );
                 }
             } else {
                 $args = build_posts_query( $attributes, $post__not_in );
             }
-			if (!isset($args)){
-				$args = [];
-			}
 
             $posts_query = new \WP_Query( $args );
 

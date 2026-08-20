@@ -123,7 +123,7 @@
                 .latest-vertical-posts-block {
                     border-radius: 12px;
                     background: #000;
-                    padding: 51px 33px 30px 33px;
+                    padding: 0 33px 30px 33px;
                     height: 506px;
 
                     @include mobile {
@@ -147,6 +147,10 @@
                     }
 
                     .slick-slider {
+                        .slick-slide {
+                            max-height: 506px;
+                        }
+
                         .slide {
                             width: 100%;
                             display: flex !important;
@@ -162,6 +166,11 @@
                                     .post-content {
                                         .post-title {
                                             color: var(--White, #FFF);
+                                            font-size: 14px !important;
+                                            display: -webkit-box;
+                                            -webkit-line-clamp: 4;
+                                            -webkit-box-orient: vertical;
+                                            overflow: hidden;
                                         }
 
                                         .post-meta {
@@ -177,8 +186,8 @@
                                         .post-thumbnail--image {
                                             border-radius: 50%;
                                             object-fit: cover;
-                                            height: 80px;
-                                            width: 80px;
+                                            height: 60px !important;
+                                            width: 60px !important;
                                         }
 
                                     }

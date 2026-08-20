@@ -144,6 +144,9 @@ function latest_vertical_posts_callback( $attributes ) {
                     if ( ! $show_children ) {
                         $args['post_parent'] = 0;
                     }
+                } else {
+                    // Fallback: quando AjaxPageviews não retorna dados (ex: ambiente local sem tracking)
+                    $args = build_posts_query( $attributes, $post__not_in );
                 }
             } else {
                 $args = build_posts_query( $attributes, $post__not_in );

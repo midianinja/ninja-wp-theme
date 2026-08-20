@@ -93,6 +93,35 @@ padding: 0 33px 30px 33px;
 }
 ```
 
+### 3. Bug PHP — campo biografia do guest author não salva (Co-Authors Plus)
+
+**Arquivo:** `library/utils.php` (linha 532)
+
+#### Contexto
+
+O plugin Co-Authors Plus já define o campo `description` (biografia) no grupo `about` com `sanitize_function => 'wp_filter_post_kses'`, que preserva HTML. O filtro `add_guest_author_fields` do tema adicionava um segundo campo `description` ao mesmo grupo, **sem** `sanitize_function`.
+
+Isso criava dois campos duplicados no formulário do admin. Ambos renderizavam como `<textarea name="cap-description">`. Na hora de salvar (`manage_guest_author_save_meta_fields`), o loop iterava sobre todos os campos:
+
+1. Campo do plugin (com `sanitize_function`) → salva com `wp_filter_post_kses` ✅
+2. Campo do tema (sem `sanitize_function`) → salva com `sanitize_text_field` → **sobrescrevia** o valor, removendo tags HTML ❌
+
+Resultado: o campo de biografia voltava em branco após salvar.
+
+#### Solução
+
+Removido `'description'` da array `$_fields_from_user` no filtro do tema, eliminando o campo duplicado:
+
+```php
+// Antes
+$_fields_from_user = ['avatar', 'description', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube', 'tik-tok' ];
+
+// Depois
+$_fields_from_user = ['avatar', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube', 'tik-tok' ];
+```
+
+O campo de biografia agora usa exclusivamente a definição do plugin com sanitização correta.
+
 ## Arquivos modificados
 
 | Arquivo | Tipo | Descrição |
@@ -101,9 +130,11 @@ padding: 0 33px 30px 33px;
 | `library/blocks/src/latest-horizontal-posts/latest-horizontal-posts.php` | PHP | Fallback `$args` quando AjaxPageviews retorna vazio |
 | `assets/scss/6-pages/_p-template-colunistas.scss` | SCSS | Ajustes de layout do slider |
 | `dist/css/_p-template-colunistas.css` | CSS | Arquivo compilado |
+| `library/utils.php` | PHP | Remoção de campo `description` duplicado do filtro Co-Authors Plus |
 
 ## Notas
 
 - O `mix-manifest.json` tem permissões incorretas (proprietário root), mas a compilação CSS funciona normalmente via `npm run dev`.
 - Todos os seletores CSS usam escopo restrito para não afetar outros templates.
 - As propriedades com `!important` foram necessárias para sobrescrever estilos inline/JS do Slick Slider.
+- O campo `description` NÃO deve ser adicionado pelo tema porque o plugin Co-Authors Plus já o define com `sanitize_function => 'wp_filter_post_kses'`.

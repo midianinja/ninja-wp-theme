@@ -39,6 +39,23 @@ body.single-afluente {
 
                         .wp-block-cover {
                             height: 525px;
+
+							@include mobile{
+								height: auto;
+							}
+
+							@include tablet {
+								height: auto;
+							}
+
+							.wp-block-cover__inner-container {
+							    @media (max-width: 1024px) {
+							        display: grid;
+							        grid-template-columns: 1fr 3fr;
+							        gap: 32px;
+							        align-items: center;
+							    }
+							}
                         }
                     }
 

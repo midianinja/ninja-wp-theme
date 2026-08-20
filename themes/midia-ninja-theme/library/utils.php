@@ -529,7 +529,7 @@ add_filter('newspack_managed_plugins', 'filter_newspack_sugestions');
 function add_guest_author_fields( $fields_to_return, $groups ) {
 
     if ( in_array( 'about', $groups ) || in_array( 'all', $groups ) ) {
-        $_fields_from_user = ['avatar', 'description', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube', 'tik-tok' ];
+        $_fields_from_user = ['avatar', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube', 'tik-tok' ];
 
         foreach ( $_fields_from_user as $_field ) {
             $fields_to_return[] = [

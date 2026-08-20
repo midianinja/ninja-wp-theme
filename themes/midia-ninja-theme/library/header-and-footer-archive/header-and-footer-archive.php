@@ -189,9 +189,21 @@ function ninja_collect_blog_header_post_ids() {
 	// `apply_filters('the_content')` already runs `do_blocks` and every block
 	// render callback, which is what populates $newspack_blocks_post_id and
 	// $latest_blocks_posts_ids. Output is captured and thrown away.
+	//
+	// Set up the global $post and postdata so that get_the_content() (called
+	// inside block render callbacks like Homepage Posts) returns the correct
+	// content and template functions work as expected.
+	$prev_post = $GLOBALS['post'];
+	$GLOBALS['post'] = $header_post;
+	setup_postdata( $header_post );
+
 	ob_start();
 	apply_filters( 'the_content', $header_post->post_content );
 	ob_end_clean();
+
+	// Restore the previous post state.
+	$GLOBALS['post'] = $prev_post;
+	wp_reset_postdata();
 
 	$newspack_ids = isset( $GLOBALS['newspack_blocks_post_id'] ) ? array_keys( $GLOBALS['newspack_blocks_post_id'] ) : [];
 	$latest_ids   = isset( $GLOBALS['latest_blocks_posts_ids'] ) ? $GLOBALS['latest_blocks_posts_ids'] : [];

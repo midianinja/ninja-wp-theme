@@ -352,6 +352,7 @@ function get_taxonomies_by_post_type($request)
 
 function get_posts_by_taxonomy_term($request)
 {
+	nocache_headers();
 
 	$compare        = ! empty($request['compare']) ? sanitize_text_field($request['compare']) : 'OR';
 	$post_type      = sanitize_text_field($request['post_type']);

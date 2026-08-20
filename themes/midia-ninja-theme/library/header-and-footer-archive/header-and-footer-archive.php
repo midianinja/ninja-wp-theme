@@ -259,3 +259,54 @@ function ninja_clean_blog_header_transients( $post_id ) {
 }
 add_action( 'save_post_header-footer', 'ninja_clean_blog_header_transients' );
 add_action( 'post_updated', 'ninja_clean_blog_header_transients' );
+
+/**
+ * Invalidate the blog header excluded-ids transient when a new post is
+ * published. The transient caches the list of post IDs shown inside the
+ * blog header block, so those IDs can be excluded from the main loop to
+ * avoid duplication. When a brand-new post is published it becomes the
+ * latest post rendered inside the "high-spot" block, making the
+ * previously cached exclusion list stale. Deleting the transient forces
+ * a fresh collection on the next page load.
+ *
+ * Only fires on genuinely new posts (not updates, revisions, or
+ * autosaves) for the 'post' post type.
+ *
+ * @param int      $post_id Saved post ID.
+ * @param WP_Post  $post    Post object (may be null).
+ * @param bool     $update  Whether this is an update to an existing post.
+ */
+function ninja_clean_blog_header_transient_on_new_post( $post_id, $post, $update ) {
+	if ( $update ) {
+		return;
+	}
+
+	if ( null === $post ) {
+		return;
+	}
+
+	if ( 'publish' !== $post->post_status ) {
+		return;
+	}
+
+	if ( 'post' !== $post->post_type ) {
+		return;
+	}
+
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
+	if ( wp_is_post_autosave( $post_id ) ) {
+		return;
+	}
+
+	global $wpdb;
+	$like  = $wpdb->esc_like( '_transient_ninja_blog_header_excluded_ids_' ) . '%';
+	$names = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s", $like ) );
+	foreach ( $names as $name ) {
+		$key = str_replace( '_transient_', '', $name );
+		delete_transient( $key );
+	}
+}
+add_action( 'save_post', 'ninja_clean_blog_header_transient_on_new_post', 10, 3 );

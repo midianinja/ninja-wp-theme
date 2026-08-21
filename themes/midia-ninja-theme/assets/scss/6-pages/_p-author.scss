@@ -200,6 +200,11 @@
                 line-height: 130%;
                 /* 15.6px */
                 max-width: 201px;
+				display: -webkit-box;
+				-webkit-line-clamp: 9;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-overflow: ellipsis;
 
                 @include mixins.mobile {
                     display: none;

@@ -42,12 +42,12 @@ body.single-afluente {
 
 							@include mobile{
 								height: auto;
-								min-height: 390px !important;
+								min-height: unset !important;
 							}
 
 							@include tablet {
 								height: auto;
-								min-height: 390px !important;
+								min-height: unset !important;
 							}
 
 							.wp-block-cover__inner-container {

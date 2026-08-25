@@ -578,7 +578,7 @@ class Assets
             ],
             'Bold-Groove' => [
                 'pre-load' => false,
-                'file'     => 'Bold Groove.ttf',
+                'file'     => 'Bold-Groove.ttf',
             ],
         ];
 

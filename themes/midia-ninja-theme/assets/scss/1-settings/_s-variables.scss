@@ -28,6 +28,7 @@ $f_title: "Manrope", sans-serif;
 $f_ninja: "MidiaNinja", sans-serif;
 $f_ninja_config: '"calt" on;';
 $f_tag: "Archivo Expanded", sans-serif;
+$f_bold_groove: "Bold Groove", sans-serif;
 $s_meta: 0.875rem; //equivalente 14px
 
 // Spacings
@@ -61,6 +62,7 @@ $s_large: 2.813rem;
 	--f-title: #{$f_title};
 	--f-ninja: #{$f_ninja};
 	--f-ninja-config: #{$f_ninja_config};
+	--f-bold-groove: #{$f_bold_groove};
 
 	// Spacings
 	--s-small: #{$s_small};

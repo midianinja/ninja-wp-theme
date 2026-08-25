@@ -606,12 +606,23 @@ function get_posts_by_taxonomy_term($request)
 					$term = term_exists($term_slug, 'author');
 
 					if ($term) {
-						$data[] = [
-							'ID'        => $wp_user->ID,
-							'link'      => get_author_posts_url($wp_user->ID),
-							'thumbnail' => get_avatar_url($wp_user->ID),
-							'title'     => $wp_user->display_name,
-						];
+						$ga_posts = get_posts([
+							'post_type'   => 'guest-author',
+							'post_name'   => $term_slug,
+							'fields'      => 'ids',
+							'numberposts' => 1,
+						]);
+
+						$ga_already_indexed = !empty($ga_posts) && in_array($ga_posts[0], $existing_ids);
+
+						if (!$ga_already_indexed) {
+							$data[] = [
+								'ID'        => $wp_user->ID,
+								'link'      => get_author_posts_url($wp_user->ID),
+								'thumbnail' => get_avatar_url($wp_user->ID),
+								'title'     => $wp_user->display_name,
+							];
+						}
 					} else {
 						$user_data = get_userdata( $wp_user->ID );
 						$is_colunista = $user_data && in_array( 'colunista', $user_data->roles );

@@ -545,6 +545,28 @@ function add_guest_author_fields( $fields_to_return, $groups ) {
 
 add_filter( 'coauthors_guest_author_fields', 'add_guest_author_fields', 10, 2 );
 
+/**
+ * Prevent Co-Authors Plus from blocking guest-author auto-draft creation.
+ *
+ * CAP's filter_wp_insert_post_empty_content() forces true for guest-author
+ * posts with empty titles, ignoring the incoming $maybe_empty value. This
+ * conflicts with get_default_post_to_edit() which creates an auto-draft
+ * with empty title (guest-author intentionally doesn't support 'title').
+ * Result: wp_die() "title, content and excerpt are empty" on admin page.
+ *
+ * Runs at priority 11 (after CAP's priority 10) to override its result
+ * for auto-drafts only.
+ */
+add_filter( 'wp_insert_post_empty_content', function( $maybe_empty, $postarr ) {
+    if ( 'guest-author' === $postarr['post_type']
+        && ! empty( $postarr['post_status'] )
+        && 'auto-draft' === $postarr['post_status']
+    ) {
+        return false;
+    }
+    return $maybe_empty;
+}, 11, 2 );
+
 function alterar_consulta_pesquisa_afluente($query) {
     // Verificar se a consulta está acontecendo na página de pesquisa e se é a consulta principal
     if (is_post_type_archive('afluente') && $query->is_main_query()) {

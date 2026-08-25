@@ -576,6 +576,10 @@ class Assets
                 'pre-load' => true,
                 'file'   => 'Tungsten-Medium.ttf',
             ],
+            'Bold-Groove' => [
+                'pre-load' => false,
+                'file'     => 'Bold Groove.ttf',
+            ],
         ];
 
 

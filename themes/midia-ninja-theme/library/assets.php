@@ -580,6 +580,26 @@ class Assets
                 'pre-load' => false,
                 'file'     => 'Bold-Groove.ttf',
             ],
+            'AllroundGothic-Book' => [
+                'pre-load' => false,
+                'file'     => 'Fontspring-DEMO-allroundgothic-book.otf',
+            ],
+            'AllroundGothic-Medium' => [
+                'pre-load' => false,
+                'file'     => 'Fontspring-DEMO-allroundgothic-medium.otf',
+            ],
+            'AllroundGothic-Demi' => [
+                'pre-load' => false,
+                'file'     => 'Fontspring-DEMO-allroundgothic-demi.otf',
+            ],
+            'AllroundGothic-Bold' => [
+                'pre-load' => false,
+                'file'     => 'Fontspring-DEMO-allroundgothic-bold.otf',
+            ],
+            'AllroundGothic-Thick' => [
+                'pre-load' => false,
+                'file'     => 'Fontspring-DEMO-allroundgothic-thick.otf',
+            ],
         ];
 
 

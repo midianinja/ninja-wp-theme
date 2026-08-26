@@ -423,6 +423,11 @@
 					"fontFamily": "\"Bold Groove\", sans-serif",
 					"slug": "bold-groove",
 					"name": "Bold Groove"
+				},
+				{
+					"fontFamily": "\"Allround Gothic\", sans-serif",
+					"slug": "allround-gothic",
+					"name": "Allround Gothic"
 				}
 			],
 			"fontSizes": [

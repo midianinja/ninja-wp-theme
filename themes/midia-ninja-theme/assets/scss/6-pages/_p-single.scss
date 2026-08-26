@@ -1109,3 +1109,161 @@
 .nin-translation-switcher{
 	display: none;
 }
+
+// ===== Widget Donate (embed) =====
+.fde-donate-widget {
+    max-width: 1100px;
+    width: 100%;
+    margin-inline: auto;
+
+    .wp-block-newspack-blocks-donate > form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+
+        > button {
+            max-width: 170px;
+            width: 100%;
+            margin-inline: auto;
+        }
+    }
+
+    // Abas — impede ellipsis no texto
+    .wpbnbd__button {
+        white-space: nowrap;
+    }
+
+    .wp-block-newspack-blocks-donate__options {
+        max-width: 425px;
+        width: 100%;
+    }
+
+    .wp-block-newspack-blocks-donate {
+        &__tiers {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px !important;
+            width: 100%;
+            margin-top: 24px !important;
+
+            // "Outro valor" — sempre na linha de baixo, centralizado
+            .wp-block-newspack-blocks-donate__tier:last-child {
+                flex: 0 0 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                margin-top: 8px;
+            }
+
+            .odl {
+                text-align: center;
+                margin-top: 24px !important;
+            }
+        }
+
+        label[for$="-other"] {
+            position: relative;
+            top: 10px;
+        }
+    }
+
+    // ===== Mobile (telas muito pequenas, ~320px) =====
+    @media (max-width: 360px) {
+        .wpbnbd__button {
+            white-space: normal;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+        }
+
+        .wp-block-newspack-blocks-donate__tiers {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px !important;
+        }
+
+        .wp-block-newspack-blocks-donate__tier:last-child {
+            margin-top: 20px;
+        }
+
+        .wp-block-newspack-blocks-donate > form > button {
+            max-width: 100%;
+        }
+    }
+}
+
+// ===== Seção Apoie =====
+.apoie-section {
+    background-color: #DDD;
+    padding: 60px 20px;
+    margin-top: 40px;
+
+    &__inner {
+        max-width: 1100px;
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    &__title {
+        font-family: "MidiaNinja", sans-serif !important;
+        color: #111 !important;
+        font-size: 2.5rem !important;
+        margin-bottom: 12px !important;
+        line-height: 1.2;
+    }
+
+    &__subtitle {
+        color: #ccc;
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        max-width: 500px;
+    }
+
+    &__embed {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    &__other {
+        color: #ccc;
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    &__btn {
+        display: inline-block !important;
+        background-color: #111 !important;
+        color: #fff !important;
+        font-family: "Manrope", sans-serif !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        padding: 18px 30px !important;
+        border-radius: 8px !important;
+        text-decoration: none !important;
+        border: 1px solid #fff !important;
+        transition: background-color 0.2s !important;
+        line-height: 1 !important;
+
+        &:hover {
+            background-color: #333 !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 40px 16px;
+
+        &__title {
+            font-size: 1.8rem !important;
+        }
+
+        &__subtitle {
+            font-size: 1rem;
+        }
+    }
+}

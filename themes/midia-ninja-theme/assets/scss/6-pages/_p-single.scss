@@ -1123,7 +1123,7 @@
         gap: 24px;
 
         > button {
-            max-width: 170px;
+            max-width: 425px;
             width: 100%;
             margin-inline: auto;
         }
@@ -1149,30 +1149,39 @@
             width: 100%;
             margin-top: 24px !important;
 
-            // "Outro valor" — sempre na linha de baixo, centralizado
-            .wp-block-newspack-blocks-donate__tier:last-child {
-                flex: 0 0 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 8px;
-                margin-top: 8px;
-            }
-
             .odl {
                 text-align: center;
-                margin-top: 24px !important;
             }
         }
 
         label[for$="-other"] {
-            position: relative;
-            top: 10px;
+            position: static;
         }
     }
 
     // ===== Mobile (telas muito pequenas, ~320px) =====
-    @media (max-width: 360px) {
+    @media (max-width: 480px) {
+        .wpbnbd__button {
+            white-space: normal;
+            padding: 10px 12px;
+            font-size: 0.72rem;
+        }
+
+        .freq-label {
+            font-size: 10px !important;
+
+			@media (max-width: 375px) {
+				font-size: 9px !important;
+			}
+
+        }
+
+        .wp-block-newspack-blocks-donate__tiers {
+            gap: 0 !important;
+        }
+    }
+
+    @media (max-width: 375px) {
         .wpbnbd__button {
             white-space: normal;
             padding: 10px 12px;
@@ -1180,13 +1189,8 @@
         }
 
         .wp-block-newspack-blocks-donate__tiers {
-            flex-direction: column;
             align-items: center;
-            gap: 20px !important;
-        }
-
-        .wp-block-newspack-blocks-donate__tier:last-child {
-            margin-top: 20px;
+            gap: 24px !important;
         }
 
         .wp-block-newspack-blocks-donate > form > button {
@@ -1200,6 +1204,9 @@
     background-color: #DDD;
     padding: 60px 20px;
     margin-top: 40px;
+	max-width: 580px;
+	width: 100%;
+	margin-inline: auto;
 
     &__inner {
         max-width: 1100px;
@@ -1220,14 +1227,14 @@
 
     &__subtitle {
         color: #ccc;
-        font-size: 1.1rem;
-        margin-bottom: 40px;
-        max-width: 500px;
+        font-size: 0.82rem;
+        margin-bottom: 24px;
+        white-space: nowrap;
     }
 
     &__embed {
         width: 100%;
-        margin-bottom: 40px;
+        margin-bottom: 24px;
     }
 
     &__other {
@@ -1263,7 +1270,8 @@
         }
 
         &__subtitle {
-            font-size: 1rem;
+            font-size: 0.82rem;
+            white-space: normal;
         }
     }
 }

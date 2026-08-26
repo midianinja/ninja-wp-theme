@@ -220,10 +220,9 @@
         gap: 24px;
 
         > button {
-            max-width: 170px;
+            max-width: 425px;
             width: 100%;
             margin-inline: auto;
-            border: 1px solid blue;
         }
     }
 
@@ -246,28 +245,33 @@
             width: 100%;
             margin-top: 24px !important;
 
-            .wp-block-newspack-blocks-donate__tier:last-child {
-                flex: 0 0 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 8px;
-                margin-top: 8px;
-            }
-
             .odl {
                 text-align: center;
-                margin-top: 24px !important;
             }
         }
 
         label[for$="-other"] {
-            position: relative;
-            top: 10px;
+            position: static;
         }
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 480px) {
+        .wpbnbd__button {
+            white-space: normal;
+            padding: 10px 12px;
+            font-size: 0.72rem;
+        }
+
+        .freq-label {
+            font-size: 10px !important;
+        }
+
+        .wp-block-newspack-blocks-donate__tiers {
+            gap: 0 !important;
+        }
+    }
+
+    @media (max-width: 375px) {
         .wpbnbd__button {
             white-space: normal;
             padding: 10px 12px;
@@ -275,13 +279,8 @@
         }
 
         .wp-block-newspack-blocks-donate__tiers {
-            flex-direction: column;
             align-items: center;
-            gap: 20px !important;
-        }
-
-        .wp-block-newspack-blocks-donate__tier:last-child {
-            margin-top: 20px;
+            gap: 24px !important;
         }
 
         .wp-block-newspack-blocks-donate > form > button {

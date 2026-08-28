@@ -339,7 +339,7 @@ get_template_part( 'template-parts/header-especiais' );
             </article>
         <?php endwhile; ?>
 
-        <section class="apoie-section">
+        <!-- <section class="apoie-section">
             <div class="apoie-section__inner">
                 <h2 class="apoie-section__title">Apoie a Mídia Ninja</h2>
                 <p class="apoie-section__subtitle">Seu apoio é fundamental para manter nosso jornalismo independente.</p>
@@ -354,7 +354,7 @@ get_template_part( 'template-parts/header-especiais' );
                     Floresta Ativista
                 </a>
             </div>
-        </section>
+        </section> -->
 
         <section class="post-footer">
             <div class="related-posts">

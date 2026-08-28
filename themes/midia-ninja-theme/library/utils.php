@@ -933,3 +933,40 @@ add_action('after_setup_theme', function () {
         );
     }
 });
+
+/**
+ * Invalidação Cirúrgica de Cache para Marcadores Especiais
+ * Combate o Stale Cache no Redis para salvamentos consecutivos
+ */
+add_action( 'pods_api_post_save_pod_item_marcador_especial', 'ninja_deep_clean_pods_term_cache', 10, 3 );
+/**
+ * Callback do hook do Pods, disparado após salvar a meta do marcador especial.
+ * Assinatura do filtro: ( $pieces, $is_new_item, $term_id, PodsAPI ).
+ */
+function ninja_deep_clean_pods_term_cache( $pieces, $is_new, $term_id ) {
+    if ( empty( $term_id ) ) {
+        return;
+    }
+
+    ninja_force_term_cache_purge_advanced( (int) $term_id, 0, 'marcador_especial', true );
+}
+function ninja_force_term_cache_purge_advanced( $term_id, $tt_id, $taxonomy, $update ) {
+    if ( $taxonomy !== 'marcador_especial' ) {
+        return;
+    }
+
+    // 1. Invalida a árvore de cache do Core no Redis
+    clean_term_cache( $term_id, $taxonomy );
+    wp_cache_delete( $term_id, $taxonomy );
+    wp_cache_delete( 'all_ids', $taxonomy );
+
+    // 2. Mata os Transients/Cache interno do Pods Framework para este ID
+    if ( function_exists( 'pods_transient_clear' ) ) {
+        pods_transient_clear();
+    }
+
+    // 3. Destrói o Group Cache específico que o W3TC cria para a Query de Termos
+    wp_cache_delete( "marcador_especial_$term_id", 'terms' );
+    wp_cache_delete( $term_id, 'term_meta' );
+}
+add_action( 'saved_term', 'ninja_force_term_cache_purge_advanced', 999, 4 );

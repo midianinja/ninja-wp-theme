@@ -47,6 +47,7 @@ require __DIR__ . '/library/sanitizers/index.php';
 require __DIR__ . '/library/template-tags/index.php';
 require __DIR__ . '/library/customizer/index.php';
 require __DIR__ . '/library/utils.php';
+require __DIR__ . '/library/pods-wpml-fix.php'; // TEMP: remover apos validar no dev
 require __DIR__ . '/library/query-loop.php';
 require __DIR__ . '/library/show-thumbnail.php';
 require __DIR__ . '/library/admin.php';

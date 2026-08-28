@@ -613,15 +613,12 @@ function get_posts_by_taxonomy_term($request)
 							'numberposts' => 1,
 						]);
 
-						$ga_already_indexed = !empty($ga_posts) && in_array($ga_posts[0], $existing_ids);
-
-						if (!$ga_already_indexed) {
-							$data[] = [
-								'ID'        => $wp_user->ID,
-								'link'      => get_author_posts_url($wp_user->ID),
-								'thumbnail' => get_avatar_url($wp_user->ID),
-								'title'     => $wp_user->display_name,
-							];
+						// Se o usuário WP tem um guest-author correspondente (term cap-<nicename>),
+						// não devemos exibir o usuário WordPress como item separado.
+						// O guest-author é a autoridade do autor neste contexto — evita duplicidade.
+						// Ex.: Kelly Batista tem usuário WP + guest-author vinculado => só o guest-author aparece.
+						if ( ! empty( $ga_posts ) ) {
+							continue;
 						}
 					} else {
 						$user_data = get_userdata( $wp_user->ID );

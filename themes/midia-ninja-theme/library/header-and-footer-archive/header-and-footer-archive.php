@@ -247,6 +247,18 @@ function ninja_exclude_blog_header_posts_from_main_query( $query ) {
 add_action( 'pre_get_posts', 'ninja_exclude_blog_header_posts_from_main_query', 20 );
 
 /**
+ * Flush the W3 Total Cache page cache if the plugin is active.
+ *
+ * This is a no-op when W3TC is not available, keeping the theme safe
+ * on environments without the plugin installed.
+ */
+function ninja_flush_page_cache() {
+	if ( function_exists( 'w3tc_pgcache_flush' ) ) {
+		w3tc_pgcache_flush();
+	}
+}
+
+/**
  * Clean up orphaned transients when the blog header-footer is edited.
  *
  * The cache key is derived from post_modified_gmt, so saving the post
@@ -268,6 +280,8 @@ function ninja_clean_blog_header_transients( $post_id ) {
 		$key = str_replace( '_transient_', '', $name );
 		delete_transient( $key );
 	}
+
+	ninja_flush_page_cache();
 }
 add_action( 'save_post_header-footer', 'ninja_clean_blog_header_transients' );
 add_action( 'post_updated', 'ninja_clean_blog_header_transients' );
@@ -320,5 +334,7 @@ function ninja_clean_blog_header_transient_on_new_post( $post_id, $post, $update
 		$key = str_replace( '_transient_', '', $name );
 		delete_transient( $key );
 	}
+
+	ninja_flush_page_cache();
 }
 add_action( 'save_post', 'ninja_clean_blog_header_transient_on_new_post', 10, 3 );

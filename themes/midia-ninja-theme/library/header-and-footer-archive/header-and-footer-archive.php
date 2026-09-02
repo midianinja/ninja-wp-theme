@@ -247,6 +247,99 @@ function ninja_exclude_blog_header_posts_from_main_query( $query ) {
 add_action( 'pre_get_posts', 'ninja_exclude_blog_header_posts_from_main_query', 20 );
 
 /**
+ * Flush the W3 Total Cache page cache if the plugin is active.
+ *
+ * This is a no-op when W3TC is not available, keeping the theme safe
+ * on environments without the plugin installed.
+ */
+function ninja_flush_page_cache() {
+	if ( function_exists( 'w3tc_pgcache_flush' ) ) {
+		w3tc_pgcache_flush();
+	}
+}
+
+/**
+ * Bypass Cloudflare APO edge caching on the blog home (/noticias/).
+ *
+ * The blog home is rebuilt on every publish because the featured post
+ * (high-spot) changes, so its HTML must not be cached at Cloudflare's edge.
+ * Origin page cache (W3TC) is still used and is invalidated by the publish
+ * hooks below.
+ *
+ * @param bool $cache Whether Cloudflare APO should cache the current page.
+ * @return bool
+ */
+add_filter( 'cloudflare_use_cache', 'ninja_bypass_cloudflare_cache_on_blog_home' );
+function ninja_bypass_cloudflare_cache_on_blog_home( $cache ) {
+	if ( is_home() ) {
+		return false;
+	}
+	return $cache;
+}
+
+/**
+ * Purge the Cloudflare edge cache.
+ *
+ * First tries the direct Cloudflare API when NINJA_CF_API_TOKEN and
+ * NINJA_CF_ZONE_ID are configured. Otherwise, delegates to the official
+ * Cloudflare plugin's Hooks class if it is available. Does nothing (safely)
+ * when neither path is available, so post publishing never breaks.
+ */
+function ninja_purge_cloudflare_cache() {
+	if ( defined( 'NINJA_CF_API_TOKEN' ) && defined( 'NINJA_CF_ZONE_ID' )
+		&& ! empty( NINJA_CF_API_TOKEN ) && ! empty( NINJA_CF_ZONE_ID ) ) {
+		$api_url = sprintf(
+			'https://api.cloudflare.com/client/v4/zones/%s/purge_cache',
+			NINJA_CF_ZONE_ID
+		);
+
+		$response = wp_remote_post(
+			$api_url,
+			[
+				'headers' => [
+					'Authorization' => 'Bearer ' . NINJA_CF_API_TOKEN,
+					'Content-Type'  => 'application/json',
+				],
+				'body'    => wp_json_encode( [ 'purge_everything' => true ] ),
+				'timeout' => 15,
+			]
+		);
+
+		if ( is_wp_error( $response ) ) {
+			return;
+		}
+
+		$response_code = wp_remote_retrieve_response_code( $response );
+
+		if ( 200 !== (int) $response_code ) {
+			$response_body = wp_remote_retrieve_body( $response );
+			error_log(
+				sprintf(
+					'Cloudflare cache purge failed. HTTP %s: %s',
+					$response_code,
+					substr( $response_body, 0, 200 )
+				)
+			);
+		}
+
+		return;
+	}
+
+	if ( ! class_exists( '\CF\WordPress\Hooks' ) ) {
+		return;
+	}
+
+	try {
+		$cloudflare_hooks = new \CF\WordPress\Hooks();
+		if ( method_exists( $cloudflare_hooks, 'purgeCacheEverything' ) ) {
+			$cloudflare_hooks->purgeCacheEverything();
+		}
+	} catch ( \Throwable $e ) {
+		error_log( 'Cloudflare purge failed: ' . $e->getMessage() );
+	}
+}
+
+/**
  * Clean up orphaned transients when the blog header-footer is edited.
  *
  * The cache key is derived from post_modified_gmt, so saving the post
@@ -268,48 +361,49 @@ function ninja_clean_blog_header_transients( $post_id ) {
 		$key = str_replace( '_transient_', '', $name );
 		delete_transient( $key );
 	}
+
+	ninja_flush_page_cache();
+	ninja_purge_cloudflare_cache();
 }
 add_action( 'save_post_header-footer', 'ninja_clean_blog_header_transients' );
 add_action( 'post_updated', 'ninja_clean_blog_header_transients' );
 
 /**
- * Invalidate the blog header excluded-ids transient when a new post is
- * published. The transient caches the list of post IDs shown inside the
- * blog header block, so those IDs can be excluded from the main loop to
- * avoid duplication. When a brand-new post is published it becomes the
- * latest post rendered inside the "high-spot" block, making the
- * previously cached exclusion list stale. Deleting the transient forces
- * a fresh collection on the next page load.
+ * Invalidate the blog header excluded-ids transient when a post changes
+ * publication status. The transient caches the list of post IDs shown
+ * inside the blog header block, so those IDs can be excluded from the
+ * main loop to avoid duplication. When a post is published (including
+ * a draft being published via the block editor) it may become the latest
+ * post rendered inside the "high-spot" block, making the previously
+ * cached exclusion list stale. Deleting the transient forces a fresh
+ * collection on the next page load.
  *
- * Only fires on genuinely new posts (not updates, revisions, or
- * autosaves) for the 'post' post type.
+ * Fires on any transition involving 'publish' (publish, unpublish,
+ * trash, etc.) for the 'post' post type, ignoring revisions and
+ * autosaves.
  *
- * @param int      $post_id Saved post ID.
- * @param WP_Post  $post    Post object (may be null).
- * @param bool     $update  Whether this is an update to an existing post.
+ * @param string  $new_status New post status.
+ * @param string  $old_status Old post status.
+ * @param WP_Post $post       Post object.
  */
-function ninja_clean_blog_header_transient_on_new_post( $post_id, $post, $update ) {
-	if ( $update ) {
+function ninja_clean_blog_header_transient_on_new_post( $new_status, $old_status, $post ) {
+	if ( $new_status === $old_status ) {
 		return;
 	}
 
-	if ( null === $post ) {
+	if ( 'publish' !== $new_status && 'publish' !== $old_status ) {
 		return;
 	}
 
-	if ( 'publish' !== $post->post_status ) {
+	if ( null === $post || 'post' !== $post->post_type ) {
 		return;
 	}
 
-	if ( 'post' !== $post->post_type ) {
+	if ( wp_is_post_revision( $post->ID ) ) {
 		return;
 	}
 
-	if ( wp_is_post_revision( $post_id ) ) {
-		return;
-	}
-
-	if ( wp_is_post_autosave( $post_id ) ) {
+	if ( wp_is_post_autosave( $post->ID ) ) {
 		return;
 	}
 
@@ -320,5 +414,8 @@ function ninja_clean_blog_header_transient_on_new_post( $post_id, $post, $update
 		$key = str_replace( '_transient_', '', $name );
 		delete_transient( $key );
 	}
+
+	ninja_flush_page_cache();
+	ninja_purge_cloudflare_cache();
 }
-add_action( 'save_post', 'ninja_clean_blog_header_transient_on_new_post', 10, 3 );
+add_action( 'transition_post_status', 'ninja_clean_blog_header_transient_on_new_post', 10, 3 );

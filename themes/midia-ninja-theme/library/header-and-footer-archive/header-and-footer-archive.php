@@ -259,6 +259,87 @@ function ninja_flush_page_cache() {
 }
 
 /**
+ * Bypass Cloudflare APO edge caching on the blog home (/noticias/).
+ *
+ * The blog home is rebuilt on every publish because the featured post
+ * (high-spot) changes, so its HTML must not be cached at Cloudflare's edge.
+ * Origin page cache (W3TC) is still used and is invalidated by the publish
+ * hooks below.
+ *
+ * @param bool $cache Whether Cloudflare APO should cache the current page.
+ * @return bool
+ */
+add_filter( 'cloudflare_use_cache', 'ninja_bypass_cloudflare_cache_on_blog_home' );
+function ninja_bypass_cloudflare_cache_on_blog_home( $cache ) {
+	if ( is_home() ) {
+		return false;
+	}
+	return $cache;
+}
+
+/**
+ * Purge the Cloudflare edge cache.
+ *
+ * First tries the direct Cloudflare API when NINJA_CF_API_TOKEN and
+ * NINJA_CF_ZONE_ID are configured. Otherwise, delegates to the official
+ * Cloudflare plugin's Hooks class if it is available. Does nothing (safely)
+ * when neither path is available, so post publishing never breaks.
+ */
+function ninja_purge_cloudflare_cache() {
+	if ( defined( 'NINJA_CF_API_TOKEN' ) && defined( 'NINJA_CF_ZONE_ID' )
+		&& ! empty( NINJA_CF_API_TOKEN ) && ! empty( NINJA_CF_ZONE_ID ) ) {
+		$api_url = sprintf(
+			'https://api.cloudflare.com/client/v4/zones/%s/purge_cache',
+			NINJA_CF_ZONE_ID
+		);
+
+		$response = wp_remote_post(
+			$api_url,
+			[
+				'headers' => [
+					'Authorization' => 'Bearer ' . NINJA_CF_API_TOKEN,
+					'Content-Type'  => 'application/json',
+				],
+				'body'    => wp_json_encode( [ 'purge_everything' => true ] ),
+				'timeout' => 15,
+			]
+		);
+
+		if ( is_wp_error( $response ) ) {
+			return;
+		}
+
+		$response_code = wp_remote_retrieve_response_code( $response );
+
+		if ( 200 !== (int) $response_code ) {
+			$response_body = wp_remote_retrieve_body( $response );
+			error_log(
+				sprintf(
+					'Cloudflare cache purge failed. HTTP %s: %s',
+					$response_code,
+					substr( $response_body, 0, 200 )
+				)
+			);
+		}
+
+		return;
+	}
+
+	if ( ! class_exists( '\CF\WordPress\Hooks' ) ) {
+		return;
+	}
+
+	try {
+		$cloudflare_hooks = new \CF\WordPress\Hooks();
+		if ( method_exists( $cloudflare_hooks, 'purgeCacheEverything' ) ) {
+			$cloudflare_hooks->purgeCacheEverything();
+		}
+	} catch ( \Throwable $e ) {
+		error_log( 'Cloudflare purge failed: ' . $e->getMessage() );
+	}
+}
+
+/**
  * Clean up orphaned transients when the blog header-footer is edited.
  *
  * The cache key is derived from post_modified_gmt, so saving the post
@@ -282,6 +363,7 @@ function ninja_clean_blog_header_transients( $post_id ) {
 	}
 
 	ninja_flush_page_cache();
+	ninja_purge_cloudflare_cache();
 }
 add_action( 'save_post_header-footer', 'ninja_clean_blog_header_transients' );
 add_action( 'post_updated', 'ninja_clean_blog_header_transients' );
@@ -334,5 +416,6 @@ function ninja_clean_blog_header_transient_on_new_post( $new_status, $old_status
 	}
 
 	ninja_flush_page_cache();
+	ninja_purge_cloudflare_cache();
 }
 add_action( 'transition_post_status', 'ninja_clean_blog_header_transient_on_new_post', 10, 3 );

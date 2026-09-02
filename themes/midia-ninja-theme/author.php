@@ -5,6 +5,17 @@ get_template_part( 'template-parts/header-especiais' );
 
 $coauthors = get_coauthors();
 
+// Use the post excluded from the grid as the featured banner.
+$ninja_author_featured_post_id = isset( $GLOBALS['ninja_author_featured_post_id'] ) ? (int) $GLOBALS['ninja_author_featured_post_id'] : 0;
+
+if ( $ninja_author_featured_post_id ) {
+	$ninja_author_featured_post = get_post( $ninja_author_featured_post_id );
+
+	if ( $ninja_author_featured_post ) {
+		setup_postdata( $ninja_author_featured_post );
+	}
+}
+
 ?>
 
 <div class="index-wrapper">

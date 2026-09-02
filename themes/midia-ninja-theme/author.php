@@ -12,6 +12,7 @@ if ( $ninja_author_featured_post_id ) {
 	$ninja_author_featured_post = get_post( $ninja_author_featured_post_id );
 
 	if ( $ninja_author_featured_post ) {
+		$GLOBALS['post'] = $ninja_author_featured_post;
 		setup_postdata( $ninja_author_featured_post );
 	}
 }

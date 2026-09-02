@@ -287,43 +287,41 @@ add_action( 'save_post_header-footer', 'ninja_clean_blog_header_transients' );
 add_action( 'post_updated', 'ninja_clean_blog_header_transients' );
 
 /**
- * Invalidate the blog header excluded-ids transient when a new post is
- * published. The transient caches the list of post IDs shown inside the
- * blog header block, so those IDs can be excluded from the main loop to
- * avoid duplication. When a brand-new post is published it becomes the
- * latest post rendered inside the "high-spot" block, making the
- * previously cached exclusion list stale. Deleting the transient forces
- * a fresh collection on the next page load.
+ * Invalidate the blog header excluded-ids transient when a post changes
+ * publication status. The transient caches the list of post IDs shown
+ * inside the blog header block, so those IDs can be excluded from the
+ * main loop to avoid duplication. When a post is published (including
+ * a draft being published via the block editor) it may become the latest
+ * post rendered inside the "high-spot" block, making the previously
+ * cached exclusion list stale. Deleting the transient forces a fresh
+ * collection on the next page load.
  *
- * Only fires on genuinely new posts (not updates, revisions, or
- * autosaves) for the 'post' post type.
+ * Fires on any transition involving 'publish' (publish, unpublish,
+ * trash, etc.) for the 'post' post type, ignoring revisions and
+ * autosaves.
  *
- * @param int      $post_id Saved post ID.
- * @param WP_Post  $post    Post object (may be null).
- * @param bool     $update  Whether this is an update to an existing post.
+ * @param string  $new_status New post status.
+ * @param string  $old_status Old post status.
+ * @param WP_Post $post       Post object.
  */
-function ninja_clean_blog_header_transient_on_new_post( $post_id, $post, $update ) {
-	if ( $update ) {
+function ninja_clean_blog_header_transient_on_new_post( $new_status, $old_status, $post ) {
+	if ( $new_status === $old_status ) {
 		return;
 	}
 
-	if ( null === $post ) {
+	if ( 'publish' !== $new_status && 'publish' !== $old_status ) {
 		return;
 	}
 
-	if ( 'publish' !== $post->post_status ) {
+	if ( null === $post || 'post' !== $post->post_type ) {
 		return;
 	}
 
-	if ( 'post' !== $post->post_type ) {
+	if ( wp_is_post_revision( $post->ID ) ) {
 		return;
 	}
 
-	if ( wp_is_post_revision( $post_id ) ) {
-		return;
-	}
-
-	if ( wp_is_post_autosave( $post_id ) ) {
+	if ( wp_is_post_autosave( $post->ID ) ) {
 		return;
 	}
 
@@ -337,4 +335,4 @@ function ninja_clean_blog_header_transient_on_new_post( $post_id, $post, $update
 
 	ninja_flush_page_cache();
 }
-add_action( 'save_post', 'ninja_clean_blog_header_transient_on_new_post', 10, 3 );
+add_action( 'transition_post_status', 'ninja_clean_blog_header_transient_on_new_post', 10, 3 );

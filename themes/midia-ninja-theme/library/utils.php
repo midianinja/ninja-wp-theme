@@ -698,6 +698,65 @@ function change_archive_author( $query ) {
 
 add_action( 'pre_get_posts', 'change_archive_author' );
 
+/**
+ * Returns the first post ID that the author archive query would display.
+ *
+ * Uses a minimal query built from the current main-query vars so the
+ * ordering and filters (post type, taxonomy filters, etc.) match exactly.
+ *
+ * @param WP_Query $query The current WP_Query object.
+ * @return int The featured post ID, or 0 if none is found.
+ */
+function ninja_get_author_featured_post_id( $query ) {
+	$args = $query->query_vars;
+
+	$args['posts_per_page'] = 1;
+	$args['fields']         = 'ids';
+	$args['no_found_rows']  = true;
+
+	unset( $args['post__not_in'], $args['offset'] );
+
+	$ids = get_posts( $args );
+
+	if ( ! empty( $ids ) && ! is_wp_error( $ids ) ) {
+		return (int) $ids[0];
+	}
+
+	return 0;
+}
+
+/**
+ * Excludes the author archive featured (first) post from the main grid query
+ * so it does not repeat below the banner.
+ *
+ * Mirrors the blog header exclusion pattern used for the Notícias archive.
+ *
+ * @param WP_Query $query The current WP_Query object.
+ */
+function ninja_exclude_author_featured_post( $query ) {
+	if ( is_admin() || ! $query->is_main_query() || ! $query->is_author() ) {
+		return;
+	}
+
+	$featured_id = ninja_get_author_featured_post_id( $query );
+
+	if ( ! $featured_id ) {
+		return;
+	}
+
+	$not_in = $query->get( 'post__not_in' );
+	if ( ! is_array( $not_in ) ) {
+		$not_in = [];
+	}
+
+	$not_in[] = $featured_id;
+
+	$query->set( 'post__not_in', array_unique( $not_in ) );
+
+	$GLOBALS['ninja_author_featured_post_id'] = $featured_id;
+}
+add_action( 'pre_get_posts', 'ninja_exclude_author_featured_post', 25 );
+
 function remove_secondary_category_classes( $classes ) {
 	$primary_cat = get_primary_term( get_the_ID(), 'category' );
 

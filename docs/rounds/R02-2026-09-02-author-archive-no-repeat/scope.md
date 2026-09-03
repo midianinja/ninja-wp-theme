@@ -11,6 +11,7 @@ Fix the author archive template so the featured post (banner) does not repeat in
 - On `/author/<slug>/`, the first post of the main query is excluded from the grid query (`post__not_in`).
 - The excluded post is rendered as the featured banner at the top of the page.
 - Pagination/count preserved: no post vanishes, remaining posts shift correctly across pages.
+- Cloudflare APO edge caching is bypassed on author archives (like /noticias/), so the featured post is always served fresh from origin; W3TC origin cache and publish purges remain active.
 
 ## Not in scope
 

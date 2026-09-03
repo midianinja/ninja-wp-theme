@@ -701,20 +701,35 @@ add_action( 'pre_get_posts', 'change_archive_author' );
 /**
  * Returns the first post ID that the author archive query would display.
  *
- * Uses a minimal query built from the current main-query vars so the
- * ordering and filters (post type, taxonomy filters, etc.) match exactly.
+ * Builds a minimal query that mirrors the main author archive query (author,
+ * post types, taxonomy filters) with filters ACTIVE, so Co-Authors Plus
+ * applies the same `author`-taxonomy resolution it uses for the grid. This
+ * matters because guest authors have no `post_author`: with suppressed
+ * filters the query degenerates to `post_author = 0` and returns nothing.
  *
  * @param WP_Query $query The current WP_Query object.
  * @return int The featured post ID, or 0 if none is found.
  */
 function ninja_get_author_featured_post_id( $query ) {
-	$args = $query->query_vars;
+	$args = array(
+		'post_type'        => $query->get( 'post_type' ),
+		'posts_per_page'   => 1,
+		'fields'           => 'ids',
+		'no_found_rows'    => true,
+		'suppress_filters' => false,
+	);
 
-	$args['posts_per_page'] = 1;
-	$args['fields']         = 'ids';
-	$args['no_found_rows']  = true;
+	// Keep the same author constraint the archive uses.
+	if ( $query->get( 'author_name' ) ) {
+		$args['author_name'] = $query->get( 'author_name' );
+	} elseif ( $query->get( 'author' ) ) {
+		$args['author'] = $query->get( 'author' );
+	}
 
-	unset( $args['post__not_in'], $args['offset'] );
+	// Keep the same taxonomy filters the grid uses (e.g. ?filter_term=).
+	if ( $query->get( 'tax_query' ) ) {
+		$args['tax_query'] = $query->get( 'tax_query' );
+	}
 
 	$ids = get_posts( $args );
 

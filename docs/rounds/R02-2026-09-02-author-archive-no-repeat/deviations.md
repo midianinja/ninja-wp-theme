@@ -15,3 +15,11 @@
 - **Reason:** validation on the local environment showed the same banner post on every author archive. With filters suppressed, CAP's `posts_join/posts_where` never ran; guest authors (no WP user) degenerated the query to `post_author = 0`, the lookup returned nothing, no exclusion was applied, and `author.php` fell back to whatever global post remained (the site's latest post). WP users also missed co-authored-only posts.
 - **Decision registered at:** https://github.com/midianinja/ninja-wp-theme/issues/238 (validation failure reported by user: same featured post on all author archives; fix committed as `5f014ae1`).
 - **Reference document updated:** N/A — behavior unchanged from #238; implementation corrected in commit `5f014ae1`.
+
+## 3. APO bypass extended to author archives
+
+- **Planned:** Cloudflare APO bypass only on the blog home (`is_home()`), inherited from #238.
+- **Implemented:** bypass also on author archives (`is_author()`).
+- **Reason:** human decision during validation ("qual o benefício e risco dessa paridade?" → "aplica") — eliminates stale featured post on author archives when published posts are edited (no status transition, hence no purge), at the cost of edge offload for low-traffic pages, mitigated by W3TC origin cache.
+- **Decision registered at:** conversation with user on 2026-09-03 (benefit/risk question, answer "aplica").
+- **Reference document updated:** N/A — cache behavior inherited from #238 round (PR #310); change in this round's PR.

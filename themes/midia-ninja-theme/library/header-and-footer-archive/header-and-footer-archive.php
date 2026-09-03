@@ -259,11 +259,12 @@ function ninja_flush_page_cache() {
 }
 
 /**
- * Bypass Cloudflare APO edge caching on the blog home (/noticias/).
+ * Bypass Cloudflare APO edge caching on the blog home (/noticias/) and
+ * author archives (/author/<slug>/).
  *
- * The blog home is rebuilt on every publish because the featured post
- * (high-spot) changes, so its HTML must not be cached at Cloudflare's edge.
- * Origin page cache (W3TC) is still used and is invalidated by the publish
+ * Both templates render a featured post (high-spot) that must always be
+ * fresh, so their HTML must not be cached at Cloudflare's edge. Origin
+ * page cache (W3TC) is still used and is invalidated by the publish
  * hooks below.
  *
  * @param bool $cache Whether Cloudflare APO should cache the current page.
@@ -271,7 +272,7 @@ function ninja_flush_page_cache() {
  */
 add_filter( 'cloudflare_use_cache', 'ninja_bypass_cloudflare_cache_on_blog_home' );
 function ninja_bypass_cloudflare_cache_on_blog_home( $cache ) {
-	if ( is_home() ) {
+	if ( is_home() || is_author() ) {
 		return false;
 	}
 	return $cache;

@@ -241,18 +241,20 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 14px !important;
+            gap: 32px 14px !important;
             width: 100%;
             margin-top: 24px !important;
 
             .odl {
                 text-align: center;
+				margin-top: 1rem !important;
             }
         }
 
         label[for$="-other"] {
             position: static;
         }
+
     }
 
     @media (max-width: 480px) {

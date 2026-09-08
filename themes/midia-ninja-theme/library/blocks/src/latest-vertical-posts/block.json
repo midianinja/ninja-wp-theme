@@ -59,7 +59,7 @@
 		},
 		"mostReadPeriod": {
 			"type": "string",
-			"default": "week"
+			"default": "month"
 		},
 		"noCompare": {
 			"type": "string",

@@ -54,6 +54,10 @@
 		"linkUrl": {
 			"type": "string"
 		},
+		"mostReadPeriod": {
+			"type": "string",
+			"default": "week"
+		},
 		"noCompare": {
 			"type": "string",
 			"default": "OR"

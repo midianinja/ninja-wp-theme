@@ -7,8 +7,9 @@ function latest_vertical_posts_callback( $attributes ) {
     global $newspack_blocks_post_id;
     global $latest_blocks_posts_ids;
 
-    $block_id        = esc_attr( $attributes['blockId'] );
-    $block_model     = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'posts';
+    $block_id         = esc_attr( $attributes['blockId'] );
+    $block_model      = ( isset( $attributes['blockModel'] ) && ! empty( $attributes['blockModel'] ) ) ? esc_attr( $attributes['blockModel'] ) : 'posts';
+    $most_read_period = isset( $attributes['mostReadPeriod'] ) ? sanitize_text_field( $attributes['mostReadPeriod'] ) : '';
     $block_classes[] = 'latest-vertical-posts-block';
 
     $columns       = ! empty( $attributes['columns'] )? absint( $attributes['columns'] ) : 2;
@@ -95,6 +96,12 @@ function latest_vertical_posts_callback( $attributes ) {
         $attributes_hash = md5( $block_id );
 
         $cache_key = 'ninja_vertical_' . $attributes_hash;
+
+        if ( $block_model == 'most-read' ) {
+            // Include the period in the key so changing the option is not masked by a stale cached query
+            $cache_key .= '_' . sanitize_title( $most_read_period );
+        }
+
         $cached_posts = false;
 
         if ( ! is_admin() && ( ! defined( 'REST_REQUEST' ) || ! REST_REQUEST ) ) {
@@ -111,11 +118,20 @@ function latest_vertical_posts_callback( $attributes ) {
 
             if ( method_exists( 'AjaxPageviews', 'get_top_viewed_by_terms' ) && $block_model == 'most-read' ) {
 
+                // Period options for the most-read model (anything else keeps the legacy 10 hours window)
+                $most_read_from = strtotime( '-10 hours' );
+
+                if ( 'week' === $most_read_period ) {
+                    $most_read_from = strtotime( '-7 days' );
+                } elseif ( 'month' === $most_read_period ) {
+                    $most_read_from = strtotime( '-30 days' );
+                }
+
                 $apv_args = [
                     'post_type' => ! empty( $attributes['postType'] ) ? sanitize_text_field( $attributes['postType'] ) : null,
                     'taxonomy'  => ! empty( $attributes['taxonomy'] ) ? $attributes['taxonomy'] : null,
                     'terms'     => ! empty( $attributes['queryTerms'] ) ? array_map( function( $t ) { return $t['id']; }, $attributes['queryTerms'] ) : null,
-                    'from'      => date( 'Y-m-d H:i:s', strtotime( '-10 hours' ) )
+                    'from'      => date( 'Y-m-d H:i:s', $most_read_from )
                 ];
 
                 if ( is_plugin_active( 'co-authors-plus/co-authors-plus.php' ) ) {

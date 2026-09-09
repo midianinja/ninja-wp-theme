@@ -645,7 +645,7 @@ function split_ninja_flickr_title( $title ) {
 function set_custom_post_type_archive_posts_per_page( $query ) {
 
     if ( $query->is_main_query() && ! is_admin() && is_post_type_archive( 'especial' ) ) {
-        $query->set( 'posts_per_page', 12 );
+        $query->set( 'posts_per_page', 30 );
     }
 }
 add_action( 'pre_get_posts', 'set_custom_post_type_archive_posts_per_page' );

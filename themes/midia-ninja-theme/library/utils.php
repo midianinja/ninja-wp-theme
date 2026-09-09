@@ -41,6 +41,41 @@ function get_primary_term( $post_id, $taxonomy, $force_primary = false ) {
 }
 
 /**
+ * Get the primary afluente (top-level `marcador_afluente` term) of a post.
+ *
+ * Resolves via Yoast primary term (see `get_primary_term()`); if there is no
+ * primary term set — or it is not assigned to the post / is not top-level —
+ * falls back to the first top-level term assigned to the post.
+ *
+ * @param int $post_id Post ID
+ * @return \WP_Term|false The primary afluente term, or `false` if none
+ */
+function get_primary_afluente( $post_id ) {
+	$terms = get_the_terms( $post_id, 'marcador_afluente' );
+
+	if ( ! $terms || is_wp_error( $terms ) ) {
+		return false;
+	}
+
+	$term_ids = wp_list_pluck( $terms, 'term_id' );
+	$primary  = get_primary_term( $post_id, 'marcador_afluente' );
+
+	if ( ! empty( $primary ) && ! is_wp_error( $primary )
+		&& $primary->parent == 0 && in_array( $primary->term_id, $term_ids, true )
+	) {
+		return $primary;
+	}
+
+	foreach ( $terms as $term ) {
+		if ( $term->parent == 0 ) {
+			return $term;
+		}
+	}
+
+	return false;
+}
+
+/**
  *
  * Create list of the terms by taxonomy
  *

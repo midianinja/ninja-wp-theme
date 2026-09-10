@@ -695,6 +695,15 @@ class Assets
                 }
             ],
 
+            'embed-cpi-modal' => [
+                'pre-load' => false,
+                'file'   => 'embed-cpi-modal.js',
+                'deps'   => ['jquery'], // scroll horizontal da linha do tempo (GSAP vem do HTML raspado)
+                'preload_callback' => function () {
+                    return is_page_template('template-embed-cpi.php');
+                }
+            ],
+
         ];
 
         $js_files = apply_filters('js_files_before_output', $js_files);

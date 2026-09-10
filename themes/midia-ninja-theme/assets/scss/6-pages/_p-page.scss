@@ -220,7 +220,7 @@
         gap: 24px;
 
         > button {
-            max-width: 425px;
+            max-width: 540px;
             width: 100%;
             margin-inline: auto;
         }
@@ -231,7 +231,7 @@
     }
 
     .wp-block-newspack-blocks-donate__options {
-        max-width: 425px;
+        max-width: 540px;
         width: 100%;
     }
 
@@ -241,13 +241,19 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 32px 14px !important;
+            gap: 16px 14px !important;
             width: 100%;
-            margin-top: 24px !important;
+            margin-top: 16px !important;
 
             .odl {
                 text-align: center;
-				margin-top: 1rem !important;
+                margin-top: 0 !important;
+            }
+
+            .wpbnbd__button {
+                box-sizing: border-box;
+                flex: 1 1 0%;
+                min-width: 0;
             }
         }
 
@@ -255,6 +261,38 @@
             position: static;
         }
 
+    }
+
+    .wpbnbd .tiers input[type="radio"]:checked + .tier-label {
+        @media (max-width: 480px) {
+            margin-top: 10px;
+        }
+    }
+
+    // Estado "outro valor" selecionado: padroniza o espaçamento revelado em
+    // 16px e faz o input ocupar toda a largura do container.
+    .wp-block-newspack-blocks-donate__tier:has(> input.other-input:checked) {
+        > .odl {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    // Campo "outro valor": ocupa a largura do container de opções (540px) e o
+    // controle fica no final do campo, nunca no meio.
+    .wpbnbd .tiers .wp-block-newspack-blocks-donate__money-input.money-input {
+        flex-wrap: wrap;
+        max-width: 510px;
+        width: 100%;
+
+        input[type="number"] {
+            flex: 1 1 auto;
+            max-width: 500px;
+        }
+
+        > button {
+            flex: none;
+            margin-left: auto;
+        }
     }
 
     @media (max-width: 480px) {
@@ -282,7 +320,7 @@
 
         .wp-block-newspack-blocks-donate__tiers {
             align-items: center;
-            gap: 24px !important;
+            gap: 16px !important;
         }
 
         .wp-block-newspack-blocks-donate > form > button {

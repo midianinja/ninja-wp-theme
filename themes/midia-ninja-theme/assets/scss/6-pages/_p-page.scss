@@ -257,6 +257,43 @@
 
     }
 
+    // Estado "outro valor" selecionado: o tier vira display:contents e seus
+    // filhos viram itens do flex .tiers. Padroniza o espaçamento revelado em
+    // 32px e zera o row-gap das tiers para não somar com as margins.
+    .wp-block-newspack-blocks-donate__tier:has(> input.other-input:checked) {
+        > .odl {
+            margin-top: 32px !important;
+            margin-bottom: 0 !important;
+        }
+
+        > .money-input {
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+    }
+
+    .wp-block-newspack-blocks-donate__tiers:has(input.other-input:checked) {
+        row-gap: 0 !important;
+    }
+
+    // Campo "outro valor": ocupa a largura do container de opções (425px) e o
+    // controle fica no final do campo, nunca no meio.
+    .wpbnbd .tiers .wp-block-newspack-blocks-donate__money-input.money-input {
+        flex-wrap: wrap;
+        max-width: 425px;
+        width: 100%;
+
+        input[type="number"] {
+            flex: 1 1 auto;
+            max-width: none;
+        }
+
+        > button {
+            flex: none;
+            margin-left: auto;
+        }
+    }
+
     @media (max-width: 480px) {
         .wpbnbd__button {
             white-space: normal;

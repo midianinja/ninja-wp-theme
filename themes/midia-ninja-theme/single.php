@@ -333,8 +333,11 @@ get_template_part( 'template-parts/header-especiais' );
 
         <section class="apoie-section">
             <div class="apoie-section__inner">
-                <h2 class="apoie-section__title">Apoie a Mídia Ninja</h2>
-                <p class="apoie-section__subtitle">Seu apoio é fundamental para manter nosso jornalismo independente.</p>
+                <h2 class="apoie-section__title"><?php _e( 'Apoie a Mídia Ninja', 'ninja' ); ?></h2>
+                <p class="apoie-section__subtitle"><?php _e( 'Ajude a manter uma comunicação independente, livre e em movimento.', 'ninja' ); ?></p>
+
+                <p><?php _e( 'Escolha como contribuir. Você pode fazer uma doação única ou apoiar de forma recorrente, mensal ou anual.', 'ninja' ); ?></p>
+                <p><?php _e( 'Formas de pagamento: cartão de crédito ou Pix.', 'ninja' ); ?></p>
 
                 <div class="apoie-section__embed">
                     <div data-fde-donate="" data-campaign="midia-ninja">
@@ -343,10 +346,14 @@ get_template_part( 'template-parts/header-especiais' );
                     <script src="https://ninjaverso.com.br/wp-content/themes/ninjaverso/assets/js/donate-embed.js" async=""></script>
                 </div>
 
-                <p class="apoie-section__other">Caso queira apoiar de outras formas, conheça também:</p>
-                <a href="https://florestaativista.org" target="_blank" rel="noopener noreferrer" class="apoie-section__btn">
-                    Floresta Ativista
-                </a>
+                <p class="apoie-section__note">
+                    <strong><?php _e( 'Doação única:', 'ninja' ); ?></strong>
+                    <?php _e( 'uma contribuição feita uma vez.', 'ninja' ); ?>
+                </p>
+                <p class="apoie-section__note">
+                    <strong><?php _e( 'Doação recorrente:', 'ninja' ); ?></strong>
+                    <?php _e( 'sua contribuição se repete mensal ou anualmente, ajudando a dar continuidade e previsibilidade ao nosso trabalho.', 'ninja' ); ?>
+                </p>
             </div>
         </section>
 

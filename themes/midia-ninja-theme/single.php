@@ -74,11 +74,12 @@ get_template_part( 'template-parts/header-especiais' );
 
                             <div class="author-info-mobile">
                             <?php
-                            $afluente_term = get_primary_afluente(get_the_ID());
+                            $terms = get_the_terms(get_the_ID(), 'marcador_afluente');
 
-                            if ($afluente_term) {
-                                $term = $afluente_term;
-                                $afluente_name = $term->name;
+                            if ($terms && !is_wp_error($terms)) {
+                                foreach ($terms as $term) {
+                                    if($term->parent == 0){
+                                        $afluente_name = $term->name;
                                         $afluente_bio = $term->description;
                                         $term_id = $term->term_id;
                                         $avatar = get_term_meta($term_id, 'avatar', true);
@@ -169,6 +170,9 @@ get_template_part( 'template-parts/header-especiais' );
                                         </div>
 
                                         <?php
+                                    }
+
+                                }
                             }
                         ?>
                         </div>
@@ -223,11 +227,12 @@ get_template_part( 'template-parts/header-especiais' );
                     </div>
                     <div class="author-info">
                         <?php
-                        $afluente_term = get_primary_afluente(get_the_ID());
+                        $terms = get_the_terms(get_the_ID(), 'marcador_afluente');
 
-                        if ($afluente_term) {
-                            $term = $afluente_term;
-                            $afluente_name = $term->name;
+                        if ($terms && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                if($term->parent == 0){
+                                $afluente_name = $term->name;
                                 $afluente_bio = $term->description;
                                 $term_id = $term->term_id;
                                 $avatar = get_term_meta($term_id, 'avatar', true);
@@ -312,6 +317,9 @@ get_template_part( 'template-parts/header-especiais' );
                                     </div>
                                 </div>
                                 <?php
+
+                            }
+                        }
                         }
                         ?>
                     </div>

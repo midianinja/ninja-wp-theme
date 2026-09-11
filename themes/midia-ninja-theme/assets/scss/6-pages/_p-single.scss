@@ -1285,6 +1285,11 @@
     }
 
     &__floresta {
+        .apoie-section__floresta-title,
+        .apoie-section__floresta-text {
+            text-align: center;
+        }
+
         .wp-block-buttons {
             margin-top: 24px;
             justify-content: center;

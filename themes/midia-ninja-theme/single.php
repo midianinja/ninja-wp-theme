@@ -354,6 +354,22 @@ get_template_part( 'template-parts/header-especiais' );
                     <strong><?php _e( 'Doação recorrente:', 'ninja' ); ?></strong>
                     <?php _e( 'sua contribuição se repete mensal ou anualmente, ajudando a dar continuidade e previsibilidade ao nosso trabalho.', 'ninja' ); ?>
                 </p>
+
+                <hr class="apoie-section__divider" />
+
+                <div class="apoie-section__floresta">
+                    <h3 class="apoie-section__floresta-title"><?php _e( 'Além de doar, você também pode colaborar', 'ninja' ); ?></h3>
+                    <p class="apoie-section__floresta-text"><?php _e( 'Conheça outras iniciativas da rede e descubra formas de participar, contribuir e construir junto.', 'ninja' ); ?></p>
+
+                    <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-block-buttons-is-layout-flex">
+                        <div class="wp-block-button is-style-fill">
+                            <?php // TODO: atualizar o href abaixo com o link correto da página Floresta Ativista. ?>
+                            <a class="wp-block-button__link has-primary-pure-background-color has-background wp-element-button" href="#" style="border-radius:8px;font-style:normal;font-weight:700;text-transform:uppercase;">
+                                <?php _e( 'Conheça a Floresta Ativista', 'ninja' ); ?>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

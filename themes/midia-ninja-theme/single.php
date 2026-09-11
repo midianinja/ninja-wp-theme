@@ -363,8 +363,7 @@ get_template_part( 'template-parts/header-especiais' );
 
                     <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-block-buttons-is-layout-flex">
                         <div class="wp-block-button is-style-fill">
-                            <?php // TODO: atualizar o href abaixo com o link correto da página Floresta Ativista. ?>
-                            <a class="wp-block-button__link has-primary-pure-background-color has-background wp-element-button" href="#" style="border-radius:8px;font-style:normal;font-weight:700;text-transform:uppercase;">
+                            <a class="wp-block-button__link has-primary-pure-background-color has-background wp-element-button" href="https://florestaativista.org/" target="_blank" rel="noopener noreferrer" style="border-radius:8px;font-style:normal;font-weight:700;text-transform:uppercase;">
                                 <?php _e( 'Conheça a Floresta Ativista', 'ninja' ); ?>
                             </a>
                         </div>

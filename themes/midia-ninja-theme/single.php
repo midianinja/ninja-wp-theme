@@ -331,14 +331,16 @@ get_template_part( 'template-parts/header-especiais' );
             </article>
         <?php endwhile; ?>
 
-        <!-- <section class="apoie-section">
+        <section class="apoie-section">
             <div class="apoie-section__inner">
                 <h2 class="apoie-section__title">Apoie a Mídia Ninja</h2>
                 <p class="apoie-section__subtitle">Seu apoio é fundamental para manter nosso jornalismo independente.</p>
 
                 <div class="apoie-section__embed">
-                    <div data-fde-donate="" data-campaign="midia-ninja"></div>
-                    <script src="https://dev.ninjaverso.com.br/wp-content/themes/ninjaverso/assets/js/donate-embed.js" async=""></script>
+                    <div data-fde-donate="" data-campaign="midia-ninja">
+                        <a href="https://ninjaverso.com.br/donate?campaign=midia-ninja">Doe agora</a>
+                    </div>
+                    <script src="https://ninjaverso.com.br/wp-content/themes/ninjaverso/assets/js/donate-embed.js" async=""></script>
                 </div>
 
                 <p class="apoie-section__other">Caso queira apoiar de outras formas, conheça também:</p>
@@ -346,7 +348,7 @@ get_template_part( 'template-parts/header-especiais' );
                     Floresta Ativista
                 </a>
             </div>
-        </section> -->
+        </section>
 
         <section class="post-footer">
             <div class="related-posts">

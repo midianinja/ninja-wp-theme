@@ -286,7 +286,8 @@
 
         input[type="number"] {
             flex: 1 1 auto;
-            max-width: 500px;
+            max-width: none;
+            text-align: left;
         }
 
         > button {

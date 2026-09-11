@@ -1157,6 +1157,25 @@
         label[for$="-other"] {
             position: static;
         }
+
+        // Campo "outro valor": ocupa a largura do container de opções e o
+        // controle fica no final do campo, nunca no meio.
+        .wpbnbd .tiers .wp-block-newspack-blocks-donate__money-input.money-input {
+            flex-wrap: wrap;
+            max-width: 100%;
+            width: 100%;
+
+            input[type="number"] {
+                flex: 1 1 auto;
+                max-width: none;
+                text-align: left;
+            }
+
+            > button {
+                flex: none;
+                margin-left: auto;
+            }
+        }
     }
 
     // ===== Mobile (telas muito pequenas, ~320px) =====

@@ -263,21 +263,22 @@
   margin-bottom: 0 !important;
 }
 
-.fde-donate-widget .wpbnbd .tiers .wp-block-newspack-blocks-donate__money-input.money-input {
+.fde-donate-widget .wpbnbd .money-input {
   flex-wrap: wrap;
   max-width: 510px;
   width: 100%;
 }
 
-.fde-donate-widget .wpbnbd .tiers .wp-block-newspack-blocks-donate__money-input.money-input input[type=number] {
+.fde-donate-widget .wpbnbd .money-input > button {
+  flex: none;
+  margin-left: auto;
+}
+
+.fde-donate-widget .wpbnbd .money-input.money-input input[type=number] {
   flex: 1 1 auto;
   max-width: none;
   text-align: left;
-}
-
-.fde-donate-widget .wpbnbd .tiers .wp-block-newspack-blocks-donate__money-input.money-input > button {
-  flex: none;
-  margin-left: auto;
+  width: 100%;
 }
 
 @media (max-width: 480px) {

@@ -1284,6 +1284,13 @@
         }
     }
 
+    &__floresta {
+        .wp-block-buttons {
+            margin-top: 24px;
+            justify-content: center;
+        }
+    }
+
     @media (max-width: 480px) {
         padding: 40px 16px;
 

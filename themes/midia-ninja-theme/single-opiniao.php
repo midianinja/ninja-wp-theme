@@ -326,8 +326,49 @@ $has_thumbnail = (has_post_thumbnail() && filter_var($show_thumbnail, FILTER_VAL
 
 					</div>
 				</section>
-			</article>
-		<?php endwhile; ?>
+		</article>
+	<?php endwhile; ?>
+
+		<section class="apoie-section">
+			<div class="apoie-section__inner">
+				<h2 class="apoie-section__title"><?php _e( 'Apoie a Mídia Ninja', 'ninja' ); ?></h2>
+				<p class="apoie-section__subtitle"><?php _e( 'Ajude a manter uma comunicação independente, livre e em movimento.', 'ninja' ); ?></p>
+
+				<p><?php _e( 'Escolha como contribuir. Você pode fazer uma doação única ou apoiar de forma recorrente, mensal ou anual.', 'ninja' ); ?></p>
+				<p><?php _e( 'Formas de pagamento: cartão de crédito ou Pix.', 'ninja' ); ?></p>
+
+				<div class="apoie-section__embed">
+					<div data-fde-donate="" data-campaign="midia-ninja">
+						<a href="https://ninjaverso.com.br/donate?campaign=midia-ninja">Doe agora</a>
+					</div>
+					<script src="https://ninjaverso.com.br/wp-content/themes/ninjaverso/assets/js/donate-embed.js" async=""></script>
+				</div>
+
+				<p class="apoie-section__note">
+					<strong><?php _e( 'Doação única:', 'ninja' ); ?></strong>
+					<?php _e( 'uma contribuição feita uma vez.', 'ninja' ); ?>
+				</p>
+				<p class="apoie-section__note">
+					<strong><?php _e( 'Doação recorrente:', 'ninja' ); ?></strong>
+					<?php _e( 'sua contribuição se repete mensal ou anualmente, ajudando a dar continuidade e previsibilidade ao nosso trabalho.', 'ninja' ); ?>
+				</p>
+
+				<hr class="apoie-section__divider" />
+
+				<div class="apoie-section__floresta">
+					<h3 class="apoie-section__floresta-title"><?php _e( 'Além de doar, você também pode colaborar', 'ninja' ); ?></h3>
+					<p class="apoie-section__floresta-text"><?php _e( 'Conheça outras iniciativas da rede e descubra formas de participar, contribuir e construir junto.', 'ninja' ); ?></p>
+
+					<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-block-buttons-is-layout-flex">
+						<div class="wp-block-button is-style-fill">
+							<a class="wp-block-button__link has-primary-pure-background-color has-background wp-element-button" href="https://florestaativista.org/" target="_blank" rel="noopener noreferrer" style="border-radius:8px;font-style:normal;font-weight:700;text-transform:uppercase;">
+								<?php _e( 'Conheça a Floresta Ativista', 'ninja' ); ?>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
 		<section class="post-footer">
 			<div class="related-posts">

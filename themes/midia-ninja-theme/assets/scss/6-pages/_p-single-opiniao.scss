@@ -825,9 +825,16 @@
 
     &__subtitle {
         color: #ccc;
-        font-size: 0.82rem;
+        font-size: 1rem;
         margin-bottom: 24px;
         white-space: nowrap;
+    }
+
+    &__contrib {
+        display: none; // Temporarily hidden pending client approval; see issue #304
+        text-align: center;
+        font-size: 0.82rem;
+        margin-bottom: 24px;
     }
 
     &__embed {
@@ -860,18 +867,6 @@
         }
     }
 
-    &__floresta {
-        .apoie-section__floresta-title,
-        .apoie-section__floresta-text {
-            text-align: center;
-        }
-
-        .wp-block-buttons {
-            margin-top: 24px;
-            justify-content: center;
-        }
-    }
-
     @media (max-width: 480px) {
         padding: 40px 16px;
 
@@ -880,7 +875,6 @@
         }
 
         &__subtitle {
-            font-size: 0.82rem;
             white-space: normal;
         }
     }

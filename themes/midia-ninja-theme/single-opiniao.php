@@ -329,7 +329,7 @@ $has_thumbnail = (has_post_thumbnail() && filter_var($show_thumbnail, FILTER_VAL
 		</article>
 	<?php endwhile; ?>
 
-		<section class="apoie-section">
+		<!-- <section class="apoie-section">
 			<div class="apoie-section__inner">
 				<h2 class="apoie-section__title"><?php _e( 'Apoie a Mídia Ninja', 'ninja' ); ?></h2>
 				<p class="apoie-section__subtitle"><?php _e( 'Ajude a manter uma comunicação independente, livre e em movimento.', 'ninja' ); ?></p>
@@ -346,7 +346,7 @@ $has_thumbnail = (has_post_thumbnail() && filter_var($show_thumbnail, FILTER_VAL
 					<script src="https://ninjaverso.com.br/wp-content/themes/ninjaverso/assets/js/donate-embed.js" async=""></script>
 				</div>
 			</div>
-		</section>
+		</section> -->
 
 		<section class="post-footer">
 			<div class="related-posts">

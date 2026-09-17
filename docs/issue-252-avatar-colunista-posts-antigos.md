@@ -69,17 +69,37 @@ Novo comando em `themes/midia-ninja-theme/library/cli/assign-legacy-guest-author
 5. Verificar o HTML: o avatar deve sair de `coauthors_get_avatar()` (img com classes do CAP / thumbnail do guest author).
 6. Rodar o comando duas vezes no mesmo lote — o segundo run deve reportar tudo como `skipped_already_assigned` (idempotência).
 
+## Guia de operação do comando (para infra)
+
+- **O que é:** comando WP-CLI dentro do tema (`library/cli/assign-legacy-guest-author.php`, registrado em `functions.php`, só carrega em CLI, zero impacto em runtime). Corrige o dado-raiz: associa o guest author aos posts antigos com byline preso em usuário WP sem avatar. Sem rodá-lo, os templates corrigidos não fazem o avatar aparecer onde não há guest author.
+- **Pré-requisitos:** tema atualizado; Co-Authors Plus ativo (senão o comando aborta com aviso); WP-CLI disponível; guest author alvo com imagem destacada — verificar com `wp post meta get 4555465 _thumbnail_id` (vazio = cadastrar a foto antes).
+- **Sequência de execução (nesta ordem):**
+    1. Simulação `--dry-run --limit=100 --yes`, conferindo que `WOULD-ASSIGN` são só bylines quebrados;
+    2. Lote piloto `--post-ids=<id1,id2,id3> --yes` com conferência visual no navegador;
+    3. Lote total `--before=2023-12-01 --yes` (~12 mil posts, batches de 200, alguns minutos; em produção: backup do banco antes + horário de baixo tráfego).
+- **Flags:**
+
+    | Flag | Descrição |
+    |------|-----------|
+    | `--guest-author` | Obrigatório |
+    | `--before` | Default `2023-12-01` |
+    | `--post-types` | Default `post,opiniao` |
+    | `--limit` | Limite de posts processados |
+    | `--post-ids` | IDs pontuais (sobrepõe `--before`) |
+    | `--dry-run` | Simulação, sem aplicar |
+    | `--yes` | Pula a confirmação interativa |
+
+- **Garantias:** nunca toca posts já OK (guest author com foto), nunca toca posts novos/colunistas funcionais, não cria usuários nem muda permissões (só termo de taxonomia `author`), só age quando executado, dúvida = pula para revisão manual.
+- **Idempotência e rollback:** segunda execução não duplica; desfazer = reatribuir alvo anterior ou restaurar backup; falha no meio = re-rodar.
+
 ## Roteiro de rollout
 
-1. **Local:** ✅ feito (dry-run + aplicação pontual + validação visual).
-2. **Dev:** atualizar o tema no dev → rodar `--dry-run` no banco de dev → aplicar em lote com `--limit` progressivo, conferindo cada lote.
-3. **Produção:** backup do banco → mesmo roteiro, agendado em horário de baixo tráfego.
-4. **Regra:** nunca rodar em qualquer ambiente sem `--dry-run` primeiro.
+Procedimento detalhado (sequência, garantias, rollback) na seção **Guia de operação do comando (para infra)** acima. Status: **Local:** ✅ feito (dry-run + aplicação pontual + validação visual).
 
 ## Rollback
 
 - **Templates:** reverter os commits de `single.php` / `single-opiniao.php` via git.
-- **Atribuições:** desfazer reatribuindo o usuário WP anterior via o próprio comando (`--guest-author` apontando para o slug do usuário). A operação é uma **troca de termos de taxonomia `author`** — reversível por construção.
+- **Atribuições:** ver procedimento na seção **Guia de operação do comando (para infra)** — a operação é uma troca de termos de taxonomia `author`, reversível por construção.
 
 ## Arquivos modificados
 

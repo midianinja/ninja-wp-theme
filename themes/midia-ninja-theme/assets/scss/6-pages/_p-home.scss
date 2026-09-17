@@ -1408,33 +1408,151 @@
     }
 
     .wp-block-cover.bloco-telegram {
-        padding-top: 0;
-        padding-bottom: 0;
-        margin-top: -30px;
+        // Vertical breathing room for the section on the home page
+        padding-top: 2rem;
+        padding-bottom: 2rem;
 
-        .wp-block-buttons {
-            @media (max-width: 782px) {
-                align-content: center;
-            }
-
-            .wp-block-button__link {
-                border-radius: 8px;
-                color: inherit;
-            }
+        @include mobile {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
         }
 
-        .wp-block-columns {
-            margin: 0;
+        // Outer columns = the two cards (stacked below 782px by WP core)
+        > .wp-block-cover__inner-container > .wp-block-columns {
+            gap: 24px;
+            // The inner container is is-layout-constrained: WP centers its
+            // children via :where() rules with max-width + margin-inline
+            // auto. A bare margin:0 removed the auto margins and pushed the
+            // pair off the centered grid — restore auto margins and cap to
+            // the same 1170px the rest of the home grid uses.
+            max-width: 1170px;
+            margin-inline: auto;
 
-            .wp-block-column:last-child {
-                margin-top: 20px;
+            > .wp-block-column {
+                // Card
+                background-color: var(--wp--preset--color--primary-dark);
+                border-radius: 16px;
+                padding: 24px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
 
                 @media (max-width: 782px) {
-                    padding-bottom: 60px;
+                    padding: 20px;
+                }
 
-                    h2,
-                    p {
-                        text-align: center;
+                // Inner columns: icon (left on desktop / top on mobile) + text
+                > .wp-block-columns {
+                    width: 100%;
+                    margin: 0;
+                    align-items: center;
+                    gap: 16px;
+
+                    // Icon column — merge its editor dark bg into the card
+                    > .wp-block-column:first-child {
+                        background-color: transparent;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        @media (max-width: 782px) {
+                            margin-bottom: 16px;
+                        }
+
+                        .wp-block-image {
+                            margin: 0;
+                            display: flex;
+                            justify-content: center;
+
+                            // ~30–35% of the ~550px desktop card — do not let
+                            // the editor's 50% flex-basis blow the icon up
+                            img {
+                                max-width: 180px;
+                                width: 100%;
+                                height: auto;
+
+                                @media (max-width: 782px) {
+                                    max-width: 130px;
+                                }
+                            }
+                        }
+                    }
+
+                    // Text column
+                    > .wp-block-column:last-child {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        h2.wp-block-heading {
+                            // explicit size — do not inherit has-large-font-size
+                            font-size: 24px;
+                            font-weight: 800;
+                            line-height: 1.1;
+                            text-transform: uppercase;
+                            margin: 0 0 8px;
+                            // !important beats the editor's inline/utility text-align
+                            text-align: center !important;
+
+                            @media (max-width: 782px) {
+                                font-size: 20px;
+                            }
+                        }
+
+                        p.wp-block-paragraph {
+                            font-size: 15px;
+                            line-height: 1.4;
+                            margin: 0 0 8px;
+                            // !important beats the editor's text-align:left
+                            text-align: center !important;
+                        }
+
+                        // Editor spacer block sits between description and
+                        // button with an inline 20px height — tighten it
+                        .wp-block-spacer {
+                            height: 12px !important;
+                        }
+
+                        .wp-block-buttons {
+                            // justify-content rules the column-direction axis;
+                            // for the vertical variation the cross axis is
+                            // horizontal, so centering needs align-items
+                            justify-content: center;
+                            align-items: center;
+
+                            .wp-block-button {
+                                // The editor's width-50 setting fights
+                                // centering in the vertical variation — hug
+                                // the text instead so it centers cleanly.
+                                // !important beats core's
+                                // .wp-block-buttons.is-vertical >
+                                // .wp-block-button.wp-block-button__width-50
+                                // { width: 50% } so the wrapper can
+                                // shrink-to-fit its content.
+                                width: auto !important;
+                                max-width: 100%;
+
+                                // Typography + geometry only — editor colors stay untouched
+                                .wp-block-button__link {
+                                    // Core pins the link to the wrapper
+                                    // (.wp-block-buttons
+                                    // .wp-block-button__link { width: 100% }),
+                                    // so a nowrap text longer than the
+                                    // width-50 box overflowed the pill's
+                                    // background — size from content instead.
+                                    display: inline-block;
+                                    width: auto !important;
+                                    max-width: 100%;
+                                    box-sizing: border-box;
+                                    white-space: nowrap;
+                                    font-family: var(--wp--preset--font-family--manrope);
+                                    font-size: 14px;
+                                    font-weight: 700;
+                                    padding: 10px 24px;
+                                    border-radius: 10px;
+                                }
+                            }
+                        }
                     }
                 }
             }

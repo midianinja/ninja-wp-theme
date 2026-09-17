@@ -74,12 +74,11 @@ get_template_part( 'template-parts/header-especiais' );
 
                             <div class="author-info-mobile">
                             <?php
-                            $terms = get_the_terms(get_the_ID(), 'marcador_afluente');
+                            $afluente_term = get_primary_afluente(get_the_ID());
 
-                            if ($terms && !is_wp_error($terms)) {
-                                foreach ($terms as $term) {
-                                    if($term->parent == 0){
-                                        $afluente_name = $term->name;
+                            if ($afluente_term) {
+                                $term = $afluente_term;
+                                $afluente_name = $term->name;
                                         $afluente_bio = $term->description;
                                         $term_id = $term->term_id;
                                         $avatar = get_term_meta($term_id, 'avatar', true);
@@ -170,9 +169,6 @@ get_template_part( 'template-parts/header-especiais' );
                                         </div>
 
                                         <?php
-                                    }
-
-                                }
                             }
                         ?>
                         </div>
@@ -227,12 +223,11 @@ get_template_part( 'template-parts/header-especiais' );
                     </div>
                     <div class="author-info">
                         <?php
-                        $terms = get_the_terms(get_the_ID(), 'marcador_afluente');
+                        $afluente_term = get_primary_afluente(get_the_ID());
 
-                        if ($terms && !is_wp_error($terms)) {
-                            foreach ($terms as $term) {
-                                if($term->parent == 0){
-                                $afluente_name = $term->name;
+                        if ($afluente_term) {
+                            $term = $afluente_term;
+                            $afluente_name = $term->name;
                                 $afluente_bio = $term->description;
                                 $term_id = $term->term_id;
                                 $avatar = get_term_meta($term_id, 'avatar', true);
@@ -317,9 +312,6 @@ get_template_part( 'template-parts/header-especiais' );
                                     </div>
                                 </div>
                                 <?php
-
-                            }
-                        }
                         }
                         ?>
                     </div>
@@ -339,22 +331,24 @@ get_template_part( 'template-parts/header-especiais' );
             </article>
         <?php endwhile; ?>
 
-        <!-- <section class="apoie-section">
+        <section class="apoie-section">
             <div class="apoie-section__inner">
-                <h2 class="apoie-section__title">Apoie a Mídia Ninja</h2>
-                <p class="apoie-section__subtitle">Seu apoio é fundamental para manter nosso jornalismo independente.</p>
+                <h2 class="apoie-section__title"><?php _e( 'Apoie a Mídia Ninja', 'ninja' ); ?></h2>
+                <p class="apoie-section__subtitle"><?php _e( 'Ajude a manter uma comunicação independente, livre e em movimento.', 'ninja' ); ?></p>
+
+                <p class="apoie-section__contrib">
+                    <?php _e( 'Escolha como contribuir. Você pode fazer uma doação única ou apoiar de forma recorrente, mensal ou anual. Formas de pagamento:', 'ninja' ); ?>
+                    <strong><?php _e( 'cartão de crédito ou Pix', 'ninja' ); ?></strong>.
+                </p>
 
                 <div class="apoie-section__embed">
-                    <div data-fde-donate="" data-campaign="midia-ninja"></div>
-                    <script src="https://dev.ninjaverso.com.br/wp-content/themes/ninjaverso/assets/js/donate-embed.js" async=""></script>
+                    <div data-fde-donate="" data-campaign="midia-ninja">
+                        <a href="https://ninjaverso.com.br/donate?campaign=midia-ninja">Doe agora</a>
+                    </div>
+                    <script src="https://ninjaverso.com.br/wp-content/themes/ninjaverso/assets/js/donate-embed.js" async=""></script>
                 </div>
-
-                <p class="apoie-section__other">Caso queira apoiar de outras formas, conheça também:</p>
-                <a href="https://florestaativista.org" target="_blank" rel="noopener noreferrer" class="apoie-section__btn">
-                    Floresta Ativista
-                </a>
             </div>
-        </section> -->
+        </section>
 
         <section class="post-footer">
             <div class="related-posts">

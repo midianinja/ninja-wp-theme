@@ -53,6 +53,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		flickrCollectionId,
 		flickrUserId,
 		heading,
+		mostReadPeriod,
 		noCompare,
 		noPostType,
 		noQueryTerms,
@@ -441,6 +442,26 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ blockModel === 'most-read' && (
 								<PanelRow>
 									<SelectGuestAuthor coAuthor={ coAuthor } onChangeCoAuthor={ onChangeCoAuthor } />
+								</PanelRow>
+							) }
+
+							{ blockModel === 'most-read' && (
+								<PanelRow>
+									<SelectControl
+										label={ __( 'Período das mais lidas', 'ninja' ) }
+										value={ mostReadPeriod }
+										options={ [
+											{
+												label: __( 'Últimos 7 dias', 'ninja' ),
+												value: "week"
+											},
+											{
+												label: __( 'Últimos 30 dias', 'ninja' ),
+												value: "month"
+											}
+										]}
+										onChange={ ( value ) => setAttributes( { mostReadPeriod: value } ) }
+									/>
 								</PanelRow>
 							) }
 

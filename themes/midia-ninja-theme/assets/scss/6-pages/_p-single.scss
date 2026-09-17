@@ -1157,6 +1157,28 @@
         label[for$="-other"] {
             position: static;
         }
+
+        // Campo "outro valor": ocupa a largura do container de opções e o
+        // controle fica no final do campo, nunca no meio.
+        .wpbnbd .money-input {
+            flex-wrap: wrap;
+            max-width: 100%;
+            width: 100%;
+
+            > button {
+                flex: none;
+                margin-left: auto;
+            }
+        }
+
+        // Sobrescreve a regra do Newspack Blocks (max-width: 180px) usando o mesmo
+        // seletor do plugin com especificidade aumentada (classe .money-input repetida).
+        @at-root .fde-donate-widget .wpbnbd .money-input.money-input input[type="number"] {
+            flex: 1 1 auto;
+            max-width: none;
+            text-align: left;
+            width: 100%;
+        }
     }
 
     // ===== Mobile (telas muito pequenas, ~320px) =====
@@ -1227,9 +1249,15 @@
 
     &__subtitle {
         color: #ccc;
-        font-size: 0.82rem;
+        font-size: 1rem;
         margin-bottom: 24px;
         white-space: nowrap;
+    }
+
+    &__contrib {
+        text-align: center;
+        font-size: 0.82rem;
+        margin-bottom: 24px;
     }
 
     &__embed {
@@ -1270,7 +1298,6 @@
         }
 
         &__subtitle {
-            font-size: 0.82rem;
             white-space: normal;
         }
     }

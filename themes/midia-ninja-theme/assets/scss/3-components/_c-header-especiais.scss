@@ -73,3 +73,11 @@
 		}
 	}
 }
+
+// Hide the WPML language selector only on the especiais that have their own multilingual handling (issue #293)
+.menu-especial--climax-2,
+.menu-especial--dom-de-cura-e-pajelanca-2 {
+	.menu-item--lang {
+		display: none;
+	}
+}

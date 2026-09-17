@@ -19,6 +19,7 @@ $get_coauthors = [];
 foreach( $coauthors as $coauthor ):
     $coauthor_data = array();
 
+    $coauthor_data['coauthor_obj'] = $coauthor;
     $coauthor_data['author_id'] = '';
     if (is_a($coauthor, 'WP_User')) {
         $coauthor_data['author_id'] = $coauthor->data->ID;
@@ -180,7 +181,15 @@ get_template_part( 'template-parts/header-especiais' );
 
                                     <?php if ($coauthor): ?>
 
-                                        <?php echo get_avatar($coauthor['author_id'], 70);?>
+                                        <?php
+                                        $coauthor_avatar = ( function_exists( 'coauthors_get_avatar' ) && ! empty( $coauthor['coauthor_obj'] ) )
+                                            ? coauthors_get_avatar( $coauthor['coauthor_obj'], 70 )
+                                            : '';
+                                        if ( empty( $coauthor_avatar ) ) {
+                                            $coauthor_avatar = get_avatar( $coauthor['author_id'], 70 );
+                                        }
+                                        echo $coauthor_avatar;
+                                        ?>
 
                                         <div class="author">
                                         <div class="byline">

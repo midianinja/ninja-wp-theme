@@ -51,3 +51,8 @@ require __DIR__ . '/library/pods-wpml-fix.php'; // TEMP: remover apos validar no
 require __DIR__ . '/library/query-loop.php';
 require __DIR__ . '/library/show-thumbnail.php';
 require __DIR__ . '/library/admin.php';
+
+// WP-CLI commands (only loaded in CLI context).
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+    require __DIR__ . '/library/cli/assign-legacy-guest-author.php';
+}

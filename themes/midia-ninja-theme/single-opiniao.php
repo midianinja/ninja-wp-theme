@@ -20,6 +20,7 @@ $has_columnist = false;
 foreach ($coauthors as $coauthor) :
 	$coauthor_data = array();
 
+	$coauthor_data['coauthor_obj'] = $coauthor;
 	$coauthor_data['author_id'] = '';
 	$coauthor_data['author_bio'] = '';;
 	$coauthor_data['instagram'] = '';
@@ -94,7 +95,15 @@ $has_thumbnail = (has_post_thumbnail() && filter_var($show_thumbnail, FILTER_VAL
 										<div class="info-container">
 											<a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']); ?>">
 
-												<?php echo get_avatar($coauthor['author_id'], 128); ?>
+											<?php
+											$coauthor_avatar = ( function_exists( 'coauthors_get_avatar' ) && ! empty( $coauthor['coauthor_obj'] ) )
+												? coauthors_get_avatar( $coauthor['coauthor_obj'], 128 )
+												: '';
+											if ( empty( $coauthor_avatar ) ) {
+												$coauthor_avatar = get_avatar( $coauthor['author_id'], 128 );
+											}
+											echo $coauthor_avatar;
+											?>
 											</a>
 
 											<div class="info-card-informations">
@@ -180,7 +189,15 @@ $has_thumbnail = (has_post_thumbnail() && filter_var($show_thumbnail, FILTER_VAL
 
 									<?php if ($coauthor) : ?>
 
-										<?php echo get_avatar($coauthor['author_id'], 70); ?>
+										<?php
+										$coauthor_avatar = ( function_exists( 'coauthors_get_avatar' ) && ! empty( $coauthor['coauthor_obj'] ) )
+											? coauthors_get_avatar( $coauthor['coauthor_obj'], 70 )
+											: '';
+										if ( empty( $coauthor_avatar ) ) {
+											$coauthor_avatar = get_avatar( $coauthor['author_id'], 70 );
+										}
+										echo $coauthor_avatar;
+										?>
 
 									<?php endif; ?>
 								<?php endforeach; ?>
@@ -225,7 +242,15 @@ $has_thumbnail = (has_post_thumbnail() && filter_var($show_thumbnail, FILTER_VAL
 								<div class="author-info-card">
 									<a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']); ?>">
 
-										<?php echo get_avatar($coauthor['author_id'], 128); ?>
+										<?php
+										$coauthor_avatar = ( function_exists( 'coauthors_get_avatar' ) && ! empty( $coauthor['coauthor_obj'] ) )
+											? coauthors_get_avatar( $coauthor['coauthor_obj'], 128 )
+											: '';
+										if ( empty( $coauthor_avatar ) ) {
+											$coauthor_avatar = get_avatar( $coauthor['author_id'], 128 );
+										}
+										echo $coauthor_avatar;
+										?>
 									</a>
 									<?php if ($coauthor['author_name']) : ?>
 										<a href="<?php echo get_author_posts_url($coauthor['author_id'], $coauthor_data['cap-user_login']); ?>">

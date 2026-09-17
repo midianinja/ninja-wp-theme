@@ -1417,6 +1417,15 @@
             padding-bottom: 2rem;
         }
 
+        // On mobile the alignfull cover spans edge-to-edge and the cards
+        // would touch the screen borders — give the constrained inner
+        // container inline breathing room (desktop tracks the 1170px grid).
+        > .wp-block-cover__inner-container {
+            @media (max-width: 782px) {
+                padding-inline: 16px;
+            }
+        }
+
         // Outer columns = the two cards (stacked below 782px by WP core)
         > .wp-block-cover__inner-container > .wp-block-columns {
             gap: 24px;

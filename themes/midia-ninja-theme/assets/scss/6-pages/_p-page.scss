@@ -404,3 +404,36 @@
         }
     }
 }
+
+// Página /doe
+//
+// 1) Trava de scroll: o tema faz do <body> o scroll container de todas as
+//    páginas (overflow-x: hidden global em _s-globals.scss → overflow-y: auto
+//    computado). Em /doe, o conteúdo da página injeta um bloco HTML com
+//    `#app { overflow: clip !important }` (para conter os heróis full-bleed
+//    de 100vw) e a página ainda carrega scripts de terceiros que exibem
+//    overlays com scroll lock (newspack-popups/view.js, complianz, widget
+//    donate-embed do ninjaverso). Nesse padrão, se o overflow vertical do
+//    body for suprimido por regra CSS ou por style inline (overflow:hidden),
+//    a página inteira trava — e CSS com !important vence até style inline
+//    sem !important. O guarda abaixo só altera algo quando o canal vertical
+//    foi suprimido; nas demais páginas não há efeito algum.
+//
+// 2) Títulos Ninja: o conteúdo da página define `h1, h2` com
+//    `font-family: MidiaNinja !important` e os blocos (.mn-intro,
+//    .mn-infra-text, .mn-cta-inner etc.) herdam text-align: center — mas a
+//    tipografia global do tema (_a-typography.scss) define
+//    `h2/h3/h4 { text-align: left }`, regra direta que vence a herança e
+//    deixa os títulos Ninja da página alinhados à esquerda. Centralizar aqui,
+//    via classe .page-doe do body, restringe o efeito a esta página.
+.page-doe {
+    overflow-y: auto !important; // 1) guarda de rolagem vertical
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .mn-display {
+        text-align: center; // 2) centraliza títulos com fonte Ninja
+    }
+}

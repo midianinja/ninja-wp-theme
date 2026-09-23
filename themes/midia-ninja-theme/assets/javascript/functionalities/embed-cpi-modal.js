@@ -14,6 +14,10 @@
  * - lightbox de imagem (links para arquivos de imagem, padrão das galerias
  *   Divi e do Magnific);
  * - popup de vídeo/iframe (YouTube, Vimeo ou arquivo de vídeo direto).
+ *
+ * Também substitui o que o JS do Divi (custom.js) fazia pelos módulos que
+ * existem de fato no HTML raspado (menu hamburguer das fullwidth menus; a
+ * revelação de .et-waypoint é via CSS no template).
  */
 export class EmbedCpiModal {
 
@@ -35,6 +39,9 @@ export class EmbedCpiModal {
         scope.querySelectorAll('[class*="lightbox-content-"]').forEach((el) => {
             el.style.display = 'none';
         });
+
+        // Camada dos módulos Divi que dependiam do custom.js do site antigo.
+        this.initDiviModules(scope);
 
         // Delegação de clique: cobre cards, botões "Saiba mais" e os padrões
         // genéricos de lightbox (imagem, vídeo, inline).
@@ -93,6 +100,42 @@ export class EmbedCpiModal {
             if (anchor) {
                 this.openByHref(anchor.getAttribute('href') || '', event);
             }
+        });
+    }
+
+    /**
+     * Comportamentos dos módulos Divi presentes no HTML raspado cujo JS
+     * original (custom.js + jQuery) não é carregado aqui.
+     *
+     * - Menu hamburguer (et_pb_fullwidth_menu): abaixo de 980px o CSS do
+     *   Divi esconde nav+ul e só o clique no .mobile_nav reexibia (o estado
+     *   aberto é estilizado no CSS do template via .menu-opened).
+     *
+     * A revelação de .et-waypoint/.et_animated (imagens e textos que o Divi
+     * mantinha com opacity:0 até o scroll) é feita 100% em CSS no template,
+     * para não depender do bundle nem cobrir clones do modal.
+     */
+    initDiviModules(scope) {
+        scope.addEventListener('click', (event) => {
+            const toggle = event.target.closest('.et_mobile_nav_menu .mobile_nav');
+
+            if (!toggle) {
+                return;
+            }
+
+            event.preventDefault();
+
+            const menu = toggle.closest('.et_pb_fullwidth_menu');
+
+            if (!menu) {
+                return;
+            }
+
+            const opened = menu.classList.toggle('menu-opened');
+
+            toggle.classList.toggle('opened', opened);
+            toggle.classList.toggle('closed', !opened);
+            toggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
         });
     }
 

@@ -4,8 +4,14 @@
  */
 
 $remote_url = 'https://antigo.midianinja.org/cpi-da-covid/';
-$cache_key  = 'embed_cpi_cache_' . md5($remote_url);
-$content    = get_transient($cache_key);
+// Cache key is versioned with the pipeline format: when the shape of $content
+// changes (e.g. the prepended design CSS block), old-format transients must be
+// invalidated on deploy instead of serving stale markup for up to 1h — that is
+// exactly what made the credits section render unstyled/invisible on the first
+// deploy (cached content predated the design CSS extraction).
+$cache_version = 'v3';
+$cache_key    = 'embed_cpi_cache_' . $cache_version . '_' . md5($remote_url);
+$content      = get_transient($cache_key);
 
 if (empty($content)) {
 	$response = wp_remote_get($remote_url, [

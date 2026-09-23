@@ -51,13 +51,7 @@ export class EmbedCpiModal {
             if (trigger) {
                 event.preventDefault();
 
-                const suffix = this.extractSuffix(trigger);
-
-                if (!suffix) {
-                    return;
-                }
-
-                const content = scope.querySelector('.lightbox-content-' + suffix);
+                const content = this.resolveTriggerContent(scope, trigger);
 
                 if (content) {
                     this.open(content);
@@ -205,6 +199,49 @@ export class EmbedCpiModal {
         for (const cls of trigger.classList) {
             if (cls.indexOf('lightbox-trigger-') === 0) {
                 return cls.split('lightbox-trigger-')[1];
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Resolves the modal content for a trigger. Numbered classes
+     * (`lightbox-trigger-perfilN` → `.lightbox-content-perfilN`) resolve
+     * directly. Fallback: the scraped page has "Saiba mais" buttons carrying
+     * the bare class `lightbox-trigger-perfil` with no suffix (authoring bug
+     * of the old site) — those resolve through the numbered trigger of the
+     * profile card that shares the same Divi column.
+     */
+    resolveTriggerContent(scope, trigger) {
+        const suffix = this.extractSuffix(trigger);
+
+        if (suffix) {
+            const content = scope.querySelector('.lightbox-content-' + suffix);
+
+            if (content) {
+                return content;
+            }
+        }
+
+        const column = trigger.closest('.et_pb_column');
+
+        if (!column) {
+            return null;
+        }
+
+        for (const candidate of column.querySelectorAll('[class*="lightbox-trigger-"]')) {
+            if (candidate === trigger) {
+                continue;
+            }
+
+            const candidateSuffix = this.extractSuffix(candidate);
+            const candidateContent = candidateSuffix
+                ? scope.querySelector('.lightbox-content-' + candidateSuffix)
+                : null;
+
+            if (candidateContent) {
+                return candidateContent;
             }
         }
 

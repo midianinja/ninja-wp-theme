@@ -220,7 +220,7 @@
         gap: 24px;
 
         > button {
-            max-width: 425px;
+            max-width: 540px;
             width: 100%;
             margin-inline: auto;
         }
@@ -231,7 +231,7 @@
     }
 
     .wp-block-newspack-blocks-donate__options {
-        max-width: 425px;
+        max-width: 540px;
         width: 100%;
     }
 
@@ -241,13 +241,19 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 32px 14px !important;
+            gap: 16px 14px !important;
             width: 100%;
-            margin-top: 24px !important;
+            margin-top: 16px !important;
 
             .odl {
                 text-align: center;
-				margin-top: 1rem !important;
+                margin-top: 0 !important;
+            }
+
+            .wpbnbd__button {
+                box-sizing: border-box;
+                flex: 1 1 0%;
+                min-width: 0;
             }
         }
 
@@ -255,6 +261,42 @@
             position: static;
         }
 
+    }
+
+    .wpbnbd .tiers input[type="radio"]:checked + .tier-label {
+        @media (max-width: 480px) {
+            margin-top: 10px;
+        }
+    }
+
+    // Estado "outro valor" selecionado: padroniza o espaçamento revelado em
+    // 16px e faz o input ocupar toda a largura do container.
+    .wp-block-newspack-blocks-donate__tier:has(> input.other-input:checked) {
+        > .odl {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    // Campo "outro valor": ocupa a largura do container de opções (540px) e o
+    // controle fica no final do campo, nunca no meio.
+    .wpbnbd .money-input {
+        flex-wrap: wrap;
+        max-width: 510px;
+        width: 100%;
+
+        > button {
+            flex: none;
+            margin-left: auto;
+        }
+    }
+
+    // Sobrescreve a regra do Newspack Blocks (max-width: 180px) usando o mesmo
+    // seletor do plugin com especificidade aumentada (classe .money-input repetida).
+    @at-root .fde-donate-widget .wpbnbd .money-input.money-input input[type="number"] {
+        flex: 1 1 auto;
+        max-width: none;
+        text-align: left;
+        width: 100%;
     }
 
     @media (max-width: 480px) {
@@ -282,7 +324,7 @@
 
         .wp-block-newspack-blocks-donate__tiers {
             align-items: center;
-            gap: 24px !important;
+            gap: 16px !important;
         }
 
         .wp-block-newspack-blocks-donate > form > button {
@@ -360,5 +402,38 @@
         &__subtitle {
             font-size: 1rem;
         }
+    }
+}
+
+// Página /doe
+//
+// 1) Trava de scroll: o tema faz do <body> o scroll container de todas as
+//    páginas (overflow-x: hidden global em _s-globals.scss → overflow-y: auto
+//    computado). Em /doe, o conteúdo da página injeta um bloco HTML com
+//    `#app { overflow: clip !important }` (para conter os heróis full-bleed
+//    de 100vw) e a página ainda carrega scripts de terceiros que exibem
+//    overlays com scroll lock (newspack-popups/view.js, complianz, widget
+//    donate-embed do ninjaverso). Nesse padrão, se o overflow vertical do
+//    body for suprimido por regra CSS ou por style inline (overflow:hidden),
+//    a página inteira trava — e CSS com !important vence até style inline
+//    sem !important. O guarda abaixo só altera algo quando o canal vertical
+//    foi suprimido; nas demais páginas não há efeito algum.
+//
+// 2) Títulos Ninja: o conteúdo da página define `h1, h2` com
+//    `font-family: MidiaNinja !important` e os blocos (.mn-intro,
+//    .mn-infra-text, .mn-cta-inner etc.) herdam text-align: center — mas a
+//    tipografia global do tema (_a-typography.scss) define
+//    `h2/h3/h4 { text-align: left }`, regra direta que vence a herança e
+//    deixa os títulos Ninja da página alinhados à esquerda. Centralizar aqui,
+//    via classe .page-doe do body, restringe o efeito a esta página.
+.page-doe {
+    overflow-y: auto !important; // 1) guarda de rolagem vertical
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .mn-display {
+        text-align: center; // 2) centraliza títulos com fonte Ninja
     }
 }

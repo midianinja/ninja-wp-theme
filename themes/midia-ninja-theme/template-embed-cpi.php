@@ -60,6 +60,18 @@ if (empty($content)) {
 				$child->parentNode->removeChild($child);
 			}
 
+			// The old page keeps most of its design in <head> inline styles that
+			// are not carried by the markup scrape. Extract the two Divi cached
+			// style blocks (global customizer rules + per-module design rules)
+			// from the same DOMDocument so the scraped markup renders styled.
+			$design_css = '';
+			foreach (['et-divi-customizer-global-cached-inline-styles', 'et-builder-module-design-cached-inline-styles'] as $style_id) {
+				$style_nodes = $xpath->query('//style[@id="' . $style_id . '"]');
+				if ($style_nodes->length > 0) {
+					$design_css .= $style_nodes->item(0)->textContent . "\n";
+				}
+			}
+
 			$content = '';
 			foreach ($node->childNodes as $child) {
 				$content .= $dom->saveHTML($child);
@@ -85,6 +97,12 @@ if (empty($content)) {
 			// Âncoras da própria página: rolam até a seção dentro do embed,
 			// como no antigo, em vez de navegar para fora do site.
 			$content = str_replace('https://antigo.midianinja.org/cpi-da-covid/#', '#', $content);
+
+			// Prepend the old-site inline design CSS so it is cached together
+			// with the markup and applies to it inside the embed.
+			if ($design_css !== '') {
+				$content = '<style id="embed-cpi-design-css">' . $design_css . '</style>' . $content;
+			}
 
 			set_transient($cache_key, $content, HOUR_IN_SECONDS);
 		}
@@ -195,6 +213,80 @@ get_header(); ?>
 	line-height: 1;
 	cursor: pointer;
 	color: #222;
+}
+
+/* ===== Leak guards =====
+ * O CSS do site antigo (Divi) é global: os guards abaixo restauram a
+ * tipografia do tema novo no chrome (header/footer) desta página e
+ * reaplicam a tipografia Divi dentro do embed. Especificidade baixa via
+ * :where() para não vencer regras de classe do tema nem do Divi. */
+.page-cpi-da-covid {
+	font-family: "Manrope", sans-serif;
+	font-size: 16px;
+	line-height: 1.42857143;
+	color: #333;
+}
+:where(.main-header, .main-footer) a {
+	color: #337ab7;
+	text-decoration: none;
+}
+:where(.main-header, .main-footer) a:hover,
+:where(.main-header, .main-footer) a:focus {
+	color: #23527c;
+}
+:where(.main-header, .main-footer) p {
+	padding-bottom: 0; /* reset do Divi p{padding-bottom:1em} */
+}
+:where(.main-header, .main-footer) :is(h1, h2, h3, h4, h5, h6) {
+	font-family: "Manrope", sans-serif;
+	font-weight: 800;
+	line-height: 1.15;
+	padding-bottom: 0; /* reset do Divi h1..h6{padding-bottom:10px} */
+	color: var(--wp--preset--color--primary-dark);
+}
+:where(.main-header, .main-footer) :is(input, textarea, select) {
+	font-family: inherit; /* customizer do antigo aplica Source Sans Pro */
+}
+/* Tipografia do antigo mantida dentro do conteúdo raspado (o guard do
+ * body acima remove o Source Sans Pro herdado). */
+.embed-cpi-inner {
+	font-family: "Source Sans Pro", Helvetica, Arial, Lucida, sans-serif;
+	font-size: 16px;
+	line-height: 1.8em;
+	color: #000;
+}
+:where(.embed-cpi-inner) :is(h1, h2, h3, h4, h5, h6) {
+	font-family: "Droid Serif", Georgia, "Times New Roman", serif;
+}
+
+/* ===== Variante mídia do modal (imagens / vídeos / iframes) ===== */
+.embed-cpi-modal__panel--media {
+	background: transparent;
+	padding: 0;
+	max-width: min(1200px, 95vw);
+	overflow: visible;
+}
+.embed-cpi-modal__panel--media .embed-cpi-modal__close {
+	top: -2.4rem;
+	right: 0;
+	color: #fff;
+	text-shadow: 0 0 4px rgba(0, 0, 0, .8);
+}
+.embed-cpi-modal__media {
+	display: block;
+	max-width: 100%;
+	max-height: 85vh;
+	margin: 0 auto;
+	background: #000;
+	border-radius: 4px;
+}
+.embed-cpi-modal__panel--media iframe.embed-cpi-modal__media,
+.embed-cpi-modal__panel--media video.embed-cpi-modal__media {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	max-height: 85vh;
+	height: auto;
+	border: 0;
 }
 </style>
 

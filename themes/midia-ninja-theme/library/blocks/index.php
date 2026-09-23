@@ -57,6 +57,9 @@ function blocks_init() {
 		'opinion-posts' => [
 			'render_callback' => 'Ninja\\opinion_posts_callback'
 		],
+		'video-playlist' => [
+			'render_callback' => 'Ninja\\video_playlist_callback'
+		],
 	];
 
 	$active_blocks = apply_filters( 'ninja/active_blocks', $active_blocks );

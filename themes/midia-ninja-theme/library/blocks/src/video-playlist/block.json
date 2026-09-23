@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ninja/video-playlist",
+	"version": "0.1.0",
+	"title": "Video Playlist",
+	"category": "embed",
+	"icon": "format-video",
+	"description": "Exibe vídeos de um canal ou playlist do YouTube.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"align": true
+	},
+	"attributes": {
+		"blockId": {
+			"type": "string"
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"numItems": {
+			"type": "number",
+			"default": 5
+		},
+		"youtubeFormat": {
+			"type": "string",
+			"default": "channel",
+			"enum": [ "channel", "playlist" ]
+		},
+		"youtubeId": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": "sidebar",
+			"enum": [ "sidebar", "block", "popup" ]
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"muted": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "ninja",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

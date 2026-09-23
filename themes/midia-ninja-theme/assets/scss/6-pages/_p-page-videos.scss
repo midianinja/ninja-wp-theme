@@ -24,97 +24,48 @@
                         margin-bottom: 1.7rem;
                     }
 				}
-                .wp-block-automatic-youtube-gallery-block{
-                    .ayg{
-                        .ayg-playlist-row{
-                            .ayg-player{
-                                .ayg-player-wrapper{
-                                    iframe{
-                                        border-radius: 8px;
-										#player{
-											.ytp-gradient-top, .ytp-show-cards-title{
-												display: none;
-											}
-											.ytp-cued-thumbnail-overlay{
-												.ytp-large-play-button{
-													svg{
-														border-radius: 50px;
-														path{
-															fill: #4f4f4f;
-														}
-													}
-												}
-												&:hover{
-													.ytp-large-play-button{
-														svg{
-															border-radius: 50px;
-															path{
-																fill: #4f4f4f;
-															}
-														}
-													}
-												}
-											}
-										}
-                                    }
-                                }
-                            }
-                            .ayg-gallery{
-                                scrollbar-color: #666 #333;
-                                scrollbar-width: thin;
-                                background-color: #262626;
-                                .ayg-item{
-                                    background: var(--PURE, #262626);
-                                    @media(max-width: 767px){
-                                        padding-right: 8px;
-                                    }
-                                    :hover{
-                                        background: var(--PURE, #262626);
-                                        @media(max-width: 767px){
-                                            padding-right: 8px;
-                                        }
-                                    }
-                                }
-                                .ayg-item:nth-child(2n){
-                                    background-color: #262626;
-                                }
-                                .ayg-thumbnail{
-                                    display: flex;
-                                    flex-direction: column-reverse;
-                                    padding: 10px 10px 10px 33px;
-                                    @media(max-width: 767px){
-                                        flex-direction: row;
-                                        padding: 10px 0;
-                                    }
-                                    .ayg-thumbnail-image-wrapper{
-                                        img{
-                                            width: 136px;
-                                            height: 75.052px;
-                                            border-radius: 8px;
-                                        }
-                                        svg{
-                                            display: none;
-                                        }
-                                    }
-                                    .ayg-thumbnail-caption{
-                                        margin-left: 0;
-                                        @media(max-width: 767px){
-                                            margin-left: 45px;
-                                        }
-                                        .ayg-thumbnail-title{
-                                            font-weight: 500;
-                                            color: #fff;
-                                            @media(max-width: 767px){
-                                                font-size: 10px;
-                                            }
-                                        }
-                                    }
-                                }
+                .video-gallery-block{
+                    .video-gallery-wrapper{
+                        .video-gallery-block__player{
+                            iframe{
+                                border-radius: 8px;
                             }
                         }
-                        .ayg-player-caption{
-                            display: none;
+                    }
+
+                    .video-gallery-list{
+                        scrollbar-color: #666 #333;
+                        scrollbar-width: thin;
+                        background-color: #262626;
+                        border-radius: 8px;
+
+                        &::-webkit-scrollbar{
+                            width: 10px;
                         }
+
+                        &::-webkit-scrollbar-thumb{
+                            background: #666;
+                            border-radius: 10px;
+                        }
+
+                        &::-webkit-scrollbar-track{
+                            background: #333;
+                        }
+                    }
+
+                    .video-gallery-block__item{
+                        &:hover,
+                        &:focus-visible{
+                            background: #333;
+                        }
+
+                        &.is-active{
+                            background: #3a3a3a;
+                        }
+                    }
+
+                    .video-gallery-block__item-title{
+                        color: #fff;
                     }
                 }
 			}

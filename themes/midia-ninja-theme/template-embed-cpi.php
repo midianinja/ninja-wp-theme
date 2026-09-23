@@ -259,6 +259,45 @@ get_header(); ?>
 	font-family: "Droid Serif", Georgia, "Times New Roman", serif;
 }
 
+/* ===== Estados que o JS do Divi controlava no site antigo =====
+ * O custom.js + waypoints.min.js do Divi revelavam .et-waypoint e
+ * .et_animated ao rolar a página; sem eles, o CSS do próprio Divi
+ * (.et-waypoint{opacity:0} / .et_animated{opacity:0}) deixa 88 avatares
+ * e 5 módulos de texto invisíveis para sempre. Revela direto (o fade do
+ * antigo é decorativo; aqui a prioridade é o conteúdo aparecer).
+ * O escopo do modal cobre os clones abertos a partir de blocos escondidos. */
+.embed-cpi-inner .et-waypoint,
+.embed-cpi-inner .et_animated,
+.embed-cpi-modal .et-waypoint,
+.embed-cpi-modal .et_animated {
+	opacity: 1 !important;
+	animation: none !important;
+}
+/* Substituto do fitvids: vídeo do módulo et_pb_video fluido (é um iframe
+ * do YouTube com width/height fixos no HTML raspado). */
+.embed-cpi-inner .et_pb_video_box iframe {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+}
+/* Menu hamburguer das fullwidth menus do Divi: abaixo de 980px o CSS delas
+ * esconde nav+ul e só o JS delas reexibia. O estado aberto é alternado por
+ * embed-cpi-modal.js (classe menu-opened no contêiner). */
+@media (max-width: 980px) {
+	.embed-cpi-inner .et_pb_fullwidth_menu.menu-opened .fullwidth-menu-nav,
+	.embed-cpi-inner .et_pb_fullwidth_menu.menu-opened .fullwidth-menu {
+		display: block;
+	}
+	.embed-cpi-inner .et_pb_fullwidth_menu.menu-opened .fullwidth-menu > li {
+		display: block;
+		padding-right: 0;
+	}
+	.embed-cpi-inner .et_pb_fullwidth_menu .mobile_nav.opened .mobile_menu_bar:before {
+		content: "\4d"; /* ícone de fechar da fonte ETModules, como no antigo */
+	}
+}
+
 /* ===== Variante mídia do modal (imagens / vídeos / iframes) ===== */
 .embed-cpi-modal__panel--media {
 	background: transparent;

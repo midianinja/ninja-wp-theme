@@ -96,6 +96,16 @@ class Assets
             return;
         }
 
+        // O HTML raspado reinjeta <script> inline no corpo da página (a linha
+        // do tempo horizontal chama jQuery ainda durante o parse). O WordPress
+        // registra o jQuery no <head> por padrão, mas forçamos o grupo 0 para
+        // que nenhum plugin que re-registre o jQuery no rodapé quebre a linha
+        // do tempo com "jQuery is not defined".
+        wp_enqueue_script('jquery');
+        wp_script_add_data('jquery', 'group', 0);
+        wp_script_add_data('jquery-core', 'group', 0);
+        wp_script_add_data('jquery-migrate', 'group', 0);
+
         wp_enqueue_style(
             'embed-cpi-fonts',
             'https://fonts.googleapis.com/css?family=Droid+Serif%3Aregular%2Citalic%2C700%2C700italic%7CSource+Sans+Pro%3A200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CArimo%3Aregular%2Citalic%2C700%2C700italic&subset=latin,cyrillic,greek,vietnamese,greek-ext,latin-ext,cyrillic-ext,hebrew'

@@ -9,10 +9,12 @@ $remote_url = 'https://antigo.midianinja.org/cpi-da-covid/';
 // invalidated on deploy instead of serving stale markup for up to 1h — that is
 // exactly what made the credits section render unstyled/invisible on the first
 // deploy (cached content predated the design CSS extraction).
-// v4: asset URLs are now resolved to their final host (see uploads rewrite).
-// v5: the old site's footer (#main-footer) is now extracted and appended after
-// the content (the embed must look exactly like the old page minus its header).
-$cache_version = 'v5';
+	// v4: asset URLs are now resolved to their final host (see uploads rewrite).
+	// v5: appended the old site's footer (#main-footer) after the content.
+	// v6: reverted v5 — content only: the old site's header AND footer are both
+	// chrome and must not appear; footer-ish nodes inside the content are
+	// stripped again (see the chrome query below).
+	$cache_version = 'v6';
 $cache_key    = 'embed_cpi_cache_' . $cache_version . '_' . md5($remote_url);
 $content      = get_transient($cache_key);
 
@@ -63,41 +65,18 @@ if (empty($content)) {
 		}
 
 		if ($node) {
-			// Strip header-ish chrome only. The old site's HEADER must never
-			// leak into the embed; its FOOTER, however, must survive (governing
-			// requirement: render exactly like the old page minus the old
-			// header) — footers are deliberately absent from this query and
-			// the page-level one is re-attached below.
-			$header_query = './/header | .//*[@id="header"] | .//*[contains(@class, "site-header")] | .//*[@id="masthead"] | .//*[contains(@class, "td-header-wrap")]';
-			foreach ($xpath->query($header_query, $node) as $child) {
+			// Governing rule: the embed carries the CPI page's OWN CONTENT only —
+			// no site chrome. The old site's header AND footer must never leak
+			// into the embed: header-ish and footer-ish nodes found INSIDE the
+			// extracted content node are stripped here; the page-level
+			// #main-footer lives outside this node, so it is never extracted.
+			$chrome_query = './/header | .//footer'
+				. ' | .//*[@id="header"] | .//*[@id="footer"] | .//*[@id="masthead"] | .//*[@id="colophon"] | .//*[@id="main-footer"]'
+				. ' | .//*[contains(@class, "site-header")] | .//*[contains(@class, "site-footer")]'
+				. ' | .//*[contains(@class, "td-header-wrap")] | .//*[contains(@class, "td-footer-wrap")]';
+			foreach ($xpath->query($chrome_query, $node) as $child) {
 				$child->parentNode->removeChild($child);
 			}
-
-		// The old site's real footer (Divi's footer#main-footer, holding
-		// #footer-widgets and #footer-bottom/#footer-info) lives OUTSIDE the
-		// scraped entry-content node — that is why it was missing from the
-		// embed. Extract it from the same DOMDocument so it renders (and gets
-		// styled by the design CSS) after the content, exactly where the old
-		// page shows it. Fallback: any footer not contained in the content node.
-		$footer_node = $xpath->query('//footer[@id="main-footer"]')->item(0);
-		if (!$footer_node) {
-			foreach ($xpath->query('//footer') as $candidate) {
-				$ancestor = $candidate->parentNode;
-				$inside   = false;
-				while ($ancestor) {
-					if ($ancestor->isSameNode($node)) {
-						$inside = true;
-						break;
-					}
-					$ancestor = $ancestor->parentNode;
-				}
-				if (!$inside) {
-					$footer_node = $candidate;
-					break;
-				}
-			}
-		}
-		$footer_html = $footer_node ? $dom->saveHTML($footer_node) : '';
 
 			// The old page keeps most of its design in <head> inline styles that
 			// are not carried by the markup scrape. Extract the two Divi cached
@@ -114,12 +93,6 @@ if (empty($content)) {
 			$content = '';
 			foreach ($node->childNodes as $child) {
 				$content .= $dom->saveHTML($child);
-			}
-
-			// Old-site footer appended after the content (same pipeline below:
-			// script reinjection + URL rewrites + anchor rewriting all apply).
-			if ($footer_html !== '') {
-				$content .= "\n" . $footer_html;
 			}
 
 			// Reinjeta os <script> protegidos. O do lightbox antigo (jQuery/Magnific)

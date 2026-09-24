@@ -9,7 +9,8 @@ $remote_url = 'https://antigo.midianinja.org/cpi-da-covid/';
 // invalidated on deploy instead of serving stale markup for up to 1h — that is
 // exactly what made the credits section render unstyled/invisible on the first
 // deploy (cached content predated the design CSS extraction).
-$cache_version = 'v3';
+// v4: asset URLs are now resolved to their final host (see uploads rewrite).
+$cache_version = 'v4';
 $cache_key    = 'embed_cpi_cache_' . $cache_version . '_' . md5($remote_url);
 $content      = get_transient($cache_key);
 
@@ -94,15 +95,91 @@ if (empty($content)) {
 				$content
 			);
 
-			$base_url = 'https://antigo.midianinja.org';
-			$content = str_replace(['src="/', "src='/"], 'src="' . $base_url . '/', $content);
-			$content = str_replace(['href="/', "href='/"], 'href="' . $base_url . '/', $content);
-			$content = str_replace("src='/" , "src='" . $base_url . "/", $content);
-			$content = str_replace("href='/" , "href='" . $base_url . "/", $content);
+		$base_url = 'https://antigo.midianinja.org';
+		$content = str_replace(['src="/', "src='/"], 'src="' . $base_url . '/', $content);
+		$content = str_replace(['href="/', "href='/"], 'href="' . $base_url . '/', $content);
+		$content = str_replace("src='/" , "src='" . $base_url . "/", $content);
+		$content = str_replace("href='/" , "href='" . $base_url . "/", $content);
 
-			// Âncoras da própria página: rolam até a seção dentro do embed,
-			// como no antigo, em vez de navegar para fora do site.
-			$content = str_replace('https://antigo.midianinja.org/cpi-da-covid/#', '#', $content);
+		// Same treatment for lazy-load attributes: they carry the real URL when
+		// the old site swaps src for a placeholder (none today, cheap insurance
+		// if a lazy-load plugin is ever enabled there).
+		$content = str_replace(
+			['data-src="/', 'data-lazy-src="/', 'data-orig-src="/'],
+			['data-src="' . $base_url . '/', 'data-lazy-src="' . $base_url . '/', 'data-orig-src="' . $base_url . '/'],
+			$content
+		);
+
+		// srcset values hold several "url width" candidates separated by commas,
+		// so a plain src="/ replace cannot reach them. Rewrite each site-rooted
+		// candidate to the absolute old-site URL.
+		$content = preg_replace_callback(
+			'/(srcset|data-srcset)=(["\'])([^"\']+)\2/',
+			function ($m) use ($base_url) {
+				$value = preg_replace_callback(
+					'/(^|,\s*)(\/[^\s,]+)/',
+					function ($c) use ($base_url) {
+						return $c[1] . $base_url . $c[2];
+					},
+					$m[3]
+				);
+				return $m[1] . '=' . $m[2] . $value . $m[2];
+			},
+			$content
+		);
+
+		// Lazy-load placeholders: an <img> whose src is a data: URI (or empty)
+		// with the real URL in data-lazy-src/data-src never resolves without the
+		// old site's JS. Resolve it server-side: swap the real URL into src and
+		// drop the placeholder. Also strips src="" (renders as a broken file
+		// icon in browsers; the old page has one such authoring bug).
+		$content = preg_replace_callback(
+			'/(<img\b[^>]*>)/',
+			function ($m) {
+				$img = $m[1];
+				if (!preg_match('/\bsrc=(["\'])(data:[^"\']*|)\1/', $img, $src, PREG_OFFSET_CAPTURE)) {
+					return $img;
+				}
+				$real = '';
+				if (preg_match('/\bdata-(?:lazy-)?src=(["\'])([^"\']+)\1/', $img, $real_m)) {
+					$real = $real_m[2];
+				}
+				if ($real !== '') {
+					// Real URL known: replace the placeholder src with it.
+					return substr_replace($img, 'src="' . $real . '"', $src[0][1], strlen($src[0][0]));
+				}
+				if ($src[2][0] === '') {
+					// Empty src and no fallback: drop the attribute entirely.
+					return substr_replace($img, '', $src[0][1], strlen($src[0][0]));
+				}
+				return $img;
+			},
+			$content
+		);
+
+		// The old host 302-redirects every /wp-content/uploads/ URL to the new
+		// site (same path). That extra cross-origin hop is fragile for browsers
+		// loading hundreds of embed images (and breaks the @font-face files via
+		// CORS). Resolve it server-side: uploads point straight at the final
+		// host, which is also the host serving this embed (same-origin).
+		$uploads_redirect = ['https://antigo.midianinja.org/wp-content/uploads/', 'https://midianinja.org/wp-content/uploads/'];
+		$content = str_replace($uploads_redirect[0], $uploads_redirect[1], $content);
+		if ($design_css !== '') {
+			// Same resolution for url() references carried in the design CSS
+			// (fonts and module background images live under /uploads/).
+			$design_css = str_replace($uploads_redirect[0], $uploads_redirect[1], $design_css);
+			// Site-rooted url(/...) entries in the design CSS would resolve
+			// against this site instead of the old one; absolutize them.
+			$design_css = preg_replace(
+				'/url\((["\'])\/(wp-content\/[^"\')]+)\1\)/',
+				'url($1' . $base_url . '/$2$1)',
+				$design_css
+			);
+		}
+
+		// Âncoras da própria página: rolam até a seção dentro do embed,
+		// como no antigo, em vez de navegar para fora do site.
+		$content = str_replace('https://antigo.midianinja.org/cpi-da-covid/#', '#', $content);
 
 			// Prepend the old-site inline design CSS so it is cached together
 			// with the markup and applies to it inside the embed.

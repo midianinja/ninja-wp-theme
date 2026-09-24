@@ -16,9 +16,20 @@
  * - popup de vídeo/iframe (YouTube, Vimeo ou arquivo de vídeo direto).
  *
  * Também substitui o que o JS do Divi (custom.js) fazia pelos módulos que
- * existem de fato no HTML raspado (menu hamburguer das fullwidth menus; a
- * revelação de .et-waypoint é via CSS no template).
+ * existem de fato no HTML raspado:
+ * - menu hamburguer das fullwidth menus;
+ * - fade-in de .et-waypoint/.et_animated ao rolar (IntersectionObserver,
+ *   com fallback no-JS via CSS no template — a marcação abaixo no <html>
+ *   é o que habilita o estado animado);
+ * - smooth scroll das âncoras internas (body.et_smooth_scroll no antigo);
+ * - parallax do fundo .et_parallax_bg (mesma matemática do script do antigo).
  */
+
+// Marks the document as JS-enhanced BEFORE first paint of below-fold content:
+// the template CSS only hides .et-waypoint/.et_animated under this class, so
+// a failed/absent JS bundle leaves every module visible (no-JS fallback).
+document.documentElement.classList.add('embed-cpi-anim');
+
 export class EmbedCpiModal {
 
     constructor() {
@@ -35,13 +46,10 @@ export class EmbedCpiModal {
             return;
         }
 
-        // Esconde os conteúdos de modal embutidos no HTML raspado.
-        scope.querySelectorAll('[class*="lightbox-content-"]').forEach((el) => {
-            el.style.display = 'none';
-        });
-
         // Camada dos módulos Divi que dependiam do custom.js do site antigo.
         this.initDiviModules(scope);
+        this.initWaypoints(scope);
+        this.initParallax(scope);
 
         // Delegação de clique: cobre cards, botões "Saiba mais" e os padrões
         // genéricos de lightbox (imagem, vídeo, inline).
@@ -88,11 +96,31 @@ export class EmbedCpiModal {
             }
 
             // Lightbox de imagem/vídeo para qualquer link de mídia (padrão das
-            // galerias Divi: <a href="imagem.jpg"><img ...></a>).
+            // galerias Divi: <a href="imagem.jpg"><img ...></a>). Âncoras
+            // internas (#secao) fazem smooth scroll dentro do embed, como o
+            // body.et_smooth_scroll do antigo — sem tocar o chrome do site novo.
             const anchor = event.target.closest('a[href]');
 
             if (anchor) {
-                this.openByHref(anchor.getAttribute('href') || '', event);
+                const href  = anchor.getAttribute('href') || '';
+                const hashIndex = href.indexOf('#');
+                const hash = hashIndex >= 0 ? href.slice(hashIndex) : '';
+
+                if (hash.length > 1) {
+                    const target = this.findAnchorTarget(scope, hash);
+
+                    if (target) {
+                        event.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        return;
+                    }
+                    // Alvo inexistente: segue o comportamento nativo do navegador.
+                } else if (hash === '#') {
+                    event.preventDefault(); // placeholder "#" do Divi: não navega
+                    return;
+                }
+
+                this.openByHref(href, event);
             }
         });
     }
@@ -106,8 +134,8 @@ export class EmbedCpiModal {
      *   aberto é estilizado no CSS do template via .menu-opened).
      *
      * A revelação de .et-waypoint/.et_animated (imagens e textos que o Divi
-     * mantinha com opacity:0 até o scroll) é feita 100% em CSS no template,
-     * para não depender do bundle nem cobrir clones do modal.
+     * mantinha com opacity:0 até o scroll) e o parallax ficam em
+     * initWaypoints/initParallax abaixo.
      */
     initDiviModules(scope) {
         scope.addEventListener('click', (event) => {
@@ -131,6 +159,105 @@ export class EmbedCpiModal {
             toggle.classList.toggle('closed', !opened);
             toggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
         });
+    }
+
+    /**
+     * Fade-in on scroll, like the old site's Divi waypoints: elements with
+     * .et-waypoint/.et_animated fade in (1s, Divi's own curve — the old page
+     * ships .et-animated{animation:fade 1s cubic-bezier(.77,0,.175,1)} and
+     * et_animation_data with fade 1000ms ease-in-out) the moment they enter
+     * the viewport, once. Without this bundle the template CSS keeps them
+     * visible (no-JS fallback).
+     */
+    initWaypoints(scope) {
+        const targets = scope.querySelectorAll('.et-waypoint, .et_animated');
+
+        if (!('IntersectionObserver' in window)) {
+            targets.forEach((el) => el.classList.add('embed-cpi-revealed'));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('embed-cpi-revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -5% 0px' });
+
+        targets.forEach((el) => observer.observe(el));
+    }
+
+    /**
+     * Parallax for Divi parallax section backgrounds (.et_parallax_bg).
+     * Same math as the script the old page ships itself ("aplica parallax
+     * divi no mobile tbm" — a port of Divi's desktop behavior):
+     *   height = 0.3 * viewportHeight + sectionHeight
+     *   translateY = 0.3 * (viewportHeight - sectionTopRelativeToViewport)
+     */
+    initParallax(scope) {
+        const backgrounds = scope.querySelectorAll('.et_pb_section_parallax .et_parallax_bg');
+
+        if (!backgrounds.length) {
+            return;
+        }
+
+        let ticking = false;
+
+        const update = () => {
+            ticking = false;
+            const viewportHeight = window.innerHeight;
+
+            backgrounds.forEach((bg) => {
+                const section = bg.parentElement;
+
+                if (!section) {
+                    return;
+                }
+
+                const rect = section.getBoundingClientRect();
+
+                if (rect.bottom < 0 || rect.top > viewportHeight) {
+                    return; // off-screen: skip
+                }
+
+                const fullscreen = section.classList.contains('et_pb_fullscreen');
+                const sectionHeight = fullscreen && viewportHeight > rect.height ? viewportHeight : rect.height;
+
+                bg.style.height = (0.3 * viewportHeight + sectionHeight) + 'px';
+                bg.style.transform = 'translate(0, ' + (0.3 * (viewportHeight - rect.top)) + 'px)';
+            });
+        };
+
+        const requestTick = () => {
+            if (!ticking) {
+                ticking = true;
+                window.requestAnimationFrame(update);
+            }
+        };
+
+        window.addEventListener('scroll', requestTick, { passive: true });
+        window.addEventListener('resize', requestTick);
+        update();
+    }
+
+    /**
+     * Resolve the in-embed target of an internal anchor (#id), the way the
+     * old page's sections are addressed (ids live inside .embed-cpi-inner).
+     */
+    findAnchorTarget(scope, hash) {
+        let id = hash.slice(1);
+
+        try {
+            id = decodeURIComponent(id);
+        } catch (error) {
+            // malformed escape sequence: keep raw id
+        }
+
+        const target = scope.querySelector('#' + (window.CSS && CSS.escape ? CSS.escape(id) : id));
+
+        return target || document.getElementById(id);
     }
 
     /**
@@ -249,7 +376,8 @@ export class EmbedCpiModal {
     }
 
     open(content) {
-        // O conteúdo original fica escondido (display: none); o clone precisa reaparecer.
+        // O popup trabalha sobre uma cópia, como o Magnific do antigo (os
+        // blocos de créditos seguem visíveis/empilhados no fluxo da página).
         const contentClone = content.cloneNode(true);
         contentClone.style.display = '';
 

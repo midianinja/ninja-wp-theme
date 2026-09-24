@@ -10,7 +10,9 @@ $remote_url = 'https://antigo.midianinja.org/cpi-da-covid/';
 // exactly what made the credits section render unstyled/invisible on the first
 // deploy (cached content predated the design CSS extraction).
 // v4: asset URLs are now resolved to their final host (see uploads rewrite).
-$cache_version = 'v4';
+// v5: the old site's footer (#main-footer) is now extracted and appended after
+// the content (the embed must look exactly like the old page minus its header).
+$cache_version = 'v5';
 $cache_key    = 'embed_cpi_cache_' . $cache_version . '_' . md5($remote_url);
 $content      = get_transient($cache_key);
 
@@ -61,11 +63,41 @@ if (empty($content)) {
 		}
 
 		if ($node) {
-			// Remove headers and footers more aggressively
-			$header_footer_query = './/header | .//footer | .//*[@id="header"] | .//*[contains(@class, "site-header")] | .//*[@id="masthead"] | .//*[contains(@class, "td-header-wrap")]';
-			foreach ($xpath->query($header_footer_query, $node) as $child) {
+			// Strip header-ish chrome only. The old site's HEADER must never
+			// leak into the embed; its FOOTER, however, must survive (governing
+			// requirement: render exactly like the old page minus the old
+			// header) — footers are deliberately absent from this query and
+			// the page-level one is re-attached below.
+			$header_query = './/header | .//*[@id="header"] | .//*[contains(@class, "site-header")] | .//*[@id="masthead"] | .//*[contains(@class, "td-header-wrap")]';
+			foreach ($xpath->query($header_query, $node) as $child) {
 				$child->parentNode->removeChild($child);
 			}
+
+		// The old site's real footer (Divi's footer#main-footer, holding
+		// #footer-widgets and #footer-bottom/#footer-info) lives OUTSIDE the
+		// scraped entry-content node — that is why it was missing from the
+		// embed. Extract it from the same DOMDocument so it renders (and gets
+		// styled by the design CSS) after the content, exactly where the old
+		// page shows it. Fallback: any footer not contained in the content node.
+		$footer_node = $xpath->query('//footer[@id="main-footer"]')->item(0);
+		if (!$footer_node) {
+			foreach ($xpath->query('//footer') as $candidate) {
+				$ancestor = $candidate->parentNode;
+				$inside   = false;
+				while ($ancestor) {
+					if ($ancestor->isSameNode($node)) {
+						$inside = true;
+						break;
+					}
+					$ancestor = $ancestor->parentNode;
+				}
+				if (!$inside) {
+					$footer_node = $candidate;
+					break;
+				}
+			}
+		}
+		$footer_html = $footer_node ? $dom->saveHTML($footer_node) : '';
 
 			// The old page keeps most of its design in <head> inline styles that
 			// are not carried by the markup scrape. Extract the two Divi cached
@@ -82,6 +114,12 @@ if (empty($content)) {
 			$content = '';
 			foreach ($node->childNodes as $child) {
 				$content .= $dom->saveHTML($child);
+			}
+
+			// Old-site footer appended after the content (same pipeline below:
+			// script reinjection + URL rewrites + anchor rewriting all apply).
+			if ($footer_html !== '') {
+				$content .= "\n" . $footer_html;
 			}
 
 			// Reinjeta os <script> protegidos. O do lightbox antigo (jQuery/Magnific)
@@ -260,10 +298,11 @@ get_header(); ?>
 	text-decoration: none;
 	text-transform: uppercase;
 }
-/* Conteúdo dos modais fica escondido no fluxo da página (o JS abre uma cópia em overlay) */
-.embed-cpi-inner [class*="lightbox-content-"] {
-	display: none;
-}
+/* Conteúdo dos modais: no site antigo os blocos lightbox-content-perfil* dos
+ * créditos são exibidos EMPILHADOS no fluxo da página (o CSS do customizer
+ * deles chega a forçar [class*="lightbox-content-"]{position:relative}) — o
+ * Magnific abria uma CÓPIA em popup. Aqui é igual: ficam visíveis no fluxo e
+ * o modal vanilla (embed-cpi-modal.js) segue abrindo uma cópia em overlay. */
 /* Modal de perfis (controlado por embed-cpi-modal.js) */
 .embed-cpi-modal {
 	position: fixed;
@@ -343,18 +382,37 @@ get_header(); ?>
 }
 
 /* ===== Estados que o JS do Divi controlava no site antigo =====
- * O custom.js + waypoints.min.js do Divi revelavam .et-waypoint e
- * .et_animated ao rolar a página; sem eles, o CSS do próprio Divi
- * (.et-waypoint{opacity:0} / .et_animated{opacity:0}) deixa 88 avatares
- * e 5 módulos de texto invisíveis para sempre. Revela direto (o fade do
- * antigo é decorativo; aqui a prioridade é o conteúdo aparecer).
- * O escopo do modal cobre os clones abertos a partir de blocos escondidos. */
+ * Fade-ins: o custom.js + waypoints do Divi revelavam .et-waypoint e
+ * .et_animated ao rolar (evidence do antigo: .et-animated{opacity:1;
+ * animation:fade 1s cubic-bezier(.77,0,.175,1)} e et_animation_data com
+ * fade 1000ms ease-in-out). Aqui a revelação é feita por um
+ * IntersectionObserver em embed-cpi-modal.js, que marca <html> com
+ * .embed-cpi-anim e adiciona .embed-cpi-revealed ao entrar na viewport.
+ * A regra base (sem a classe no <html>) mantém tudo visível: fallback
+ * no-JS — conteúdo nunca fica invisível se o JS falhar. O escopo do modal
+ * cobre os clones abertos a partir dos blocos (popup não anima, como no
+ * Magnific do antigo). */
 .embed-cpi-inner .et-waypoint,
 .embed-cpi-inner .et_animated,
 .embed-cpi-modal .et-waypoint,
 .embed-cpi-modal .et_animated {
-	opacity: 1 !important;
-	animation: none !important;
+	opacity: 1;
+	animation: none;
+	transition: opacity 1s cubic-bezier(.77, 0, .175, 1);
+}
+html.embed-cpi-anim .embed-cpi-inner .et-waypoint,
+html.embed-cpi-anim .embed-cpi-inner .et_animated {
+	opacity: 0;
+}
+html.embed-cpi-anim .embed-cpi-inner .et-waypoint.embed-cpi-revealed,
+html.embed-cpi-anim .embed-cpi-inner .et_animated.embed-cpi-revealed {
+	opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+	html.embed-cpi-anim .embed-cpi-inner .et-waypoint,
+	html.embed-cpi-anim .embed-cpi-inner .et_animated {
+		transition: none;
+	}
 }
 /* Substituto do fitvids: vídeo do módulo et_pb_video fluido (é um iframe
  * do YouTube com width/height fixos no HTML raspado). */

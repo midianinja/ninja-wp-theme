@@ -1,6 +1,6 @@
 # R03 — CPI da Covid: embed fiel ao site antigo (status / handoff)
 
-**Data:** 2026-09-24 (entregue em 2026-09-25) · **Estado:** entregue na develop (PR #327, mergeado) — pendente deploy + regularização · **Demanda urgente** — sem issue criada por decisão humana (override registrado na issue #220: "foque na resolução do problema").
+**Data:** 2026-09-24 (entregue em 2026-09-25) · **Estado:** entregue na develop (PR #327, mergeado) — pendente deploy · **Demanda urgente** — sem issue criada por decisão humana (override registrado na issue #220: "foque na resolução do problema").
 
 ## A demanda
 
@@ -28,7 +28,7 @@ O embed deve ficar **exatamente como o site antigo**, mostrando **somente o cont
 1. ~~Teste humano do v6~~ — **feito em 2026-09-25, 6/6 aprovados** (veredito por critério registrado na #220).
 2. ~~Push + PR → develop + limpeza dos branches intermediários~~ — **feito em 2026-09-25**: PR #327 mergeado (`7b6f5f72`); branches intermediários locais removidos; remoto do v6 removido; v6 local mantido como registro.
 3. **Deploy:** usar o dist de produção commitado (nunca o output do watch de dev — há um stash `ops: local dev-rebuild of embed-cpi dist…` com o output do watcher, descartável); transient `v6` invalida automaticamente os caches antigos.
-4. **Regularização do fluxo (deferida pelo override):** desfecho na #220 (fechar ou converter em issue da correção); doc-bug do manual de instrumentação do plugin (nomes de campos divergem da ferramenta: `disputed_criterion`/`declared_reason` × documentado `contested_criterion`/`stated_reason`); migrar a pasta legada `.maestra/`.
+4. ~~Regularização do fluxo (deferida pelo override)~~ — **concluída em 2026-09-25**: #220 fechada com desfecho (entrega rastreada no PR #327 e nesta rodada; sem conversão em issue nova); doc-bug do manual do plugin aberto como #328 (rodada R04); pasta legada `.maestra/` removida (commit `9047d41a` — a configuração vive na branch `__maestra_config__`).
 
 ## Onde as coisas estão
 

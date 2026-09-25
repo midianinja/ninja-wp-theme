@@ -137,205 +137,419 @@
         }
     }
 
-    main {
-        @import "../6-pages/p-search";
-        @import "./../2-atoms/a-mixins";
-        @import "../3-components/c-share";
-        @import "../5-blocks/b-image";
-
-        .search {
+    main.content {
+        // ------------------------------------------------------------------
+        // Hero — Figma 8491:11399 (desktop) / 8511:9424 (mobile)
+        // ------------------------------------------------------------------
+        .afluentes-hero {
+            position: relative;
+            width: 100%;
+            max-width: size(1170);
+            height: size(506);
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: auto;
-            margin-bottom: 24px;
-            margin: 0 auto 24px;
+            align-items: flex-end;
 
-			@include mixins.mobile{
-				max-width: 330px;
-				width: 100%;
-			}
+            &__image {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
 
-            h2 {
-                margin: 0px;
-                color: #000;
+            &__overlay {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 51%;
+                background: linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, #111111 100%);
+            }
 
-                /* <h2> Manrope */
-                font-family: 'Manrope', sans-serif;
-                font-size: 32px;
+            &__content {
+                position: relative;
+                z-index: 2;
+                width: 100%;
+                padding: 0 size(70) size(40);
+            }
+
+            &__eyebrow {
+                display: inline-block;
+                color: #F5F5F5;
+                font-family: var(--wp--preset--font-family--archivo-expanded);
+                font-size: size(14);
                 font-style: normal;
                 font-weight: 800;
-                line-height: 120%;
-                /* 38.4px */
-                letter-spacing: -0.64px;
-
-                @include mobile {
-                    font-size: 27px;
-                    text-align: center;
-                }
-
+                line-height: 155%;
+                letter-spacing: -0.42px;
+                text-transform: uppercase;
             }
 
-            form {
-                width: 100%;
-                /* max-width: 460px; */
-                display: flex;
-                margin: auto;
-                flex-direction: row;
-                justify-content: center;
-
-                @include mobile {
-                    display: block;
-                }
-
-                & .input-search {
-                    flex-grow: 1;
-                    position: relative;
-                    margin-left: 30px;
-                    max-width: 460px;
-
-                    @include mobile {
-                        margin-left: 0px;
-                        margin-top: 16px;
-                    }
-
-
-                    input {
-                        width: 100%;
-                        /* Ocupa toda a largura disponível dentro do contêiner pai */
-                        height: 46px;
-                        border-radius: 8px;
-                        border: 2px solid var(--PRIMARY-PURE, #848484);
-                        padding-left: 8px;
-                        background-color: #F5F5F5;
-
-                    }
-
-                    input::placeholder {
-                        margin-left: 8px;
-                    }
-
-                    button {
-                        position: absolute;
-                        right: 7px;
-                        top: 13%;
-                        height: 32px;
-                        width: 32px;
-                        background-color: #F5F5F5;
-                        border: none;
-
-                        @include mobile {
-                            right: 23px;
-                        }
-
-                    }
-                }
-            }
-        }
-
-        .posts {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
-            margin-top: 48px;
-            margin-bottom: 48px;
-            justify-content: center;
-            justify-items: center;
-
-
-            @media(max-width:1200px) {
-                grid-template-columns: 1fr 1fr;
-                justify-content: center;
-                justify-items: center;
+            &__title {
+                margin: size(8) 0 0;
+                max-width: size(524);
+                color: #fff;
+                font-family: var(--wp--preset--font-family--manrope);
+                font-size: size(32);
+                font-style: normal;
+                font-weight: 800;
+                line-height: 1.2;
+                letter-spacing: -0.02em;
             }
 
-            @media(max-width:767px) {
-                display: flex !important;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
+            &__description {
+                margin: size(16) 0 0;
+                max-width: size(700);
+                color: #fff;
+                font-family: var(--wp--preset--font-family--manrope);
+                font-size: size(13);
+                font-style: normal;
+                font-weight: 500;
+                line-height: 1.45;
             }
 
             @include mobile {
-                margin: auto;
-                width: 100%;
-            }
+                height: size(400);
 
-            article {
-				width: 100%;
-                @include mobile {
-                    margin: auto;
+                &__overlay {
+                    height: 48.5%;
+                    backdrop-filter: blur(10.7px);
+                    -webkit-backdrop-filter: blur(10.7px);
                 }
 
-                .post-card {
-                    display: flex;
-                    flex-direction: column;
-                    margin-bottom: 30px;
-                    border: none;
-                    align-items: center;
+                &__content {
+                    padding: 0 size(20) size(40);
+                }
 
-                    @media(max-width:1200px) {
-                        align-items: center;
-                        text-align: center;
+                &__eyebrow {
+                    padding: 0 6px;
+                    border-radius: 4px;
+                    background-color: #111111;
+                    line-height: size(21);
+                }
 
-                        .post-card--content {
-                            text-align: center;
-                        }
-                    }
+                &__title {
+                    margin-top: size(17);
+                    max-width: size(280);
+                }
 
-                    @include mobile {
-                        margin: 0px;
-                        padding: 0px;
-                        margin-top: 13px;
-                    }
-
-                    .post-card--thumb {
-                        width: 100%;
-                        padding: 0px;
-                        padding-bottom: 16px;
-
-                        @include mobile {
-                            width: 328px;
-                            height: 184px;
-                        }
-
-                        .aspect-ratio {
-                            border-radius: 12px;
-
-                            img {
-                                object-fit: fill;
-                                height: 208px !important;
-                            }
-                        }
-
-                    }
-
-                    .post-card--content {
-                        & .entry-title {
-                            color: var(--PURE, #262626);
-                            font-family: 'Manrope', sans-serif;
-                            font-size: 24px;
-                            font-style: normal;
-                            font-weight: 800;
-                            line-height: 120%;
-                            /* 28.8px */
-                            letter-spacing: -0.72px;
-                        }
-
-                        & .entry-date {
-                            display: none;
-                        }
-
-                        & .entry-excerpt {
-                            display: none;
-                        }
-                    }
+                &__description {
+                    display: none;
                 }
             }
         }
 
-        .navigation {
-            margin: 64px 0px;
+        // ------------------------------------------------------------------
+        // Controles: busca + contador + ordenação
+        // ------------------------------------------------------------------
+        .afluentes-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: size(16);
+            width: 100%;
+            max-width: size(1170);
+            margin: size(44) auto 0;
+
+            @include mobile {
+                flex-direction: column;
+                gap: size(8);
+                margin-top: size(24);
+            }
+        }
+
+        .afluentes-search {
+            position: relative;
+            width: size(460);
+            max-width: 100%;
+
+            &__input {
+                width: 100%;
+                height: size(46);
+                padding: 0 size(48) 0 size(16);
+                border: 1px solid #CCCCCC;
+                border-radius: 8px;
+                background-color: #fff;
+                color: #262626;
+                font-family: var(--wp--preset--font-family--manrope);
+                font-size: size(16);
+                font-style: normal;
+                font-weight: 500;
+                line-height: 1.4;
+
+                &::placeholder {
+                    color: #848484;
+                }
+
+                &:focus {
+                    outline: none;
+                    border-color: #848484;
+                }
+            }
+
+            &__button {
+                position: absolute;
+                top: 50%;
+                right: size(8);
+                transform: translateY(-50%);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: size(32);
+                height: size(32);
+                padding: 0;
+                border: none;
+                border-radius: 4px;
+                background-color: transparent;
+                color: #848484;
+                cursor: pointer;
+
+                svg {
+                    width: size(24);
+                    height: size(24);
+                    fill: currentColor;
+                }
+            }
+
+            @include mobile {
+                &__input {
+                    border-width: 2px;
+                }
+            }
+        }
+
+        .afluentes-counter {
+            min-width: size(120);
+            color: #848484;
+            font-family: var(--wp--preset--font-family--manrope);
+            font-size: size(10);
+            font-style: normal;
+            font-weight: 700;
+            line-height: size(21);
+            letter-spacing: 0.1em;
+            text-align: center;
+            text-transform: uppercase;
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        .afluentes-sort {
+            &__select {
+                width: size(239);
+                height: size(46);
+                padding: 0 size(32) 0 size(48);
+                border: 2px solid #CCCCCC;
+                border-radius: 8px;
+                background-color: #fff;
+                color: #333333;
+                font-family: var(--wp--preset--font-family--manrope);
+                font-size: size(13);
+                font-style: normal;
+                font-weight: 700;
+                line-height: 1.45;
+                cursor: pointer;
+                appearance: none;
+                -webkit-appearance: none;
+
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23848484'%3E%3Cpath d='M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: 8px center;
+                background-size: size(24) size(24);
+
+                &:focus {
+                    outline: none;
+                    border-color: #848484;
+                }
+            }
+
+            @include mobile {
+                display: block;
+                width: 100%;
+
+                &__select {
+                    width: 100%;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        // ------------------------------------------------------------------
+        // Grade de cards — 2 colunas no desktop, 1 no mobile
+        // ------------------------------------------------------------------
+        .afluentes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: size(30);
+            width: 100%;
+            max-width: size(1170);
+            margin: size(44) auto 0;
+            align-items: stretch;
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                gap: size(12);
+                margin-top: size(24);
+            }
+        }
+
+        .afluentes-empty {
+            grid-column: 1 / -1;
+            margin: size(48) 0;
+            color: #848484;
+            font-family: var(--wp--preset--font-family--manrope);
+            font-size: size(16);
+            text-align: center;
+        }
+
+        // ------------------------------------------------------------------
+        // Card Afluente Horizontal — Figma 8491:560 (desktop) / 8495:839 (mobile)
+        // ------------------------------------------------------------------
+        .card-afluente {
+            display: flex;
+            gap: size(20);
+            padding: size(16);
+            border-radius: 8px;
+            background-color: #fff;
+
+            &__frame {
+                flex: 0 0 size(160);
+                width: size(160);
+                height: size(160);
+                padding: size(8);
+                border-radius: 8px;
+                background-color: var(--afluente-color, #CCCCCC);
+                overflow: hidden;
+            }
+
+            &__frame-link {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            &__art {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            &__content {
+                display: flex;
+                flex-direction: column;
+                gap: size(8);
+                flex: 1;
+                min-width: 0;
+            }
+
+            &__chip {
+                align-self: flex-start;
+                display: inline-flex;
+                align-items: center;
+                height: size(20);
+                padding: 0 6px;
+                border-radius: 4px;
+                background-color: var(--afluente-color, #CCCCCC);
+                color: var(--afluente-chip-color, #111111);
+                font-family: var(--wp--preset--font-family--archivo-expanded);
+                font-size: size(13);
+                font-style: normal;
+                font-weight: 800;
+                line-height: 1.5;
+                letter-spacing: -0.03em;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+            &__name {
+                margin: 0;
+                color: #262626;
+                font-family: var(--wp--preset--font-family--manrope);
+                font-size: size(20);
+                font-style: normal;
+                font-weight: 700;
+                line-height: 1.3;
+
+                a {
+                    color: inherit;
+                }
+            }
+
+            &__divider {
+                width: 100%;
+                height: 1px;
+                background-color: #CCCCCC;
+            }
+
+            &__description {
+                margin: 0;
+                color: #848484;
+                font-family: var(--wp--preset--font-family--manrope);
+                font-size: size(13);
+                font-style: normal;
+                font-weight: 500;
+                line-height: 1.45;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            &__socials {
+                display: flex;
+                gap: size(10);
+                margin-top: auto;
+            }
+
+            &__social {
+                display: inline-flex;
+                color: #848484;
+
+                svg {
+                    width: size(20);
+                    height: size(20);
+                    fill: currentColor;
+                }
+            }
+
+            @include mobile {
+                gap: size(12);
+                padding: size(12);
+
+                &__frame {
+                    flex-basis: size(88);
+                    width: size(88);
+                    height: size(88);
+                    padding: size(5);
+                }
+
+                &__content {
+                    gap: size(6);
+                }
+
+                &__name {
+                    font-size: size(15);
+                }
+
+                &__description {
+                    -webkit-line-clamp: 2;
+                    line-clamp: 2;
+                }
+
+                &__socials {
+                    gap: size(9);
+                }
+
+                &__social svg {
+                    width: size(18);
+                    height: size(18);
+                }
+            }
         }
     }
 }

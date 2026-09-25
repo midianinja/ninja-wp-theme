@@ -279,11 +279,15 @@
         }
 
         // ------------------------------------------------------------------
-        // Controles: busca · espaço flexível · contador + ordenação (8491:11399)
+        // Controles: cluster centralizado — busca · espaçador 100 ·
+        // contador + ordenação (Figma 8491:11399, frame "Controles" 8491:11406:
+        // row, gap 16, justifyContent CENTER). O grupo de 967px centra na
+        // linha de 1170px (~101px de respiro por lado em 1440).
         // ------------------------------------------------------------------
         .afluentes-controls {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: size(16);
             width: 100%;
             max-width: size(1170);
@@ -367,9 +371,14 @@
         }
 
         .afluentes-counter {
-            // margin-left:auto cria o espaço flexível entre a busca e o
-            // grupo contador + ordenação, como no Figma.
-            margin-left: auto;
+            // Espaçador fixo de 100px do Figma entre a busca e o contador:
+            // o gap do container cobre os 16px à esquerda do espaçador e
+            // este margin os 16px à direita (16 + 100 + 16 = 132px). Feito
+            // em CSS (e não elemento) porque no mobile a coluna ocultaria o
+            // counter e a margem junto — um span de flex-basis:100 viraria
+            // 100px de ALTURA na coluna (mesma armadilha do basis da busca).
+            // No mobile o counter é display:none e a margem não existe.
+            margin-left: calc(#{size(100)} + #{size(16)});
             flex: 0 0 auto;
             min-width: size(120);
             color: #848484;

@@ -42,3 +42,12 @@
 - **Imagem de destaque dobrada (diagnóstico → ação de conteúdo):** não é bug do card (11 artes em 14 cards, 1 por card). É o bloco legado do chrome: o post `header-footer` (archive=afluentes, posição cabeçalho) renderiza um `wp-block-cover` com `afluentes-3.png`, eyebrow/H2 duplicados e descrição ANTIGA (fotojornalismo) empilhado acima do hero novo. **Ação de conteúdo (local e produção): remover o bloco cover desse post no admin (ou despublicar o post de header).** Enquanto existir, a imagem dobra e a busca não entra na primeira dobra mobile.
 - **Primeira dobra mobile (corrigido):** bug principal era `flex: 0 1 460` no wrapper da busca — no mobile em coluna, o basis virava ALTURA (wrapper de 460px, botão da lupa flutuando a ~214px do input). Corrigido para `flex: 0 1 auto`; mobile re-medido conforme spec 8511:9424 (hero 343×400 com gradiente + backdrop-blur, chip dentro da imagem, H2 32px sem descrição, busca 343×46 borda 2px, ordenação 8px abaixo, grade 1 coluna gap 12, contador oculto).
 - Build de produção do chunk no mesmo commit (via node 14 do container watcher; demais artefatos de dist restaurados ao HEAD).
+
+## Decisão humana — hero deixa o template (2026-09-25, 4ª rodada de teste)
+
+**Decisão:** a primeira dobra (hero) passa a ser exclusivamente o bloco editável `header-footer` (conteúdo do cliente no painel). O hero renderizado por código no template (imagem `afluentes-hero.png`, eyebrow, título e descrição fixos) é **removido** — o template não renderiza hero próprio. Palavras do humano: "é pra remover o que vc adicionou via código e manter o do header and footer pq o cliente pode alterar no painel".
+
+- **Critério de aceite 1 emendado na issue #325** (hero = bloco do cliente; o restante do critério permanece: controles centralizados, grade 2 colunas, card completo).
+- **A pendência de conteúdo do deploy INVERTE:** antes "remover o cover legado"; agora o cover É o hero — atualizar seu conteúdo (imagem/textos) é ação do cliente no painel, não da entrega.
+- A "imagem dobrada" relatada no 3º teste fica resolvida pela remoção (era o cover do cliente + hero do código empilhados).
+- Observação de ferramenta (dogfooding): o enum do registro de override do plugin (`variant|gate|triage`) não cobre emenda de critério de aceite em teste — registrada aqui como feedback para o backlog do plugin.

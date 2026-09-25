@@ -79,6 +79,47 @@ class Assets
     {
         add_action('wp_head', [$this, 'enqueue_inline_styles']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_generic_styles']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_embed_cpi_styles'], 5);
+    }
+
+    /**
+     * Enqueues the old-site structural stylesheets for the CPI da Covid embed.
+     *
+     * The embed template scrapes Divi markup from antigo.midianinja.org, whose
+     * layout depends on the old theme's stylesheets. They are enqueued at
+     * priority 5 (before the theme generic styles, which run at 10) so that,
+     * on equal specificity, the new theme's CSS wins over Divi's global reset.
+     */
+    public function enqueue_embed_cpi_styles()
+    {
+        if (!is_page_template('template-embed-cpi.php')) {
+            return;
+        }
+
+        // O HTML raspado reinjeta <script> inline no corpo da página (a linha
+        // do tempo horizontal chama jQuery ainda durante o parse). O WordPress
+        // registra o jQuery no <head> por padrão, mas forçamos o grupo 0 para
+        // que nenhum plugin que re-registre o jQuery no rodapé quebre a linha
+        // do tempo com "jQuery is not defined".
+        wp_enqueue_script('jquery');
+        wp_script_add_data('jquery', 'group', 0);
+        wp_script_add_data('jquery-core', 'group', 0);
+        wp_script_add_data('jquery-migrate', 'group', 0);
+
+        wp_enqueue_style(
+            'embed-cpi-fonts',
+            'https://fonts.googleapis.com/css?family=Droid+Serif%3Aregular%2Citalic%2C700%2C700italic%7CSource+Sans+Pro%3A200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CArimo%3Aregular%2Citalic%2C700%2C700italic&subset=latin,cyrillic,greek,vietnamese,greek-ext,latin-ext,cyrillic-ext,hebrew'
+        );
+        wp_enqueue_style(
+            'embed-cpi-divi',
+            'https://antigo.midianinja.org/wp-content/themes/wp-divi-3/style.css',
+            ['embed-cpi-fonts']
+        );
+        wp_enqueue_style(
+            'embed-cpi-child',
+            'https://antigo.midianinja.org/wp-content/themes/redeninja/style.css',
+            ['embed-cpi-divi']
+        );
     }
 
     public function add_rel_preload($html, $handle, $href, $media)

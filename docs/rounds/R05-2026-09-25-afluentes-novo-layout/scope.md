@@ -29,3 +29,9 @@
 - **Ordenação (atualizado pós-implementação):** o default muda de alfabético (`title ASC`) para "mais recentes" (`date DESC`), com "mais antigos" opcional — desvio declarado no `deviations.md` desta rodada.
 - **Imagem do hero:** exportada direto do Figma (os arquivos do Drive não eram acessíveis ao especialista) — `assets/images/afluentes-hero.png`.
 - **Atenção no deploy:** se o bloco header-footer `archive=afluentes` ainda renderizar um cover antigo em produção, aparecerá uma faixa legada acima do hero novo — ação de conteúdo (esvaziar/reapontar o bloco).
+
+## Ajustes do teste humano (2026-09-25, 2ª rodada)
+
+- **Bug corrigido — busca sobrepondo o contador** (commit `e8bd367e` no branch da feature): causa raiz foi o reset global `input[type=search] { box-sizing: content-box }` do `critical.css` — o input pintava ~526px dentro de um wrapper de 460px e transbordava sobre o contador. Correção local no SCSS da archive: `border-box` explícito no input e no select, linha de controles reorganizada conforme Figma (busca à esquerda, espaçador flexível, contador + ordenação à direita). Rebuild de produção do chunk no mesmo commit.
+- **Seeding local (apenas banco local, não commitado):** os 31 posts de afluente não tinham categoria atribuída — por isso todas as molduras caíam na cor padrão. Inseridas 28 atribuições (14 pares pt-br/es) usando o mapeamento editorial do Figma e os termos canônicos com meta de cor. **Em produção, a atribuição de categorias aos afluentes é ação de conteúdo no deploy.**
+- **Descoberta — bilíngue (WPML):** as "duplicatas" são pares de tradução pt-br/es; o arquivo filtra por idioma (contador e grade corretos, 14 no pt-br). Porém os termos ES não têm o meta de cor → em `/es/afluente/` 13/14 cards caem na cor padrão. **Pendência de conteúdo:** replicar `ninja_background_term_color`/`ninja_font_term_color` nos termos ES (e atribuir categorias aos afluentes ES) para o espanhol renderizar fiel.

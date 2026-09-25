@@ -243,12 +243,11 @@
         }
 
         // ------------------------------------------------------------------
-        // Controles: busca + contador + ordenação
+        // Controles: busca · espaço flexível · contador + ordenação (8491:11399)
         // ------------------------------------------------------------------
         .afluentes-controls {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: size(16);
             width: 100%;
             max-width: size(1170);
@@ -256,6 +255,7 @@
 
             @include mobile {
                 flex-direction: column;
+                align-items: stretch;
                 gap: size(8);
                 margin-top: size(24);
             }
@@ -263,10 +263,15 @@
 
         .afluentes-search {
             position: relative;
+            flex: 0 1 size(460);
             width: size(460);
             max-width: 100%;
 
             &__input {
+                // O reset global (a-grid/normalize) força input[type=search]
+                // a content-box; sem isto o input transborda os 460px e
+                // sobrepõe o contador ao lado.
+                box-sizing: border-box;
                 width: 100%;
                 height: size(46);
                 padding: 0 size(48) 0 size(16);
@@ -322,6 +327,10 @@
         }
 
         .afluentes-counter {
+            // margin-left:auto cria o espaço flexível entre a busca e o
+            // grupo contador + ordenação, como no Figma.
+            margin-left: auto;
+            flex: 0 0 auto;
             min-width: size(120);
             color: #848484;
             font-family: var(--wp--preset--font-family--manrope);
@@ -339,7 +348,12 @@
         }
 
         .afluentes-sort {
+            flex: 0 0 auto;
+
             &__select {
+                // Idem ao input: sem border-box o select pintava 323px
+                // (239 + paddings + borda) em vez dos 239px do Figma.
+                box-sizing: border-box;
                 width: size(239);
                 height: size(46);
                 padding: 0 size(32) 0 size(48);

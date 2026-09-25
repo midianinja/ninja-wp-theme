@@ -31,6 +31,19 @@
         }
     }
 
+    // Banda intermediária (769–1199): o Figma só define os gutters de 1440
+    // (135px) e 375 (16px); aqui eles são interpolados de forma fluida.
+    // Reta 24px@768 → ~132px@1199 (25vw − 168px), com clamp nas pontas.
+    // Abaixo de 768 continua valendo o 16px do mobile; a partir de 1200,
+    // o container fixo de 1200px da regra desktop-large acima.
+    @media (min-width: #{variables.$tablet-width + 1px}) and (max-width: #{variables.$desktop-large-width - 1px}) {
+        #app > .container {
+            max-width: none;
+            padding-right: clamp(#{size(24)}, calc(25vw - #{size(168)}), #{size(132)}) !important;
+            padding-left: clamp(#{size(24)}, calc(25vw - #{size(168)}), #{size(132)}) !important;
+        }
+    }
+
     #app {
 		margin-bottom: 0 !important;
 		padding-bottom: size(80);

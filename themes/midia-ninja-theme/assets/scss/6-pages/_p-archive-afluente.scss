@@ -13,6 +13,22 @@
         padding-left: 15px !important;
         margin-right: auto;
         margin-left: auto;
+
+        @include mobile {
+            // Margens laterais mobile do Figma 8511:9424: 16px (não 15).
+            padding-right: 16px !important;
+            padding-left: 16px !important;
+        }
+    }
+
+    @include desktop-large {
+        .container {
+            // Figma 8491:11399: linhas de 1170px com gutters de 135px em 1440.
+            // O container bootstrap (max-width 1170 INCLUINDO o padding)
+            // limitava a linha a 1140px e a deixava colada nas bordas em
+            // viewports de laptop. 1200px = 1170 + 2×15px de padding.
+            max-width: size(1200);
+        }
     }
 
     #app {
@@ -27,6 +43,13 @@
 		.container > .content{
 			width: 100% !important;
 		}
+
+        @include mobile {
+            // O chunk genérico _p-archive.css aplica padding-inline:16px em
+            // ".archive #app" no mobile; somado ao padding do .container dava
+            // 31px de margem lateral (spec: 16px, só o container).
+            padding-inline: 0;
+        }
     }
 
     .header-and-footer-archive {
@@ -263,7 +286,11 @@
 
         .afluentes-search {
             position: relative;
-            flex: 0 1 size(460);
+            // flex-basis AUTO, nunca size(460): no mobile os controles viram
+            // coluna e um basis de 460px é interpretado como ALTURA do wrapper
+            // (460px de buraco entre a busca e a ordenação). No desktop (linha)
+            // o basis auto cai no width:460 abaixo — mesmo resultado.
+            flex: 0 1 auto;
             width: size(460);
             max-width: 100%;
 

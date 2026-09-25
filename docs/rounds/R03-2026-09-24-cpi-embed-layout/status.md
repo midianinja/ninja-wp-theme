@@ -1,6 +1,6 @@
 # R03 — CPI da Covid: embed fiel ao site antigo (status / handoff)
 
-**Data:** 2026-09-24 · **Estado:** em teste humano local · **Demanda urgente** — sem issue criada por decisão humana (override registrado na issue #220: "foque na resolução do problema").
+**Data:** 2026-09-24 (entregue em 2026-09-25) · **Estado:** entregue na develop (PR #327, mergeado) — pendente deploy + regularização · **Demanda urgente** — sem issue criada por decisão humana (override registrado na issue #220: "foque na resolução do problema").
 
 ## A demanda
 
@@ -12,7 +12,7 @@ O embed deve ficar **exatamente como o site antigo**, mostrando **somente o cont
 
 ## Estado atual
 
-- **Branch de teste:** `fix/cpi-covid-embed-layout-v6` @ `2a50b53a` — cadeia de 10 commits (`20659e5e` → `a1d88d11` → `c6dfd3d3` → `e237d87c` → `6b208eab` → `433db625` → `966785f4` → `546e5460` → `76e7f868` → `2a50b53a`), **não empurrado**, checado no checkout principal. Aguardando **teste humano local**.
+- **Branch de teste:** `fix/cpi-covid-embed-layout-v6` — cadeia de 13 commits (10 originais `20659e5e` → `2a50b53a` + `bf99f32f` docs + `7224c235` rebuild do dist de produção validado no teste + `cf0d899c` gitignore de `.worktrees/`). **Entregue**: PR #327 → `develop`, merge commit `7b6f5f72` (2026-09-25). Aceitação humana 6/6 (veredito por critério no comentário da #220).
 - **O que cada iteração entregou:**
   - v1 (`20659e5e`): extração do CSS de design inline do Divi (~255 KB) + enqueue das folhas estruturais do antigo (Divi pai, tema filho, Google Fonts) + guardas contra vazamento no chrome novo.
   - v2 (`c6dfd3d3`, `e237d87c`): revela `.et-waypoint`/`.et_animated` (88 avatares + 5 blocos de texto presos em `opacity:0`), jQuery garantido no `<head>`, menu hambúrguer mobile vanilla, vídeo fluido.
@@ -25,16 +25,17 @@ O embed deve ficar **exatamente como o site antigo**, mostrando **somente o cont
 
 ## Pendências (retomar daqui)
 
-1. **Teste humano do v6** (checklist: créditos com fotos empilhadas; footer do antigo ausente; fades ao rolar; modais; linha do tempo GSAP; header/rodapé do site novo intactos). Higiene: transient `v6` auto-invalida os antigos; se o PHP local tiver OPcache sem revalidação, reiniciar o container; hard refresh no navegador.
-2. **Se passou:** push do branch + PR `fix/cpi-covid-embed-layout-v6` → `develop`; limpar branches intermediários no mesmo ato (`fix/cpi-covid-embed-layout`, `-develop`, `-v3`, `-v4`, `-v5`).
-3. **Deploy:** usar o dist de produção commitado (nunca o output do watch de dev); transient `v6` invalida automaticamente os caches antigos.
+1. ~~Teste humano do v6~~ — **feito em 2026-09-25, 6/6 aprovados** (veredito por critério registrado na #220).
+2. ~~Push + PR → develop + limpeza dos branches intermediários~~ — **feito em 2026-09-25**: PR #327 mergeado (`7b6f5f72`); branches intermediários locais removidos; remoto do v6 removido; v6 local mantido como registro.
+3. **Deploy:** usar o dist de produção commitado (nunca o output do watch de dev — há um stash `ops: local dev-rebuild of embed-cpi dist…` com o output do watcher, descartável); transient `v6` invalida automaticamente os caches antigos.
 4. **Regularização do fluxo (deferida pelo override):** desfecho na #220 (fechar ou converter em issue da correção); doc-bug do manual de instrumentação do plugin (nomes de campos divergem da ferramenta: `disputed_criterion`/`declared_reason` × documentado `contested_criterion`/`stated_reason`); migrar a pasta legada `.maestra/`.
 
 ## Onde as coisas estão
 
-- **Worktree:** `.worktrees/cpi-covid-layout-fix` (detached @ `2a50b53a`, limpo). Worktree irmã `doe-page-scroll-css` intocada.
+- **Worktree:** `.worktrees/cpi-covid-layout-fix` (detached @ `2a50b53a`, limpo) — obsoleta após a entrega; remoção opcional na regularização.
+- **Branches:** `fix/cpi-covid-embed-layout-v6` mantido localmente (registro da rodada); worktree irmã `doe-page-scroll-css` intocada.
 - **Artefatos efêmeros** (simulações PHP do pipeline, harness headless, screenshots) em `/tmp/opencode/` — podem não sobreviver a reboot; recriáveis a partir do repo (o pipeline de simulação espelha `template-embed-cpi.php`).
-- **Registrado na plataforma:** issue #220 (override da triagem + eventos A/B/D).
+- **Registrado na plataforma:** issue #220 (override da triagem + eventos A/B/D + comentário de aceitação 6/6 com a entrega via PR #327).
 
 ## Como retomar
 

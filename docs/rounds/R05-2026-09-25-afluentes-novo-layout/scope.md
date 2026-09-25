@@ -51,3 +51,9 @@
 - **A pendência de conteúdo do deploy INVERTE:** antes "remover o cover legado"; agora o cover É o hero — atualizar seu conteúdo (imagem/textos) é ação do cliente no painel, não da entrega.
 - A "imagem dobrada" relatada no 3º teste fica resolvida pela remoção (era o cover do cliente + hero do código empilhados).
 - Observação de ferramenta (dogfooding): o enum do registro de override do plugin (`variant|gate|triage`) não cobre emenda de critério de aceite em teste — registrada aqui como feedback para o backlog do plugin.
+
+## Entrega (2026-09-25)
+
+- **PR #329** (`feat/325-afluentes-archive-layout` → `develop`) mesclado com merge commit `7e41c472` — cadeia de 8 commits preservada (`ef400251` → `5c3dd825`).
+- **Aceitação humana 1–3 ✔** (veredito por critério no comentário da issue, com base em 4 rodadas de teste local e na instrução final de entrega). Critério 4 (reconciliação) pendente — fecha com o fechamento da rodada.
+- **Pendências de conteúdo no deploy:** atribuir categorias aos afluentes em produção (o seeding de cores foi apenas local); replicar metas de cor nos termos ES (WPML); conteúdo do cover/hero a critério do cliente no painel.

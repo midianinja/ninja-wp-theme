@@ -57,3 +57,12 @@
 - **PR #329** (`feat/325-afluentes-archive-layout` → `develop`) mesclado com merge commit `7e41c472` — cadeia de 8 commits preservada (`ef400251` → `5c3dd825`).
 - **Aceitação humana 1–3 ✔** (veredito por critério no comentário da issue, com base em 4 rodadas de teste local e na instrução final de entrega). Critério 4 (reconciliação) pendente — fecha com o fechamento da rodada.
 - **Pendências de conteúdo no deploy:** atribuir categorias aos afluentes em produção (o seeding de cores foi apenas local); replicar metas de cor nos termos ES (WPML); conteúdo do cover/hero a critério do cliente no painel.
+
+## Ajuste do teste no dev (2026-09-29) — arte do card em cover
+
+- **Contexto:** entrega aplicada no dev; as thumbs renderizavam em proporções díspares (medição no dev: 7 capas 2,07:1, 4 capas ~1,78:1, 1 quadrada) porque o `contain` preserva a proporção da imagem de origem.
+- **Decisão humana:** padronizar todas as thumbs em quadradas — palavras: "todos tem que ficar iguais do ninja foto e estudantes ninja" (2026-09-29).
+- **Implementado:** `object-fit: cover` na regra única da arte (`_p-archive-afluente.scss`, commit `0a070540`, PR #330 → develop) — moldura quadrada sempre preenchida; corte central nas capas largas (~26% por lado nas 2,07:1).
+- **Consequência para conteúdo:** capas largas com logotipo de ponta a ponta (ex.: NINJA Foto, logotipo em 284/300px da largura) perdem as pontas no corte — substituir por versões quadradas no media library elimina o corte progressivamente.
+- **Emenda de critério:** o critério de aceite 1 passa a valer como "moldura quadrada sempre preenchida (cover)" em vez de "arte FIT" — desvio registrado em `deviations.md` (Deviation 4).
+- **Fora deste ajuste (ficam com o humano, apontados na varredura do dev em 2026-09-29):** 2 posts sem imagem destacada (Zona de Propulsão, Climax), 1 post sem categoria (Poderes Pretos), replicar metas de cor nos termos ES.

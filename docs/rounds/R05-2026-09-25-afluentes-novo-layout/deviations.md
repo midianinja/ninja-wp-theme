@@ -26,3 +26,11 @@
 - **Reason:** em palavras do humano — "é pra remover o que vc adicionou via código e manter o do header and footer pq o cliente pode alterar no painel".
 - **Decision registered at:** https://github.com/midianinja/ninja-wp-theme/issues/325#issuecomment-5837880485 (emenda do critério + decisão).
 - **Reference document updated:** `docs/rounds/R05-2026-09-25-afluentes-novo-layout/scope.md`, seção "Decisão humana — hero deixa o template" (2026-09-25).
+
+## Deviation 4 — Arte do card: de FIT (contain) para cover
+
+- **Planned:** arte em FIT (`object-fit: contain`) dentro da moldura quadrada colorida — arte inteira visível, com faixas da cor da categoria — conforme critério de aceite 1 ("arte FIT") e Figma 8491-11399.
+- **Implemented:** `object-fit: cover` na regra única da arte do card (commit `0a070540`, PR #330) — a imagem preenche o quadrado e o excedente é cortado (corte central). Capas 2,07:1 perdem ~26% de cada lado até serem substituídas por versões quadradas (ação de conteúdo).
+- **Reason:** em palavras do humano — "todos tem que ficar iguais do ninja foto e estudantes ninja" (teste no dev, 2026-09-29; consentimento explícito: "pode executar").
+- **Decision registered at:** sessão de ajuste no dev da R05 (2026-09-29); emenda descrita no corpo do PR #330.
+- **Reference document updated:** `docs/rounds/R05-2026-09-25-afluentes-novo-layout/scope.md`, seção "Ajuste do teste no dev (2026-09-29) — arte do card em cover".

@@ -52,7 +52,7 @@ Novo comando em `themes/midia-ninja-theme/library/cli/assign-legacy-guest-author
 - Chama `$coauthors_plus->add_coauthors()` como **método** e verifica reconsultando `get_coauthors()` — o retorno do método é `false` mesmo no sucesso para guest authors não linkados a usuário WP.
 - Batches de 200; `--dry-run` é o modo de segurança com `WP_CLI::confirm()` antes de aplicar.
 
-**Flags:** `--guest-author` (ID ou slug), `--before` (default `2023-12-01`), `--post-types` (default `post,opiniao`), `--limit`, `--post-ids`, `--dry-run`, `--yes`.
+**Flags:** `--guest-author` (ID ou slug), `--before` (default `2023-12-01`), `--post-types` (default `post,opiniao`), `--limit`, `--post-ids`, `--dry-run`, `--pilot=<N>` (≤ 100), `--full-run`, `--backup-taken`, `--skip-theme-check`, `--yes` (tabela completa na seção do guia abaixo).
 
 ## Validação executada
 
@@ -71,26 +71,51 @@ Novo comando em `themes/midia-ninja-theme/library/cli/assign-legacy-guest-author
 
 ## Guia de operação do comando (para infra)
 
-- **O que é:** comando WP-CLI dentro do tema (`library/cli/assign-legacy-guest-author.php`, registrado em `functions.php`, só carrega em CLI, zero impacto em runtime). Corrige o dado-raiz: associa o guest author aos posts antigos com byline preso em usuário WP sem avatar. Sem rodá-lo, os templates corrigidos não fazem o avatar aparecer onde não há guest author.
-- **Pré-requisitos:** tema atualizado; Co-Authors Plus ativo (senão o comando aborta com aviso); WP-CLI disponível; guest author alvo com imagem destacada — verificar com `wp post meta get 4555465 _thumbnail_id` (vazio = cadastrar a foto antes).
-- **Sequência de execução (nesta ordem):**
-    1. Simulação `--dry-run --limit=100 --yes`, conferindo que `WOULD-ASSIGN` são só bylines quebrados;
-    2. Lote piloto `--post-ids=<id1,id2,id3> --yes` com conferência visual no navegador;
-    3. Lote total `--before=2023-12-01 --yes` (~12 mil posts, batches de 200, alguns minutos; em produção: backup do banco antes + horário de baixo tráfego).
+- **O que é:** comando WP-CLI dentro do tema (`library/cli/assign-legacy-guest-author.php`, registrado em `functions.php`, só carrega em CLI, zero impacto em runtime). Corrige o dado-raiz: associa o guest author aos posts antigos com byline preso em usuário WP sem avatar. Sem rodá-lo, os templates corrigidos não fazem o avatar aparecer onde não há guest author. O comando é **blindado para execução copiar-e-colar**: ele próprio recusa rodar fora da sequência abaixo.
+- **Pré-requisitos (o comando verifica sozinho e ABORTA se faltar):**
+    - **Tema ativo atualizado com a correção dos templates** — o comando lê `single.php` e `single-opiniao.php` do tema ativo e exige `coauthors_get_avatar()` em AMBOS antes de qualquer processamento (é exatamente o que quebrou as singles no dev quando o comando foi rodado antes de atualizar o tema). Escape de emergência: `--skip-theme-check` (emite warning registrada).
+    - **Co-Authors Plus ativo** (senão aborta).
+    - **Guest author alvo com imagem destacada** — sem thumbnail o comando ABORTA com erro fatal (atribuir guest author sem foto não conserta o avatar; é o pré-requisito nº 1). Verificar antes: `wp post meta get <id-do-guest-author> _thumbnail_id` (vazio = cadastrar a foto antes).
+- **Sequência de execução copiar-e-colar (nesta ordem, slug `cap-ninja`):**
+
+    ```bash
+    # 1. Simulação — não pede confirmação, não muda nada.
+    #    Conferir que os WOULD-ASSIGN são bylines quebrados (usuário WP sem avatar).
+    wp ninja assign-legacy-guest-author --guest-author=cap-ninja --dry-run
+
+    # 2. Piloto — escaneia sem mudar nada, aplica APENAS os 3 primeiros matches
+    #    e imprime as URLs. Conferir o avatar do colunista no navegador antes de seguir.
+    wp ninja assign-legacy-guest-author --guest-author=cap-ninja --pilot=3
+
+    # 3. Lote total — recusa a rodar sem as DUAS flags juntas.
+    #    Antes dela: backup do banco + horário de baixo tráfego.
+    wp ninja assign-legacy-guest-author --guest-author=cap-ninja --full-run --backup-taken
+    ```
+
+- **Por que essa ordem:** o dry-run ensina o escopo sem risco (e não pede confirm — confirm em simulação treina o hábito de `--yes` que vaza para a aplicação real); o pilot aplica N ≤ 100 posts e devolve as URLs para validação visual; o lote total só roda com o reconhecimento explícito em DUAS flags (`--full-run` = "sei que vou afetar N posts"; `--backup-taken` = "há backup do banco feito agora") e UMA confirmação final mostrando o total previsto.
 - **Flags:**
 
     | Flag | Descrição |
     |------|-----------|
-    | `--guest-author` | Obrigatório |
+    | `--guest-author` | Obrigatório (ID ou slug do guest author, ex.: `cap-ninja`) |
     | `--before` | Default `2023-12-01` |
     | `--post-types` | Default `post,opiniao` |
-    | `--limit` | Limite de posts processados |
-    | `--post-ids` | IDs pontuais (sobrepõe `--before`) |
-    | `--dry-run` | Simulação, sem aplicar |
+    | `--limit` | Limite de posts processados (≤ 500 dispensa as flags de lote total) |
+    | `--post-ids` | IDs pontuais (sobrepõe `--before`; dispensa as flags de lote total) |
+    | `--dry-run` | Simulação, sem aplicar — **sem confirmação** |
+    | `--pilot=<N>` | Escaneia sem mudar nada até acumular N matches (N ≤ 100), aplica só esses e imprime as URLs para conferência |
+    | `--full-run` | Reconhecimento: "sei que vou afetar todos os N posts do escopo" |
+    | `--backup-taken` | Reconhecimento: "há backup do banco feito agora" (exigida junto com `--full-run`) |
+    | `--skip-theme-check` | Pula a trava fail-closed de tema (emite warning registrada; só para emergências) |
     | `--yes` | Pula a confirmação interativa |
 
-- **Garantias:** nunca toca posts já OK (guest author com foto), nunca toca posts novos/colunistas funcionais, não cria usuários nem muda permissões (só termo de taxonomia `author`), só age quando executado, dúvida = pula para revisão manual.
-- **Idempotência e rollback:** segunda execução não duplica; desfazer = reatribuir alvo anterior ou restaurar backup; falha no meio = re-rodar.
+- **Garantias (travas):**
+    1. **Trava de tema (fail-closed):** aborta antes de qualquer processamento se o tema ativo não tiver `coauthors_get_avatar()` em `single.php` E `single-opiniao.php`, citando o arquivo que faltou — atualize o tema ANTES de atribuir guest authors (`--skip-theme-check` pula, com warning registrada).
+    2. **Erro sem thumbnail:** guest author alvo sem imagem destacada = **erro fatal** (antes era warning + seguia), pois atribuir sem foto não conserta o avatar.
+    3. **Trava de lote total (threshold 500):** em modo APPLY, se o escopo passar de 500 posts sem `--post-ids`, `--pilot` ou `--limit` ≤ 500, o comando recusa e imprime o comando completo correto para copiar (com `--full-run` **e** `--backup-taken`); com as duas flags, segue com UMA confirmação mostrando o total previsto.
+    4. **Pilot limitado a 100** e nunca conta como lote total; aplica pelo mesmo caminho de verificação do lote normal.
+    5. (Demais garantias) nunca toca posts já OK (guest author com foto), nunca toca posts novos/colunistas funcionais, não cria usuários nem muda permissões (só termo de taxonomia `author`), dúvida = pula para revisão manual, pós-apply faz `wp_cache_flush()`.
+- **Idempotência e rollback:** segunda execução não duplica (posts já atribuídos viram `skipped_already_assigned`); desfazer = reatribuir alvo anterior ou restaurar backup; falha no meio = re-rodar.
 
 ## Roteiro de rollout
 

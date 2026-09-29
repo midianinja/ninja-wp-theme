@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "ninja/video-playlist",
 	"version": "0.1.0",
-	"title": "Video Playlist",
+	"title": "Galeria do YouTube NINJA",
 	"category": "embed",
 	"icon": "format-video",
 	"description": "Exibe vídeos de um canal ou playlist do YouTube.",

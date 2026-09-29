@@ -4,8 +4,19 @@
  */
 
 $remote_url = 'https://antigo.midianinja.org/cpi-da-covid/';
-$cache_key  = 'embed_cpi_cache_' . md5($remote_url);
-$content    = get_transient($cache_key);
+// Cache key is versioned with the pipeline format: when the shape of $content
+// changes (e.g. the prepended design CSS block), old-format transients must be
+// invalidated on deploy instead of serving stale markup for up to 1h — that is
+// exactly what made the credits section render unstyled/invisible on the first
+// deploy (cached content predated the design CSS extraction).
+	// v4: asset URLs are now resolved to their final host (see uploads rewrite).
+	// v5: appended the old site's footer (#main-footer) after the content.
+	// v6: reverted v5 — content only: the old site's header AND footer are both
+	// chrome and must not appear; footer-ish nodes inside the content are
+	// stripped again (see the chrome query below).
+	$cache_version = 'v6';
+$cache_key    = 'embed_cpi_cache_' . $cache_version . '_' . md5($remote_url);
+$content      = get_transient($cache_key);
 
 if (empty($content)) {
 	$response = wp_remote_get($remote_url, [
@@ -54,10 +65,29 @@ if (empty($content)) {
 		}
 
 		if ($node) {
-			// Remove headers and footers more aggressively
-			$header_footer_query = './/header | .//footer | .//*[@id="header"] | .//*[contains(@class, "site-header")] | .//*[@id="masthead"] | .//*[contains(@class, "td-header-wrap")]';
-			foreach ($xpath->query($header_footer_query, $node) as $child) {
+			// Governing rule: the embed carries the CPI page's OWN CONTENT only —
+			// no site chrome. The old site's header AND footer must never leak
+			// into the embed: header-ish and footer-ish nodes found INSIDE the
+			// extracted content node are stripped here; the page-level
+			// #main-footer lives outside this node, so it is never extracted.
+			$chrome_query = './/header | .//footer'
+				. ' | .//*[@id="header"] | .//*[@id="footer"] | .//*[@id="masthead"] | .//*[@id="colophon"] | .//*[@id="main-footer"]'
+				. ' | .//*[contains(@class, "site-header")] | .//*[contains(@class, "site-footer")]'
+				. ' | .//*[contains(@class, "td-header-wrap")] | .//*[contains(@class, "td-footer-wrap")]';
+			foreach ($xpath->query($chrome_query, $node) as $child) {
 				$child->parentNode->removeChild($child);
+			}
+
+			// The old page keeps most of its design in <head> inline styles that
+			// are not carried by the markup scrape. Extract the two Divi cached
+			// style blocks (global customizer rules + per-module design rules)
+			// from the same DOMDocument so the scraped markup renders styled.
+			$design_css = '';
+			foreach (['et-divi-customizer-global-cached-inline-styles', 'et-builder-module-design-cached-inline-styles'] as $style_id) {
+				$style_nodes = $xpath->query('//style[@id="' . $style_id . '"]');
+				if ($style_nodes->length > 0) {
+					$design_css .= $style_nodes->item(0)->textContent . "\n";
+				}
 			}
 
 			$content = '';
@@ -76,15 +106,97 @@ if (empty($content)) {
 				$content
 			);
 
-			$base_url = 'https://antigo.midianinja.org';
-			$content = str_replace(['src="/', "src='/"], 'src="' . $base_url . '/', $content);
-			$content = str_replace(['href="/', "href='/"], 'href="' . $base_url . '/', $content);
-			$content = str_replace("src='/" , "src='" . $base_url . "/", $content);
-			$content = str_replace("href='/" , "href='" . $base_url . "/", $content);
+		$base_url = 'https://antigo.midianinja.org';
+		$content = str_replace(['src="/', "src='/"], 'src="' . $base_url . '/', $content);
+		$content = str_replace(['href="/', "href='/"], 'href="' . $base_url . '/', $content);
+		$content = str_replace("src='/" , "src='" . $base_url . "/", $content);
+		$content = str_replace("href='/" , "href='" . $base_url . "/", $content);
 
-			// Âncoras da própria página: rolam até a seção dentro do embed,
-			// como no antigo, em vez de navegar para fora do site.
-			$content = str_replace('https://antigo.midianinja.org/cpi-da-covid/#', '#', $content);
+		// Same treatment for lazy-load attributes: they carry the real URL when
+		// the old site swaps src for a placeholder (none today, cheap insurance
+		// if a lazy-load plugin is ever enabled there).
+		$content = str_replace(
+			['data-src="/', 'data-lazy-src="/', 'data-orig-src="/'],
+			['data-src="' . $base_url . '/', 'data-lazy-src="' . $base_url . '/', 'data-orig-src="' . $base_url . '/'],
+			$content
+		);
+
+		// srcset values hold several "url width" candidates separated by commas,
+		// so a plain src="/ replace cannot reach them. Rewrite each site-rooted
+		// candidate to the absolute old-site URL.
+		$content = preg_replace_callback(
+			'/(srcset|data-srcset)=(["\'])([^"\']+)\2/',
+			function ($m) use ($base_url) {
+				$value = preg_replace_callback(
+					'/(^|,\s*)(\/[^\s,]+)/',
+					function ($c) use ($base_url) {
+						return $c[1] . $base_url . $c[2];
+					},
+					$m[3]
+				);
+				return $m[1] . '=' . $m[2] . $value . $m[2];
+			},
+			$content
+		);
+
+		// Lazy-load placeholders: an <img> whose src is a data: URI (or empty)
+		// with the real URL in data-lazy-src/data-src never resolves without the
+		// old site's JS. Resolve it server-side: swap the real URL into src and
+		// drop the placeholder. Also strips src="" (renders as a broken file
+		// icon in browsers; the old page has one such authoring bug).
+		$content = preg_replace_callback(
+			'/(<img\b[^>]*>)/',
+			function ($m) {
+				$img = $m[1];
+				if (!preg_match('/\bsrc=(["\'])(data:[^"\']*|)\1/', $img, $src, PREG_OFFSET_CAPTURE)) {
+					return $img;
+				}
+				$real = '';
+				if (preg_match('/\bdata-(?:lazy-)?src=(["\'])([^"\']+)\1/', $img, $real_m)) {
+					$real = $real_m[2];
+				}
+				if ($real !== '') {
+					// Real URL known: replace the placeholder src with it.
+					return substr_replace($img, 'src="' . $real . '"', $src[0][1], strlen($src[0][0]));
+				}
+				if ($src[2][0] === '') {
+					// Empty src and no fallback: drop the attribute entirely.
+					return substr_replace($img, '', $src[0][1], strlen($src[0][0]));
+				}
+				return $img;
+			},
+			$content
+		);
+
+		// The old host 302-redirects every /wp-content/uploads/ URL to the new
+		// site (same path). That extra cross-origin hop is fragile for browsers
+		// loading hundreds of embed images (and breaks the @font-face files via
+		// CORS). Resolve it server-side: uploads point straight at the final
+		// host, which is also the host serving this embed (same-origin).
+		$uploads_redirect = ['https://antigo.midianinja.org/wp-content/uploads/', 'https://midianinja.org/wp-content/uploads/'];
+		$content = str_replace($uploads_redirect[0], $uploads_redirect[1], $content);
+		if ($design_css !== '') {
+			// Same resolution for url() references carried in the design CSS
+			// (fonts and module background images live under /uploads/).
+			$design_css = str_replace($uploads_redirect[0], $uploads_redirect[1], $design_css);
+			// Site-rooted url(/...) entries in the design CSS would resolve
+			// against this site instead of the old one; absolutize them.
+			$design_css = preg_replace(
+				'/url\((["\'])\/(wp-content\/[^"\')]+)\1\)/',
+				'url($1' . $base_url . '/$2$1)',
+				$design_css
+			);
+		}
+
+		// Âncoras da própria página: rolam até a seção dentro do embed,
+		// como no antigo, em vez de navegar para fora do site.
+		$content = str_replace('https://antigo.midianinja.org/cpi-da-covid/#', '#', $content);
+
+			// Prepend the old-site inline design CSS so it is cached together
+			// with the markup and applies to it inside the embed.
+			if ($design_css !== '') {
+				$content = '<style id="embed-cpi-design-css">' . $design_css . '</style>' . $content;
+			}
 
 			set_transient($cache_key, $content, HOUR_IN_SECONDS);
 		}
@@ -159,10 +271,11 @@ get_header(); ?>
 	text-decoration: none;
 	text-transform: uppercase;
 }
-/* Conteúdo dos modais fica escondido no fluxo da página (o JS abre uma cópia em overlay) */
-.embed-cpi-inner [class*="lightbox-content-"] {
-	display: none;
-}
+/* Conteúdo dos modais: no site antigo os blocos lightbox-content-perfil* dos
+ * créditos são exibidos EMPILHADOS no fluxo da página (o CSS do customizer
+ * deles chega a forçar [class*="lightbox-content-"]{position:relative}) — o
+ * Magnific abria uma CÓPIA em popup. Aqui é igual: ficam visíveis no fluxo e
+ * o modal vanilla (embed-cpi-modal.js) segue abrindo uma cópia em overlay. */
 /* Modal de perfis (controlado por embed-cpi-modal.js) */
 .embed-cpi-modal {
 	position: fixed;
@@ -195,6 +308,138 @@ get_header(); ?>
 	line-height: 1;
 	cursor: pointer;
 	color: #222;
+}
+
+/* ===== Leak guards =====
+ * O CSS do site antigo (Divi) é global: os guards abaixo restauram a
+ * tipografia do tema novo no chrome (header/footer) desta página e
+ * reaplicam a tipografia Divi dentro do embed. Especificidade baixa via
+ * :where() para não vencer regras de classe do tema nem do Divi. */
+.page-cpi-da-covid {
+	font-family: "Manrope", sans-serif;
+	font-size: 16px;
+	line-height: 1.42857143;
+	color: #333;
+}
+:where(.main-header, .main-footer) a {
+	color: #337ab7;
+	text-decoration: none;
+}
+:where(.main-header, .main-footer) a:hover,
+:where(.main-header, .main-footer) a:focus {
+	color: #23527c;
+}
+:where(.main-header, .main-footer) p {
+	padding-bottom: 0; /* reset do Divi p{padding-bottom:1em} */
+}
+:where(.main-header, .main-footer) :is(h1, h2, h3, h4, h5, h6) {
+	font-family: "Manrope", sans-serif;
+	font-weight: 800;
+	line-height: 1.15;
+	padding-bottom: 0; /* reset do Divi h1..h6{padding-bottom:10px} */
+	color: var(--wp--preset--color--primary-dark);
+}
+:where(.main-header, .main-footer) :is(input, textarea, select) {
+	font-family: inherit; /* customizer do antigo aplica Source Sans Pro */
+}
+/* Tipografia do antigo mantida dentro do conteúdo raspado (o guard do
+ * body acima remove o Source Sans Pro herdado). */
+.embed-cpi-inner {
+	font-family: "Source Sans Pro", Helvetica, Arial, Lucida, sans-serif;
+	font-size: 16px;
+	line-height: 1.8em;
+	color: #000;
+}
+:where(.embed-cpi-inner) :is(h1, h2, h3, h4, h5, h6) {
+	font-family: "Droid Serif", Georgia, "Times New Roman", serif;
+}
+
+/* ===== Estados que o JS do Divi controlava no site antigo =====
+ * Fade-ins: o custom.js + waypoints do Divi revelavam .et-waypoint e
+ * .et_animated ao rolar (evidence do antigo: .et-animated{opacity:1;
+ * animation:fade 1s cubic-bezier(.77,0,.175,1)} e et_animation_data com
+ * fade 1000ms ease-in-out). Aqui a revelação é feita por um
+ * IntersectionObserver em embed-cpi-modal.js, que marca <html> com
+ * .embed-cpi-anim e adiciona .embed-cpi-revealed ao entrar na viewport.
+ * A regra base (sem a classe no <html>) mantém tudo visível: fallback
+ * no-JS — conteúdo nunca fica invisível se o JS falhar. O escopo do modal
+ * cobre os clones abertos a partir dos blocos (popup não anima, como no
+ * Magnific do antigo). */
+.embed-cpi-inner .et-waypoint,
+.embed-cpi-inner .et_animated,
+.embed-cpi-modal .et-waypoint,
+.embed-cpi-modal .et_animated {
+	opacity: 1;
+	animation: none;
+	transition: opacity 1s cubic-bezier(.77, 0, .175, 1);
+}
+html.embed-cpi-anim .embed-cpi-inner .et-waypoint,
+html.embed-cpi-anim .embed-cpi-inner .et_animated {
+	opacity: 0;
+}
+html.embed-cpi-anim .embed-cpi-inner .et-waypoint.embed-cpi-revealed,
+html.embed-cpi-anim .embed-cpi-inner .et_animated.embed-cpi-revealed {
+	opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+	html.embed-cpi-anim .embed-cpi-inner .et-waypoint,
+	html.embed-cpi-anim .embed-cpi-inner .et_animated {
+		transition: none;
+	}
+}
+/* Substituto do fitvids: vídeo do módulo et_pb_video fluido (é um iframe
+ * do YouTube com width/height fixos no HTML raspado). */
+.embed-cpi-inner .et_pb_video_box iframe {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+}
+/* Menu hamburguer das fullwidth menus do Divi: abaixo de 980px o CSS delas
+ * esconde nav+ul e só o JS delas reexibia. O estado aberto é alternado por
+ * embed-cpi-modal.js (classe menu-opened no contêiner). */
+@media (max-width: 980px) {
+	.embed-cpi-inner .et_pb_fullwidth_menu.menu-opened .fullwidth-menu-nav,
+	.embed-cpi-inner .et_pb_fullwidth_menu.menu-opened .fullwidth-menu {
+		display: block;
+	}
+	.embed-cpi-inner .et_pb_fullwidth_menu.menu-opened .fullwidth-menu > li {
+		display: block;
+		padding-right: 0;
+	}
+	.embed-cpi-inner .et_pb_fullwidth_menu .mobile_nav.opened .mobile_menu_bar:before {
+		content: "\4d"; /* ícone de fechar da fonte ETModules, como no antigo */
+	}
+}
+
+/* ===== Variante mídia do modal (imagens / vídeos / iframes) ===== */
+.embed-cpi-modal__panel--media {
+	background: transparent;
+	padding: 0;
+	max-width: min(1200px, 95vw);
+	overflow: visible;
+}
+.embed-cpi-modal__panel--media .embed-cpi-modal__close {
+	top: -2.4rem;
+	right: 0;
+	color: #fff;
+	text-shadow: 0 0 4px rgba(0, 0, 0, .8);
+}
+.embed-cpi-modal__media {
+	display: block;
+	max-width: 100%;
+	max-height: 85vh;
+	margin: 0 auto;
+	background: #000;
+	border-radius: 4px;
+}
+.embed-cpi-modal__panel--media iframe.embed-cpi-modal__media,
+.embed-cpi-modal__panel--media video.embed-cpi-modal__media {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	max-height: 85vh;
+	height: auto;
+	border: 0;
 }
 </style>
 

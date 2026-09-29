@@ -607,11 +607,13 @@ function alterar_consulta_pesquisa_afluente($query) {
     if (is_post_type_archive('afluente') && $query->is_main_query()) {
         // Definir o tipo de post como 'afluente'
         if(!empty($_GET['pesquisar'])) {
-            $query->set('s', $_GET['pesquisar']);
+            $query->set('s', sanitize_text_field($_GET['pesquisar']));
         }
-		$query->set('orderby', 'title');
-		$query->set('order', 'ASC');
-		$query->set('post_parent', 0);
+        // Ordenação do dropdown: "mais recentes" (padrão, data decrescente) ou
+        // "mais antigos" (ordem=oldest) — mesma convenção de ordem da busca do tema
+        $query->set('orderby', 'date');
+        $query->set('order', (!empty($_GET['ordem']) && $_GET['ordem'] === 'oldest') ? 'ASC' : 'DESC');
+        $query->set('post_parent', 0);
     }
 }
 add_action('pre_get_posts', 'alterar_consulta_pesquisa_afluente');

@@ -345,17 +345,17 @@ get_template_part( 'template-parts/header-especiais' );
                 <h2 class="apoie-section__title"><?php _e( 'Apoie a Mídia Ninja', 'ninja' ); ?></h2>
                 <p class="apoie-section__subtitle"><?php _e( 'Ajude a manter uma comunicação independente, livre e em movimento.', 'ninja' ); ?></p>
 
-                <p class="apoie-section__contrib">
-                    <?php _e( 'Escolha como contribuir. Você pode fazer uma doação única ou apoiar de forma recorrente, mensal ou anual. Formas de pagamento:', 'ninja' ); ?>
-                    <strong><?php _e( 'cartão de crédito ou Pix', 'ninja' ); ?></strong>.
-                </p>
-
                 <div class="apoie-section__embed">
                     <div data-fde-donate="" data-campaign="midia-ninja">
                         <a href="https://ninjaverso.com.br/donate?campaign=midia-ninja">Doe agora</a>
                     </div>
                     <script src="https://ninjaverso.com.br/wp-content/themes/ninjaverso/assets/js/donate-embed.js" async=""></script>
                 </div>
+
+                <p class="apoie-section__contrib">
+                    <?php _e( 'Escolha como contribuir. Você pode fazer uma doação única ou apoiar de forma recorrente, mensal ou anual. Formas de pagamento:', 'ninja' ); ?>
+                    <strong><?php _e( 'cartão de crédito ou Pix', 'ninja' ); ?></strong>.
+                </p>
             </div>
         </section>
 

@@ -58,6 +58,13 @@
 - **Aceitação humana 1–3 ✔** (veredito por critério no comentário da issue, com base em 4 rodadas de teste local e na instrução final de entrega). Critério 4 (reconciliação) pendente — fecha com o fechamento da rodada.
 - **Pendências de conteúdo no deploy:** atribuir categorias aos afluentes em produção (o seeding de cores foi apenas local); replicar metas de cor nos termos ES (WPML); conteúdo do cover/hero a critério do cliente no painel.
 
+## Ajuste pós-validação do Caio (2026-10-09) — remoção da moldura colorida do card
+
+- **Contexto:** pedido do validador na issue (Caio, 08/10): "Retirar essa borda colorida das imagens" (screenshot desktop). Escopo confirmado pelo humano em sessão: "somente a borda. pode fazer a remoção" — o chip de categoria colorido permanece.
+- **Implementado:** remoção do `padding` e do `background-color: var(--afluente-color)` na regra `&__frame` do card (`_p-archive-afluente.scss` — base desktop 160px e override mobile 88px); a arte em cover passa a preencher o quadrado inteiro com cantos arredondados, sem filete colorido. Chunk do dist rebuildado em build de produção no container watcher (diff de 1 linha).
+- **Emenda de critério:** o critério de aceite 1 passa a valer sem "moldura colorida" (emenda aplicada no corpo da issue #325) — desvio registrado em `deviations.md` (Deviation 5).
+- **Higienização na mesma emenda:** o corpo da issue ainda dizia "arte FIT" (superada pela Deviation 4, cover desde 29/09) — corrigido para cover.
+
 ## Ajuste do teste no dev (2026-09-29) — arte do card em cover
 
 - **Contexto:** entrega aplicada no dev; as thumbs renderizavam em proporções díspares (medição no dev: 7 capas 2,07:1, 4 capas ~1,78:1, 1 quadrada) porque o `contain` preserva a proporção da imagem de origem.

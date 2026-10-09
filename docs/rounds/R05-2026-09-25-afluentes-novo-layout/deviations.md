@@ -34,3 +34,11 @@
 - **Reason:** em palavras do humano — "todos tem que ficar iguais do ninja foto e estudantes ninja" (teste no dev, 2026-09-29; consentimento explícito: "pode executar").
 - **Decision registered at:** sessão de ajuste no dev da R05 (2026-09-29); emenda descrita no corpo do PR #330.
 - **Reference document updated:** `docs/rounds/R05-2026-09-25-afluentes-novo-layout/scope.md`, seção "Ajuste do teste no dev (2026-09-29) — arte do card em cover".
+
+## Deviation 5 — Moldura colorida do card: de requisito de origem para remoção
+
+- **Planned:** card com moldura na cor da categoria ao redor da arte (critério de aceite 1 original: "moldura colorida"; Figma 8491-11399; cor do term meta `ninja_background_term_color`).
+- **Implemented:** moldura removida — `&__frame` sem `padding` e sem `background-color` (desktop 160px e mobile 88px); a arte em cover preenche o quadrado com cantos arredondados. Chip de categoria colorido preservado (mesma fonte de cor, regra independente). Edição direta no checkout develop, sem commit até comando do humano (modo definido na sessão de 2026-10-09).
+- **Reason:** pedido do validador (Caio, 08/10): "Retirar essa borda colorida das imagens"; escopo confirmado pelo humano: "somente a borda. pode fazer a remoção" (2026-10-09).
+- **Decision registered at:** https://github.com/midianinja/ninja-wp-theme/issues/325#issuecomment-6064329702 (comentário do validador) + sessão de 2026-10-09.
+- **Reference document updated:** `docs/rounds/R05-2026-09-25-afluentes-novo-layout/scope.md`, seção "Ajuste pós-validação do Caio (2026-10-09)".

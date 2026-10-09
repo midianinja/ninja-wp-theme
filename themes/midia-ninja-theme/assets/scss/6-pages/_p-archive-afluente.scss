@@ -379,9 +379,7 @@
                 flex: 0 0 size(160);
                 width: size(160);
                 height: size(160);
-                padding: size(8);
                 border-radius: 8px;
-                background-color: var(--afluente-color, #CCCCCC);
                 overflow: hidden;
             }
 
@@ -484,7 +482,6 @@
                     flex-basis: size(88);
                     width: size(88);
                     height: size(88);
-                    padding: size(5);
                 }
 
                 &__content {

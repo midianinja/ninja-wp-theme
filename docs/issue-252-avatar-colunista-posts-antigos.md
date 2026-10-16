@@ -106,6 +106,10 @@ Novo comando em `themes/midia-ninja-theme/library/cli/assign-legacy-guest-author
     | `--pilot=<N>` | Escaneia sem mudar nada até acumular N matches (N ≤ 100), aplica só esses e imprime as URLs para conferência |
     | `--full-run` | Reconhecimento: "sei que vou afetar todos os N posts do escopo" |
     | `--backup-taken` | Reconhecimento: "há backup do banco feito agora" (exigida junto com `--full-run`) |
+    | `--resume` | Continua uma run APPLY interrompida do MESMO escopo, do último ID processado (estado por lote em `uploads/ninja-legacy-fix/state-*.json`) |
+    | `--batch-size=<N>` | Posts por lote (padrão 500; 20–2000) |
+    | `--gravatar-timeout=<N>` | Timeout dos probes gravatar em segundos (padrão 5; 1–30) |
+    | `--verbose` | Imprime todas as linhas por post (comportamento antigo; padrão mostra lotes + amostras) |
     | `--skip-theme-check` | Pula a trava fail-closed de tema (emite warning registrada; só para emergências) |
     | `--yes` | Pula a confirmação interativa |
 
@@ -114,8 +118,28 @@ Novo comando em `themes/midia-ninja-theme/library/cli/assign-legacy-guest-author
     2. **Erro sem thumbnail:** guest author alvo sem imagem destacada = **erro fatal** (antes era warning + seguia), pois atribuir sem foto não conserta o avatar.
     3. **Trava de lote total (threshold 500):** em modo APPLY, se o escopo passar de 500 posts sem `--post-ids`, `--pilot` ou `--limit` ≤ 500, o comando recusa e imprime o comando completo correto para copiar (com `--full-run` **e** `--backup-taken`); com as duas flags, segue com UMA confirmação mostrando o total previsto.
     4. **Pilot limitado a 100** e nunca conta como lote total; aplica pelo mesmo caminho de verificação do lote normal.
-    5. (Demais garantias) nunca toca posts já OK (guest author com foto), nunca toca posts novos/colunistas funcionais, não cria usuários nem muda permissões (só termo de taxonomia `author`), dúvida = pula para revisão manual, pós-apply faz `wp_cache_flush()`.
-- **Idempotência e rollback:** segunda execução não duplica (posts já atribuídos viram `skipped_already_assigned`); desfazer = reatribuir alvo anterior ou restaurar backup; falha no meio = re-rodar.
+    5. (Demais garantias) nunca toca posts já OK (guest author com foto), nunca toca posts novos/colunistas funcionais, não cria usuários nem muda permissões (só termo de taxonomia `author`), dúvida = pula para revisão manual (fila em `review-needed.csv`), preflight de conectividade gravatar aborta com mensagem clara se o servidor não alcança gravatar.com.
+- **Idempotência e rollback:** segunda execução não duplica (posts já atribuídos viram `skipped_already_assigned`, e posts com ledger `_ninja_legacy_byline_fix` pulam em fast-path sem queries); desfazer = reatribuir alvo anterior (byline original completa registrada no meta) ou restaurar backup; falha no meio = `--resume` ou re-rodar.
+
+## Otimização de performance e rastreabilidade (perf/252-cli-scan-optimization)
+
+**Motivação:** em dev (Redis como object cache + W3TC + tráfego), a primeira versão consumiu recursos excessivos e travou repetidas vezes. Causas: `wp_cache_flush()` a cada lote (61× = Redis inteiro limpo, site perde cache quente e a carga migra pro MySQL), cache de objeto suspenso (~27 queries/post ≈ 330k queries no full scan) e ausência de resume (qualquer queda recomeçava do zero).
+
+**Mudanças (mesmas garantias de segurança):**
+1. **Zero flush de object cache durante o scan.** Aquecimento por lote via `_prime_post_caches()` (27 → ~3 queries/post). Em caches não-persistentes, reset local de memória a cada 10 lotes (processo privado, sem impacto no site).
+2. **Invalidação pós-apply direcionada:** `clean_post_cache()` nos posts alterados + `w3tc_flush_all()` quando W3TC ativo (o page cache é o que o front lê; `wp_cache_flush()` nem o limpava).
+3. **Preflight gravatar:** 1 probe antes de escanear; sem saída para gravatar.com = aborto com orientação (antes: N timeouts de 5s + posts virando "inconclusive" em silêncio).
+4. **`--resume`** com cursor de ID persistido por lote; valida escopo igual e recusa state completo/corrompido.
+5. **Logs por lote com contadores cumulativos** (default) + `--verbose` para o formato antigo linha-a-linha.
+
+**Rastreabilidade (até finalizar o processo):**
+- **Meta por post `_ninja_legacy_byline_fix`** (JSON escondido): byline original completa (`orig_slugs`), run, timestamp — ledger de rollback e fast-path de re-scan. Nota: para posts originalmente SEM termos, o rollback recria o termo do autor original (equivalente funcional via linked account).
+- **Option `ninja_legacy_byline_fix_runs`** (autoload off, últimas 20): params, contadores, duração e caminho do relatório por run — resposta rápida a "o processo terminou?".
+- **Relatórios por run em `uploads/ninja-legacy-fix/run-<id>/`** (diretório com `.htaccess` deny + `index.php`): `report.json` (machine), `report.md` (resumo humano), `assigned.csv` (post, byline original, URL, run) e `review-needed.csv` (fila de revisão manual).
+
+**Benchmark local (dump de dev, 12.191 posts):** scan completo + verificação 15–20 min → **~45 s (~27×)**; classificação idêntica ao run de referência (OK 4.776 · assigned 6.889 · avatar 506 · other 20 · Failed 0).
+
+**Descoberta relevante para o entendimento do bug:** o estado "quebrado" real é a **ausência de termos** de autor (fallback para `post_author`). Posts com termo `cap-editorninja` resolvem, via `cap-linked_account`, para o próprio guest author NINJA (com thumbnail) — ou seja, não estão quebrados e o comando corretamente os pula como "already OK".
 
 ## Roteiro de rollout
 

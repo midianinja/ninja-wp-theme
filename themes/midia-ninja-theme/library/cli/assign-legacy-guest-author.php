@@ -10,6 +10,28 @@
  * when the target guest author has no thumbnail, confirmation-free dry-run,
  * pilot mode and a full-run gate with explicit acknowledgement flags.
  *
+ * Performance-first (perf/252-cli-scan-optimization):
+ * - No wp_cache_flush() during the scan (it wipes the WHOLE object cache —
+ *   catastrophic with Redis on a live environment). Cache is warmed per batch
+ *   via _prime_post_caches() instead of suspended, cutting ~27 queries/post
+ *   down to ~3.
+ * - End-of-run cache invalidation is targeted (clean_post_cache for changed
+ *   posts + page-cache plugin flush if present), never a full object flush.
+ * - Gravatar connectivity preflight: fails fast with a clear message when the
+ *   host cannot reach gravatar.com (instead of silently skipping thousands of
+ *   posts as "inconclusive" after 5s timeouts each).
+ * - --resume continues an interrupted full run from the last processed post ID
+ *   (cursor state persisted per batch under uploads/ninja-legacy-fix/).
+ *
+ * Audit / tracking:
+ * - Every applied post receives the hidden meta `_ninja_legacy_byline_fix`
+ *   with the FULL original byline (rollback ledger) + run id + timestamp.
+ *   Posts carrying the ledger are fast-path-skipped on rescans.
+ * - Run registry in the option `ninja_legacy_byline_fix_runs` (autoload off,
+ *   last 20 runs): params, counters, duration, report paths.
+ * - Per-run reports (JSON + Markdown + CSVs) are written to
+ *   uploads/ninja-legacy-fix/run-<id>/ (directory is web-denied).
+ *
  * Loaded from functions.php only when WP_CLI is active.
  *
  * @package hacklabTema
@@ -22,19 +44,28 @@ use WP_CLI\Utils;
 use WP_Query;
 
 /**
- * Assign a guest author to legacy posts whose byline resolves to a WP user
- * without an avatar.
+ * Assign a guest author to legacy posts byline'd by avatar-less WP users.
  */
 class Assign_Legacy_Guest_Author_Command {
 
-	const BATCH_SIZE         = 200;
-	const DRY_RUN_SAMPLE     = 20;
-	const GRAVATAR_TIMEOUT   = 5;
-	const FULL_RUN_THRESHOLD = 500;
-	const PILOT_MAX          = 100;
+	const BATCH_SIZE_DEFAULT  = 500;
+	const BATCH_SIZE_MIN      = 20;
+	const BATCH_SIZE_MAX      = 2000;
+	const DRY_RUN_SAMPLE      = 20;
+	const SKIPS_SAMPLE        = 20;
+	const GRAVATAR_TIMEOUT_DEF = 5;
+	const GRAVATAR_TIMEOUT_MIN = 1;
+	const GRAVATAR_TIMEOUT_MAX = 30;
+	const FULL_RUN_THRESHOLD  = 500;
+	const PILOT_MAX           = 100;
+	const LEDGER_META_KEY     = '_ninja_legacy_byline_fix';
+	const RUNS_OPTION_KEY     = 'ninja_legacy_byline_fix_runs';
+	const RUNS_OPTION_MAX     = 20;
+	const REPORTS_SUBDIR      = 'ninja-legacy-fix';
+	const MEMORY_FLUSH_EVERY  = 10;
 
 	/**
-	 * Caches the Gravatar check per email hash (static, per-process).
+	 * Gravatar check results per email hash (static, per-process).
 	 *
 	 * @var array<string, bool|null>
 	 */
@@ -67,6 +98,86 @@ class Assign_Legacy_Guest_Author_Command {
 	 * @var array<int>
 	 */
 	private $assigned_ids = array();
+
+	/**
+	 * Rows for the assigned.csv report (per applied post).
+	 *
+	 * @var array<array<string,mixed>>
+	 */
+	private $assigned_rows = array();
+
+	/**
+	 * Rows for the review-needed.csv report (skipped_other posts).
+	 *
+	 * @var array<array<string,mixed>>
+	 */
+	private $review_rows = array();
+
+	/**
+	 * Counters for skip lines already printed (quiet mode budget).
+	 *
+	 * @var int
+	 */
+	private $skips_shown = 0;
+
+	/**
+	 * Current run id (shared with ledger meta, reports and state file).
+	 *
+	 * @var string
+	 */
+	private $run_id = '';
+
+	/**
+	 * Unix timestamp (float) of the run start.
+	 *
+	 * @var float
+	 */
+	private $started_at = 0.0;
+
+	/**
+	 * Per-batch timings [batch => ['posts' => n, 'ms' => f]].
+	 *
+	 * @var array<array<string,float|int>>
+	 */
+	private $batch_timings = array();
+
+	/**
+	 * --batch-size (validated).
+	 *
+	 * @var int
+	 */
+	private $batch_size = self::BATCH_SIZE_DEFAULT;
+
+	/**
+	 * --gravatar-timeout (validated, seconds).
+	 *
+	 * @var int
+	 */
+	private $gravatar_timeout = self::GRAVATAR_TIMEOUT_DEF;
+
+	/**
+	 * --verbose: print every per-post line (legacy behaviour).
+	 *
+	 * @var bool
+	 */
+	private $verbose = false;
+
+	/**
+	 * Resume cursor: fixed starting point (from the state file). Only posts
+	 * with ID > resume_cursor are scanned. Unlike $cursor (running last
+	 * processed ID, persisted for the state file), this MUST NOT change
+	 * during the run — composing it with paged OFFSETs would skip posts.
+	 *
+	 * @var int
+	 */
+	private $resume_cursor = 0;
+
+	/**
+	 * Scope definition shared by state/reports (guest slug, before, types).
+	 *
+	 * @var array<string,mixed>
+	 */
+	private $scope = array();
 
 	/**
 	 * Assign a guest author to legacy posts byline'd by avatar-less WP users.
@@ -115,6 +226,22 @@ class Assign_Legacy_Guest_Author_Command {
 	 * : Acknowledge that a fresh database backup was taken just now.
 	 * Required together with --full-run for scopes above the threshold.
 	 *
+	 * [--resume]
+	 * : Continue an interrupted APPLY run of the SAME scope from the last
+	 * processed post ID (state persisted per batch under
+	 * uploads/ninja-legacy-fix/). Counters are restored cumulatively.
+	 *
+	 * [--batch-size=<N>]
+	 * : Posts per scan batch. Default 500 (20–2000).
+	 *
+	 * [--gravatar-timeout=<N>]
+	 * : Timeout in seconds for the gravatar.com probes (preflight and per
+	 * user). Default 5 (1–30).
+	 *
+	 * [--verbose]
+	 * : Print every per-post line (legacy behaviour). Default prints batch
+	 * headers, all matches (sample of 20 in dry-run) and a sample of skips.
+	 *
 	 * [--skip-theme-check]
 	 * : Skip the fail-closed active-theme template check. A warning is
 	 * logged. Only for emergencies — assigning guest authors without the
@@ -134,6 +261,9 @@ class Assign_Legacy_Guest_Author_Command {
 	 *     # 3. Full run — refuses to run without BOTH acknowledgement flags.
 	 *     wp ninja assign-legacy-guest-author --guest-author=cap-ninja --full-run --backup-taken
 	 *
+	 *     # 4. Resume an interrupted full run (same scope).
+	 *     wp ninja assign-legacy-guest-author --guest-author=cap-ninja --full-run --backup-taken --resume
+	 *
 	 *     # Manual batch of known IDs (narrow scope, no full-run flags needed).
 	 *     wp ninja assign-legacy-guest-author --guest-author=cap-ninja --post-ids=123,456
 	 *
@@ -148,8 +278,20 @@ class Assign_Legacy_Guest_Author_Command {
 		$full_run         = (bool) Utils\get_flag_value( $assoc_args, 'full-run', false );
 		$backup_taken     = (bool) Utils\get_flag_value( $assoc_args, 'backup-taken', false );
 		$skip_theme_check = (bool) Utils\get_flag_value( $assoc_args, 'skip-theme-check', false );
+		$resume           = (bool) Utils\get_flag_value( $assoc_args, 'resume', false );
+		$this->verbose    = (bool) Utils\get_flag_value( $assoc_args, 'verbose', false );
 
 		$mode = $pilot > 0 ? 'PILOT' : ( $dry_run ? 'DRY-RUN' : 'APPLY' );
+
+		// --- Tunables (fail-closed on nonsense values). ---
+		$this->batch_size = (int) Utils\get_flag_value( $assoc_args, 'batch-size', self::BATCH_SIZE_DEFAULT );
+		if ( $this->batch_size < self::BATCH_SIZE_MIN || $this->batch_size > self::BATCH_SIZE_MAX ) {
+			WP_CLI::error( sprintf( '--batch-size must be between %d and %d.', self::BATCH_SIZE_MIN, self::BATCH_SIZE_MAX ) );
+		}
+		$this->gravatar_timeout = (int) Utils\get_flag_value( $assoc_args, 'gravatar-timeout', self::GRAVATAR_TIMEOUT_DEF );
+		if ( $this->gravatar_timeout < self::GRAVATAR_TIMEOUT_MIN || $this->gravatar_timeout > self::GRAVATAR_TIMEOUT_MAX ) {
+			WP_CLI::error( sprintf( '--gravatar-timeout must be between %d and %d seconds.', self::GRAVATAR_TIMEOUT_MIN, self::GRAVATAR_TIMEOUT_MAX ) );
+		}
 
 		// --- Guard: the ACTIVE theme must already contain the template fix. ---
 		$this->guard_active_theme_templates( $skip_theme_check );
@@ -180,8 +322,8 @@ class Assign_Legacy_Guest_Author_Command {
 
 		$post_types = array_filter( array_map( 'trim', explode( ',', (string) Utils\get_flag_value( $assoc_args, 'post-types', 'post,opiniao' ) ) ) );
 		$before     = (string) Utils\get_flag_value( $assoc_args, 'before', '2023-12-01' );
-		$limit      = (int) Utils\get_flag_value( $assoc_args, 'limit', 0 );
-		$post_ids   = $this->parse_post_ids( Utils\get_flag_value( $assoc_args, 'post-ids', '' ) );
+		$limit       = (int) Utils\get_flag_value( $assoc_args, 'limit', 0 );
+		$post_ids    = $this->parse_post_ids( Utils\get_flag_value( $assoc_args, 'post-ids', '' ) );
 
 		// --- Pilot mode: validate combinations up front (fail-closed). ---
 		if ( $pilot > 0 ) {
@@ -194,14 +336,32 @@ class Assign_Legacy_Guest_Author_Command {
 			if ( $full_run || $backup_taken ) {
 				WP_CLI::error( '--pilot cannot be combined with --full-run/--backup-taken: a pilot is never a full run.' );
 			}
+			if ( $resume ) {
+				WP_CLI::error( '--pilot cannot be combined with --resume: a pilot is a small fresh batch.' );
+			}
 			if ( $pilot > self::PILOT_MAX ) {
 				WP_CLI::error( sprintf( '--pilot=%d exceeds the maximum of %d matches. A pilot is a small visual-QA batch — use --full-run --backup-taken for the total batch.', $pilot, self::PILOT_MAX ) );
 			}
 		}
+		if ( $resume && $dry_run ) {
+			WP_CLI::error( '--resume is only valid for APPLY runs: a dry-run changes nothing, so there is nothing to resume.' );
+		}
+		if ( $resume && ! empty( $post_ids ) ) {
+			WP_CLI::error( '--resume cannot be combined with --post-ids (explicit ID batches are small enough to re-run).' );
+		}
+
+		// --- Scope + run identity (shared by state, ledger and reports). ---
+		$this->scope     = array(
+			'guest' => $guest_slug,
+			'before' => $before,
+			'types' => implode( ',', $post_types ),
+		);
+		$this->run_id     = gmdate( 'Ymd-His' ) . '-' . substr( wp_hash( uniqid( '', true ) ), 0, 4 );
+		$this->started_at = microtime( true );
 
 		$counts = array(
-			'scanned'                 => 0,
-			'matched'                 => 0,
+			'scanned'                  => 0,
+			'matched'                  => 0,
 			'assigned'                => 0,
 			'skipped_ok'              => 0, // Already a guest author (byline OK).
 			'skipped_already_assigned' => 0, // Target guest author already present.
@@ -211,14 +371,42 @@ class Assign_Legacy_Guest_Author_Command {
 		);
 
 		$sample_shown = 0;
-		$total        = $this->count_candidates( $post_types, $before, $post_ids );
+
+		// --- Gravatar preflight: fail fast when egress is blocked. ---
+		$this->preflight_gravatar();
+
+		// --- Resume: restore cursor + cumulative counters from state. ---
+		$state_file = $this->state_path();
+		if ( $resume ) {
+			$state = $this->load_state();
+			if ( is_wp_error( $state ) ) {
+				WP_CLI::error( '--resume: ' . $state->get_error_message() );
+			}
+			$this->run_id       = $state['run_id'];
+			$this->started_at   = (float) $state['started_at'];
+			$this->resume_cursor = (int) $state['cursor'];
+			$this->cursor        = $this->resume_cursor;
+			foreach ( $counts as $key => $value ) {
+				if ( isset( $state['counts'][ $key ] ) ) {
+					$counts[ $key ] = (int) $state['counts'][ $key ];
+				}
+			}
+			WP_CLI::log( sprintf( 'RESUME: continuing run %s from post ID %d (previous counters restored: scanned %d, assigned %d, failed %d).', $this->run_id, $this->cursor, $counts['scanned'], $counts['assigned'], $counts['failed'] ) );
+		} elseif ( 'APPLY' === $mode && file_exists( $state_file ) ) {
+			$stale = json_decode( (string) file_get_contents( $state_file ), true );
+			if ( is_array( $stale ) && empty( $stale['completed'] ) ) {
+				WP_CLI::warning( sprintf( 'An interrupted run state exists for this scope (%s, cursor post ID %d). Use --resume to continue it, or delete the file to start over: %s', $stale['run_id'] ?? '?', $stale['cursor'] ?? 0, $state_file ) );
+			}
+		}
+
+		$total = $this->count_candidates( $post_types, $before, $post_ids, $this->resume_cursor );
 
 		if ( 0 === $total ) {
 			WP_CLI::warning( 'No published posts found for the given criteria — nothing to do.' );
-			$this->print_summary( $counts, $mode );
+			$this->finish_run( $counts, $mode );
 			return;
 		}
-		WP_CLI::log( sprintf( 'Scanning %d published post(s) of type [%s] published before %s%s (batch size %d).', $total, implode( ', ', $post_types ), $post_ids ? '(n/a — explicit IDs)' : $before, $dry_run ? ' [DRY-RUN]' : '', self::BATCH_SIZE ) );
+		WP_CLI::log( sprintf( 'Scanning %d published post(s) of type [%s] published before %s%s (batch size %d).', $total, implode( ', ', $post_types ), $post_ids ? '(n/a — explicit IDs)' : $before, $dry_run ? ' [DRY-RUN]' : '', $this->batch_size ) );
 
 		// --- Full-run gate: an APPLY whose scope exceeds the threshold and is
 		// not narrowed by --post-ids/--pilot/--limit(<=threshold) requires BOTH
@@ -265,6 +453,8 @@ class Assign_Legacy_Guest_Author_Command {
 		// PILOT confirms later, between the scan phase and the apply phase,
 		// once the exact post IDs are known.
 
+		$this->ensure_reports_root();
+
 		if ( 'PILOT' === $mode ) {
 			$this->run_pilot( $pilot, $post_types, $before, $guest_author, $guest_slug, $assoc_args, $counts, $sample_shown );
 			return;
@@ -273,11 +463,10 @@ class Assign_Legacy_Guest_Author_Command {
 		$this->run_scan( $post_ids, $post_types, $before, $limit, $guest_author, $guest_slug, $dry_run, $counts, $sample_shown );
 
 		if ( ! $dry_run ) {
-			wp_cache_flush();
-			WP_CLI::log( 'Object cache flushed.' );
+			$this->invalidate_caches_after_apply();
 		}
 
-		$this->print_summary( $counts, $mode );
+		$this->finish_run( $counts, $mode );
 	}
 
 	/**
@@ -319,7 +508,50 @@ class Assign_Legacy_Guest_Author_Command {
 	}
 
 	/**
+	 * Gravatar preflight: a single HEAD probe. When the host cannot reach
+	 * gravatar.com every per-user probe would burn --gravatar-timeout seconds
+	 * and classify thousands of posts as "inconclusive" (skipped_other),
+	 * silently producing an incomplete run — abort instead, with guidance.
+	 *
+	 * @return void
+	 */
+	private function preflight_gravatar() {
+		$hash     = md5( 'preflight@invalid.localhost' ); // Any hash works — we only test connectivity.
+		$url      = sprintf( 'https://www.gravatar.com/avatar/%s?d=404&s=32', $hash );
+		$response = wp_remote_head(
+			$url,
+			array(
+				'timeout'     => $this->gravatar_timeout,
+				'redirection' => 2,
+				'sslverify'   => true,
+			)
+		);
+
+		if ( is_wp_error( $response ) ) {
+			WP_CLI::error( sprintf(
+				"ABORTED: cannot reach gravatar.com (%s).\nThe avatar heuristic NEEDS gravatar.com to decide whether a WP user has a usable avatar. Without egress, every check times out after %ds and posts are skipped as \"inconclusive\" — the run would be useless and slow.\nFix the server egress/firewall for www.gravatar.com (port 443) and try again.",
+				$response->get_error_message(),
+				$this->gravatar_timeout
+			) );
+		}
+
+		WP_CLI::log( sprintf( 'Gravatar preflight OK (HTTP %s, timeout %ds).', wp_remote_retrieve_response_code( $response ), $this->gravatar_timeout ) );
+	}
+
+	/**
 	 * Run the scan/apply loop (explicit IDs mode or paged WP_Query mode).
+	 *
+	 * Performance model:
+	 * - Cache additions are NOT suspended; instead each batch is primed in
+	 *   bulk via _prime_post_caches() (3 bulk queries per batch) so the
+	 *   per-post work (get_post/get_coauthors/meta) mostly hits warm caches
+	 *   (~3 queries/post instead of ~27 with suspended cache).
+	 * - NO wp_cache_flush() per batch: with a persistent object cache (Redis)
+	 *   that wipes the WHOLE cache of the live site, 60+ times per run.
+	 * - On non-persistent (in-process) caches only, the local memory cache is
+	 *   reset every MEMORY_FLUSH_EVERY batches to bound RAM — harmless, it is
+	 *   private to this process.
+	 * - APPLY paged runs persist a cursor state per batch (--resume support).
 	 *
 	 * @param array  $post_ids      Explicit post IDs (empty = paged scan).
 	 * @param array  $post_types    Post types.
@@ -333,31 +565,39 @@ class Assign_Legacy_Guest_Author_Command {
 	 * @return void
 	 */
 	private function run_scan( $post_ids, $post_types, $before, $limit, $guest_author, $guest_slug, $dry_run, &$counts, &$sample_shown ) {
-		$batch = 0;
-
-		wp_suspend_cache_addition( true );
+		$batch        = 0;
+		$batches_done = 0;
 
 		if ( ! empty( $post_ids ) ) {
 			// Explicit ID mode: process the given IDs directly.
-			$chunks = array_chunk( $post_ids, self::BATCH_SIZE );
+			WP_CLI::log( sprintf( 'Scanning %d explicit post ID(s) in batches of %d...', count( $post_ids ), $this->batch_size ) );
+			$chunks = array_chunk( $post_ids, $this->batch_size );
 			foreach ( $chunks as $chunk ) {
 				++$batch;
-				WP_CLI::log( sprintf( '--- Batch %d (%d posts) ---', $batch, count( $chunk ) ) );
+				$t0 = microtime( true );
+				if ( function_exists( '_prime_post_caches' ) ) {
+					_prime_post_caches( $chunk, true, true );
+				}
 				foreach ( $chunk as $post_id ) {
 					$this->process_post( (int) $post_id, $guest_author, $guest_slug, $dry_run, $counts, $sample_shown );
 					if ( $this->should_stop_scan( $limit, $counts ) ) {
 						break 2;
 					}
 				}
+				$this->batch_timings[ $batch ] = array( 'posts' => count( $chunk ), 'ms' => ( microtime( true ) - $t0 ) * 1000 );
+				$this->log_batch_header( $batch, count( $chunk ), $counts, 'explicit IDs' );
 			}
 		} else {
 			$paged = 1;
 			while ( true ) {
+				if ( $this->resume_cursor > 0 ) {
+					add_filter( 'posts_where', array( $this, 'filter_where_id_gt' ), 10, 2 );
+				}
 				$query = new WP_Query(
 					array(
 						'post_type'              => $post_types,
 						'post_status'            => 'publish',
-						'posts_per_page'         => self::BATCH_SIZE,
+						'posts_per_page'         => $this->batch_size,
 						'paged'                  => $paged,
 						'no_found_rows'          => true,
 						'fields'                 => 'ids',
@@ -373,25 +613,84 @@ class Assign_Legacy_Guest_Author_Command {
 						),
 					)
 				);
+				if ( $this->resume_cursor > 0 ) {
+					remove_filter( 'posts_where', array( $this, 'filter_where_id_gt' ), 10 );
+				}
 				$post_ids_batch = $query->posts;
 				if ( empty( $post_ids_batch ) ) {
 					break;
 				}
 				++$batch;
-				WP_CLI::log( sprintf( '--- Batch %d (page %d, %d posts) ---', $batch, $paged, count( $post_ids_batch ) ) );
+				$t0 = microtime( true );
+				if ( function_exists( '_prime_post_caches' ) ) {
+					_prime_post_caches( $post_ids_batch, true, true );
+				}
 				foreach ( $post_ids_batch as $post_id ) {
 					$this->process_post( (int) $post_id, $guest_author, $guest_slug, $dry_run, $counts, $sample_shown );
 					if ( $this->should_stop_scan( $limit, $counts ) ) {
 						break 2;
 					}
 				}
-				unset( $query );
-				wp_cache_flush();
+				$this->cursor = (int) end( $post_ids_batch );
+				$this->batch_timings[ $batch ] = array( 'posts' => count( $post_ids_batch ), 'ms' => ( microtime( true ) - $t0 ) * 1000 );
+				$this->log_batch_header( $batch, count( $post_ids_batch ), $counts, sprintf( 'page %d', $paged ) );
+
+				if ( ! $dry_run ) {
+					$this->write_state( $counts, false );
+				}
+
+				unset( $query, $post_ids_batch );
 				++$paged;
+				++$batches_done;
+
+				// Bound RAM on non-persistent caches only (process-private).
+				if ( 0 === $batches_done % self::MEMORY_FLUSH_EVERY && ! wp_using_ext_object_cache() ) {
+					wp_cache_flush();
+				}
 			}
 		}
+	}
 
-		wp_suspend_cache_addition( false );
+	/**
+	 * posts_where filter: restrict to posts with ID greater than the resume
+	 * cursor (the scan is ordered by ID ASC, so this is a strict cursor).
+	 *
+	 * @param string   $where WHERE clause.
+	 * @param WP_Query $query Query.
+	 * @return string
+	 */
+	public function filter_where_id_gt( $where, $query ) {
+		global $wpdb;
+		if ( $this->resume_cursor > 0 ) {
+			$where .= $wpdb->prepare( " AND {$wpdb->posts}.ID > %d", $this->resume_cursor );
+		}
+		return $where;
+	}
+
+	/**
+	 * One compact progress line per batch (with cumulative counters), so long
+	 * runs give feedback without per-post spam.
+	 *
+	 * @param int   $batch  Batch number.
+	 * @param int   $n      Posts in this batch.
+	 * @param array $counts Counters.
+	 * @param string $ctx    Context label (page N / explicit IDs).
+	 * @return void
+	 */
+	private function log_batch_header( $batch, $n, $counts, $ctx ) {
+		WP_CLI::log( sprintf(
+			'--- Batch %d (%s, %d posts) | scanned %d | matched %d | skips: OK %d · assigned %d · avatar %d · other %d | failed %d ---',
+			$batch,
+			$ctx,
+			$n,
+			$counts['scanned'],
+			$counts['matched'],
+			$counts['skipped_ok'],
+			$counts['skipped_already_assigned'],
+			$counts['skipped_has_avatar'],
+			$counts['skipped_other'],
+			$counts['failed']
+		) );
 	}
 
 	/**
@@ -437,7 +736,7 @@ class Assign_Legacy_Guest_Author_Command {
 
 		if ( empty( $this->pilot_ids ) ) {
 			WP_CLI::warning( sprintf( 'PILOT: no matches found while scanning %d post(s) — nothing applied (see summary).', $counts['scanned'] ) );
-			$this->print_summary( $counts, 'PILOT' );
+			$this->finish_run( $counts, 'PILOT' );
 			return;
 		}
 
@@ -450,17 +749,17 @@ class Assign_Legacy_Guest_Author_Command {
 		foreach ( $counts as $key => $value ) {
 			$counts[ $key ] = 0;
 		}
-		$sample_shown = 0;
+		$sample_shown     = 0;
+		$this->skips_shown = 0;
 
 		WP_CLI::log( sprintf( 'PILOT phase 2/2: applying to %d post(s)...', $found ) );
 		foreach ( $this->pilot_ids as $post_id ) {
 			$this->process_post( (int) $post_id, $guest_author, $guest_slug, false, $counts, $sample_shown );
 		}
 
-		wp_cache_flush();
-		WP_CLI::log( 'Object cache flushed.' );
+		$this->invalidate_caches_after_apply();
 
-		$this->print_summary( $counts, 'PILOT' );
+		$this->finish_run( $counts, 'PILOT' );
 
 		$applied = array_intersect( $this->pilot_ids, $this->assigned_ids );
 		if ( ! empty( $applied ) ) {
@@ -523,14 +822,16 @@ class Assign_Legacy_Guest_Author_Command {
 	}
 
 	/**
-	 * Count candidate posts for the progress header.
+	 * Count candidate posts for the progress header (optionally after a
+	 * resume cursor).
 	 *
-	 * @param array $post_types Post types.
+	 * @param array  $post_types Post types.
 	 * @param string $before Before date.
-	 * @param array $post_ids Explicit post IDs (overrides everything).
+	 * @param array  $post_ids Explicit post IDs (overrides everything).
+	 * @param int    $after_id Only count posts with ID > this (resume cursor).
 	 * @return int
 	 */
-	private function count_candidates( $post_types, $before, $post_ids ) {
+	private function count_candidates( $post_types, $before, $post_ids, $after_id = 0 ) {
 		global $wpdb;
 
 		if ( $post_ids ) {
@@ -539,13 +840,20 @@ class Assign_Legacy_Guest_Author_Command {
 
 		$placeholders = implode( ',', array_fill( 0, count( $post_types ), '%s' ) );
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- placeholders used.
-		$sql = $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'publish' AND post_type IN ($placeholders) AND post_date < %s", array_merge( $post_types, array( $before . ' 00:00:00' ) ) );
+		$sql = $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'publish' AND post_type IN ($placeholders) AND post_date < %s AND ID > %d", array_merge( $post_types, array( $before . ' 00:00:00', (int) $after_id ) ) );
 
 		return (int) $wpdb->get_var( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	}
 
 	/**
 	 * Process a single post: decide match/skip and (optionally) assign.
+	 *
+	 * Order of cheap-to-expensive checks:
+	 * 1. Rollback ledger meta (fast-path: this tool already fixed the post —
+	 *    zero term/user queries needed).
+	 * 2. Target already present (idempotency).
+	 * 3. First coauthor classification (guest author / WP user).
+	 * 4. Avatar heuristic (local avatar meta, then gravatar probe).
 	 *
 	 * @param int    $post_id      Post ID.
 	 * @param object $guest_author Resolved target guest author.
@@ -559,12 +867,23 @@ class Assign_Legacy_Guest_Author_Command {
 
 		++$counts['scanned'];
 
-		$post     = get_post( $post_id );
-		$date     = $post ? $post->post_date : '?';
+		$post = get_post( $post_id );
+		$date = $post ? $post->post_date : '?';
+
+		// 1. Fast-path: the rollback ledger says a previous run of THIS tool
+		// already assigned the target to this post.
+		$ledger = get_post_meta( $post_id, self::LEDGER_META_KEY, true );
+		if ( ! empty( $ledger ) ) {
+			++$counts['skipped_already_assigned'];
+			$this->line( $post_id, $date, '(ledger)', 'SKIP', 'already fixed by a previous run of this tool (ledger meta present)', $dry_run, $counts, $sample_shown );
+			return;
+		}
+
 		$coauthors = function_exists( '\get_coauthors' ) ? \get_coauthors( $post_id ) : array();
 
 		if ( empty( $coauthors ) || ! is_array( $coauthors ) ) {
 			++$counts['skipped_other'];
+			$this->collect_review( $post_id, $date, 'no coauthors resolve' );
 			$this->line( $post_id, $date, '(no coauthors)', 'SKIP', 'no coauthors resolve', $dry_run, $counts, $sample_shown );
 			return;
 		}
@@ -596,6 +915,7 @@ class Assign_Legacy_Guest_Author_Command {
 				$this->line( $post_id, $date, $first_desc, 'SKIP', 'already OK (guest author with thumbnail)', $dry_run, $counts, $sample_shown );
 			} else {
 				++$counts['skipped_other'];
+				$this->collect_review( $post_id, $date, 'byline is a guest author WITHOUT thumbnail' );
 				$this->line( $post_id, $date, $first_desc, 'SKIP', 'byline already a guest author WITHOUT thumbnail (manual review)', $dry_run, $counts, $sample_shown );
 			}
 			return;
@@ -603,6 +923,7 @@ class Assign_Legacy_Guest_Author_Command {
 
 		if ( ! $is_wp_user || ! isset( $first->ID ) || ! ( $first->ID > 0 ) ) {
 			++$counts['skipped_other'];
+			$this->collect_review( $post_id, $date, 'first coauthor is neither a WP user nor a guest author' );
 			$this->line( $post_id, $date, $first_desc, 'SKIP', 'first coauthor is neither a WP user nor a guest author', $dry_run, $counts, $sample_shown );
 			return;
 		}
@@ -611,6 +932,7 @@ class Assign_Legacy_Guest_Author_Command {
 		$has_avatar = $this->has_usable_avatar( (int) $first->ID );
 		if ( null === $has_avatar ) {
 			++$counts['skipped_other'];
+			$this->collect_review( $post_id, $date, 'avatar check inconclusive (network)' );
 			$this->line( $post_id, $date, $first_desc, 'SKIP', 'avatar check inconclusive (network error) — NOT touched for safety', $dry_run, $counts, $sample_shown );
 			return;
 		}
@@ -622,6 +944,15 @@ class Assign_Legacy_Guest_Author_Command {
 
 		// MATCH.
 		++$counts['matched'];
+
+		// Full original byline for the rollback ledger (add_coauthors with
+		// $append=false REPLACES the whole term set).
+		$orig_slugs = array_values( array_filter( array_map(
+			static function ( $coauthor ) {
+				return isset( $coauthor->user_nicename ) ? (string) $coauthor->user_nicename : '';
+			},
+			$coauthors
+		) ) );
 
 		if ( $dry_run ) {
 			$this->line( $post_id, $date, $first_desc, 'WOULD-ASSIGN', sprintf( 'replace byline with "%s"', $guest_slug ), $dry_run, $counts, $sample_shown, true );
@@ -643,9 +974,31 @@ class Assign_Legacy_Guest_Author_Command {
 		if ( $now_first && isset( $now_first->user_nicename ) && $now_first->user_nicename === $guest_slug ) {
 			++$counts['assigned'];
 			$this->assigned_ids[] = (int) $post_id;
+
+			// Rollback ledger: full original byline + run id + timestamp.
+			update_post_meta( $post_id, self::LEDGER_META_KEY, wp_json_encode( array(
+				'v'          => 1,
+				'run'        => $this->run_id,
+				'at'         => gmdate( 'c' ),
+				'guest'      => $guest_slug,
+				'orig_first' => $first_desc,
+				'orig_slugs' => $orig_slugs,
+			), JSON_UNESCAPED_UNICODE ) );
+
+			$this->assigned_rows[] = array(
+				'post_id'    => (int) $post_id,
+				'date'       => $date,
+				'type'       => $post ? $post->post_type : '',
+				'orig_first' => $first_desc,
+				'orig_slugs' => implode( '|', $orig_slugs ),
+				'run'        => $this->run_id,
+				'at'         => gmdate( 'c' ),
+			);
+
 			$this->line( $post_id, $date, $first_desc, 'ASSIGNED', sprintf( 'byline is now "%s"', $guest_slug ), false, $counts, $sample_shown );
 		} else {
 			++$counts['failed'];
+			$this->collect_review( $post_id, $date, 'add_coauthors() verification failed' );
 			$after_desc = $now_first ? $this->describe_coauthor( $now_first ) : '(none)';
 			WP_CLI::warning( sprintf( 'Post %d: add_coauthors() did NOT take effect (first coauthor is now %s).', $post_id, $after_desc ) );
 			$this->line( $post_id, $date, $first_desc, 'FAILED', 'verification failed after add_coauthors()', false, $counts, $sample_shown );
@@ -653,8 +1006,26 @@ class Assign_Legacy_Guest_Author_Command {
 	}
 
 	/**
-	 * Output one per-post line; in dry-run only the first DRY_RUN_SAMPLE matches
-	 * are shown individually (plus every skip in verbose-ish compact form).
+	 * Collect a "review needed" row (skipped_other) for the report CSV.
+	 *
+	 * @param int    $post_id Post ID.
+	 * @param string $date    Post date.
+	 * @param string $reason  Reason.
+	 * @return void
+	 */
+	private function collect_review( $post_id, $date, $reason ) {
+		$this->review_rows[] = array(
+			'post_id' => (int) $post_id,
+			'date'    => $date,
+			'reason'  => $reason,
+		);
+	}
+
+	/**
+	 * Output one per-post line. Quiet-by-default policy:
+	 * - matches: always printed, except dry-run caps the sample at
+	 *   DRY_RUN_SAMPLE (pilots print ALL matches — they are for humans);
+	 * - skips: sample of SKIPS_SAMPLE lines unless --verbose.
 	 *
 	 * @param int    $post_id      Post ID.
 	 * @param string $date         Post date.
@@ -667,11 +1038,17 @@ class Assign_Legacy_Guest_Author_Command {
 	 * @param bool   $is_match     Whether this line is a "match".
 	 */
 	private function line( $post_id, $date, $current, $action, $reason, $dry_run, &$counts, &$sample_shown, $is_match = false ) {
-		if ( $dry_run && $is_match && $sample_shown >= self::DRY_RUN_SAMPLE ) {
-			return; // Only the sample of matches is printed individually in dry-run.
-		}
-		if ( $dry_run && $is_match ) {
-			++$sample_shown;
+		if ( $is_match ) {
+			if ( $dry_run && ! $this->pilot_collecting && $sample_shown >= self::DRY_RUN_SAMPLE ) {
+				return;
+			}
+			if ( $dry_run && ! $this->pilot_collecting ) {
+				++$sample_shown;
+			}
+		} elseif ( ! $this->verbose && $this->skips_shown >= self::SKIPS_SAMPLE ) {
+			return;
+		} elseif ( ! $is_match && ! $this->verbose ) {
+			++$this->skips_shown;
 		}
 		WP_CLI::log( sprintf( '[%s] post %d | %s | first coauthor: %s | %s', $action, $post_id, $date, $current, $reason ) );
 	}
@@ -739,9 +1116,9 @@ class Assign_Legacy_Guest_Author_Command {
 		$response = wp_remote_head(
 			$url,
 			array(
-				'timeout'     => self::GRAVATAR_TIMEOUT,
+				'timeout'     => $this->gravatar_timeout,
 				'redirection' => 2,
-				'sslverify'   => false,
+				'sslverify'   => true,
 			)
 		);
 
@@ -764,16 +1141,325 @@ class Assign_Legacy_Guest_Author_Command {
 		return null;
 	}
 
+	// -------------------------------------------------------------------------
+	// Cache invalidation (end of APPLY runs).
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Targeted invalidation after an APPLY run — NEVER a full object-cache
+	 * flush:
+	 * - clean_post_cache() for every changed post (also clears the
+	 *   co-authors-plus per-post cache key);
+	 * - page-cache plugin flush when available (W3TC) — that is the cache the
+	 *   FRONTEND actually reads; a wp_cache_flush() would not touch it and
+	 *   would wipe Redis for the whole site for nothing.
+	 *
+	 * @return void
+	 */
+	private function invalidate_caches_after_apply() {
+		foreach ( $this->assigned_ids as $post_id ) {
+			clean_post_cache( (int) $post_id );
+		}
+
+		if ( function_exists( 'w3tc_flush_all' ) ) {
+			w3tc_flush_all();
+			WP_CLI::log( sprintf( 'W3 Total Cache flushed (all) — page cache refreshed for %d changed post(s).', count( $this->assigned_ids ) ) );
+		} else {
+			WP_CLI::log( sprintf( 'Post caches cleaned for %d changed post(s). No page-cache plugin detected (no W3TC flush needed).', count( $this->assigned_ids ) ) );
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// State (resume support).
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Absolute path of the reports root (uploads basedir + subdir).
+	 *
+	 * @return string
+	 */
+	private function reports_root() {
+		$uploads = wp_upload_dir();
+		return trailingslashit( $uploads['basedir'] ) . self::REPORTS_SUBDIR;
+	}
+
+	/**
+	 * Absolute path of the state file for the current scope.
+	 *
+	 * @return string
+	 */
+	private function state_path() {
+		return $this->reports_root() . '/state-' . $this->scope_hash() . '.json';
+	}
+
+	/**
+	 * Stable hash of the scope (guest + before + types) — the state identity.
+	 *
+	 * @return string
+	 */
+	private function scope_hash() {
+		return substr( md5( implode( '|', array( $this->scope['guest'], $this->scope['before'], $this->scope['types'] ) ) ), 0, 10 );
+	}
+
+	/**
+	 * Persist the resume state (called once per batch on APPLY paged runs).
+	 *
+	 * @param array $counts     Counters.
+	 * @param bool  $completed  Whether the run has finished successfully.
+	 * @return void
+	 */
+	private function write_state( $counts, $completed ) {
+		$this->ensure_reports_root();
+		$payload = array(
+			'run_id'     => $this->run_id,
+			'scope'      => $this->scope,
+			'cursor'     => $this->cursor,
+			'counts'     => $counts,
+			'started_at' => $this->started_at,
+			'updated_at' => microtime( true ),
+			'completed'  => $completed,
+		);
+		file_put_contents( $this->state_path(), wp_json_encode( $payload, JSON_PRETTY_PRINT ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	}
+
+	/**
+	 * Load and validate the resume state for the current scope.
+	 *
+	 * @return array|\WP_Error State array or error.
+	 */
+	private function load_state() {
+		$path = $this->state_path();
+		if ( ! file_exists( $path ) ) {
+			return new \WP_Error( 'no-state', sprintf( 'no interrupted-run state found for this scope (expected %s). Run without --resume or fix the scope flags.', $path ) );
+		}
+		$state = json_decode( (string) file_get_contents( $path ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		if ( ! is_array( $state ) ) {
+			return new \WP_Error( 'bad-state', sprintf( 'state file %s is corrupt — delete it and start a fresh run (without --resume).', $path ) );
+		}
+		if ( ! empty( $state['completed'] ) ) {
+			return new \WP_Error( 'already-completed', sprintf( 'run %s already COMPLETED — nothing to resume. Delete %s to start a new run.', $state['run_id'] ?? '?', $path ) );
+		}
+		foreach ( array( 'guest', 'before', 'types' ) as $key ) {
+			if ( (string) ( $state['scope'][ $key ] ?? '' ) !== (string) $this->scope[ $key ] ) {
+				return new \WP_Error( 'scope-mismatch', sprintf( 'state scope mismatch on "%s" (state: "%s", current: "%s") — --resume must use the same --guest-author/--before/--post-types as the interrupted run.', $key, $state['scope'][ $key ] ?? '?', $this->scope[ $key ] ) );
+			}
+		}
+		return $state;
+	}
+
+	// -------------------------------------------------------------------------
+	// Reports + run registry.
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Ensure the reports root exists and is web-protected.
+	 *
+	 * @return void
+	 */
+	private function ensure_reports_root() {
+		$root = $this->reports_root();
+		if ( ! is_dir( $root ) ) {
+			wp_mkdir_p( $root );
+		}
+		$guards = array(
+			$root . '/index.php' => "<?php\n// Silence is golden.\n",
+			$root . '/.htaccess' => "<IfModule mod_authz_core.c>\nRequire all denied\n</IfModule>\n<IfModule !mod_authz_core.c>\nOrder deny,allow\nDeny from all\n</IfModule>\n",
+		);
+		foreach ( $guards as $file => $content ) {
+			if ( ! file_exists( $file ) ) {
+				file_put_contents( $file, $content ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			}
+		}
+	}
+
+	/**
+	 * Finish a run: write reports, record the run in the registry option,
+	 * mark the state completed (APPLY paged runs) and print the summary.
+	 *
+	 * @param array  $counts Counters.
+	 * @param string $mode   Run mode.
+	 * @return void
+	 */
+	private function finish_run( $counts, $mode ) {
+		$report_dir = $this->write_reports( $counts, $mode );
+		$this->record_run( $counts, $mode, $report_dir );
+		if ( 'APPLY' === $mode ) {
+			$this->write_state( $counts, true );
+		}
+		$this->print_summary( $counts, $mode, $report_dir );
+	}
+
+	/**
+	 * Write the per-run report directory (JSON + Markdown + CSVs).
+	 *
+	 * @param array  $counts Counters.
+	 * @param string $mode   Run mode.
+	 * @return string Absolute report directory (empty on failure).
+	 */
+	private function write_reports( $counts, $mode ) {
+		$this->ensure_reports_root();
+		$dir = $this->reports_root() . '/run-' . $this->run_id;
+		if ( ! is_dir( $dir ) ) {
+			wp_mkdir_p( $dir );
+		}
+		file_put_contents( $dir . '/index.php', "<?php\n// Silence is golden.\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+
+		$duration = microtime( true ) - $this->started_at;
+		$env      = array(
+			'siteurl'     => home_url(),
+			'wp_version'  => get_bloginfo( 'version' ),
+			'theme'       => wp_get_theme()->get_stylesheet(),
+			'theme_ver'   => wp_get_theme()->get( 'Version' ),
+			'php'         => PHP_VERSION,
+			'ext_cache'   => wp_using_ext_object_cache() ? 'yes' : 'no',
+			'peak_memory' => memory_get_peak_usage( true ),
+		);
+
+		$json = array(
+			'run_id'  => $this->run_id,
+			'mode'    => $mode,
+			'scope'   => $this->scope,
+			'params'  => array(
+				'batch_size'       => $this->batch_size,
+				'gravatar_timeout' => $this->gravatar_timeout,
+			),
+			'env'     => $env,
+			'counts'  => $counts,
+			'duration_sec' => round( $duration, 2 ),
+			'batches' => $this->batch_timings,
+			'reports' => array(
+				'assigned_csv'     => ( ! empty( $this->assigned_rows ) ) ? 'assigned.csv' : null,
+				'review_needed_csv' => ( ! empty( $this->review_rows ) ) ? 'review-needed.csv' : null,
+			),
+		);
+		file_put_contents( $dir . '/report.json', wp_json_encode( $json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+
+		// assigned.csv — the applied ledger of this run (columns in header order).
+		if ( ! empty( $this->assigned_rows ) ) {
+			$this->write_csv( $dir . '/assigned.csv', array( 'post_id', 'date', 'type', 'url', 'orig_first', 'orig_slugs', 'run_id', 'assigned_at' ), array_map(
+				static function ( $row ) {
+					return array(
+						$row['post_id'],
+						$row['date'],
+						$row['type'],
+						get_permalink( $row['post_id'] ),
+						$row['orig_first'],
+						$row['orig_slugs'],
+						$row['run'],
+						$row['at'],
+					);
+				},
+				$this->assigned_rows
+			) );
+		}
+
+		// review-needed.csv — manual review queue (skipped_other).
+		if ( ! empty( $this->review_rows ) ) {
+			$this->write_csv( $dir . '/review-needed.csv', array( 'post_id', 'date', 'url', 'reason' ), array_map(
+				static function ( $row ) {
+					return array(
+						$row['post_id'],
+						$row['date'],
+						get_permalink( $row['post_id'] ),
+						$row['reason'],
+					);
+				},
+				$this->review_rows
+			) );
+		}
+
+		// report.md — human summary.
+		$md  = sprintf( "# Run %s — %s\n\n", $this->run_id, $mode );
+		$md .= sprintf( "- **Escopo:** guest `%s` · antes de `%s` · tipos `%s`\n", $this->scope['guest'], $this->scope['before'], $this->scope['types'] );
+		$md .= sprintf( "- **Duração:** %.1fs (%d lotes, %d posts/lote)\n", $duration, count( $this->batch_timings ), $this->batch_size );
+		$md .= sprintf( "- **Ambiente:** WP %s · tema %s %s · PHP %s · cache externo: %s\n", $env['wp_version'], $env['theme'], $env['theme_ver'], $env['php'], $env['ext_cache'] );
+		$md .= "\n## Resultado\n\n| Métrica | Valor |\n|---|---|\n";
+		foreach ( array(
+			'Scanned'         => $counts['scanned'],
+			'Matched'         => $counts['matched'],
+			'Assigned'        => $counts['assigned'],
+			'Skipped OK'      => $counts['skipped_ok'],
+			'Skipped (assigned)' => $counts['skipped_already_assigned'],
+			'Skipped (has avatar)' => $counts['skipped_has_avatar'],
+			'Skipped (other)' => $counts['skipped_other'],
+			'Failed'          => $counts['failed'],
+		) as $k => $v ) {
+			$md .= sprintf( "| %s | %d |\n", $k, $v );
+		}
+		if ( ! empty( $this->review_rows ) ) {
+			$md .= sprintf( "\n> ⚠️ %d post(s) precisam de revisão manual — ver `review-needed.csv`.\n", count( $this->review_rows ) );
+		}
+		if ( ! empty( $this->assigned_rows ) ) {
+			$md .= sprintf( "\nLedger por post no meta `%s` (rollback). Lista completa em `assigned.csv`.\n", self::LEDGER_META_KEY );
+		}
+		file_put_contents( $dir . '/report.md', $md ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+
+		return $dir;
+	}
+
+	/**
+	 * Write rows to a CSV file.
+	 *
+	 * @param string              $path    Absolute path.
+	 * @param array<string>       $header  Column names.
+	 * @param array<array<mixed>> $rows    Rows.
+	 * @return void
+	 */
+	private function write_csv( $path, $header, $rows ) {
+		$fh = fopen( $path, 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		if ( ! $fh ) {
+			WP_CLI::warning( sprintf( 'Could not write %s.', $path ) );
+			return;
+		}
+		fputcsv( $fh, $header );
+		foreach ( $rows as $row ) {
+			fputcsv( $fh, array_map( static function ( $v ) {
+				return is_scalar( $v ) ? (string) $v : wp_json_encode( $v );
+			}, array_values( (array) $row ) ) );
+		}
+		fclose( $fh ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	}
+
+	/**
+	 * Record the run in the registry option (autoload off, last N runs).
+	 *
+	 * @param array  $counts     Counters.
+	 * @param string $mode       Mode.
+	 * @param string $report_dir Report directory.
+	 * @return void
+	 */
+	private function record_run( $counts, $mode, $report_dir ) {
+		$runs = get_option( self::RUNS_OPTION_KEY, array() );
+		if ( ! is_array( $runs ) ) {
+			$runs = array();
+		}
+		$runs[ $this->run_id ] = array(
+			'mode'         => $mode,
+			'scope'        => $this->scope,
+			'counts'       => $counts,
+			'started_at'   => $this->started_at,
+			'finished_at'  => microtime( true ),
+			'duration_sec' => round( microtime( true ) - $this->started_at, 2 ),
+			'report_dir'   => $report_dir,
+		);
+		// Keep the registry bounded: only the most recent runs.
+		if ( count( $runs ) > self::RUNS_OPTION_MAX ) {
+			$runs = array_slice( $runs, -1 * self::RUNS_OPTION_MAX, null, true );
+		}
+		update_option( self::RUNS_OPTION_KEY, $runs, false ); // autoload off.
+	}
+
 	/**
 	 * Print the final summary.
 	 *
 	 * @param array  $counts Counters.
 	 * @param string $mode   Run mode: 'DRY-RUN', 'APPLY' or 'PILOT'.
+	 * @param string $report_dir Report directory (empty string hides).
 	 * @return void
 	 */
-	private function print_summary( $counts, $mode ) {
+	private function print_summary( $counts, $mode, $report_dir = '' ) {
 		WP_CLI::log( '================ SUMMARY ================' );
-		WP_CLI::log( sprintf( 'Mode:            %s', 'DRY-RUN' === $mode ? 'DRY-RUN (no changes made)' : $mode ) );
+		WP_CLI::log( sprintf( 'Mode:            %s%s', 'DRY-RUN' === $mode ? 'DRY-RUN (no changes made)' : $mode, $this->run_id ? ' — run ' . $this->run_id : '' ) );
 		WP_CLI::log( sprintf( 'Scanned:         %d', $counts['scanned'] ) );
 		WP_CLI::log( sprintf( 'Matched:         %d', $counts['matched'] ) );
 		WP_CLI::log( sprintf( 'Assigned:        %d', $counts['assigned'] ) );
@@ -784,11 +1470,20 @@ class Assign_Legacy_Guest_Author_Command {
 		WP_CLI::log( sprintf( 'Failed:          %d', $counts['failed'] ) );
 
 		// Post-apply: sample permalinks of assigned posts (up to 5).
-		if ( 'APPLY' === $mode && ! empty( $this->assigned_ids ) ) {
+		if ( in_array( $mode, array( 'APPLY', 'PILOT' ), true ) && ! empty( $this->assigned_ids ) ) {
 			WP_CLI::log( 'Example permalinks (up to 5):' );
 			foreach ( array_slice( $this->assigned_ids, 0, 5 ) as $post_id ) {
 				WP_CLI::log( '  - ' . get_permalink( $post_id ) );
 			}
+		}
+
+		if ( ! empty( $this->review_rows ) ) {
+			WP_CLI::log( sprintf( 'Manual review queue: %d post(s) — see review-needed.csv in the report dir.', count( $this->review_rows ) ) );
+		}
+
+		if ( $report_dir ) {
+			WP_CLI::log( 'Report: ' . $report_dir . ' (report.json, report.md' . ( ! empty( $this->assigned_rows ) ? ', assigned.csv' : '' ) . ( ! empty( $this->review_rows ) ? ', review-needed.csv' : '' ) . ')' );
+			WP_CLI::log( sprintf( 'Run registry: option `%s` · rollback ledger: post meta `%s`.', self::RUNS_OPTION_KEY, self::LEDGER_META_KEY ) );
 		}
 	}
 }

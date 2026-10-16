@@ -28,6 +28,22 @@ Espelham a issue #335:
 - **Não usar contraseletor com `inherit` no template:** mataria o `font-size:100px` do h1 (herdaria 16px do módulo). A correção é a remoção.
 - **Classificação:** Minimal (comportamento de um ponto — remoção de um bloco de CSS + rebuild de 1 chunk), confirmada pelo humano (@filipesouzadev) na sessão de 2026-10-16; 0 perguntas de eliciação (tudo derivado do diagnóstico).
 
+## Ajuste do teste humano (2026-10-16, 2ª rodada) — regressão de cor
+
+- **Contexto:** no teste local pós-PR #338, o alinhamento corrigiu, mas os parágrafos ficaram ilegíveis (escuros sobre fundo escuro). O bloco removido misturava dois efeitos: tipografia errada (o bug) e `p { color: white }` — carga real, pois o CSS de design do antigo não define cor para os `p` (só o h1 tem `#f5d66f !important`). Sem o martelo, a regra direta do tema `p:not(.has-text-color) { color: var(--primary-pure) }` (`_a-typography.scss:83`) vencia a cor herdada do módulo Divi.
+- **Correção:** regra escopada de cor no mesmo ponto do SCSS — `.et_pb_text_inner { p { color: white } }` (especificidade (1,2,1), igual ao antigo martelo; perde apenas para a exceção `et_pb_row_52` (cartões claros, p preto) e para estilos inline/`!important`). Cor idêntica ao estado pré-fix + tipografia do design. Desvio do plano original declarado no `deviations.md` (Deviation 2).
+- **Consentimento humano:** "aplique e cheque por favor se o bloco removido afeta outras áreas do site" (2026-10-16).
+
+## Auditoria de impacto do bloco removido (2026-10-16)
+
+- **Outras páginas do site: nenhuma afetada.** `page-cpi-da-covid` só nasce de `add_slug_body_class` (`library/utils.php:329`, `{post_type}-{post_name}`) — exclusiva da página CPI; os seletores removidos não existem em nenhum outro arquivo do tema.
+- **Dentro da página: nenhuma regressão além da cor de p (corrigida acima).** Cobertura por módulo confirmada contra o `embed-cpi-design-css` de produção: títulos dourados por `!important` intactos; cartões claros (row_52) pretos por regra mais específica; clones de perfis no modal imunes (fora de `#app`).
+- **Divergências PRÉ-EXISTENTES vs site antigo (não causadas por esta rodada — o martelo fazia igual; follow-ups):**
+  1. Perfis no fluxo da seção 34 (módulos 99–149): p branco sobre cartão branco (design pedia `#000`) — invisíveis desde 2024; os clones no modal renderizam corretamente.
+  2. `font-size` dos p: o design define tamanho por módulo (17px no E AGORA, 11px no rodapé), mas a regra direta do tema `p { font-size: 1rem }` vence a herança → 16px efetivos. Critério 2 da #335 meio-atendido (entrelinha 34.2px ✓, 17px ✗) — proposta de regra escopada `font-size: inherit` pendente de decisão humana.
+  3. Typekit ausente (Archivo Expanded cai em Helvetica) — já mapeado no escopo.
+  4. `li` herda 16px vs ~14px no antigo — cosmético.
+
 ## Entrega (2026-10-16)
 
 - **PR #338** (`fix/335-cpi-e-agora-alinhamento` → `develop`): commits `01c2f249` (fix — −40 linhas em 2 arquivos: `_p-page.scss` −21, `dist/css/_p-page.css` −19) e `8b8cfd79` (docs R06: escopo + registro de desvios).

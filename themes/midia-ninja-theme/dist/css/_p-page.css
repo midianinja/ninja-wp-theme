@@ -60,6 +60,10 @@
   display: none;
 }
 
+.page-cpi-da-covid #app .et_pb_text_inner p {
+  color: white;
+}
+
 .page-cpi-da-covid #app .et_pb_row_52 .et_pb_text {
   height: -moz-fit-content !important;
   height: fit-content !important;

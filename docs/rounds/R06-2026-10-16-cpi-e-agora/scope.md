@@ -28,6 +28,9 @@ Espelham a issue #335:
 - **Não usar contraseletor com `inherit` no template:** mataria o `font-size:100px` do h1 (herdaria 16px do módulo). A correção é a remoção.
 - **Classificação:** Minimal (comportamento de um ponto — remoção de um bloco de CSS + rebuild de 1 chunk), confirmada pelo humano (@filipesouzadev) na sessão de 2026-10-16; 0 perguntas de eliciação (tudo derivado do diagnóstico).
 
-## Entrega
+## Entrega (2026-10-16)
 
-*(a preencher no fechamento da rodada)*
+- **PR #338** (`fix/335-cpi-e-agora-alinhamento` → `develop`): commits `01c2f249` (fix — −40 linhas em 2 arquivos: `_p-page.scss` −21, `dist/css/_p-page.css` −19) e `8b8cfd79` (docs R06: escopo + registro de desvios).
+- **Build do chunk:** modo development via container node:14 do watcher — o dev rebuild reproduziu `embed-cpi-modal.js`/`embed-cpi-modal.asset.php` byte-idênticos ao HEAD; o build production minificava e reescrevia o chunk inteiro. Desvio declarado no `deviations.md` (Deviation 1).
+- **Verificação (evidência executada):** diff exato de 2 arquivos; grep do chunk compilado sem os seletores globais removidos (resta apenas a regra escopada `.et_pb_row_52 .et_pb_text_inner p`); `.et_pb_section_2` preservado; contagem de blocos de regra 81 → 77.
+- **Aceitação:** pendente — veredito humano por critério (issue #335), após validação local/dev.

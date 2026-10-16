@@ -60,23 +60,8 @@
   display: none;
 }
 
-.page-cpi-da-covid #app .et_pb_text_inner {
-  font-family: "Tungsten";
-  font-size: 1.5rem;
-}
-
-.page-cpi-da-covid #app .et_pb_text_inner h1 {
-  font-size: 5rem;
-}
-
 .page-cpi-da-covid #app .et_pb_text_inner p {
   color: white;
-  font-family: "Tungsten";
-  font-size: 1.5rem;
-}
-
-.page-cpi-da-covid #app .et_pb_text_inner ul li {
-  font-size: 1.2rem;
 }
 
 .page-cpi-da-covid #app .et_pb_row_52 .et_pb_text {

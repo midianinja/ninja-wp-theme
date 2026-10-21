@@ -94,6 +94,49 @@
             }
         }
 
+        // ===== Mobile (≤768px) — revisão 1 da #335 =====
+        // Carômetro (#carometro): no mobile o CSS do antigo exibe as rows
+        // flex de 2 colunas (display:flex global no design CSS; as rows de
+        // 6 colunas são display:none ≤980px). O embed não carrega o CSS
+        // núcleo do Divi, então essas colunas não recebem largura: como
+        // itens flex ficam com min-width:auto (~232px cada — retrato de
+        // 200px + margens), as duas juntas transbordam a tela e o
+        // overflow-x:hidden do template corta o bloco, sem scroll lateral.
+        // Correção: rows quebram linha e centram; colunas com base fluida
+        // (2-up em telas ≥~500px, 1-up em celulares) e conteúdo centrado.
+        @media (max-width: 768px) {
+            #carometro {
+
+                .et_pb_row {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                .et_pb_column {
+                    flex: 1 1 240px;
+                    min-width: 0;
+                    text-align: center;
+                }
+            }
+
+            // Títulos dourados em tungsten (iNTRODUÇÃO, LINHA DO TEMPO,
+            // CARÔMETRO, A CPI NAS REDES, RELATÓRIO, E AGORA?, CRÉDITOS…):
+            // fonte condensada deixa as letras coladas no mobile.
+            .et_pb_text_0 h1,
+            .et_pb_text_1 h1,
+            .et_pb_text_82 h1,
+            .et_pb_text_83 h1,
+            .et_pb_text_84 h2,
+            .et_pb_text_85 h1,
+            .et_pb_text_86 h1,
+            .et_pb_text_87 h1,
+            .et_pb_text_95 h1,
+            .et_pb_text_96 h1,
+            .et_pb_text_97 h1,
+            .et_pb_text_98 h1 {
+                letter-spacing: 0.05em;
+            }
+        }
 
         #main-footer {
             display: none;

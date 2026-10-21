@@ -80,6 +80,34 @@
   line-height: 1;
 }
 
+@media (max-width: 768px) {
+  .page-cpi-da-covid #app #carometro .et_pb_row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .page-cpi-da-covid #app #carometro .et_pb_column {
+    flex: 1 1 240px;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .page-cpi-da-covid #app .et_pb_text_0 h1,
+  .page-cpi-da-covid #app .et_pb_text_1 h1,
+  .page-cpi-da-covid #app .et_pb_text_82 h1,
+  .page-cpi-da-covid #app .et_pb_text_83 h1,
+  .page-cpi-da-covid #app .et_pb_text_84 h2,
+  .page-cpi-da-covid #app .et_pb_text_85 h1,
+  .page-cpi-da-covid #app .et_pb_text_86 h1,
+  .page-cpi-da-covid #app .et_pb_text_87 h1,
+  .page-cpi-da-covid #app .et_pb_text_95 h1,
+  .page-cpi-da-covid #app .et_pb_text_96 h1,
+  .page-cpi-da-covid #app .et_pb_text_97 h1,
+  .page-cpi-da-covid #app .et_pb_text_98 h1 {
+    letter-spacing: 0.05em;
+  }
+}
+
 .page-cpi-da-covid #app #main-footer {
   display: none;
 }

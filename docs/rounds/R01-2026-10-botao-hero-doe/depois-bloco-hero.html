@@ -1,0 +1,1298 @@
+<!-- wp:themeisle-blocks/advanced-columns {"id":"wp-block-themeisle-blocks-advanced-columns-1b29dc79","columns":1,"layout":"equal","paddingTablet":{"top":"40px","bottom":"40px","left":"20px","right":"20px"},"paddingMobile":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"margin":{"top":"-40px","right":"0px","bottom":"-40px","left":"0px"},"marginTablet":{"top":"0px","bottom":"0px"},"columnsWidth":"100vw","horizontalAlign":"center","columnsHeight":"custom","columnsHeightCustom":"85vh","verticalAlign":"center","backgroundImage":{"id":4604518,"url":"https://midianinja.org/wp-content/uploads/2025/09/circuitoninjacerrado-avatar-1x1-1.webp"},"backgroundPosition":{"x":0.75,"y":0.88},"backgroundRepeat":"no-repeat","backgroundSize":"cover","backgroundOverlayOpacity":2,"backgroundOverlayType":"image","backgroundOverlayColor":"#d7432b","backgroundOverlayAttachment":"fixed","backgroundOverlayPosition":{"x":0.54,"y":0.57},"backgroundOverlayRepeat":"no-repeat","backgroundOverlaySize":"cover","backgroundOverlayFilterBrightness":18,"border":{"top":"0px","bottom":"0px","left":"0px","right":"0px"},"borderRadius":{"top":"0px","bottom":"0px","left":"0px","right":"0px"},"dividerTopWidth":100,"dividerTopWidthTablet":100,"dividerTopWidthMobile":100,"dividerTopHeight":100,"dividerTopHeightTablet":100,"dividerTopHeightMobile":100,"dividerBottomWidth":100,"dividerBottomWidthTablet":100,"dividerBottomWidthMobile":100,"dividerBottomHeight":100,"dividerBottomHeightTablet":100,"dividerBottomHeightMobile":100,"columnsHTMLTag":"section","align":"full","className":"","metadata":{"name":"hero"},"hasCustomCSS":true} -->
+<section id="wp-block-themeisle-blocks-advanced-columns-1b29dc79" class="wp-block-themeisle-blocks-advanced-columns alignfull has-1-columns has-desktop-equal-layout has-tablet-equal-layout has-mobile-equal-layout has-vertical-center"><div class="wp-block-themeisle-blocks-advanced-columns-overlay"></div><div class="innerblocks-wrap">
+<!-- wp:themeisle-blocks/advanced-column {"id":"wp-block-themeisle-blocks-advanced-column-705b9bdf","columnWidth":"100","className":""} -->
+<div id="wp-block-themeisle-blocks-advanced-column-705b9bdf" class="wp-block-themeisle-blocks-advanced-column">
+<!-- wp:html -->
+<div class="ninja-hero-fullscreen">
+    <!-- Imagem de fundo com efeito Ken Burns -->
+    <img src="https://midianinja.org/wp-content/uploads/2026/09/55476592752_ada720bcae_k-1.jpg"
+        alt="Multidão em manifestação, celulares e luzes erguidos, Mídia NINJA"
+        class="hero-bg-kenburns"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+    />
+    <!-- Camada escura para melhorar a leitura do texto -->
+    <div class="hero-overlay"></div>
+    <!-- Conteúdo central -->
+    <div class="hero-container-center">
+        <div class="hero-logo-wrapper">
+            <img src="https://midianinja.org/wp-content/themes/midia-ninja-theme/assets/images/logo-olhos.png"
+                alt="Mídia Ninja"
+                class="hero-logo-img"
+            />
+        </div>
+        <h1 class="hero-main-title">APOIE A MÍDIA NINJA</h1>
+        <a class="hero-cta-btn" href="#apoie-agora">QUERO APOIAR</a>
+    </div>
+</div>
+<div id="mn-apoiar" class="mn-no-js">
+ <p class="mn-photo-credit">Ato Musical contra a PEC da Blindagem · 21/09/2025 · Rio de Janeiro. Foto: acervo Mídia NINJA</p>
+</div>
+<style>
+/* ==========================================
+   HERO FULLSCREEN
+   ========================================== */
+#app { overflow: clip !important; }
+.ninja-hero-fullscreen {
+    position: relative;
+    width: 100vw;
+    min-height: 93vh;
+    min-height: 93svh;
+margin-top:-100px!important;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    contain: paint;
+}
+/* ==========================================
+   IMAGEM DE FUNDO
+   ========================================== */
+.hero-bg-kenburns {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center center;
+    z-index: 0;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    animation: kenBurnsAnimation 18s infinite alternate ease-in-out;
+}
+/* ==========================================
+   EFEITO KEN BURNS
+   ========================================== */
+@keyframes kenBurnsAnimation {
+    0% {
+        transform: translateZ(0) scale(1) translate(0%, 0%);
+    }
+    50% {
+        transform: translateZ(0) scale(1.07) translate(-0.8%, -0.4%);
+    }
+    100% {
+        transform: translateZ(0) scale(1.14) translate(0.8%, 0.6%);
+    }
+}
+/* ==========================================
+   OVERLAY ESCURO
+   ========================================== */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 8, 12, 0.65);
+    z-index: 1;
+}
+/* ==========================================
+   CONTAINER DO CONTEÚDO
+   ========================================== */
+.hero-container-center {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInHero 1s ease-out forwards;
+}
+/* ==========================================
+   LOGO
+   ========================================== */
+.hero-logo-wrapper {
+    margin-bottom: 1rem;
+}
+.hero-logo-img {
+    display: block;
+    width: 110px;
+    height: auto;
+    filter: drop-shadow(
+        0 4px 12px rgba(0, 0, 0, 0.6)
+    );
+}
+/* ==========================================
+   TÍTULO
+   ========================================== */
+.hero-main-title {
+    font-family: MidiaNinja !important;
+    font-feature-settings: "calt" on !important;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: 2px;
+    color: #ffffff !important;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.9),
+        0 0 25px rgba(255, 0, 127, 0.3);
+}
+/* ==========================================
+   OUTROS TÍTULOS DO SITE
+   ========================================== */
+h1 {
+    font-family: MidiaNinja,sans-serif !important;
+    font-feature-settings: "calt" on !important;
+}
+h2 {
+    font-family: MidiaNinja,sans-serif !important;
+    font-feature-settings: "calt" on !important;
+}
+.hero-main-title h1{font-family: MidiaNinja !important;
+    font-feature-settings: "calt" on !important;
+}} 
+/* ==========================================
+   ANIMAÇÃO DE ENTRADA
+   ========================================== */
+@keyframes fadeInHero {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ==========================================
+   BOTÃO QUERO APOIAR
+   ========================================== */
+.hero-cta-btn {
+    display: inline-block;
+    background: #d7432b;
+    color: #ffffff;
+    font-family: MidiaNinja,sans-serif;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.9rem 2.4rem;
+    border-radius: 4px;
+    margin-top: 1.75rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.hero-cta-btn:hover,
+.hero-cta-btn:active {
+    background: #b8351f;
+}
+.hero-cta-btn:active {
+    transform: scale(0.98);
+}
+.hero-cta-btn:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
+}
+/* Rolagem suave até a âncora (respeita redução de movimento) */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+/* ==========================================
+   MOBILE
+   ========================================== */
+@media (max-width: 767px) {
+    .ninja-hero-fullscreen {
+        width: 100% !important;
+        min-height: 100svh !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .hero-bg-kenburns {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: cover !important;
+        object-position: center center;
+    }
+    .hero-container-center {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.5rem;
+        box-sizing: border-box;
+    }
+    .hero-logo-img {
+        width: 80px;
+    }
+    .hero-main-title {
+        font-size: clamp(2rem, 9vw, 3rem);
+        line-height: 1.05;
+        letter-spacing: 1px;
+    }
+    .hero-cta-btn {
+        padding: 0.8rem 1.6rem;
+        font-size: 0.95rem;
+        width: auto;
+    }
+}
+/* ==========================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg-kenburns {
+        animation: none;
+    }
+    .hero-container-center {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+<!-- /wp:html -->
+</div>
+<!-- /wp:themeisle-blocks/advanced-column -->
+</div></section>
+<!-- /wp:themeisle-blocks/advanced-columns -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column {"width":"70%","className":"ticss-b3baeadb"} -->
+<div class="wp-block-column ticss-b3baeadb" style="flex-basis:70%"><!-- wp:spacer {"height":"64px"} -->
+<div style="height:64px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:spacer {"height":"39px"} -->
+<div style="height:39px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:html -->
+<div class="mn-intro mn-reveal">
+    <h2 class="mn-display mn-title">Ajude a manter uma comunicação independente, livre e em movimento.</h2>
+    <p>Há mais de uma década, a Mídia NINJA acompanha de perto as principais mobilizações políticas, sociais, culturais e ambientais do Brasil, conectando ruas, territórios e redes..</p>
+    <p>Produzimos jornalismo, fotografia, audiovisual, coberturas em tempo real e conteúdo digital para ampliar vozes, disputar narrativas e fortalecer a democracia.</p>
+   </div>
+<!-- /wp:html -->
+
+<!-- wp:spacer {"height":"43px"} -->
+<div style="height:43px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:themeisle-blocks/advanced-columns {"id":"wp-block-themeisle-blocks-advanced-columns-9aee0f72","columns":1,"layout":"equal","className":""} -->
+<div id="wp-block-themeisle-blocks-advanced-columns-9aee0f72" class="wp-block-themeisle-blocks-advanced-columns has-1-columns has-desktop-equal-layout has-tablet-equal-layout has-mobile-equal-layout has-vertical-unset"><div class="wp-block-themeisle-blocks-advanced-columns-overlay"></div><div class="innerblocks-wrap">
+<!-- wp:themeisle-blocks/advanced-column {"id":"wp-block-themeisle-blocks-advanced-column-37c24d55","columnWidth":"100","className":""} -->
+<div id="wp-block-themeisle-blocks-advanced-column-37c24d55" class="wp-block-themeisle-blocks-advanced-column">
+<!-- wp:html -->
+<div id="mn-apoiar" class="mn-no-js">
+<figure class="mn-hero">
+    <img src="https://midianinja.org/wp-content/uploads/2026/09/55473155362_388ba70a92_k-1.jpg"
+      alt="Multidão densa em manifestação, celulares e luzes erguidos, simbolizando a rede de vozes da Mídia NINJA"/>
+  </figure>
+  <p class="mn-photo-credit">Ato Musical contra a PEC da Blindagem · 21/09/2025 · Rio de Janeiro. Foto: acervo Mídia NINJA</p>
+</div>
+<!-- /wp:html -->
+</div>
+<!-- /wp:themeisle-blocks/advanced-column -->
+</div></div>
+<!-- /wp:themeisle-blocks/advanced-columns -->
+
+<!-- wp:group {"align":"wide","className":"ticss-0a54b791","layout":{"type":"constrained"},"anchor":"apoie-agora"} -->
+<div class="wp-block-group alignwide ticss-0a54b791" id="apoie-agora"><!-- wp:spacer {"height":"48px"} -->
+<div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:heading {"style":{"typography":{"textAlign":"center"}},"fontFamily":"midianinja","anchor":"h-apoie-a-midia-ninja"} -->
+<h2 class="wp-block-heading has-text-align-center has-midianinja-font-family has-custom-font" id="h-apoie-a-midia-ninja" style="font-family:midianinja">Apoie a Mídia Ninja</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"has-text-align-center","style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center">Ajude a manter uma comunicação <strong>independente</strong>, <strong>livre</strong> e <strong>em movimento</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"has-text-align-center","style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center">Escolha como contribuir. Você pode fazer uma doação única ou apoiar de forma recorrente, mensal ou anual.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"has-text-align-center","style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center"><strong>Formas de pagamento</strong>: cartão de crédito ou Pix.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<div data-fde-donate="" data-campaign="midia-ninja">
+    <a href="https://ninjaverso.com.br/donate?campaign=midia-ninja">Doe agora</a>
+</div>
+<script src="https://ninjaverso.com.br/wp-content/themes/ninjaverso/assets/js/donate-embed.js" async=""></script>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"has-text-align-center","style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center"><strong>Doação única:</strong> uma contribuição feita uma vez.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"has-text-align-center","style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center"><strong>Doação recorrente:</strong> sua contribuição se repete mensal ou anualmente, ajudando a dar continuidade e previsibilidade ao nosso trabalho.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer {"height":"36px"} -->
+<div style="height:36px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer --></div>
+<!-- /wp:group -->
+
+<!-- wp:themeisle-blocks/advanced-columns {"id":"wp-block-themeisle-blocks-advanced-columns-da8bfe82","columns":1,"layout":"equal","paddingTablet":{"top":"40px","bottom":"40px","left":"20px","right":"20px"},"paddingMobile":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"marginTablet":{"top":"0px","bottom":"0px"},"columnsWidth":"100vw","horizontalAlign":"center","verticalAlign":"center","backgroundImage":{"id":4604518,"url":"https://midianinja.org/wp-content/uploads/2025/09/circuitoninjacerrado-avatar-1x1-1.webp"},"backgroundPosition":{"x":0.75,"y":0.88},"backgroundRepeat":"no-repeat","backgroundSize":"cover","backgroundOverlayOpacity":2,"backgroundOverlayType":"image","backgroundOverlayColor":"#d7432b","backgroundOverlayAttachment":"fixed","backgroundOverlayPosition":{"x":0.54,"y":0.57},"backgroundOverlayRepeat":"no-repeat","backgroundOverlaySize":"cover","backgroundOverlayFilterBrightness":18,"border":{"top":"0px","bottom":"0px","left":"0px","right":"0px"},"borderRadius":{"top":"0px","bottom":"0px","left":"0px","right":"0px"},"dividerTopWidth":100,"dividerTopWidthTablet":100,"dividerTopWidthMobile":100,"dividerTopHeight":100,"dividerTopHeightTablet":100,"dividerTopHeightMobile":100,"dividerBottomWidth":100,"dividerBottomWidthTablet":100,"dividerBottomWidthMobile":100,"dividerBottomHeight":100,"dividerBottomHeightTablet":100,"dividerBottomHeightMobile":100,"columnsHTMLTag":"section","align":"full","className":"","metadata":{"name":"Por que Apoiar"},"hasCustomCSS":true} -->
+<section id="wp-block-themeisle-blocks-advanced-columns-da8bfe82" class="wp-block-themeisle-blocks-advanced-columns alignfull has-1-columns has-desktop-equal-layout has-tablet-equal-layout has-mobile-equal-layout has-vertical-center"><div class="wp-block-themeisle-blocks-advanced-columns-overlay"></div><div class="innerblocks-wrap">
+<!-- wp:themeisle-blocks/advanced-column {"id":"wp-block-themeisle-blocks-advanced-column-c286e483","padding":{"top":"0px","right":"0px","bottom":"30px","left":"0px"},"columnWidth":"100","className":""} -->
+<div id="wp-block-themeisle-blocks-advanced-column-c286e483" class="wp-block-themeisle-blocks-advanced-column">
+<!-- wp:columns {"verticalAlignment":"top","align":"wide"} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-top">
+<!-- wp:column {"verticalAlignment":"top","width":"100vw"} -->
+<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:100vw"></div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+<!-- wp:html -->
+<style>
+ 
+  #mn-apoiar, #mn-apoiar * { box-sizing: border-box; margin: 0; padding: 0; }
+  #mn-apoiar {
+    --ink: #0b0b0b;
+    --gray: #6e6e6c;
+    --hairline: #dcdcd9;
+font-family:MidiaNinja,sans-serif!important;
+     color: var(--ink);
+    background: #ffffff !important;
+  }
+  #mn-apoiar .mn-intro,
+  #mn-apoiar .mn-pillars {
+    background: #ffffff !important;
+  }
+  #mn-apoiar .mn-display {
+font-family:MidiaNinja,sans-serif!important;
+font-feature-settings:"calt" on;
+    font-weight: 700;
+    line-height: 1.05;
+  }
+  /* ---------- IMAGEM DA MULTIDÃO (sem texto por cima) ---------- */
+  /* Truque pra furar a coluna estreita de conteúdo do tema e
+     ficar full-bleed (borda a borda), já que o bloco HTML do
+     Gutenberg não tem opção nativa de alinhamento "largo". */
+  #mn-apoiar .mn-hero {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    height: clamp(280px, 42vw, 460px);
+    overflow: hidden;
+    background: #e8e8e5;
+  }
+  #mn-apoiar .mn-hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ajuste pra priorizar rostos/densidade da foto real */
+    object-position: center 65%;
+   /* filter: grayscale(0) contrast(1.08) brightness(0.98);*/ 
+    will-change: transform;
+    animation: mn-kenburns 28s cubic-bezier(.4,0,.2,1) infinite alternate;
+  }
+  /* Ken Burns real: zoom + deslocamento lento do quadro */
+  @keyframes mn-kenburns {
+    from { transform: scale(1.06) translate(0%, 0%); }
+    to   { transform: scale(1.18) translate(-2.5%, -2%); }
+  }
+  #mn-apoiar .mn-photo-credit {
+    max-width: 640px;
+    margin: 0.6rem auto 0;
+    padding: 0 clamp(1.25rem, 5vw, 2rem);
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--gray);
+    letter-spacing: 0.02em;
+  }
+  /* ---------- TÍTULO + TEXTO DE INTRODUÇÃO ---------- */
+  #mn-apoiar .mn-intro {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 5vw, 2rem) clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  #mn-apoiar .mn-intro.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #mn-apoiar .mn-title {
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    margin-bottom: 1.4rem;
+font-family:MidiaNinja,sans-serif!important;
+ 
+  }
+  #mn-apoiar .mn-intro p {
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.1rem;
+  }
+  #mn-apoiar .mn-intro p:last-child { margin-bottom: 0; }
+  /* ---------- SUB-BLOCO: SEU APOIO FORTALECE ---------- */
+  #mn-apoiar .mn-pillars {
+    padding: clamp(1rem, 4vw, 2rem) clamp(1.25rem, 5vw, 3.5rem) clamp(4rem, 8vw, 6rem);
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  #mn-apoiar .mn-pillars-title {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+  }
+  #mn-apoiar .mn-network {
+    display: flex;
+    justify-content: space-between;
+    gap: 2.5rem;
+    position: relative;
+    list-style: none;
+  }
+  #mn-apoiar .mn-line {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    height: 1px;
+    background: var(--hairline);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 1s cubic-bezier(.65,.05,.36,1);
+  }
+  #mn-apoiar .mn-pillars.is-visible .mn-line {
+    transform: scaleX(1);
+  }
+  #mn-apoiar .mn-node {
+    position: relative;
+    flex: 1;
+    text-align: center;
+  }
+  #mn-apoiar .mn-node:nth-child(1) { --i: 0; }
+  #mn-apoiar .mn-node:nth-child(2) { --i: 1; }
+  #mn-apoiar .mn-node:nth-child(3) { --i: 2; }
+  #mn-apoiar .mn-node:nth-child(4) { --i: 3; }
+  /* ícone no lugar da bolinha */
+  #mn-apoiar .mn-icon {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin: 0 auto 1.4rem;
+    position: relative;
+    z-index: 1;
+    color: var(--ink);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity .4s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+    transition-delay: calc(var(--i, 0) * 180ms + 150ms);
+  }
+  #mn-apoiar .mn-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  #mn-apoiar .mn-node h4 {
+font-family:MidiaNinja,sans-serif!important;
+     font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.005em;
+    margin-bottom: 0.65rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .5s ease, transform .5s ease;
+    transition-delay: calc(var(--i, 0) * 180ms + 260ms);
+  }
+  #mn-apoiar .mn-node p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--gray);
+    max-width: 240px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .5s ease, transform .5s ease;
+    transition-delay: calc(var(--i, 0) * 180ms + 320ms);
+  }
+  #mn-apoiar .mn-pillars.is-visible .mn-icon {
+    opacity: 1;
+    transform: scale(1);
+  }
+  #mn-apoiar .mn-pillars.is-visible .mn-node h4,
+  #mn-apoiar .mn-pillars.is-visible .mn-node p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* ---------- RESPONSIVO ---------- */
+  @media (max-width: 860px) {
+    #mn-apoiar .mn-network {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2.25rem;
+    }
+    #mn-apoiar .mn-line {
+      top: 14px;
+      bottom: 14px;
+      left: 13px;
+      right: auto;
+      width: 1px;
+      height: auto;
+      transform: scaleY(0);
+      transform-origin: top left;
+    }
+    #mn-apoiar .mn-pillars.is-visible .mn-line {
+      transform: scaleY(1);
+    }
+    #mn-apoiar .mn-node {
+      text-align: left;
+      padding-left: 2.75rem;
+    }
+    #mn-apoiar .mn-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 0;
+    }
+    #mn-apoiar .mn-node p {
+      max-width: none;
+    }
+  }
+  @media (max-width: 480px) {
+    #mn-apoiar .mn-title { font-size: 1.9rem; }
+    #mn-apoiar .mn-intro p { font-size: 1rem; }
+  }
+  /* ---------- ACESSIBILIDADE: respeita "reduzir movimento" ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    #mn-apoiar .mn-hero img { animation: none; }
+    #mn-apoiar .mn-intro,
+    #mn-apoiar .mn-line,
+    #mn-apoiar .mn-icon,
+    #mn-apoiar .mn-node h4,
+    #mn-apoiar .mn-node p {
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+  /* fallback se o JS não rodar por algum motivo */
+  #mn-apoiar.mn-no-js .mn-intro,
+  #mn-apoiar.mn-no-js .mn-line,
+  #mn-apoiar.mn-no-js .mn-icon,
+  #mn-apoiar.mn-no-js .mn-node h4,
+  #mn-apoiar.mn-no-js .mn-node p {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+</style>
+<div id="mn-apoiar" class="mn-no-js">
+  <!-- Substitua o src pela imagem final. Priorize rostos e
+       densidade da multidão no enquadramento; evite recorte
+       aberto (céu, prédio, espaço vazio em excesso). -->
+  
+  <div class="mn-intro mn-reveal">
+    <h2 class="mn-display mn-title">Por que apoiar</h2>
+    <p>A Mídia NINJA nasceu da colaboração e da construção coletiva.</p>
+    <p>Somos uma rede independente de comunicação que conecta jornalistas, fotógrafos, realizadores, comunicadores, artistas, movimentos e territórios em diferentes partes do Brasil e do mundo.</p>
+    <p>Sua contribuição ajuda a manter nossa capacidade de produzir, circular e reagir com agilidade aos acontecimentos.</p>
+  </div>
+  <div class="mn-pillars mn-reveal">
+    <h3 class="mn-display mn-pillars-title">Seu apoio fortalece</h3>
+    <ul class="mn-network">
+      <li class="mn-node">
+        <span class="mn-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"></path><circle cx="12" cy="13" r="3.2"></circle></svg>
+        </span>
+        <h4>Jornalismo e coberturas</h4>
+        <p>Reportagens, fotografia, vídeo, transmissões e cobertura de acontecimentos políticos, culturais, sociais e ambientais.</p>
+      </li>
+      <li class="mn-node">
+        <span class="mn-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"></path><circle cx="12" cy="9" r="2.4"></circle></svg>
+        </span>
+        <h4>Presença nos territórios</h4>
+        <p>Deslocamentos e estrutura para estar junto de movimentos, comunidades e mobilizações em diferentes regiões do país.</p>
+      </li>
+      <li class="mn-node">
+        <span class="mn-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"></path></svg>
+        </span>
+        <h4>Tecnologia e infraestrutura</h4>
+        <p>Equipamentos, conectividade, plataformas e ferramentas necessárias para produzir e distribuir conteúdo diariamente.</p>
+      </li>
+      <li class="mn-node">
+        <span class="mn-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"></circle><circle cx="5" cy="6" r="1.6"></circle><circle cx="19" cy="6" r="1.6"></circle><circle cx="5" cy="18" r="1.6"></circle><circle cx="19" cy="18" r="1.6"></circle><path d="M12 12 5 6M12 12 19 6M12 12 5 18M12 12 19 18"></path></svg>
+        </span>
+        <h4>Rede e formação</h4>
+        <p>Articulação de comunicadores e formação de novas pessoas para atuar na produção de mídia independente.</p>
+      </li>
+    </ul>
+    <div class="mn-line" aria-hidden="true"></div>
+  </div>
+</div>
+<script>
+  (function () {
+    var root = document.getElementById('mn-apoiar');
+    if (!root) return;
+    root.classList.remove('mn-no-js');
+    var targets = root.querySelectorAll('.mn-reveal');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    targets.forEach(function (el) { obs.observe(el); });
+  })();
+</script>
+<!-- /wp:html -->
+<!-- wp:html {"metadata":{"name":"Faixa animada"}} -->
+<div class="marquee-missao-container" role="region" aria-label="Destaque Missão Clímax">
+    <div class="marquee-missao-wrapper">
+        <span class="marquee-missao-text">APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp; APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp;</span>
+        <span class="marquee-missao-text">APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp; APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp;</span>
+        <span class="marquee-missao-text">APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp; APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp;</span>
+        <span class="marquee-missao-text">APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp; APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp;</span>
+        <span class="marquee-missao-text">APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp; APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp;</span>
+        <span class="marquee-missao-text">APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp; APOIE A MÍDIA NINJA &nbsp; &nbsp; &#x2734; &nbsp;&nbsp;</span>
+    </div>
+</div>
+<style>
+.menu-especial__lang-select {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 99999 !important;
+}
+.menu-especial__lang-select a {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+}
+@media screen and (max-width: 767px) {
+    /* Adicione regras mobile aqui se precisar */
+}
+.marquee-missao-container {
+    width: 100vw !important;
+    position: fixed !important;
+    height: 30px !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    color: white !important;
+font-family:MidiaNinja,sans-serif!important;
+font-feature-settings:"calt" on;
+    text-transform: uppercase !important;
+    background-color: black !important;
+    overflow: hidden !important;
+    padding: 18px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    z-index: 9999 !important;
+}
+.marquee-missao-wrapper {
+    display: flex !important;
+    color: white !important;
+    white-space: nowrap !important;
+    will-change: transform;
+    animation: scroll-marquee-climax 30s linear infinite;
+}
+.marquee-missao-text {
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding-right: 15px;
+    transition: all 0.3s ease;
+font-family:MidiaNinja,sans-serif!important;
+font-feature-settings:"calt" on!important;
+}
+.marquee-missao-text:hover {
+    color: white !important;
+    text-shadow: 0 0 10px rgba(242, 208, 107, 0.4);
+}
+@keyframes scroll-marquee-climax {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-25%); }
+}
+.marquee-missao-container:hover .marquee-missao-wrapper {
+    animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+    .marquee-missao-wrapper {
+        animation: none;
+        white-space: normal;
+        display: block;
+        text-align: center;
+    }
+    .marquee-missao-container {
+        width: 100%;
+        margin: 0;
+        left: 0;
+        position: relative;
+    }
+}
+</style>
+<!-- /wp:html -->
+</div>
+<!-- /wp:themeisle-blocks/advanced-column -->
+</div></section>
+<!-- /wp:themeisle-blocks/advanced-columns -->
+
+<!-- wp:themeisle-blocks/advanced-columns {"id":"wp-block-themeisle-blocks-advanced-columns-02deca05","columns":1,"layout":"equal","paddingTablet":{"top":"40px","bottom":"40px","left":"20px","right":"20px"},"paddingMobile":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"margin":{"top":"-40px","right":"0px","bottom":"-40px","left":"0px"},"marginTablet":{"top":"0px","bottom":"0px"},"columnsWidth":"100vw","horizontalAlign":"center","verticalAlign":"center","backgroundImage":{"id":4604518,"url":"https://midianinja.org/wp-content/uploads/2025/09/circuitoninjacerrado-avatar-1x1-1.webp"},"backgroundPosition":{"x":0.75,"y":0.88},"backgroundRepeat":"no-repeat","backgroundSize":"cover","backgroundOverlayOpacity":2,"backgroundOverlayType":"image","backgroundOverlayColor":"#d7432b","backgroundOverlayAttachment":"fixed","backgroundOverlayPosition":{"x":0.54,"y":0.57},"backgroundOverlayRepeat":"no-repeat","backgroundOverlaySize":"cover","backgroundOverlayFilterBrightness":18,"border":{"top":"0px","bottom":"0px","left":"0px","right":"0px"},"borderRadius":{"top":"0px","bottom":"0px","left":"0px","right":"0px"},"dividerTopWidth":100,"dividerTopWidthTablet":100,"dividerTopWidthMobile":100,"dividerTopHeight":100,"dividerTopHeightTablet":100,"dividerTopHeightMobile":100,"dividerBottomWidth":100,"dividerBottomWidthTablet":100,"dividerBottomWidthMobile":100,"dividerBottomHeight":100,"dividerBottomHeightTablet":100,"dividerBottomHeightMobile":100,"columnsHTMLTag":"section","align":"full","className":"","metadata":{"name":"Comunicação também é infraestrutura"},"hasCustomCSS":true} -->
+<section id="wp-block-themeisle-blocks-advanced-columns-02deca05" class="wp-block-themeisle-blocks-advanced-columns alignfull has-1-columns has-desktop-equal-layout has-tablet-equal-layout has-mobile-equal-layout has-vertical-center"><div class="wp-block-themeisle-blocks-advanced-columns-overlay"></div><div class="innerblocks-wrap">
+<!-- wp:themeisle-blocks/advanced-column {"id":"wp-block-themeisle-blocks-advanced-column-e04ebb7d","columnWidth":"100","className":""} -->
+<div id="wp-block-themeisle-blocks-advanced-column-e04ebb7d" class="wp-block-themeisle-blocks-advanced-column">
+<!-- wp:columns {"verticalAlignment":"top","align":"wide"} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-top">
+<!-- wp:column {"verticalAlignment":"top","width":"100vw"} -->
+<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:100vw"></div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+<!-- wp:html -->
+<!-- Bloco "Comunicação também é infraestrutura" — Mídia NINJA
+     Cole isso inteiro (do <style> até o ) num único
+     bloco "HTML personalizado" do Gutenberg. Se essa seção ficar
+     na mesma página do bloco "Por que apoiar", pode remover um
+     dos dois @import de fonte pra não carregar duas vezes. -->
+</style><style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@600;700&display=swap');
+  #mn-infra, #mn-infra * { box-sizing: border-box; margin: 0; padding: 0; }
+  #mn-infra {
+    --ink: #0b0b0b;
+    --gray: #6e6e6c;
+    --hairline: #dcdcd9;
+font-family:MidiaNinja,sans-serif!important;
+    color: var(--ink);
+    background: #ffffff !important;
+  }
+  #mn-infra .mn-display {
+font-family:MidiaNinja,sans-serif!important;
+    font-weight: 700;
+    line-height: 1.08;
+  }
+  /* ---------- IMAGEM 100% DA TELA ---------- */
+  /* Mesmo truque de full-bleed do bloco anterior: furar a coluna
+     estreita de conteúdo do tema, já que o bloco HTML do Gutenberg
+     não tem opção nativa de alinhamento "largo". */
+  #mn-infra .mn-infra-media {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    height: clamp(300px, 46vw, 520px);
+    overflow: hidden;
+    background: #e8e8e5;
+  }
+  #mn-infra .mn-infra-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ajuste se o enquadramento cortar mal a tela/operador */
+    object-position: center;
+    /*filter: contrast(1.08) brightness(0.98);*/
+    will-change: transform;
+    animation: mn-infra-zoom 20s ease-in-out infinite alternate;
+  }
+  @keyframes mn-infra-zoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.07); }
+  }
+  #mn-infra .mn-infra-credit {
+    max-width: 700px;
+    margin: 0.6rem auto 0;
+    padding: 0 clamp(1.25rem, 5vw, 2rem);
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--gray);
+    letter-spacing: 0.02em;
+  }
+  /* ---------- TEXTO ---------- */
+  #mn-infra .mn-infra-text {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 5vw, 2rem) clamp(3rem, 7vw, 4.5rem);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  #mn-infra .mn-infra-text.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #mn-infra .mn-infra-title {
+    font-size: clamp(2rem, 4.2vw, 2.9rem);
+    margin-bottom: 1.4rem;
+  }
+  #mn-infra .mn-infra-text p {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.1rem;
+  }
+  #mn-infra .mn-infra-text p:last-child {
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+  /* ---------- RESPONSIVO ---------- */
+  @media (max-width: 480px) {
+    #mn-infra .mn-infra-title { font-size: 1.8rem; }
+    #mn-infra .mn-infra-text p { font-size: 1rem; }
+  }
+  /* ---------- ACESSIBILIDADE: respeita "reduzir movimento" ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    #mn-infra .mn-infra-media img { animation: none; }
+    #mn-infra .mn-infra-text {
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+  /* fallback se o JS não rodar por algum motivo */
+  #mn-infra.mn-no-js .mn-infra-text {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+</style>
+<div id="mn-infra" class="mn-no-js">
+  <!-- Substitua o src se trocar de imagem. A ideia é mostrar
+       tecnologia em uso (tela, operação, mão no controle),
+       não o equipamento como objeto parado. -->
+  <figure class="mn-infra-media">
+    <img src="https://midianinja.org/wp-content/uploads/2026/09/30355439184_c8358e1e27_o-1-1.jpg"
+      alt="Tela mostrando imagem captada por drone em tempo real durante cobertura da Mídia NINJA"/>
+  </figure>
+  <p class="mn-infra-credit">Foto: tela de drone em operação</p>
+  <div class="mn-infra-text mn-reveal">
+    <h2 class="mn-display mn-infra-title">Comunicação também é infraestrutura</h2>
+    <p>Uma cobertura não começa quando a câmera liga.</p>
+    <p>Ela depende de pessoas, equipamentos, deslocamentos, internet, tecnologia, articulação e uma rede preparada para agir.</p>
+    <p>É essa estrutura que permite à NINJA acompanhar uma eleição, uma manifestação, uma emergência climática ou uma mobilização territorial e transformar esses acontecimentos em informação que circula para milhões de pessoas.</p>
+    <p>Apoiar a Mídia NINJA é ajudar a manter essa capacidade viva.</p>
+  </div>
+</div>
+<script>
+  (function () {
+    var root = document.getElementById('mn-infra');
+    if (!root) return;
+    root.classList.remove('mn-no-js');
+    var targets = root.querySelectorAll('.mn-reveal');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    targets.forEach(function (el) { obs.observe(el); });
+  })();
+</script>
+<!-- /wp:html -->
+</div>
+<!-- /wp:themeisle-blocks/advanced-column -->
+</div></section>
+<!-- /wp:themeisle-blocks/advanced-columns -->
+
+<!-- wp:themeisle-blocks/advanced-columns {"id":"wp-block-themeisle-blocks-advanced-columns-e20c310e","columns":1,"layout":"equal","paddingTablet":{"top":"40px","bottom":"40px","left":"20px","right":"20px"},"paddingMobile":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"margin":{"top":"-40px","right":"0px","bottom":"-40px","left":"0px"},"marginTablet":{"top":"0px","bottom":"0px"},"columnsWidth":"100vw","horizontalAlign":"center","verticalAlign":"center","backgroundImage":{"id":4604518,"url":"https://midianinja.org/wp-content/uploads/2025/09/circuitoninjacerrado-avatar-1x1-1.webp"},"backgroundPosition":{"x":0.75,"y":0.88},"backgroundRepeat":"no-repeat","backgroundSize":"cover","backgroundOverlayOpacity":2,"backgroundOverlayType":"image","backgroundOverlayColor":"#d7432b","backgroundOverlayAttachment":"fixed","backgroundOverlayPosition":{"x":0.54,"y":0.57},"backgroundOverlayRepeat":"no-repeat","backgroundOverlaySize":"cover","backgroundOverlayFilterBrightness":18,"border":{"top":"0px","bottom":"0px","left":"0px","right":"0px"},"borderRadius":{"top":"0px","bottom":"0px","left":"0px","right":"0px"},"dividerTopWidth":100,"dividerTopWidthTablet":100,"dividerTopWidthMobile":100,"dividerTopHeight":100,"dividerTopHeightTablet":100,"dividerTopHeightMobile":100,"dividerBottomWidth":100,"dividerBottomWidthTablet":100,"dividerBottomWidthMobile":100,"dividerBottomHeight":100,"dividerBottomHeightTablet":100,"dividerBottomHeightMobile":100,"columnsHTMLTag":"section","align":"full","className":"","metadata":{"name":"ctafinal"},"hasCustomCSS":true} -->
+<section id="wp-block-themeisle-blocks-advanced-columns-e20c310e" class="wp-block-themeisle-blocks-advanced-columns alignfull has-1-columns has-desktop-equal-layout has-tablet-equal-layout has-mobile-equal-layout has-vertical-center"><div class="wp-block-themeisle-blocks-advanced-columns-overlay"></div><div class="innerblocks-wrap">
+<!-- wp:themeisle-blocks/advanced-column {"id":"wp-block-themeisle-blocks-advanced-column-939e4154","columnWidth":"100","className":""} -->
+<div id="wp-block-themeisle-blocks-advanced-column-939e4154" class="wp-block-themeisle-blocks-advanced-column">
+<!-- wp:columns {"verticalAlignment":"top","align":"wide"} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-top">
+<!-- wp:column {"verticalAlignment":"top","width":"100vw"} -->
+<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:100vw"></div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+<!-- wp:html -->
+<!-- =========================================================
+     6. CTA FINAL — FAÇA PARTE DESSA REDE
+     ========================================================= -->
+<style>
+  /* =========================================================
+     FONTE DOS TÍTULOS
+     ========================================================= */
+   
+  /* =========================================================
+     CTA
+     ========================================================= */
+  #mn-cta,
+  #mn-cta * {
+    box-sizing: border-box;
+  }
+  #mn-cta {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: #0b0b0b;
+    color: #fff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+  }
+  /* TODOS OS TÍTULOS */
+  #mn-cta .mn-display {
+    font-family: 'MidiaNinja', 'Oswald', 'Arial Narrow', sans-serif !important;
+    font-weight: 700;
+    line-height: 1.05;
+    font-feature-settings: "calt" on;
+  }
+  /* ---------- CONTEÚDO ---------- */
+  #mn-cta .mn-cta-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding:
+      clamp(3.5rem, 8vw, 6rem)
+      clamp(1.25rem, 5vw, 2rem);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity .8s ease,
+      transform .8s ease;
+  }
+  #mn-cta .mn-cta-inner.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* ---------- TÍTULO ---------- */
+  #mn-cta .mn-cta-title {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    margin: 0 auto 1rem;
+color:white!important;
+max-width: 560px;
+  }
+  /* ---------- TEXTOS ---------- */
+  #mn-cta p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.72);
+    margin: 0 auto 1rem;
+    max-width: 560px;
+  }
+  #mn-cta p:last-of-type {
+    margin-bottom: 2.5rem;
+  }
+  /* ---------- BOTÃO ---------- */
+  #mn-cta .mn-cta-btn-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  #mn-cta .mn-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    background: #fff;
+    color: #0b0b0b;
+    font-family: 'MidiaNinja', 'Arial Narrow', sans-serif !important;
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    padding: 1.1rem 2.75rem;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    transform-origin: center;
+    animation:
+      mn-btn-pulse 1.2s ease-in-out infinite;
+    transition:
+      box-shadow .5s ease;
+  }
+  @keyframes mn-btn-pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.06);
+    }
+  }
+  #mn-cta .mn-cta-btn:hover,
+  #mn-cta .mn-cta-btn:focus-visible {
+    animation-play-state: paused;
+    box-shadow:
+      0 10px 24px rgba(0,0,0,0.35);
+  }
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 480px) {
+    #mn-cta .mn-cta-title {
+      font-size: 2.1rem;
+    }
+    #mn-cta .mn-cta-btn {
+      padding: 1rem 2rem;
+      font-size: 0.95rem;
+      white-space: normal;
+    }
+  }
+  /* ---------- REDUÇÃO DE MOVIMENTO ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    #mn-cta .mn-cta-btn {
+      animation: none;
+    }
+    #mn-cta .mn-cta-inner {
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+  #mn-cta.mn-no-js .mn-cta-inner {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+</style>
+<div id="mn-cta" class="mn-no-js">
+  <div class="mn-cta-inner mn-reveal">
+    <h2 class="mn-display mn-cta-title">
+      Apoie esta rede
+    </h2>
+    <p>
+      Nossa independência também depende da capacidade de construir caminhos próprios para sustentar o trabalho.
+    </p>
+    <p>
+      Contribuições únicas ou recorrentes ajudam a fortalecer uma comunicação comprometida com o interesse público, a diversidade de vozes e a democracia.
+    </p>
+    <p>
+      Cada apoio ajuda a manter essa rede ativa e em movimento.
+    </p>
+    <div class="mn-cta-btn-wrap">
+      <a href="#apoie-agora" class="mn-cta-btn">
+        Apoie a Mídia NINJA
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById('mn-cta');
+  if (!root) return;
+  root.classList.remove('mn-no-js');
+  var targets = root.querySelectorAll('.mn-reveal');
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+    return;
+  }
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+  targets.forEach(function (el) {
+    obs.observe(el);
+  });
+})();
+</script>
+<!-- =========================================================
+     7. OUTRAS FORMAS DE COLABORAR
+     ========================================================= -->
+<style>
+  #mn-colabore,
+  #mn-colabore * {
+    box-sizing: border-box;
+  }
+  #mn-colabore {
+    background: #ffffff !important;
+    color: #4a4a48;
+    padding:
+      clamp(2.5rem, 6vw, 3.5rem)
+      clamp(1.25rem, 5vw, 2rem);
+    border-top: 1px solid #e4e4e1;
+    /* TEXTOS NORMAIS */
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
+  }
+  /* TÍTULO */
+  #mn-colabore .mn-display {
+    font-family:
+      'MidiaNinja',
+      'Oswald',
+      'Arial Narrow',
+      sans-serif !important;
+    font-weight: 600;
+    line-height: 1.2;
+    font-feature-settings: "calt" on;
+  }
+  #mn-colabore .mn-colabore-inner {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+    opacity: 0;
+    transition:
+      opacity 1s ease;
+  }
+  #mn-colabore .mn-colabore-inner.is-visible {
+    opacity: 1;
+  }
+  /* ---------- TÍTULO ---------- */
+  #mn-colabore .mn-colabore-title {
+    font-size:
+      clamp(2.4rem, 6vw, 4rem);
+    color: #0b0b0b;
+    margin: 0 0 0.8rem;
+  }
+  /* ---------- TEXTO ---------- */
+  #mn-colabore p {
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin: 0 0 1.4rem;
+  }
+  /* ---------- BOTÃO ---------- */
+  #mn-colabore .mn-colabore-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    border: 1px solid #0b0b0b;
+    background: #0b0b0b;
+    color: #fff;
+    font-family:
+      'MidiaNinja',
+      'Arial Narrow',
+      sans-serif !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    padding: 0.7rem 1.6rem;
+    text-decoration: none;
+    text-align: center;
+    transition:
+      background .2s ease,
+      color .2s ease,
+      border-color .2s ease;
+  }
+  #mn-colabore .mn-colabore-btn:hover,
+  #mn-colabore .mn-colabore-btn:focus-visible {
+    background: #fff;
+    color: #0b0b0b;
+  }
+  /* ---------- REDUÇÃO DE MOVIMENTO ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    #mn-colabore .mn-colabore-inner {
+      transition: none !important;
+      opacity: 1 !important;
+    }
+  }
+  #mn-colabore.mn-no-js .mn-colabore-inner {
+    opacity: 1 !important;
+  }
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 480px) {
+    #mn-colabore .mn-colabore-title {
+      font-size: 2.1rem;
+    }
+    #mn-colabore .mn-colabore-btn {
+      padding: 0.75rem 1.4rem;
+    }
+  }
+</style>
+<div id="mn-colabore" class="mn-no-js">
+  <div class="mn-colabore-inner mn-reveal">
+    <h3 class="mn-display mn-colabore-title">
+      Além de doar, você também pode colaborar
+    </h3>
+    <p>
+      Conheça outras iniciativas da rede e descubra formas de participar, contribuir e construir junto.
+    </p>
+    <a
+      href="https://rede.florestaativista.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mn-colabore-btn">
+      Conheça a Floresta Ativista
+    </a>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById('mn-colabore');
+  if (!root) return;
+  root.classList.remove('mn-no-js');
+  var targets = root.querySelectorAll('.mn-reveal');
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+    return;
+  }
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.35
+  });
+  targets.forEach(function (el) {
+    obs.observe(el);
+  });
+})();
+</script>
+<!-- /wp:html -->
+</div>
+<!-- /wp:themeisle-blocks/advanced-column -->
+</div></section>
+<!-- /wp:themeisle-blocks/advanced-columns -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->

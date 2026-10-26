@@ -69,5 +69,5 @@ mix.webpackConfig({
 
     },
 
-	devtool: "inline-source-map"
+	devtool: process.env.NODE_ENV === 'production' ? false : "inline-source-map"
 });

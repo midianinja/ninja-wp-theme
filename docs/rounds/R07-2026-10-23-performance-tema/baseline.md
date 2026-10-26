@@ -35,8 +35,24 @@ Detalhe e evidência em `caracterizacao.md` §1h:
 
 **Total controlado pelo tema: ~1,36 MB dos ~2,1 MB transferidos.**
 
-## 3. Meta mensurável
+## 3. Meta mensurável — REGISTRADA
 
-- **Status: pendente de decisão** (critério de aceitação: "alvo de desempenho
-  mobile com número, a definir com o baseline atual"). A ser registrada aqui
-  quando decidida — é o ponto de parada da rodada.
+> **Reduzir o payload bruto controlado pelo tema na home de ~1,36MB para
+> ≤900KB** (corte de ~470KB, ~35%), usando apenas a onda segura aprovada
+> (ranks 1–7 da caracterização).
+
+- **Decidida por:** @filipesouzadev em 2026-10-26, confirmando a proposta
+  apresentada ("faça isso").
+- **Por que é atingível:** soma das estimativas conservadoras por alavanca —
+  sliders rebuildados −150KB · JS globais minificados −40KB · CSS inline
+  minificado −75KB · WOFF2 a 30% −205KB = −470KB. Se o WOFF2 entregar os
+  40–50% típicos, há ~100–140KB de folga adicional.
+- **Método de verificação:** inventário determinístico dos bytes dos artefatos
+  enfileirados do tema (dist JS + CSS inline/links + arquivos de fonte em
+  preload, sem compressão) — mesmo método do §1h da caracterização,
+  executável no repo, imune a variância de anúncios/rede.
+- **Evidência secundária (não é alvo):** Lighthouse antes/depois com o mesmo
+  método do §1 (3 execuções, medianas). Score/LCP/TBT acompanham como
+  evidência — dependem de ads/plugin, fora do controle do tema.
+- **Ponto de parada:** a onda tem 7 alavancas finitas; alavanca que
+  under-delivrar → desvio declarado no registro da rodada, sem maquiagem.

@@ -62,6 +62,13 @@ swap` (bom). **9 fontes em preload no head** (5× Manrope ~97KB + 3× Tungsten
 (assets.php:49) → o preload é descartado e a fonte baixa **duas vezes** (bug
 clássico). Nenhuma conversão WOFF2 (TTFs 30–50% maiores).
 
+> **Correção (2026-10-26, fatia 1):** inspeção do código na execução mostrou
+> que o **tema emite 8** desses preloads (5 Manrope + 3 Tungsten,
+> `get_font_files()`, linhas 577–617); o 9º (fonte de ícone) vem de fora do
+> tema (plugin) — fora do escopo da rodada ("mapear, não alterar"). Os ~690KB
+> medidos na página seguem válidos como medida; mudou apenas a atribuição.
+> Registrado em `deviations.md` (Deviation 1).
+
 ### 1e. Imagens
 
 Tamanhos registrados: card-large 700×387, card-medium 300×166, card-small

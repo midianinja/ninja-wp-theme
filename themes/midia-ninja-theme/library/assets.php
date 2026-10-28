@@ -46,7 +46,7 @@ class Assets
             $src = $font_uri . $data['file'];
             if ($data['pre-load']) {
                 echo "\n";
-                echo '<link rel="preload" id="' . esc_attr($handle) . '-preload" href="' . esc_url($src) . '" as="font">';
+                echo '<link rel="preload" id="' . esc_attr($handle) . '-preload" href="' . esc_url($src) . '" as="font" crossorigin>';
                 echo "\n";
             }
         }

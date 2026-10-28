@@ -112,6 +112,16 @@ flickk-gallery/photo.php:35, collection.php:19…).
 - embed-CPI raspa antigo.midianinja.org com cache transient 1h
   (template-embed-cpi.php:19–201).
 
+> **Correção (2026-10-28, fatia 7):** o embed do ninjaverso em
+> `single-opiniao.php:372` é **código morto** — o bloco inteiro está dentro de
+> `<?php if (false) : ?>` (linhas 357–376); o uso ativo do embed é apenas
+> `single.php:352` (CPT post). O preconnect da alavanca L15 foi aplicado só
+> onde o embed renderiza de fato (single de post). Achado adicional não
+> caracterizado na R07: shortcode `[player_elevenlabs]`
+> (`library/utils.php:883–890`) pode renderizar o player em qualquer conteúdo
+> via BD — cobertura por `has_shortcode()` fica registrada como decisão
+> futura (ver comentário da fatia 7 na #225).
+
 ### 1g. Código morto (nunca referenciado por PHP)
 
 `assets/javascript/{app.js, acessibilidade.js, js.cookie.js,

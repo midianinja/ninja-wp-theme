@@ -35,6 +35,16 @@ Detalhe e evidência em `caracterizacao.md` §1h:
 
 **Total controlado pelo tema: ~1,36 MB dos ~2,1 MB transferidos.**
 
+> **Nota (2026-10-28, fatia 4):** deriva do ar observada no meio da rodada —
+> deploys intermediários com builds locais mistos já colocaram em produção o
+> CSS inline **minificado** (critical ≈61KB + _p-home ≈43KB) e o `menu.js`
+> **minificado** (4,7KB vs 37KB caracterizados). Parte do corte perseguido
+> pela rodada já se realizou (ou foi suplantada) no ar; os sliders (96KB dev)
+> e os preloads de fonte seguem como caracterizados. O "antes" acima
+> permanece como registro do início da rodada; o "depois" no fechamento
+> (`resultados.md`) usará o inventário do ar pelo método §1h. Registrado em
+> `deviations.md` (Deviation 3).
+
 ## 3. Meta mensurável — REGISTRADA
 
 > **Reduzir o payload bruto controlado pelo tema na home de ~1,36MB para

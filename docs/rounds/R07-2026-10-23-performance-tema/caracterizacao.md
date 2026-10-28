@@ -67,6 +67,16 @@ para 3 inicializações de slider.
   (32KB) + query-slider.js (11KB) quando `core/query` presente
   (assets.php:774–830).
 
+> **Correção (2026-10-28, fatia 4):** critical.css/_p-home.css são gerados por
+> laravel-mix (SCSS → `dist/css/`, gitignored) e o pipeline canônico de
+> produção **já os minifica** (cssnano): 78.735→61.200 B e 52.025→43.122 B
+> medidos em build local de produção. A página em produção hoje **já serve os
+> dois minificados** — os 78/52KB acima refletiam um deploy anterior com build
+> dev (mesma causa da correção §1b; `menu.js` no ar = 4,7KB minificado vs
+> 37KB caracterizados). As medidas originais seguem como registro do baseline
+> da rodada; nota de deriva em `baseline.md` §2. Registrado em
+> `deviations.md` (Deviation 3).
+
 ### 1d. Fontes (assets.php:41–53, 569–667)
 
 Locais TTF/OTF; 26 `@font-face` no critical.css, todas com `font-display:

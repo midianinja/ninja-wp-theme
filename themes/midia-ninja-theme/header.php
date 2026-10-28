@@ -15,6 +15,13 @@
 	<?php // <link rel="preconnect" href="https://securepubads.g.doubleclick.net"> ?>
 	<link rel="preconnect" href="https://www.googletagmanager.com">
 	<link rel="preconnect" href="https://static.addtoany.com">
+	<?php // Preconnects condicionais por template — só onde o recurso é usado (R07/épica #225, L9+L15): ?>
+	<?php if (is_singular('opiniao')): ?>
+		<link rel="preconnect" href="https://elevenlabs.io">
+	<?php endif; ?>
+	<?php if (is_singular('post')): ?>
+		<link rel="preconnect" href="https://ninjaverso.com.br">
+	<?php endif; ?>
 
 </head>
 

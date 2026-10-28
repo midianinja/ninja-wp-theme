@@ -368,14 +368,17 @@ class Assets
             'page-fale-conosco' => [
                 'file' => '_p-page-fale-conosco.css',
                 'preload_callback' => function () {
-                    return !is_front_page() && is_page();
+                    // Escopo real do CSS: body class .page-fale-conosco (slug da página).
+                    // Todo o resto do arquivo duplica blocos de _p-page.css / critical.css.
+                    return !is_front_page() && is_page('fale-conosco');
                 },
             ],
 
             'page-videos' => [
                 'file' => '_p-page-videos.css',
                 'preload_callback' => function () {
-                    return !is_front_page() && is_page();
+                    // Escopo real do CSS: body class .page-tv-ninja (slug da página é tv-ninja).
+                    return !is_front_page() && is_page('tv-ninja');
                 },
             ],
 
@@ -396,14 +399,25 @@ class Assets
             'single-opiniao' => [
                 'file' => '_p-single-opiniao.css',
                 'preload_callback' => function () {
-                    return is_single();
+                    // Escopo real: .single-opiniao (single do CPT) + regras da família
+                    // .header-especiais/.menu-especial--*, cujo markup (template-part
+                    // header-especiais em single/single-galeria/single-afluente) só
+                    // renderiza quando o post tem termo em marcador_especial (taxonomia
+                    // registrada para post/afluente/especial/galeria/opiniao). A condição
+                    // abaixo é superconjunto da condição de renderização do header
+                    // (termo via API OU meta primária do Yoast — cf. fallback em
+                    // template-parts/header-especiais.php), logo a paridade é mantida.
+                    return is_singular('opiniao')
+                        || (is_single() && (has_term('', 'marcador_especial') || (int) get_post_meta(get_the_ID(), '_yoast_wpseo_primary_marcador_especial', true) > 0));
                 },
             ],
 
             'single-galeria' => [
                 'file' => '_p-single-galeria.css',
                 'preload_callback' => function () {
-                    return is_single();
+                    // Escopo real: .single-galeria (single do CPT). Todas as demais
+                    // regras do arquivo duplicam blocos idênticos de _p-single.css.
+                    return is_singular('galeria');
                 },
             ],
 
@@ -424,7 +438,8 @@ class Assets
             'seja-ninja' => [
                 'file'             => '_p-seja-ninja.css',
                 'preload_callback' => function () {
-                    return !is_front_page() && is_page();
+                    // Escopo real do CSS: body class .page-seja-ninja (slug da página).
+                    return !is_front_page() && is_page('seja-ninja');
                 },
             ],
 
@@ -459,6 +474,11 @@ class Assets
             'page-galeria' => [
                 'file' => '_p-page-galeria.css',
                 'preload_callback' => function () {
+                    // Mantido em todo is_page(): além do escopo .page-galeria (página
+                    // /galeria/), o arquivo traz overrides NÃO-escopados (#app
+                    // .latest-vertical-posts-*, #app aside) de um bloco Gutenberg que
+                    // pode ser inserido em qualquer página, e regras .page-opiniao
+                    // consumidas pela página /opiniao/. Não cortável com prova estática.
                     return !is_front_page() && is_page();
                 },
             ],

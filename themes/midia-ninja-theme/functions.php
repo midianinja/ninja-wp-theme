@@ -50,6 +50,7 @@ require __DIR__ . '/library/utils.php';
 require __DIR__ . '/library/pods-wpml-fix.php'; // TEMP: remover apos validar no dev
 require __DIR__ . '/library/query-loop.php';
 require __DIR__ . '/library/show-thumbnail.php';
+require __DIR__ . '/library/author-base.php'; // Base /coluna/ para o archive de autores (single de colunistas)
 require __DIR__ . '/library/admin.php';
 require __DIR__ . '/library/migrations.php';
 

@@ -39,6 +39,19 @@ minificados** (código-fonte slick legível, view.js.map externo commitado),
 **cada um com uma cópia completa do slick-carousel 1.8.1**. Total ≈ 288KB
 para 3 inicializações de slider.
 
+> **Correção (2026-10-28, fatia 3):** os `view.js` e seus `.map` **não estão
+> commitados no repo** — `build/` é gitignored (desde 0b0a9b9a; `git ls-files`
+> não encontra nenhum `.map` no repo inteiro). São artefatos locais de build;
+> os 96KB dev medidos na página de produção originaram-se de um zip de deploy
+> que embalou build local de desenvolvimento. O build canônico de produção
+> (`wp-scripts build` do `library/blocks`, via `compilar.sh`/docker node:18)
+> já emite view.js minificados sem source map (~44KB cada; −151.295 bytes
+> medidos nos 3). Gap real de pipeline: `.gitlab-ci.yml` (`build_assets`,
+> node:12) builda apenas o tema (`dist/`), não os blocos. Os ~288KB medidos
+> seguem válidos como medida do que está no ar; mudou a atribuição da causa
+> (empacotamento de deploy, não estado do repo). Registrado em
+> `deviations.md` (Deviation 2).
+
 ### 1c. CSS
 
 - `critical.css` (**78KB não minificado**) inline via `file_get_contents` +

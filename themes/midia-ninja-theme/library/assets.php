@@ -573,28 +573,28 @@ class Assets
         }
         $fonts_files = [
             'Manrope-Regular'     => [
-                'file' => 'Manrope-Regular.ttf',
+                'file' => 'Manrope-Regular.woff2',
                 'pre-load' => true,
              ],
 
             'Manrope-ExtraBold'     => [
-                'file' => 'Manrope-ExtraBold.ttf',
+                'file' => 'Manrope-ExtraBold.woff2',
                 'pre-load' => true,
              ],
 
             'Manrope-Medium' => [
-                'file'   => 'Manrope-Medium.ttf',
+                'file'   => 'Manrope-Medium.woff2',
                 'pre-load' => true,
              ],
 
             'Manrope-Bold' => [
                 'pre-load' => true,
-                'file'   => 'Manrope-Bold.ttf',
+                'file'   => 'Manrope-Bold.woff2',
             ],
 
             'Archivo_Expanded-ExtraBold' => [
                 'pre-load' => false,
-                'file' => 'Archivo_Expanded-ExtraBold.ttf',
+                'file' => 'Archivo_Expanded-ExtraBold.woff2',
             ],
 
             'TipoNinja-Regular'     => [
@@ -603,23 +603,23 @@ class Assets
             ],
             'Manrope-SemiBold' => [
                 'pre-load' => true,
-                'file'   => 'Manrope-SemiBold.ttf',
+                'file'   => 'Manrope-SemiBold.woff2',
             ],
 			'Tungsten-Bold' => [
                 'pre-load' => true,
-                'file'   => 'Tungsten-Bold.ttf',
+                'file' => 'Tungsten-Bold.woff2',
             ],
 			'Tungsten-Light' => [
                 'pre-load' => true,
-                'file'   => 'Tungsten-Light.ttf',
+                'file' => 'Tungsten-Light.woff2',
             ],
 			'Tungsten-Medium' => [
                 'pre-load' => true,
-                'file'   => 'Tungsten-Medium.ttf',
+                'file' => 'Tungsten-Medium.woff2',
             ],
             'Bold-Groove' => [
                 'pre-load' => false,
-                'file'     => 'Bold-Groove.ttf',
+                'file'     => 'Bold-Groove.woff2',
             ],
             'AllroundGothic-Book' => [
                 'pre-load' => false,

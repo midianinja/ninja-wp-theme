@@ -721,15 +721,18 @@ function hide_especial_parent( $query ) {
 }
 add_action('pre_get_posts', 'hide_especial_parent');
 
-function hide_especial_private( $query ) {
+function hide_especial_nonpublic( $query ) {
 
     if ( ! is_admin() && $query->is_main_query() && $query->is_post_type_archive( 'especial' ) ) {
-        // Force 'publish' only: private posts stay hidden even for users with read_private_posts.
-        // Password-protected posts keep status 'publish' and remain listed.
+        // List only fully public especiais: force 'publish' status so private posts
+        // stay hidden (even for users with read_private_posts) and exclude
+        // password-protected posts via has_password => false. Password-protected
+        // especiais remain accessible via direct URL (single template, out of scope).
         $query->set( 'post_status', 'publish' );
+        $query->set( 'has_password', false );
     }
 }
-add_action( 'pre_get_posts', 'hide_especial_private' );
+add_action( 'pre_get_posts', 'hide_especial_nonpublic' );
 
 /**
  * Modifies the author archive query to include both 'post' and 'opiniao' post types.

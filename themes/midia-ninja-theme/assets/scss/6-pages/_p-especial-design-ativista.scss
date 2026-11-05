@@ -1,0 +1,36 @@
+// Estilos do especial "Design Ativista" (Movimento Social de Designers).
+// Migrado do CSS adicional do Personalizar: os seletores NÃO usam a slug do post
+// (classe .especial-movimento-social-de-designers) nem a slug do marcador
+// (classe .menu-especial--{slug}), que divergem entre ambientes.
+// O escopo é garantido pelo carregamento condicional do arquivo
+// (library/assets.php: marcador "Movimento social de Designers").
+
+.single-especial {
+
+    #app {
+        background-color: #111;
+        padding-top: 130px;
+
+        @media (max-width: 782px) {
+            padding-top: 115px;
+        }
+
+        .menu-especial__links {
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+
+        .menu-especial {
+            margin-bottom: 25px;
+            margin-top: -8px;
+        }
+    }
+
+    // Mobile: mantém visível a coluna da logo na primeira dobra
+    // (reverte o inline style do header-especiais.php que a esconde)
+    @media (max-width: 768px) {
+        .wp-block-columns:first-of-type > .wp-block-column:first-child {
+            display: inherit !important;
+        }
+    }
+}

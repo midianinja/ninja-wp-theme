@@ -435,6 +435,33 @@ class Assets
                 },
             ],
 
+            'especial-design-ativista' => [
+                'file'             => '_p-especial-design-ativista.css',
+                'preload_callback' => function () {
+                    // Escopo pelo marcador do especial (nome ou slug), nunca pela
+                    // slug do post: ela pode mudar e divergir entre ambientes.
+                    if ( ! is_singular( 'especial' ) ) {
+                        return false;
+                    }
+
+                    $terms = get_the_terms( get_the_ID(), 'marcador_especial' );
+
+                    if ( ! $terms || is_wp_error( $terms ) ) {
+                        return false;
+                    }
+
+                    foreach ( $terms as $term ) {
+                        if ( $term->name === 'Movimento social de Designers'
+                            || in_array( $term->slug, [ 'movimento-social-de-designers', 'movimento-social-de-designers-2' ], true )
+                        ) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                },
+            ],
+
             'seja-ninja' => [
                 'file'             => '_p-seja-ninja.css',
                 'preload_callback' => function () {
@@ -729,6 +756,14 @@ class Assets
                 'file' => 'anchor-sidebar.js',
                 'preload_callback' => function () {
                     return is_page_template('page-anchor.php');
+                }
+            ],
+
+            'especial-anchor-nav' => [
+                'pre-load' => false,
+                'file' => 'especial-anchor-nav.js',
+                'preload_callback' => function () {
+                    return is_singular('especial');
                 }
             ],
 

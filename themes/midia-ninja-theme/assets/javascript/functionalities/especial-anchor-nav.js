@@ -34,7 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const isSubItem = number.includes(".")
 
         link.setAttribute("href", `#${title.getAttribute("id")}`)
-        link.innerHTML = `<span class="especial-anchor-nav__dot${isSubItem ? " especial-anchor-nav__dot--sub" : ""}">${number}</span><span class="especial-anchor-nav__label">${title.innerText}</span>`
+        // textContent (not innerText): the scroll-reveal animations start the
+        // headings hidden, and innerText is empty for non-rendered elements
+        link.innerHTML = `<span class="especial-anchor-nav__dot${isSubItem ? " especial-anchor-nav__dot--sub" : ""}">${number}</span><span class="especial-anchor-nav__label">${title.textContent.trim()}</span>`
 
         item.appendChild(link)
         list.appendChild(item)
@@ -79,6 +81,20 @@ document.addEventListener("DOMContentLoaded", function () {
     links.forEach((link) => {
         link.addEventListener("click", () => setActive(link))
     })
+
+    // Hide the bar when the footer enters the viewport (mobile: the bar
+    // sits at the bottom of the screen and would overlap the footer)
+    const footer = document.querySelector("footer.main-footer")
+
+    if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                nav.classList.toggle("especial-anchor-nav--hidden", entry.isIntersecting)
+            })
+        })
+
+        footerObserver.observe(footer)
+    }
 
     let ticking = false
 

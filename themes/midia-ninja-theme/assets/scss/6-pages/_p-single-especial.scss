@@ -788,13 +788,8 @@ body{
         list-style: none;
         margin: 0;
         padding: 0;
-        max-height: 100%;
-        overflow-y: auto;
-        scrollbar-width: none;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
+        // sem overflow aqui: overflow na lista corta o rótulo que expande
+        // para a direita no hover (overflow-y: auto força overflow-x)
     }
 
     a {
@@ -814,7 +809,7 @@ body{
         background: rgba(0, 0, 0, 0.5);
         color: #fff;
         font-family: 'Manrope', sans-serif;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
         line-height: 1;
         flex: 0 0 auto;
@@ -822,9 +817,9 @@ body{
     }
 
     &__dot--sub {
-        min-width: 22px;
-        height: 22px;
-        font-size: 9px;
+        min-width: 24px;
+        height: 24px;
+        font-size: 10px;
         opacity: 0.75;
     }
 
@@ -867,22 +862,62 @@ body{
         }
 
         &__dot {
-            min-width: 18px;
-            height: 18px;
+            min-width: 20px;
+            height: 20px;
             padding-inline: 4px;
-            font-size: 9px;
+            font-size: 11px;
         }
 
         &__dot--sub {
-            min-width: 15px;
-            height: 15px;
-            font-size: 8px;
+            min-width: 17px;
+            height: 17px;
+            font-size: 9px;
         }
     }
 }
 
+// Mobile: a navegação vira uma barra horizontal fixa no rodapé da tela
+// (sem rótulos — não há hover no toque)
 @media (max-width: 1024px) {
     .especial-anchor-nav {
-        display: none;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: none;
+        max-width: none;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 0;
+        padding: 8px 12px;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        // some atrás do rodapé quando ele aparece
+        &--hidden {
+            transform: translateY(110%);
+        }
+
+        ul {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        &__label {
+            display: none;
+        }
+
+        &__dot {
+            min-width: 24px;
+            height: 24px;
+            padding-inline: 4px;
+            font-size: 11px;
+        }
+
+        &__dot--sub {
+            min-width: 20px;
+            height: 20px;
+            font-size: 9px;
+        }
     }
 }

@@ -32,5 +32,12 @@
         .wp-block-columns:first-of-type > .wp-block-column:first-child {
             display: inherit !important;
         }
+
+        // Respiro lateral: as capas são full-bleed (alignfull) e o conteúdo
+        // interno ficava colado nas bordas
+        .wp-block-cover__inner-container,
+        .post-content > *:not(.wp-block-cover) {
+            padding-inline: 24px;
+        }
     }
 }

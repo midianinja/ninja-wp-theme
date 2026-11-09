@@ -381,6 +381,135 @@
 		}
 	}
 
+	// Shorts (vertical cards, same format as the TV Ninja page)
+	&.model-shorts {
+		.latest-horizontal-posts-block__slides {
+			&::before,
+			&::after {
+				display: none;
+			}
+		}
+
+		.slick-list {
+			height: 332px;
+			margin-left: 1rem;
+
+			@media (max-width: 1052px) {
+				margin-top: 1.2rem;
+			}
+
+			@media (max-width: 767px) {
+				height: 265px;
+				margin-left: -10px;
+			}
+		}
+
+		.slick-slide,
+		.videos,
+		.post-thumbnail,
+		img {
+			width: 170px;
+			height: 302px;
+			border-radius: 12px;
+
+			@media (max-width: 1292px) {
+				width: 140px;
+				height: 272px;
+			}
+
+			@media (max-width: 1094px) {
+				width: 122px;
+				height: 225px;
+			}
+
+			@media (max-width: 964px) {
+				width: 102px;
+				height: 225px;
+			}
+
+			@media (max-width: 822px) {
+				width: 92px;
+				height: 225px;
+			}
+
+			@media (max-width: 782px) {
+				width: 325px;
+				height: 245px;
+				margin-left: auto;
+				margin-right: auto;
+				border-radius: 8px;
+			}
+
+			@media (max-width: 359px) {
+				width: 305px;
+				height: 245px;
+			}
+		}
+
+		.post-thumbnail {
+			.play {
+				display: none;
+			}
+		}
+
+		.latest-horizontal-posts-block__arrows {
+			@media (max-width: 782px) {
+				width: 240px;
+			}
+		}
+
+		.slick-arrow {
+			transition: none !important;
+
+			&.slick-prev {
+				background-color: var(--wp--preset--color--primary-light) !important;
+				background-image: url("./images/arrow-white-next.svg");
+				transform: rotate(180deg);
+
+				&:hover {
+					background-color: #333 !important;
+					background-image: url("./images/arrow-white-next.svg");
+					background-position: center !important;
+					background-repeat: no-repeat !important;
+				}
+			}
+
+			&.slick-next {
+				background-color: var(--wp--preset--color--primary-light) !important;
+				background-image: url("./images/arrow-left-slider-white.png");
+
+				&:hover {
+					background-color: #333 !important;
+					background-image: url("./images/arrow-left-slider-white.png");
+					background-position: center !important;
+					background-repeat: no-repeat !important;
+				}
+			}
+
+			&.slick-disabled {
+				background-color: #898989 !important;
+			}
+		}
+
+		li.slick-active {
+			background-color: #898989;
+		}
+
+		.latest-horizontal-posts-block__dots {
+			.slick-dots {
+				li {
+					@media (max-width: 782px) {
+						background-color: var(--wp--preset--color--secondary-dark);
+					}
+				}
+
+				.slick-active {
+					background-color: var(--wp--preset--color--primary-dark);
+				}
+			}
+		}
+	}
+
 	// Most read
 	&.model-most-read {
 		background-color: var(--wp--preset--color--primary-dark);

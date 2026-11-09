@@ -279,6 +279,10 @@ export default function Edit( { attributes, setAttributes } ) {
 										{
 											label: __( 'By channel', 'ninja' ),
 											value: "channel"
+										},
+										{
+											label: __( 'Shorts (channel)', 'ninja' ),
+											value: "shorts"
 										}
 									]}
 									onChange={ ( value ) => {
@@ -308,7 +312,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								</PanelRow>
 							) }
 
-							{ ( videoModel === 'channel' ) && (
+							{ ( videoModel === 'channel' || videoModel === 'shorts' ) && (
 								<PanelRow>
 									<TextControl
 										label={ __( 'YouTube channel ID', 'ninja' ) }

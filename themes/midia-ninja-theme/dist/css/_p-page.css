@@ -80,6 +80,37 @@
   line-height: 1;
 }
 
+.page-cpi-da-covid #app .carometro {
+  margin-top: 0;
+}
+
+.page-cpi-da-covid #app .et_pb_text_83 h1,
+.page-cpi-da-covid #app .et_pb_text_95 h1,
+.page-cpi-da-covid #app .et_pb_text_97 h1 {
+  margin-top: 24px;
+}
+
+.page-cpi-da-covid #app .et_pb_section_28 {
+  padding-top: 24px;
+}
+
+.page-cpi-da-covid #app .et_pb_row_47 {
+  padding-top: 0;
+}
+
+.page-cpi-da-covid #app .et_pb_section_31,
+.page-cpi-da-covid #app .et_pb_section_34 {
+  padding-top: 32px;
+}
+
+.page-cpi-da-covid #app #carometro .et_pb_team_member .et_pb_team_member_image {
+  height: auto;
+}
+
+.page-cpi-da-covid #app [class*=lightbox-content-] {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .page-cpi-da-covid #app #carometro .et_pb_row {
     flex-wrap: wrap;

@@ -762,3 +762,162 @@ body{
 @media (min-width: 769px) {
   .wp-block-atbs-tabs .atbs-tabs__scroll-btn { display: none; }
 }
+
+// Side anchor navigation (dots) for long especial pages
+.especial-anchor-nav {
+    position: fixed;
+    top: 150px; // abaixo do header fixo
+    bottom: 24px;
+    left: 24px;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    &--visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        // sem overflow aqui: overflow na lista corta o rótulo que expande
+        // para a direita no hover (overflow-y: auto força overflow-x)
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
+
+    &__dot {
+        display: grid;
+        place-items: center;
+        min-width: 28px;
+        height: 28px;
+        padding-inline: 5px;
+        border-radius: 9999px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-family: 'Manrope', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1;
+        flex: 0 0 auto;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    &__dot--sub {
+        min-width: 24px;
+        height: 24px;
+        font-size: 10px;
+        opacity: 0.75;
+    }
+
+    &__label {
+        max-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 4px;
+        color: #fff;
+        font-family: 'Manrope', sans-serif;
+        font-size: 12px;
+        opacity: 0;
+        transition: max-width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    }
+
+    a:hover,
+    a:focus-visible {
+        .especial-anchor-nav__dot {
+            transform: scale(1.15);
+        }
+
+        .especial-anchor-nav__label {
+            max-width: 240px;
+            opacity: 1;
+            padding: 4px 10px;
+        }
+    }
+
+    &--active .especial-anchor-nav__dot {
+        background: #fff;
+        color: #000;
+    }
+}
+
+@media (max-height: 800px) {
+    .especial-anchor-nav {
+        ul {
+            gap: 4px;
+        }
+
+        &__dot {
+            min-width: 20px;
+            height: 20px;
+            padding-inline: 4px;
+            font-size: 11px;
+        }
+
+        &__dot--sub {
+            min-width: 17px;
+            height: 17px;
+            font-size: 9px;
+        }
+    }
+}
+
+// Mobile: a navegação vira uma barra horizontal fixa no rodapé da tela
+// (sem rótulos — não há hover no toque)
+@media (max-width: 1024px) {
+    .especial-anchor-nav {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: none;
+        max-width: none;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 0;
+        padding: 8px 12px;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        // some atrás do rodapé quando ele aparece
+        &--hidden {
+            transform: translateY(110%);
+        }
+
+        ul {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        &__label {
+            display: none;
+        }
+
+        &__dot {
+            min-width: 24px;
+            height: 24px;
+            padding-inline: 4px;
+            font-size: 11px;
+        }
+
+        &__dot--sub {
+            min-width: 20px;
+            height: 20px;
+            font-size: 9px;
+        }
+    }
+}

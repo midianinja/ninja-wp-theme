@@ -14,7 +14,14 @@ $remote_url = 'https://antigo.midianinja.org/cpi-da-covid/';
 	// v6: reverted v5 — content only: the old site's header AND footer are both
 	// chrome and must not appear; footer-ish nodes inside the content are
 	// stripped again (see the chrome query below).
-	$cache_version = 'v6';
+	// v7: gallery overlay spans carry data-icon="&amp;#xe09a;" (double-escaped
+	// authoring bug of the old page). Divi core renders it via
+	// ::before{content:attr(data-icon)} — the entity is NOT re-decoded by
+	// attr(), so the literal text "&#xe09a;" shows over every gallery photo
+	// on hover ("strange code" of issue #335). The ETModules icon font can
+	// never render here anyway (cross-origin, no ACAO header), so the
+	// attribute is stripped at the source: content becomes empty.
+	$cache_version = 'v7';
 $cache_key    = 'embed_cpi_cache_' . $cache_version . '_' . md5($remote_url);
 $content      = get_transient($cache_key);
 
@@ -95,16 +102,32 @@ if (empty($content)) {
 				$content .= $dom->saveHTML($child);
 			}
 
-			// Reinjeta os <script> protegidos. O do lightbox antigo (jQuery/Magnific)
-			// fica de fora: é substituído pelo modal vanilla embed-cpi-modal.js.
-			$content = preg_replace_callback(
-				'/<!--EMBED_CPI_SCRIPT_(\d+)-->/',
-				function ($matches) use (&$script_blocks) {
-					$block = $script_blocks[(int) $matches[1]];
-					return (strpos($block, 'lightbox-trigger') !== false) ? '' : $block;
-				},
-				$content
-			);
+		// Reinjeta os <script> protegidos. O do lightbox antigo (jQuery/Magnific)
+		// fica de fora: é substituído pelo modal vanilla embed-cpi-modal.js.
+		// Scripts EXTERNOS do conteúdo raspado (GSAP + ScrollTrigger da linha
+		// do tempo, email-decode do Cloudflare) ganham defer: são bloqueantes
+		// no meio do HTML. Seguro porque o único consumidor inline (o wrapAll do
+		// GSAP) roda em jQuery(document).ready, e scripts defer executam antes
+		// do DOMContentLoaded — a ordem se mantém.
+		$content = preg_replace_callback(
+			'/<!--EMBED_CPI_SCRIPT_(\d+)-->/',
+			function ($matches) use (&$script_blocks) {
+				$block = $script_blocks[(int) $matches[1]];
+				if (strpos($block, 'lightbox-trigger') !== false) {
+					return '';
+				}
+				if (preg_match('/^<script\b[^>]*\bsrc=/i', $block) && !preg_match('/\b(defer|async)\b/i', $block)) {
+					$block = preg_replace('/^<script\b/i', '<script defer', $block);
+				}
+				return $block;
+			},
+			$content
+		);
+
+		// Galeria da vacina: remove o atributo data-icon duplamente escapado
+		// dos overlays (ver nota do cache_version v7) — o "código estranho"
+		// exibido sobre as fotos no mouseover.
+		$content = preg_replace('/\sdata-icon="&amp;#[xX][0-9a-fA-F]+;"/', '', $content);
 
 		$base_url = 'https://antigo.midianinja.org';
 		$content = str_replace(['src="/', "src='/"], 'src="' . $base_url . '/', $content);
@@ -198,7 +221,12 @@ if (empty($content)) {
 				$content = '<style id="embed-cpi-design-css">' . $design_css . '</style>' . $content;
 			}
 
-			set_transient($cache_key, $content, HOUR_IN_SECONDS);
+			// 6h em vez de 1h: página arquivística de 2021 cuja fonte (o site
+			// antigo) é estática — a cada expiração, UMA requisição paga a
+			// raspada completa (wp_remote_get de até 30s + parse DOM) de forma
+			// bloqueante. Reduzir a frequência de miss é o ganho barato de
+			// desempenho da #335 (revisão 2); trabalho pesado fica na R07.
+			set_transient($cache_key, $content, 6 * HOUR_IN_SECONDS);
 		}
 	}
 }

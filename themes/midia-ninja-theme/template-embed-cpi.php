@@ -102,16 +102,27 @@ if (empty($content)) {
 				$content .= $dom->saveHTML($child);
 			}
 
-			// Reinjeta os <script> protegidos. O do lightbox antigo (jQuery/Magnific)
-			// fica de fora: é substituído pelo modal vanilla embed-cpi-modal.js.
-			$content = preg_replace_callback(
-				'/<!--EMBED_CPI_SCRIPT_(\d+)-->/',
-				function ($matches) use (&$script_blocks) {
-					$block = $script_blocks[(int) $matches[1]];
-					return (strpos($block, 'lightbox-trigger') !== false) ? '' : $block;
-				},
-				$content
-			);
+		// Reinjeta os <script> protegidos. O do lightbox antigo (jQuery/Magnific)
+		// fica de fora: é substituído pelo modal vanilla embed-cpi-modal.js.
+		// Scripts EXTERNOS do conteúdo raspado (GSAP + ScrollTrigger da linha
+		// do tempo, email-decode do Cloudflare) ganham defer: são bloqueantes
+		// no meio do HTML. Seguro porque o único consumidor inline (o wrapAll do
+		// GSAP) roda em jQuery(document).ready, e scripts defer executam antes
+		// do DOMContentLoaded — a ordem se mantém.
+		$content = preg_replace_callback(
+			'/<!--EMBED_CPI_SCRIPT_(\d+)-->/',
+			function ($matches) use (&$script_blocks) {
+				$block = $script_blocks[(int) $matches[1]];
+				if (strpos($block, 'lightbox-trigger') !== false) {
+					return '';
+				}
+				if (preg_match('/^<script\b[^>]*\bsrc=/i', $block) && !preg_match('/\b(defer|async)\b/i', $block)) {
+					$block = preg_replace('/^<script\b/i', '<script defer', $block);
+				}
+				return $block;
+			},
+			$content
+		);
 
 		// Galeria da vacina: remove o atributo data-icon duplamente escapado
 		// dos overlays (ver nota do cache_version v7) — o "código estranho"
@@ -210,7 +221,12 @@ if (empty($content)) {
 				$content = '<style id="embed-cpi-design-css">' . $design_css . '</style>' . $content;
 			}
 
-			set_transient($cache_key, $content, HOUR_IN_SECONDS);
+			// 6h em vez de 1h: página arquivística de 2021 cuja fonte (o site
+			// antigo) é estática — a cada expiração, UMA requisição paga a
+			// raspada completa (wp_remote_get de até 30s + parse DOM) de forma
+			// bloqueante. Reduzir a frequência de miss é o ganho barato de
+			// desempenho da #335 (revisão 2); trabalho pesado fica na R07.
+			set_transient($cache_key, $content, 6 * HOUR_IN_SECONDS);
 		}
 	}
 }

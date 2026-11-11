@@ -14,7 +14,14 @@ $remote_url = 'https://antigo.midianinja.org/cpi-da-covid/';
 	// v6: reverted v5 — content only: the old site's header AND footer are both
 	// chrome and must not appear; footer-ish nodes inside the content are
 	// stripped again (see the chrome query below).
-	$cache_version = 'v6';
+	// v7: gallery overlay spans carry data-icon="&amp;#xe09a;" (double-escaped
+	// authoring bug of the old page). Divi core renders it via
+	// ::before{content:attr(data-icon)} — the entity is NOT re-decoded by
+	// attr(), so the literal text "&#xe09a;" shows over every gallery photo
+	// on hover ("strange code" of issue #335). The ETModules icon font can
+	// never render here anyway (cross-origin, no ACAO header), so the
+	// attribute is stripped at the source: content becomes empty.
+	$cache_version = 'v7';
 $cache_key    = 'embed_cpi_cache_' . $cache_version . '_' . md5($remote_url);
 $content      = get_transient($cache_key);
 
@@ -105,6 +112,11 @@ if (empty($content)) {
 				},
 				$content
 			);
+
+		// Galeria da vacina: remove o atributo data-icon duplamente escapado
+		// dos overlays (ver nota do cache_version v7) — o "código estranho"
+		// exibido sobre as fotos no mouseover.
+		$content = preg_replace('/\sdata-icon="&amp;#[xX][0-9a-fA-F]+;"/', '', $content);
 
 		$base_url = 'https://antigo.midianinja.org';
 		$content = str_replace(['src="/', "src='/"], 'src="' . $base_url . '/', $content);

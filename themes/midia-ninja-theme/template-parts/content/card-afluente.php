@@ -12,7 +12,9 @@
  * - Redes: term meta (instagram/facebook/twitter/youtube/tiktok) do marcador
  *   do afluente (taxonomia `marcador_afluente`), mesmo padrão do single.
  *   Se o post não tem marcador vinculado (#364), cai para o marcador
- *   top-level cujo nome corresponda ao título do afluente.
+ *   top-level cujo nome corresponda ao título do afluente. Redes que
+ *   ainda faltarem vêm do autor convidado correspondente (Co-Authors
+ *   Plus, campos `cap-*`, mesmos da página de autor).
  *
  * @package ninja
  */
@@ -43,47 +45,46 @@ if ( $afluente_category ) {
 	}
 }
 
-$afluente_marker = get_primary_afluente( get_the_ID() );
 $afluente_networks = [];
+
+$afluente_normalize_name = function ( $name ) {
+	// trim() comum não remove U+00A0 (títulos como "\u{00A0}NINJA Foto").
+	$name = remove_accents( mb_strtolower( trim( $name ) ) );
+	$name = preg_replace( '/[\s\x{00A0}\x{2000}-\x{200A}]+/u', ' ', $name );
+	return trim( $name );
+};
+
+$afluente_title_normalized = $afluente_normalize_name( get_the_title() );
+
+$afluente_marker = get_primary_afluente( get_the_ID() );
 
 // #364: sem marcador vinculado ao post, resolve o marcador top-level pelo
 // nome do afluente (é ali que as metas de redes vivem neste site).
-if ( ! $afluente_marker ) {
-	$afluente_normalize_name = function ( $name ) {
-		// trim() comum não remove U+00A0 (títulos como "\u{00A0}NINJA Foto").
-		$name = remove_accents( mb_strtolower( trim( $name ) ) );
-		$name = preg_replace( '/[\s\x{00A0}\x{2000}-\x{200A}]+/u', ' ', $name );
-		return trim( $name );
-	};
+if ( ! $afluente_marker && $afluente_title_normalized ) {
+	$afluente_markers = get_terms( [
+		'taxonomy'   => 'marcador_afluente',
+		'parent'     => 0,
+		'hide_empty' => false,
+	] );
 
-	$afluente_title_normalized = $afluente_normalize_name( get_the_title() );
-
-	if ( $afluente_title_normalized ) {
-		$afluente_markers = get_terms( [
-			'taxonomy'   => 'marcador_afluente',
-			'parent'     => 0,
-			'hide_empty' => false,
-		] );
-
-		if ( ! is_wp_error( $afluente_markers ) ) {
-			// 1) nome normalizado idêntico (cuida de caixa/acentos/espaços).
-			foreach ( $afluente_markers as $afluente_candidate ) {
-				if ( $afluente_normalize_name( $afluente_candidate->name ) === $afluente_title_normalized ) {
-					$afluente_marker = $afluente_candidate;
-					break;
-				}
+	if ( ! is_wp_error( $afluente_markers ) ) {
+		// 1) nome normalizado idêntico (cuida de caixa/acentos/espaços).
+		foreach ( $afluente_markers as $afluente_candidate ) {
+			if ( $afluente_normalize_name( $afluente_candidate->name ) === $afluente_title_normalized ) {
+				$afluente_marker = $afluente_candidate;
+				break;
 			}
+		}
 
-			// 2) título contido no nome do marcador (ex.: "Ella" → "Planeta
-			// Ella"); só aceita se a correspondência for única.
-			if ( ! $afluente_marker ) {
-				$afluente_contained = array_filter( $afluente_markers, function ( $afluente_candidate ) use ( $afluente_normalize_name, $afluente_title_normalized ) {
-					return false !== strpos( $afluente_normalize_name( $afluente_candidate->name ), $afluente_title_normalized );
-				} );
+		// 2) título contido no nome do marcador (ex.: "Ella" → "Planeta
+		// Ella"); só aceita se a correspondência for única.
+		if ( ! $afluente_marker ) {
+			$afluente_contained = array_filter( $afluente_markers, function ( $afluente_candidate ) use ( $afluente_normalize_name, $afluente_title_normalized ) {
+				return false !== strpos( $afluente_normalize_name( $afluente_candidate->name ), $afluente_title_normalized );
+			} );
 
-				if ( 1 === count( $afluente_contained ) ) {
-					$afluente_marker = reset( $afluente_contained );
-				}
+			if ( 1 === count( $afluente_contained ) ) {
+				$afluente_marker = reset( $afluente_contained );
 			}
 		}
 	}
@@ -94,6 +95,82 @@ if ( $afluente_marker ) {
 		$network_url = get_term_meta( $afluente_marker->term_id, $network, true );
 		if ( ! empty( $network_url ) ) {
 			$afluente_networks[ $network ] = $network_url;
+		}
+	}
+}
+
+// #364 (r3): redes que ainda faltarem vêm do autor convidado (Co-Authors
+// Plus) correspondente ao afluente por nome — os mesmos campos exibidos na
+// página de autor (author.php). As metas do marcador seguem canônicas; o
+// autor convidado só preenche redes ausentes.
+if ( $afluente_title_normalized && count( $afluente_networks ) < 5 ) {
+	$afluente_guest_author_map = wp_cache_get( 'afluente_guest_author_map', 'afluentes' );
+
+	if ( false === $afluente_guest_author_map ) {
+		$afluente_guest_author_map = [];
+
+		foreach ( get_posts( [
+			'post_type'   => 'guest-author',
+			'numberposts' => -1,
+			'post_status' => 'publish',
+		] ) as $afluente_guest ) {
+			$afluente_guest_keys = [
+				$afluente_normalize_name( $afluente_guest->post_title ),
+				$afluente_normalize_name( preg_replace( '/^cap-/', '', $afluente_guest->post_name ) ),
+			];
+
+			foreach ( array_unique( array_filter( $afluente_guest_keys ) ) as $afluente_guest_key ) {
+				$afluente_guest_author_map[ $afluente_guest_key ] = $afluente_guest->ID;
+			}
+		}
+
+		wp_cache_set( 'afluente_guest_author_map', $afluente_guest_author_map, 'afluentes' );
+	}
+
+	$afluente_guest_id = 0;
+
+	if ( isset( $afluente_guest_author_map[ $afluente_title_normalized ] ) ) {
+		$afluente_guest_id = (int) $afluente_guest_author_map[ $afluente_title_normalized ];
+	} else {
+		// título contido no nome do autor convidado; só aceita se a
+		// correspondência for única (evita "ella" → marighella, bella…).
+		$afluente_guest_hits = [];
+
+		foreach ( $afluente_guest_author_map as $afluente_guest_key => $afluente_guest_hit_id ) {
+			if ( false !== strpos( $afluente_guest_key, $afluente_title_normalized ) ) {
+				$afluente_guest_hits[ $afluente_guest_hit_id ] = true;
+			}
+		}
+
+		if ( 1 === count( $afluente_guest_hits ) ) {
+			$afluente_guest_id = (int) key( $afluente_guest_hits );
+		}
+	}
+
+	if ( $afluente_guest_id ) {
+		$afluente_cap_fields = [
+			'instagram' => 'cap-instagram',
+			'facebook'  => 'cap-facebook',
+			'twitter'   => 'cap-twitter',
+			'youtube'   => 'cap-youtube',
+			'tiktok'    => 'cap-tik-tok',
+		];
+
+		foreach ( $afluente_cap_fields as $network => $cap_field ) {
+			if ( isset( $afluente_networks[ $network ] ) ) {
+				continue;
+			}
+
+			$network_url = get_post_meta( $afluente_guest_id, $cap_field, true );
+
+			// alguns cadastros não têm esquema (ex.: "instagram.com/x").
+			if ( $network_url && ! preg_match( '#^https?://#i', $network_url ) ) {
+				$network_url = 'https://' . $network_url;
+			}
+
+			if ( $network_url ) {
+				$afluente_networks[ $network ] = $network_url;
+			}
 		}
 	}
 }

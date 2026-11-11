@@ -11,6 +11,8 @@
  *   ver library/categories.php), com os mesmos valores-padrão do tema.
  * - Redes: term meta (instagram/facebook/twitter/youtube/tiktok) do marcador
  *   do afluente (taxonomia `marcador_afluente`), mesmo padrão do single.
+ *   Se o post não tem marcador vinculado (#364), cai para o marcador
+ *   top-level cujo nome corresponda ao título do afluente.
  *
  * @package ninja
  */
@@ -43,6 +45,49 @@ if ( $afluente_category ) {
 
 $afluente_marker = get_primary_afluente( get_the_ID() );
 $afluente_networks = [];
+
+// #364: sem marcador vinculado ao post, resolve o marcador top-level pelo
+// nome do afluente (é ali que as metas de redes vivem neste site).
+if ( ! $afluente_marker ) {
+	$afluente_normalize_name = function ( $name ) {
+		// trim() comum não remove U+00A0 (títulos como "\u{00A0}NINJA Foto").
+		$name = remove_accents( mb_strtolower( trim( $name ) ) );
+		$name = preg_replace( '/[\s\x{00A0}\x{2000}-\x{200A}]+/u', ' ', $name );
+		return trim( $name );
+	};
+
+	$afluente_title_normalized = $afluente_normalize_name( get_the_title() );
+
+	if ( $afluente_title_normalized ) {
+		$afluente_markers = get_terms( [
+			'taxonomy'   => 'marcador_afluente',
+			'parent'     => 0,
+			'hide_empty' => false,
+		] );
+
+		if ( ! is_wp_error( $afluente_markers ) ) {
+			// 1) nome normalizado idêntico (cuida de caixa/acentos/espaços).
+			foreach ( $afluente_markers as $afluente_candidate ) {
+				if ( $afluente_normalize_name( $afluente_candidate->name ) === $afluente_title_normalized ) {
+					$afluente_marker = $afluente_candidate;
+					break;
+				}
+			}
+
+			// 2) título contido no nome do marcador (ex.: "Ella" → "Planeta
+			// Ella"); só aceita se a correspondência for única.
+			if ( ! $afluente_marker ) {
+				$afluente_contained = array_filter( $afluente_markers, function ( $afluente_candidate ) use ( $afluente_normalize_name, $afluente_title_normalized ) {
+					return false !== strpos( $afluente_normalize_name( $afluente_candidate->name ), $afluente_title_normalized );
+				} );
+
+				if ( 1 === count( $afluente_contained ) ) {
+					$afluente_marker = reset( $afluente_contained );
+				}
+			}
+		}
+	}
+}
 
 if ( $afluente_marker ) {
 	foreach ( [ 'instagram', 'facebook', 'twitter', 'youtube', 'tiktok' ] as $network ) {

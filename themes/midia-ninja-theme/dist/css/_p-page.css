@@ -105,6 +105,12 @@
 
 .page-cpi-da-covid #app #carometro .et_pb_team_member .et_pb_team_member_image {
   height: auto;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.page-cpi-da-covid #app #carometro .et_pb_team_member .et_pb_team_member_description .et_pb_module_header {
+  margin-top: -40px;
 }
 
 .page-cpi-da-covid #app [class*=lightbox-content-] {

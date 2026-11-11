@@ -133,9 +133,25 @@
         // Carômetro — vão entre a foto e o nome: o CSS de design fixa a
         // altura do wrapper da foto em 320px, mas as fotos renderizam com
         // 232–289px na grade do embed; o nome (puxado 70px pelo design)
-        // fica a 51–108px abaixo da foto real. Wrapper acompanha a foto.
+        // ficava a 51–108px abaixo da foto real. Wrapper acompanha a foto.
+        // Revisão 3 (cliente pediu duas vezes): além do height:auto, zera o
+        // padding-bottom:15px e o margin-bottom:60px que o CSS inline do
+        // plugin da timeline aplica no wrapper e NORMALIZA o pull do nome —
+        // o design do antigo puxa o h4 −70px em 67 cards e −120px em 21
+        // (modules 6–26, variação de autoria), então compensar pelo wrapper
+        // aterrissava diferente por card. Pull único de −40px + padding-top
+        // 30px da descrição = nome a −10px da borda da foto (nameplate
+        // levemente sobreposto, como no antigo), uniforme em desktop e
+        // mobile. Sem !important: este seletor (2 ids) vence as regras do
+        // design (0,3,1) e as inline do plugin (0,2,0).
         #carometro .et_pb_team_member .et_pb_team_member_image {
             height: auto;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        #carometro .et_pb_team_member .et_pb_team_member_description .et_pb_module_header {
+            margin-top: -40px;
         }
 
         // Fichas dos envolvidos abaixo dos Créditos: remoção VISUAL via CSS

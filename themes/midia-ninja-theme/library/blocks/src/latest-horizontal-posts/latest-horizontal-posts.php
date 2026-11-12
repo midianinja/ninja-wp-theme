@@ -192,6 +192,9 @@ function latest_horizontal_posts_callback( $attributes ) {
         $posts_to_show = intval( $attributes['postsToShow'] );
 
         if ( $video_model === 'shorts' ) {
+            // Shorts blocks must not inherit the legacy model-videos page rules
+            // (home and TV Ninja page CSS force landscape slides on it).
+            $block_classes   = array_diff( $block_classes, [ 'model-videos' ] );
             $block_classes[] = 'model-shorts';
         }
 

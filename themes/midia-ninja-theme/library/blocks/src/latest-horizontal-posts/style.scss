@@ -399,8 +399,12 @@
 			}
 
 			@media (max-width: 767px) {
-				height: 265px;
+				height: 295px;
 				margin-left: -10px;
+			}
+
+			@media (max-width: 359px) {
+				height: 260px;
 			}
 		}
 
@@ -432,17 +436,35 @@
 				height: 225px;
 			}
 
+			// Mobile: two vertical cards per view. Width is fluid (slick sets
+			// the slide width inline at ~50% of the list minus the 2x15px
+			// slide margins), so the inner elements follow with width: 100%.
+			// Fixed height keeps the 9:16 shorts ratio for the ~148-155px
+			// wide cards of 360-375px viewports (155px * 16 / 9 = 275.5px).
 			@media (max-width: 782px) {
-				width: 325px;
-				height: 245px;
+				width: 100%;
+				height: 275px;
 				margin-left: auto;
 				margin-right: auto;
 				border-radius: 8px;
 			}
 
+			// Small viewports: two smaller cards (e.g. 128px wide at 320px).
 			@media (max-width: 359px) {
-				width: 305px;
-				height: 245px;
+				height: 240px;
+			}
+		}
+
+		// On mobile the card width is fluid, but it must not exceed the
+		// desktop card width: between ~390px and 782px viewports each slide
+		// slot is wider than 170px and the card would turn landscape. Cap
+		// only the card elements -- the .slick-slide width is set inline by
+		// slick and must not be constrained.
+		.videos,
+		.post-thumbnail,
+		img {
+			@media (max-width: 782px) {
+				max-width: 170px;
 			}
 		}
 

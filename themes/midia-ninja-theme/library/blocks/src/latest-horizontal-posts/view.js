@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const dotsMobile = slider.querySelector('.medium-only .latest-horizontal-posts-block__dots')
 
 		let slidesToShowMobile = 1
-		if (slider.classList.contains('model-specials') || slider.classList.contains('model-most-read')) {
+		if (slider.classList.contains('model-specials') || slider.classList.contains('model-most-read') || slider.classList.contains('model-shorts')) {
 			slidesToShowMobile = 2
 		} else if (slider.classList.contains('model-photos') || slider.classList.contains('model-albums')) {
 			slidesToShowMobile = 1.5

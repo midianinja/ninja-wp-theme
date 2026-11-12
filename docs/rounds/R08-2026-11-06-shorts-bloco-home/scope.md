@@ -7,6 +7,7 @@
 - **Backend** (`library/blocks/src/latest-horizontal-posts/includes/videos.php`): nova opção `videoModel: "shorts"` — busca os shorts reais do canal via YouTube Data API v3 (uploads do canal → pré-filtro por duração → validação pelo endpoint `/shorts/{id}`), com cache em transient reaproveitando a opção `youtube_api_cache_ttl`.
 - **Frontend** (`latest-horizontal-posts.php` + `style.scss` do bloco): classe dedicada (ex.: `model-shorts`) quando o modelo for shorts, com estilos verticais **no nível do bloco** idênticos à referência da TV Ninja (cards 170×302, radius 12px, sem ícone de play, setas/dots customizados, comportamento mobile da referência) — portátil para qualquer página, sem depender de CSS de página.
 - **Editor** (`edit.js`): nova opção "Shorts do canal" no seletor de modelo de vídeo, exibindo o campo de ID do canal.
+- **Mobile (incremento de 2026-11-12):** o modelo shorts exibe **2 slides por view no mobile** (≤782px) — cards fluidos com altura fixa 9:16 (275px; 240px ≤359px), cap de 170px para não virar landscape em viewportes intermediários; desktop inalterado.
 - **Build** dos blocos (`library/blocks`) e dos assets do tema, conforme convenção do repositório.
 - **Última ação — humana (@julialaurentino):** configurar o bloco na **home em ambiente dev e em produção** (apontar o bloco de vídeo existente para o novo modelo "Shorts do canal" com o ID do canal).
 - **Ação humana condicionada (@julialaurentino, mediante confirmação do produto):** reconfigurar o bloco "Shorts" da página **TV Ninja** para o novo modelo — só acontece se o produto confirmar; até lá o bloco de lá continua funcionando como está.
@@ -26,6 +27,7 @@
 5. Cache por transient mantido (sem chamada à API do YouTube a cada pageview); falhas de API degradam sem quebrar a página (comportamento atual preservado).
 6. Bloco configurado na home em dev e produção — **ação humana final** (@julialaurentino), após aceite técnico.
 7. **Mediante confirmação do produto:** bloco "Shorts" da página TV Ninja reconfigurado para o novo modelo — **ação humana** (@julialaurentino), executada só após o aceite do produto.
+8. No mobile (≤782px), o bloco de shorts exibe **2 slides por view** (inclusive ≤359px, com cards menores), mantendo a proporção vertical dos cards, sem overflow ou clipping, com swipe e dots funcionando.
 
 ## Notas de derivação (2026-11-06)
 
@@ -42,3 +44,10 @@
 - **Forma de entrega:** merge fast-forward em `develop` local, **sem push e sem PR** — decisão da desenvolvedora (Deviation 1).
 - **Nota de deploy:** `library/blocks/build/` é gitignored neste repositório — o build dos blocos (`npm run build` em `themes/midia-ninja-theme/library/blocks`) precisa rodar no processo de deploy para o CSS/JS compilado chegar ao ambiente.
 - **Pendências de validação humana:** teste E2E com a chave real da API do YouTube (banco local não tem a opção `youtube_key`); conferência visual desktop/mobile; após o aceite, configurar o bloco da home (dev e produção) e, mediante confirmação do produto, o bloco "Shorts" da TV Ninja (critérios 6 e 7).
+
+## Incremento — 2 slides no mobile (2026-11-12)
+
+- **Requisito (decisão da desenvolvedora):** "quando o bloco for de shorts, ele exiba 2 slides no mobile".
+- **Implementação:** `view.js` (ramo `model-shorts` → `slidesToShowMobile = 2`) + `style.scss` (seção `model-shorts` reworkada no mobile: cards fluidos `width:100%` com altura fixa 275px @≤782px e 240px @≤359px, `max-width:170px` nos elementos do card para preservar o formato vertical em viewportes intermediárias, `.slick-list` 295px/260px; breakpoints desktop intocados).
+- **Verificação executada:** build compila; JS compilado contém `model-shorts`→2; CSS compilado sem `325px`/`305px`, com `height:275px`, `height:240px` e `max-width:170px`; demais modelos com diff zero. Aritmética dos slots do slick documentada (card 148-155px × altura 9:16 em viewports 360-375px).
+- **Ambiente local:** container `ninja-wp-361` servindo o checkout principal em `http://localhost:8080` (porta 80 ocupada pelo projeto adai-site; `siteurl`/`home` do WP local ajustados para `http://localhost:8080` — reverter ao encerrar).

@@ -57,3 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.filters-search-form .clear-filters').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            let searchField = document.getElementById('searchField')
+
+            if (searchField) {
+                searchField.value = ''
+                searchField.focus()
+            }
+
+            document.querySelectorAll('.filters-search-form [name="tipo"], .filters-search-form [name="ordem"]').forEach(select => {
+                select.selectedIndex = 0
+            })
+        })
+    })
+})

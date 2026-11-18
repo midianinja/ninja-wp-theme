@@ -75,7 +75,7 @@ $container_class = $is_content_opiniao ? 'container is-content-opiniao' : 'conta
 
                         <?php $has_active_filters = ( '' !== trim( (string) get_search_query() ) ) || ( isset( $_GET['tipo'] ) && $_GET['tipo'] !== 'all' ) || ( isset( $_GET['ordem'] ) && $_GET['ordem'] === 'oldest' ); ?>
                         <?php if ( $has_active_filters ) : ?>
-                            <button class="clear-filters"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php _e( 'Limpar filtros', 'ninja' ); ?></a></button>
+                            <button class="clear-filters"><a href="<?php echo esc_url( add_query_arg( 's', get_search_query(), home_url( '/' ) ) ); ?>"><?php _e( 'Limpar filtros', 'ninja' ); ?></a></button>
                         <?php endif; ?>
                     </div>
                     <div class="content">

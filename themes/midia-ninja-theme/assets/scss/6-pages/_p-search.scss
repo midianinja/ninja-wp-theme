@@ -78,6 +78,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 
             .filter-wrapper{
                 display: flex;
+                flex-wrap: wrap;
                 gap: 30px;
 				margin-bottom: 2.5rem;
 
@@ -142,7 +143,15 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                 }
 
                 .filter-opinion{
-                    width: 329px;
+                    width: auto;
+
+                    @include small{
+                        width: 329px;
+                    }
+
+                    @include mobile{
+                        width: 100%;
+                    }
 
                     .custom-select-wrapper-opinion {
                         position: relative;
@@ -216,12 +225,19 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                 }
 
                 .filter{
-                    width: 329px;
+                    width: auto;
+
+                    @include small{
+                        width: 329px;
+                    }
+
+                    @include mobile{
+                        width: 100%;
+                    }
 
                     .custom-select-wrapper {
                         position: relative;
                         display: inline-flex;
-                        left: -86px;
                         width: 100%;
 
                         @include small{

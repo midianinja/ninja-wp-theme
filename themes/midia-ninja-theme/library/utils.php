@@ -643,6 +643,10 @@ function order_search_filters($query) {
                 $query->set('post_type', 'opiniao');
             } elseif($_GET['tipo'] == 'post'){
                 $query->set('post_type', 'post');
+            } elseif($_GET['tipo'] == 'especial'){
+                $query->set('post_type', 'especial');
+            } elseif($_GET['tipo'] == 'afluente'){
+                $query->set('post_type', 'afluente');
             } else{
                 $query->set('post_type', ['post', 'opiniao']);
             }

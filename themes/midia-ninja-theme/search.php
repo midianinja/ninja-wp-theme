@@ -55,6 +55,8 @@ $container_class = $is_content_opiniao ? 'container is-content-opiniao' : 'conta
                                     <option value="all" <?php selected($_GET['tipo'], 'all') ?>><?php _e('Filter by All', 'ninja'); ?></option>
                                     <option value="opiniao" <?php selected($_GET['tipo'], 'opiniao') ?>><?php _e('Opinion', 'ninja'); ?></option>
                                     <option value="post" <?php selected($_GET['tipo'], 'post') ?>><?php _e('News', 'ninja'); ?></option>
+                                    <option value="especial" <?php selected($_GET['tipo'], 'especial') ?>><?php _e('Especiais', 'ninja'); ?></option>
+                                    <option value="afluente" <?php selected($_GET['tipo'], 'afluente') ?>><?php _e('Afluentes', 'ninja'); ?></option>
                                 </select>
                                 <div class="select-icon-opinion"></div>
                             </div>
@@ -70,6 +72,11 @@ $container_class = $is_content_opiniao ? 'container is-content-opiniao' : 'conta
                                 <div class="select-icon"></div>
                             </div>
                         </div>
+
+                        <?php $has_active_filters = ( isset( $_GET['tipo'] ) && $_GET['tipo'] !== 'all' ) || ( isset( $_GET['ordem'] ) && $_GET['ordem'] === 'oldest' ); ?>
+                        <?php if ( $has_active_filters ) : ?>
+                            <button class="clear-filters"><a href="<?php echo esc_url( add_query_arg( 's', get_search_query(), home_url( '/' ) ) ); ?>"><?php _e( 'Limpar filtros', 'ninja' ); ?></a></button>
+                        <?php endif; ?>
                     </div>
                     <div class="content">
                         <?php while (have_posts()) : the_post(); ?>

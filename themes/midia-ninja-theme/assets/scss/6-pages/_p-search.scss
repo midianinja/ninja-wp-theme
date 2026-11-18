@@ -805,3 +805,32 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
     }
 }
 
+// "Limpar filtros" button: shown in the filter row when a filter is active.
+// Reuses the .b-home design tokens; applies to both results and no-results states.
+.search-results,
+.search-no-results{
+    .filter-wrapper{
+        .clear-filters{
+            border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+            border: none;
+            background: var(--DARK, #111);
+            padding: 16px 24px;
+            align-self: center;
+            cursor: pointer;
+
+            a{
+                color: var(--White, #FFF);
+                text-align: center;
+                font-family: var(--wp--preset--color--manrope);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 150%;
+                letter-spacing: -0.42px;
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+        }
+    }
+}
+

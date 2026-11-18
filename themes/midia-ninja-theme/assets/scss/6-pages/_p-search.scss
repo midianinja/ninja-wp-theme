@@ -115,6 +115,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                     }
 
                     input[type="search"]{
+                        box-sizing: border-box;
                         max-width: 435px;
                         width: 100%;
                         height: 39px;
@@ -595,6 +596,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                     }
 
                     input[type="search"]{
+                        box-sizing: border-box;
                         max-width: 435px;
                         width: 100%;
                         height: 39px;

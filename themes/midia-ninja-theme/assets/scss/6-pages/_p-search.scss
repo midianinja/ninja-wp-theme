@@ -521,6 +521,7 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
         .index-wrapper{
             .filter-wrapper{
                 display: flex;
+                flex-wrap: wrap;
                 gap: 24px;
                 margin-bottom: 100px;
                 position: relative;
@@ -542,7 +543,9 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                 }
 
                 .search-component{
-                    width: 460px;
+                    flex: 1 1 auto;
+                    min-width: 240px;
+                    max-width: 460px;
                     height: 39px;
 
                     @include mobile{
@@ -554,7 +557,8 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
                     }
 
                     .label-search{
-                        max-width: 460px;
+                        position: relative;
+                        max-width: 100%;
                         width: 100%;
                         height: 39px;
                         display: flex;
@@ -806,29 +810,41 @@ $p_theme_assets: '/wp-content/themes/midia-ninja-theme/assets';
 }
 
 // "Limpar filtros" button: shown in the filter row when a filter is active.
-// Reuses the .b-home design tokens; applies to both results and no-results states.
+// Scaled to match the #tipo/#ordem selects (46px tall, 13px Manrope label) so the
+// row keeps a single line on desktop; stacks at the selects' mobile width.
 .search-results,
 .search-no-results{
     .filter-wrapper{
         .clear-filters{
-            border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 46px;
+            padding: 0 20px;
             border: none;
+            border-radius: 8px;
             background: var(--DARK, #111);
-            padding: 16px 24px;
-            align-self: center;
             cursor: pointer;
+            flex-shrink: 0;
+            align-self: center;
+            white-space: nowrap;
 
             a{
                 color: var(--White, #FFF);
-                text-align: center;
-                font-family: var(--wp--preset--color--manrope);
-                font-size: 14px;
+                font-family: var(--wp--preset--font-family--manrope);
+                font-size: 13px;
                 font-style: normal;
-                font-weight: 800;
-                line-height: 150%;
-                letter-spacing: -0.42px;
+                font-weight: 700;
+                line-height: 145%;
+                letter-spacing: normal;
+                text-align: center;
                 text-transform: uppercase;
                 text-decoration: none;
+            }
+
+            @include mobile{
+                width: 272px;
+                max-width: 272px;
             }
         }
     }

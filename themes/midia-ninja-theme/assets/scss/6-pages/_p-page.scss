@@ -111,9 +111,9 @@
         // seção 28: 54px de padding + 27px da row_47 + 67px de margin-top do
         // h1 = 148px de vão; seções 31/34: 91px de padding + 67px do h1 =
         // 158px. Redução escopada (~1/3 do vão original).
-        // Revisão 6: no MOBILE o margin-top de 24px dos oito títulos dourados
+        // Revisão 6/7: no MOBILE o margin-top de 24px dos oito títulos dourados
         // (estes três incluídos) passou a vir do sistema de títulos da
-        // revisão 6 — mesma régua, mesmo valor; esta regra permanece porque
+        // revisão 6/7 — mesma régua, mesmo valor; esta regra permanece porque
         // não tem media query e o desktop ≥981px dela depende (a revisão 4
         // só estende o 24px a CRIMES/RELATÓRIO).
         .et_pb_text_83 h1,
@@ -173,7 +173,8 @@
         // CORREÇÃO (rev5): as capturas do cliente são MOBILE (710×1077 =
         // retina 2x de ~355px lógicos), não desktop como lidas na rev4; este
         // bloco ≥981px foi mantido por decisão humana. Os 5 ajustes pedidos
-        // estão no bloco da revisão 5 (max-width: 768px).
+        // na rev4-mobile foram absorvidos pelo bloco da revisão 6/7
+        // (max-width: 768px) — este aqui regula só o DESKTOP ≥981px.
         // Os vãos que sobraram da revisão 2 vêm de três fontes, medidas numa
         // réplica headless do embed (mesma cascata da produção: critical.css →
         // CSS de design raspado no corpo → este chunk, que carrega por último):
@@ -341,16 +342,16 @@
             }
         }
 
-        // ===== Revisão 6 da #335 — mobile refeito sobre medição da página REAL =====
-        // Substitui a revisão 5 (redo autorizado). A rev5 foi medida numa
-        // RÉPLICA da cascata e entregou regras visualmente inertes; o
-        // diagnóstico da página real autenticada (dev.midianinja.org,
-        // headless Chrome, 355/390px) mostrou o porquê:
+        // ===== Revisão 6/7 da #335 — mobile medido na página REAL (régua ≤24px) =====
+        // A rev6 substituiu a rev5 (que media numa RÉPLICA da cascata e
+        // entregava regras inertes) por medição da página real autenticada
+        // (dev.midianinja.org, headless Chrome, 355/390px), com o chunk local
+        // injetado por cima do servido. Diagnóstico estrutural que permanece
+        // válido (de onde vinha cada pixel dos vãos):
         //
         //   (1) As regras da rev5 NÃO perdiam a cascata: todos os seletores
-        //       casavam exatamente 1 elemento (exceto os h1, 8/2/6/6/6) e os
-        //       computed styles já exibiam os valores-alvo dela (0/24px). O
-        //       problema era o ALVO: na página real, o vão dos títulos vem da
+        //       casavam e os computed styles exibiam os valores-alvo dela. O
+        //       problema era o ALVO: na página real, o vão dos títulos vinha da
         //       PILHA DE h1 VAZIOS que o autor do site antigo empilhava antes
         //       de cada título — 23 no total (7 em A CPI NAS REDES, 1 em
         //       CRIMES, 5 em RELATÓRIO, 5 em E AGORA?, 5 em CRÉDITOS). Cada
@@ -359,42 +360,78 @@
         //       todos os vazios) + 10px de padding-bottom que o Divi core
         //       aplica a todo h1..h6. A rev5 zerou o margin-BOTTOM da pilha,
         //       que era a margem PERDEDORA (entre irmãos vence o mt:24) —
-        //       mudança visual: 0px.
+        //       mudança visual: 0px. Census rev7 (de novo, ao vivo): 33 h1
+        //       nos módulos de título, 23 casam com :empty, 0 carregam
+        //       whitespace — :empty continua matando todos os espaçadores.
         //   (2) O ritmo base do mobile vem do Divi core servido cross-origin
         //       pelo antigo (wp-divi-3/style.css), que a réplica não carregava:
         //       @media(max-width:980px){.et_pb_section{padding:50px 0}
-        //       .et_pb_row{padding:30px 0}}. Na página real sobraram vivos:
-        //       50px de padding-bottom na seção das REDES (junção 2), 30px de
-        //       padding-top na row do título do RELATÓRIO (junção 3) e 60px
-        //       na row_53 — uma row de duas colunas VAZIAS no fim do
-        //       RELATÓRIO (junção 4). Nenhum dos três estava na mira da rev5.
-        //   (3) Vãos reais medidos (fim visual do bloco → topo do título):
-        //       J1 carômetro→redes 286px · J2 redes→crimes 138px (da seta)
-        //       · J3 crimes→relatório 248px · J4 relatório→e-agora 286px
-        //       · J5 galeria→créditos 248px.
+        //       .et_pb_row{padding:30px 0}}. Vivos na página real: 50px no
+        //       fundo da sec_2 (herói), 14px no topo da sec_6, 30px nas bordas
+        //       das rows de título/conteúdo (row_25, row_47, row_48, row_27,
+        //       row_4).
         //
-        // SISTEMA (escala de 8px: 16/24/32/48/64):
-        //   • respiro entre blocos = 48px, sempre: 24px de padding-top na
-        //     seção do título + 24px de margin-top do título (colapsada
-        //     através do módulo/row/col, que não têm padding próprio);
-        //   • o bloco anterior TERMINA no fim do conteúdo: padding-bottom 0
-        //     nas seções de título (mata o 50px do Divi core na junção 2);
-        //   • fantasmagoria removida por padrão ESTRUTURAL (h1 vazio some,
-        //     row sem módulo algum some, <p> final de módulo não escapa
-        //     margem para fora do bloco);
-        //   • margens internas do próprio bloco anterior (ex.: row_48 pb 30
-        //     da seta das redes) ficam na conta do bloco, como na revisão 4.
+        // REV7 (critério literal do cliente: "no máximo 24px de distância
+        // entre esses elementos"; interpretação confirmada pela facilitação:
+        // ≤24px NOS DOIS LADOS de TODOS os títulos — a régua de respiro de
+        // 48px da rev6 ficou superada). Vãos medidos na rev6 (355px) que a
+        // rev7 fecha:
+        //   • antes dos títulos de seção (CARÔMETRO, REDES, CRIMES, RELATÓRIO,
+        //     E AGORA?, CRÉDITOS): 48px = padding-top 24 da seção + mt 24 do
+        //     h1 → a seção passa a padding [0,0] e sobrevive só o mt 24;
+        //   • ANTES DE INTRODUÇÃO: 634px entre o fim da capa e o título. A
+        //     faixa de estática do herói (sec_1) é alta 760px porque
+        //     image_1 (seu único conteúdo, caixa de 90vh com a arte
+        //     cpi10.png de background) tem 810px; a arte em si pinta
+        //     INVISÍVEL (z-index −44 atrás do background opaco de
+        //     estática+preto da própria sec_1) — o que sobra é uma parede
+        //     de estática de 634px antes do título. Correção sem tocar nos
+        //     pulls autorais (−150px em image_1 e text_0, preservados):
+        //     caixa de image_1 encolhe para 200px fixos → faixa líquida de
+        //     150px e o título pousa a 24px da capa;
+        //   • ANTES DE LINHA DO TEMPO: 61px = pb 3 da sec_3 (vídeo) + mt −4
+        //     da sec_6 (design, preservado) + pt 14 da sec_6 + pt 27 da
+        //     row_4 + mt 24 → sec_6/row_4 entram no sistema [0,0]: 23px;
+        //   • DEPOIS DE LINHA DO TEMPO: 169px até a 1ª tinta (a data do 1º
+        //     painel). O trilho da timeline é um pin-spacer do GSAP
+        //     (.pin-spacer > .horizontal-container com as sec_7–26 ao vivo)
+        //     que encosta no título com −30px de offset; a data (.dia, 20
+        //     módulos) carrega mt 130 !important + pt 69 !important do
+        //     design. Renormalizado para mt 24/pt 30: 1ª tinta a 24px;
+        //   • DEPOIS DE CARÔMETRO: 30px de pb da row_25 (Divi core) + 30px
+        //     de pt da row_27 (1ª row de cards) → 0; ritmo ENTRE rows de
+        //     cards preservado (rows 28+ intactas);
+        //   • DEPOIS DE A CPI NAS REDES: 70px = pb 30 da row_47 + pt 30 da
+        //     row_48 + mt 10 autoral do texto → bordas da row_48 a 0: 10px;
+        //   • ANTES DE CRIMES (da seta): 78px = pb 30 da row_48 + pt 24 da
+        //     sec_29 + mt 24 → 24px;
+        //   • ANTES DE CRÉDITOS: 48px da borda da galeria, mas 70px
+        //     tinta-a-tinta (mb 10 !important da última thumb image_65 +
+        //     pb 10 da coluna + pb 2 da row_58 + pt 24 da sec_34 + mt 24)
+        //     → trims pontuais: 24px da última thumb;
+        //   • DEPOIS DE CRIMES (0), RELATÓRIO (0), E AGORA? (23, mt do
+        //     próprio texto), CRÉDITOS (0) e INTRODUÇÃO (0): já ≤24 na rev6
+        //     (conteúdo no próprio módulo do título), sem ajuste.
         //
-        // Alvos conferidos por computed style na página real a 355/390px
-        // (evidência na tarefa da #335, revisão 6): J1 286→48 · J2 138→78
-        // da seta (48 da borda do bloco) · J3 248→48 · J4 286→48 · J5
-        // 248→70 da última thumb (48 da borda da galeria; os 22px restantes
-        // são a margem interna da própria grade, mantida como no desktop).
+        // SISTEMA rev7 (≤24 tinta-a-tinta nos dois lados):
+        //   • seção de título padding [0,0] — o vão ANTES de cada título é
+        //     definido por um único mt 24 do h1 (colapsado através do
+        //     módulo/row/col, que não têm padding próprio);
+        //   • o bloco anterior TERMINA no fim do conteúdo; vãos DEPOIS =
+        //     título mb 0 + trims pontuais no topo do bloco seguinte,
+        //     documentados um a um;
+        //   • fantasmagoria morta por padrão estrutural (h1 vazio some, row
+        //     sem módulo algum some, <p> final não escapa margem);
+        //   • desktop ≥981px: intocado (blocos das revisões 2/4 seguem
+        //     válidos lá; as regras da rev2 sem media query continuam
+        //     perdendo no mobile para este bloco, que vem depois na cascata).
         @media (max-width: 768px) {
 
             // (a) Pilha de h1s vazios: 23 espaçadores fantasmas de 34px cada
             // (mt 24 multiplicado pela revisão 2 + pb 10 do Divi core).
-            // :empty casa os 23 medidas (nenhum carrega whitespace).
+            // :empty casa os 23 medidas (census rev7: nenhum carrega
+            // whitespace — a suspeita de h1 com whitespace interno foi
+            // verificada ao vivo e descartada).
             .et_pb_text_inner h1:empty {
                 display: none;
             }
@@ -418,15 +455,13 @@
                 margin-bottom: 0;
             }
 
-            // (d) Títulos dourados — margens normalizadas à escala (24/0).
-            // A régua de 24px de mt vinha da revisão 2 (83/95/97) e da rev5
-            // (85/87); o sistema a estende aos oito títulos dourados e soma
-            // o mb:0 (o 0.67em do critical.css empurrava o conteúdo de
-            // baixo). Com a pilha de vazios morta em (a), o 24px colapsado
-            // através do módulo É o componente título do respiro de 48px.
-            // Índices (não :has) porque a estrutura não discrimina: os
-            // cards do RELATÓRIO (text_88–94) e as fichas de CRÉDITOS
-            // (text_99+) também têm h1 direto em .et_pb_text_inner.
+            // (d) Títulos dourados — margens normalizadas (24/0). O mt 24 é
+            // agora O componente inteiro do vão "antes" (a seção contribui 0
+            // via (f)); o mb 0 mantém o conteúdo colado (o 0.67em do
+            // critical.css empurrava o conteúdo de baixo). Índices (não
+            // :has) porque a estrutura não discrimina: os cards do
+            // RELATÓRIO (text_88–94) e as fichas de CRÉDITOS (text_99+)
+            // também têm h1 direto em .et_pb_text_inner.
             .et_pb_text_0 h1,
             .et_pb_text_1 h1,
             .et_pb_text_82 h1,
@@ -449,30 +484,31 @@
             }
 
             // (f) Ritmo estrutural das seções de título: seção que contém um
-            // módulo de texto com h1 real recebe 24px de topo e fundo 0 — o
-            // título completa com seus 24px de margem (48 de respiro) e o
-            // bloco anterior encosta no próprio conteúdo. O padrão :has
-            // casa exatamente as 8 seções de título medidas (2, 6, 27, 28,
-            // 29, 30, 31, 34). Exceções de design documentadas: section_2
-            // (herói — o título iNTRODUÇÃO vive puxado 150px para dentro da
-            // imagem por mt negativo autoral) e section_6 (bloco da seta de
-            // scroll antes de LINHA DO TEMPO, com pull próprio de mt −4px).
-            .et_pb_section:not(.et_pb_section_2):not(.et_pb_section_6):has(.et_pb_row .et_pb_module.et_pb_text .et_pb_text_inner > h1) {
-                padding-top: 24px;
+            // módulo de texto com h1 real recebe padding [0,0] — o vão antes
+            // do título passa a ser só o mt 24 de (d), e o bloco seguinte
+            // encosta na própria borda. O padrão :has casa exatamente as 8
+            // seções de título medidas (2, 6, 27, 28, 29, 30, 31, 34). A
+            // rev6 excluía sec_2 (herói) e sec_6 por cautela; a rev7 as
+            // incorpora — os 50px/14px de borda do Divi core morrem, e os
+            // pulls autorais (−150px do herói em image_1/text_0, −4px da
+            // sec_6) sobrevivem porque são MARGENS, não paddings.
+            .et_pb_section:has(.et_pb_row .et_pb_module.et_pb_text .et_pb_text_inner > h1) {
+                padding-top: 0;
                 padding-bottom: 0;
 
-                // A row que carrega o título não soma padding próprio (mata
-                // o 30px do Divi core na row_51 do RELATÓRIO e o 30px da
-                // row_25 do carômetro). A row_52 (cards amarelos) também
-                // casa, mas o design dela usa padding-top 40px !important —
-                // o !important do design vence e a caixa mantém sua borda
-                // interna, como no desktop.
+                // A row que carrega o título não soma padding próprio nas
+                // duas pontas (mata o pt 27+pb 8 da row_4 de LINHA DO TEMPO,
+                // o pb 30 da row_25 do CARÔMETRO e o pb 30 da row_47 das
+                // REDES). A row_52 (cards amarelos do RELATÓRIO) também
+                // casa por ter h1 nos cards, mas o design dela usa paddings
+                // 40px !important — vencidos só pela regra explícita (g).
                 > .et_pb_row:has(.et_pb_module.et_pb_text .et_pb_text_inner > h1) {
                     padding-top: 0;
+                    padding-bottom: 0;
                 }
             }
 
-            // (g) Pé do RELATÓRIO: caixa amarela (row_52) com padding 40px
+            // (g) Pé do RELATÓRIO: caixa amarela (row_52) com paddings 40px
             // !important do design — precisa de !important para morrer no
             // fundo; o topo 40px fica (borda interna da caixa). Os cards
             // terminam colados no fim da caixa (mb 0 — o espaçamento entre
@@ -487,9 +523,78 @@
 
             // (h) Fundo da GALERIA antes de CRÉDITOS: a seção da galeria não
             // tem h1 (título é h2), o gancho estrutural de (f) não a alcança
-            // — única exceção por índice do sistema, mantida da rev5.
+            // — única exceção por índice do sistema, mantida da rev5/6.
             .et_pb_section_33 {
                 padding-bottom: 0;
+            }
+
+            // ===== trims pontuais rev7 (vãos "depois" e tinta-a-tinta ≤24) =====
+
+            // (i) REDES, bordas internas da row_48 (pt/pb 30 do Divi core):
+            // o texto das redes passa a ficar a 10px do título (o mt 10 do
+            // text_84 é autoral e fica) e a seta colada na própria borda —
+            // a junção seta → CRIMES fecha em 24 (só o mt 24 do título).
+            .et_pb_row_48 {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            // (j) CARÔMETRO → cards: a 1ª row de cards visível (row_27; as
+            // rows de 6 colunas são display:none ≤980 no design) perde o pt
+            // 30 do Divi core — a foto sobe à borda do título. O ritmo
+            // ENTRE rows de cards (rows 28+) fica intacto.
+            .et_pb_row_27 {
+                padding-top: 0;
+            }
+
+            // (k) LINHA DO TEMPO → 1ª tinta: o trilho pinado (pin-spacer do
+            // GSAP com as 20 seções-painel) encosta no título com −30px de
+            // offset; os 20 módulos de data (.dia) carregam mt 130 e pt 69
+            // !important do design (regra .dia{margin-top:130px!important}
+            // + .et_pb_text_N{padding-top:69px!important}). Renormaliza para
+            // 24/30 (mesma escala do sistema): 24+30−30 = 1ª tinta a 24px
+            // do título. Todos os painéis compressam uniformemente — o
+            // ScrollTrigger re-medirá o trilho no refresh (resize).
+            .dia {
+                margin-top: 24px !important;
+                padding-top: 30px !important;
+            }
+
+            // (l) GALERIA → CRÉDITOS tinta-a-tinta: a última thumb
+            // (image_65, última da row_58) carrega mb 10 !important do
+            // design e mora numa coluna com pb 10 (row_58 ainda tem pb 2).
+            // Zerando as três sobras, o título fica a 24 da última thumb
+            // (só o mt 24). O ritmo interno da grade (entre rows 57/58 e
+            // entre colunas) não é tocado.
+            .et_pb_image_65 {
+                margin-bottom: 0 !important;
+            }
+
+            .et_pb_row_58 {
+                padding-bottom: 0;
+            }
+
+            .et_pb_row_58 .et_pb_column:last-child {
+                padding-bottom: 0;
+            }
+
+            // (m) HERÓI, vão antes de INTRODUÇÃO: a caixa de image_1 (a faixa
+            // de estática do herói) tem height 90vh do design — 810px medidos
+            // no emulador, variando com a altura do aparelho. A faixa cpi10
+            // (background do módulo, contain e centralizada) fica INVISÍVEL:
+            // o módulo tem z-index −44 e pinta atrás do background OPACO de
+            // estática+preto da própria sec_1 (contexto de empilhamento da
+            // raiz) — o que o cliente vê entre a capa e o título é só a
+            // parede de estática: 634px de vão. Encolhe a caixa para 200px
+            // fixos (independente de vh): com o row pad 100 e o pull −150,
+            // a faixa líquida fica em 150px e o título (pull −150 no módulo
+            // + mt 24 do h1, ambos preservados) pousa a 24px da capa.
+            // A âncora do background passa ao fundo como cinto e suspensórios:
+            // se a arte cpi10 algum dia pintar à frente da estática, ela
+            // aparece colada ao título, não flutuando 187px acima.
+            .et_pb_image_1 {
+                height: 200px;
+                background-position: center bottom;
             }
         }
 

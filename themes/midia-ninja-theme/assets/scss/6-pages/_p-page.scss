@@ -164,8 +164,11 @@
             display: none;
         }
 
-        // ===== Revisão 4 da #335 (feedback Caio, capturas desktop) — junções
-        // entre blocos =====
+        // ===== Revisão 4 da #335 (feedback Caio) — junções entre blocos =====
+        // CORREÇÃO (rev5): as capturas do cliente são MOBILE (710×1077 =
+        // retina 2x de ~355px lógicos), não desktop como lidas na rev4; este
+        // bloco ≥981px foi mantido por decisão humana. Os 5 ajustes pedidos
+        // estão no bloco da revisão 5 (max-width: 768px).
         // Os vãos que sobraram da revisão 2 vêm de três fontes, medidas numa
         // réplica headless do embed (mesma cascata da produção: critical.css →
         // CSS de design raspado no corpo → este chunk, que carrega por último):
@@ -186,8 +189,8 @@
         // pela revisão 2 (vão de ~48–56px entre o fim do bloco anterior e o
         // título; margens internas do próprio bloco anterior entram na conta
         // do bloco, não da junção). Desktop-only ≥981px (breakpoint do Divi):
-        // as capturas do cliente são desktop e o mobile aprovado na revisão 1
-        // não deve mudar.
+        // escopo mantido por decisão humana após a correção da leitura das
+        // capturas (ver revisão 5 abaixo).
         @media (min-width: 981px) {
 
             // (a) Zera a pilha de h1s vazios nos cinco títulos de junção e
@@ -330,6 +333,113 @@
             .et_pb_text_97 h1,
             .et_pb_text_98 h1 {
                 letter-spacing: 0.05em;
+            }
+        }
+
+        // ===== Revisão 5 da #335 (feedback Caio, capturas mobile ~355px) =====
+        // Os 5 ajustes de junção NO MOBILE. Medido do zero em réplica headless
+        // da cascata de produção (crítico → CSS de design raspado → template
+        // → este chunk, que carrega por último) a 355px e 390px lógicos —
+        // vãos idênticos nas duas larguras (todas as fontes do vão são px/em
+        // fixos). No mobile a composição muda: as rows de 6 colunas do
+        // carômetro são display:none ≤980px (design do antigo) e as rows flex
+        // de 2 colunas é que renderizam; o padding 54/27 do customizer global
+        // NÃO se aplica (<1350px), mas o design mobile (≤767px) carrega
+        // paddings próprios (section_30 topo 100px, row_52 40px !important,
+        // section_30 fundo 20px) e margens !important nos títulos. Régua:
+        // mesmo ritmo das revisões 2/4 (~48–56px entre o fim do bloco
+        // anterior e o título; margens internas do bloco anterior entram na
+        // conta do bloco).
+        @media (max-width: 768px) {
+
+            // (a) Pilha de h1s vazios: mesmo mecanismo da revisão 4, mas o
+            // margin-bottom colapsado dos vazios (0.67em da fonte do título —
+            // 40.2px em E AGORA?/CRÉDITOS de 60px; 33.5px no RELATÓRIO de
+            // 50px) supera o margin-top de 24px da revisão 2 e vira a margem
+            // líder do título. Zera as duas pontas e estende o mt de 24px aos
+            // dois títulos que a revisão 2 não cobria (CRIMES text_85 e
+            // RELATÓRIO text_87).
+            .et_pb_text_83 h1,
+            .et_pb_text_85 h1,
+            .et_pb_text_87 h1,
+            .et_pb_text_95 h1,
+            .et_pb_text_97 h1 {
+                margin-bottom: 0;
+            }
+
+            .et_pb_text_85 h1,
+            .et_pb_text_87 h1 {
+                margin-top: 24px;
+            }
+
+            // Junção CARÔMETRO → A CPI NAS REDES (vão medido 66px → ~50px):
+            // no mobile a última row flex (row_45) não tem padding e a
+            // row-cunha 46 é alta 0; o vão extra é o <p> final vazio do
+            // code_1, cuja margem de 16px escapa para fora da seção 27.
+            // Restam 24 (padding-top da seção 28, revisão 2) + 24 (h1).
+            .et_pb_code_1 .et_pb_code_inner p {
+                margin: 0;
+            }
+
+            // Junção A CPI NAS REDES → CRIMES DE BOLSONARO (vão medido ~86px
+            // → ~54px): padding-top 25.6px da row do título + margin-top
+            // 30px !important que o design mobile aplica no módulo text_85.
+            // Resta o padding-bottom 30px da row_48 (o bloco de redes termina
+            // na imagem-seta et_pb_image_2), borda interna do bloco — mesma
+            // conta da revisão 4 no desktop.
+            .et_pb_row_49 {
+                padding-top: 0;
+            }
+
+            .et_pb_text_85 {
+                margin-top: 0 !important;
+            }
+
+            // Junção CRIMES DE BOLSONARO → RELATÓRIO (vão medido ~164px →
+            // ~56px): o design mobile infla o topo da seção 30 para 100px e
+            // aplica margin-top 40px !important no módulo do título; soma-se
+            // o <p> final vazio da text_86 escapando 16px abaixo da seção 29.
+            .et_pb_text_86 p:last-child {
+                margin: 0;
+            }
+
+            .et_pb_section_30 {
+                padding-top: 24px;
+            }
+
+            .et_pb_text_87 {
+                margin-top: 0 !important;
+            }
+
+            // Junção RELATÓRIO → E AGORA? (vão medido ~150px → ~56px): o
+            // design mobile carrega a row_52 com padding 40px !important e a
+            // seção 30 com padding-bottom 20px (zerado aqui); a pilha de h1s
+            // vazios de E AGORA? (item (a) acima) completa o vão. Restam 32
+            // (padding-top da seção 31, revisão 2) + 24 (h1).
+            .et_pb_section_30 {
+                padding-bottom: 0;
+            }
+
+            .et_pb_row_52 {
+                padding-bottom: 0 !important;
+            }
+
+            .et_pb_row_52 .et_pb_text {
+                margin-bottom: 0;
+            }
+
+            .et_pb_row_52 .et_pb_text p:last-child {
+                margin: 0;
+            }
+
+            // Topo de CRÉDITOS (vão medido ~121px → ~78px da última thumb ao
+            // título; da borda do bloco da galeria ao título: 99px → 56px):
+            // padding-bottom 27px da seção da galeria + pilha de h1s vazios
+            // (item (a)). Os 22px restantes após a última thumb (mb 10 do
+            // módulo + pb 10 da coluna + 2 da row) são ritmo interno da
+            // própria grade, como os 10px mantidos no desktop.
+            .et_pb_section_33 {
+                padding-bottom: 0;
             }
         }
 

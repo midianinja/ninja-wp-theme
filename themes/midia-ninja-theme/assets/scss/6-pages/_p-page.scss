@@ -164,6 +164,131 @@
             display: none;
         }
 
+        // ===== Revisão 4 da #335 (feedback Caio, capturas desktop) — junções
+        // entre blocos =====
+        // Os vãos que sobraram da revisão 2 vêm de três fontes, medidas numa
+        // réplica headless do embed (mesma cascata da produção: critical.css →
+        // CSS de design raspado no corpo → este chunk, que carrega por último):
+        //   (a) a margin-BOTTOM dos <h1></h1> vazios que o autor do site antigo
+        //       empilhava antes de cada título como espaçador: a revisão 2 só
+        //       sobrescreveu margin-top, mas o colapso de margens entre irmãos
+        //       vazios faz prevalecer a maior delas — 0.67em (reset do
+        //       critical.css) da fonte do título = 67px nos h1 de 100px e 51px
+        //       no de 76px. Zerar as duas pontas devolve o 24px pretendido;
+        //   (b) paddings herdados do customizer global do Divi nas bordas das
+        //       junções (.et_pb_section{padding:54px 0} na borda inferior da
+        //       seção 28; .et_pb_row{padding:27px 0} nas rows-cunha);
+        //   (c) elementos-fantasma no fim dos blocos: <p> finais vazios cuja
+        //       margem padrão de 1em (16px) escapa para fora da seção (code_1
+        //       do carômetro e text_86) e a row_53, uma row 100% vazia com
+        //       54px de padding no fim do RELATÓRIO.
+        // Régua visual: mesmo ritmo dos 24px+24px / 32px+24px já aplicados
+        // pela revisão 2 (vão de ~48–56px entre o fim do bloco anterior e o
+        // título; margens internas do próprio bloco anterior entram na conta
+        // do bloco, não da junção). Desktop-only ≥981px (breakpoint do Divi):
+        // as capturas do cliente são desktop e o mobile aprovado na revisão 1
+        // não deve mudar.
+        @media (min-width: 981px) {
+
+            // (a) Zera a pilha de h1s vazios nos cinco títulos de junção e
+            // estende o margin-top de 24px da revisão 2 aos dois que ela não
+            // cobria (CRIMES text_85 e RELATÓRIO text_87).
+            .et_pb_text_83 h1,
+            .et_pb_text_85 h1,
+            .et_pb_text_87 h1,
+            .et_pb_text_95 h1,
+            .et_pb_text_97 h1 {
+                margin-bottom: 0;
+            }
+
+            .et_pb_text_85 h1,
+            .et_pb_text_87 h1 {
+                margin-top: 24px;
+            }
+
+            // Junção CARÔMETRO → A CPI NAS REDES (vão medido 107px → ~48px):
+            // última row de cards (row_45, padding-bottom 27 do global) +
+            // row_46, a row-cunha que só hospeda o code_1 com o CSS inline da
+            // timeline (padding-top 27) + o <p> final vazio do code_1, cuja
+            // margem escapa 16px para fora da seção 27.
+            .et_pb_row_45 {
+                padding-bottom: 0;
+            }
+
+            .et_pb_row_46 {
+                padding-top: 0;
+            }
+
+            .et_pb_code_1 .et_pb_code_inner p {
+                margin: 0;
+            }
+
+            // Junção A CPI NAS REDES → CRIMES DE BOLSONARO (vão medido
+            // ~160px → ~54px): padding-bottom global da seção 28 (54px) +
+            // padding-top da row do título (25.6px). Resta o padding-bottom
+            // 30px da row_48, borda interna do bloco de redes.
+            .et_pb_section_28 {
+                padding-bottom: 0;
+            }
+
+            .et_pb_row_49 {
+                padding-top: 0;
+            }
+
+            // Junção CRIMES DE BOLSONARO → RELATÓRIO (vão medido ~147px →
+            // ~50px): <p> final vazio do text_86 escapando 16px + padding-top
+            // da seção 30 (37px) + padding-top da row_51 (27px) + margin-top
+            // 19px !important do módulo do título. Resta o pull líquido de
+            // ~2px do próprio text_86, parte do design da lista de crimes.
+            .et_pb_text_86 p:last-child {
+                margin: 0;
+            }
+
+            .et_pb_section_30 {
+                padding-top: 24px;
+                padding-bottom: 0;
+            }
+
+            .et_pb_row_51 {
+                padding-top: 0;
+            }
+
+            .et_pb_text_87 {
+                margin-top: 0 !important;
+            }
+
+            // Junção RELATÓRIO → E AGORA? (vão medido ~235px → ~56px): a
+            // row_53 é uma row-cunha vazia (54px de padding global) no fim da
+            // seção 30; o pé do bloco ainda carrega o padding-bottom 40px
+            // !important da row_52 e a margem de 5% + <p> vazio final do
+            // último card de texto do relatório. Zerar só a margem-bottom não
+            // muda o vão INTERNO entre cards (o colapso já o define o
+            // margin-top de 5% da regra da R06).
+            .et_pb_row_53 {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            .et_pb_row_52 {
+                padding-bottom: 0 !important;
+            }
+
+            .et_pb_row_52 .et_pb_text {
+                margin-bottom: 0;
+            }
+
+            .et_pb_row_52 .et_pb_text p:last-child {
+                margin: 0;
+            }
+
+            // Topo de CRÉDITOS (vão medido ~136px → ~66px): padding-bottom da
+            // seção da galeria (27px). Resta a margem de 10px da última thumb,
+            // ritmo interno da própria grade.
+            .et_pb_section_33 {
+                padding-bottom: 0;
+            }
+        }
+
         // ===== Mobile (≤768px) — revisão 1 da #335 =====
         // Carômetro (#carometro): no mobile o CSS do antigo exibe as rows
         // flex de 2 colunas (display:flex global no design CSS; as rows de

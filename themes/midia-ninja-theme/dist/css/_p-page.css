@@ -249,13 +249,14 @@
     margin-top: 0 !important;
   }
 
-  .page-cpi-da-covid #app .et_pb_section:not(.et_pb_section_2):not(.et_pb_section_6):has(.et_pb_row .et_pb_module.et_pb_text .et_pb_text_inner > h1) {
-    padding-top: 24px;
+  .page-cpi-da-covid #app .et_pb_section:has(.et_pb_row .et_pb_module.et_pb_text .et_pb_text_inner > h1) {
+    padding-top: 0;
     padding-bottom: 0;
   }
 
-  .page-cpi-da-covid #app .et_pb_section:not(.et_pb_section_2):not(.et_pb_section_6):has(.et_pb_row .et_pb_module.et_pb_text .et_pb_text_inner > h1) > .et_pb_row:has(.et_pb_module.et_pb_text .et_pb_text_inner > h1) {
+  .page-cpi-da-covid #app .et_pb_section:has(.et_pb_row .et_pb_module.et_pb_text .et_pb_text_inner > h1) > .et_pb_row:has(.et_pb_module.et_pb_text .et_pb_text_inner > h1) {
     padding-top: 0;
+    padding-bottom: 0;
   }
 
   .page-cpi-da-covid #app .et_pb_row_52 {
@@ -268,6 +269,37 @@
 
   .page-cpi-da-covid #app .et_pb_section_33 {
     padding-bottom: 0;
+  }
+
+  .page-cpi-da-covid #app .et_pb_row_48 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .page-cpi-da-covid #app .et_pb_row_27 {
+    padding-top: 0;
+  }
+
+  .page-cpi-da-covid #app .dia {
+    margin-top: 24px !important;
+    padding-top: 30px !important;
+  }
+
+  .page-cpi-da-covid #app .et_pb_image_65 {
+    margin-bottom: 0 !important;
+  }
+
+  .page-cpi-da-covid #app .et_pb_row_58 {
+    padding-bottom: 0;
+  }
+
+  .page-cpi-da-covid #app .et_pb_row_58 .et_pb_column:last-child {
+    padding-bottom: 0;
+  }
+
+  .page-cpi-da-covid #app .et_pb_image_1 {
+    height: 200px;
+    background-position: center bottom;
   }
 }
 

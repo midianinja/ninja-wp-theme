@@ -301,6 +301,10 @@
     height: 200px;
     background-position: center bottom;
   }
+
+  .page-cpi-da-covid #app .et_pb_text_0 {
+    margin-top: 0 !important;
+  }
 }
 
 .page-cpi-da-covid #app #main-footer {

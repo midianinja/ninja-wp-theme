@@ -578,23 +578,45 @@
                 padding-bottom: 0;
             }
 
-            // (m) HERÓI, vão antes de INTRODUÇÃO: a caixa de image_1 (a faixa
-            // de estática do herói) tem height 90vh do design — 810px medidos
-            // no emulador, variando com a altura do aparelho. A faixa cpi10
-            // (background do módulo, contain e centralizada) fica INVISÍVEL:
-            // o módulo tem z-index −44 e pinta atrás do background OPACO de
-            // estática+preto da própria sec_1 (contexto de empilhamento da
-            // raiz) — o que o cliente vê entre a capa e o título é só a
-            // parede de estática: 634px de vão. Encolhe a caixa para 200px
-            // fixos (independente de vh): com o row pad 100 e o pull −150,
-            // a faixa líquida fica em 150px e o título (pull −150 no módulo
-            // + mt 24 do h1, ambos preservados) pousa a 24px da capa.
-            // A âncora do background passa ao fundo como cinto e suspensórios:
-            // se a arte cpi10 algum dia pintar à frente da estática, ela
-            // aparece colada ao título, não flutuando 187px acima.
+            // (m) HERÓI, vão antes de INTRODUÇÃO. A caixa de image_1 (faixa de
+            // estática do herói) tem height 90vh no design — 810px medidos,
+            // variando com a altura do aparelho. A arte cpi10 (background do
+            // módulo, contain) pinta INVISÍVEL (z-index −44 atrás do
+            // background OPACO de estática+preto da própria sec_1); o que o
+            // cliente vê entre a capa e o título é a PAREDE DE ESTÁTICA —
+            // a caixa da própria sec_1 (static.gif + gradiente preto,
+            // position:relative: pinta por cima do fundo da sec_2 na zona
+            // de sobreposição, enquanto o título, na coluna z 9, pinta por
+            // cima da parede). REV7 encolheu a caixa de image_1 para 200px
+            // fixos: parede líquida = row pad 100 + caixa 200 − pull −150
+            // de image_1 (preservado) = 150px — medido ao vivo: capa →
+            // parede = 0, parede = 150px exatos em 355 E 390. ERRO da rev7:
+            // mediu o respiro a partir da CAPA (24px) e não viu que o fim
+            // da IMAGEM é a borda inferior da parede, 150px abaixo — e que
+            // o título também carrega o pull autoral de text_0 (mt −150
+            // !important GLOBAL do design): o colapso na cadeia
+            // text_0/text_inner/h1 soma −150+24 e punha o título a −126px
+            // e o começo do texto a −81,5px DENTRO da imagem (validação da
+            // equipe: "entraram pra cima da imagem"). REV8: neutraliza o
+            // pull de text_0 NO MOBILE (mt 0 !important — o !important é
+            // para vencer o −150 !important do design por especificidade
+            // (1,2,0 > 0,1,0); no desktop ≥981px o pull segue intacto).
+            // Com o pull morto sobrevive só o mt 24 do h1 da rev7 (d):
+            // fim da imagem (borda inferior da sec_1) → topo de
+            // INTRODUÇÃO = 24px exatos, independente de largura/altura
+            // (tudo px fixo: 100+200−150 de parede + 24 de respiro); o
+            // texto da introdução pousa colado no título (mb 0). O pull de
+            // image_1 (que encurta a parede para 150px) permanece
+            // preservado. Âncora do background ao fundo como cinto e
+            // suspensórios: se a arte cpi10 algum dia pintar à frente da
+            // estática, ela aparece colada ao fim da parede, não flutuando.
             .et_pb_image_1 {
                 height: 200px;
                 background-position: center bottom;
+            }
+
+            .et_pb_text_0 {
+                margin-top: 0 !important;
             }
         }
 

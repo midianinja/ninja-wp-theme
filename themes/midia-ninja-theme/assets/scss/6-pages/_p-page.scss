@@ -159,6 +159,36 @@
             margin-top: -40px;
         }
 
+        // ===== Revisão 9 da #335 — botão "saiba mais" cobrindo o cargo (mobile) =====
+        // O botão não é filho da descrição: é um módulo IRMÃO do card
+        // (.et_pb_button_module_wrapper, um por coluna) que o CSS de design do
+        // antigo puxa para cima — 81 wrappers com margin-top:-30px!important e
+        // 7 com -60px!important (buttons 43/45/55/69/85/86/87, variação de
+        // autoria). O pull foi calibrado para o layout ORIGINAL, onde havia
+        // colchão sob o card: margin-bottom 30px do módulo (Divi core) +
+        // margens/padding default do <p> do cargo. No embed esses colchões
+        // morrem (critical.css do tema zera as margens do p; os gutters1 do
+        // Divi core zeram a margin-bottom do módulo) e sobra apenas o
+        // padding-bottom:30px da descrição (plugin DCT, code_1) — o pull de
+        // −30 cancela exatamente esses 30px (botão COLADO no cargo) e o de
+        // −60 invade 30px a caixa e cobre a última linha do cargo. Medido em
+        // réplica headless da cascata real (divi core → redeninja → chunk →
+        // critical → design css → code_1 → template): a 355/390/768/800px os
+        // mesmos 7 cards com overlap de −30px e os 81 com gap 0; a ≥981px a
+        // grade flex (única que hospeda wrappers −60) é display:none e a
+        // grade de 6 colunas não overlapping (51 cards, gap 0). Por isso o
+        // breakpoint é 980 (o do Divi para este markup), não 768: entre 769 e
+        // 980px a grade doente continua visível. Zera o pull no mobile — o
+        // respiro passa a ser o padding-bottom:30px da própria descrição
+        // (mesmo ritmo das bordas internas do card). !important para vencer
+        // o !important do design por especificidade ((1,1,0) > (0,1,0)).
+        @media (max-width: 980px) {
+
+            #carometro .et_pb_button_module_wrapper {
+                margin-top: 0 !important;
+            }
+        }
+
         // Fichas dos envolvidos abaixo dos Créditos: remoção VISUAL via CSS
         // (estratégia declarada). Os blocos lightbox-content-perfil* são a
         // FONTE de conteúdo do modal de perfis (embed-cpi-modal.js clona e

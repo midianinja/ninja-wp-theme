@@ -117,6 +117,14 @@
   .page-cpi-da-covid #app #carometro .et_pb_button_module_wrapper {
     margin-top: 0 !important;
   }
+
+  .page-cpi-da-covid #app #carometro .et_pb_button_module_wrapper:has(+ .et_pb_team_member) {
+    margin-bottom: 24px;
+  }
+
+  .page-cpi-da-covid #app #carometro .et_pb_row {
+    row-gap: 24px;
+  }
 }
 
 .page-cpi-da-covid #app [class*=lightbox-content-] {

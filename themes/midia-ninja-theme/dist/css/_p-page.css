@@ -113,6 +113,20 @@
   margin-top: -40px;
 }
 
+@media (max-width: 980px) {
+  .page-cpi-da-covid #app #carometro .et_pb_button_module_wrapper {
+    margin-top: 0 !important;
+  }
+
+  .page-cpi-da-covid #app #carometro .et_pb_button_module_wrapper:has(+ .et_pb_team_member) {
+    margin-bottom: 24px;
+  }
+
+  .page-cpi-da-covid #app #carometro .et_pb_row {
+    row-gap: 24px;
+  }
+}
+
 .page-cpi-da-covid #app [class*=lightbox-content-] {
   display: none;
 }

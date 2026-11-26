@@ -127,6 +127,15 @@
   }
 }
 
+.page-cpi-da-covid #app .et_pb_button::after,
+.page-cpi-da-covid #app .et_pb_button::before {
+  content: none;
+}
+
+.page-cpi-da-covid #app #carometro .et_pb_button {
+  color: #f5d66f;
+}
+
 .page-cpi-da-covid #app [class*=lightbox-content-] {
   display: none;
 }

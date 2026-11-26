@@ -219,6 +219,51 @@
             }
         }
 
+        // ===== Revisão 11 da #335 — botão "saiba mais" apagado + "5" no hover =====
+        // EVIDÊNCIA (produção ao vivo, 26/11/2026 — computed styles + fontes):
+        // (1) COR/CONTRASTE (itens 1 e 2 do feedback: "nem dá pra ver no
+        //     android" / "apagado, de difícil leitura"). O CSS de design do
+        //     antigo estiliza cada botão com `body #page-container
+        //     .et_pb_button_N { color:#f5d66f !important; background-image:
+        //     url(ricos-1.png) !important; … }` — mas o embed não carrega o
+        //     wrapper #page-container do site antigo, então TODAS essas regras
+        //     são inertes desde a criação do embed (R03). Sem elas o botão cai
+        //     no fallback do template (.embed-cpi-inner .et_pb_button com
+        //     border:1px solid currentColor) e HERDA color:#000 do
+        //     .embed-cpi-inner: texto e borda pretos, fundo transparente,
+        //     sobre a textura escura da row do carômetro (bg3-1.png,
+        //     luminância média 16.6/255) — contraste ~1.1:1, invisível no
+        //     celular, "apagado" no desktop (medido: color rgb(0,0,0),
+        //     background rgba(0,0,0,0), background-image none). No antigo o
+        //     botão é texto OURO #f5d66f sobre textura escura (ricos-1.png,
+        //     luminância 13.8/255 — a imagem de fundo é quase preta; a COR é
+        //     o que dá legibilidade). Uma regra escopada devolve a cor do
+        //     design (~13:1 de contraste sobre a textura). Sem media query:
+        //     desktop também está "apagado" (item 3 do feedback).
+        // (2) "5" NO HOVER (item 3: "com o mouse over aparece um 5 na frente").
+        //     O núcleo do Divi carrega cross-origin do antigo (wp-divi-3/
+        //     style.css no <head> da página) e renderiza o ícone do botão via
+        //     .et_pb_button:after/:before { content:"\35" } — código do
+        //     glifo-seta na fonte ETmodules (0x35 = caractere "5"), escondido
+        //     por opacity:0 e REVELADO no :hover (margin-left:0; opacity:1).
+        //     A @font-face da ETmodules aponta para antigo.midianinja.org sem
+        //     header CORS: a fonte é bloqueada (medido ao vivo:
+        //     ETmodules:error) e o "5" cai na fonte fallback — o dígito
+        //     literal na frente do rótulo. Carregar a fonte é impossível sem
+        //     mexer no servidor do antigo; matar o pseudo-elemento resolve —
+        //     em TODOS os botões Divi do embed (mesmo "5" latente em cada um
+        //     deles, p.ex. os "próxima sessão" da linha do tempo; nenhum usa
+        //     :after/:before com conteúdo real — o data-icon do antigo não
+        //     existe no markup dos botões).
+        .et_pb_button::after,
+        .et_pb_button::before {
+            content: none;
+        }
+
+        #carometro .et_pb_button {
+            color: #f5d66f;
+        }
+
         // Fichas dos envolvidos abaixo dos Créditos: remoção VISUAL via CSS
         // (estratégia declarada). Os blocos lightbox-content-perfil* são a
         // FONTE de conteúdo do modal de perfis (embed-cpi-modal.js clona e
